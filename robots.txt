@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
 Sitemap: https://skyzbpt.github.io/sky-physio-blog/sitemap.xml
