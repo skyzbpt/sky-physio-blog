@@ -2585,7 +2585,7 @@ function admConfirm(msg,cb){
 }
 function admConfirmClose(){ document.getElementById('adm-confirm').classList.remove('show'); adm_confirmCb=null; }
 document.getElementById('adm-confirm-ok').addEventListener('click',function(){
-  admConfirmClose(); if(adm_confirmCb) adm_confirmCb();
+  var cb=adm_confirmCb; admConfirmClose(); if(cb) cb();
 });
 
 /* ── keyboard shortcuts ── */
