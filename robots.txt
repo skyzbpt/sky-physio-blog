@@ -1,3 +1,47 @@
+# Sky 物理治療師 — 歡迎搜尋引擎與 AI 引擎索引、摘要與引用
+# AI 摘要 / 引用指引：/llms.txt（全文彙整：/llms-full.txt）
+
 User-agent: *
 Allow: /
+
+# 明確歡迎主流 AI 爬蟲（搜尋、摘要與引用用途）
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
 Sitemap: https://skyzbpt.github.io/sky-physio-blog/sitemap.xml
