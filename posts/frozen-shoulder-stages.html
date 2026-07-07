@@ -100,8 +100,8 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 .nav-right{display:flex;align-items:center;gap:24px}
 .nav-link{font-size:.88rem;color:var(--ink-2);border-bottom:1.5px solid transparent;padding:4px 0}
 .nav-link:hover{border-color:var(--teal);color:var(--ink)}
-.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.84rem;letter-spacing:.06em;padding:8px 20px;border:1.5px solid var(--teal);background:var(--teal);color:#fff}
-.btn:hover{background:#0F8576}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.86rem;font-weight:600;letter-spacing:.06em;padding:9px 22px;border:1.5px solid #0C7365;background:#0C7365;color:#fff}
+.btn:hover{background:#0A5F53;border-color:#0A5F53}
 @media(max-width:520px){.brand-name{font-size:.94rem}.nav-link{display:none}}
 .post-page{max-width:720px;margin:0 auto;padding:56px 32px 96px}
 .back-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--ink-2);cursor:pointer;margin-bottom:36px;padding:10px 18px;border:1.5px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6)}
@@ -117,6 +117,12 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body h2::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red);flex:none}
 .post-body blockquote{border-left:2px solid var(--teal);padding:6px 0 6px 22px;margin:0 0 1.7em;font-family:var(--serif);color:var(--teal);font-size:1.04rem;line-height:2}
 .post-body strong{color:var(--ink)}
+.post-body ul,.post-body ol{font-family:var(--serif);font-size:1.04rem;line-height:2;letter-spacing:.04em;color:var(--ink-2);margin:0 0 1.7em;padding-left:1.5em}
+.post-body li{margin-bottom:.55em;padding-left:.25em}
+.post-body li::marker{color:var(--teal)}
+.post-body li:last-child{margin-bottom:0}
+.post-body em{font-style:italic}
+.post-body hr{border:none;border-top:1px solid var(--line);margin:2.6em 0}
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
@@ -165,12 +171,15 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     <div class="post-body">
 <p>冰凍肩，正式名稱是「沾黏性關節囊炎（adhesive capsulitis）」，俗稱五十肩。它的特徵是：包覆肩關節的<strong>關節囊發炎、變厚、變緊、甚至沾黏</strong>，讓肩膀又痛又卡，各個方向的活動度都受限——連別人幫你抬手都抬不上去（這點和單純的旋轉肌袖問題不同）。</p>
 <h2>它有三個階段</h2>
-<p><strong>1. 疼痛期（結凍中，freezing）</strong><br>- 疼痛逐漸加重，尤其晚上、睡覺時<br>- 活動度開始變差<br>- 這階段常最難熬，可持續數週到數月</p>
-<p><strong>2. 沾黏期（結凍，frozen）</strong><br>- 疼痛趨於穩定、甚至減輕<br>- 但<strong>僵硬達到最嚴重</strong>，肩膀「卡死」，日常大受影響</p>
-<p><strong>3. 解凍期（thawing）</strong><br>- 活動度慢慢、逐步恢復<br>- 可能需要數月到一兩年</p>
+<p><strong>1. 疼痛期（結凍中，freezing）</strong></p>
+<ul><li>疼痛逐漸加重，尤其晚上、睡覺時</li><li>活動度開始變差</li><li>這階段常最難熬，可持續數週到數月</li></ul>
+<p><strong>2. 沾黏期（結凍，frozen）</strong></p>
+<ul><li>疼痛趨於穩定、甚至減輕</li><li>但<strong>僵硬達到最嚴重</strong>，肩膀「卡死」，日常大受影響</li></ul>
+<p><strong>3. 解凍期（thawing）</strong></p>
+<ul><li>活動度慢慢、逐步恢復</li><li>可能需要數月到一兩年</li></ul>
 <blockquote>冰凍肩是少數會「自己走完病程」的肩病——但過程可能很長，好的復健能讓它更順、更快、更不痛。</blockquote>
 <h2>認識階段，才能對症</h2>
-<p>- <strong>疼痛期</strong>：重點在<strong>止痛與安撫</strong>，做溫和、不激怒的活動，別硬拉<br>- <strong>沾黏期／解凍期</strong>：重點轉向<strong>恢復活動度</strong>——這時候，適度的伸展與關節囊的鬆動反而是關鍵（這是肩膀復健裡少數「需要拉伸」的情況，下一篇詳談）</p>
+<ul><li><strong>疼痛期</strong>：重點在<strong>止痛與安撫</strong>，做溫和、不激怒的活動，別硬拉</li><li><strong>沾黏期／解凍期</strong>：重點轉向<strong>恢復活動度</strong>——這時候，適度的伸展與關節囊的鬆動反而是關鍵（這是肩膀復健裡少數「需要拉伸」的情況，下一篇詳談）</li></ul>
 <h2>誰比較容易得？</h2>
 <p>好發於 40–60 歲、女性、糖尿病與甲狀腺疾病患者，以及肩膀曾受傷或長期不動之後。</p>
 <p>認出你在哪一期，就不會在疼痛期硬操、也不會在解凍期還不敢動。</p>

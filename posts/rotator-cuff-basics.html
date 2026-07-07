@@ -100,8 +100,8 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 .nav-right{display:flex;align-items:center;gap:24px}
 .nav-link{font-size:.88rem;color:var(--ink-2);border-bottom:1.5px solid transparent;padding:4px 0}
 .nav-link:hover{border-color:var(--teal);color:var(--ink)}
-.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.84rem;letter-spacing:.06em;padding:8px 20px;border:1.5px solid var(--teal);background:var(--teal);color:#fff}
-.btn:hover{background:#0F8576}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.86rem;font-weight:600;letter-spacing:.06em;padding:9px 22px;border:1.5px solid #0C7365;background:#0C7365;color:#fff}
+.btn:hover{background:#0A5F53;border-color:#0A5F53}
 @media(max-width:520px){.brand-name{font-size:.94rem}.nav-link{display:none}}
 .post-page{max-width:720px;margin:0 auto;padding:56px 32px 96px}
 .back-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--ink-2);cursor:pointer;margin-bottom:36px;padding:10px 18px;border:1.5px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6)}
@@ -117,6 +117,12 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body h2::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red);flex:none}
 .post-body blockquote{border-left:2px solid var(--teal);padding:6px 0 6px 22px;margin:0 0 1.7em;font-family:var(--serif);color:var(--teal);font-size:1.04rem;line-height:2}
 .post-body strong{color:var(--ink)}
+.post-body ul,.post-body ol{font-family:var(--serif);font-size:1.04rem;line-height:2;letter-spacing:.04em;color:var(--ink-2);margin:0 0 1.7em;padding-left:1.5em}
+.post-body li{margin-bottom:.55em;padding-left:.25em}
+.post-body li::marker{color:var(--teal)}
+.post-body li:last-child{margin-bottom:0}
+.post-body em{font-style:italic}
+.post-body hr{border:none;border-top:1px solid var(--line);margin:2.6em 0}
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
@@ -166,11 +172,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 <p>講到肩膀痛，幾乎都會提到「旋轉肌袖（rotator cuff）」。它其實是<strong>四條深層肌肉</strong>的合稱，像一個袖套一樣，從各個方向包覆肩關節。</p>
 <h2>它們的工作</h2>
 <p>四條肌肉（棘上肌、棘下肌、小圓肌、肩胛下肌）合作做兩件事：</p>
-<p>1. <strong>把肱骨頭穩穩「吸」在淺淺的關節窩裡</strong>，不讓它亂跑<br>2. <strong>引導與微調動作</strong>，尤其是把手舉高、旋轉手臂時</p>
+<ol><li><strong>把肱骨頭穩穩「吸」在淺淺的關節窩裡</strong>，不讓它亂跑</li><li><strong>引導與微調動作</strong>，尤其是把手舉高、旋轉手臂時</li></ol>
 <p>換句話說，旋轉肌袖是肩膀的「動態穩定器」。手每一次抬起，它們都在默默工作。</p>
 <blockquote>大肌肉負責出力，旋轉肌袖負責「讓關節待在對的位置」——後者不出聲，卻決定了前者能不能安全發力。</blockquote>
 <h2>為什麼那麼常受傷？</h2>
-<p>- <strong>用得多、位置吃虧</strong>：過頭動作（如晾衣、投擲、舉重、游泳）反覆使用，棘上肌尤其容易被夾擠、磨損<br>- <strong>血液供應相對少</strong>：肌腱某些區域循環較差，修復較慢<br>- <strong>會隨年齡退化</strong>：如同白頭髮，旋轉肌腱的退化性變化在中高齡很常見——但和下背一樣，影像上的退化不一定等於你痛的原因</p>
+<ul><li><strong>用得多、位置吃虧</strong>：過頭動作（如晾衣、投擲、舉重、游泳）反覆使用，棘上肌尤其容易被夾擠、磨損</li><li><strong>血液供應相對少</strong>：肌腱某些區域循環較差，修復較慢</li><li><strong>會隨年齡退化</strong>：如同白頭髮，旋轉肌腱的退化性變化在中高齡很常見——但和下背一樣，影像上的退化不一定等於你痛的原因</li></ul>
 <h2>好消息</h2>
 <p>多數旋轉肌袖問題（包括許多撕裂）都能靠漸進的運動治療改善，重新把力量與控制練回來。下一篇，我們談談「旋轉肌袖撕裂，一定要開刀嗎？」</p>
 <p>認識這四條安靜的肌肉，你就握住了理解肩膀痛的鑰匙。</p>

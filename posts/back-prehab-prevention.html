@@ -100,8 +100,8 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 .nav-right{display:flex;align-items:center;gap:24px}
 .nav-link{font-size:.88rem;color:var(--ink-2);border-bottom:1.5px solid transparent;padding:4px 0}
 .nav-link:hover{border-color:var(--teal);color:var(--ink)}
-.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.84rem;letter-spacing:.06em;padding:8px 20px;border:1.5px solid var(--teal);background:var(--teal);color:#fff}
-.btn:hover{background:#0F8576}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.86rem;font-weight:600;letter-spacing:.06em;padding:9px 22px;border:1.5px solid #0C7365;background:#0C7365;color:#fff}
+.btn:hover{background:#0A5F53;border-color:#0A5F53}
 @media(max-width:520px){.brand-name{font-size:.94rem}.nav-link{display:none}}
 .post-page{max-width:720px;margin:0 auto;padding:56px 32px 96px}
 .back-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--ink-2);cursor:pointer;margin-bottom:36px;padding:10px 18px;border:1.5px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6)}
@@ -117,6 +117,12 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body h2::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red);flex:none}
 .post-body blockquote{border-left:2px solid var(--teal);padding:6px 0 6px 22px;margin:0 0 1.7em;font-family:var(--serif);color:var(--teal);font-size:1.04rem;line-height:2}
 .post-body strong{color:var(--ink)}
+.post-body ul,.post-body ol{font-family:var(--serif);font-size:1.04rem;line-height:2;letter-spacing:.04em;color:var(--ink-2);margin:0 0 1.7em;padding-left:1.5em}
+.post-body li{margin-bottom:.55em;padding-left:.25em}
+.post-body li::marker{color:var(--teal)}
+.post-body li:last-child{margin-bottom:0}
+.post-body em{font-style:italic}
+.post-body hr{border:none;border-top:1px solid var(--line);margin:2.6em 0}
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
@@ -168,11 +174,14 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 <p>如果 rehab 是「受傷後修復」，prehab 就是「平時就把身體養得夠強壯、夠耐用，讓傷不那麼容易發生」。這些運動其實和復健後期用的很像——差別在於，你是在<strong>沒受傷的時候</strong>持續做，把它當成長期習慣。</p>
 <blockquote>讓脊椎系統——骨頭、關節、肌肉、肌腱、韌帶——保持靈活又強壯，是一輩子的練習。</blockquote>
 <h2>一份耐用背的保養菜單</h2>
-<p><strong>1. 力量（每週 2–3 次）</strong><br>- 髖鉸鏈類：臀橋、羅馬尼亞式硬舉（由輕漸重）<br>- 核心穩定：死蟲、鳥狗、側棒式、農夫走路（負重行走）<br>- 下肢：深蹲、分腿蹲</p>
-<p><strong>2. 活動度（每週多次、少量）</strong><br>- 髖屈曲／伸展／旋轉、胸椎旋轉與伸展、貓牛</p>
-<p><strong>3. 有氧與日常活動量</strong><br>- 快走、騎車、游泳等，維持整體體能與組織健康</p>
+<p><strong>1. 力量（每週 2–3 次）</strong></p>
+<ul><li>髖鉸鏈類：臀橋、羅馬尼亞式硬舉（由輕漸重）</li><li>核心穩定：死蟲、鳥狗、側棒式、農夫走路（負重行走）</li><li>下肢：深蹲、分腿蹲</li></ul>
+<p><strong>2. 活動度（每週多次、少量）</strong></p>
+<ul><li>髖屈曲／伸展／旋轉、胸椎旋轉與伸展、貓牛</li></ul>
+<p><strong>3. 有氧與日常活動量</strong></p>
+<ul><li>快走、騎車、游泳等，維持整體體能與組織健康</li></ul>
 <h2>三個長期原則</h2>
-<p>- <strong>漸進超負荷</strong>：身體是「用進廢退」——負荷要隨能力慢慢往上加，才會越來越耐用<br>- <strong>規律 &gt; 完美</strong>：每週穩定做，勝過偶爾操一次<br>- <strong>把生活也算進去</strong>：睡眠、壓力管理、活動量，都會影響你的背有多「耐操」</p>
+<ul><li><strong>漸進超負荷</strong>：身體是「用進廢退」——負荷要隨能力慢慢往上加，才會越來越耐用</li><li><strong>規律 &gt; 完美</strong>：每週穩定做，勝過偶爾操一次</li><li><strong>把生活也算進去</strong>：睡眠、壓力管理、活動量，都會影響你的背有多「耐操」</li></ul>
 <p>腰不是玻璃做的，它是可以被訓練得越來越強壯的。與其怕它、護著它，不如——把它練成一個能陪你走很久的背。</p>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

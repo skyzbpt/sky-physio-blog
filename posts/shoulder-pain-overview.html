@@ -100,8 +100,8 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 .nav-right{display:flex;align-items:center;gap:24px}
 .nav-link{font-size:.88rem;color:var(--ink-2);border-bottom:1.5px solid transparent;padding:4px 0}
 .nav-link:hover{border-color:var(--teal);color:var(--ink)}
-.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.84rem;letter-spacing:.06em;padding:8px 20px;border:1.5px solid var(--teal);background:var(--teal);color:#fff}
-.btn:hover{background:#0F8576}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.86rem;font-weight:600;letter-spacing:.06em;padding:9px 22px;border:1.5px solid #0C7365;background:#0C7365;color:#fff}
+.btn:hover{background:#0A5F53;border-color:#0A5F53}
 @media(max-width:520px){.brand-name{font-size:.94rem}.nav-link{display:none}}
 .post-page{max-width:720px;margin:0 auto;padding:56px 32px 96px}
 .back-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--ink-2);cursor:pointer;margin-bottom:36px;padding:10px 18px;border:1.5px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6)}
@@ -117,6 +117,12 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body h2::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red);flex:none}
 .post-body blockquote{border-left:2px solid var(--teal);padding:6px 0 6px 22px;margin:0 0 1.7em;font-family:var(--serif);color:var(--teal);font-size:1.04rem;line-height:2}
 .post-body strong{color:var(--ink)}
+.post-body ul,.post-body ol{font-family:var(--serif);font-size:1.04rem;line-height:2;letter-spacing:.04em;color:var(--ink-2);margin:0 0 1.7em;padding-left:1.5em}
+.post-body li{margin-bottom:.55em;padding-left:.25em}
+.post-body li::marker{color:var(--teal)}
+.post-body li:last-child{margin-bottom:0}
+.post-body em{font-style:italic}
+.post-body hr{border:none;border-top:1px solid var(--line);margin:2.6em 0}
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
@@ -166,7 +172,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 <p>肩膀是全身活動度最大的關節——你可以把手舉過頭、繞到背後、往各個方向轉。但這份靈活是有代價的：肩關節的骨頭接觸面很淺，像一顆高爾夫球放在球座上，穩定度大量仰賴周邊的肌肉與軟組織「主動」維持。</p>
 <p>這也是為什麼，肩膀痛的來源常常不只一個。</p>
 <h2>肩膀由誰在守護？</h2>
-<p>- <strong>旋轉肌袖（rotator cuff）</strong>：四條包覆肩關節的深層肌肉，負責把肱骨頭「吸」在關節窩裡、引導動作<br>- <strong>肩胛骨與周邊肌肉</strong>：肩胛是肩膀的「地基」，它動得順，手才舉得高<br>- <strong>關節囊與韌帶</strong>：提供被動的穩定<br>- <strong>二頭肌肌腱</strong>：從肩膀前方通過</p>
+<ul><li><strong>旋轉肌袖（rotator cuff）</strong>：四條包覆肩關節的深層肌肉，負責把肱骨頭「吸」在關節窩裡、引導動作</li><li><strong>肩胛骨與周邊肌肉</strong>：肩胛是肩膀的「地基」，它動得順，手才舉得高</li><li><strong>關節囊與韌帶</strong>：提供被動的穩定</li><li><strong>二頭肌肌腱</strong>：從肩膀前方通過</li></ul>
 <p>任何一環出狀況——旋轉肌袖、滑囊、關節囊、肌腱、肩胛控制——都可能讓你舉手就痛。</p>
 <blockquote>肩膀的穩定，是「動態」的：靠肌肉在每個角度即時協調，而不是靠骨頭卡住。</blockquote>
 <h2>常見的肩痛家族</h2>

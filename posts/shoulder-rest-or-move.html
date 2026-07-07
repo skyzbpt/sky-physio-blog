@@ -100,8 +100,8 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 .nav-right{display:flex;align-items:center;gap:24px}
 .nav-link{font-size:.88rem;color:var(--ink-2);border-bottom:1.5px solid transparent;padding:4px 0}
 .nav-link:hover{border-color:var(--teal);color:var(--ink)}
-.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.84rem;letter-spacing:.06em;padding:8px 20px;border:1.5px solid var(--teal);background:var(--teal);color:#fff}
-.btn:hover{background:#0F8576}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.86rem;font-weight:600;letter-spacing:.06em;padding:9px 22px;border:1.5px solid #0C7365;background:#0C7365;color:#fff}
+.btn:hover{background:#0A5F53;border-color:#0A5F53}
 @media(max-width:520px){.brand-name{font-size:.94rem}.nav-link{display:none}}
 .post-page{max-width:720px;margin:0 auto;padding:56px 32px 96px}
 .back-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--ink-2);cursor:pointer;margin-bottom:36px;padding:10px 18px;border:1.5px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6)}
@@ -117,6 +117,12 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body h2::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red);flex:none}
 .post-body blockquote{border-left:2px solid var(--teal);padding:6px 0 6px 22px;margin:0 0 1.7em;font-family:var(--serif);color:var(--teal);font-size:1.04rem;line-height:2}
 .post-body strong{color:var(--ink)}
+.post-body ul,.post-body ol{font-family:var(--serif);font-size:1.04rem;line-height:2;letter-spacing:.04em;color:var(--ink-2);margin:0 0 1.7em;padding-left:1.5em}
+.post-body li{margin-bottom:.55em;padding-left:.25em}
+.post-body li::marker{color:var(--teal)}
+.post-body li:last-child{margin-bottom:0}
+.post-body em{font-style:italic}
+.post-body hr{border:none;border-top:1px solid var(--line);margin:2.6em 0}
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
@@ -166,7 +172,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 <p>肩膀一痛，很多人選擇「先不要動，讓它休息」。但肩膀有個特別的風險——<strong>不動太久，關節容易變僵，甚至走向冰凍肩</strong>。另一端，忍痛硬做過頭動作，又會不斷激怒組織。中間那條路，才是解答。</p>
 <h2>相對休息：修改，而不是停止</h2>
 <p>相對休息的意思是：<strong>暫時減少或調整會明顯加重疼痛的動作，但維持其他所有能忍受的活動。</strong></p>
-<p>- 暫時避開或修改：反覆過頭、往外用力抬、提重物、側睡壓患側<br>- 繼續做：溫和的活動度（鐘擺、輔助抬手）、不痛範圍的日常使用</p>
+<ul><li>暫時避開或修改：反覆過頭、往外用力抬、提重物、側睡壓患側</li><li>繼續做：溫和的活動度（鐘擺、輔助抬手）、不痛範圍的日常使用</li></ul>
 <h2>為什麼肩膀特別不能「完全不動」</h2>
 <p>肩關節被一層關節囊包覆。長時間不動，關節囊與周邊組織容易變得緊繃、沾黏，活動度一點一點流失。等到想動時，才發現已經卡住——這正是冰凍肩的溫床。</p>
 <blockquote>對肩膀來說，「溫和地一直動」比「完全休息」更重要。動，是預防它卡住的保險。</blockquote>

@@ -100,8 +100,8 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 .nav-right{display:flex;align-items:center;gap:24px}
 .nav-link{font-size:.88rem;color:var(--ink-2);border-bottom:1.5px solid transparent;padding:4px 0}
 .nav-link:hover{border-color:var(--teal);color:var(--ink)}
-.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.84rem;letter-spacing:.06em;padding:8px 20px;border:1.5px solid var(--teal);background:var(--teal);color:#fff}
-.btn:hover{background:#0F8576}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.86rem;font-weight:600;letter-spacing:.06em;padding:9px 22px;border:1.5px solid #0C7365;background:#0C7365;color:#fff}
+.btn:hover{background:#0A5F53;border-color:#0A5F53}
 @media(max-width:520px){.brand-name{font-size:.94rem}.nav-link{display:none}}
 .post-page{max-width:720px;margin:0 auto;padding:56px 32px 96px}
 .back-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--ink-2);cursor:pointer;margin-bottom:36px;padding:10px 18px;border:1.5px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6)}
@@ -117,6 +117,12 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body h2::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red);flex:none}
 .post-body blockquote{border-left:2px solid var(--teal);padding:6px 0 6px 22px;margin:0 0 1.7em;font-family:var(--serif);color:var(--teal);font-size:1.04rem;line-height:2}
 .post-body strong{color:var(--ink)}
+.post-body ul,.post-body ol{font-family:var(--serif);font-size:1.04rem;line-height:2;letter-spacing:.04em;color:var(--ink-2);margin:0 0 1.7em;padding-left:1.5em}
+.post-body li{margin-bottom:.55em;padding-left:.25em}
+.post-body li::marker{color:var(--teal)}
+.post-body li:last-child{margin-bottom:0}
+.post-body em{font-style:italic}
+.post-body hr{border:none;border-top:1px solid var(--line);margin:2.6em 0}
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
@@ -166,10 +172,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 <p>「肩膀痛要冰還是要熱？」這是治療室裡最常被問的問題之一。答案取決於——你在哪個階段。</p>
 <h2>急性期（大約六週內）</h2>
 <p>剛受傷或剛發作，組織處於較敏感、發炎的狀態。這時候：</p>
-<p>- <strong>可短暫冰敷</strong>：在急性、腫脹、劇痛的頭幾天，冰敷有助於緩解不適（每次約 10–15 分鐘）<br>- <strong>相對休息</strong>：暫時避開會明顯加重的動作（通常是過頭、往外用力），但不是完全不動<br>- <strong>溫和活動</strong>：在不痛範圍內做鐘擺、輕微的活動度動作，避免關節「黏住」</p>
+<ul><li><strong>可短暫冰敷</strong>：在急性、腫脹、劇痛的頭幾天，冰敷有助於緩解不適（每次約 10–15 分鐘）</li><li><strong>相對休息</strong>：暫時避開會明顯加重的動作（通常是過頭、往外用力），但不是完全不動</li><li><strong>溫和活動</strong>：在不痛範圍內做鐘擺、輕微的活動度動作，避免關節「黏住」</li></ul>
 <h2>慢性期（超過三個月）</h2>
 <p>長期的肩痛，發炎多半已不是主角，問題常常是：組織耐受度下降、肌力不足、動作模式改變、以及對疼痛的敏感與恐懼。這時候：</p>
-<p>- <strong>熱敷／暖身</strong>較有幫助，讓組織與循環準備好活動<br>- <strong>重點轉向漸進負荷</strong>：把旋轉肌袖與肩胛的力量、耐力練回來<br>- <strong>恢復信心與功能</strong>：慢慢把過頭、負重的動作加回生活</p>
+<ul><li><strong>熱敷／暖身</strong>較有幫助，讓組織與循環準備好活動</li><li><strong>重點轉向漸進負荷</strong>：把旋轉肌袖與肩胛的力量、耐力練回來</li><li><strong>恢復信心與功能</strong>：慢慢把過頭、負重的動作加回生活</li></ul>
 <blockquote>冰或熱都只是「輔助」，真正讓肩膀好起來的，是分階段的活動與運動。</blockquote>
 <h2>一個實用的判斷</h2>
 <p>不確定冰或熱？記住原則：<strong>急性、腫、跳痛 → 偏冰；慢性、緊、僵 → 偏熱。</strong> 而不論哪一種，「在能忍受的範圍內持續動」都比完全不動更能幫你復原。</p>

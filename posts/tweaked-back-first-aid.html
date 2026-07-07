@@ -100,8 +100,8 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 .nav-right{display:flex;align-items:center;gap:24px}
 .nav-link{font-size:.88rem;color:var(--ink-2);border-bottom:1.5px solid transparent;padding:4px 0}
 .nav-link:hover{border-color:var(--teal);color:var(--ink)}
-.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.84rem;letter-spacing:.06em;padding:8px 20px;border:1.5px solid var(--teal);background:var(--teal);color:#fff}
-.btn:hover{background:#0F8576}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.86rem;font-weight:600;letter-spacing:.06em;padding:9px 22px;border:1.5px solid #0C7365;background:#0C7365;color:#fff}
+.btn:hover{background:#0A5F53;border-color:#0A5F53}
 @media(max-width:520px){.brand-name{font-size:.94rem}.nav-link{display:none}}
 .post-page{max-width:720px;margin:0 auto;padding:56px 32px 96px}
 .back-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--ink-2);cursor:pointer;margin-bottom:36px;padding:10px 18px;border:1.5px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6)}
@@ -117,6 +117,12 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body h2::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red);flex:none}
 .post-body blockquote{border-left:2px solid var(--teal);padding:6px 0 6px 22px;margin:0 0 1.7em;font-family:var(--serif);color:var(--teal);font-size:1.04rem;line-height:2}
 .post-body strong{color:var(--ink)}
+.post-body ul,.post-body ol{font-family:var(--serif);font-size:1.04rem;line-height:2;letter-spacing:.04em;color:var(--ink-2);margin:0 0 1.7em;padding-left:1.5em}
+.post-body li{margin-bottom:.55em;padding-left:.25em}
+.post-body li::marker{color:var(--teal)}
+.post-body li:last-child{margin-bottom:0}
+.post-body em{font-style:italic}
+.post-body hr{border:none;border-top:1px solid var(--line);margin:2.6em 0}
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
@@ -166,9 +172,9 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 <p>「就只是搬個箱子，腰突然像被電到一樣，直不起來。」急性腰扭傷（俗稱閃到腰）的經典場景。它通常是肌肉、韌帶或關節受到突然的刺激，加上周邊肌肉為了保護而用力收縮，把你「鎖」在某個姿勢。</p>
 <p>痛歸痛，但這種情況絕大多數在幾天到幾週內就會明顯改善。頭幾天怎麼做，很關鍵。</p>
 <h2>該做的</h2>
-<p>- <strong>持續溫和活動</strong>：在不引發劇痛的範圍內走動、變換姿勢。動作是最好的「潤滑」。<br>- <strong>找到舒服的減壓姿勢</strong>：例如平躺、小腿墊高（鉤躺姿），讓下背的肌肉有機會放鬆。<br>- <strong>必要時短暫用止痛</strong>：適當的止痛能讓你「動得起來」，而動得起來才好得快（用藥請諮詢醫師或藥師）。<br>- <strong>緩慢深呼吸</strong>：幫助過度緊繃的神經系統踩剎車。</p>
+<ul><li><strong>持續溫和活動</strong>：在不引發劇痛的範圍內走動、變換姿勢。動作是最好的「潤滑」。</li><li><strong>找到舒服的減壓姿勢</strong>：例如平躺、小腿墊高（鉤躺姿），讓下背的肌肉有機會放鬆。</li><li><strong>必要時短暫用止痛</strong>：適當的止痛能讓你「動得起來」，而動得起來才好得快（用藥請諮詢醫師或藥師）。</li><li><strong>緩慢深呼吸</strong>：幫助過度緊繃的神經系統踩剎車。</li></ul>
 <h2>不該做的</h2>
-<p>- <strong>不要完全臥床</strong>：躺超過一兩天反而讓肌肉更僵、更沒信心、復原更慢。這是過去的舊觀念，已被研究推翻。<br>- <strong>不要急著大力伸展或「喬回去」</strong>：急性期硬拉、猛扭，容易再刺激。<br>- <strong>不要恐慌</strong>：越害怕、越緊繃，痛的音量就越大。</p>
+<ul><li><strong>不要完全臥床</strong>：躺超過一兩天反而讓肌肉更僵、更沒信心、復原更慢。這是過去的舊觀念，已被研究推翻。</li><li><strong>不要急著大力伸展或「喬回去」</strong>：急性期硬拉、猛扭，容易再刺激。</li><li><strong>不要恐慌</strong>：越害怕、越緊繃，痛的音量就越大。</li></ul>
 <blockquote>急性期的目標不是「不痛」，而是「在能忍受的範圍內持續動」。</blockquote>
 <h2>大概多久會好？</h2>
 <p>單純的肌肉／韌帶扭傷，多數人在 2–6 週內大幅改善。頭幾天以安撫和溫和活動為主，接著逐步增加動作幅度與負荷。如果疼痛完全沒有改善、或出現腿麻無力、大小便異常，就要進一步評估。</p>

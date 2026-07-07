@@ -100,8 +100,8 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 .nav-right{display:flex;align-items:center;gap:24px}
 .nav-link{font-size:.88rem;color:var(--ink-2);border-bottom:1.5px solid transparent;padding:4px 0}
 .nav-link:hover{border-color:var(--teal);color:var(--ink)}
-.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.84rem;letter-spacing:.06em;padding:8px 20px;border:1.5px solid var(--teal);background:var(--teal);color:#fff}
-.btn:hover{background:#0F8576}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.86rem;font-weight:600;letter-spacing:.06em;padding:9px 22px;border:1.5px solid #0C7365;background:#0C7365;color:#fff}
+.btn:hover{background:#0A5F53;border-color:#0A5F53}
 @media(max-width:520px){.brand-name{font-size:.94rem}.nav-link{display:none}}
 .post-page{max-width:720px;margin:0 auto;padding:56px 32px 96px}
 .back-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--ink-2);cursor:pointer;margin-bottom:36px;padding:10px 18px;border:1.5px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6)}
@@ -117,6 +117,12 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body h2::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red);flex:none}
 .post-body blockquote{border-left:2px solid var(--teal);padding:6px 0 6px 22px;margin:0 0 1.7em;font-family:var(--serif);color:var(--teal);font-size:1.04rem;line-height:2}
 .post-body strong{color:var(--ink)}
+.post-body ul,.post-body ol{font-family:var(--serif);font-size:1.04rem;line-height:2;letter-spacing:.04em;color:var(--ink-2);margin:0 0 1.7em;padding-left:1.5em}
+.post-body li{margin-bottom:.55em;padding-left:.25em}
+.post-body li::marker{color:var(--teal)}
+.post-body li:last-child{margin-bottom:0}
+.post-body em{font-style:italic}
+.post-body hr{border:none;border-top:1px solid var(--line);margin:2.6em 0}
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
@@ -165,13 +171,13 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     <div class="post-body">
 <p>肩夾擠症候群（shoulder impingement）是最常見的肩痛之一。顧名思義，是肩膀在某些動作下，肌腱或滑囊在骨頭之間的空間裡「被夾到、被擠壓」而產生疼痛。</p>
 <h2>典型的樣子</h2>
-<p>- 把手<strong>往上舉、往外展</strong>時痛，尤其在中段角度出現一段「<strong>痛弧</strong>」（大約舉到 60–120 度之間最痛，再往上反而還好）<br>- 過頭動作（晾衣、拿高處、游泳、投擲）加重<br>- 側睡壓到那側肩膀會痛、影響睡眠<br>- 手臂往後、往內轉（如扣內衣、拿後口袋）也可能誘發</p>
+<ul><li>把手<strong>往上舉、往外展</strong>時痛，尤其在中段角度出現一段「<strong>痛弧</strong>」（大約舉到 60–120 度之間最痛，再往上反而還好）</li><li>過頭動作（晾衣、拿高處、游泳、投擲）加重</li><li>側睡壓到那側肩膀會痛、影響睡眠</li><li>手臂往後、往內轉（如扣內衣、拿後口袋）也可能誘發</li></ul>
 <h2>為什麼會夾到？</h2>
 <p>夾擠常常不是「骨頭天生太窄」，而是<strong>動態的空間變小</strong>——例如：</p>
-<p>- 旋轉肌袖無力，肱骨頭在動作中往上跑，壓縮了空間<br>- 肩胛骨控制不良（駝背、肩胛動得不順），讓通道相對變窄<br>- 胸椎活動度不足，手舉不上去只好用肩去硬凹</p>
+<ul><li>旋轉肌袖無力，肱骨頭在動作中往上跑，壓縮了空間</li><li>肩胛骨控制不良（駝背、肩胛動得不順），讓通道相對變窄</li><li>胸椎活動度不足，手舉不上去只好用肩去硬凹</li></ul>
 <blockquote>與其想成「骨頭夾到肉」，不如想成「肩膀的協調亂了，讓通道暫時變擠」。這也是為什麼運動能改善它。</blockquote>
 <h2>復健方向</h2>
-<p>- <strong>暫時修改刺激動作</strong>：不是禁止過頭，而是調整角度與量<br>- <strong>強化旋轉肌袖</strong>：把肱骨頭「往下、往中心」穩住，讓出空間<br>- <strong>肩胛控制與胸椎活動度</strong>：改善地基與姿勢<br>- <strong>漸進回到過頭動作</strong></p>
+<ul><li><strong>暫時修改刺激動作</strong>：不是禁止過頭，而是調整角度與量</li><li><strong>強化旋轉肌袖</strong>：把肱骨頭「往下、往中心」穩住，讓出空間</li><li><strong>肩胛控制與胸椎活動度</strong>：改善地基與姿勢</li><li><strong>漸進回到過頭動作</strong></li></ul>
 <p>肩夾擠對運動治療反應通常很好。把協調與力量練回來，那道「痛弧」會慢慢消失。</p>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>
