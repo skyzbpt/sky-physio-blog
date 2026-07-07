@@ -100,8 +100,8 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 .nav-right{display:flex;align-items:center;gap:24px}
 .nav-link{font-size:.88rem;color:var(--ink-2);border-bottom:1.5px solid transparent;padding:4px 0}
 .nav-link:hover{border-color:var(--teal);color:var(--ink)}
-.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.84rem;letter-spacing:.06em;padding:8px 20px;border:1.5px solid var(--teal);background:var(--teal);color:#fff}
-.btn:hover{background:#0F8576}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.86rem;font-weight:600;letter-spacing:.06em;padding:9px 22px;border:1.5px solid #0C7365;background:#0C7365;color:#fff}
+.btn:hover{background:#0A5F53;border-color:#0A5F53}
 @media(max-width:520px){.brand-name{font-size:.94rem}.nav-link{display:none}}
 .post-page{max-width:720px;margin:0 auto;padding:56px 32px 96px}
 .back-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--ink-2);cursor:pointer;margin-bottom:36px;padding:10px 18px;border:1.5px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6)}
@@ -117,6 +117,12 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body h2::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red);flex:none}
 .post-body blockquote{border-left:2px solid var(--teal);padding:6px 0 6px 22px;margin:0 0 1.7em;font-family:var(--serif);color:var(--teal);font-size:1.04rem;line-height:2}
 .post-body strong{color:var(--ink)}
+.post-body ul,.post-body ol{font-family:var(--serif);font-size:1.04rem;line-height:2;letter-spacing:.04em;color:var(--ink-2);margin:0 0 1.7em;padding-left:1.5em}
+.post-body li{margin-bottom:.55em;padding-left:.25em}
+.post-body li::marker{color:var(--teal)}
+.post-body li:last-child{margin-bottom:0}
+.post-body em{font-style:italic}
+.post-body hr{border:none;border-top:1px solid var(--line);margin:2.6em 0}
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
@@ -171,7 +177,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 <p>另一端，忍著劇痛照樣做會激怒組織的活動（久坐搬重、反覆彎腰），只會不斷把警報音量往上調，讓急性期拖更久。</p>
 <h2>相對休息：暫時避開「大刺激」，保留「日常動」</h2>
 <p>相對休息的意思是：<strong>暫時減少或修改會明顯加重疼痛的活動，但維持其他所有能忍受的日常動作。</strong></p>
-<p>- 暫時避開：反覆彎腰搬重、長時間久坐不動、劇烈的高衝擊運動<br>- 繼續做：走路、變換姿勢、溫和的活動度運動、能忍受的日常起居</p>
+<ul><li>暫時避開：反覆彎腰搬重、長時間久坐不動、劇烈的高衝擊運動</li><li>繼續做：走路、變換姿勢、溫和的活動度運動、能忍受的日常起居</li></ul>
 <blockquote>目標不是「不動」，而是「聰明地動」——把刺激控制在身體能消化的量。</blockquote>
 <h2>用「隔天反應」來校正</h2>
 <p>怎麼知道量抓對了？看隔天。如果活動後當下略痠、但隔天沒有明顯加重，代表劑量剛好；如果隔天明顯更痛，就是給太多，下次減一點。</p>

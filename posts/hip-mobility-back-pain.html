@@ -100,8 +100,8 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 .nav-right{display:flex;align-items:center;gap:24px}
 .nav-link{font-size:.88rem;color:var(--ink-2);border-bottom:1.5px solid transparent;padding:4px 0}
 .nav-link:hover{border-color:var(--teal);color:var(--ink)}
-.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.84rem;letter-spacing:.06em;padding:8px 20px;border:1.5px solid var(--teal);background:var(--teal);color:#fff}
-.btn:hover{background:#0F8576}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.86rem;font-weight:600;letter-spacing:.06em;padding:9px 22px;border:1.5px solid #0C7365;background:#0C7365;color:#fff}
+.btn:hover{background:#0A5F53;border-color:#0A5F53}
 @media(max-width:520px){.brand-name{font-size:.94rem}.nav-link{display:none}}
 .post-page{max-width:720px;margin:0 auto;padding:56px 32px 96px}
 .back-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--ink-2);cursor:pointer;margin-bottom:36px;padding:10px 18px;border:1.5px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6)}
@@ -117,6 +117,12 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body h2::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red);flex:none}
 .post-body blockquote{border-left:2px solid var(--teal);padding:6px 0 6px 22px;margin:0 0 1.7em;font-family:var(--serif);color:var(--teal);font-size:1.04rem;line-height:2}
 .post-body strong{color:var(--ink)}
+.post-body ul,.post-body ol{font-family:var(--serif);font-size:1.04rem;line-height:2;letter-spacing:.04em;color:var(--ink-2);margin:0 0 1.7em;padding-left:1.5em}
+.post-body li{margin-bottom:.55em;padding-left:.25em}
+.post-body li::marker{color:var(--teal)}
+.post-body li:last-child{margin-bottom:0}
+.post-body em{font-style:italic}
+.post-body hr{border:none;border-top:1px solid var(--line);margin:2.6em 0}
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
@@ -166,12 +172,12 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 <p>很多人腰痛，狂放鬆腰、狂練腰，卻忽略了它的好鄰居——<strong>髖關節</strong>。</p>
 <p>脊椎和髖是一組協同工作的夥伴。當髖關節活動度不足，你在彎腰、蹲、轉身時「少掉」的那些角度，並不會消失，而是<strong>被下背硬補上</strong>。日積月累，腰就成了替髖受累的那一個。</p>
 <h2>髖不動，腰遭殃的場景</h2>
-<p>- <strong>彎腰撿東西</strong>：髖屈曲不夠、又不會髖鉸鏈的人，全靠腰椎去彎 → 反覆刺激下背<br>- <strong>蹲下</strong>：髖與踝活動度不足，腰被迫過度彎曲代償<br>- <strong>轉身／揮拍</strong>：髖旋轉不夠，旋轉的角度被腰椎硬吃 → 小面關節、椎間盤受壓</p>
+<ul><li><strong>彎腰撿東西</strong>：髖屈曲不夠、又不會髖鉸鏈的人，全靠腰椎去彎 → 反覆刺激下背</li><li><strong>蹲下</strong>：髖與踝活動度不足，腰被迫過度彎曲代償</li><li><strong>轉身／揮拍</strong>：髖旋轉不夠，旋轉的角度被腰椎硬吃 → 小面關節、椎間盤受壓</li></ul>
 <blockquote>一個活動度好的髖，是下背最好的減壓閥。</blockquote>
 <h2>值得練的幾個方向</h2>
-<p>- <strong>髖屈曲</strong>：如仰躺抱膝、深蹲活動度練習<br>- <strong>髖伸展</strong>：如髖屈肌（沙發前側）伸展、跪姿弓箭步<br>- <strong>髖旋轉</strong>：如 90/90 坐姿旋轉、盤腿開合（蝴蝶式）<br>- <strong>臀部軟組織</strong>：用按摩球放鬆臀肌、梨狀肌區</p>
+<ul><li><strong>髖屈曲</strong>：如仰躺抱膝、深蹲活動度練習</li><li><strong>髖伸展</strong>：如髖屈肌（沙發前側）伸展、跪姿弓箭步</li><li><strong>髖旋轉</strong>：如 90/90 坐姿旋轉、盤腿開合（蝴蝶式）</li><li><strong>臀部軟組織</strong>：用按摩球放鬆臀肌、梨狀肌區</li></ul>
 <h2>練的原則</h2>
-<p>- <strong>溫和、規律</strong>：活動度是「常常做一點」勝過「偶爾做很多」<br>- <strong>主動優於被動</strong>：在新的活動範圍裡，加入一點主動控制（例如抬腿、繞圈），大腦才會「留住」這個範圍<br>- <strong>搭配核心</strong>：髖變靈活的同時，核心要能穩住腰椎，兩者相輔相成</p>
+<ul><li><strong>溫和、規律</strong>：活動度是「常常做一點」勝過「偶爾做很多」</li><li><strong>主動優於被動</strong>：在新的活動範圍裡，加入一點主動控制（例如抬腿、繞圈），大腦才會「留住」這個範圍</li><li><strong>搭配核心</strong>：髖變靈活的同時，核心要能穩住腰椎，兩者相輔相成</li></ul>
 <p>想讓腰輕鬆，先問問你的髖夠不夠自由。</p>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

@@ -100,8 +100,8 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 .nav-right{display:flex;align-items:center;gap:24px}
 .nav-link{font-size:.88rem;color:var(--ink-2);border-bottom:1.5px solid transparent;padding:4px 0}
 .nav-link:hover{border-color:var(--teal);color:var(--ink)}
-.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.84rem;letter-spacing:.06em;padding:8px 20px;border:1.5px solid var(--teal);background:var(--teal);color:#fff}
-.btn:hover{background:#0F8576}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.86rem;font-weight:600;letter-spacing:.06em;padding:9px 22px;border:1.5px solid #0C7365;background:#0C7365;color:#fff}
+.btn:hover{background:#0A5F53;border-color:#0A5F53}
 @media(max-width:520px){.brand-name{font-size:.94rem}.nav-link{display:none}}
 .post-page{max-width:720px;margin:0 auto;padding:56px 32px 96px}
 .back-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--ink-2);cursor:pointer;margin-bottom:36px;padding:10px 18px;border:1.5px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6)}
@@ -117,6 +117,12 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body h2::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red);flex:none}
 .post-body blockquote{border-left:2px solid var(--teal);padding:6px 0 6px 22px;margin:0 0 1.7em;font-family:var(--serif);color:var(--teal);font-size:1.04rem;line-height:2}
 .post-body strong{color:var(--ink)}
+.post-body ul,.post-body ol{font-family:var(--serif);font-size:1.04rem;line-height:2;letter-spacing:.04em;color:var(--ink-2);margin:0 0 1.7em;padding-left:1.5em}
+.post-body li{margin-bottom:.55em;padding-left:.25em}
+.post-body li::marker{color:var(--teal)}
+.post-body li:last-child{margin-bottom:0}
+.post-body em{font-style:italic}
+.post-body hr{border:none;border-top:1px solid var(--line);margin:2.6em 0}
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
@@ -166,8 +172,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 <p>這是我覺得下背痛自我管理裡，最實用的一個概念：<strong>方向偏好（directional preference）</strong>。</p>
 <p>意思是——你的背，通常會對「某一個動作方向」反應比較好。找到它，你就有了一把個人化的鑰匙。</p>
 <h2>兩種常見類型</h2>
-<p><strong>伸展偏好（怕前彎、愛後仰）</strong><br>- 前彎、久坐、彎腰搬東西時加重<br>- 站直、後仰、趴著撐起時舒服<br>- 常見於部分椎間盤相關的問題<br>- 有幫助的動作：趴姿撐起（俯臥伸展）、站姿後仰</p>
-<p><strong>屈曲偏好（怕後仰、愛前彎）</strong><br>- 後仰、久站、走久時加重<br>- 坐下、彎腰、抱膝時舒服<br>- 常見於小面關節、椎管狹窄、脊椎解離／滑脫<br>- 有幫助的動作：抱膝、坐姿或仰躺屈曲</p>
+<p><strong>伸展偏好（怕前彎、愛後仰）</strong></p>
+<ul><li>前彎、久坐、彎腰搬東西時加重</li><li>站直、後仰、趴著撐起時舒服</li><li>常見於部分椎間盤相關的問題</li><li>有幫助的動作：趴姿撐起（俯臥伸展）、站姿後仰</li></ul>
+<p><strong>屈曲偏好（怕後仰、愛前彎）</strong></p>
+<ul><li>後仰、久站、走久時加重</li><li>坐下、彎腰、抱膝時舒服</li><li>常見於小面關節、椎管狹窄、脊椎解離／滑脫</li><li>有幫助的動作：抱膝、坐姿或仰躺屈曲</li></ul>
 <h2>怎麼找出來？</h2>
 <p>觀察你的日常：<strong>哪些姿勢讓症狀加重？哪些讓它緩解？</strong> 特別注意一個關鍵指標——<strong>「向心化（centralization）」</strong>：如果某個方向的動作讓往腿下跑的痛麻「往回收」（回到下背中央），那通常就是對的方向；反之，讓症狀「往腳下擴散」的方向，先避開。</p>
 <blockquote>對的方向，會讓症狀往「中心」收回來；錯的方向，會把它往「腳」推出去。這是身體給你的即時回饋。</blockquote>

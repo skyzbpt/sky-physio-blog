@@ -100,8 +100,8 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 .nav-right{display:flex;align-items:center;gap:24px}
 .nav-link{font-size:.88rem;color:var(--ink-2);border-bottom:1.5px solid transparent;padding:4px 0}
 .nav-link:hover{border-color:var(--teal);color:var(--ink)}
-.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.84rem;letter-spacing:.06em;padding:8px 20px;border:1.5px solid var(--teal);background:var(--teal);color:#fff}
-.btn:hover{background:#0F8576}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.86rem;font-weight:600;letter-spacing:.06em;padding:9px 22px;border:1.5px solid #0C7365;background:#0C7365;color:#fff}
+.btn:hover{background:#0A5F53;border-color:#0A5F53}
 @media(max-width:520px){.brand-name{font-size:.94rem}.nav-link{display:none}}
 .post-page{max-width:720px;margin:0 auto;padding:56px 32px 96px}
 .back-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--ink-2);cursor:pointer;margin-bottom:36px;padding:10px 18px;border:1.5px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6)}
@@ -117,6 +117,12 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body h2::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red);flex:none}
 .post-body blockquote{border-left:2px solid var(--teal);padding:6px 0 6px 22px;margin:0 0 1.7em;font-family:var(--serif);color:var(--teal);font-size:1.04rem;line-height:2}
 .post-body strong{color:var(--ink)}
+.post-body ul,.post-body ol{font-family:var(--serif);font-size:1.04rem;line-height:2;letter-spacing:.04em;color:var(--ink-2);margin:0 0 1.7em;padding-left:1.5em}
+.post-body li{margin-bottom:.55em;padding-left:.25em}
+.post-body li::marker{color:var(--teal)}
+.post-body li:last-child{margin-bottom:0}
+.post-body em{font-style:italic}
+.post-body hr{border:none;border-top:1px solid var(--line);margin:2.6em 0}
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
@@ -167,7 +173,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 <p>先深呼吸。這些影像上的發現，遠比你以為的常見——而且常常和疼痛沒有直接關係。</p>
 <h2>沒有症狀的人，身上也有這些「異常」</h2>
 <p>大型研究掃描了「完全沒有腰痛」的人，結果發現：</p>
-<p>- 30 歲的人裡，約有 4 成有椎間盤退化、5 成有椎間盤膨出<br>- 到了 60 歲，椎間盤退化的比例超過 9 成</p>
+<ul><li>30 歲的人裡，約有 4 成有椎間盤退化、5 成有椎間盤膨出</li><li>到了 60 歲，椎間盤退化的比例超過 9 成</li></ul>
 <p>換句話說，這些變化很大程度上是「年齡的白頭髮」，是正常老化的一部分，不必然是疼痛的兇手。</p>
 <blockquote>影像看到的是「結構」，但疼痛是一種「經驗」——兩者之間，沒有你想像的那麼直接。</blockquote>
 <h2>那為什麼我會痛？</h2>

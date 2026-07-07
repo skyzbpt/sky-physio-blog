@@ -100,8 +100,8 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 .nav-right{display:flex;align-items:center;gap:24px}
 .nav-link{font-size:.88rem;color:var(--ink-2);border-bottom:1.5px solid transparent;padding:4px 0}
 .nav-link:hover{border-color:var(--teal);color:var(--ink)}
-.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.84rem;letter-spacing:.06em;padding:8px 20px;border:1.5px solid var(--teal);background:var(--teal);color:#fff}
-.btn:hover{background:#0F8576}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.86rem;font-weight:600;letter-spacing:.06em;padding:9px 22px;border:1.5px solid #0C7365;background:#0C7365;color:#fff}
+.btn:hover{background:#0A5F53;border-color:#0A5F53}
 @media(max-width:520px){.brand-name{font-size:.94rem}.nav-link{display:none}}
 .post-page{max-width:720px;margin:0 auto;padding:56px 32px 96px}
 .back-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--ink-2);cursor:pointer;margin-bottom:36px;padding:10px 18px;border:1.5px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6)}
@@ -117,6 +117,12 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body h2::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red);flex:none}
 .post-body blockquote{border-left:2px solid var(--teal);padding:6px 0 6px 22px;margin:0 0 1.7em;font-family:var(--serif);color:var(--teal);font-size:1.04rem;line-height:2}
 .post-body strong{color:var(--ink)}
+.post-body ul,.post-body ol{font-family:var(--serif);font-size:1.04rem;line-height:2;letter-spacing:.04em;color:var(--ink-2);margin:0 0 1.7em;padding-left:1.5em}
+.post-body li{margin-bottom:.55em;padding-left:.25em}
+.post-body li::marker{color:var(--teal)}
+.post-body li:last-child{margin-bottom:0}
+.post-body em{font-style:italic}
+.post-body hr{border:none;border-top:1px solid var(--line);margin:2.6em 0}
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
@@ -198,9 +204,9 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 <h2>最後想說的</h2>
 <p>骨盆帶疼痛很常見，但太常被忽略。如果你正在經歷骨盆、臀部、鼠蹊或下肢的疼痛，特別是翻身、走路或久站時特別明顯——這不是你「應該忍受」的事。</p>
 <p>紅繩不是魔法，但它提供的是一個可以精準調控難度、讓神經肌肉系統重新學習的環境。這正是骨盆帶疼痛需要的介入邏輯：不是強迫身體撐住，而是幫它找回它本來就有的能力。</p>
-<p>---</p>
+<hr>
 <p><strong>參考資料</strong></p>
-<p>1. Vleeming A, Albert HB, Ostgaard HC, Sturesson B, Stuge B. European guidelines for the diagnosis and treatment of pelvic girdle pain. *Eur Spine J.* 2008;17(6):794–819.<br>2. Robinson HS, Mengshoel AM, Bjelland EK, Vollestad NK. Pelvic girdle pain, clinical tests and disability in late pregnancy. *Man Ther.* 2010;15(3):280–5.<br>3. Bjelland EK, Eskild A, Johansen R, Eberhard-Gran M. Pelvic girdle pain in pregnancy: the impact of parity. *Am J Obstet Gynecol.* 2010;203(2).<br>4. Rost CC, Jacqueline J, Kaiser A, Verhagen AP, Koes BW. Pelvic pain during pregnancy: a descriptive study of signs and symptoms of 870 patients in primary care. *Spine.* 2004;29(22):2567–72.<br>5. Ceprnja D, Chipchase L, Fahey P, Liamputtong P, Gupta A. Prevalence and factors associated with pelvic girdle pain during pregnancy in Australian women: a cross-sectional study. *Spine.* 2021;46(14):944–9.<br>6. Gutke A, Boissonnault J, Brook G, Stuge B. The severity and impact of pelvic girdle pain and low-back pain in pregnancy: a multinational study. *J Womens Health.* 2018;27(4):510–7.<br>7. Stuge B, Garratt A, Krogstad JH, Grotle M. The pelvic girdle questionnaire: a condition-specific instrument for assessing activity limitations and symptoms in people with pelvic girdle pain. *Phys Ther.* 2011;91(7):1096–108.</p>
+<ol><li>Vleeming A, Albert HB, Ostgaard HC, Sturesson B, Stuge B. European guidelines for the diagnosis and treatment of pelvic girdle pain. <em>Eur Spine J.</em> 2008;17(6):794–819.</li><li>Robinson HS, Mengshoel AM, Bjelland EK, Vollestad NK. Pelvic girdle pain, clinical tests and disability in late pregnancy. <em>Man Ther.</em> 2010;15(3):280–5.</li><li>Bjelland EK, Eskild A, Johansen R, Eberhard-Gran M. Pelvic girdle pain in pregnancy: the impact of parity. <em>Am J Obstet Gynecol.</em> 2010;203(2).</li><li>Rost CC, Jacqueline J, Kaiser A, Verhagen AP, Koes BW. Pelvic pain during pregnancy: a descriptive study of signs and symptoms of 870 patients in primary care. <em>Spine.</em> 2004;29(22):2567–72.</li><li>Ceprnja D, Chipchase L, Fahey P, Liamputtong P, Gupta A. Prevalence and factors associated with pelvic girdle pain during pregnancy in Australian women: a cross-sectional study. <em>Spine.</em> 2021;46(14):944–9.</li><li>Gutke A, Boissonnault J, Brook G, Stuge B. The severity and impact of pelvic girdle pain and low-back pain in pregnancy: a multinational study. <em>J Womens Health.</em> 2018;27(4):510–7.</li><li>Stuge B, Garratt A, Krogstad JH, Grotle M. The pelvic girdle questionnaire: a condition-specific instrument for assessing activity limitations and symptoms in people with pelvic girdle pain. <em>Phys Ther.</em> 2011;91(7):1096–108.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>
 

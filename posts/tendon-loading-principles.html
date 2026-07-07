@@ -100,8 +100,8 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 .nav-right{display:flex;align-items:center;gap:24px}
 .nav-link{font-size:.88rem;color:var(--ink-2);border-bottom:1.5px solid transparent;padding:4px 0}
 .nav-link:hover{border-color:var(--teal);color:var(--ink)}
-.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.84rem;letter-spacing:.06em;padding:8px 20px;border:1.5px solid var(--teal);background:var(--teal);color:#fff}
-.btn:hover{background:#0F8576}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.86rem;font-weight:600;letter-spacing:.06em;padding:9px 22px;border:1.5px solid #0C7365;background:#0C7365;color:#fff}
+.btn:hover{background:#0A5F53;border-color:#0A5F53}
 @media(max-width:520px){.brand-name{font-size:.94rem}.nav-link{display:none}}
 .post-page{max-width:720px;margin:0 auto;padding:56px 32px 96px}
 .back-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--ink-2);cursor:pointer;margin-bottom:36px;padding:10px 18px;border:1.5px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6)}
@@ -117,6 +117,12 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body h2::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red);flex:none}
 .post-body blockquote{border-left:2px solid var(--teal);padding:6px 0 6px 22px;margin:0 0 1.7em;font-family:var(--serif);color:var(--teal);font-size:1.04rem;line-height:2}
 .post-body strong{color:var(--ink)}
+.post-body ul,.post-body ol{font-family:var(--serif);font-size:1.04rem;line-height:2;letter-spacing:.04em;color:var(--ink-2);margin:0 0 1.7em;padding-left:1.5em}
+.post-body li{margin-bottom:.55em;padding-left:.25em}
+.post-body li::marker{color:var(--teal)}
+.post-body li:last-child{margin-bottom:0}
+.post-body em{font-style:italic}
+.post-body hr{border:none;border-top:1px solid var(--line);margin:2.6em 0}
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
@@ -166,10 +172,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 <p>不論是旋轉肌袖肌腱、二頭肌肌腱，還是身體其他部位的肌腱病變，復健有一個共通、也最容易被誤解的原則：<strong>肌腱要靠漸進負荷來修復，而不是靠一直休息。</strong></p>
 <h2>為什麼「一直休息」行不通</h2>
 <p>肌腱是連接肌肉與骨頭、負責傳遞力量的組織。它的特性是「用進廢退」——</p>
-<p>- 完全休息時，疼痛可能暫時緩解，但肌腱不會變強<br>- 一旦恢復活動，因為肌腱變弱了、承受力下降，很容易<strong>又痛回來</strong><br>- 於是陷入「痛→休息→好像好了→一動又痛」的循環</p>
+<ul><li>完全休息時，疼痛可能暫時緩解，但肌腱不會變強</li><li>一旦恢復活動，因為肌腱變弱了、承受力下降，很容易<strong>又痛回來</strong></li><li>於是陷入「痛→休息→好像好了→一動又痛」的循環</li></ul>
 <blockquote>肌腱不是玻璃，是彈簧。它需要被適當地拉、被適當地負重，才會變得更強韌。</blockquote>
 <h2>漸進負荷怎麼做</h2>
-<p>- <strong>從可忍受的重量開始</strong>：不是無痛才能動，而是「可接受的痠痛（通常 3–4 分以下）、隔天不加重」就可以<br>- <strong>慢、有控制</strong>：肌腱對「慢速、有張力」的訓練反應很好（例如慢速的離心、等長收縮）<br>- <strong>一次只加一點</strong>：重量、次數、角度，每次只調整一項，給肌腱時間適應<br>- <strong>規律、耐心</strong>：肌腱的修復比肌肉慢，通常以「週」到「月」計</p>
+<ul><li><strong>從可忍受的重量開始</strong>：不是無痛才能動，而是「可接受的痠痛（通常 3–4 分以下）、隔天不加重」就可以</li><li><strong>慢、有控制</strong>：肌腱對「慢速、有張力」的訓練反應很好（例如慢速的離心、等長收縮）</li><li><strong>一次只加一點</strong>：重量、次數、角度，每次只調整一項，給肌腱時間適應</li><li><strong>規律、耐心</strong>：肌腱的修復比肌肉慢，通常以「週」到「月」計</li></ul>
 <h2>用「隔天反應」當儀表板</h2>
 <p>做完當下可以有點痠，重點看<strong>隔天</strong>：沒有明顯加重 → 劑量對了，可維持或微增；明顯更痛 → 太多，退一步。</p>
 <p>肌腱病變會好，但它走的是「訓練」的路，不是「休養」的路。給它對的負荷與時間，它會回報你更強壯的肩膀。</p>
