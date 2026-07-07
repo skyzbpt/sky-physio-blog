@@ -1156,10 +1156,11 @@ textarea#af-body.adm-input{
    - 內文寫法：空一行 = 分段；行首寫「## 」= 小標題；
      行首寫「> 」= 引言（綠色直線那種）。
 
-   ★ SEO 重要：每篇文章同時有一個獨立的靜態頁 /posts/<id>.html（供 Google
-     收錄與社群分享），以及對應的 OG 分享卡 /assets/og/<id>.jpg 和 sitemap.xml。
-     這些是由 ARTICLES 產生的。若「新增 / 修改 / 刪除」文章，請一併重新產生
-     posts/、assets/og/ 與 sitemap.xml，否則靜態頁會與此處內容不同步。
+   ★ SEO / GEO 重要：每篇文章同時有一個獨立的靜態頁 /posts/<id>.html（供 Google
+     收錄與社群分享），以及對應的 OG 分享卡 /assets/og/<id>.jpg、sitemap.xml，
+     還有給 AI 引擎讀取的 /llms.txt（索引）與 /llms-full.txt（全文）。
+     這些全部由 ARTICLES 產生。若「新增 / 修改 / 刪除」文章，請一併重新產生
+     posts/、assets/og/、sitemap.xml、llms.txt、llms-full.txt，否則會與此處不同步。
    ============================================================ */
 
 const SITE = {
