@@ -100,8 +100,18 @@
 ### 身心靈
 - [眼淚從筋膜裡來：談情緒能量釋放](https://skythephysio.com/posts/tears-from-fascia.html): 「對不起，我不知道我為什麼哭。」在治療床上，這句話我聽過很多次。沒關係——身體知道。
 
+## 分類專頁（每類文章總覽）
+- [肩膀痛衛教文章](https://skythephysio.com/topics/shoulder-pain.html)
+- [下背痛衛教文章](https://skythephysio.com/topics/lower-back-pain.html)
+- [紅繩懸吊衛教文章](https://skythephysio.com/topics/redcord.html)
+- [公路車衛教文章](https://skythephysio.com/topics/cycling.html)
+- [顱薦椎衛教文章](https://skythephysio.com/topics/craniosacral.html)
+- [疼痛科學衛教文章](https://skythephysio.com/topics/pain-science.html)
+- [身心靈衛教文章](https://skythephysio.com/topics/mind-body.html)
+
 ## 完整內容
 - [全文彙整（供 AI 讀取）](https://skythephysio.com/llms-full.txt)
+- [RSS Feed](https://skythephysio.com/feed.xml)
 - [網站地圖 Sitemap](https://skythephysio.com/sitemap.xml)
 
 ## 聯絡

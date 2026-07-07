@@ -58,6 +58,33 @@
   }
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首頁",
+      "item": "https://skythephysio.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "顱薦椎",
+      "item": "https://skythephysio.com/topics/craniosacral.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "那條從腦幹一路漫遊到腸子的神經——認識「迷走」",
+      "item": "https://skythephysio.com/posts/vagus-wanderer.html"
+    }
+  ]
+}
+</script>
+<link rel="alternate" type="application/rss+xml" title="Sky 物理治療師衛教文章" href="../feed.xml">
 <style>
 :root{--bg:#E0F0FB;--bg-soft:#F7FBFE;--ink:#232A50;--ink-2:#3A4270;--muted:#54708C;--line:#BAD7EA;--teal:#149A8A;--teal-soft:#DCEEEB;--red:#C2402E;
 --serif:"Noto Serif TC","Songti TC","PMingLiU","Times New Roman",serif;--sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei","Helvetica Neue",sans-serif;--mono:"SF Mono","Cascadia Mono",Menlo,Consolas,"Courier New",monospace}
@@ -105,6 +132,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(max-width:480px){
+  .post-page{padding:40px 22px 72px}
+  .post-body p{text-align:left}
+  .meta{gap:12px}
+}
 </style>
 </head>
 <body>
@@ -165,6 +197,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       <a href="tmj-whole-person.html">下巴痛，問題不一定在下巴——從顳顎關節談「整體」的身體觀<span>顱薦椎</span></a>
       <a href="entrainment-presence.html">為什麼治療師的「狀態」會影響你的身體——談同步與安靜的臨在<span>顱薦椎</span></a>
       <a href="biodynamic-stillness.html">不是去「修理」，而是創造一個夠安全的空間——談生物動力顱薦椎<span>顱薦椎</span></a>
+      <a class="more-hub" href="../topics/craniosacral.html">查看所有《顱薦椎》文章<span>分類專頁</span></a>
     </nav>
   </article>
 </main>
