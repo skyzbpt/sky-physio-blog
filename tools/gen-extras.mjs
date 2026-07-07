@@ -2,7 +2,7 @@
 // 資料來源：data/articles.json
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, esc, plain, loadArticles, logoDataURI, ogCard, shot } from './lib.mjs';
+import { REPO, BASE, esc, plain, loadArticles, logoDataURI, ogCard, shot, VIEWS_API, EYE_SVG } from './lib.mjs';
 
 // 與 lib.mjs 的 CAT_SLUG 保持一致（此處另需 lede 文案）
 const HUBS = [
@@ -57,6 +57,9 @@ h1{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.45;
 .list a{display:block;padding:22px 0;border-bottom:1px solid var(--line)}
 .list a:hover .t{color:var(--teal)}
 .list .m{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.list .pv{display:inline-flex;align-items:center;gap:4px}
+.list .pv[hidden]{display:none!important}
+.list .pv svg{width:12px;height:12px;opacity:.7;flex:none}
 .list .t{font-family:var(--serif);font-size:1.12rem;font-weight:700;line-height:1.6}
 .list .e{color:var(--muted);font-size:.92rem;margin-top:4px}
 .backhome{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--ink-2);margin-top:36px;padding:10px 18px;border:1.5px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6)}
@@ -160,13 +163,27 @@ ${JSON.stringify(breadcrumb, null, 2)}
   <div class="count">共 ${arts.length} 篇・由新到舊</div>
   <div class="list">
     ${arts.map(a => `<a href="../posts/${a.id}.html">
-      <div class="m">${a.date}</div>
+      <div class="m">${a.date}<span class="pv" data-slug="${a.id}" hidden> ・ ${EYE_SVG}<span class="pv-n"></span> 次</span></div>
       <div class="t">${esc(a.title)}</div>
       <div class="e">${esc(plain(a.excerpt))}</div>
     </a>`).join('\n    ')}
   </div>
   <a class="backhome" href="../index.html#blog">回到全部文章</a>
 </main>
+
+<script>
+/* 點閱次數（分類專頁，唯讀批次讀取；Worker 未部署時靜默略過） */
+(function(){
+  var API=${JSON.stringify(VIEWS_API)};
+  var spans=[].slice.call(document.querySelectorAll('.list .pv[data-slug]'));
+  if(!spans.length) return;
+  var slugs=spans.map(function(s){return s.getAttribute('data-slug');});
+  fetch(API+'/get?slugs='+encodeURIComponent(slugs.join(','))).then(function(r){return r.json();}).then(function(d){
+    var counts=d.counts||{};
+    spans.forEach(function(s){ var n=counts[s.getAttribute('data-slug')]||0; if(n>0){ s.querySelector('.pv-n').textContent=Number(n).toLocaleString('en-US'); s.hidden=false; } });
+  }).catch(function(){});
+})();
+</script>
 
 <footer>
   <div class="foot-in">

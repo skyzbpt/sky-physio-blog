@@ -482,6 +482,9 @@ h1 .en{color:var(--teal)}
   display:flex;flex-direction:column;gap:4px}
 .post-meta span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .post-meta .cat{color:var(--red)}
+.post-meta .pv{display:inline-flex;align-items:center;gap:4px;color:var(--muted)}
+.post-meta .pv[hidden]{display:none!important}
+.post-meta .pv svg{width:12px;height:12px;opacity:.7;flex:none}
 .post-title{font-family:var(--serif);font-size:1.22rem;font-weight:700;line-height:1.5}
 .post-ex{margin-top:8px;font-size:.88rem;color:var(--muted);
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
@@ -2022,7 +2025,7 @@ function renderList(){
     : ARTICLES.filter(a=>a.cat===currentCat).sort((x,y)=>y.date.localeCompare(x.date));
   $("#post-list").innerHTML = list.length ? list.map(a=>`
     <a class="post-row" href="posts/${a.id}.html">
-      <div class="post-meta"><span>${a.date}</span><span class="cat">${a.cat}</span></div>
+      <div class="post-meta"><span>${a.date}</span><span class="cat">${a.cat}</span><span class="pv" data-slug="${a.id}" hidden>${VIEWS_EYE}<span class="pv-n"></span> 次</span></div>
       <div>
         <div class="post-title">${a.title}</div>
         <div class="post-ex">${inlineFormat(a.excerpt)}</div>
@@ -2030,6 +2033,23 @@ function renderList(){
       <div class="post-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
     </a>`).join("")
     : `<div class="post-empty">這個分類還沒有文章——很快會有的。</div>`;
+  loadListViews();
+}
+
+/* 點閱次數（首頁列表，唯讀批次讀取；Worker 未部署時靜默略過） */
+const VIEWS_API='https://views.skythephysio.com';
+const VIEWS_EYE='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>';
+function loadListViews(){
+  var spans=[].slice.call(document.querySelectorAll('#post-list .pv[data-slug]'));
+  if(!spans.length) return;
+  var slugs=spans.map(function(s){return s.getAttribute('data-slug');});
+  fetch(VIEWS_API+'/get?slugs='+encodeURIComponent(slugs.join(','))).then(function(r){return r.json();}).then(function(d){
+    var counts=d.counts||{};
+    spans.forEach(function(s){
+      var n=counts[s.getAttribute('data-slug')]||0;
+      if(n>0){ s.querySelector('.pv-n').textContent=Number(n).toLocaleString('en-US'); s.hidden=false; }
+    });
+  }).catch(function(){});
 }
 
 function inlineFormat(s){

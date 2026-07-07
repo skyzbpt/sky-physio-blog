@@ -7,6 +7,11 @@ import { readFileSync } from 'fs';
 export const REPO = join(dirname(fileURLToPath(import.meta.url)), '..');
 export const BASE = 'https://skythephysio.com';
 export const TODAY = new Date().toISOString().slice(0, 10);
+// 點閱計數 Worker 端點（見 cf-worker/）。未部署前前台會靜默略過。
+export const VIEWS_API = 'https://views.skythephysio.com';
+
+// 眼睛 icon（點閱次數用），stroke 風格與站上其他 icon 一致
+export const EYE_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>';
 
 export const esc = s => (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 export const plain = t => String(t).replace(/[#>*`]/g, '').replace(/!\[[^\]]*\]\([^)]*\)/g, '').replace(/\s+/g, ' ').trim();

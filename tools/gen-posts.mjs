@@ -2,7 +2,7 @@
 // 資料來源：data/articles.json（唯一真實來源）
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, TODAY, esc, plain, readMins, CAT_SLUG, renderBody, loadArticles, logoDataURI, ogCard, shot } from './lib.mjs';
+import { REPO, BASE, TODAY, esc, plain, readMins, CAT_SLUG, renderBody, loadArticles, logoDataURI, ogCard, shot, VIEWS_API, EYE_SVG } from './lib.mjs';
 
 /* ---------- 靜態頁 CSS（取自 index.html，確保一致）---------- */
 const CSS = `
@@ -32,6 +32,9 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 .back-link:hover{border-color:var(--teal);color:var(--teal)}
 .meta{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-bottom:20px}
 .meta .cat{color:var(--red)}
+.pv{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.pv[hidden]{display:none!important}
+.pv svg{width:13px;height:13px;opacity:.75;flex:none}
 .pp-share{margin-left:auto;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;color:var(--teal);background:none;border:1px solid var(--line);border-radius:999px;padding:5px 14px;cursor:pointer;white-space:nowrap}
 .pp-share:hover{border-color:var(--teal);background:var(--teal-soft)}
 h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.45;margin-bottom:14px}
@@ -161,6 +164,7 @@ ${JSON.stringify(breadcrumb, null, 2)}
     <a class="back-link" href="../index.html#blog"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>返回文章列表</a>
     <div class="meta">
       <span>${a.date}</span><span class="cat">${esc(a.cat)}</span><span>約 ${mins} 分鐘</span>
+      <span class="pv" id="pv" hidden>${EYE_SVG}<span class="pv-n"></span> 次瀏覽</span>
       <button class="pp-share" onclick="copyLink()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">${esc(a.title)}</h1>
@@ -198,6 +202,20 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
+(function(){
+  var API=${JSON.stringify(VIEWS_API)}, slug=${JSON.stringify(a.id)};
+  var el=document.getElementById('pv'); if(!el) return;
+  function show(n){ if(n>0){ el.querySelector('.pv-n').textContent=Number(n).toLocaleString('en-US'); el.hidden=false; } }
+  try{
+    if(sessionStorage.getItem('pv:'+slug)){
+      fetch(API+'/get?slugs='+encodeURIComponent(slug)).then(function(r){return r.json();}).then(function(d){show((d.counts||{})[slug]||0);}).catch(function(){});
+    } else {
+      fetch(API+'/hit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slug:slug})})
+        .then(function(r){return r.json();}).then(function(d){try{sessionStorage.setItem('pv:'+slug,'1');}catch(e){} show(d.count||0);}).catch(function(){});
+    }
+  }catch(e){}
+})();
 </script>
 </body>
 </html>`;
