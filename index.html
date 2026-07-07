@@ -425,6 +425,18 @@ h1 .en{color:var(--teal)}
   font-size:.8rem;color:var(--muted)}
 
 /* ---------- 關於 ---------- */
+/* 產品專區 */
+.product-card{display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap;
+  background:var(--bg-soft);border:1px solid var(--line);border-radius:16px;padding:30px 36px;
+  box-shadow:0 4px 20px rgba(35,42,80,.06)}
+.product-brand{font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;color:var(--teal);margin-bottom:10px}
+.product-card h3{font-family:var(--serif);font-size:1.3rem;margin-bottom:6px}
+.product-card-body p{color:var(--muted);font-size:.95rem}
+.product-card .btn{flex:none}
+.product-note{margin-top:18px;font-size:.78rem;color:var(--muted);line-height:1.7;max-width:44em}
+@media(max-width:600px){.product-card{flex-direction:column;align-items:flex-start;gap:20px;padding:26px 24px}
+  .product-card .btn{width:100%;justify-content:center}}
+
 #about{background:#D6EAF9}
 
 /* Quote - 全寬置中 */
@@ -861,6 +873,7 @@ textarea#af-body.adm-input{
     <div class="nav-links" id="nav-links">
       <span class="nav-link" tabindex="0" role="button" onclick="sectionTo('fields');closeMenu()">專業領域</span>
       <span class="nav-link" tabindex="0" role="button" onclick="sectionTo('blog');closeMenu()">衛教文章</span>
+      <span class="nav-link" tabindex="0" role="button" onclick="sectionTo('products');closeMenu()">產品專區</span>
       <span class="nav-link" tabindex="0" role="button" onclick="sectionTo('about');closeMenu()">關於 Sky</span>
       <span class="nav-link" tabindex="0" role="button" onclick="sectionTo('contact');closeMenu()">聯絡 Sky</span>
       <span class="nav-link nav-book" tabindex="0" role="button" onclick="window.open('https://calendar.app.google/zucbVA7vLvAmJP7y6','_blank');closeMenu()">預約評估 ↗</span>
@@ -910,6 +923,21 @@ textarea#af-body.adm-input{
     <p class="sec-lead rv">這裡是我的筆記：關於疼痛、關於騎車、關於那些在治療床上發生的安靜時刻。內容僅供衛教參考，不能取代專業評估。</p>
     <div class="chips rv" id="chips"></div>
     <div class="post-list rv" id="post-list"></div>
+  </section>
+
+  <section id="products" class="wrap">
+    <div class="eyebrow rv">PRODUCTS・產品專區</div>
+    <h2 class="sec-title rv">我信任的營養補充</h2>
+    <p class="sec-lead rv">治療與訓練之外，日常的營養補給同樣影響恢復與表現。這裡是我實際使用、也放心推薦的 Isotonix 溶性營養品——訴求高吸收、好搭配復健與騎乘節奏。</p>
+    <div class="product-card rv">
+      <div class="product-card-body">
+        <div class="product-brand">ISOTONIX</div>
+        <h3>Sky 的推薦專區</h3>
+        <p>溶性配方、依個人需求選搭。點進來看完整品項與購買方式。</p>
+      </div>
+      <a class="btn teal" href="https://tw.isotonix.com/skydpt" target="_blank" rel="noopener sponsored nofollow">前往選購 ↗</a>
+    </div>
+    <p class="product-note rv">＊本區含合作／推薦連結。營養補充品非藥物，不能取代醫療診斷與治療；若有疾病、懷孕、哺乳或正在用藥，請先諮詢醫師或藥師。</p>
   </section>
 
   <section id="about">
@@ -2622,7 +2650,7 @@ function admInsertImage(e){
 /* ---- Nav active 追蹤 ---- */
 function updateNavActive(scrollY){
   const links=document.querySelectorAll('.nav-link');
-  const sections=['hero','fields','blog','about','contact'];
+  const sections=['hero','fields','blog','products','about','contact'];
   let active='';
   for(const id of sections){
     const el=document.getElementById(id);
