@@ -2308,16 +2308,22 @@ function admB64(str){
   for(var i=0;i<bytes.length;i+=0x8000) bin+=String.fromCharCode.apply(null,bytes.subarray(i,i+0x8000));
   return btoa(bin);
 }
-async function admGetFileSha(tok){
+// 一次取得遠端 data/articles.json 的 sha 與（解碼後）內容，供比對與更新
+async function admGetRemote(tok){
   var h={Authorization:'Bearer '+tok,Accept:'application/vnd.github+json'};
-  var br=await fetch('https://api.github.com/repos/'+GH_PUB.owner+'/'+GH_PUB.repo+'/branches/'+GH_PUB.branch,{headers:h});
-  if(br.status===401||br.status===403) throw {code:'auth'};
-  if(!br.ok) throw new Error('讀取分支失敗 HTTP '+br.status);
-  var commitSha=(await br.json()).commit.sha;
-  var tr=await fetch('https://api.github.com/repos/'+GH_PUB.owner+'/'+GH_PUB.repo+'/git/trees/'+commitSha+'?recursive=1',{headers:h});
-  if(!tr.ok) throw new Error('讀取檔案清單失敗 HTTP '+tr.status);
-  var item=(await tr.json()).tree.find(function(x){return x.path===GH_PUB.path;});
-  return item?item.sha:undefined;
+  var r=await fetch('https://api.github.com/repos/'+GH_PUB.owner+'/'+GH_PUB.repo+'/contents/'+GH_PUB.path+'?ref='+GH_PUB.branch,{headers:h,cache:'no-store'});
+  if(r.status===401||r.status===403) throw {code:'auth'};
+  if(r.status===404) return {sha:undefined,content:null};   // 檔案尚未存在
+  if(!r.ok) throw new Error('讀取遠端失敗 HTTP '+r.status);
+  var j=await r.json();
+  var content=null;
+  if(j.content){
+    var bin=atob(j.content.replace(/\n/g,''));
+    var u=new Uint8Array(bin.length);
+    for(var i=0;i<bin.length;i++) u[i]=bin.charCodeAt(i);
+    content=new TextDecoder('utf-8').decode(u);   // 正確還原 UTF-8（中文）
+  }
+  return {sha:j.sha,content:content};
 }
 var adm_publishing=false;
 async function admPublish(){
@@ -2330,7 +2336,15 @@ async function admPublish(){
   var st=document.getElementById('adm-pub-status');
   btn.disabled=true; st.textContent='發佈中…';
   try{
-    var content=admB64(JSON.stringify(ARTICLES,null,2)+'\n');
+    var local=JSON.stringify(ARTICLES,null,2)+'\n';
+    var content=admB64(local);
+    var remote=await admGetRemote(tok);
+    // 內容與線上相同 → 不推送，避免空提交
+    if(remote.content!==null && remote.content===local){
+      st.textContent='內容無變更';
+      admToast('目前內容與線上相同，無需發佈','ok');
+      return;
+    }
     async function put(sha){
       var payload={message:'後台發佈：更新文章資料（'+ARTICLES.length+' 篇）',content:content,branch:GH_PUB.branch};
       if(sha) payload.sha=sha;
@@ -2340,8 +2354,8 @@ async function admPublish(){
         body:JSON.stringify(payload)
       });
     }
-    var r=await put(await admGetFileSha(tok));
-    if(r.status===409||r.status===422){ r=await put(await admGetFileSha(tok)); } // sha 過期重試一次
+    var r=await put(remote.sha);
+    if(r.status===409||r.status===422){ r=await put((await admGetRemote(tok)).sha); } // sha 過期重試一次
     if(r.status===401||r.status===403) throw {code:'auth'};
     if(!r.ok) throw new Error('HTTP '+r.status);
     st.textContent='已發佈 '+new Date().toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'});
