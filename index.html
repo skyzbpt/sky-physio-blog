@@ -880,7 +880,8 @@ footer{border-top:1px solid var(--line);padding:48px 0 60px;background:linear-gr
   color:var(--adm-ink);font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:10px}
 .adm-card-note{font-family:var(--sans);font-size:.72rem;letter-spacing:.01em;color:var(--adm-muted);font-weight:400}
 .adm-field-row{display:flex;gap:14px;align-items:flex-end}
-.adm-field-row .adm-field{flex:1}
+.adm-field-row .adm-field{flex:1;min-width:0}
+.adm-field-row .adm-input{min-width:0;max-width:100%}
 @media(max-width:640px){
   .adm-field-row{flex-direction:column;align-items:stretch;gap:14px}
   .adm-field-row .adm-field{flex:1 1 auto!important}
@@ -909,7 +910,7 @@ footer{border-top:1px solid var(--line);padding:48px 0 60px;background:linear-gr
 }
 .adm-input::placeholder{color:#A7AFC2}
 .adm-input:focus{border-color:var(--adm-teal);background:#fff;box-shadow:0 0 0 3px rgba(20,154,138,.12)}
-.adm-input[type=date]{min-width:140px}
+.adm-input[type=date]{min-width:0;font-variant-numeric:tabular-nums}
 select.adm-input{cursor:pointer}
 .adm-textarea-wrap{position:relative}
 .adm-toolbar{
