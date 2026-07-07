@@ -1266,15 +1266,11 @@ textarea#af-body.adm-input{
               <input class="adm-input adm-title-input" id="af-title" placeholder="輸入文章標題…" oninput="admMarkDirty()">
             </div>
             <div class="adm-field-row">
-              <div class="adm-field">
+              <div class="adm-field" style="flex:1.4">
                 <label>分類</label>
                 <select class="adm-input" id="af-cat" onchange="admMarkDirty()"></select>
               </div>
-              <div class="adm-field">
-                <label>或新增分類</label>
-                <input class="adm-input" id="af-newcat" placeholder="輸入新分類名稱" oninput="admMarkDirty()">
-              </div>
-              <div class="adm-field" style="flex:0 0 160px">
+              <div class="adm-field" style="flex:1">
                 <label>發布日期</label>
                 <input class="adm-input" type="date" id="af-date" oninput="admMarkDirty()">
               </div>
@@ -2191,7 +2187,6 @@ function admEditNow(id){
   adm_editingId=id;
   document.getElementById('af-title').value=a.title||'';
   admPopulateCats(a.cat);
-  document.getElementById('af-newcat').value='';
   document.getElementById('af-date').value=a.date||new Date().toISOString().slice(0,10);
   var slugEl=document.getElementById('af-slug');
   slugEl.value=a.id; slugEl.disabled=true; slugEl.title='已發佈文章的網址代稱不可更改，以免舊連結失效';
@@ -2214,7 +2209,6 @@ function admNewNow(){
   adm_editingId=null;
   document.getElementById('af-title').value='';
   admPopulateCats('');
-  document.getElementById('af-newcat').value='';
   document.getElementById('af-date').value=new Date().toISOString().slice(0,10);
   var slugEl=document.getElementById('af-slug');
   slugEl.value=''; slugEl.disabled=false; slugEl.title='';
@@ -2238,8 +2232,7 @@ function admPopulateCats(current){
 function admSave(){
   const title=document.getElementById('af-title').value.trim();
   if(!title){ admToast('請輸入標題','err'); document.getElementById('af-title').focus(); return; }
-  const newcat=document.getElementById('af-newcat').value.trim();
-  const cat=newcat||document.getElementById('af-cat').value||'未分類';
+  const cat=document.getElementById('af-cat').value||'未分類';
   const date=document.getElementById('af-date').value||new Date().toISOString().slice(0,10);
   const excerpt=document.getElementById('af-excerpt').value.trim();
   const content=document.getElementById('af-body').value.trim();
