@@ -1206,9 +1206,6 @@ textarea#af-body.adm-input{
   <div class="adm-bar">
     <span class="adm-bar-logo">SKY PT <span>ADMIN</span></span>
     <div class="adm-bar-sep"></div>
-    <button class="adm-btn primary sm" onclick="admExport()" title="下載 articles.json，用於重建網站並上傳 Cloudflare Pages">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:5px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>匯出文章</button>
-    <div class="adm-bar-sep"></div>
     <button class="adm-btn ghost sm" onclick="admReset()" title="還原預設文章">還原預設</button>
     <div class="adm-bar-sep"></div>
     <button class="adm-btn ghost sm icon-only" onclick="admClose()" title="關閉後台 (Esc)" style="color:#E05555;border-color:#E05555"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
@@ -2269,7 +2266,7 @@ function admSave(){
     var slugEl=document.getElementById('af-slug'); slugEl.value=id; slugEl.disabled=true;
   }
   admSaveLS(); adm_dirty=false; admDirtyUI();
-  admToast('已儲存（本機草稿）——匯出後重建並上傳才會更新線上','ok');
+  admToast('已儲存（本機草稿）','ok');
   admRenderList(); admRenderCats();
   document.getElementById('adm-editor-label').textContent='編輯文章';
   document.getElementById('adm-del-btn').style.display='';
@@ -2298,19 +2295,6 @@ function admReset(){
   });
 }
 
-/* ── 匯出文章資料：下載 articles.json（用於重建網站並上傳 Cloudflare Pages） ── */
-function admExport(){
-  try{
-    var data=JSON.stringify(ARTICLES,null,2)+'\n';
-    var blob=new Blob([data],{type:'application/json'});
-    var a=document.createElement('a');
-    a.href=URL.createObjectURL(blob);
-    a.download='articles.json';
-    document.body.appendChild(a); a.click();
-    setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},0);
-    admToast('已匯出 articles.json（'+ARTICLES.length+' 篇）','ok');
-  }catch(e){ admToast('匯出失敗：'+((e&&e.message)||'錯誤'),'err'); }
-}
 
 /* ── tabs & preview ── */
 function admTab(t){
