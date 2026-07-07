@@ -30,6 +30,28 @@
 
 ## 衛教文章
 
+### 下背痛
+- [預防勝於治療：下背的長期保養計畫（prehab）](https://skythephysio.com/posts/back-prehab-prevention.html): 復健的終點，是預防的起點。腰痛好了之後怎麼不再犯？答案是一份能長期執行的保養計畫。
+- [下背與臀部的軟組織放鬆：滾筒與按摩球怎麼用](https://skythephysio.com/posts/soft-tissue-back-release.html): 滾筒、按摩球能暫時降低張力、讓你更好動——但它是「開場」，不是「主角」。用對了才有價值。
+- [下背痛的溫和伸展與活動度運動：從貓牛到抱膝](https://skythephysio.com/posts/back-stretches-mobility.html): 急性期不敢亂動、又怕越躺越僵？幾個溫和、低風險的活動度動作，幫你在安全範圍內讓腰重新流動。
+- [久坐與下背痛：問題不是坐姿，是「坐太久不動」](https://skythephysio.com/posts/sitting-back-pain.html): 坐姿要多完美其實沒那麼重要，真正傷腰的是「一個姿勢維持太久」。認識久坐與微動的力量。
+- [搬重物不再閃到腰：學會髖鉸鏈這個關鍵動作](https://skythephysio.com/posts/hip-hinge-lifting.html): 「彎腰搬東西要用腿不要用腰」——這句話大家都聽過，但到底怎麼做？關鍵是髖鉸鏈。
+- [腰痛，為什麼要練髖？髖不動，腰就替它受累](https://skythephysio.com/posts/hip-mobility-back-pain.html): 髖關節該轉的沒轉、該彎的沒彎，那些角度就會被下背硬吃下來。很多腰痛，其實是髖太緊。
+- [核心不是仰臥起坐：認識真正在保護你腰的深層核心](https://skythephysio.com/posts/deep-core-not-situps.html): 一講到練核心就想到仰臥起坐？其實保護下背的，是一群你看不到、也不會讓你長出六塊肌的深層肌肉。
+- [屈曲型還是伸展型？找出你下背痛的「方向偏好」](https://skythephysio.com/posts/flexion-extension-preference.html): 同樣的運動，有人做了變好、有人做了更痛，差別常常在方向。找到你的方向偏好，運動才會幫你。
+- [脊椎解離與滑脫：大量後仰的運動族要認識的一種](https://skythephysio.com/posts/spondylolysis-listhesis.html): 體操、舉重、羽球等大量後仰的運動裡較常見。認識脊椎解離／滑脫，以及為什麼它偏好「屈曲」。
+- [薦髂關節疼痛：屁股上方單側那個點在痛](https://skythephysio.com/posts/si-joint-low-back.html): 痛點常在腰帶下方、屁股上方一側的凹陷處，翻身、單腳站、上下車時特別有感。認識薦髂關節。
+- [小面關節扭傷：一後仰就痛的那種下背痛](https://skythephysio.com/posts/facet-joint-sprain.html): 痛點集中在脊椎兩側、後仰或轉身時最明顯、前彎反而舒服——這常常是小面關節在抗議。
+- [腰椎椎管狹窄：為什麼走一走就腿麻、要坐下才舒服](https://skythephysio.com/posts/lumbar-stenosis.html): 站久、走久腿就麻脹無力，坐下或彎腰推購物車卻好多了——這是椎管狹窄的典型故事。
+- [神經滑動：讓卡住的神經重新「滑順」](https://skythephysio.com/posts/nerve-glides-flossing.html): 坐骨神經痛、腿麻時，硬拉筋常常越拉越痛。神經需要的不是拉扯，而是溫和地滑動。
+- [坐骨神經痛：從屁股一路電到腿的那種痛](https://skythephysio.com/posts/sciatica-explained.html): 痛、麻、電，沿著一條線從臀部竄到大腿小腿。認識坐骨神經痛，以及它為什麼常常會自己好轉。
+- [椎間盤突出到底是什麼？沒你想的那麼可怕](https://skythephysio.com/posts/disc-herniation-explained.html): 「你的椎間盤突出了。」這句話讓很多人以為要開刀。但大多數突出，其實會自己縮回去。
+- [腰痛到底該休息還是該動？答案是「相對休息」](https://skythephysio.com/posts/relative-rest-back-pain.html): 完全躺平會越躺越糟，硬撐硬操又怕受傷。介於兩者之間的，叫做相對休息。
+- [下背痛復健的三個階段：從止痛到重返生活](https://skythephysio.com/posts/three-phase-back-rehab.html): 好的復健不是一直做同一組運動，而是隨著身體的進步換檔。這是一張三階段的路線圖。
+- [閃到腰的當下，該做什麼、不該做什麼](https://skythephysio.com/posts/tweaked-back-first-aid.html): 彎腰一搬，腰突然卡住、動不了。急性腰扭傷的頭幾天，處理得當能省下好幾週。
+- [下背痛的真相：X 光上的「異常」不一定是你痛的原因](https://skythephysio.com/posts/back-pain-not-equal-damage.html): 椎間盤突出、骨刺、退化——影像報告上的字眼很嚇人。但這些「異常」，很多沒有症狀的人身上也有。
+- [急性還是慢性下背痛？先分清楚，才知道怎麼走](https://skythephysio.com/posts/acute-vs-chronic-back-pain.html): 同樣是腰痛，剛閃到的第一週和已經痛了半年，處理方式完全不同。搞懂你在哪個階段，是復健的第一步。
+
 ### 紅繩懸吊
 - [骨盆帶疼痛：紅繩懸吊如何幫你找回穩定](https://skythephysio.com/posts/neurac-pelvic-girdle-pain.html): 懷孕、產後、甚至沒有生過孩子——骨盆帶疼痛比你想像的更常見。這篇文章從解剖、症狀到 Neurac 紅繩治療原則，帶你一次看懂。
 - [紅繩懸吊：讓身體重新學會「被支撐」](https://skythephysio.com/posts/redcord-support.html): 懸吊不是把人吊起來那麼簡單。當重力被重新分配，那些因為疼痛而「離線」的深層穩定肌，才有機會醒過來。
