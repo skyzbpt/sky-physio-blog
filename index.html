@@ -879,12 +879,12 @@ footer{border-top:1px solid var(--line);padding:48px 0 60px;background:linear-gr
 .adm-card-label{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;
   color:var(--adm-ink);font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:10px}
 .adm-card-note{font-family:var(--sans);font-size:.72rem;letter-spacing:.01em;color:var(--adm-muted);font-weight:400}
-.adm-field-row{display:flex;gap:14px;align-items:flex-end}
-.adm-field-row .adm-field{flex:1;min-width:0}
-.adm-field-row .adm-input{min-width:0;max-width:100%}
+/* Grid + minmax(0,fr)：欄寬由容器決定，內容（如 Safari 的 date input）無法撐破 */
+.adm-field-row{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:14px;align-items:end}
+.adm-field-row .adm-field{min-width:0}
+.adm-field-row .adm-input{min-width:0;width:100%;max-width:100%}
 @media(max-width:640px){
-  .adm-field-row{flex-direction:column;align-items:stretch;gap:14px}
-  .adm-field-row .adm-field{flex:1 1 auto!important}
+  .adm-field-row{grid-template-columns:minmax(0,1fr)}
 }
 .adm-title-input{font-size:1.05rem!important;font-weight:600;padding:12px 14px!important}
 .adm-excerpt-input{min-height:0!important;resize:vertical;border-radius:9px!important;
@@ -910,7 +910,10 @@ footer{border-top:1px solid var(--line);padding:48px 0 60px;background:linear-gr
 }
 .adm-input::placeholder{color:#A7AFC2}
 .adm-input:focus{border-color:var(--adm-teal);background:#fff;box-shadow:0 0 0 3px rgba(20,154,138,.12)}
-.adm-input[type=date]{min-width:0;font-variant-numeric:tabular-nums}
+.adm-input[type=date]{min-width:0;font-variant-numeric:tabular-nums;
+  -webkit-appearance:none;appearance:none;box-sizing:border-box;
+  display:block;height:41px}
+.adm-input[type=date]::-webkit-date-and-time-value{text-align:left}
 select.adm-input{cursor:pointer}
 .adm-textarea-wrap{position:relative}
 .adm-toolbar{
@@ -1267,11 +1270,11 @@ textarea#af-body.adm-input{
               <input class="adm-input adm-title-input" id="af-title" placeholder="輸入文章標題…" oninput="admMarkDirty()">
             </div>
             <div class="adm-field-row">
-              <div class="adm-field" style="flex:1.4">
+              <div class="adm-field">
                 <label>分類</label>
                 <select class="adm-input" id="af-cat" onchange="admMarkDirty()"></select>
               </div>
-              <div class="adm-field" style="flex:1">
+              <div class="adm-field">
                 <label>發布日期</label>
                 <input class="adm-input" type="date" id="af-date" oninput="admMarkDirty()">
               </div>
