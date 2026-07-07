@@ -2623,8 +2623,19 @@ $("#contact-list").innerHTML = SITE.contacts.map(c=>`
   </div>`).join("");
 
 /* ---- 文章：分類與列表 ---- */
-let currentCat = "全部";
-const cats = ["全部","下背痛","肩膀痛","顱薦椎","身心靈","公路車","紅繩懸吊","疼痛科學"];
+let currentCat = "精選文章";
+const cats = ["精選文章","下背痛","肩膀痛","顱薦椎","身心靈","公路車","紅繩懸吊","疼痛科學"];
+/* 精選：每分類一篇，依 Google 高搜尋量關鍵字優先排序
+   （坐骨神經痛、五十肩、顳顎關節、Bike Fitting、產後骨盆痛、慢性疼痛） */
+const FEATURED = [
+  "sciatica-explained",        // 下背痛：坐骨神經痛
+  "frozen-shoulder-stages",    // 肩膀痛：五十肩（冰凍肩）
+  "tmj-whole-person",          // 顱薦椎：顳顎關節、下巴痛
+  "bike-fitting-what",         // 公路車：Bike Fitting
+  "neurac-pelvic-girdle-pain", // 紅繩懸吊：骨盆帶疼痛、產後骨盆痛
+  "pain-alarm",                // 疼痛科學：疼痛與大腦
+  "tears-from-fascia"          // 身心靈：情緒能量釋放
+];
 
 function renderChips(){
   $("#chips").innerHTML = cats.map(c=>
@@ -2633,9 +2644,9 @@ function renderChips(){
 function setCat(c){ currentCat=c; renderChips(); renderList(); }
 
 function renderList(){
-  const list = ARTICLES
-    .filter(a=>currentCat==="全部"||a.cat===currentCat)
-    .sort((x,y)=>y.date.localeCompare(x.date));
+  const list = currentCat==="精選文章"
+    ? FEATURED.map(id=>ARTICLES.find(a=>a.id===id)).filter(Boolean)
+    : ARTICLES.filter(a=>a.cat===currentCat).sort((x,y)=>y.date.localeCompare(x.date));
   $("#post-list").innerHTML = list.length ? list.map(a=>`
     <a class="post-row" href="posts/${a.id}.html">
       <div class="post-meta"><span>${a.date}</span><span class="cat">${a.cat}</span></div>
