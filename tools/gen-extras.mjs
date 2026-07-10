@@ -2,7 +2,7 @@
 // 資料來源：data/articles.json
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, esc, plain, loadArticles, logoDataURI, ogCard, shot, VIEWS_API, EYE_SVG } from './lib.mjs';
+import { REPO, BASE, esc, plain, loadArticles, logoDataURI, ogCard, shot, VIEWS_API, EYE_SVG, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT } from './lib.mjs';
 
 // 與 lib.mjs 的 CAT_SLUG 保持一致（此處另需 lede 文案）
 const HUBS = [
@@ -83,6 +83,8 @@ function hubPage(hub, arts) {
   const ogImg = `${BASE}/assets/og/topic-${hub.slug}.jpg`;
   const title = `${hub.cat}衛教文章｜Sky 物理治療師`;
   const desc = plain(hub.lede).slice(0, 155);
+  const about = CAT_ABOUT[hub.cat];
+  const keywords = [hub.cat, ...(about ? [about.name, about.alternateName].filter(Boolean) : []), '物理治療', '衛教', 'Sky 物理治療師'];
   const jsonld = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -91,7 +93,11 @@ function hubPage(hub, arts) {
     "name": title,
     "description": desc,
     "inLanguage": "zh-TW",
-    "isPartOf": { "@id": BASE + "/#website" },
+    "isPartOf": { "@type": "WebSite", "@id": BASE + "/#website", "name": "Sky 物理治療師", "url": BASE + "/" },
+    "author": AUTHOR,
+    "publisher": PUBLISHER,
+    "keywords": [...new Set(keywords)].join(','),
+    ...(about ? { "about": about } : {}),
     "mainEntity": {
       "@type": "ItemList",
       "numberOfItems": arts.length,
@@ -117,8 +123,9 @@ function hubPage(hub, arts) {
 <meta name="theme-color" content="#E0F0FB">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
+<meta name="keywords" content="${esc([...new Set(keywords)].join(','))}">
 <meta name="author" content="Sky 物理治療師">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="${ROBOTS}">
 <link rel="canonical" href="${url}">
 <link rel="icon" href="../favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="512x512" href="../assets/favicon-512.png">
@@ -134,6 +141,9 @@ function hubPage(hub, arts) {
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:url" content="${url}">
 <meta property="og:image" content="${ogImg}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="${esc(hub.cat)}衛教文章｜Sky 物理治療師">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(title)}">
 <meta name="twitter:description" content="${esc(desc)}">

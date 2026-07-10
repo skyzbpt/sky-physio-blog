@@ -2,7 +2,7 @@
 // 資料來源：data/articles.json（唯一真實來源）
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, TODAY, esc, plain, readMins, CAT_SLUG, renderBody, loadArticles, logoDataURI, ogCard, shot, VIEWS_API, EYE_SVG } from './lib.mjs';
+import { REPO, BASE, TODAY, esc, plain, readMins, CAT_SLUG, renderBody, loadArticles, logoDataURI, ogCard, shot, VIEWS_API, EYE_SVG, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, wordCountOf, keywordsFor, extractFaqs } from './lib.mjs';
 
 /* ---------- 靜態頁 CSS（取自 index.html，確保一致）---------- */
 const CSS = `
@@ -92,6 +92,8 @@ function postPage(a, idx, all) {
       { "@type": "ListItem", "position": 3, "name": a.title, "item": url }
     ]
   };
+  const about = CAT_ABOUT[a.cat];
+  const keywords = keywordsFor(a);
   const jsonld = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -100,14 +102,33 @@ function postPage(a, idx, all) {
     "headline": a.title,
     "description": desc,
     "datePublished": a.date,
-    "dateModified": a.date,
+    "dateModified": TODAY,
     "articleSection": a.cat,
+    "keywords": keywords,
+    "wordCount": wordCountOf(a.content),
+    "timeRequired": `PT${mins}M`,
     "inLanguage": "zh-TW",
-    "image": ogImg,
+    "isAccessibleForFree": true,
+    "image": { "@type": "ImageObject", "url": ogImg, "width": 1200, "height": 630 },
     "url": url,
-    "author": { "@type": "Person", "name": "Sky", "url": BASE + "/" },
-    "publisher": { "@type": "Organization", "name": "Sky 物理治療師", "logo": { "@type": "ImageObject", "url": BASE + "/assets/logo.png" } }
+    ...(about ? { "about": about } : {}),
+    "author": AUTHOR,
+    "publisher": PUBLISHER,
+    "isPartOf": { "@type": "Blog", "@id": BASE + "/#blog", "name": "Sky 物理治療師｜衛教文章" }
   };
+  // FAQ：僅在文章本身含問句小標時產生（真實 Q&A，利於 rich result 與 AI 問答抽取）
+  const faqs = extractFaqs(a.content, a.title);
+  const faqld = faqs.length ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": url + "#faq",
+    "inLanguage": "zh-TW",
+    "mainEntity": faqs.map(f => ({
+      "@type": "Question",
+      "name": f.q,
+      "acceptedAnswer": { "@type": "Answer", "text": f.a }
+    }))
+  } : null;
   return `<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -116,8 +137,9 @@ function postPage(a, idx, all) {
 <meta name="theme-color" content="#E0F0FB">
 <title>${esc(a.title)}｜Sky 物理治療師</title>
 <meta name="description" content="${esc(desc)}">
+<meta name="keywords" content="${esc(keywords)}">
 <meta name="author" content="Sky 物理治療師">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="${ROBOTS}">
 <link rel="canonical" href="${url}">
 <link rel="icon" href="../favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="512x512" href="../assets/favicon-512.png">
@@ -132,19 +154,28 @@ function postPage(a, idx, all) {
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:url" content="${url}">
 <meta property="og:image" content="${ogImg}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="${esc(a.title)}｜Sky 物理治療師">
 <meta property="article:published_time" content="${a.date}">
+<meta property="article:modified_time" content="${TODAY}">
 <meta property="article:section" content="${esc(a.cat)}">
+<meta property="article:tag" content="${esc(a.cat)}">
 <meta property="article:author" content="Sky 物理治療師">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(a.title)}">
 <meta name="twitter:description" content="${esc(desc)}">
 <meta name="twitter:image" content="${ogImg}">
+<meta name="twitter:image:alt" content="${esc(a.title)}">
 <script type="application/ld+json">
 ${JSON.stringify(jsonld, null, 2)}
 </script>
 <script type="application/ld+json">
 ${JSON.stringify(breadcrumb, null, 2)}
-</script>
+</script>${faqld ? `
+<script type="application/ld+json">
+${JSON.stringify(faqld, null, 2)}
+</script>` : ''}
 <link rel="alternate" type="application/rss+xml" title="Sky 物理治療師衛教文章" href="../feed.xml">
 <style>${CSS}</style>
 </head>
