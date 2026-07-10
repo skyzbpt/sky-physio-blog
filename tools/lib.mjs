@@ -21,6 +21,7 @@ export const readMins = content => Math.max(1, Math.round(((String(content).matc
 export const CAT_SLUG = {
   '下背痛': 'lower-back-pain',
   '肩膀痛': 'shoulder-pain',
+  '顳顎關節': 'tmj',
   '顱薦椎': 'craniosacral',
   '身心靈': 'mind-body',
   '公路車': 'cycling',

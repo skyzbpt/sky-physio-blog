@@ -100,6 +100,28 @@
 ### 身心靈
 - [眼淚從筋膜裡來：談情緒能量釋放](https://skythephysio.com/posts/tears-from-fascia.html): 「對不起，我不知道我為什麼哭。」在治療床上，這句話我聽過很多次。沒關係——身體知道。
 
+### 顳顎關節
+- [物理治療怎麼處理顳顎障礙？何時該就醫](https://skythephysio.com/posts/tmj-physical-therapy.html): 顳顎障礙不是只能戴牙套或吃止痛藥——物理治療在肌肉、關節與習慣調整上都幫得上忙。
+- [顳顎障礙的自我照護：軟食、熱敷、姿勢與放鬆](https://skythephysio.com/posts/tmj-self-care.html): 大多數顳顎障礙，從日常的「減載」開始就能明顯改善。這些是你今天就能做的事。
+- [下巴的聲音：喀喀聲和摩擦聲各代表什麼？](https://skythephysio.com/posts/tmj-joint-sounds.html): 一樣是關節有聲音，「喀」和「沙沙」代表的問題完全不同。學會分辨，就知道要不要緊張。
+- [顳顎關節的生長發育問題：孩子的下巴要早看](https://skythephysio.com/posts/tmj-growth-disorders.html): 兒童與青少年時期的顳顎關節若受傷或發炎，可能影響下顎生長與臉型對稱。早發現，選項最多。
+- [下巴長期張不開：沾黏、關節僵直與肌肉攣縮](https://skythephysio.com/posts/tmj-chronic-hypomobility.html): 不太痛，但就是張不大、卡在小範圍——長期的下顎活動受限，原因不只一種，處理也不同。
+- [類風濕性與其他關節炎，也會找上顳顎關節](https://skythephysio.com/posts/tmj-arthritides.html): 顳顎關節也是關節，全身性的關節炎（如類風濕）同樣可能影響它。這時要看的不只是下巴。
+- [顳顎關節退化性關節炎：摩擦聲與磨損](https://skythephysio.com/posts/tmj-osteoarthritis.html): 不是清脆的喀喀聲，而是「沙沙／摩擦」的聲音，加上活動時痛——可能是關節在退化。
+- [關節後區發炎（retrodiscitis）：咬合為什麼突然對不準](https://skythephysio.com/posts/tmj-retrodiscitis.html): 下巴撞到後關節劇痛、後牙先咬到、咬合像變了——可能是關節後方組織發炎。這時千萬別急著調咬合。
+- [顳顎關節發炎：滑膜炎與關節囊炎](https://skythephysio.com/posts/tmj-synovitis-capsulitis.html): 關節持續痛、有腫脹感、一咬就痛——可能是關節內的滑膜或關節囊發炎了。
+- [關節面的結構性問題：黏著、半脫位與脫位](https://skythephysio.com/posts/tmj-structural-incompatibility.html): 除了關節盤移位，關節「面與面」之間也可能出狀況——從短暫黏住到整個脫臼閉不起來。
+- [關節盤卡住（不可復位）：張不開的急性鎖住](https://skythephysio.com/posts/tmj-closed-lock.html): 原本會喀喀響，某天突然「張不開、卡住」——關節盤可能卡在前方回不去了。這時該盡快處理。
+- [關節盤移位（可復位）：喀喀聲的真相](https://skythephysio.com/posts/tmj-disc-displacement-with-reduction.html): 張口「喀」一聲、閉口再「喀」一聲——這往往是關節盤滑進滑出的聲音。有聲音一定要治療嗎？
+- [磨牙與咬緊牙關：夜間磨牙和顳顎障礙的關係](https://skythephysio.com/posts/tmj-bruxism-clenching.html): 早上起床下巴痠、牙齒磨損、枕邊人說你磨牙——磨牙與緊咬，是很多顳顎障礙的幕後推手。
+- [慢性咀嚼肌痛：當疼痛變成中樞神經的事](https://skythephysio.com/posts/tmj-centrally-mediated-myalgia.html): 痛超過幾個月、越來越廣、越來越敏感——這時問題已不只在肌肉，而在神經系統的敏感化。
+- [肌肉痙攣：突然咬不攏、張不開](https://skythephysio.com/posts/tmj-myospasm.html): 咀嚼肌突然強烈收縮、把下巴「鎖住」，是急性但通常短暫的狀況。認識它，發作時就不會慌。
+- [咀嚼肌的肌筋膜疼痛與轉移痛：為什麼牙齒查不出問題卻痛](https://skythephysio.com/posts/tmj-myofascial-pain.html): 明明是下巴的肌肉緊，痛卻跑到頭、耳朵、牙齒——這就是肌筋膜疼痛「轉移」的特性。
+- [局部肌肉痠痛：最常見的下巴肌肉痛](https://skythephysio.com/posts/tmj-local-muscle-soreness.html): 咀嚼肌用過頭、繃太久，就會發痠發脹。這是顳顎障礙裡最常見的肌肉問題，也最能靠自我照護改善。
+- [咀嚼肌的第一道反應：保護性共同收縮](https://skythephysio.com/posts/tmj-protective-co-contraction.html): 下巴一有狀況，肌肉會先「繃起來保護」。這是最早期、也最容易恢復的肌肉反應——但拖久了會變麻煩。
+- [顳顎障礙怎麼分類：問題出在肌肉還是關節？](https://skythephysio.com/posts/tmd-classification-muscle-vs-joint.html): 同樣是下巴痛，來源可能天差地遠。認識顳顎障礙的第一步，是分辨問題出在咀嚼肌肉，還是關節本身。
+- [顳顎關節障礙是什麼？認識每天用上千次的下巴關節](https://skythephysio.com/posts/tmj-disorders-overview.html): 張嘴會痛、有聲音、甚至卡住——顳顎關節障礙（TMD）比你想的常見。先認識這個每天用上千次、卻常被忽略的關節。
+
 ## 物理治療完整指南
 - [物理治療是什麼？如何挑選值得推薦的物理治療師](https://skythephysio.com/physio-guide.html): 物理治療的定義、物理治療師的執照與訓練、第一次療程流程、挑選值得推薦的物理治療師的 7 個標準、自費與健保的差異。
 
@@ -111,6 +133,7 @@
 - [顱薦椎衛教文章](https://skythephysio.com/topics/craniosacral.html)
 - [疼痛科學衛教文章](https://skythephysio.com/topics/pain-science.html)
 - [身心靈衛教文章](https://skythephysio.com/topics/mind-body.html)
+- [顳顎關節衛教文章](https://skythephysio.com/topics/tmj.html)
 
 ## 完整內容
 - [全文彙整（供 AI 讀取）](https://skythephysio.com/llms-full.txt)
