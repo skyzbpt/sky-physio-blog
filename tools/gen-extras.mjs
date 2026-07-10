@@ -119,8 +119,11 @@ function hubPage(hub, arts) {
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="${url}">
 <link rel="icon" href="../favicon.ico" sizes="any">
-<link rel="icon" type="image/png" href="../assets/favicon-180.png">
-<link rel="apple-touch-icon" href="../assets/favicon-180.png">
+<link rel="icon" type="image/png" sizes="512x512" href="../assets/favicon-512.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon-180.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="167x167" href="../assets/favicon-167.png">
+<link rel="apple-touch-icon" sizes="152x152" href="../assets/favicon-152.png">
 <link rel="alternate" type="application/rss+xml" title="Sky 物理治療師衛教文章" href="../feed.xml">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="zh_TW">
@@ -268,6 +271,7 @@ ${sorted.map(a => `  <item>
 <title>找不到頁面｜Sky 物理治療師</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <style>${CSS}
 .nf{max-width:640px;margin:0 auto;padding:96px 32px;text-align:center}
 .nf .code{font-family:var(--mono);font-size:.78rem;letter-spacing:.24em;color:var(--red);margin-bottom:16px}
