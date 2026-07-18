@@ -25,7 +25,7 @@ export function injectArticles() {
   /* --- 2) Blog JSON-LD blogPost 清單 --- */
   const sorted = [...articles].sort((x, y) => y.date.localeCompare(x.date));
   const entries = sorted.map(a =>
-    `        {"@type": "BlogPosting", "headline": ${JSON.stringify(a.title)}, "url": ${JSON.stringify(BASE + '/posts/' + a.id + '.html')}, "datePublished": ${JSON.stringify(a.date)}, "articleSection": ${JSON.stringify(a.cat)}, "description": ${JSON.stringify(plain(a.excerpt).slice(0, 155))}}`
+    `        {"@type": "BlogPosting", "headline": ${JSON.stringify(a.title)}, "url": ${JSON.stringify(BASE + '/posts/' + a.id)}, "datePublished": ${JSON.stringify(a.date)}, "articleSection": ${JSON.stringify(a.cat)}, "description": ${JSON.stringify(plain(a.excerpt).slice(0, 155))}}`
   ).join(',\n');
   const ldRe = /"blogPost": \[[\s\S]*?\n      \]/;
   if (!ldRe.test(html)) throw new Error('index.html 找不到 blogPost JSON-LD 區塊');

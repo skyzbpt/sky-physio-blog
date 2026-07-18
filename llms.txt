@@ -31,109 +31,109 @@
 ## 衛教文章
 
 ### 肩膀痛
-- [肩膀的長期保養（prehab）：過頭族、久坐族都該練](https://skythephysio.com/posts/shoulder-prehab-prevention.html): 肩膀好了之後怎麼不再犯？無論你常做過頭動作、還是整天對著螢幕，都需要一份保養計畫。
-- [肩膀與後側旋轉肌的軟組織放鬆：滾筒與按摩球](https://skythephysio.com/posts/shoulder-soft-tissue-release.html): 按摩球壓一壓能暫時降低張力、讓肩膀更好動——但它是「開場」，真正讓肩膀變強的是後面的訓練。
-- [肩膀的活動度：為什麼多用 mobility、少用死拉筋](https://skythephysio.com/posts/shoulder-mobility-vs-stretching.html): 除了冰凍肩，多數肩痛我們不建議長時間靜態拉筋——因為問題常常不是「肌肉太短」。
-- [胸椎活動度與肩膀：駝背如何偷走你舉手的角度](https://skythephysio.com/posts/thoracic-mobility-shoulder.html): 手舉不高、過頭就卡？問題可能不在肩膀，而在你僵硬的上背（胸椎）。
-- [肩胛骨的角色：肩膀動得順不順，看肩胛](https://skythephysio.com/posts/scapular-control.html): 手要舉得高，肩胛骨得跟著漂亮地轉。肩胛是肩膀的地基，地基不穩，上面怎麼蓋都晃。
-- [肌腱要「漸進負荷」，不是「休息到好」](https://skythephysio.com/posts/tendon-loading-principles.html): 旋轉肌袖、二頭肌這類肌腱問題，最常見的錯誤就是一直休息。肌腱其實是「越練越強」的組織。
-- [二頭肌肌腱病變：肩膀前側那一條線在痛](https://skythephysio.com/posts/biceps-tendinopathy.html): 痛點在肩膀前方、彎手舉東西時明顯——這條從肩膀通過的二頭肌肌腱，是常被忽略的痛源。
-- [冰凍肩的復健：為什麼它反而需要「拉伸」](https://skythephysio.com/posts/frozen-shoulder-stretching.html): 多數肩痛我們少用死拉筋，但冰凍肩是例外——因為問題出在關節囊本身變緊。
-- [冰凍肩（五十肩）：卡住又痛的三個階段](https://skythephysio.com/posts/frozen-shoulder-stages.html): 手舉不高、摸不到背、晚上痛到醒——冰凍肩有它獨特的病程。認識它的三階段，才知道現在該做什麼。
-- [重建肩膀的信心：旋轉肌與肩胛的控制訓練](https://skythephysio.com/posts/shoulder-stability-training.html): 肩膀不穩、脫過臼、或總覺得沒力，核心解方都是同一件事——把「動態控制」練回來。
-- [肩關節脫臼與半脫位：脫過一次之後怎麼辦](https://skythephysio.com/posts/shoulder-dislocation-subluxation.html): 肩膀脫臼很痛、也很嚇人，而且脫過一次，之後更容易再脫。復健的目標是讓它「待在該待的地方」。
-- [肩關節不穩定：總覺得肩膀「快要掉出來」](https://skythephysio.com/posts/shoulder-instability.html): 有些人的肩膀不是痛，而是「怕」——在某些角度覺得鬆、覺得要滑出去。這是肩關節不穩定。
-- [肩膀痛該休息還是該動？答案同樣是「相對休息」](https://skythephysio.com/posts/shoulder-rest-or-move.html): 完全不動，肩膀容易越來越僵、甚至卡住；硬操又激怒它。中間那條路，叫相對休息。
-- [肩膀復健的三個階段：從安撫到重返過頭動作](https://skythephysio.com/posts/three-phase-shoulder-rehab.html): 肩膀運動不是做同一組到好，而是隨進步換檔。這是一張三階段的路線圖。
-- [肩滑囊炎：過頭動作時那股悶悶的痛](https://skythephysio.com/posts/shoulder-bursitis.html): 滑囊是關節裡的「潤滑墊」，被反覆摩擦刺激就會發炎。它常和夾擠、旋轉肌袖問題結伴出現。
-- [肩夾擠症候群：舉手到一半就卡、就痛](https://skythephysio.com/posts/shoulder-impingement.html): 把手往上舉到某個角度特別痛、過了又還好？這種「痛弧」常常是肩夾擠的招牌。
-- [旋轉肌袖撕裂，一定要開刀嗎？](https://skythephysio.com/posts/rotator-cuff-tear-surgery.html): 聽到「撕裂」兩個字很嚇人，但很多旋轉肌袖撕裂其實可以靠運動治療處理得很好。
-- [旋轉肌袖是什麼？為什麼它那麼常出問題](https://skythephysio.com/posts/rotator-cuff-basics.html): 四條你可能沒聽過、卻每天都在用的深層肌肉。認識旋轉肌袖，就懂了大半的肩膀痛。
-- [肩膀痛該冰敷還是熱敷？先分清楚急性與慢性](https://skythephysio.com/posts/shoulder-acute-vs-chronic.html): 剛拉傷的肩膀和痛了三個月的肩膀，處理方式不同。分清楚階段，才不會用錯方法拖慢復原。
-- [肩膀痛：認識這個全身最靈活、也最容易出問題的關節](https://skythephysio.com/posts/shoulder-pain-overview.html): 肩膀能往幾乎所有方向活動，代價是穩定度得靠肌肉「主動」維持。認識肩關節，是處理肩痛的第一步。
+- [肩膀的長期保養（prehab）：過頭族、久坐族都該練](https://skythephysio.com/posts/shoulder-prehab-prevention): 肩膀好了之後怎麼不再犯？無論你常做過頭動作、還是整天對著螢幕，都需要一份保養計畫。
+- [肩膀與後側旋轉肌的軟組織放鬆：滾筒與按摩球](https://skythephysio.com/posts/shoulder-soft-tissue-release): 按摩球壓一壓能暫時降低張力、讓肩膀更好動——但它是「開場」，真正讓肩膀變強的是後面的訓練。
+- [肩膀的活動度：為什麼多用 mobility、少用死拉筋](https://skythephysio.com/posts/shoulder-mobility-vs-stretching): 除了冰凍肩，多數肩痛我們不建議長時間靜態拉筋——因為問題常常不是「肌肉太短」。
+- [胸椎活動度與肩膀：駝背如何偷走你舉手的角度](https://skythephysio.com/posts/thoracic-mobility-shoulder): 手舉不高、過頭就卡？問題可能不在肩膀，而在你僵硬的上背（胸椎）。
+- [肩胛骨的角色：肩膀動得順不順，看肩胛](https://skythephysio.com/posts/scapular-control): 手要舉得高，肩胛骨得跟著漂亮地轉。肩胛是肩膀的地基，地基不穩，上面怎麼蓋都晃。
+- [肌腱要「漸進負荷」，不是「休息到好」](https://skythephysio.com/posts/tendon-loading-principles): 旋轉肌袖、二頭肌這類肌腱問題，最常見的錯誤就是一直休息。肌腱其實是「越練越強」的組織。
+- [二頭肌肌腱病變：肩膀前側那一條線在痛](https://skythephysio.com/posts/biceps-tendinopathy): 痛點在肩膀前方、彎手舉東西時明顯——這條從肩膀通過的二頭肌肌腱，是常被忽略的痛源。
+- [冰凍肩的復健：為什麼它反而需要「拉伸」](https://skythephysio.com/posts/frozen-shoulder-stretching): 多數肩痛我們少用死拉筋，但冰凍肩是例外——因為問題出在關節囊本身變緊。
+- [冰凍肩（五十肩）：卡住又痛的三個階段](https://skythephysio.com/posts/frozen-shoulder-stages): 手舉不高、摸不到背、晚上痛到醒——冰凍肩有它獨特的病程。認識它的三階段，才知道現在該做什麼。
+- [重建肩膀的信心：旋轉肌與肩胛的控制訓練](https://skythephysio.com/posts/shoulder-stability-training): 肩膀不穩、脫過臼、或總覺得沒力，核心解方都是同一件事——把「動態控制」練回來。
+- [肩關節脫臼與半脫位：脫過一次之後怎麼辦](https://skythephysio.com/posts/shoulder-dislocation-subluxation): 肩膀脫臼很痛、也很嚇人，而且脫過一次，之後更容易再脫。復健的目標是讓它「待在該待的地方」。
+- [肩關節不穩定：總覺得肩膀「快要掉出來」](https://skythephysio.com/posts/shoulder-instability): 有些人的肩膀不是痛，而是「怕」——在某些角度覺得鬆、覺得要滑出去。這是肩關節不穩定。
+- [肩膀痛該休息還是該動？答案同樣是「相對休息」](https://skythephysio.com/posts/shoulder-rest-or-move): 完全不動，肩膀容易越來越僵、甚至卡住；硬操又激怒它。中間那條路，叫相對休息。
+- [肩膀復健的三個階段：從安撫到重返過頭動作](https://skythephysio.com/posts/three-phase-shoulder-rehab): 肩膀運動不是做同一組到好，而是隨進步換檔。這是一張三階段的路線圖。
+- [肩滑囊炎：過頭動作時那股悶悶的痛](https://skythephysio.com/posts/shoulder-bursitis): 滑囊是關節裡的「潤滑墊」，被反覆摩擦刺激就會發炎。它常和夾擠、旋轉肌袖問題結伴出現。
+- [肩夾擠症候群：舉手到一半就卡、就痛](https://skythephysio.com/posts/shoulder-impingement): 把手往上舉到某個角度特別痛、過了又還好？這種「痛弧」常常是肩夾擠的招牌。
+- [旋轉肌袖撕裂，一定要開刀嗎？](https://skythephysio.com/posts/rotator-cuff-tear-surgery): 聽到「撕裂」兩個字很嚇人，但很多旋轉肌袖撕裂其實可以靠運動治療處理得很好。
+- [旋轉肌袖是什麼？為什麼它那麼常出問題](https://skythephysio.com/posts/rotator-cuff-basics): 四條你可能沒聽過、卻每天都在用的深層肌肉。認識旋轉肌袖，就懂了大半的肩膀痛。
+- [肩膀痛該冰敷還是熱敷？先分清楚急性與慢性](https://skythephysio.com/posts/shoulder-acute-vs-chronic): 剛拉傷的肩膀和痛了三個月的肩膀，處理方式不同。分清楚階段，才不會用錯方法拖慢復原。
+- [肩膀痛：認識這個全身最靈活、也最容易出問題的關節](https://skythephysio.com/posts/shoulder-pain-overview): 肩膀能往幾乎所有方向活動，代價是穩定度得靠肌肉「主動」維持。認識肩關節，是處理肩痛的第一步。
 
 ### 下背痛
-- [預防勝於治療：下背的長期保養計畫（prehab）](https://skythephysio.com/posts/back-prehab-prevention.html): 復健的終點，是預防的起點。腰痛好了之後怎麼不再犯？答案是一份能長期執行的保養計畫。
-- [下背與臀部的軟組織放鬆：滾筒與按摩球怎麼用](https://skythephysio.com/posts/soft-tissue-back-release.html): 滾筒、按摩球能暫時降低張力、讓你更好動——但它是「開場」，不是「主角」。用對了才有價值。
-- [下背痛的溫和伸展與活動度運動：從貓牛到抱膝](https://skythephysio.com/posts/back-stretches-mobility.html): 急性期不敢亂動、又怕越躺越僵？幾個溫和、低風險的活動度動作，幫你在安全範圍內讓腰重新流動。
-- [久坐與下背痛：問題不是坐姿，是「坐太久不動」](https://skythephysio.com/posts/sitting-back-pain.html): 坐姿要多完美其實沒那麼重要，真正傷腰的是「一個姿勢維持太久」。認識久坐與微動的力量。
-- [搬重物不再閃到腰：學會髖鉸鏈這個關鍵動作](https://skythephysio.com/posts/hip-hinge-lifting.html): 「彎腰搬東西要用腿不要用腰」——這句話大家都聽過，但到底怎麼做？關鍵是髖鉸鏈。
-- [腰痛，為什麼要練髖？髖不動，腰就替它受累](https://skythephysio.com/posts/hip-mobility-back-pain.html): 髖關節該轉的沒轉、該彎的沒彎，那些角度就會被下背硬吃下來。很多腰痛，其實是髖太緊。
-- [核心不是仰臥起坐：認識真正在保護你腰的深層核心](https://skythephysio.com/posts/deep-core-not-situps.html): 一講到練核心就想到仰臥起坐？其實保護下背的，是一群你看不到、也不會讓你長出六塊肌的深層肌肉。
-- [屈曲型還是伸展型？找出你下背痛的「方向偏好」](https://skythephysio.com/posts/flexion-extension-preference.html): 同樣的運動，有人做了變好、有人做了更痛，差別常常在方向。找到你的方向偏好，運動才會幫你。
-- [脊椎解離與滑脫：大量後仰的運動族要認識的一種](https://skythephysio.com/posts/spondylolysis-listhesis.html): 體操、舉重、羽球等大量後仰的運動裡較常見。認識脊椎解離／滑脫，以及為什麼它偏好「屈曲」。
-- [薦髂關節疼痛：屁股上方單側那個點在痛](https://skythephysio.com/posts/si-joint-low-back.html): 痛點常在腰帶下方、屁股上方一側的凹陷處，翻身、單腳站、上下車時特別有感。認識薦髂關節。
-- [小面關節扭傷：一後仰就痛的那種下背痛](https://skythephysio.com/posts/facet-joint-sprain.html): 痛點集中在脊椎兩側、後仰或轉身時最明顯、前彎反而舒服——這常常是小面關節在抗議。
-- [腰椎椎管狹窄：為什麼走一走就腿麻、要坐下才舒服](https://skythephysio.com/posts/lumbar-stenosis.html): 站久、走久腿就麻脹無力，坐下或彎腰推購物車卻好多了——這是椎管狹窄的典型故事。
-- [神經滑動：讓卡住的神經重新「滑順」](https://skythephysio.com/posts/nerve-glides-flossing.html): 坐骨神經痛、腿麻時，硬拉筋常常越拉越痛。神經需要的不是拉扯，而是溫和地滑動。
-- [坐骨神經痛：從屁股一路電到腿的那種痛](https://skythephysio.com/posts/sciatica-explained.html): 痛、麻、電，沿著一條線從臀部竄到大腿小腿。認識坐骨神經痛，以及它為什麼常常會自己好轉。
-- [椎間盤突出到底是什麼？沒你想的那麼可怕](https://skythephysio.com/posts/disc-herniation-explained.html): 「你的椎間盤突出了。」這句話讓很多人以為要開刀。但大多數突出，其實會自己縮回去。
-- [腰痛到底該休息還是該動？答案是「相對休息」](https://skythephysio.com/posts/relative-rest-back-pain.html): 完全躺平會越躺越糟，硬撐硬操又怕受傷。介於兩者之間的，叫做相對休息。
-- [下背痛復健的三個階段：從止痛到重返生活](https://skythephysio.com/posts/three-phase-back-rehab.html): 好的復健不是一直做同一組運動，而是隨著身體的進步換檔。這是一張三階段的路線圖。
-- [閃到腰的當下，該做什麼、不該做什麼](https://skythephysio.com/posts/tweaked-back-first-aid.html): 彎腰一搬，腰突然卡住、動不了。急性腰扭傷的頭幾天，處理得當能省下好幾週。
-- [下背痛的真相：X 光上的「異常」不一定是你痛的原因](https://skythephysio.com/posts/back-pain-not-equal-damage.html): 椎間盤突出、骨刺、退化——影像報告上的字眼很嚇人。但這些「異常」，很多沒有症狀的人身上也有。
-- [急性還是慢性下背痛？先分清楚，才知道怎麼走](https://skythephysio.com/posts/acute-vs-chronic-back-pain.html): 同樣是腰痛，剛閃到的第一週和已經痛了半年，處理方式完全不同。搞懂你在哪個階段，是復健的第一步。
+- [預防勝於治療：下背的長期保養計畫（prehab）](https://skythephysio.com/posts/back-prehab-prevention): 復健的終點，是預防的起點。腰痛好了之後怎麼不再犯？答案是一份能長期執行的保養計畫。
+- [下背與臀部的軟組織放鬆：滾筒與按摩球怎麼用](https://skythephysio.com/posts/soft-tissue-back-release): 滾筒、按摩球能暫時降低張力、讓你更好動——但它是「開場」，不是「主角」。用對了才有價值。
+- [下背痛的溫和伸展與活動度運動：從貓牛到抱膝](https://skythephysio.com/posts/back-stretches-mobility): 急性期不敢亂動、又怕越躺越僵？幾個溫和、低風險的活動度動作，幫你在安全範圍內讓腰重新流動。
+- [久坐與下背痛：問題不是坐姿，是「坐太久不動」](https://skythephysio.com/posts/sitting-back-pain): 坐姿要多完美其實沒那麼重要，真正傷腰的是「一個姿勢維持太久」。認識久坐與微動的力量。
+- [搬重物不再閃到腰：學會髖鉸鏈這個關鍵動作](https://skythephysio.com/posts/hip-hinge-lifting): 「彎腰搬東西要用腿不要用腰」——這句話大家都聽過，但到底怎麼做？關鍵是髖鉸鏈。
+- [腰痛，為什麼要練髖？髖不動，腰就替它受累](https://skythephysio.com/posts/hip-mobility-back-pain): 髖關節該轉的沒轉、該彎的沒彎，那些角度就會被下背硬吃下來。很多腰痛，其實是髖太緊。
+- [核心不是仰臥起坐：認識真正在保護你腰的深層核心](https://skythephysio.com/posts/deep-core-not-situps): 一講到練核心就想到仰臥起坐？其實保護下背的，是一群你看不到、也不會讓你長出六塊肌的深層肌肉。
+- [屈曲型還是伸展型？找出你下背痛的「方向偏好」](https://skythephysio.com/posts/flexion-extension-preference): 同樣的運動，有人做了變好、有人做了更痛，差別常常在方向。找到你的方向偏好，運動才會幫你。
+- [脊椎解離與滑脫：大量後仰的運動族要認識的一種](https://skythephysio.com/posts/spondylolysis-listhesis): 體操、舉重、羽球等大量後仰的運動裡較常見。認識脊椎解離／滑脫，以及為什麼它偏好「屈曲」。
+- [薦髂關節疼痛：屁股上方單側那個點在痛](https://skythephysio.com/posts/si-joint-low-back): 痛點常在腰帶下方、屁股上方一側的凹陷處，翻身、單腳站、上下車時特別有感。認識薦髂關節。
+- [小面關節扭傷：一後仰就痛的那種下背痛](https://skythephysio.com/posts/facet-joint-sprain): 痛點集中在脊椎兩側、後仰或轉身時最明顯、前彎反而舒服——這常常是小面關節在抗議。
+- [腰椎椎管狹窄：為什麼走一走就腿麻、要坐下才舒服](https://skythephysio.com/posts/lumbar-stenosis): 站久、走久腿就麻脹無力，坐下或彎腰推購物車卻好多了——這是椎管狹窄的典型故事。
+- [神經滑動：讓卡住的神經重新「滑順」](https://skythephysio.com/posts/nerve-glides-flossing): 坐骨神經痛、腿麻時，硬拉筋常常越拉越痛。神經需要的不是拉扯，而是溫和地滑動。
+- [坐骨神經痛：從屁股一路電到腿的那種痛](https://skythephysio.com/posts/sciatica-explained): 痛、麻、電，沿著一條線從臀部竄到大腿小腿。認識坐骨神經痛，以及它為什麼常常會自己好轉。
+- [椎間盤突出到底是什麼？沒你想的那麼可怕](https://skythephysio.com/posts/disc-herniation-explained): 「你的椎間盤突出了。」這句話讓很多人以為要開刀。但大多數突出，其實會自己縮回去。
+- [腰痛到底該休息還是該動？答案是「相對休息」](https://skythephysio.com/posts/relative-rest-back-pain): 完全躺平會越躺越糟，硬撐硬操又怕受傷。介於兩者之間的，叫做相對休息。
+- [下背痛復健的三個階段：從止痛到重返生活](https://skythephysio.com/posts/three-phase-back-rehab): 好的復健不是一直做同一組運動，而是隨著身體的進步換檔。這是一張三階段的路線圖。
+- [閃到腰的當下，該做什麼、不該做什麼](https://skythephysio.com/posts/tweaked-back-first-aid): 彎腰一搬，腰突然卡住、動不了。急性腰扭傷的頭幾天，處理得當能省下好幾週。
+- [下背痛的真相：X 光上的「異常」不一定是你痛的原因](https://skythephysio.com/posts/back-pain-not-equal-damage): 椎間盤突出、骨刺、退化——影像報告上的字眼很嚇人。但這些「異常」，很多沒有症狀的人身上也有。
+- [急性還是慢性下背痛？先分清楚，才知道怎麼走](https://skythephysio.com/posts/acute-vs-chronic-back-pain): 同樣是腰痛，剛閃到的第一週和已經痛了半年，處理方式完全不同。搞懂你在哪個階段，是復健的第一步。
 
 ### 紅繩懸吊
-- [骨盆帶疼痛：紅繩懸吊如何幫你找回穩定](https://skythephysio.com/posts/neurac-pelvic-girdle-pain.html): 懷孕、產後、甚至沒有生過孩子——骨盆帶疼痛比你想像的更常見。這篇文章從解剖、症狀到 Neurac 紅繩治療原則，帶你一次看懂。
-- [紅繩懸吊：讓身體重新學會「被支撐」](https://skythephysio.com/posts/redcord-support.html): 懸吊不是把人吊起來那麼簡單。當重力被重新分配，那些因為疼痛而「離線」的深層穩定肌，才有機會醒過來。
+- [骨盆帶疼痛：紅繩懸吊如何幫你找回穩定](https://skythephysio.com/posts/neurac-pelvic-girdle-pain): 懷孕、產後、甚至沒有生過孩子——骨盆帶疼痛比你想像的更常見。這篇文章從解剖、症狀到 Neurac 紅繩治療原則，帶你一次看懂。
+- [紅繩懸吊：讓身體重新學會「被支撐」](https://skythephysio.com/posts/redcord-support): 懸吊不是把人吊起來那麼簡單。當重力被重新分配，那些因為疼痛而「離線」的深層穩定肌，才有機會醒過來。
 
 ### 公路車
-- [騎得快，先離開腳踏車：談公路車的離車訓練](https://skythephysio.com/posts/strength-off-the-bike.html): 想騎得更快、更不容易受傷，答案常常不在更多的里程，而在你下車之後做了什麼。但「核心訓練」這四個字，可能正在浪費你的時間。
-- [三個接觸點，決定你和公路車的關係](https://skythephysio.com/posts/bike-fit-three-contacts.html): 坐墊、踏板、把手——你和車只在三個地方相遇。把這三點調對了，長途騎乘不該是受苦；調不對，身體會替你說。
-- [公路車騎士的下背痛，答案常常不在腰](https://skythephysio.com/posts/cyclist-low-back.html): 「騎到六十公里腰就開始痠。」這句話我在治療室聽過無數次。腰是受害者，但它通常不是兇手。
-- [Bike Fitting 到底在「fit」什麼？](https://skythephysio.com/posts/bike-fitting-what.html): 坐墊、踏板、把手——三個接觸點決定了你和車的關係。但數字只是起點，真正要 fit 的是疲勞之後的你。
+- [騎得快，先離開腳踏車：談公路車的離車訓練](https://skythephysio.com/posts/strength-off-the-bike): 想騎得更快、更不容易受傷，答案常常不在更多的里程，而在你下車之後做了什麼。但「核心訓練」這四個字，可能正在浪費你的時間。
+- [三個接觸點，決定你和公路車的關係](https://skythephysio.com/posts/bike-fit-three-contacts): 坐墊、踏板、把手——你和車只在三個地方相遇。把這三點調對了，長途騎乘不該是受苦；調不對，身體會替你說。
+- [公路車騎士的下背痛，答案常常不在腰](https://skythephysio.com/posts/cyclist-low-back): 「騎到六十公里腰就開始痠。」這句話我在治療室聽過無數次。腰是受害者，但它通常不是兇手。
+- [Bike Fitting 到底在「fit」什麼？](https://skythephysio.com/posts/bike-fitting-what): 坐墊、踏板、把手——三個接觸點決定了你和車的關係。但數字只是起點，真正要 fit 的是疲勞之後的你。
 
 ### 顱薦椎
-- [下巴痛，問題不一定在下巴——從顳顎關節談「整體」的身體觀](https://skythephysio.com/posts/tmj-whole-person.html): 九成的顳顎關節症狀，其實不是關節本身的問題。下巴只是說話的那一個——真正在說話的，往往是整個身體累積的壓力與張力。
-- [那條從腦幹一路漫遊到腸子的神經——認識「迷走」](https://skythephysio.com/posts/vagus-wanderer.html): 它的名字在拉丁文裡是「流浪者」。它從腦幹出發，蜿蜒穿過喉嚨、心臟、肺、消化道，一路漫遊到腸子——它是身體裡最廣布、也最被低估的一條神經。
-- [為什麼治療師的「狀態」會影響你的身體——談同步與安靜的臨在](https://skythephysio.com/posts/entrainment-presence.html): 1665 年，一位物理學家發現掛在同一面牆上的鐘擺，會慢慢擺成同一個節奏。三百多年後，這個現象成了理解徒手治療的一把鑰匙。
-- [不是去「修理」，而是創造一個夠安全的空間——談生物動力顱薦椎](https://skythephysio.com/posts/biodynamic-stillness.html): 好的治療，常常不是治療師「做」了什麼，而是創造了一個夠安全的場域，讓身體自己想起該怎麼回家。這是生物動力顱薦椎最迷人的地方。
-- [身體裡的第三種節律：認識顱薦椎脈動](https://skythephysio.com/posts/craniosacral-rhythm.html): 你能感覺到心跳，也能感覺到呼吸的起伏。但還有第三種節律，安靜地在全身流動——大多數人一輩子沒察覺它的存在。
-- [顱薦椎整合：大約五克的力](https://skythephysio.com/posts/craniosacral-5g.html): 五克，差不多是一枚硬幣的重量。在顱薦椎治療裡，改變不是被「做」出來的，是被「允許」出來的。
+- [下巴痛，問題不一定在下巴——從顳顎關節談「整體」的身體觀](https://skythephysio.com/posts/tmj-whole-person): 九成的顳顎關節症狀，其實不是關節本身的問題。下巴只是說話的那一個——真正在說話的，往往是整個身體累積的壓力與張力。
+- [那條從腦幹一路漫遊到腸子的神經——認識「迷走」](https://skythephysio.com/posts/vagus-wanderer): 它的名字在拉丁文裡是「流浪者」。它從腦幹出發，蜿蜒穿過喉嚨、心臟、肺、消化道，一路漫遊到腸子——它是身體裡最廣布、也最被低估的一條神經。
+- [為什麼治療師的「狀態」會影響你的身體——談同步與安靜的臨在](https://skythephysio.com/posts/entrainment-presence): 1665 年，一位物理學家發現掛在同一面牆上的鐘擺，會慢慢擺成同一個節奏。三百多年後，這個現象成了理解徒手治療的一把鑰匙。
+- [不是去「修理」，而是創造一個夠安全的空間——談生物動力顱薦椎](https://skythephysio.com/posts/biodynamic-stillness): 好的治療，常常不是治療師「做」了什麼，而是創造了一個夠安全的場域，讓身體自己想起該怎麼回家。這是生物動力顱薦椎最迷人的地方。
+- [身體裡的第三種節律：認識顱薦椎脈動](https://skythephysio.com/posts/craniosacral-rhythm): 你能感覺到心跳，也能感覺到呼吸的起伏。但還有第三種節律，安靜地在全身流動——大多數人一輩子沒察覺它的存在。
+- [顱薦椎整合：大約五克的力](https://skythephysio.com/posts/craniosacral-5g): 五克，差不多是一枚硬幣的重量。在顱薦椎治療裡，改變不是被「做」出來的，是被「允許」出來的。
 
 ### 疼痛科學
-- [三個大小不一的圓——生理心理社會模型的四十年擺盪](https://skythephysio.com/posts/biopsychosocial-pendulum.html): 同樣是慢性腰痛，三個病人的圓圈大小卻完全不一樣。這才是生理心理社會模型真正想說的事，而不是那張人人熟悉的等大三圓。
-- [疼痛的音量——為什麼相同的傷，有人劇烈有人無感](https://skythephysio.com/posts/somatoform-immune-pain.html): 一根釘進頭骨的釘子，卻只被感覺成牙痛；一根沒有傷到任何組織的鐵釘，卻引發劇烈到需要注射鎮靜劑的疼痛。大腦決定的，不只是你感受到什麼，還有感受到多少。
-- [疼痛是大腦的警報，不是損傷的刻度](https://skythephysio.com/posts/pain-alarm.html): 腳踝扭傷當下不痛、被紙割到卻痛得跳腳——疼痛從來不是損傷的忠實刻度，它是大腦對「危險」的判斷。
+- [三個大小不一的圓——生理心理社會模型的四十年擺盪](https://skythephysio.com/posts/biopsychosocial-pendulum): 同樣是慢性腰痛，三個病人的圓圈大小卻完全不一樣。這才是生理心理社會模型真正想說的事，而不是那張人人熟悉的等大三圓。
+- [疼痛的音量——為什麼相同的傷，有人劇烈有人無感](https://skythephysio.com/posts/somatoform-immune-pain): 一根釘進頭骨的釘子，卻只被感覺成牙痛；一根沒有傷到任何組織的鐵釘，卻引發劇烈到需要注射鎮靜劑的疼痛。大腦決定的，不只是你感受到什麼，還有感受到多少。
+- [疼痛是大腦的警報，不是損傷的刻度](https://skythephysio.com/posts/pain-alarm): 腳踝扭傷當下不痛、被紙割到卻痛得跳腳——疼痛從來不是損傷的忠實刻度，它是大腦對「危險」的判斷。
 
 ### 身心靈
-- [眼淚從筋膜裡來：談情緒能量釋放](https://skythephysio.com/posts/tears-from-fascia.html): 「對不起，我不知道我為什麼哭。」在治療床上，這句話我聽過很多次。沒關係——身體知道。
+- [眼淚從筋膜裡來：談情緒能量釋放](https://skythephysio.com/posts/tears-from-fascia): 「對不起，我不知道我為什麼哭。」在治療床上，這句話我聽過很多次。沒關係——身體知道。
 
 ### 顳顎關節
-- [物理治療怎麼處理顳顎障礙？何時該就醫](https://skythephysio.com/posts/tmj-physical-therapy.html): 顳顎障礙不是只能戴牙套或吃止痛藥——物理治療在肌肉、關節與習慣調整上都幫得上忙。
-- [顳顎障礙的自我照護：軟食、熱敷、姿勢與放鬆](https://skythephysio.com/posts/tmj-self-care.html): 大多數顳顎障礙，從日常的「減載」開始就能明顯改善。這些是你今天就能做的事。
-- [下巴的聲音：喀喀聲和摩擦聲各代表什麼？](https://skythephysio.com/posts/tmj-joint-sounds.html): 一樣是關節有聲音，「喀」和「沙沙」代表的問題完全不同。學會分辨，就知道要不要緊張。
-- [顳顎關節的生長發育問題：孩子的下巴要早看](https://skythephysio.com/posts/tmj-growth-disorders.html): 兒童與青少年時期的顳顎關節若受傷或發炎，可能影響下顎生長與臉型對稱。早發現，選項最多。
-- [下巴長期張不開：沾黏、關節僵直與肌肉攣縮](https://skythephysio.com/posts/tmj-chronic-hypomobility.html): 不太痛，但就是張不大、卡在小範圍——長期的下顎活動受限，原因不只一種，處理也不同。
-- [類風濕性與其他關節炎，也會找上顳顎關節](https://skythephysio.com/posts/tmj-arthritides.html): 顳顎關節也是關節，全身性的關節炎（如類風濕）同樣可能影響它。這時要看的不只是下巴。
-- [顳顎關節退化性關節炎：摩擦聲與磨損](https://skythephysio.com/posts/tmj-osteoarthritis.html): 不是清脆的喀喀聲，而是「沙沙／摩擦」的聲音，加上活動時痛——可能是關節在退化。
-- [關節後區發炎（retrodiscitis）：咬合為什麼突然對不準](https://skythephysio.com/posts/tmj-retrodiscitis.html): 下巴撞到後關節劇痛、後牙先咬到、咬合像變了——可能是關節後方組織發炎。這時千萬別急著調咬合。
-- [顳顎關節發炎：滑膜炎與關節囊炎](https://skythephysio.com/posts/tmj-synovitis-capsulitis.html): 關節持續痛、有腫脹感、一咬就痛——可能是關節內的滑膜或關節囊發炎了。
-- [關節面的結構性問題：黏著、半脫位與脫位](https://skythephysio.com/posts/tmj-structural-incompatibility.html): 除了關節盤移位，關節「面與面」之間也可能出狀況——從短暫黏住到整個脫臼閉不起來。
-- [關節盤卡住（不可復位）：張不開的急性鎖住](https://skythephysio.com/posts/tmj-closed-lock.html): 原本會喀喀響，某天突然「張不開、卡住」——關節盤可能卡在前方回不去了。這時該盡快處理。
-- [關節盤移位（可復位）：喀喀聲的真相](https://skythephysio.com/posts/tmj-disc-displacement-with-reduction.html): 張口「喀」一聲、閉口再「喀」一聲——這往往是關節盤滑進滑出的聲音。有聲音一定要治療嗎？
-- [磨牙與咬緊牙關：夜間磨牙和顳顎障礙的關係](https://skythephysio.com/posts/tmj-bruxism-clenching.html): 早上起床下巴痠、牙齒磨損、枕邊人說你磨牙——磨牙與緊咬，是很多顳顎障礙的幕後推手。
-- [慢性咀嚼肌痛：當疼痛變成中樞神經的事](https://skythephysio.com/posts/tmj-centrally-mediated-myalgia.html): 痛超過幾個月、越來越廣、越來越敏感——這時問題已不只在肌肉，而在神經系統的敏感化。
-- [肌肉痙攣：突然咬不攏、張不開](https://skythephysio.com/posts/tmj-myospasm.html): 咀嚼肌突然強烈收縮、把下巴「鎖住」，是急性但通常短暫的狀況。認識它，發作時就不會慌。
-- [咀嚼肌的肌筋膜疼痛與轉移痛：為什麼牙齒查不出問題卻痛](https://skythephysio.com/posts/tmj-myofascial-pain.html): 明明是下巴的肌肉緊，痛卻跑到頭、耳朵、牙齒——這就是肌筋膜疼痛「轉移」的特性。
-- [局部肌肉痠痛：最常見的下巴肌肉痛](https://skythephysio.com/posts/tmj-local-muscle-soreness.html): 咀嚼肌用過頭、繃太久，就會發痠發脹。這是顳顎障礙裡最常見的肌肉問題，也最能靠自我照護改善。
-- [咀嚼肌的第一道反應：保護性共同收縮](https://skythephysio.com/posts/tmj-protective-co-contraction.html): 下巴一有狀況，肌肉會先「繃起來保護」。這是最早期、也最容易恢復的肌肉反應——但拖久了會變麻煩。
-- [顳顎障礙怎麼分類：問題出在肌肉還是關節？](https://skythephysio.com/posts/tmd-classification-muscle-vs-joint.html): 同樣是下巴痛，來源可能天差地遠。認識顳顎障礙的第一步，是分辨問題出在咀嚼肌肉，還是關節本身。
-- [顳顎關節障礙是什麼？認識每天用上千次的下巴關節](https://skythephysio.com/posts/tmj-disorders-overview.html): 張嘴會痛、有聲音、甚至卡住——顳顎關節障礙（TMD）比你想的常見。先認識這個每天用上千次、卻常被忽略的關節。
+- [物理治療怎麼處理顳顎障礙？何時該就醫](https://skythephysio.com/posts/tmj-physical-therapy): 顳顎障礙不是只能戴牙套或吃止痛藥——物理治療在肌肉、關節與習慣調整上都幫得上忙。
+- [顳顎障礙的自我照護：軟食、熱敷、姿勢與放鬆](https://skythephysio.com/posts/tmj-self-care): 大多數顳顎障礙，從日常的「減載」開始就能明顯改善。這些是你今天就能做的事。
+- [下巴的聲音：喀喀聲和摩擦聲各代表什麼？](https://skythephysio.com/posts/tmj-joint-sounds): 一樣是關節有聲音，「喀」和「沙沙」代表的問題完全不同。學會分辨，就知道要不要緊張。
+- [顳顎關節的生長發育問題：孩子的下巴要早看](https://skythephysio.com/posts/tmj-growth-disorders): 兒童與青少年時期的顳顎關節若受傷或發炎，可能影響下顎生長與臉型對稱。早發現，選項最多。
+- [下巴長期張不開：沾黏、關節僵直與肌肉攣縮](https://skythephysio.com/posts/tmj-chronic-hypomobility): 不太痛，但就是張不大、卡在小範圍——長期的下顎活動受限，原因不只一種，處理也不同。
+- [類風濕性與其他關節炎，也會找上顳顎關節](https://skythephysio.com/posts/tmj-arthritides): 顳顎關節也是關節，全身性的關節炎（如類風濕）同樣可能影響它。這時要看的不只是下巴。
+- [顳顎關節退化性關節炎：摩擦聲與磨損](https://skythephysio.com/posts/tmj-osteoarthritis): 不是清脆的喀喀聲，而是「沙沙／摩擦」的聲音，加上活動時痛——可能是關節在退化。
+- [關節後區發炎（retrodiscitis）：咬合為什麼突然對不準](https://skythephysio.com/posts/tmj-retrodiscitis): 下巴撞到後關節劇痛、後牙先咬到、咬合像變了——可能是關節後方組織發炎。這時千萬別急著調咬合。
+- [顳顎關節發炎：滑膜炎與關節囊炎](https://skythephysio.com/posts/tmj-synovitis-capsulitis): 關節持續痛、有腫脹感、一咬就痛——可能是關節內的滑膜或關節囊發炎了。
+- [關節面的結構性問題：黏著、半脫位與脫位](https://skythephysio.com/posts/tmj-structural-incompatibility): 除了關節盤移位，關節「面與面」之間也可能出狀況——從短暫黏住到整個脫臼閉不起來。
+- [關節盤卡住（不可復位）：張不開的急性鎖住](https://skythephysio.com/posts/tmj-closed-lock): 原本會喀喀響，某天突然「張不開、卡住」——關節盤可能卡在前方回不去了。這時該盡快處理。
+- [關節盤移位（可復位）：喀喀聲的真相](https://skythephysio.com/posts/tmj-disc-displacement-with-reduction): 張口「喀」一聲、閉口再「喀」一聲——這往往是關節盤滑進滑出的聲音。有聲音一定要治療嗎？
+- [磨牙與咬緊牙關：夜間磨牙和顳顎障礙的關係](https://skythephysio.com/posts/tmj-bruxism-clenching): 早上起床下巴痠、牙齒磨損、枕邊人說你磨牙——磨牙與緊咬，是很多顳顎障礙的幕後推手。
+- [慢性咀嚼肌痛：當疼痛變成中樞神經的事](https://skythephysio.com/posts/tmj-centrally-mediated-myalgia): 痛超過幾個月、越來越廣、越來越敏感——這時問題已不只在肌肉，而在神經系統的敏感化。
+- [肌肉痙攣：突然咬不攏、張不開](https://skythephysio.com/posts/tmj-myospasm): 咀嚼肌突然強烈收縮、把下巴「鎖住」，是急性但通常短暫的狀況。認識它，發作時就不會慌。
+- [咀嚼肌的肌筋膜疼痛與轉移痛：為什麼牙齒查不出問題卻痛](https://skythephysio.com/posts/tmj-myofascial-pain): 明明是下巴的肌肉緊，痛卻跑到頭、耳朵、牙齒——這就是肌筋膜疼痛「轉移」的特性。
+- [局部肌肉痠痛：最常見的下巴肌肉痛](https://skythephysio.com/posts/tmj-local-muscle-soreness): 咀嚼肌用過頭、繃太久，就會發痠發脹。這是顳顎障礙裡最常見的肌肉問題，也最能靠自我照護改善。
+- [咀嚼肌的第一道反應：保護性共同收縮](https://skythephysio.com/posts/tmj-protective-co-contraction): 下巴一有狀況，肌肉會先「繃起來保護」。這是最早期、也最容易恢復的肌肉反應——但拖久了會變麻煩。
+- [顳顎障礙怎麼分類：問題出在肌肉還是關節？](https://skythephysio.com/posts/tmd-classification-muscle-vs-joint): 同樣是下巴痛，來源可能天差地遠。認識顳顎障礙的第一步，是分辨問題出在咀嚼肌肉，還是關節本身。
+- [顳顎關節障礙是什麼？認識每天用上千次的下巴關節](https://skythephysio.com/posts/tmj-disorders-overview): 張嘴會痛、有聲音、甚至卡住——顳顎關節障礙（TMD）比你想的常見。先認識這個每天用上千次、卻常被忽略的關節。
 
 ## 物理治療完整指南
-- [物理治療是什麼？如何挑選值得推薦的物理治療師](https://skythephysio.com/physio-guide.html): 物理治療的定義、物理治療師的執照與訓練、第一次療程流程、挑選值得推薦的物理治療師的 7 個標準、自費與健保的差異。
+- [物理治療是什麼？如何挑選值得推薦的物理治療師](https://skythephysio.com/physio-guide): 物理治療的定義、物理治療師的執照與訓練、第一次療程流程、挑選值得推薦的物理治療師的 7 個標準、自費與健保的差異。
 
 ## 分類專頁（每類文章總覽）
-- [肩膀痛衛教文章](https://skythephysio.com/topics/shoulder-pain.html)
-- [下背痛衛教文章](https://skythephysio.com/topics/lower-back-pain.html)
-- [紅繩懸吊衛教文章](https://skythephysio.com/topics/redcord.html)
-- [公路車衛教文章](https://skythephysio.com/topics/cycling.html)
-- [顱薦椎衛教文章](https://skythephysio.com/topics/craniosacral.html)
-- [疼痛科學衛教文章](https://skythephysio.com/topics/pain-science.html)
-- [身心靈衛教文章](https://skythephysio.com/topics/mind-body.html)
-- [顳顎關節衛教文章](https://skythephysio.com/topics/tmj.html)
+- [肩膀痛衛教文章](https://skythephysio.com/topics/shoulder-pain)
+- [下背痛衛教文章](https://skythephysio.com/topics/lower-back-pain)
+- [紅繩懸吊衛教文章](https://skythephysio.com/topics/redcord)
+- [公路車衛教文章](https://skythephysio.com/topics/cycling)
+- [顱薦椎衛教文章](https://skythephysio.com/topics/craniosacral)
+- [疼痛科學衛教文章](https://skythephysio.com/topics/pain-science)
+- [身心靈衛教文章](https://skythephysio.com/topics/mind-body)
+- [顳顎關節衛教文章](https://skythephysio.com/topics/tmj)
 
 ## 完整內容
 - [全文彙整（供 AI 讀取）](https://skythephysio.com/llms-full.txt)

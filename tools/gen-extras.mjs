@@ -79,7 +79,8 @@ a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4
 
 /* ---------- 主題頁模板 ---------- */
 function hubPage(hub, arts) {
-  const url = `${BASE}/topics/${hub.slug}.html`;
+  // 正式網址採乾淨路徑（無 .html）：Cloudflare 靜態資產會將 .html 網址 308 轉向乾淨網址
+  const url = `${BASE}/topics/${hub.slug}`;
   const ogImg = `${BASE}/assets/og/topic-${hub.slug}.jpg`;
   const title = `${hub.cat}衛教文章｜Sky 物理治療師`;
   const desc = plain(hub.lede).slice(0, 155);
@@ -103,7 +104,7 @@ function hubPage(hub, arts) {
       "numberOfItems": arts.length,
       "itemListElement": arts.map((a, i) => ({
         "@type": "ListItem", "position": i + 1, "name": a.title,
-        "url": `${BASE}/posts/${a.id}.html`
+        "url": `${BASE}/posts/${a.id}`
       }))
     }
   };
@@ -159,31 +160,31 @@ ${JSON.stringify(breadcrumb, null, 2)}
 <body>
 <header>
   <nav class="nav">
-    <a class="brand" href="../index.html" aria-label="回到首頁">
+    <a class="brand" href="/" aria-label="回到首頁">
       <img class="brand-logo" src="../assets/logo.png" alt="Sky 物理治療師 logo">
       <span class="brand-name">Sky 物理治療師</span>
     </a>
     <div class="nav-right">
-      <a class="nav-link" href="../index.html#blog">更多文章</a>
+      <a class="nav-link" href="/#blog">更多文章</a>
       <a class="btn teal sm" href="https://calendar.app.google/zucbVA7vLvAmJP7y6" target="_blank" rel="noopener">預約評估</a>
     </div>
   </nav>
 </header>
 
 <main class="hub">
-  <nav class="crumb" aria-label="breadcrumb"><a href="../index.html">首頁</a> › ${esc(hub.cat)}</nav>
+  <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › ${esc(hub.cat)}</nav>
   <div class="eyebrow">TOPIC・分類專頁</div>
   <h1>${esc(hub.cat)}衛教文章</h1>
   <p class="lede">${esc(hub.lede)}</p>
   <div class="count">共 ${arts.length} 篇・由新到舊</div>
   <div class="list">
-    ${arts.map(a => `<a href="../posts/${a.id}.html">
+    ${arts.map(a => `<a href="/posts/${a.id}">
       <div class="m">${a.date}<span class="pv" data-slug="${a.id}" hidden> ・ ${EYE_SVG}<span class="pv-n"></span> 次</span></div>
       <div class="t">${esc(a.title)}</div>
       <div class="e">${esc(plain(a.excerpt))}</div>
     </a>`).join('\n    ')}
   </div>
-  <a class="backhome" href="../index.html#blog">回到全部文章</a>
+  <a class="backhome" href="/#blog">回到全部文章</a>
 </main>
 
 <script>
@@ -262,8 +263,8 @@ h1{font-family:"Noto Serif TC","Songti TC",serif;font-weight:700;font-size:68px;
   <atom:link href="${BASE}/feed.xml" rel="self" type="application/rss+xml"/>
 ${sorted.map(a => `  <item>
     <title>${esc(a.title)}</title>
-    <link>${BASE}/posts/${a.id}.html</link>
-    <guid isPermaLink="true">${BASE}/posts/${a.id}.html</guid>
+    <link>${BASE}/posts/${a.id}</link>
+    <guid isPermaLink="true">${BASE}/posts/${a.id}</guid>
     <pubDate>${rfc822(a.date)}</pubDate>
     <category>${esc(a.cat)}</category>
     <description>${esc(plain(a.excerpt))}</description>
@@ -300,10 +301,10 @@ ${sorted.map(a => `  <item>
   <p>連結可能已變更或不存在。別擔心——文章都還在，從下面回去就好。</p>
   <div class="links">
     <a href="/">回首頁</a>
-    <a href="/topics/lower-back-pain.html">下背痛</a>
-    <a href="/topics/shoulder-pain.html">肩膀痛</a>
-    <a href="/topics/pain-science.html">疼痛科學</a>
-    <a href="/topics/cycling.html">公路車</a>
+    <a href="/topics/lower-back-pain">下背痛</a>
+    <a href="/topics/shoulder-pain">肩膀痛</a>
+    <a href="/topics/pain-science">疼痛科學</a>
+    <a href="/topics/cycling">公路車</a>
   </div>
 </main>
 </body>
