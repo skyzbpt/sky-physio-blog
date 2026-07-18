@@ -1,0 +1,18 @@
+{
+  // Cloudflare Workers（Git 連動）部署設定 — 純靜態網站
+  // 部署指令 `npx wrangler versions upload` 會讀取本檔，將 dist/ 當作靜態資產上傳。
+  //
+  // ⚠ name 必須與你 Cloudflare 上「這個網站的 Worker 名稱」一致
+  //   （依 skyblog.skyzbpt.workers.dev 推斷為 skyblog；若不同請改這一行）。
+  "name": "skyblog",
+  "compatibility_date": "2026-07-18",
+
+  // 只有靜態資產、沒有 Worker 程式碼：Cloudflare 直接服務 dist/ 內的檔案。
+  "assets": {
+    "directory": "./dist",
+    // 找不到的路徑回傳自訂 404 頁（狀態碼 404）
+    "not_found_handling": "404-page"
+    // html_handling 預設為 auto-trailing-slash：/posts/foo.html → 服務於乾淨網址 /posts/foo
+    // 與我們全站的 canonical／sitemap 一致，無需另外設定。
+  }
+}
