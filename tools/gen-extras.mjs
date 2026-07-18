@@ -222,11 +222,11 @@ export async function genExtras(page) {
   for (const hub of HUBS) {
     const arts = articles.filter(a => a.cat === hub.cat).sort((x, y) => y.date.localeCompare(x.date));
     if (!arts.length) continue;
-    await shot(page, ogCard({ eyebrow: 'TOPIC · 分類專頁', title: `${hub.cat}衛教文章`, footer: 'skythephysio.com', logo }), join(REPO, `assets/og/topic-${hub.slug}.jpg`));
+    if (page) await shot(page, ogCard({ eyebrow: 'TOPIC · 分類專頁', title: `${hub.cat}衛教文章`, footer: 'skythephysio.com', logo }), join(REPO, `assets/og/topic-${hub.slug}.jpg`));
     writeFileSync(join(REPO, `topics/${hub.slug}.html`), hubPage(hub, arts));
     hubCount++;
   }
-  console.log('已產生', hubCount, '個主題頁 + OG 卡');
+  console.log('已產生', hubCount, '個主題頁' + (page ? ' + OG 卡' : '（略過 OG 圖片）'));
 
   // 指南頁 OG 卡
   const guideHtml = `<!doctype html><html><head><meta charset="utf-8">
@@ -247,8 +247,7 @@ h1{font-family:"Noto Serif TC","Songti TC",serif;font-weight:700;font-size:68px;
 <div><div class="eyebrow">GUIDE · 完整指南</div><h1>物理治療是什麼？<br>如何挑選值得推薦的物理治療師</h1></div>
 <div class="foot"><img src="${logo}"><div class="n">Sky 物理治療師<small>skythephysio.com</small></div></div>
 </body></html>`;
-  await shot(page, guideHtml, join(REPO, 'assets/og/physio-guide.jpg'));
-  console.log('已產生指南頁 OG 卡');
+  if (page) { await shot(page, guideHtml, join(REPO, 'assets/og/physio-guide.jpg')); console.log('已產生指南頁 OG 卡'); }
 
   /* ---------- RSS feed ---------- */
   const sorted = [...articles].sort((x, y) => y.date.localeCompare(x.date));
