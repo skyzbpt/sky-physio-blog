@@ -2,7 +2,7 @@
 // 資料來源：data/articles.json
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, esc, plain, loadArticles, logoDataURI, ogCard, shot } from './lib.mjs';
+import { REPO, BASE, esc, plain, loadArticles, logoDataURI, ogCard, shot, VIEWS_API, EYE_SVG, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT } from './lib.mjs';
 
 // 與 lib.mjs 的 CAT_SLUG 保持一致（此處另需 lede 文案）
 const HUBS = [
@@ -10,6 +10,8 @@ const HUBS = [
     lede: '下背痛是最常見的肌肉骨骼困擾——閃到腰、椎間盤突出、坐骨神經痛、椎管狹窄、薦髂關節……這個系列從疼痛科學到分階段復健，帶你讀懂自己的腰，並知道每個階段該做什麼。' },
   { cat: '肩膀痛', slug: 'shoulder-pain',
     lede: '從旋轉肌袖、肩夾擠、滑囊炎，到肩關節不穩定、五十肩（冰凍肩）與二頭肌肌腱——肩膀的問題種類多、卻有脈絡可循。這個系列幫你認出自己的肩膀屬於哪一種，以及復健該怎麼走。' },
+  { cat: '顳顎關節', slug: 'tmj',
+    lede: '張嘴會痛、有聲音、甚至卡住——顳顎關節障礙（TMD）比你想的常見。這個系列依 Okeson 的分類架構，從咀嚼肌到關節盤、發炎與退化，帶你分辨問題出在哪、以及物理治療與自我照護怎麼幫上忙。' },
   { cat: '顱薦椎', slug: 'craniosacral',
     lede: '大約五克的輕觸，讓長期戒備的神經系統願意鬆手。這個系列談顱薦椎脈動、迷走神經、顳顎關節與生物動力取向——從解剖到臨在，理解這門安靜的手法。' },
   { cat: '身心靈', slug: 'mind-body',
@@ -57,6 +59,9 @@ h1{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.45;
 .list a{display:block;padding:22px 0;border-bottom:1px solid var(--line)}
 .list a:hover .t{color:var(--teal)}
 .list .m{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.list .pv{display:inline-flex;align-items:center;gap:4px}
+.list .pv[hidden]{display:none!important}
+.list .pv svg{width:12px;height:12px;opacity:.7;flex:none}
 .list .t{font-family:var(--serif);font-size:1.12rem;font-weight:700;line-height:1.6}
 .list .e{color:var(--muted);font-size:.92rem;margin-top:4px}
 .backhome{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--ink-2);margin-top:36px;padding:10px 18px;border:1.5px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6)}
@@ -78,6 +83,8 @@ function hubPage(hub, arts) {
   const ogImg = `${BASE}/assets/og/topic-${hub.slug}.jpg`;
   const title = `${hub.cat}衛教文章｜Sky 物理治療師`;
   const desc = plain(hub.lede).slice(0, 155);
+  const about = CAT_ABOUT[hub.cat];
+  const keywords = [hub.cat, ...(about ? [about.name, about.alternateName].filter(Boolean) : []), '物理治療', '衛教', 'Sky 物理治療師'];
   const jsonld = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -86,7 +93,11 @@ function hubPage(hub, arts) {
     "name": title,
     "description": desc,
     "inLanguage": "zh-TW",
-    "isPartOf": { "@id": BASE + "/#website" },
+    "isPartOf": { "@type": "WebSite", "@id": BASE + "/#website", "name": "Sky 物理治療師", "url": BASE + "/" },
+    "author": AUTHOR,
+    "publisher": PUBLISHER,
+    "keywords": [...new Set(keywords)].join(','),
+    ...(about ? { "about": about } : {}),
     "mainEntity": {
       "@type": "ItemList",
       "numberOfItems": arts.length,
@@ -112,12 +123,16 @@ function hubPage(hub, arts) {
 <meta name="theme-color" content="#E0F0FB">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
+<meta name="keywords" content="${esc([...new Set(keywords)].join(','))}">
 <meta name="author" content="Sky 物理治療師">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="${ROBOTS}">
 <link rel="canonical" href="${url}">
 <link rel="icon" href="../favicon.ico" sizes="any">
-<link rel="icon" type="image/png" href="../assets/favicon-180.png">
-<link rel="apple-touch-icon" href="../assets/favicon-180.png">
+<link rel="icon" type="image/png" sizes="512x512" href="../assets/favicon-512.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon-180.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="167x167" href="../assets/favicon-167.png">
+<link rel="apple-touch-icon" sizes="152x152" href="../assets/favicon-152.png">
 <link rel="alternate" type="application/rss+xml" title="Sky 物理治療師衛教文章" href="../feed.xml">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="zh_TW">
@@ -126,6 +141,9 @@ function hubPage(hub, arts) {
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:url" content="${url}">
 <meta property="og:image" content="${ogImg}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="${esc(hub.cat)}衛教文章｜Sky 物理治療師">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(title)}">
 <meta name="twitter:description" content="${esc(desc)}">
@@ -160,13 +178,27 @@ ${JSON.stringify(breadcrumb, null, 2)}
   <div class="count">共 ${arts.length} 篇・由新到舊</div>
   <div class="list">
     ${arts.map(a => `<a href="../posts/${a.id}.html">
-      <div class="m">${a.date}</div>
+      <div class="m">${a.date}<span class="pv" data-slug="${a.id}" hidden> ・ ${EYE_SVG}<span class="pv-n"></span> 次</span></div>
       <div class="t">${esc(a.title)}</div>
       <div class="e">${esc(plain(a.excerpt))}</div>
     </a>`).join('\n    ')}
   </div>
   <a class="backhome" href="../index.html#blog">回到全部文章</a>
 </main>
+
+<script>
+/* 點閱次數（分類專頁，唯讀批次讀取；Worker 未部署時靜默略過） */
+(function(){
+  var API=${JSON.stringify(VIEWS_API)};
+  var spans=[].slice.call(document.querySelectorAll('.list .pv[data-slug]'));
+  if(!spans.length) return;
+  var slugs=spans.map(function(s){return s.getAttribute('data-slug');});
+  fetch(API+'/get?slugs='+encodeURIComponent(slugs.join(','))).then(function(r){return r.json();}).then(function(d){
+    var counts=d.counts||{};
+    spans.forEach(function(s){ var n=counts[s.getAttribute('data-slug')]||0; if(n>0){ s.querySelector('.pv-n').textContent=Number(n).toLocaleString('en-US'); s.hidden=false; } });
+  }).catch(function(){});
+})();
+</script>
 
 <footer>
   <div class="foot-in">
@@ -251,6 +283,7 @@ ${sorted.map(a => `  <item>
 <title>找不到頁面｜Sky 物理治療師</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <style>${CSS}
 .nf{max-width:640px;margin:0 auto;padding:96px 32px;text-align:center}
 .nf .code{font-family:var(--mono);font-size:.78rem;letter-spacing:.24em;color:var(--red);margin-bottom:16px}

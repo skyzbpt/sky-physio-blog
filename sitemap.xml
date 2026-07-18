@@ -2,57 +2,69 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://skythephysio.com/</loc>
-    <lastmod>2026-07-07</lastmod>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://skythephysio.com/physio-guide.html</loc>
-    <lastmod>2026-07-07</lastmod>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://skythephysio.com/topics/lower-back-pain.html</loc>
-    <lastmod>2026-07-07</lastmod>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://skythephysio.com/topics/shoulder-pain.html</loc>
-    <lastmod>2026-07-07</lastmod>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/topics/tmj.html</loc>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://skythephysio.com/topics/craniosacral.html</loc>
-    <lastmod>2026-07-07</lastmod>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://skythephysio.com/topics/mind-body.html</loc>
-    <lastmod>2026-07-07</lastmod>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://skythephysio.com/topics/cycling.html</loc>
-    <lastmod>2026-07-07</lastmod>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://skythephysio.com/topics/redcord.html</loc>
-    <lastmod>2026-07-07</lastmod>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://skythephysio.com/topics/pain-science.html</loc>
-    <lastmod>2026-07-07</lastmod>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tmj-physical-therapy.html</loc>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://skythephysio.com/posts/back-prehab-prevention.html</loc>
@@ -67,7 +79,19 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/posts/tmj-self-care.html</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/posts/soft-tissue-back-release.html</loc>
+    <lastmod>2026-07-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tmj-joint-sounds.html</loc>
     <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -75,6 +99,12 @@
   <url>
     <loc>https://skythephysio.com/posts/shoulder-soft-tissue-release.html</loc>
     <lastmod>2026-07-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tmj-growth-disorders.html</loc>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -87,6 +117,12 @@
   <url>
     <loc>https://skythephysio.com/posts/shoulder-mobility-vs-stretching.html</loc>
     <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tmj-chronic-hypomobility.html</loc>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -169,6 +205,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/posts/tmj-arthritides.html</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/posts/scapular-control.html</loc>
     <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
@@ -182,6 +224,12 @@
   </url>
   <url>
     <loc>https://skythephysio.com/posts/craniosacral-5g.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tmj-osteoarthritis.html</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -205,6 +253,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/posts/tmj-retrodiscitis.html</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/posts/biceps-tendinopathy.html</loc>
     <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
@@ -223,6 +277,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/posts/tmj-synovitis-capsulitis.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/posts/frozen-shoulder-stretching.html</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>monthly</changefreq>
@@ -237,6 +297,12 @@
   <url>
     <loc>https://skythephysio.com/posts/pain-alarm.html</loc>
     <lastmod>2026-05-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tmj-structural-incompatibility.html</loc>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -265,6 +331,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/posts/tmj-closed-lock.html</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/posts/facet-joint-sprain.html</loc>
     <lastmod>2026-04-16</lastmod>
     <changefreq>monthly</changefreq>
@@ -273,6 +345,12 @@
   <url>
     <loc>https://skythephysio.com/posts/shoulder-dislocation-subluxation.html</loc>
     <lastmod>2026-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tmj-disc-displacement-with-reduction.html</loc>
+    <lastmod>2026-04-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -289,6 +367,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/posts/tmj-bruxism-clenching.html</loc>
+    <lastmod>2026-03-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/posts/nerve-glides-flossing.html</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>monthly</changefreq>
@@ -297,6 +381,12 @@
   <url>
     <loc>https://skythephysio.com/posts/shoulder-rest-or-move.html</loc>
     <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tmj-centrally-mediated-myalgia.html</loc>
+    <lastmod>2026-03-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -319,6 +409,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/posts/tmj-myospasm.html</loc>
+    <lastmod>2026-03-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/posts/disc-herniation-explained.html</loc>
     <lastmod>2026-03-04</lastmod>
     <changefreq>monthly</changefreq>
@@ -326,6 +422,12 @@
   </url>
   <url>
     <loc>https://skythephysio.com/posts/shoulder-bursitis.html</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tmj-myofascial-pain.html</loc>
     <lastmod>2026-02-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -343,6 +445,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/posts/tmj-local-muscle-soreness.html</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/posts/three-phase-back-rehab.html</loc>
     <lastmod>2026-02-15</lastmod>
     <changefreq>monthly</changefreq>
@@ -351,6 +459,12 @@
   <url>
     <loc>https://skythephysio.com/posts/rotator-cuff-tear-surgery.html</loc>
     <lastmod>2026-02-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tmj-protective-co-contraction.html</loc>
+    <lastmod>2026-02-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -373,6 +487,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/posts/tmd-classification-muscle-vs-joint.html</loc>
+    <lastmod>2026-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/posts/shoulder-acute-vs-chronic.html</loc>
     <lastmod>2026-01-21</lastmod>
     <changefreq>monthly</changefreq>
@@ -380,6 +500,12 @@
   </url>
   <url>
     <loc>https://skythephysio.com/posts/acute-vs-chronic-back-pain.html</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tmj-disorders-overview.html</loc>
     <lastmod>2026-01-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

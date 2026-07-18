@@ -1,0 +1,16 @@
+name = "sky-views"
+main = "worker.js"
+compatibility_date = "2024-11-01"
+
+# 綁定 KV namespace（用 wrangler 部署時）：
+#   1) npx wrangler kv namespace create VIEWS
+#   2) 把回傳的 id 貼到下面 id 欄位
+#   3) npx wrangler deploy
+[[kv_namespaces]]
+binding = "VIEWS"
+id = "貼上_wrangler_建立的_KV_namespace_id"
+
+# 自訂網域（讓端點固定為 https://views.skythephysio.com）：
+#   部署後在 Cloudflare Dashboard → Workers & Pages → sky-views → Settings →
+#   Domains & Routes → Add → Custom Domain → 輸入 views.skythephysio.com
+# （Workers 的 Custom Domain 會自動建立並代理該子網域，與 apex 的 DNS-only 設定互不影響）

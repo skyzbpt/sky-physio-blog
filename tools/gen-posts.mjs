@@ -2,7 +2,7 @@
 // 資料來源：data/articles.json（唯一真實來源）
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, TODAY, esc, plain, readMins, CAT_SLUG, renderBody, loadArticles, logoDataURI, ogCard, shot } from './lib.mjs';
+import { REPO, BASE, TODAY, esc, plain, readMins, CAT_SLUG, renderBody, loadArticles, logoDataURI, ogCard, shot, VIEWS_API, EYE_SVG, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, wordCountOf, keywordsFor, extractFaqs } from './lib.mjs';
 
 /* ---------- 靜態頁 CSS（取自 index.html，確保一致）---------- */
 const CSS = `
@@ -32,6 +32,9 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 .back-link:hover{border-color:var(--teal);color:var(--teal)}
 .meta{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-bottom:20px}
 .meta .cat{color:var(--red)}
+.pv{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.pv[hidden]{display:none!important}
+.pv svg{width:13px;height:13px;opacity:.75;flex:none}
 .pp-share{margin-left:auto;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;color:var(--teal);background:none;border:1px solid var(--line);border-radius:999px;padding:5px 14px;cursor:pointer;white-space:nowrap}
 .pp-share:hover{border-color:var(--teal);background:var(--teal-soft)}
 h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.45;margin-bottom:14px}
@@ -89,6 +92,8 @@ function postPage(a, idx, all) {
       { "@type": "ListItem", "position": 3, "name": a.title, "item": url }
     ]
   };
+  const about = CAT_ABOUT[a.cat];
+  const keywords = keywordsFor(a);
   const jsonld = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -97,14 +102,33 @@ function postPage(a, idx, all) {
     "headline": a.title,
     "description": desc,
     "datePublished": a.date,
-    "dateModified": a.date,
+    "dateModified": TODAY,
     "articleSection": a.cat,
+    "keywords": keywords,
+    "wordCount": wordCountOf(a.content),
+    "timeRequired": `PT${mins}M`,
     "inLanguage": "zh-TW",
-    "image": ogImg,
+    "isAccessibleForFree": true,
+    "image": { "@type": "ImageObject", "url": ogImg, "width": 1200, "height": 630 },
     "url": url,
-    "author": { "@type": "Person", "name": "Sky", "url": BASE + "/" },
-    "publisher": { "@type": "Organization", "name": "Sky 物理治療師", "logo": { "@type": "ImageObject", "url": BASE + "/assets/logo.png" } }
+    ...(about ? { "about": about } : {}),
+    "author": AUTHOR,
+    "publisher": PUBLISHER,
+    "isPartOf": { "@type": "Blog", "@id": BASE + "/#blog", "name": "Sky 物理治療師｜衛教文章" }
   };
+  // FAQ：僅在文章本身含問句小標時產生（真實 Q&A，利於 rich result 與 AI 問答抽取）
+  const faqs = extractFaqs(a.content, a.title);
+  const faqld = faqs.length ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": url + "#faq",
+    "inLanguage": "zh-TW",
+    "mainEntity": faqs.map(f => ({
+      "@type": "Question",
+      "name": f.q,
+      "acceptedAnswer": { "@type": "Answer", "text": f.a }
+    }))
+  } : null;
   return `<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -113,12 +137,16 @@ function postPage(a, idx, all) {
 <meta name="theme-color" content="#E0F0FB">
 <title>${esc(a.title)}｜Sky 物理治療師</title>
 <meta name="description" content="${esc(desc)}">
+<meta name="keywords" content="${esc(keywords)}">
 <meta name="author" content="Sky 物理治療師">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="${ROBOTS}">
 <link rel="canonical" href="${url}">
 <link rel="icon" href="../favicon.ico" sizes="any">
-<link rel="icon" type="image/png" href="../assets/favicon-180.png">
-<link rel="apple-touch-icon" href="../assets/favicon-180.png">
+<link rel="icon" type="image/png" sizes="512x512" href="../assets/favicon-512.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon-180.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="167x167" href="../assets/favicon-167.png">
+<link rel="apple-touch-icon" sizes="152x152" href="../assets/favicon-152.png">
 <meta property="og:type" content="article">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:site_name" content="Sky 物理治療師">
@@ -126,19 +154,28 @@ function postPage(a, idx, all) {
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:url" content="${url}">
 <meta property="og:image" content="${ogImg}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="${esc(a.title)}｜Sky 物理治療師">
 <meta property="article:published_time" content="${a.date}">
+<meta property="article:modified_time" content="${TODAY}">
 <meta property="article:section" content="${esc(a.cat)}">
+<meta property="article:tag" content="${esc(a.cat)}">
 <meta property="article:author" content="Sky 物理治療師">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(a.title)}">
 <meta name="twitter:description" content="${esc(desc)}">
 <meta name="twitter:image" content="${ogImg}">
+<meta name="twitter:image:alt" content="${esc(a.title)}">
 <script type="application/ld+json">
 ${JSON.stringify(jsonld, null, 2)}
 </script>
 <script type="application/ld+json">
 ${JSON.stringify(breadcrumb, null, 2)}
-</script>
+</script>${faqld ? `
+<script type="application/ld+json">
+${JSON.stringify(faqld, null, 2)}
+</script>` : ''}
 <link rel="alternate" type="application/rss+xml" title="Sky 物理治療師衛教文章" href="../feed.xml">
 <style>${CSS}</style>
 </head>
@@ -161,6 +198,7 @@ ${JSON.stringify(breadcrumb, null, 2)}
     <a class="back-link" href="../index.html#blog"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>返回文章列表</a>
     <div class="meta">
       <span>${a.date}</span><span class="cat">${esc(a.cat)}</span><span>約 ${mins} 分鐘</span>
+      <span class="pv" id="pv" hidden>${EYE_SVG}<span class="pv-n"></span> 次瀏覽</span>
       <button class="pp-share" onclick="copyLink()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">${esc(a.title)}</h1>
@@ -198,6 +236,20 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
+(function(){
+  var API=${JSON.stringify(VIEWS_API)}, slug=${JSON.stringify(a.id)};
+  var el=document.getElementById('pv'); if(!el) return;
+  function show(n){ if(n>0){ el.querySelector('.pv-n').textContent=Number(n).toLocaleString('en-US'); el.hidden=false; } }
+  try{
+    if(sessionStorage.getItem('pv:'+slug)){
+      fetch(API+'/get?slugs='+encodeURIComponent(slug)).then(function(r){return r.json();}).then(function(d){show((d.counts||{})[slug]||0);}).catch(function(){});
+    } else {
+      fetch(API+'/hit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slug:slug})})
+        .then(function(r){return r.json();}).then(function(d){try{sessionStorage.setItem('pv:'+slug,'1');}catch(e){} show(d.count||0);}).catch(function(){});
+    }
+  }catch(e){}
+})();
 </script>
 </body>
 </html>`;
