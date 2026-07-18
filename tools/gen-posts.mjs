@@ -74,7 +74,8 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 
 /* ---------- 靜態文章頁模板 ---------- */
 function postPage(a, idx, all) {
-  const url = `${BASE}/posts/${a.id}.html`;
+  // 正式網址採乾淨路徑（無 .html）：Cloudflare 靜態資產會將 .html 網址 308 轉向乾淨網址
+  const url = `${BASE}/posts/${a.id}`;
   const ogImg = `${BASE}/assets/og/${a.id}.jpg`;
   const desc = plain(a.excerpt).slice(0, 155);
   const bodyHtml = renderBody(a.content);
@@ -82,7 +83,7 @@ function postPage(a, idx, all) {
   // 相關文章：同分類優先，補到 3 篇
   const related = [...all.filter(x => x.id !== a.id && x.cat === a.cat), ...all.filter(x => x.id !== a.id && x.cat !== a.cat)].slice(0, 3);
   const hubSlug = CAT_SLUG[a.cat];
-  const hubUrl = hubSlug ? `${BASE}/topics/${hubSlug}.html` : `${BASE}/`;
+  const hubUrl = hubSlug ? `${BASE}/topics/${hubSlug}` : `${BASE}/`;
   const breadcrumb = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -182,12 +183,12 @@ ${JSON.stringify(faqld, null, 2)}
 <body>
 <header>
   <nav class="nav">
-    <a class="brand" href="../index.html" aria-label="回到首頁">
+    <a class="brand" href="/" aria-label="回到首頁">
       <img class="brand-logo" src="../assets/logo.png" alt="Sky 物理治療師 logo">
       <span class="brand-name">Sky 物理治療師</span>
     </a>
     <div class="nav-right">
-      <a class="nav-link" href="../index.html#blog">更多文章</a>
+      <a class="nav-link" href="/#blog">更多文章</a>
       <a class="btn teal sm" href="https://calendar.app.google/zucbVA7vLvAmJP7y6" target="_blank" rel="noopener">預約評估</a>
     </div>
   </nav>
@@ -195,7 +196,7 @@ ${JSON.stringify(faqld, null, 2)}
 
 <main>
   <article class="post-page">
-    <a class="back-link" href="../index.html#blog"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>返回文章列表</a>
+    <a class="back-link" href="/#blog"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>返回文章列表</a>
     <div class="meta">
       <span>${a.date}</span><span class="cat">${esc(a.cat)}</span><span>約 ${mins} 分鐘</span>
       <span class="pv" id="pv" hidden>${EYE_SVG}<span class="pv-n"></span> 次瀏覽</span>
@@ -210,8 +211,8 @@ ${bodyHtml}
 
     <nav class="more">
       <h3>延伸閱讀</h3>
-      ${related.map(r => `<a href="${r.id}.html">${esc(r.title)}<span>${esc(r.cat)}</span></a>`).join('\n      ')}
-      ${hubSlug ? `<a class="more-hub" href="../topics/${hubSlug}.html">查看所有《${esc(a.cat)}》文章<span>分類專頁</span></a>` : ''}
+      ${related.map(r => `<a href="/posts/${r.id}">${esc(r.title)}<span>${esc(r.cat)}</span></a>`).join('\n      ')}
+      ${hubSlug ? `<a class="more-hub" href="/topics/${hubSlug}">查看所有《${esc(a.cat)}》文章<span>分類專頁</span></a>` : ''}
     </nav>
   </article>
 </main>
@@ -279,7 +280,7 @@ export async function genPosts(page) {
   const hubEntries = Object.entries(CAT_SLUG)
     .filter(([cat]) => articles.some(a => a.cat === cat))
     .map(([cat, slug]) => `  <url>
-    <loc>${BASE}/topics/${slug}.html</loc>
+    <loc>${BASE}/topics/${slug}</loc>
     <lastmod>${TODAY}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -293,14 +294,14 @@ export async function genPosts(page) {
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>${BASE}/physio-guide.html</loc>
+    <loc>${BASE}/physio-guide</loc>
     <lastmod>${TODAY}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 ${hubEntries}
 ${sorted.map(a => `  <url>
-    <loc>${BASE}/posts/${a.id}.html</loc>
+    <loc>${BASE}/posts/${a.id}</loc>
     <lastmod>${a.date}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

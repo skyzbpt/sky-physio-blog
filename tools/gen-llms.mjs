@@ -4,7 +4,7 @@ import { writeFileSync } from 'fs';
 import { join } from 'path';
 import { REPO, BASE, CAT_SLUG, loadArticles, loadSite } from './lib.mjs';
 
-const url = id => `${BASE}/posts/${id}.html`;
+const url = id => `${BASE}/posts/${id}`;
 
 // 純文字化：移除 markdown 記號與圖片語法
 const plainText = t => String(t)
@@ -56,10 +56,10 @@ ${site.certs.map(c => `- ${c}`).join('\n')}
   }
   llms += `
 ## 物理治療完整指南
-- [物理治療是什麼？如何挑選值得推薦的物理治療師](${BASE}/physio-guide.html): 物理治療的定義、物理治療師的執照與訓練、第一次療程流程、挑選值得推薦的物理治療師的 7 個標準、自費與健保的差異。
+- [物理治療是什麼？如何挑選值得推薦的物理治療師](${BASE}/physio-guide): 物理治療的定義、物理治療師的執照與訓練、第一次療程流程、挑選值得推薦的物理治療師的 7 個標準、自費與健保的差異。
 
 ## 分類專頁（每類文章總覽）
-${cats.filter(c => CAT_SLUG[c]).map(c => `- [${c}衛教文章](${BASE}/topics/${CAT_SLUG[c]}.html)`).join('\n')}
+${cats.filter(c => CAT_SLUG[c]).map(c => `- [${c}衛教文章](${BASE}/topics/${CAT_SLUG[c]})`).join('\n')}
 
 ## 完整內容
 - [全文彙整（供 AI 讀取）](${BASE}/llms-full.txt)
