@@ -69,7 +69,7 @@ export const CAT_ABOUT = {
   '身心靈':   { '@type': 'Thing',           'name': '身心靈整合治療', 'alternateName': 'Mind-Body Therapy' },
   '公路車':   { '@type': 'Thing',           'name': '公路車 Bike Fitting', 'alternateName': 'Bike Fitting' },
   '紅繩懸吊': { '@type': 'MedicalTherapy',  'name': '紅繩懸吊治療', 'alternateName': 'Redcord Neurac' },
-  '疼痛科學': { '@type': 'MedicalScienceDiscipline', 'name': '疼痛科學', 'alternateName': 'Pain Science' }
+  '疼痛科學': { '@type': 'Thing', 'name': '疼痛科學', 'alternateName': 'Pain Science' }
 };
 
 // 中文字數（供 wordCount）
