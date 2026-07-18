@@ -264,16 +264,16 @@ export async function genPosts(page) {
   mkdirSync(join(REPO, 'posts'), { recursive: true });
   mkdirSync(join(REPO, 'assets/og'), { recursive: true });
 
-  // 首頁 OG 卡
-  await shot(page, ogCard({ eyebrow: 'PHYSIOTHERAPY · 台灣', title: '身・心・靈徒手治療 × 紅繩 × 公路車專項', footer: 'skythephysio.com', logo }), join(REPO, 'assets/og-home.jpg'));
+  // 首頁 OG 卡（page 為 null 時略過圖片，沿用已提交的圖片）
+  if (page) await shot(page, ogCard({ eyebrow: 'PHYSIOTHERAPY · 台灣', title: '身・心・靈徒手治療 × 紅繩 × 公路車專項', footer: 'skythephysio.com', logo }), join(REPO, 'assets/og-home.jpg'));
 
   // 每篇 OG 卡 + 靜態頁
   for (let i = 0; i < articles.length; i++) {
     const a = articles[i];
-    await shot(page, ogCard({ eyebrow: a.cat.toUpperCase() + ' · 衛教', title: a.title, footer: 'skythephysio.com · 衛教文章', logo }), join(REPO, `assets/og/${a.id}.jpg`));
+    if (page) await shot(page, ogCard({ eyebrow: a.cat.toUpperCase() + ' · 衛教', title: a.title, footer: 'skythephysio.com · 衛教文章', logo }), join(REPO, `assets/og/${a.id}.jpg`));
     writeFileSync(join(REPO, `posts/${a.id}.html`), postPage(a, i, articles));
   }
-  console.log(`已產生 ${articles.length} 篇靜態頁 + OG 卡`);
+  console.log(`已產生 ${articles.length} 篇靜態頁${page ? ' + OG 卡' : '（略過 OG 圖片）'}`);
 
   /* ---------- sitemap.xml ---------- */
   const sorted = [...articles].sort((x, y) => y.date.localeCompare(x.date));
