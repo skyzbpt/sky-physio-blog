@@ -1399,13 +1399,6 @@ textarea#af-body.adm-input{
       <div class="t"><b>Sky 物理治療師</b></div>
     </div>
     <small>BODY · MIND · SPIRIT — © 2026 SKY PT</small>
-      <span id="admin-dot"
-        style="font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;
-               color:var(--muted);opacity:.5;cursor:pointer;padding:4px 8px;
-               border-radius:4px;margin-left:10px;
-               -webkit-user-select:none;user-select:none;
-               -webkit-tap-highlight-color:transparent;transition:.2s"
-        onmouseenter="this.style.opacity='1'" onmouseleave="this.style.opacity='.5'">ADMIN</span>
   </div>
 </footer>
 
@@ -2587,16 +2580,19 @@ function admRenderTextBlock(b){
 }
 
 
-/* ── 後台入口：footer ADMIN → 密碼框 ── */
+/* ── 後台入口（隱藏）：不顯示按鈕；在網址結尾加上 #admin 即開啟密碼框 ──
+   例：https://skythephysio.com/#admin（可加入書籤，iPad／手機同樣適用）。
+   登入與後台功能完全保留，只是移除了頁面上的可見入口。 */
 (function(){
-  var dot=document.getElementById('admin-dot');
-  if(!dot) return;
-  dot.addEventListener('mousedown',function(e){e.preventDefault();});
-  dot.addEventListener('selectstart',function(e){e.preventDefault();});
-  dot.addEventListener('click',function(e){
-    e.preventDefault(); e.stopPropagation();
-    pwOpen();
-  });
+  function maybeOpen(){
+    if(location.hash==='#admin'||location.hash==='#/admin'){
+      // 清掉 hash，避免密碼入口留在網址列
+      if(history.replaceState){ history.replaceState(null,'',location.pathname+location.search); }
+      pwOpen();
+    }
+  }
+  window.addEventListener('hashchange',maybeOpen);
+  maybeOpen();
 })();
 function pwOpen(){
   var m=document.getElementById('pw-modal');
