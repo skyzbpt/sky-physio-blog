@@ -29,7 +29,8 @@ export function injectArticles() {
   ).join(',\n');
   const ldRe = /"blogPost": \[[\s\S]*?\n      \]/;
   if (!ldRe.test(html)) throw new Error('index.html 找不到 blogPost JSON-LD 區塊');
-  html = html.replace(ldRe, `"blogPost": [\n${entries}\n      ]`);
+  // safe()：防止標題／摘要中若出現 </script> 字面時跳脫出 JSON-LD <script> 區塊
+  html = html.replace(ldRe, safe(`"blogPost": [\n${entries}\n      ]`));
 
   writeFileSync(file, html);
 

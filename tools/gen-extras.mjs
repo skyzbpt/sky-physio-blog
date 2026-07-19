@@ -2,7 +2,7 @@
 // 資料來源：data/articles.json
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, esc, plain, loadArticles, logoDataURI, ogCard, shot, VIEWS_API, EYE_SVG, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT } from './lib.mjs';
+import { REPO, BASE, esc, plain, loadArticles, logoDataURI, ogCard, shot, VIEWS_API, EYE_SVG, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, ldJson } from './lib.mjs';
 
 // 與 lib.mjs 的 CAT_SLUG 保持一致（此處另需 lede 文案）
 const HUBS = [
@@ -150,10 +150,10 @@ function hubPage(hub, arts) {
 <meta name="twitter:description" content="${esc(desc)}">
 <meta name="twitter:image" content="${ogImg}">
 <script type="application/ld+json">
-${JSON.stringify(jsonld, null, 2)}
+${ldJson(jsonld)}
 </script>
 <script type="application/ld+json">
-${JSON.stringify(breadcrumb, null, 2)}
+${ldJson(breadcrumb)}
 </script>
 <style>${CSS}</style>
 </head>

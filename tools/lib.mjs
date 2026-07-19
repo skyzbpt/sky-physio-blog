@@ -14,6 +14,8 @@ export const VIEWS_API = 'https://views.skythephysio.com';
 export const EYE_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>';
 
 export const esc = s => (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+// JSON-LD 序列化：跳脫字面 </script> 以免內容跳出 <script type="application/ld+json"> 區塊
+export const ldJson = obj => JSON.stringify(obj, null, 2).replace(/<\/script/gi, '<\\/script');
 export const plain = t => String(t).replace(/[#>*`]/g, '').replace(/!\[[^\]]*\]\([^)]*\)/g, '').replace(/\s+/g, ' ').trim();
 export const readMins = content => Math.max(1, Math.round(((String(content).match(/[一-鿿]/g) || []).length) / 320));
 
@@ -172,7 +174,7 @@ export function renderBody(text) {
     if (/^%%FIG(\d+)%%$/.test(b)) return figures[+b.match(/\d+/)[0]];
     const imgM = b.match(/^!\[([^\]]*)\]\((data:[^\)]+|https?:[^\)]+)\)$/);
     if (imgM) { const cap = imgM[1], src = imgM[2];
-      return `<figure><img src="${src}" alt="${esc(cap)}" loading="lazy">${cap ? `<figcaption>${esc(cap)}</figcaption>` : ''}</figure>`; }
+      return `<figure><img src="${esc(src)}" alt="${esc(cap)}" loading="lazy">${cap ? `<figcaption>${esc(cap)}</figcaption>` : ''}</figure>`; }
     return renderTextBlock(b);
   }).join('\n');
 }

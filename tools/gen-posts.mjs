@@ -2,7 +2,7 @@
 // 資料來源：data/articles.json（唯一真實來源）
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, TODAY, esc, plain, readMins, CAT_SLUG, renderBody, loadArticles, logoDataURI, ogCard, shot, VIEWS_API, EYE_SVG, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, wordCountOf, keywordsFor, extractFaqs } from './lib.mjs';
+import { REPO, BASE, TODAY, esc, plain, readMins, CAT_SLUG, renderBody, loadArticles, logoDataURI, ogCard, shot, VIEWS_API, EYE_SVG, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, wordCountOf, keywordsFor, extractFaqs, ldJson } from './lib.mjs';
 
 /* ---------- 靜態頁 CSS（取自 index.html，確保一致）---------- */
 const CSS = `
@@ -169,13 +169,13 @@ function postPage(a, idx, all) {
 <meta name="twitter:image" content="${ogImg}">
 <meta name="twitter:image:alt" content="${esc(a.title)}">
 <script type="application/ld+json">
-${JSON.stringify(jsonld, null, 2)}
+${ldJson(jsonld)}
 </script>
 <script type="application/ld+json">
-${JSON.stringify(breadcrumb, null, 2)}
+${ldJson(breadcrumb)}
 </script>${faqld ? `
 <script type="application/ld+json">
-${JSON.stringify(faqld, null, 2)}
+${ldJson(faqld)}
 </script>` : ''}
 <link rel="alternate" type="application/rss+xml" title="Sky 物理治療師衛教文章" href="../feed.xml">
 <style>${CSS}</style>
@@ -260,6 +260,14 @@ export async function genPosts(page) {
   const articles = loadArticles();
   const logo = logoDataURI();
   console.log(`讀到 ${articles.length} 篇文章`);
+
+  // 安全防護：id 用於寫入檔案路徑（posts/${id}.html、assets/og/${id}.jpg）與 URL，
+  // 僅允許小寫英數與連字號，避免 ../ 等路徑穿越（與後台 slug 規則、Worker sanitize 一致）
+  for (const a of articles) {
+    if (!/^[a-z0-9-]+$/.test(a.id)) {
+      throw new Error(`不合法的文章 id（僅允許 a-z 0-9 -）：${JSON.stringify(a.id)}`);
+    }
+  }
 
   mkdirSync(join(REPO, 'posts'), { recursive: true });
   mkdirSync(join(REPO, 'assets/og'), { recursive: true });
