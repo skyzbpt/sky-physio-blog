@@ -49,7 +49,8 @@ const rootFiles = [
   'index.html', 'physio-guide.html', '404.html',
   'sitemap.xml', 'feed.xml', 'robots.txt',
   'llms.txt', 'llms-full.txt',
-  'favicon.ico', 'apple-touch-icon.png', '.nojekyll', 'CNAME'
+  'favicon.ico', 'apple-touch-icon.png', '.nojekyll', 'CNAME',
+  '_headers'  // Cloudflare 靜態資產：安全性回應標頭（CSP、HSTS、nosniff 等）
 ];
 let copiedFiles = 0;
 for (const f of rootFiles) {
