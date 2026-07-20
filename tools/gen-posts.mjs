@@ -28,8 +28,15 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 .btn.sm{padding:8px 20px;font-size:.84rem}
 @media(max-width:520px){.brand-name{font-size:.94rem}.nav-link{display:none}}
 .post-page{max-width:720px;margin:0 auto;padding:56px 32px 96px}
-.back-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--ink-2);cursor:pointer;margin-bottom:36px;padding:10px 18px;border:1.5px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6)}
-.back-link:hover{border-color:var(--teal);color:var(--teal)}
+.crumb{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--muted);margin-bottom:26px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.crumb a{color:var(--ink-2);border-bottom:1px solid var(--line)}
+.crumb a:hover{color:var(--teal);border-color:var(--teal)}
+.author-box{display:flex;align-items:center;gap:16px;margin-top:30px;padding:20px 22px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.author-box img{width:52px;height:52px;flex:none;border-radius:50%;background:#fff;object-fit:contain}
+.author-box .a-name{font-family:var(--serif);font-weight:700;font-size:1.02rem}
+.author-box .a-cred{font-size:.8rem;color:var(--muted);margin:3px 0 6px;line-height:1.7}
+.author-box .a-link{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;color:var(--teal)}
+.author-box .a-link:hover{text-decoration:underline}
 .meta{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-bottom:20px}
 .meta .cat{color:var(--red)}
 .pv{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
@@ -80,8 +87,15 @@ function postPage(a, idx, all) {
   const desc = plain(a.excerpt).slice(0, 155);
   const bodyHtml = renderBody(a.content);
   const mins = readMins(a.content);
-  // 相關文章：同分類優先，補到 3 篇
-  const related = [...all.filter(x => x.id !== a.id && x.cat === a.cat), ...all.filter(x => x.id !== a.id && x.cat !== a.cat)].slice(0, 3);
+  // 相關文章：同分類且發佈日期最接近者優先（每篇的內鏈組合因此不同，
+  // 讓連結權重分散到全站，而非全分類都指向同樣前 3 篇），不足再補其他分類最新
+  const near = (x) => Math.abs(new Date(x.date) - new Date(a.date));
+  const sameCat = all.filter(x => x.id !== a.id && x.cat === a.cat).sort((x, y) => near(x) - near(y));
+  const otherCat = all.filter(x => x.id !== a.id && x.cat !== a.cat).sort((x, y) => y.date.localeCompare(x.date));
+  const related = [...sameCat, ...otherCat].slice(0, 3);
+  // 修改日期：僅在文章真的更新（data 加上 updated 欄位）時才變動——
+  // dateModified 必須反映真實變更，全站每日「假更新」反而是負面品質訊號
+  const modified = a.updated || a.date;
   const hubSlug = CAT_SLUG[a.cat];
   const hubUrl = hubSlug ? `${BASE}/topics/${hubSlug}` : `${BASE}/`;
   const breadcrumb = {
@@ -103,7 +117,7 @@ function postPage(a, idx, all) {
     "headline": a.title,
     "description": desc,
     "datePublished": a.date,
-    "dateModified": TODAY,
+    "dateModified": modified,
     "articleSection": a.cat,
     "keywords": keywords,
     "wordCount": wordCountOf(a.content),
@@ -159,7 +173,7 @@ function postPage(a, idx, all) {
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="${esc(a.title)}｜Sky 物理治療師">
 <meta property="article:published_time" content="${a.date}">
-<meta property="article:modified_time" content="${TODAY}">
+<meta property="article:modified_time" content="${modified}">
 <meta property="article:section" content="${esc(a.cat)}">
 <meta property="article:tag" content="${esc(a.cat)}">
 <meta property="article:author" content="Sky 物理治療師">
@@ -196,7 +210,7 @@ ${ldJson(faqld)}
 
 <main>
   <article class="post-page">
-    <a class="back-link" href="/#blog"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>返回文章列表</a>
+    <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › ${hubSlug ? `<a href="/topics/${hubSlug}">${esc(a.cat)}</a>` : esc(a.cat)} › <span>${esc(a.title)}</span></nav>
     <div class="meta">
       <span>${a.date}</span><span class="cat">${esc(a.cat)}</span><span>約 ${mins} 分鐘</span>
       <span class="pv" id="pv" hidden>${EYE_SVG}<span class="pv-n"></span> 次瀏覽</span>
@@ -208,6 +222,15 @@ ${ldJson(faqld)}
 ${bodyHtml}
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>
+
+    <aside class="author-box">
+      <img src="../assets/logo.png" alt="Sky 物理治療師">
+      <div>
+        <div class="a-name">Sky 物理治療師</div>
+        <div class="a-cred">國家高考合格物理治療師｜紅繩懸吊 Redcord・公路車 Bike Fitting・顱薦椎治療・疼痛科學</div>
+        <a class="a-link" href="/#about">認識 Sky・治療哲學 →</a>
+      </div>
+    </aside>
 
     <nav class="more">
       <h3>延伸閱讀</h3>
@@ -310,7 +333,7 @@ export async function genPosts(page) {
 ${hubEntries}
 ${sorted.map(a => `  <url>
     <loc>${BASE}/posts/${a.id}</loc>
-    <lastmod>${a.date}</lastmod>
+    <lastmod>${a.updated || a.date}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>`).join('\n')}
