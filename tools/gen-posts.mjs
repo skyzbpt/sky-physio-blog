@@ -84,7 +84,16 @@ function postPage(a, idx, all) {
   // 正式網址採乾淨路徑（無 .html）：Cloudflare 靜態資產會將 .html 網址 308 轉向乾淨網址
   const url = `${BASE}/posts/${a.id}`;
   const ogImg = `${BASE}/assets/og/${a.id}.jpg`;
-  const desc = plain(a.excerpt).slice(0, 155);
+  // meta description：摘要偏短時補上內文，穩定湊到 ~140–155 字（避免 Ahrefs「描述過短」，門檻約 110）
+  const excerptText = plain(a.excerpt).trim();
+  const bodyText = plain(a.content).replace(/[-•]\s*/g, '').replace(/\s+/g, ' ').trim();
+  let desc = excerptText;
+  if ([...desc].length < 120 && bodyText) {
+    const need = 150 - [...desc].length - 1;
+    const extra = [...bodyText].slice(0, need).join('').trim();
+    desc = excerptText + '｜' + extra;
+  }
+  desc = [...desc].slice(0, 155).join('').trim();
   const bodyHtml = renderBody(a.content);
   const mins = readMins(a.content);
   // 相關文章：同分類且發佈日期最接近者優先（每篇的內鏈組合因此不同，
@@ -242,7 +251,7 @@ ${bodyHtml}
 
 <footer>
   <div class="foot-in">
-    <img src="../assets/logo.png" alt="">
+    <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
   </div>
 </footer>

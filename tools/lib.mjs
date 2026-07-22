@@ -199,7 +199,7 @@ export const ogCard = ({ eyebrow, title, footer, logo }) => `<!doctype html><htm
   .foot .n small{display:block;font-family:"SF Mono",monospace;font-size:19px;letter-spacing:.16em;color:#54708C;font-weight:400;margin-top:4px}
 </style></head><body>
   <div><div class="eyebrow">${esc(eyebrow)}</div><h1>${esc(title)}</h1></div>
-  <div class="foot"><img src="${logo}"><div class="n">Sky 物理治療師<small>${esc(footer)}</small></div></div>
+  <div class="foot"><img src="${logo}" alt="Sky 物理治療師 logo"><div class="n">Sky 物理治療師<small>${esc(footer)}</small></div></div>
 </body></html>`;
 
 export async function shot(page, html, outPath) {

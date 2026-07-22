@@ -85,7 +85,10 @@ function hubPage(hub, arts) {
   const url = `${BASE}/topics/${hub.slug}`;
   const ogImg = `${BASE}/assets/og/topic-${hub.slug}.jpg`;
   const title = `${hub.cat}衛教文章｜Sky 物理治療師`;
-  const desc = plain(hub.lede).slice(0, 155);
+  // meta description：lede 偏短時補上分類脈絡與篇數，穩定 ~120–155 字（避免 Ahrefs「描述過短」）
+  let desc = plain(hub.lede).trim();
+  if ([...desc].length < 130) desc = desc + `——這是 Sky 物理治療師的「${hub.cat}」衛教系列，目前共 ${arts.length} 篇，從認識成因、分辨類型到自我照護與階段性復健，用淺白的方式陪你一步步理解、照顧自己的身體。`;
+  desc = [...desc].slice(0, 155).join('').trim();
   const about = CAT_ABOUT[hub.cat];
   const keywords = [hub.cat, ...(about ? [about.name, about.alternateName].filter(Boolean) : []), '物理治療', '衛教', 'Sky 物理治療師'];
   const jsonld = {
@@ -205,7 +208,7 @@ ${ldJson(breadcrumb)}
 
 <footer>
   <div class="foot-in">
-    <img src="../assets/logo.png" alt="">
+    <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
   </div>
 </footer>
@@ -247,7 +250,7 @@ h1{font-family:"Noto Serif TC","Songti TC",serif;font-weight:700;font-size:68px;
 .foot .n small{display:block;font-family:"SF Mono",monospace;font-size:19px;letter-spacing:.16em;color:#54708C;font-weight:400;margin-top:4px}
 </style></head><body>
 <div><div class="eyebrow">GUIDE · 完整指南</div><h1>物理治療是什麼？<br>如何挑選值得推薦的物理治療師</h1></div>
-<div class="foot"><img src="${logo}"><div class="n">Sky 物理治療師<small>skythephysio.com</small></div></div>
+<div class="foot"><img src="${logo}" alt="Sky 物理治療師 logo"><div class="n">Sky 物理治療師<small>skythephysio.com</small></div></div>
 </body></html>`;
   if (page) { await shot(page, guideHtml, join(REPO, 'assets/og/physio-guide.jpg')); console.log('已產生指南頁 OG 卡'); }
 
