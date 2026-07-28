@@ -93,35 +93,35 @@
 - [顱薦椎整合：大約五克的力](https://skythephysio.com/posts/craniosacral-5g): 五克，差不多是一枚硬幣的重量。在顱薦椎治療裡，改變不是被「做」出來的，是被「允許」出來的。
 
 ### 疼痛科學
-- [激痛點作為持續的疼痛來源：治療為何有機會逆轉敏感化](https://skythephysio.com/posts/tps-trigger-points-as-pain-source): 激痛點會不斷向神經系統送出疼痛訊號、推動中樞敏感化。而好消息是：針對它的治療似乎能把這個過程逆轉回來。
-- [轉移痛：為什麼痛感出現在別的地方](https://skythephysio.com/posts/tps-referred-pain-mechanisms): 肩膀的激痛點卻痛在手臂——這種轉移痛是中樞敏感化的表現。不認識它，可能導致誤診甚至不必要的手術。
-- [激痛點的生化環境：研究在局部發現了什麼](https://skythephysio.com/posts/tps-trigger-point-biochemistry): 美國國家衛生研究院的人體研究發現，活性激痛點周圍有一組獨特的化學物質濃度升高，而且酸鹼值明顯偏低。
-- [局部能量危機：缺氧、低酸鹼值與惡性循環](https://skythephysio.com/posts/tps-trigger-point-energy-crisis-cycle): 激痛點裡有一個會自我維持的循環：持續收縮壓住局部血管、造成缺氧與組織變酸，而變酸又讓收縮更難停下來。
+- [激痛點是持續的疼痛來源：治療為何有機會扭轉它](https://skythephysio.com/posts/tps-trigger-points-as-pain-source): 激痛點像一個一直在響的警報器，會讓神經系統慢慢把疼痛的音量調大。好消息是：針對它的治療，似乎能把音量再轉回來——你身上並沒有壞掉的零件。
+- [轉移痛：為什麼痛感出現在別的地方](https://skythephysio.com/posts/tps-referred-pain-mechanisms): 肩膀的問題卻痛在手臂、下巴的問題卻像牙痛——這種「痛在別處」的現象非常常見，不認識它，可能導致誤診甚至白挨一刀。
+- [激痛點的生化環境：研究在局部發現了什麼](https://skythephysio.com/posts/tps-trigger-point-biochemistry): 研究人員真的採樣過激痛點裡面：那一小塊地方有一整組跟受傷、發炎有關的化學物質變多，環境也明顯變酸。治療可以改善，但過量反而更糟。
+- [局部能量危機：肌肉為什麼會缺氧、變酸](https://skythephysio.com/posts/tps-trigger-point-energy-crisis-cycle): 激痛點裡有一個會自己轉下去的圈：肌肉持續用力壓住血管，造成缺氧與變酸，而變酸又讓肌肉更放不掉。所以檢查沒發炎、沒受傷，痛卻是真的。
 - [三個大小不一的圓——生理心理社會模型的四十年擺盪](https://skythephysio.com/posts/biopsychosocial-pendulum): 同樣是慢性腰痛，三個病人的圓圈大小卻完全不一樣。這才是生理心理社會模型真正想說的事，而不是那張人人熟悉的等大三圓。
 - [疼痛的音量——為什麼相同的傷，有人劇烈有人無感](https://skythephysio.com/posts/somatoform-immune-pain): 一根釘進頭骨的釘子，卻只被感覺成牙痛；一根沒有傷到任何組織的鐵釘，卻引發劇烈到需要注射鎮靜劑的疼痛。大腦決定的，不只是你感受到什麼，還有感受到多少。
-- [整合假說：運動終板與過量的乙醯膽鹼](https://skythephysio.com/posts/tps-integrated-hypothesis-motor-endplate): 目前最主流的激痛點理論認為，問題起於神經與肌肉交會處釋放了過多乙醯膽鹼，讓肌纖維無法放鬆。
+- [整合假說：肌肉為什麼會「放不掉」](https://skythephysio.com/posts/tps-integrated-hypothesis-motor-endplate): 肩頸有一點就是放不鬆？主流理論認為，神經與肌肉交接的地方把「收縮」的訊號發得太多、又清不掉，肌肉就像門鈴被按住一樣停不下來。
 - [激痛點為何形成：肌肉過載與「灰姑娘假說」](https://skythephysio.com/posts/tps-why-trigger-points-form): 為什麼打電腦、拉小提琴這種不費力的動作也會養出激痛點？答案藏在一個叫「灰姑娘假說」的有趣理論裡。
 - [緊帶怎麼被找到：觸診與影像的證據](https://skythephysio.com/posts/tps-taut-bands-how-found): 激痛點藏在「緊帶」裡。過去有人質疑觸診不可靠，但近期研究顯示它能被可靠地觸診，影像也量到它確實比較僵硬。
-- [激痛點研究的歷史：從 Travell 到能量危機假說](https://skythephysio.com/posts/tps-trigger-point-history): 「激痛點」這個詞早在 1940 年就出現了。從 Travell 描述 32 條肌肉的轉移痛型態，到 1981 年的能量危機假說，這段歷史至今仍在被修正。
+- [激痛點研究的歷史：從 Travell 到能量危機假說](https://skythephysio.com/posts/tps-trigger-point-history): 「激痛點」這個詞早在 1940 年就出現了。從 Travell 醫師整理出 32 條肌肉的痛感分布圖，到 1981 年那個「肌肉沒電了」的假說，這段故事到今天都還在改寫。
 - [疼痛是大腦的警報，不是損傷的刻度](https://skythephysio.com/posts/pain-alarm): 腳踝扭傷當下不痛、被紙割到卻痛得跳腳——疼痛從來不是損傷的忠實刻度，它是大腦對「危險」的判斷。
-- [QST 測什麼：從觸覺閾值到壓痛閾值](https://skythephysio.com/posts/tps-qst-what-it-measures): 從細絲、音叉到壓力計，QST 用一系列標準化工具測出你的感覺與疼痛閾值。其中壓痛閾值和肌肉疼痛最相關。
-- [定量感覺測試（QST）：如何客觀評估疼痛系統](https://skythephysio.com/posts/tps-quantitative-sensory-testing): 疼痛很主觀，但它的處理過程可以被量測。QST 用標準化的刺激，幫臨床人員看出神經系統是不是變敏感了。
-- [以痛止痛：瀰漫性有害抑制控制（DNIC）](https://skythephysio.com/posts/tps-dnic-pain-inhibits-pain): 一個地方的疼痛刺激，竟然能抑制另一個地方的疼痛。這個叫做 DNIC 的機制，或許正是乾針止痛的原因之一。
-- [大腦的下行抑制系統：身體內建的止痛機制](https://skythephysio.com/posts/tps-descending-inhibition-system): 大腦有一套能主動把疼痛「關小」的下行系統。當這套系統失能，疼痛就更容易變成慢性——這是慢性疼痛的共同特徵。
-- [細胞層次的調節與「疼痛預敏」現象](https://skythephysio.com/posts/tps-cellular-modulation-hyperalgesic-priming): 為什麼有些人一次發炎過後，之後一點小刺激就大痛？研究者稱這種被「預先設定」的狀態為過敏預敏。
-- [周邊與中樞敏感化：疼痛系統如何被「調大音量」](https://skythephysio.com/posts/tps-peripheral-and-central-sensitization): 長期強烈的疼痛輸入，會讓神經系統的痛閾下降、反應變大，甚至改變腦部的灰質——好消息是，這些改變可能被逆轉。
-- [組織的化學環境：免疫系統如何參與疼痛](https://skythephysio.com/posts/tps-extracellular-milieu-immune): 神經末梢泡在一片化學湯裡。免疫細胞釋放的介質、甚至酸鹼值的變化，都能讓神經變得更容易被激發。
-- [疼痛的性別差異：從激素到心理因素](https://skythephysio.com/posts/tps-sex-differences-in-pain): 多數研究顯示女性對疼痛刺激較敏感。但當焦慮被控制之後，差異就變小了——這說明性別差異不只是生理問題。
-- [傳遞：訊號如何上行到大腦，哪些腦區參與疼痛](https://skythephysio.com/posts/tps-transmission-signals-to-the-brain): 疼痛訊號有快慢兩條上行路徑，抵達大腦後也不是只有一個「疼痛中心」，而是一整組腦區在互相溝通。
-- [疼痛的化學信使：神經生長因子、物質P與 CGRP](https://skythephysio.com/posts/tps-chemical-messengers-of-pain): 身體用一群化學分子在傳遞與放大疼痛。其中神經生長因子的故事，還意外揭露了筋膜比肌肉更敏感的事實。
-- [轉導：外界刺激如何變成神經電訊號](https://skythephysio.com/posts/tps-transduction-how-pain-signals-start): 熱、壓力與化學物質本身並不是「痛」。它們必須先在神經末梢被轉換成電訊號，才可能成為疼痛——這關鍵的第一步叫做轉導。
-- [快痛與慢痛：兩種傳遞疼痛的神經纖維](https://skythephysio.com/posts/tps-fast-and-slow-pain-fibers): 撞到腳的瞬間先是一陣尖銳的痛，隨後才湧上一波說不清位置的悶痛——這其實是兩種不同的神經纖維，用不同的速度在說話。
-- [疼痛訊號的四個階段：轉導、傳遞、感知、調節](https://skythephysio.com/posts/tps-four-stages-of-nociception): 從刺激到「我覺得痛」，中間有四個階段。認識這四步，就知道疼痛可以在很多環節被放大，也可以被減弱。
+- [疼痛評估都在測什麼？從觸覺到壓痛的門檻](https://skythephysio.com/posts/tps-qst-what-it-measures): 從細絲、音叉到壓力計，QST 用一系列標準化工具測出你的感覺與疼痛閾值。其中壓痛閾值和肌肉疼痛最相關。
+- [疼痛能被測量嗎？認識定量感覺測試（QST）](https://skythephysio.com/posts/tps-quantitative-sensory-testing): 疼痛很主觀，但疼痛系統的運作可以被量出來。定量感覺測試用標準化的刺激，像幫感覺系統做一次視力檢查，幫臨床人員看出神經是不是變得太敏感了。
+- [以痛止痛：為什麼有些治療會有點痛卻有效](https://skythephysio.com/posts/tps-dnic-pain-inhibits-pain): 一個地方的疼痛刺激，竟然可以把另一個地方的痛壓下來。這種「以痛止痛」的內建機制，可能就是針灸、乾針有效的原因之一。
+- [大腦的下行抑制系統：身體內建的止痛機制](https://skythephysio.com/posts/tps-descending-inhibition-system): 大腦有一套能主動把疼痛「關小」的內建系統。當這套系統失去功能，疼痛就更容易變成慢性——而這正是許多難纏疼痛問題的共同特徵。
+- [細胞層次的調節與「疼痛預敏」現象](https://skythephysio.com/posts/tps-cellular-modulation-hyperalgesic-priming): 為什麼有些人一次發炎過後，之後只要一點小刺激就痛得誇張？研究者發現，神經細胞會被「預先設定」成容易痛的狀態，這個現象叫做疼痛預敏。
+- [疼痛的音量被調大了：認識中樞敏感化](https://skythephysio.com/posts/tps-peripheral-and-central-sensitization): 長期又強烈的疼痛訊號，會讓神經系統的門檻變低、反應變大，甚至讓腦部結構出現實際的變化。好消息是：以減輕疼痛為目標的治療，有機會把這些改變扳回來。
+- [組織的化學環境：免疫系統如何參與疼痛](https://skythephysio.com/posts/tps-extracellular-milieu-immune): 神經末梢是泡在一片化學湯裡的。免疫細胞倒進去的物質，甚至只是那一小塊組織變酸，都能讓神經變得更容易被點燃——即使傷口根本還沒出現。
+- [疼痛的性別差異：從激素到心理因素](https://skythephysio.com/posts/tps-sex-differences-in-pain): 多數研究顯示女性對疼痛刺激比較敏感，痛的門檻也比較低。但當焦慮被控制得好一些，男女差異就變小了——這說明性別差異從來不只是身體構造的問題。
+- [傳遞：訊號如何上行到大腦，哪些腦區參與疼痛](https://skythephysio.com/posts/tps-transmission-signals-to-the-brain): 疼痛訊號上大腦有快、慢兩條路。抵達之後也不是只有一個「疼痛中心」在管，而是一整群腦區同時開會討論，才決定你最後感覺有多痛。
+- [疼痛的化學信使：讓神經變敏感的那些分子](https://skythephysio.com/posts/tps-chemical-messengers-of-pain): 身體會用一群化學分子來傳遞、放大疼痛。其中最有名的那一個，還意外讓研究者發現：包在肌肉外面那層薄薄的筋膜，其實比肌肉本身更容易痛。
+- [外界的刺激，怎麼變成神經看得懂的訊號？](https://skythephysio.com/posts/tps-transduction-how-pain-signals-start): 燙、壓、化學刺激本身都還不是痛。它們得先在皮膚與組織裡的神經末梢，被翻譯成一種電訊號，才有機會被大腦讀成疼痛。這關鍵的第一步，就是這篇要講的事。
+- [快痛與慢痛：兩種傳遞疼痛的神經纖維](https://skythephysio.com/posts/tps-fast-and-slow-pain-fibers): 撞到腳趾時先是一陣尖銳痛，隔一下才湧上悶悶的痛？那是因為身體有兩條速度不同的神經線路：一條像快遞、一條像平信，各自回報同一件事。
+- [從刺激到「好痛」：疼痛訊號經過的四個關卡](https://skythephysio.com/posts/tps-four-stages-of-nociception): 從身體察覺到危險，到你心裡浮出「我在痛」，中間其實有四個關卡：偵測、傳送、感受，還有最關鍵的調整。認識這四步，就知道疼痛可以在很多地方被放大，也可以在很多地方被減弱。
 - [為什麼要先辨認主導的疼痛機轉，再決定治療](https://skythephysio.com/posts/tps-matching-treatment-to-mechanism): 運動與徒手治療什麼時候最有效？疼痛科學教育又該怎麼用？答案取決於哪一種機轉在主導——以及治療關係好不好。
-- [三種疼痛機轉：組織性、神經性與中樞敏感化](https://skythephysio.com/posts/tps-three-pain-mechanisms): 同樣是下背痛，機轉可能完全不同。分清楚是組織來源、神經受損，還是中樞敏感化，治療方向才會對。
+- [你的痛屬於哪一種？三種常見的疼痛機轉](https://skythephysio.com/posts/tps-three-pain-mechanisms): 同樣是下背痛，痛的來路可能完全不同：組織真的受傷、神經本身受損，或是神經系統把疼痛的音量調大了。先分清楚是哪一種，治療方向才不會走偏。
 - [疼痛模型的演進：從閘門控制到神經母體](https://skythephysio.com/posts/tps-pain-models-evolution): 1965 年的閘門理論讓世界開始認真對待疼痛。之後的模型愈來愈重視大腦、經驗與信念——這也塑造了今天的治療方式。
 - [疼痛如何改變動作：從抑制到重新分配](https://skythephysio.com/posts/tps-motor-adaptation-model): 疼痛不只是感覺，它會改變你怎麼動。現代的動作適應模型認為，身體會在肌肉之間「重新分配」活動來保護自己。
-- [「痛→痙攣→更痛」的惡性循環其實已被推翻](https://skythephysio.com/posts/tps-pain-spasm-pain-refuted): 很多人聽過「肌肉痛會造成痙攣、痙攣又造成更痛」的循環。這個說法流傳很廣，但科學上早已被駁倒。
+- [「痛→痙攣→更痛」的惡性循環其實已被推翻](https://skythephysio.com/posts/tps-pain-spasm-pain-refuted): 「因為痛所以肌肉緊繃，因為緊繃所以更痛」——這個大家都聽過的惡性循環，其實科學上早就被推翻了。
 - [影像上的「異常」，很多沒有症狀的人也有](https://skythephysio.com/posts/tps-imaging-abnormal-but-painless): 96% 無症狀的 80 歲者有椎間盤退化；二十多歲的人也有七成多有膨出。影像上的異常，和你的痛未必有關。
 - [疼痛到底是什麼？定義之爭與它的啟示](https://skythephysio.com/posts/tps-what-is-pain-definitions): 連專家都還在爭論疼痛的定義。但有一件事已經很清楚：疼痛不必然反映損傷——它可以在沒有組織病變時發生。
 - [從「組織受損」到疼痛科學：觀念的轉變](https://skythephysio.com/posts/tps-from-tissue-damage-to-pain-science): 1999 年之後，科學對激痛點的理解大幅改變。「組織損傷」已不再是主流模型——這個轉變也改變了治療的方向。
