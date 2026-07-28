@@ -4,7 +4,8 @@
   "type": "module",
   "description": "Sky 物理治療師 — 靜態網站建置工具（data/articles.json → 全站靜態頁）",
   "scripts": {
-    "build": "node tools/build.mjs"
+    "build": "node tools/build.mjs",
+    "verify": "node tools/verify.mjs"
   },
   "devDependencies": {
     "playwright": "^1.56.1"

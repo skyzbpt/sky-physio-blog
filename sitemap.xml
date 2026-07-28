@@ -2,69 +2,81 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://skythephysio.com/</loc>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://skythephysio.com/physio-guide</loc>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://skythephysio.com/topics/lower-back-pain</loc>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://skythephysio.com/topics/shoulder-pain</loc>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://skythephysio.com/topics/tmj</loc>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://skythephysio.com/topics/myofascial</loc>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://skythephysio.com/topics/craniosacral</loc>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://skythephysio.com/topics/mind-body</loc>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://skythephysio.com/topics/cycling</loc>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://skythephysio.com/topics/redcord</loc>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://skythephysio.com/topics/pain-science</loc>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tps-trigger-points-as-pain-source</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tps-referred-pain-mechanisms</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://skythephysio.com/posts/tmj-physical-therapy</loc>
@@ -109,6 +121,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/posts/tps-trigger-point-biochemistry</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/posts/fascia-sequencing-whole-body</loc>
     <lastmod>2026-06-30</lastmod>
     <changefreq>monthly</changefreq>
@@ -135,6 +153,12 @@
   <url>
     <loc>https://skythephysio.com/posts/fascia-rotator-cuff-integration</loc>
     <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tps-trigger-point-energy-crisis-cycle</loc>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -241,6 +265,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/posts/tps-integrated-hypothesis-motor-endplate</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/posts/scapular-control</loc>
     <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
@@ -267,6 +297,12 @@
   <url>
     <loc>https://skythephysio.com/posts/tmj-osteoarthritis</loc>
     <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tps-why-trigger-points-form</loc>
+    <lastmod>2026-05-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -302,6 +338,12 @@
   </url>
   <url>
     <loc>https://skythephysio.com/posts/tmj-retrodiscitis</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tps-taut-bands-how-found</loc>
     <lastmod>2026-05-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -343,6 +385,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/posts/tps-trigger-point-history</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/posts/frozen-shoulder-stretching</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>monthly</changefreq>
@@ -374,6 +422,12 @@
   </url>
   <url>
     <loc>https://skythephysio.com/posts/fascia-tmj-muscles</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tps-qst-what-it-measures</loc>
     <lastmod>2026-04-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -415,6 +469,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/posts/tps-quantitative-sensory-testing</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/posts/fascia-scalenes</loc>
     <lastmod>2026-04-18</lastmod>
     <changefreq>monthly</changefreq>
@@ -440,6 +500,12 @@
   </url>
   <url>
     <loc>https://skythephysio.com/posts/tmj-disc-displacement-with-reduction</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tps-dnic-pain-inhibits-pain</loc>
     <lastmod>2026-04-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -475,6 +541,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/posts/tps-descending-inhibition-system</loc>
+    <lastmod>2026-03-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/posts/nerve-glides-flossing</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>monthly</changefreq>
@@ -489,6 +561,12 @@
   <url>
     <loc>https://skythephysio.com/posts/shoulder-rest-or-move</loc>
     <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tps-cellular-modulation-hyperalgesic-priming</loc>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -535,6 +613,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/posts/tps-peripheral-and-central-sensitization</loc>
+    <lastmod>2026-03-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/posts/fascia-ribs-breathing</loc>
     <lastmod>2026-03-06</lastmod>
     <changefreq>monthly</changefreq>
@@ -565,6 +649,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/posts/tps-extracellular-milieu-immune</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/posts/relative-rest-back-pain</loc>
     <lastmod>2026-02-24</lastmod>
     <changefreq>monthly</changefreq>
@@ -584,6 +674,12 @@
   </url>
   <url>
     <loc>https://skythephysio.com/posts/tmj-local-muscle-soreness</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tps-sex-differences-in-pain</loc>
     <lastmod>2026-02-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -614,6 +710,12 @@
   </url>
   <url>
     <loc>https://skythephysio.com/posts/tmj-protective-co-contraction</loc>
+    <lastmod>2026-02-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tps-transmission-signals-to-the-brain</loc>
     <lastmod>2026-02-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -655,6 +757,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/posts/tps-chemical-messengers-of-pain</loc>
+    <lastmod>2026-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/posts/fascia-thoracolumbar</loc>
     <lastmod>2026-01-22</lastmod>
     <changefreq>monthly</changefreq>
@@ -663,6 +771,12 @@
   <url>
     <loc>https://skythephysio.com/posts/shoulder-acute-vs-chronic</loc>
     <lastmod>2026-01-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tps-transduction-how-pain-signals-start</loc>
+    <lastmod>2026-01-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -697,6 +811,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/posts/tps-fast-and-slow-pain-fibers</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/posts/fascia-ilia-pelvic-symmetry</loc>
     <lastmod>2026-01-04</lastmod>
     <changefreq>monthly</changefreq>
@@ -705,6 +825,12 @@
   <url>
     <loc>https://skythephysio.com/posts/fascia-sacrotuberous-ligament</loc>
     <lastmod>2025-12-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tps-four-stages-of-nociception</loc>
+    <lastmod>2025-12-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -721,8 +847,20 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/posts/tps-matching-treatment-to-mechanism</loc>
+    <lastmod>2025-12-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/posts/fascia-hip-mobility</loc>
     <lastmod>2025-12-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tps-three-pain-mechanisms</loc>
+    <lastmod>2025-12-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -739,6 +877,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/posts/tps-pain-models-evolution</loc>
+    <lastmod>2025-11-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/posts/fascia-calf-achilles</loc>
     <lastmod>2025-11-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -751,8 +895,20 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/posts/tps-motor-adaptation-model</loc>
+    <lastmod>2025-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/posts/fascia-hammertoes</loc>
     <lastmod>2025-11-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tps-pain-spasm-pain-refuted</loc>
+    <lastmod>2025-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -769,6 +925,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/posts/tps-imaging-abnormal-but-painless</loc>
+    <lastmod>2025-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/posts/fascia-plantar-fasciitis</loc>
     <lastmod>2025-10-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -777,6 +939,12 @@
   <url>
     <loc>https://skythephysio.com/posts/fascia-what-are-amt</loc>
     <lastmod>2025-10-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tps-what-is-pain-definitions</loc>
+    <lastmod>2025-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -793,8 +961,20 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/posts/tps-from-tissue-damage-to-pain-science</loc>
+    <lastmod>2025-10-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/posts/fascia-lines-anatomy-trains</loc>
     <lastmod>2025-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tps-trigger-points-mimic-conditions</loc>
+    <lastmod>2025-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -811,6 +991,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/posts/tps-active-vs-latent-trigger-points</loc>
+    <lastmod>2025-09-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/posts/fascia-how-it-changes</loc>
     <lastmod>2025-09-11</lastmod>
     <changefreq>monthly</changefreq>
@@ -819,6 +1005,24 @@
   <url>
     <loc>https://skythephysio.com/posts/fascia-what-is-fascia</loc>
     <lastmod>2025-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tps-what-is-trigger-point</loc>
+    <lastmod>2025-09-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tps-two-types-chronic-pain</loc>
+    <lastmod>2025-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tps-chronic-pain-scale</loc>
+    <lastmod>2025-08-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
