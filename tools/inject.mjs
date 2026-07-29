@@ -17,8 +17,12 @@ export function injectArticles() {
   /* --- 1) ARTICLES 區塊 --- */
   const re = /\/\*===ARTICLES-JSON:START===[\s\S]*?===ARTICLES-JSON:END===\*\//;
   if (!re.test(html)) throw new Error('index.html 找不到 ARTICLES-JSON 標記');
-  const block = '/*===ARTICLES-JSON:START=== 由 data/articles.json 自動注入（tools/build.mjs），勿直接手改 */\n'
-    + 'const ARTICLES = ' + safe(JSON.stringify(articles, null, 2)) + ';\n'
+  // 首頁只需要 metadata（列表與精選用），不需要全文——內文佔了注入資料的大半，
+  // 會讓首頁肥大並拖慢行動裝置載入。後台開啟時再向 /data/articles.json 取全文。
+  const light = articles.map(({ content, ...rest }) => rest);
+  const block = '/*===ARTICLES-JSON:START=== 由 data/articles.json 自動注入（tools/build.mjs），勿直接手改\n'
+    + '   註：此處刻意不含 content（內文），後台開啟時才另外載入，以縮小首頁體積 */\n'
+    + 'const ARTICLES = ' + safe(JSON.stringify(light, null, 2)) + ';\n'
     + '/*===ARTICLES-JSON:END===*/';
   html = html.replace(re, block);
 

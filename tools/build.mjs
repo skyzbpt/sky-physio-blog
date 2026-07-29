@@ -61,6 +61,9 @@ for (const d of ['posts', 'topics', 'assets']) {
   const src = join(REPO, d);
   if (existsSync(src)) cpSync(src, join(DIST, d), { recursive: true });
 }
+// 後台延遲載入內文用（首頁只注入 metadata，內文改由此檔取得）
+mkdirSync(join(DIST, 'data'), { recursive: true });
+cpSync(join(REPO, 'data/articles.json'), join(DIST, 'data/articles.json'));
 console.log(`dist/ 組裝完成（${copiedFiles} 個根目錄檔 + posts/ topics/ assets/）`);
 
 console.log('=== 建置完成 ===');
