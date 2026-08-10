@@ -31,7 +31,7 @@
 ## 衛教文章
 
 ### 肩膀痛
-- [肩膀的長期保養（prehab）：過頭族、久坐族都該練](https://skythephysio.com/posts/shoulder-prehab-prevention): 肩膀好了之後怎麼不再犯？無論你常做過頭動作、還是整天對著螢幕，都需要一份保養計畫。
+- [肩膀的長期保養（prehab）：過頭族、久坐族都該練](https://skythephysio.com/posts/shoulder-prehab-prevention): 肩膀不痛之後，才是保養真正開始的時候。這篇整理過頭族與久坐族都適用的肩膀保養菜單：一週怎麼排、每個動作做幾下、練多久才會有感覺，還有四個最常見的誤解，以及該找專業評估的訊號。
 - [肩膀與後側旋轉肌的軟組織放鬆：滾筒與按摩球](https://skythephysio.com/posts/shoulder-soft-tissue-release): 按摩球壓一壓能暫時降低張力、讓肩膀更好動——但它是「開場」，真正讓肩膀變強的是後面的訓練。
 - [肩膀的活動度：為什麼多用 mobility、少用死拉筋](https://skythephysio.com/posts/shoulder-mobility-vs-stretching): 除了冰凍肩，多數肩痛我們不建議長時間靜態拉筋——因為問題常常不是「肌肉太短」。
 - [胸椎活動度與肩膀：駝背如何偷走你舉手的角度](https://skythephysio.com/posts/thoracic-mobility-shoulder): 手舉不高、過頭就卡？問題可能不在肩膀，而在你僵硬的上背（胸椎）。
@@ -43,13 +43,13 @@
 - [重建肩膀的信心：旋轉肌與肩胛的控制訓練](https://skythephysio.com/posts/shoulder-stability-training): 肩膀不穩、脫過臼、或總覺得沒力，核心解方都是同一件事——把「動態控制」練回來。
 - [肩關節脫臼與半脫位：脫過一次之後怎麼辦](https://skythephysio.com/posts/shoulder-dislocation-subluxation): 肩膀脫臼很痛、也很嚇人，而且脫過一次，之後更容易再脫。復健的目標是讓它「待在該待的地方」。
 - [肩關節不穩定：總覺得肩膀「快要掉出來」](https://skythephysio.com/posts/shoulder-instability): 有些人的肩膀不是痛，而是「怕」——在某些角度覺得鬆、覺得要滑出去。這是肩關節不穩定。
-- [肩膀痛該休息還是該動？答案同樣是「相對休息」](https://skythephysio.com/posts/shoulder-rest-or-move): 完全不動，肩膀容易越來越僵、甚至卡住；硬操又激怒它。中間那條路，叫相對休息。
+- [肩膀痛該休息還是該動？答案同樣是「相對休息」](https://skythephysio.com/posts/shoulder-rest-or-move): 肩膀痛完全不動容易越來越僵，甚至走向冰凍肩；忍痛硬操又不斷激怒它。相對休息怎麼抓劑量、每天做哪些溫和動作、睡覺與提物如何調整、多久會好、何時該就醫。
 - [肩膀復健的三個階段：從安撫到重返過頭動作](https://skythephysio.com/posts/three-phase-shoulder-rehab): 肩膀運動不是做同一組到好，而是隨進步換檔。這是一張三階段的路線圖。
 - [肩滑囊炎：過頭動作時那股悶悶的痛](https://skythephysio.com/posts/shoulder-bursitis): 滑囊是關節裡的「潤滑墊」，被反覆摩擦刺激就會發炎。它常和夾擠、旋轉肌袖問題結伴出現。
 - [肩夾擠症候群：舉手到一半就卡、就痛](https://skythephysio.com/posts/shoulder-impingement): 把手往上舉到某個角度特別痛、過了又還好？這種「痛弧」常常是肩夾擠的招牌。
 - [旋轉肌袖撕裂，一定要開刀嗎？](https://skythephysio.com/posts/rotator-cuff-tear-surgery): 聽到「撕裂」兩個字很嚇人，但很多旋轉肌袖撕裂其實可以靠運動治療處理得很好。
 - [旋轉肌袖是什麼？為什麼它那麼常出問題](https://skythephysio.com/posts/rotator-cuff-basics): 四條你可能沒聽過、卻每天都在用的深層肌肉。認識旋轉肌袖，就懂了大半的肩膀痛。
-- [肩膀痛該冰敷還是熱敷？先分清楚急性與慢性](https://skythephysio.com/posts/shoulder-acute-vs-chronic): 剛拉傷的肩膀和痛了三個月的肩膀，處理方式不同。分清楚階段，才不會用錯方法拖慢復原。
+- [肩膀痛該冰敷還是熱敷？先分清楚急性與慢性](https://skythephysio.com/posts/shoulder-acute-vs-chronic): 剛拉傷的肩膀和痛了三個月的肩膀，處理方式完全不同。這篇教你分辨急性與慢性、冰敷熱敷各要敷幾分鐘與注意什麼、六週到三個月之間該怎麼做，以及哪些狀況不該只靠冰熱敷。
 - [肩膀痛：認識這個全身最靈活、也最容易出問題的關節](https://skythephysio.com/posts/shoulder-pain-overview): 肩膀能往幾乎所有方向活動，代價是穩定度得靠肌肉「主動」維持。認識肩關節，是處理肩痛的第一步。
 
 ### 下背痛
@@ -58,7 +58,7 @@
 - [下背痛的溫和伸展與活動度運動：從貓牛到抱膝](https://skythephysio.com/posts/back-stretches-mobility): 急性期不敢亂動、又怕越躺越僵？幾個溫和、低風險的活動度動作，幫你在安全範圍內讓腰重新流動。
 - [久坐與下背痛：問題不是坐姿，是「坐太久不動」](https://skythephysio.com/posts/sitting-back-pain): 坐姿要多完美其實沒那麼重要，真正傷腰的是「一個姿勢維持太久」。認識久坐與微動的力量。
 - [搬重物不再閃到腰：學會髖鉸鏈這個關鍵動作](https://skythephysio.com/posts/hip-hinge-lifting): 「彎腰搬東西要用腿不要用腰」——這句話大家都聽過，但到底怎麼做？關鍵是髖鉸鏈。
-- [腰痛，為什麼要練髖？髖不動，腰就替它受累](https://skythephysio.com/posts/hip-mobility-back-pain): 髖關節該轉的沒轉、該彎的沒彎，那些角度就會被下背硬吃下來。很多腰痛，其實是髖太緊。
+- [腰痛，為什麼要練髖？髖不動，腰就替它受累](https://skythephysio.com/posts/hip-mobility-back-pain): 髖該轉的沒轉、該彎的沒彎，那些角度就會被下背硬吃下來。這篇帶你認出髖太緊的生活場景、在家該練哪些方向與做幾下、多久會有感覺，以及哪些腰痛不是練髖能解決的。
 - [核心不是仰臥起坐：認識真正在保護你腰的深層核心](https://skythephysio.com/posts/deep-core-not-situps): 一講到練核心就想到仰臥起坐？其實保護下背的，是一群你看不到、也不會讓你長出六塊肌的深層肌肉。
 - [屈曲型還是伸展型？找出你下背痛的「方向偏好」](https://skythephysio.com/posts/flexion-extension-preference): 同樣的運動，有人做了變好、有人做了更痛，差別常常在方向。找到你的方向偏好，運動才會幫你。
 - [脊椎解離與滑脫：大量後仰的運動族要認識的一種](https://skythephysio.com/posts/spondylolysis-listhesis): 體操、舉重、羽球等大量後仰的運動裡較常見。認識脊椎解離／滑脫，以及為什麼它偏好「屈曲」。
@@ -135,7 +135,7 @@
 - [眼淚從筋膜裡來：談情緒能量釋放](https://skythephysio.com/posts/tears-from-fascia): 「對不起，我不知道我為什麼哭。」在治療床上，這句話我聽過很多次。沒關係——身體知道。
 
 ### 顳顎關節
-- [物理治療怎麼處理顳顎障礙？何時該就醫](https://skythephysio.com/posts/tmj-physical-therapy): 顳顎障礙不是只能戴牙套或吃止痛藥——物理治療在肌肉、關節與習慣調整上都幫得上忙。
+- [物理治療怎麼處理顳顎障礙？何時該就醫](https://skythephysio.com/posts/tmj-physical-therapy): 顳顎障礙不是只能戴咬合板或吃止痛藥。物理治療從肌肉、關節到習慣都幫得上忙。本文說明一次療程會做什麼、居家能怎麼練、大概多久會好，以及哪些狀況要立刻就醫。
 - [顳顎障礙的自我照護：軟食、熱敷、姿勢與放鬆](https://skythephysio.com/posts/tmj-self-care): 大多數顳顎障礙，從日常的「減載」開始就能明顯改善。本文整理今天就能做的事：一天的照護安排、常見誤解、合理的恢復期待，以及該找專業的時機。
 - [下巴的聲音：喀喀聲和摩擦聲各代表什麼？](https://skythephysio.com/posts/tmj-joint-sounds): 一樣是關節有聲音，「喀」和「沙沙」代表的問題完全不同。學會分辨這兩種聲音、知道哪些狀況該就醫，再加上簡單的張口練習，你就不必為每一聲響擔心。
 - [顳顎關節的生長發育問題：孩子的下巴要早看](https://skythephysio.com/posts/tmj-growth-disorders): 兒童與青少年時期的顳顎關節若受傷或發炎，可能影響下顎生長與臉型對稱。這篇談家長平常可以觀察什麼、最容易誤會什麼，以及哪些狀況該帶孩子就醫。早發現，選項最多。
@@ -153,7 +153,7 @@
 - [咀嚼肌的肌筋膜疼痛與轉移痛：為什麼牙齒查不出問題卻痛](https://skythephysio.com/posts/tmj-myofascial-pain): 明明是下巴的肌肉緊，痛卻跑到頭、耳朵、牙齒——這就是肌筋膜疼痛「轉移」的特性。帶你認識激痛點怎麼判斷、在家如何溫和放鬆咀嚼肌，以及多久沒改善就該就醫。
 - [局部肌肉痠痛：最常見的下巴肌肉痛](https://skythephysio.com/posts/tmj-local-muscle-soreness): 咀嚼肌用過頭、繃太久，就會發痠發脹。這是顳顎障礙裡最常見的肌肉問題，也最能靠自我照護改善——從一天的放鬆安排、按摩力道，到什麼時候該找專業評估。
 - [咀嚼肌的第一道反應：保護性共同收縮](https://skythephysio.com/posts/tmj-protective-co-contraction): 下巴一有狀況，肌肉會先「繃起來保護」。這是最早期、也最容易恢復的肌肉反應，但拖久了會變麻煩。本文說明它的特徵、這幾天的照顧方式、常見誤解與就醫時機。
-- [顳顎障礙怎麼分類：問題出在肌肉還是關節？](https://skythephysio.com/posts/tmd-classification-muscle-vs-joint): 同樣是下巴痛，來源可能天差地遠。認識顳顎障礙的第一步，是分辨問題出在咀嚼肌肉，還是關節本身。
+- [顳顎障礙怎麼分類：問題出在肌肉還是關節？](https://skythephysio.com/posts/tmd-classification-muscle-vs-joint): 同樣是下巴痛，來源可能天差地遠。分辨問題出在咀嚼肌肉還是關節本身，是認識顳顎障礙的第一步。本文帶你看兩者差別、常見誤會、在家先做的事，以及該就醫的警訊。
 - [顳顎關節障礙是什麼？認識每天用上千次的下巴關節](https://skythephysio.com/posts/tmj-disorders-overview): 張嘴會痛、有聲音、甚至卡住——顳顎關節障礙（TMD）比你想的常見。先認識這個每天用上千次、卻常被忽略的關節。
 
 ### 高級筋膜技術
@@ -162,10 +162,10 @@
 - [五十肩的筋膜觀點：盂肱關節與關節囊](https://skythephysio.com/posts/fascia-frozen-shoulder-glenohumeral): 五十肩不只是卡住，而是關節囊發炎攣縮的過程。依分期說明每個階段該做什麼，附上鐘擺與爬牆等在家動作、為什麼忍痛硬拉反而更慢，以及復原時間的合理期待。
 - [大魚際與拇指：握、捏、滑手機的代價](https://skythephysio.com/posts/fascia-thenar-thumb): 拇指基部痠痛、使不上力，常是大魚際與周邊過度使用的結果。滑手機時代，這裡格外需要休息與照顧：從構造、居家放鬆與伸展步驟，到什麼時候該就醫，一次說清楚。
 - [手腕與腕骨：滑鼠手與筋膜](https://skythephysio.com/posts/fascia-wrist-carpal): 手腕痠、手指麻，常不只是手腕的事。從八塊腕骨、前臂筋膜到神經滑動一次看懂，並附上在家能做的具體練習、三個常見誤解，以及該儘早就醫的警訊。
-- [偏頭痛：筋膜手法能幫上什麼](https://skythephysio.com/posts/fascia-migraine): 偏頭痛成因複雜，筋膜手法不是治本，卻可能減少頸肩這個觸發因子。務實地看待它的角色，才不會期待落空。
+- [偏頭痛：筋膜手法能幫上什麼](https://skythephysio.com/posts/fascia-migraine): 偏頭痛不是頸部太緊造成的，但頸肩緊繃常是把你推過門檻的那根手指。這篇談筋膜手法幫得上什麼、幫不上什麼，也給出在家照顧頸肩的具體做法，以及哪些頭痛必須先看醫師。
 - [肌肉骨骼型頭痛：頸與筋膜的角色](https://skythephysio.com/posts/fascia-musculoskeletal-headache): 很多頭痛其實來自頸部與肌肉筋膜的緊繃，痛從後腦往前擴散。學會和偏頭痛區分、在家怎麼替頸肩減壓，以及哪些頭痛一定要立刻就醫。
-- [口內咬肌放鬆：更深入的顳顎處理](https://skythephysio.com/posts/fascia-intraoral-masseter): 從口腔內直接處理咬肌，能更貼近深層張力。這需要專業執行與清楚溝通，適合較頑固的顳顎緊繃。
-- [翼內肌與翼外肌：深層咀嚼肌](https://skythephysio.com/posts/fascia-pterygoids): 翼狀肌藏在下巴深處，和關節盤、下巴的左右移動關係密切。它們難自行處理，更需要專業評估。
+- [口內咬肌放鬆：更深入的顳顎處理](https://skythephysio.com/posts/fascia-intraoral-masseter): 從口腔內側直接處理咬肌，能碰到臉頰外側按不到的深層張力。這篇說明它適合誰、一次處理的實際流程與感受、做完會有什麼反應，以及哪些情況先別做、何時該就醫。
+- [翼內肌與翼外肌：深層咀嚼肌](https://skythephysio.com/posts/fascia-pterygoids): 翼內肌與翼外肌藏在下巴深處，牽動張口、前伸與左右移動，還與關節盤相連。哪些習慣讓它整天加班？在家能做的溫和自我照顧、改善所需時間，以及該就醫的警訊。
 - [咬肌、顳肌與二腹肌：下巴的筋膜張力](https://skythephysio.com/posts/fascia-masseter-temporalis): 緊咬、磨牙讓咬肌與顳肌長期加班，太陽穴痠、開口卡都可能跟著來。帶你認識這幾組肌肉，學會溫和的自我放鬆與下巴休息位，也看清常見誤解與該就醫的警訊。
 - [顳顎關節的筋膜：咀嚼肌群的整合](https://skythephysio.com/posts/fascia-tmj-muscles): 下巴痛、開合有聲音、緊咬磨牙？咀嚼肌的筋膜與頸部連成一氣，只處理下巴效果常打折。帶你找出張力來源，附上在家可做的休息位與收下巴練習、常見誤解與就醫時機。
 - [頸部僵硬：筋膜角度的長期保養](https://skythephysio.com/posts/fascia-neck-stiffness-care): 頸部僵硬很少只有一個原因。從活動、呼吸到姿勢多管齊下，才是長期之道。本文用一個上班族的例子，帶你看具體練習、常見誤解與該就醫的時機。
@@ -174,25 +174,25 @@
 - [淺層頸筋膜：頸部的第一層](https://skythephysio.com/posts/fascia-superficial-cervical): 頸部最外層有一片薄薄的淺層筋膜與頸闊肌，和姿勢、甚至情緒張力都有關。它需要的往往是很輕的觸碰，以及日常的螢幕高度、呼吸與放鬆習慣的調整。
 - [前庭系統與揮鞭後的頭暈](https://skythephysio.com/posts/fascia-vestibular-whiplash): 揮鞭傷後除了頸痛，還常頭暈、看東西不穩。這篇說明內耳前庭與頸部感覺為何打結，附上溫和的居家練習、恢復時程的合理期待，以及必須立刻就醫的危險訊號。
 - [「熱揮鞭」與「冷揮鞭」：急性與慢性的差別](https://skythephysio.com/posts/fascia-hot-cold-whiplash): 揮鞭傷有兩種面貌：急性期發炎敏感的「熱」，與慢性防衛僵硬的「冷」。分清楚，處理方向才會對，也才知道各階段在家能做什麼、哪些警訊要立刻就醫。
-- [揮鞭症候群：車禍後的頸部筋膜傷害](https://skythephysio.com/posts/fascia-whiplash-overview): 追撞後頸部像被甩了一下，事後才痠痛僵硬——這是揮鞭症候群。它牽涉的不只是骨頭，還有整片頸部軟組織。
+- [揮鞭症候群：車禍後的頸部筋膜傷害](https://skythephysio.com/posts/fascia-whiplash-overview): 追撞後頸部像被甩了一下，隔天才痠痛僵硬，這就是揮鞭症候群。本文說明它傷到什麼、為何延遲發作、頭幾天在家怎麼溫和活動、大約多久會好，以及哪些狀況要立刻就醫。
 - [呼吸模式如何影響全身張力](https://skythephysio.com/posts/fascia-breathing-pattern-tension): 胸式、聳肩式的淺呼吸會讓頸肩過勞、全身變緊。學會用橫膈好好呼吸，往往是放鬆全身張力的起點；本文整理在家可做的練習、常見誤解與該就醫的警訊。
 - [肋骨與呼吸受限](https://skythephysio.com/posts/fascia-ribs-breathing): 肋骨不是固定的籠子，每次呼吸都會活動。當肋廓變僵、呼吸變淺，胸背緊繃與疲累都可能跟著來——本文教你恢復肋廓活動的練習與該就醫的訊號。
-- [橫膈膜：呼吸、核心與筋膜的交會](https://skythephysio.com/posts/fascia-diaphragm): 橫膈膜是主要呼吸肌，也是核心圓柱的一員，向下鄰接腰大肌、向上連著心包筋膜。放鬆與訓練並重，呼吸才又深又穩。
-- [腹部深層、呼吸與下背的連結](https://skythephysio.com/posts/fascia-abdomen-breath-back): 支撐下背的不是死命縮小腹，而是由橫膈、骨盆底與腹背深層肌組成的核心圓柱。調節腹內壓與呼吸，就能穩定脊椎。
-- [腸繫膜與腹部：被忽略的內在張力](https://skythephysio.com/posts/fascia-mesentery-abdomen): 腹部裡除了腹肌，還有腸繫膜等筋膜結構懸吊、連結內臟。腹部緊繃未必只是肌肉，也可能與內臟活動度、呼吸有關。
-- [腰大肌：最被誤解的核心肌](https://skythephysio.com/posts/fascia-psoas): 腰大肌同時連結脊椎與大腿，是最常被誤解的核心肌。久坐易讓它緊繃，但一味拉筋未必對——放鬆與啟動並重。
-- [髂腰韌帶與第12肋：側腰痛的角落](https://skythephysio.com/posts/fascia-iliolumbar-12th-rib): 側腰那個「角落」藏著髂腰韌帶、腰方肌與第12肋。翻身或側彎時的疼痛常與這裡的張力有關，也和呼吸相關。
-- [椎體活動度：脊椎一節一節地鬆動](https://skythephysio.com/posts/fascia-vertebral-mobility): 脊椎由一節節椎骨組成，健康時能一節一節順暢活動。某段緊繃多與軟組織張力有關，靠分節活動比「喬骨」更實在。
+- [橫膈膜：呼吸、核心與筋膜的交會](https://skythephysio.com/posts/fascia-diaphragm): 橫膈膜每天工作兩萬多次卻最常被忽略，它既是主要呼吸肌，也是核心圓柱的上蓋。這篇談它身兼的角色、深呼吸最常見的誤會，以及在家練習的具體步驟與該就醫的時機。
+- [腹部深層、呼吸與下背的連結](https://skythephysio.com/posts/fascia-abdomen-breath-back): 支撐下背的不是死命縮小腹，而是由橫膈、骨盆底與腹背深層肌組成的核心圓柱。這篇說明腹內壓怎麼幫忙、縮小腹和用核心差在哪，以及在家的練習步驟與該就醫的警訊。
+- [腸繫膜與腹部：被忽略的內在張力](https://skythephysio.com/posts/fascia-mesentery-abdomen): 腹部緊繃不一定只是腹肌的事。腸繫膜等筋膜結構懸吊著內臟，也需要滑動的空間。本文說明內在張力與呼吸姿勢的關係、在家能做的溫和練習，以及必須先看醫師的警訊。
+- [腰大肌：最被誤解的核心肌](https://skythephysio.com/posts/fascia-psoas): 腰大肌同時連著腰椎與大腿，是最被誤解的核心肌。久坐讓它緊繃，但一味拉筋未必對。放鬆與啟動怎麼並重、在家做哪些動作與幾下，以及不能拖的就醫警訊。
+- [髂腰韌帶與第12肋：側腰痛的角落](https://skythephysio.com/posts/fascia-iliolumbar-12th-rib): 肋骨下緣與骨盆之間那個「角落」，藏著髂腰韌帶、腰方肌與第12肋。翻身或側彎會痛的人，本文帶你看成因、呼吸的影響、在家能做的伸展，以及該就醫的紅旗症狀。
+- [椎體活動度：脊椎一節一節地鬆動](https://skythephysio.com/posts/fascia-vertebral-mobility): 脊椎由一節節椎骨堆疊，健康時能像項鍊般依序捲曲。某段特別緊多半是軟組織張力，不是骨頭跑掉。分節活動怎麼練、做幾下，以及為什麼喬一下隔天又回來。
 - [胸腰筋膜：下背痛的關鍵一層](https://skythephysio.com/posts/fascia-thoracolumbar): 胸腰筋膜是覆蓋下背的一層堅韌組織，連結背闊肌、臀大肌與核心，負責力量傳遞。學會負荷管理是照顧下背的關鍵。
-- [薦骨與尾骨：身體結構的收尾](https://skythephysio.com/posts/fascia-sacrum-coccyx): 薦骨是骨盆的拱心石，尾骨則是脊椎的收尾。久坐與跌倒是尾骨痛最常見原因，多數適合以坐墊調整與輕柔放鬆照顧。
+- [薦骨與尾骨：身體結構的收尾](https://skythephysio.com/posts/fascia-sacrum-coccyx): 薦骨是骨盆的拱心石，尾骨則是脊椎的收尾。這篇說明久坐與跌倒為什麼最容易讓尾骨痛、坐墊與坐姿可以怎麼調整、一般大概多久會改善，以及哪些狀況該盡快就醫。
 - [骨盆帶疼痛的筋膜整合](https://skythephysio.com/posts/fascia-pelvic-girdle-integration): 骨盆位在身體正中央，是上下半身力量交會的轉運站。骨盆帶疼痛多半是多因素造成，需要整合式的照顧。
 - [髂骨位置與骨盆對稱](https://skythephysio.com/posts/fascia-ilia-pelvic-symmetry): 被人說「骨盆歪了、兩邊高低不一樣」時不用太緊張。認識髂骨的前傾、後傾與旋轉，用動態評估取代追求完美對稱。
 - [薦結節韌帶：被忽略的骨盆疼痛來源](https://skythephysio.com/posts/fascia-sacrotuberous-ligament): 從薦骨連到坐骨的薦結節韌帶，是骨盆後側張力的關鍵，深層臀痛有時就出在這裡。本文說明它與大腿後肌的關係、在家怎麼照顧後側鏈，以及就醫警訊。
 - [薦髂關節：骨盆的穩定與疼痛](https://skythephysio.com/posts/fascia-sacroiliac-joint): 單側下背靠近臀部上方的痛，常來自薦髂關節。它只有微小活動，靠的是穩定；產後與單側負重是常見誘因。本文談成因、居家穩定練習、就醫警訊與恢復期待。
 - [臀部深層與梨狀肌：坐出來的緊繃](https://skythephysio.com/posts/fascia-deep-hip-rotators): 臀部深處那股說不清的緊與痛，常和梨狀肌等深層旋轉肌有關，久坐是頭號敵人。本文整理在家的放鬆與訓練、常見誤解，以及不能忽略的就醫警訊。
 - [髖關節活動度：筋膜如何限制你的髖](https://skythephysio.com/posts/fascia-hip-mobility): 髖轉不開、蹲不深、盤腿卡卡？久坐讓前側筋膜與屈髖肌縮短，腰只好替髖加班。帶你看懂髖緊的成因，附上在家可做的伸展與活動度練習、常見誤解，以及該就醫的警訊。
-- [坐骨神經痛：筋膜與神經滑動的關係](https://skythephysio.com/posts/fascia-sciatic-glide): 坐骨神經痛不只是「神經被壓到」。神經也需要滑動的空間，周邊筋膜與肌肉的張力，往往是關鍵。
-- [大腿後肌反覆拉傷：筋膜的觀點](https://skythephysio.com/posts/fascia-hamstring-injury): 大腿後肌拉傷好了又犯？除了肌肉本身，疤痕組織、筋膜滑動與坐骨結節附著點，都是反覆受傷的隱藏因素。
+- [坐骨神經痛：筋膜與神經滑動的關係](https://skythephysio.com/posts/fascia-sciatic-glide): 坐骨神經痛不只是「神經被壓到」，神經也需要能滑動的空間。這篇說明筋膜與神經滑動的關係、在家可以怎麼溫和練習、久坐族為什麼特別容易中，以及哪些警訊必須立刻就醫。
+- [大腿後肌反覆拉傷：筋膜的觀點](https://skythephysio.com/posts/fascia-hamstring-injury): 大腿後肌好了又拉？疤痕組織、筋膜滑動與坐骨結節都是藏在背後的因素。這篇解釋反覆受傷的原因，並給出在家漸進負荷的具體安排、回場前該過的三關與復原時程。
 - [小腿與跟腱的筋膜張力](https://skythephysio.com/posts/fascia-calf-achilles): 小腿與跟腱是後側筋膜線的重要一段。它們緊繃，影響的不只是腳踝，還可能一路牽連到腳底與膝蓋。附上在家就能做的伸展、強化步驟，以及該就醫的警訊。
 - [足弓塌陷與「被鞋子綁架」的足弓](https://skythephysio.com/posts/fascia-shoe-bound-arch): 足弓不是靠鞋子撐出來的，而是靠腳自己的肌肉。長期包在支撐過度的鞋裡，足弓反而會變懶——本文教你怎麼循序漸進喚醒足弓，以及何時該就醫。
 - [錘狀趾：腳趾變形背後的筋膜與力學](https://skythephysio.com/posts/fascia-hammertoes): 腳趾彎曲卡住、頂到鞋子磨出繭，就是錘狀趾。背後是屈肌過緊、足內在肌無力與長期力學失衡。本文說明成因、鞋子的影響、在家能練的動作，以及該就醫的時機。
@@ -204,7 +204,7 @@
 - [筋膜沾黏與滑動受限：動起來卡卡的原因](https://skythephysio.com/posts/fascia-adhesion-glide): 健康的筋膜，層與層之間能順暢滑動；滑動變差、出現沾黏，動作就會卡卡緊緊的。這篇談沾黏怎麼形成、在家能做哪些溫和練習，以及「越痛越有效」為什麼是誤會。
 - [筋膜線：全身如何連成一張網](https://skythephysio.com/posts/fascia-lines-anatomy-trains): 筋膜是連續的，一條條「筋膜線」把腳底一路連到頭頂，這解釋了為什麼腳的問題有時會在背或頸現身。本文附生活案例、沿線的居家放鬆做法與常見誤解。
 - [張力整合：身體如何用筋膜分散力量](https://skythephysio.com/posts/fascia-tensegrity): 骨頭不是像積木一樣硬疊起來的，而是「浮」在一張筋膜張力網裡。張力整合這個概念，解釋了為什麼腳踝的僵硬會讓肩頸也跟著累，以及日常可以怎麼照顧這張網。
-- [筋膜與疼痛：為什麼放鬆筋膜會「有感」](https://skythephysio.com/posts/fascia-and-pain): 筋膜裡布滿感覺神經，遠比想像中敏感。這解釋了為什麼放鬆筋膜會舒服，也提醒我們：痛不等於受傷。
+- [筋膜與疼痛：為什麼放鬆筋膜會「有感」](https://skythephysio.com/posts/fascia-and-pain): 筋膜裡布滿感覺神經，比想像中敏感得多，所以放鬆會舒服、緊繃會很痛。這篇說明痛為什麼不等於受傷、最常聽到的三個誤解，以及在家能做的溫和練習和該就醫的訊號。
 - [筋膜如何改變：含水、滑動與可塑性](https://skythephysio.com/posts/fascia-how-it-changes): 筋膜不是固定不變的，它會因為活動或久不動而改變。認識它的可塑性，就懂為什麼恢復需要時間——本文也整理在家的保養做法與合理的期待。
 - [筋膜是什麼？認識包覆全身的結締組織網](https://skythephysio.com/posts/fascia-what-is-fascia): 筋膜像一張立體的網，把全身連成整體。這篇帶你認識它的樣子與功能，再給出在家照顧筋膜的具體做法、最常被誤會的三件事，以及哪些疼痛該先讓專業評估。
 
