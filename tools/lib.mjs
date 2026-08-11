@@ -137,6 +137,25 @@ export function extractFaqs(content, title) {
   return faqs;
 }
 
+// 臨床主題詞：用來找出「不同分類但談同一主題」的文章，
+// 讓這些文章互相連結並標示彼此角度不同（避免搜尋引擎誤判為重複內容）
+export const TOPIC_TERMS = [
+  '五十肩', '冰凍肩', '旋轉肌袖', '肩夾擠', '肩滑囊', '肩關節不穩', '肩胛',
+  '坐骨神經', '椎間盤', '椎管狹窄', '薦髂', '梨狀肌', '腰大肌', '胸腰筋膜', '髖鉸鏈',
+  '足底筋膜', '足弓', '跟腱', '腳踝', '錘狀趾', '膕旁肌', '大腿後肌',
+  '顳顎', '咀嚼肌', '咬肌', '磨牙', '關節盤', '翼狀肌',
+  '激痛點', '緊帶', '轉移痛', '中樞敏感化', '乾針',
+  '橫膈', '呼吸', '核心', '骨盆底', '腹內壓',
+  '揮鞭', '枕下', '斜角肌', '胸廓出口', '腕隧道', '大魚際',
+  '紅繩', '懸吊', 'Bike Fitting', '顱薦椎', '迷走神經', '筋膜線',
+];
+
+// 取出一篇文章（標題優先，其次內文）涉及的主題詞
+export const topicsOf = a => {
+  const t = a.title || '', c = a.content || '';
+  return TOPIC_TERMS.filter(k => t.includes(k) || (c.split(k).length - 1) >= 3);
+};
+
 export const loadArticles = () => JSON.parse(readFileSync(join(REPO, 'data/articles.json'), 'utf8'));
 export const loadSite = () => JSON.parse(readFileSync(join(REPO, 'data/site.json'), 'utf8'));
 export const logoDataURI = () => 'data:image/png;base64,' + readFileSync(join(REPO, 'assets/logo.png')).toString('base64');

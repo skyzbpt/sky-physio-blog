@@ -2,7 +2,7 @@
 // 資料來源：data/articles.json（唯一真實來源）
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, TODAY, esc, plain, readMins, CAT_SLUG, renderBody, loadArticles, logoDataURI, ogCard, shot, VIEWS_API, EYE_SVG, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, wordCountOf, keywordsFor, extractFaqs, ldJson } from './lib.mjs';
+import { REPO, BASE, TODAY, esc, plain, readMins, CAT_SLUG, renderBody, loadArticles, logoDataURI, ogCard, shot, VIEWS_API, EYE_SVG, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, wordCountOf, keywordsFor, extractFaqs, ldJson, topicsOf } from './lib.mjs';
 
 /* ---------- 靜態頁 CSS（取自 index.html，確保一致）---------- */
 const CSS = `
@@ -101,7 +101,18 @@ function postPage(a, idx, all) {
   const near = (x) => Math.abs(new Date(x.date) - new Date(a.date));
   const sameCat = all.filter(x => x.id !== a.id && x.cat === a.cat).sort((x, y) => near(x) - near(y));
   const otherCat = all.filter(x => x.id !== a.id && x.cat !== a.cat).sort((x, y) => y.date.localeCompare(x.date));
-  const related = [...sameCat, ...otherCat].slice(0, 3);
+  // 跨分類同主題：同一主題若被不同分類從不同角度談，彼此互連並標示「另一個角度」，
+  // 讓搜尋引擎理解它們是互補而非重複內容（避免被判為重複網頁而只收錄其中一篇）
+  const myTopics = topicsOf(a);
+  const crossTopic = myTopics.length
+    ? all.filter(x => x.id !== a.id && x.cat !== a.cat && topicsOf(x).some(t => myTopics.includes(t)))
+        .sort((x, y) => topicsOf(y).filter(t => myTopics.includes(t)).length
+                      - topicsOf(x).filter(t => myTopics.includes(t)).length)
+    : [];
+  const related = [...new Map(
+    [...sameCat.slice(0, 2), ...crossTopic.slice(0, 2), ...sameCat.slice(2), ...otherCat]
+      .map(x => [x.id, x])).values()].slice(0, 4);
+  const crossIds = new Set(crossTopic.slice(0, 2).map(x => x.id));
   // 修改日期：僅在文章真的更新（data 加上 updated 欄位）時才變動——
   // dateModified 必須反映真實變更，全站每日「假更新」反而是負面品質訊號
   const modified = a.updated || a.date;
@@ -243,7 +254,7 @@ ${bodyHtml}
 
     <nav class="more">
       <h3>延伸閱讀</h3>
-      ${related.map(r => `<a href="/posts/${r.id}">${esc(r.title)}<span>${esc(r.cat)}</span></a>`).join('\n      ')}
+      ${related.map(r => `<a href="/posts/${r.id}">${esc(r.title)}<span>${esc(r.cat)}${crossIds.has(r.id) ? " ・另一個角度" : ""}</span></a>`).join("\n      ")}
       ${hubSlug ? `<a class="more-hub" href="/topics/${hubSlug}">查看所有《${esc(a.cat)}》文章<span>分類專頁</span></a>` : ''}
     </nav>
   </article>
