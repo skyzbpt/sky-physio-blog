@@ -3,7 +3,8 @@
 // 放在 repo 內（而非暫存區），確保不會因環境重建而遺失。
 import { readFileSync, readdirSync, existsSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, loadArticles, CAT_SLUG } from './lib.mjs';
+import { REPO, BASE, TODAY, loadArticles, CAT_SLUG } from './lib.mjs';
+import { hashOf } from './modified.mjs';
 
 const results = [];
 const pass = (n, d = '') => results.push(['PASS', n, d]);
@@ -87,6 +88,22 @@ const sm = read('sitemap.xml');
 !/\/posts\/[a-z0-9-]+\.html<\/loc>/.test(sm) ? pass('sitemap 皆為乾淨網址') : fail('sitemap 含 .html');
 const smLocs = (sm.match(/<loc>/g) || []).length;
 smLocs === arts.length + cats.length + 2 ? pass(`sitemap URL 數正確 (${smLocs})`) : fail('sitemap URL 數', `${smLocs} vs ${arts.length + cats.length + 2}`);
+/* ---------- 4b. lastmod：每篇都要有，且必須反映真實修改（見 tools/modified.mjs） ---------- */
+const smPairs = [...sm.matchAll(/<loc>[^<]*\/posts\/([a-z0-9-]+)<\/loc>\s*<lastmod>([^<]+)<\/lastmod>/g)];
+smPairs.length === arts.length
+  ? pass(`sitemap 每篇皆有 lastmod (${smPairs.length})`)
+  : fail('sitemap lastmod 缺漏', `${smPairs.length}/${arts.length}`);
+const badDate = smPairs.filter(([, , d]) => !/^\d{4}-\d{2}-\d{2}$/.test(d) || d > TODAY);
+badDate.length === 0 ? pass('lastmod 皆為合法且非未來日期') : fail('lastmod 日期異常', badDate.slice(0, 3).map(m => `${m[1]}=${m[2]}`).join(', '));
+// 狀態檔必須與現有內容同步——否則代表改了 articles.json 卻沒重新建置／沒 commit modified.json
+try {
+  const state = JSON.parse(read('data/modified.json'));
+  const stale = arts.filter(a => !state[a.id] || state[a.id].h !== hashOf(a));
+  stale.length === 0
+    ? pass(`修改日期狀態檔同步 (${arts.length} 篇)`)
+    : fail('modified.json 未同步（請重新 npm run build 並 commit）', `${stale.length} 篇，例如 ${stale.slice(0, 3).map(a => a.id).join(', ')}`);
+} catch { fail('data/modified.json 讀取失敗'); }
+
 const feed = read('feed.xml');
 (feed.match(/<item>/g) || []).length === arts.length ? pass(`feed.xml 篇數正確 (${arts.length})`) : fail('feed 篇數');
 !/\/posts\/[a-z0-9-]+\.html<\/link>/.test(feed) ? pass('feed 皆為乾淨網址') : fail('feed 含 .html');
