@@ -3,6 +3,10 @@
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
 import { REPO, BASE, TODAY, esc, plain, readMins, CAT_SLUG, renderBody, loadArticles, logoDataURI, ogCard, shot, VIEWS_API, EYE_SVG, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, wordCountOf, keywordsFor, extractFaqs, ldJson, topicsOf } from './lib.mjs';
+import { resolveModified } from './modified.mjs';
+
+// id → 真實修改日期（由 data/modified.json 的內容雜湊決定），genPosts 開頭填入
+let MODIFIED = new Map();
 
 /* ---------- 靜態頁 CSS（取自 index.html，確保一致）---------- */
 const CSS = `
@@ -113,9 +117,9 @@ function postPage(a, idx, all) {
     [...sameCat.slice(0, 2), ...crossTopic.slice(0, 2), ...sameCat.slice(2), ...otherCat]
       .map(x => [x.id, x])).values()].slice(0, 4);
   const crossIds = new Set(crossTopic.slice(0, 2).map(x => x.id));
-  // 修改日期：僅在文章真的更新（data 加上 updated 欄位）時才變動——
+  // 修改日期：由內容雜湊決定（見 tools/modified.mjs）——只有內容真的變了才前進，
   // dateModified 必須反映真實變更，全站每日「假更新」反而是負面品質訊號
-  const modified = a.updated || a.date;
+  const modified = MODIFIED.get(a.id) || a.updated || a.date;
   const hubSlug = CAT_SLUG[a.cat];
   const hubUrl = hubSlug ? `${BASE}/topics/${hubSlug}` : `${BASE}/`;
   const breadcrumb = {
@@ -303,6 +307,7 @@ export async function genPosts(page) {
   const articles = loadArticles();
   const logo = logoDataURI();
   console.log(`讀到 ${articles.length} 篇文章`);
+  MODIFIED = resolveModified(articles);
 
   // 安全防護：id 用於寫入檔案路徑（posts/${id}.html、assets/og/${id}.jpg）與 URL，
   // 僅允許小寫英數與連字號，避免 ../ 等路徑穿越（與後台 slug 規則、Worker sanitize 一致）
@@ -353,7 +358,7 @@ export async function genPosts(page) {
 ${hubEntries}
 ${sorted.map(a => `  <url>
     <loc>${BASE}/posts/${a.id}</loc>
-    <lastmod>${a.updated || a.date}</lastmod>
+    <lastmod>${MODIFIED.get(a.id) || a.updated || a.date}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>`).join('\n')}
