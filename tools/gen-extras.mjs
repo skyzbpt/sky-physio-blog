@@ -171,7 +171,7 @@ ${ldJson(breadcrumb)}
     </a>
     <div class="nav-right">
       <a class="nav-link" href="/#blog">更多文章</a>
-      <a class="btn teal sm" href="https://calendar.app.google/zucbVA7vLvAmJP7y6" target="_blank" rel="noopener">預約評估</a>
+      <a class="btn teal sm" href="https://calendar.app.google/mS6w5Mf5fNFBELRN6" target="_blank" rel="noopener">預約評估</a>
     </div>
   </nav>
 </header>
