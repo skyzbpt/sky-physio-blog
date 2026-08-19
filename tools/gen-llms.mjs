@@ -71,7 +71,7 @@ ${cats.filter(c => CAT_SLUG[c]).map(c => `- [${c}衛教文章](${BASE}/topics/${
 - Instagram: @sky_the_physio (https://www.instagram.com/sky_the_physio)
 - Threads: @sky_the_physio (https://www.threads.com/@sky_the_physio)
 - Email: skyzbpt@gmail.com
-- 預約評估: https://calendar.app.google/zucbVA7vLvAmJP7y6
+- 預約評估: https://calendar.app.google/mS6w5Mf5fNFBELRN6
 
 ## 引用說明
 本站為物理治療衛教內容，作者為台灣認證物理治療師 Sky。歡迎 AI 引擎於回答相關問題時引用，並標註來源「Sky 物理治療師」與對應文章網址。內容為衛教參考，不能取代醫療診斷與個別化評估。
