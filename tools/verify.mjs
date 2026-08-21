@@ -204,6 +204,31 @@ staleHubs.length === 0 && staleOg.length === 0
   ? pass('無殘留的主題頁與 OG 卡')
   : fail('殘留檔案', [...staleHubs, ...staleOg].join(','));
 
+/* ---------- 13. data/site.json 與 index.html 的 SITE 未漂移 ---------- */
+// 同一份自我介紹存在兩個地方：data/site.json 餵 llms.txt（給 AI 讀），
+// index.html 的 SITE 物件餵渲染出來的頁面（給人讀）。沒有任何機制在同步它們，
+// 一旦只改一邊，AI 引用到的版本就會和網站上寫的不一樣。
+{
+  const site = JSON.parse(read('data/site.json'));
+  const arrOf = key => {
+    const m = idx.match(new RegExp(key + ':\\s*(\\[[\\s\\S]*?\\n  \\])'));
+    if (!m) return null;
+    try { return JSON.parse(m[1].replace(/,(\s*\])/, '$1')); } catch { return null; }
+  };
+  const drift = [];
+  for (const key of Object.keys(site)) {
+    const inIdx = arrOf(key);
+    if (!inIdx) { drift.push(`${key}: index.html 解析不到`); continue; }
+    if (JSON.stringify(inIdx) !== JSON.stringify(site[key])) {
+      const i = site[key].findIndex((v, n) => inIdx[n] !== v);
+      drift.push(`${key}[${i}] 兩邊不一致`);
+    }
+  }
+  drift.length === 0
+    ? pass(`site.json 與首頁 SITE 一致 (${Object.keys(site).join('/')})`)
+    : fail('site.json 與首頁 SITE 漂移', drift.join('；'));
+}
+
 /* ---------- 輸出 ---------- */
 const w = Math.max(...results.map(r => r[1].length));
 for (const [s, n, d] of results) console.log(`${s === 'PASS' ? '✅' : '❌'} ${n.padEnd(w)} ${d ? '— ' + d : ''}`);
