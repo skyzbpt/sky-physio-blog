@@ -50,7 +50,6 @@ export const AUTHOR = {
   'alternateName': ['Sky 物理治療師', 'Sky PT'],
   'url': BASE + '/',
   'jobTitle': '物理治療師',
-  'worksFor': { '@type': 'MedicalBusiness', 'name': '領航物理治療所' },
   'sameAs': SOCIAL
 };
 
