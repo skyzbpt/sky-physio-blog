@@ -88,7 +88,18 @@ function hubPage(hub, arts) {
   // meta description：lede 偏短時補上分類脈絡與篇數，穩定 ~120–155 字（避免 Ahrefs「描述過短」）
   let desc = plain(hub.lede).trim();
   if ([...desc].length < 130) desc = desc + `——這是 Sky 物理治療師的「${hub.cat}」衛教系列，目前共 ${arts.length} 篇，從認識成因、分辨類型到自我照護與階段性復健，用淺白的方式陪你一步步理解、照顧自己的身體。`;
-  desc = [...desc].slice(0, 155).join('').trim();
+  // 超過上限時退回最近的句讀再切——直接 slice 會斷在半句，而這段文字 Google 會直接顯示。
+  // （下限 110 是 verify 的要求，因此永遠不會退到比它更短。）
+  const cs = [...desc];
+  if (cs.length > 155) {
+    const head = cs.slice(0, 155);
+    let cut = -1;
+    for (let i = head.length - 1; i >= 110; i--) if ('。！？'.includes(head[i])) { cut = i + 1; break; }
+    if (cut < 0) for (let i = head.length - 1; i >= 110; i--) if ('，、；'.includes(head[i])) { cut = i; break; }
+    desc = (cut > 0 ? head.slice(0, cut) : head).join('').replace(/[，、；——]+$/, '');
+    if (!/[。！？」]$/.test(desc)) desc += '。';
+  }
+  desc = desc.trim();
   const about = CAT_ABOUT[hub.cat];
   const keywords = [hub.cat, ...(about ? [about.name, about.alternateName].filter(Boolean) : []), '物理治療', '衛教', 'Sky 物理治療師'];
   const jsonld = {

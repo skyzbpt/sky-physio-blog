@@ -26,7 +26,7 @@ export const CAT_SLUG = {
   '顳顎關節': 'tmj',
   '高級筋膜技術': 'myofascial',
   '顱薦椎': 'craniosacral',
-  '身心靈': 'mind-body',
+  '三鐵運動修復': 'triathlon',
   '公路車': 'cycling',
   '紅繩懸吊': 'redcord',
   '疼痛科學': 'pain-science'
