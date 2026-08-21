@@ -26,7 +26,7 @@ export const CAT_SLUG = {
   '顳顎關節': 'tmj',
   '高級筋膜技術': 'myofascial',
   '顱薦椎': 'craniosacral',
-  '身心靈': 'mind-body',
+  '三鐵運動修復': 'triathlon',
   '公路車': 'cycling',
   '紅繩懸吊': 'redcord',
   '疼痛科學': 'pain-science'
@@ -70,7 +70,7 @@ export const CAT_ABOUT = {
   '顳顎關節': { '@type': 'MedicalCondition', 'name': '顳顎關節障礙', 'alternateName': 'Temporomandibular Disorders (TMD)' },
   '高級筋膜技術': { '@type': 'MedicalTherapy', 'name': '肌筋膜放鬆', 'alternateName': 'Myofascial Release' },
   '顱薦椎':   { '@type': 'MedicalTherapy',  'name': '顱薦椎治療', 'alternateName': 'Craniosacral Therapy' },
-  '身心靈':   { '@type': 'Thing',           'name': '身心靈整合治療', 'alternateName': 'Mind-Body Therapy' },
+  '三鐵運動修復': { '@type': 'MedicalCondition', 'name': '鐵人三項運動傷害', 'alternateName': 'Triathlon Sports Injuries' },
   '公路車':   { '@type': 'Thing',           'name': '公路車 Bike Fitting', 'alternateName': 'Bike Fitting' },
   '紅繩懸吊': { '@type': 'MedicalTherapy',  'name': '紅繩懸吊治療', 'alternateName': 'Redcord Neurac' },
   '疼痛科學': { '@type': 'Thing', 'name': '疼痛科學', 'alternateName': 'Pain Science' }
