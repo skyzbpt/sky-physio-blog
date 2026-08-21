@@ -159,6 +159,51 @@ hubOk === cats.length && pass(`每個主題頁 canonical/清單/description 完�
 const halfWidth = arts.filter(a => /[一-鿿][,;:!?()]/.test(a.content) || /[一-鿿][,;:!?()]/.test(a.excerpt));
 halfWidth.length === 0 ? pass('中文標點皆全形') : fail('半形標點', halfWidth.slice(0, 3).map(a => a.id).join(','));
 
+/* ---------- 11. 轉址規則（_redirects） ---------- */
+// 分類改版會留下舊網址，這裡確保轉址寫得對、指得到、也不會被同名檔案遮蔽。
+if (!existsSync(join(REPO, '_redirects'))) {
+  pass('無 _redirects（尚無轉址需求）');
+} else {
+  const rules = read('_redirects').split('\n')
+    .map(l => l.trim()).filter(l => l && !l.startsWith('#'))
+    .map(l => l.split(/\s+/));
+  const bad = [];
+  // 解析：來源、目標、狀態碼
+  rules.forEach(([from, to, code]) => {
+    if (!from || !to) { bad.push(`格式錯誤：${from} ${to}`); return; }
+    if (code && !/^30[1278]$/.test(code)) bad.push(`狀態碼異常：${from} → ${code}`);
+    // 目標必須是站內實際存在的頁面（外部網址與萬用字元跳過）
+    if (to.startsWith('/') && !to.includes(':') && !to.includes('*')) {
+      const target = to === '/' ? 'index.html' : to.replace(/^\//, '') + '.html';
+      if (!existsSync(join(REPO, target))) bad.push(`目標不存在：${to}`);
+    }
+    // 來源不可有同名靜態檔——否則檔案會遮蔽轉址，規則等於沒寫
+    if (from.startsWith('/') && !from.includes('*')) {
+      const shadow = from.replace(/^\//, '') + '.html';
+      if (existsSync(join(REPO, shadow))) bad.push(`來源被同名檔案遮蔽：${shadow}`);
+    }
+  });
+  bad.length === 0
+    ? pass(`_redirects 規則皆有效 (${rules.length} 條)`)
+    : fail('_redirects', bad.slice(0, 3).join('；'));
+
+  // 轉址檔必須進得了 dist，否則部署後不生效
+  read('tools/build.mjs').includes("'_redirects'")
+    ? pass('_redirects 已納入 dist 組裝')
+    : fail('_redirects 未複製到 dist');
+}
+
+/* ---------- 12. 無殘留的主題頁 ---------- */
+// 分類改名後，舊的 topics/*.html 與 OG 卡不會自動消失，會被一起部署出去。
+const liveSlugs = new Set(cats.map(c => CAT_SLUG[c]));
+const staleHubs = hubFiles.filter(f => !liveSlugs.has(f.replace(/\.html$/, '')));
+const staleOg = existsSync(join(REPO, 'assets/og'))
+  ? readdirSync(join(REPO, 'assets/og')).filter(f => f.startsWith('topic-') && !liveSlugs.has(f.replace(/^topic-|\.jpg$/g, '')))
+  : [];
+staleHubs.length === 0 && staleOg.length === 0
+  ? pass('無殘留的主題頁與 OG 卡')
+  : fail('殘留檔案', [...staleHubs, ...staleOg].join(','));
+
 /* ---------- 輸出 ---------- */
 const w = Math.max(...results.map(r => r[1].length));
 for (const [s, n, d] of results) console.log(`${s === 'PASS' ? '✅' : '❌'} ${n.padEnd(w)} ${d ? '— ' + d : ''}`);

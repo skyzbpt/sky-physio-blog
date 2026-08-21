@@ -1,0 +1,10 @@
+# Cloudflare Workers 靜態資產轉址規則
+# 文件：https://developers.cloudflare.com/workers/static-assets/redirects/
+# 上限：靜態規則 2000 條、動態規則 100 條
+#
+# 舊的 /posts/*.html 網址由 Cloudflare 的 html_handling 自動轉址（308），不需在此列出。
+
+# 「身心靈」分類於 2026-08 改版為「三鐵運動修復」。
+# 該分類原本唯一的文章〈眼淚從筋膜裡來：談情緒能量釋放〉已移入「顱薦椎」分類，
+# 因此舊主題頁的內容繼承者是顱薦椎，而非三鐵——轉址指向內容實際的去處。
+/topics/mind-body /topics/craniosacral 301
