@@ -163,15 +163,15 @@ header::before{
 @media (max-width:400px){.brand-name{display:none}}
 
 .nav-links{display:flex;gap:28px;align-items:center}
-.nav-links a,.nav-link{font-size:.88rem;color:var(--ink-2);padding:4px 0;border-bottom:1.5px solid transparent;cursor:pointer;}
+.nav-links a,.nav-link{display:inline-flex;align-items:center;gap:7px;font-size:.88rem;color:var(--ink-2);padding:4px 0;border-bottom:1.5px solid transparent;cursor:pointer;}
 .nav-links a:hover,.nav-link:hover{border-color:var(--teal);color:var(--ink)}
 
 /* ---- Nav 下拉選單 ---- */
 .nav-item{position:relative}
-.nav-item>.nav-link{display:inline-flex;align-items:center;gap:4px}
-.nav-caret{width:9px;height:9px;flex:none;transition:transform .18s ease}
+.nav-item>.nav-link{gap:4px}
+.nav-caret{width:9px;height:9px;flex:none;margin-left:3px;transition:transform .18s ease}
 .nav-item:hover .nav-caret,.nav-item:focus-within .nav-caret{transform:rotate(180deg)}
-.nav-icon{display:none;width:16px;height:16px;flex:none;margin-right:8px;opacity:.75;vertical-align:-3px}
+.nav-icon{width:16px;height:16px;flex:none;opacity:.75}
 .nav-dropdown{position:absolute;top:100%;left:-14px;margin-top:0;min-width:216px;
   background:var(--bg,#fff);border:1px solid var(--line);border-radius:12px;
   box-shadow:0 24px 48px -24px rgba(35,42,80,.4);padding:14px 8px 8px;
@@ -206,13 +206,12 @@ header::before{
     max-height:calc(100vh - 64px);overflow-y:auto;-webkit-overflow-scrolling:touch;
   }
   .nav-links.open{display:flex}
-  .nav-links a,.nav-link{padding:14px 32px;width:100%;border-bottom:none;display:block}
+  .nav-links a,.nav-link{padding:14px 32px;width:100%;border-bottom:none;display:flex}
   #menu-btn{display:block}
   .nav .btn{display:none}
   .nav-item{position:static}
   .nav-item>.nav-link{padding:14px 32px}
   .nav-caret{display:none}
-  .nav-icon{display:inline-block}
   .nav-dropdown{position:static;opacity:1;visibility:visible;transform:none;pointer-events:auto;
     box-shadow:none;border:none;border-radius:0;background:transparent;margin:0;padding:0 0 6px}
   .nav-dropdown a{padding:9px 32px 9px 44px;font-size:.82rem}
@@ -221,7 +220,7 @@ header::before{
 /* 手機選單內的預約 CTA（桌面版由導覽列按鈕承擔） */
 .nav-book{display:none;color:var(--teal);font-weight:600}
 @media (max-width:820px){
-  .nav-book{display:block}
+  .nav-book{display:flex}
 }
 
 /* 鍵盤焦點可見性 */
@@ -558,6 +557,8 @@ footer{border-top:1px solid var(--line);padding:48px 0 60px;background:linear-gr
 .foot-brand .t{font-size:.84rem;color:var(--ink-2)}
 .foot-brand .t b{display:block;font-family:var(--serif)}
 .foot small{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;color:var(--muted)}
+.foot small a{color:var(--muted);border-bottom:1px solid var(--line)}
+.foot small a:hover{color:var(--teal);border-color:var(--teal)}
 
 /* progress bar removed */
 
@@ -1104,11 +1105,7 @@ textarea#af-body.adm-input{
 
 <footer>
   <div class="wrap foot">
-        <small>網站設計｜Sky — © 2026</small>
-    <nav class="foot-legal" aria-label="政策與聲明">
-      <a href="/privacy">隱私權保護聲明</a>
-      <a href="/physio-guide">物理治療完整指南</a>
-    </nav>
+        <small>網站設計｜Sky — © 2026 · <a href="/privacy">隱私權保護聲明</a></small>
   </div>
 </footer>
 
