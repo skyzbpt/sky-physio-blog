@@ -133,7 +133,8 @@ const hdr = existsSync(join(REPO, '_headers')) ? read('_headers') : '';
 const idx = read('index.html');
 (idx.match(/"@type": "BlogPosting"/g) || []).length === arts.length ? pass(`首頁 JSON-LD ${arts.length} 篇 BlogPosting`) : fail('首頁 BlogPosting');
 const blogHtml = read('blog.html');
-(blogHtml.match(/href="\/topics\//g) || []).length === cats.length ? pass(`衛教文章頁 ${cats.length} 個分類專頁連結`) : fail('衛教文章頁分類連結');
+const blogTopicLinksBlock = blogHtml.match(/<nav class="topic-links"[\s\S]*?<\/nav>/);
+((blogTopicLinksBlock ? blogTopicLinksBlock[0] : '').match(/href="\/topics\//g) || []).length === cats.length ? pass(`衛教文章頁 ${cats.length} 個分類專頁連結`) : fail('衛教文章頁分類連結');
 for (const c of cats) idx.includes(`"${c}"`) || fail('首頁 cats 缺分類', c);
 idx.includes('const ARTICLES = [') ? pass('首頁 ARTICLES 已注入') : fail('ARTICLES 注入');
 // 後台：隱藏入口 + 功能保留

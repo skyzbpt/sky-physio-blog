@@ -177,6 +177,23 @@ header::before{
 .nav-links{display:flex;gap:28px;align-items:center}
 .nav-links a,.nav-link{font-size:.88rem;color:var(--ink-2);padding:4px 0;border-bottom:1.5px solid transparent;cursor:pointer;}
 .nav-links a:hover,.nav-link:hover{border-color:var(--teal);color:var(--ink)}
+
+/* ---- Nav 下拉選單 ---- */
+.nav-item{position:relative}
+.nav-item>.nav-link{display:inline-flex;align-items:center;gap:4px}
+.nav-caret{width:9px;height:9px;flex:none;transition:transform .18s ease}
+.nav-item:hover .nav-caret,.nav-item:focus-within .nav-caret{transform:rotate(180deg)}
+.nav-dropdown{position:absolute;top:100%;left:-14px;margin-top:10px;min-width:216px;
+  background:var(--bg,#fff);border:1px solid var(--line);border-radius:12px;
+  box-shadow:0 24px 48px -24px rgba(35,42,80,.4);padding:8px;
+  opacity:0;visibility:hidden;transform:translateY(6px);pointer-events:none;
+  transition:opacity .18s ease,transform .18s ease;z-index:120;list-style:none}
+.nav-item:hover .nav-dropdown,.nav-item:focus-within .nav-dropdown{
+  opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
+.nav-dropdown li{margin:0}
+.nav-dropdown a{display:block;padding:9px 12px;font-size:.84rem;line-height:1.4;
+  color:var(--ink-2);border-radius:7px;border-bottom:none!important;white-space:nowrap}
+.nav-dropdown a:hover{background:rgba(20,154,138,.09);color:var(--ink)}
 .btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;
   font-family:var(--sans);font-size:.9rem;letter-spacing:.06em;
   padding:11px 26px;border:1.5px solid var(--ink);background:transparent;color:var(--ink)}
@@ -202,6 +219,12 @@ header::before{
   .nav-links a,.nav-link{padding:14px 32px;width:100%;border-bottom:none;display:block}
   #menu-btn{display:block}
   .nav .btn{display:none}
+  .nav-item{position:static}
+  .nav-item>.nav-link{padding:14px 32px}
+  .nav-caret{display:none}
+  .nav-dropdown{position:static;opacity:1;visibility:visible;transform:none;pointer-events:auto;
+    box-shadow:none;border:none;border-radius:0;background:transparent;margin:0;padding:0 0 6px}
+  .nav-dropdown a{padding:9px 32px 9px 44px;font-size:.82rem}
 }
 
 /* 手機選單內的預約 CTA（桌面版由導覽列按鈕承擔） */
@@ -980,11 +1003,55 @@ textarea#af-body.adm-input{
       <span class="brand-name">Sky 物理治療師</span>
     </a>
     <div class="nav-links" id="nav-links">
-      <a class="nav-link" href="/#fields">專業領域</a>
-      <a class="nav-link" href="services.html">服務項目</a>
-      <a class="nav-link" href="blog.html">衛教文章</a>
+      <div class="nav-item">
+        <a class="nav-link" href="/#fields" aria-haspopup="true" aria-expanded="false">專業領域<svg class="nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <ul class="nav-dropdown">
+          <li><a href="/#field-triathlon">三鐵運動修復 × 紅繩懸吊</a></li>
+          <li><a href="/#field-cycling">公路車專項分析</a></li>
+          <li><a href="/#field-pain">疼痛治療與管理</a></li>
+          <li><a href="/#field-craniosacral">顱薦椎整合 × 情緒能量釋放</a></li>
+        </ul>
+      </div>
+      <div class="nav-item">
+        <a class="nav-link" href="services.html" aria-haspopup="true" aria-expanded="false">服務項目<svg class="nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <ul class="nav-dropdown">
+          <li><a href="services.html#svc-assessment">初診評估</a></li>
+          <li><a href="services.html#svc-manual-therapy">徒手治療與疼痛治療</a></li>
+          <li><a href="services.html#svc-redcord">紅繩懸吊訓練</a></li>
+          <li><a href="services.html#svc-bike-fitting">Bike Fitting 公路車體態調校</a></li>
+          <li><a href="services.html#svc-craniosacral">顱薦椎治療</a></li>
+          <li><a href="services.html#svc-myofascial">肌筋膜放鬆 / 筋膜刀</a></li>
+          <li><a href="services.html#svc-tmj">顳顎關節治療</a></li>
+          <li><a href="services.html#svc-taping">運動貼紮</a></li>
+          <li><a href="services.html#svc-ai-assessment">AI 科學化動作評估</a></li>
+        </ul>
+      </div>
+      <div class="nav-item">
+        <a class="nav-link" href="blog.html" aria-haspopup="true" aria-expanded="false">衛教文章<svg class="nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <ul class="nav-dropdown">
+          <li><a href="blog.html">全部文章</a></li>
+          <li><a href="/topics/lower-back-pain">下背痛</a></li>
+          <li><a href="/topics/shoulder-pain">肩膀痛</a></li>
+          <li><a href="/topics/tmj">顳顎關節</a></li>
+          <li><a href="/topics/myofascial">高級筋膜技術</a></li>
+          <li><a href="/topics/craniosacral">顱薦椎</a></li>
+          <li><a href="/topics/cycling">公路車</a></li>
+          <li><a href="/topics/redcord">紅繩懸吊</a></li>
+          <li><a href="/topics/pain-science">疼痛科學</a></li>
+        </ul>
+      </div>
       <a class="nav-link" href="products.html">產品專區</a>
-      <a class="nav-link" href="about.html">關於 Sky</a>
+      <div class="nav-item">
+        <a class="nav-link" href="about.html" aria-haspopup="true" aria-expanded="false">關於 Sky<svg class="nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <ul class="nav-dropdown">
+          <li><a href="about.html#about-intro">治療理念</a></li>
+          <li><a href="about.html#roles">現職</a></li>
+          <li><a href="about.html#edu">學歷</a></li>
+          <li><a href="about.html#exp">過往經歷</a></li>
+          <li><a href="about.html#skills">專長領域</a></li>
+          <li><a href="about.html#certs">相關證照</a></li>
+        </ul>
+      </div>
       <a class="nav-link" href="/#contact">聯絡 Sky</a>
       <a class="nav-link nav-book" href="https://calendar.app.google/wdsPTQDhF2YCigPu6" target="_blank" rel="noopener">預約評估 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="8 7 17 7 17 16"/></svg></a>
     </div>
@@ -999,47 +1066,47 @@ textarea#af-body.adm-input{
     <h2 class="sec-title">從評估到訓練，一次說清楚</h2>
     <p class="sec-lead">每個人的身體都有自己的故事。以下是我目前提供的服務項目——實際會用到哪些方法，會依評估結果與你討論後再決定。詳細療程規劃與費用，請於預約時直接洽詢。</p>
     <div class="service-grid">
-      <div class="service-card">
+      <div class="service-card" id="svc-assessment">
         <div class="field-no">01</div>
         <h3>初診評估</h3>
         <p>第一次到診，透過問診、姿勢與動作評估，找出疼痛或功能受限背後的根源，並規劃後續治療方向。適合第一次就診、想先了解狀況的人。</p>
       </div>
-      <div class="service-card">
+      <div class="service-card" id="svc-manual-therapy">
         <div class="field-no">02</div>
         <h3>徒手治療與疼痛治療</h3>
         <p>結合肌筋膜、關節鬆動與現代疼痛科學，處理急性拉傷到慢性疼痛。適合各種原因造成的痠痛、僵硬與活動度受限。</p>
       </div>
-      <div class="service-card">
+      <div class="service-card" id="svc-redcord">
         <div class="field-no">03</div>
         <h3>紅繩懸吊訓練<br><span class="en">Redcord Neurac</span></h3>
         <p>以紅繩懸吊系統重建深層核心穩定與動作控制，是三鐵與耐力運動傷害修復的核心方法。適合反覆受傷、動作代償明顯的運動族群。</p>
       </div>
-      <div class="service-card">
+      <div class="service-card" id="svc-bike-fitting">
         <div class="field-no">04</div>
         <h3>Bike Fitting<br>公路車體態調校</h3>
         <p>結合物理治療評估與騎乘姿勢分析，從接觸點、關節角度到動作品質全面檢視，處理騎乘中的疼痛並改善功率流失。適合公路車、鐵人三項選手。</p>
       </div>
-      <div class="service-card">
+      <div class="service-card" id="svc-craniosacral">
         <div class="field-no">05</div>
         <h3>顱薦椎治療</h3>
         <p>大約五克的輕觸，協助長期處於緊繃狀態的神經系統放鬆下來。適合自律神經失調、慢性壓力或身心緊繃的族群。</p>
       </div>
-      <div class="service-card">
+      <div class="service-card" id="svc-myofascial">
         <div class="field-no">06</div>
         <h3>肌筋膜放鬆<br>筋膜刀 & 筋膜鏈訓練</h3>
         <p>以筋膜刀等工具處理筋膜沾黏，搭配筋膜鏈訓練強化整體動力鏈。適合肌肉緊繃、活動卡卡或姿勢代償的人。</p>
       </div>
-      <div class="service-card">
+      <div class="service-card" id="svc-tmj">
         <div class="field-no">07</div>
         <h3>顳顎關節治療</h3>
         <p>針對張口障礙、咬合不正、下巴或太陽穴周圍疼痛，進行專項評估與徒手治療。適合有咀嚼疼痛、磨牙或頭痛困擾的人。</p>
       </div>
-      <div class="service-card">
+      <div class="service-card" id="svc-taping">
         <div class="field-no">08</div>
         <h3>運動貼紮</h3>
         <p>依訓練或比賽需求，搭配肌貼、動態貼布或雷可貼布，提供關節與肌肉額外的保護與支持。適合訓練期或賽前的運動員。</p>
       </div>
-      <div class="service-card">
+      <div class="service-card" id="svc-ai-assessment">
         <div class="field-no">09</div>
         <h3>AI 科學化動作評估<br><span class="en">Vald DynaMo</span></h3>
         <p>以 Vald DynaMo 儀器量化肌力與動作表現，用具體數據追蹤治療與訓練的進展，而不只是憑感覺判斷。適合想要客觀掌握恢復進度的人。</p>
