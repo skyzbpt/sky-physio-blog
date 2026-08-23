@@ -218,6 +218,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -229,15 +256,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -261,22 +304,33 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">久坐與下背痛：問題不是坐姿，是「坐太久不動」</h1>
     <p class="lede">坐姿有多完美其實沒那麼重要，真正傷腰的是一個姿勢維持太久。這篇拆解久坐腰痛的常見誤會，給你一天可以怎麼安排的具體做法、恢復大概要多久，還有不能忽略的就醫警訊。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（6）</summary>
+      <ol>
+        <li><a href="#sec-1">沒有最好的姿勢，只有「下一個」姿勢</a></li>
+        <li><a href="#sec-2">給久坐族的實用策略</a></li>
+        <li><a href="#sec-3">別把久坐妖魔化</a></li>
+        <li><a href="#sec-4">關於久坐腰痛，最常見的誤會是什麼？</a></li>
+        <li><a href="#sec-5">一整天下來可以怎麼安排？</a></li>
+        <li><a href="#sec-6">恢復大概需要多久？什麼時候該就醫？</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>「我是不是坐姿不好才腰痛？」這是治療室裡最常見的問題之一。答案可能讓你意外：<strong>沒有一個「完美坐姿」能保護你一整天；真正的關鍵，是你多久沒換姿勢。</strong></p>
-<h2>沒有最好的姿勢，只有「下一個」姿勢</h2>
+<h2 id="sec-1">沒有最好的姿勢，只有「下一個」姿勢<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <p>研究並不支持「某種標準坐姿能預防腰痛」的說法。組織在<strong>任何</strong>單一姿勢維持太久，都會累積張力、變得不適——這和姿勢好不好關係不大，和「靜止太久」關係很大。</p>
 <blockquote>最好的姿勢，是你的下一個姿勢。動態，勝過任何完美的靜態。</blockquote>
-<h2>給久坐族的實用策略</h2>
+<h2 id="sec-2">給久坐族的實用策略<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li><strong>每 30–45 分鐘就換一下</strong>：站起來、走幾步、伸個懶腰。用喝水、上廁所自然打斷</li><li><strong>「動作點心（movement snacks）」</strong>：每隔一陣子做幾下骨盆前後傾、站姿後仰、髖屈肌伸展、繞肩，花不到一分鐘</li><li><strong>坐得舒服、可變換</strong>：椅子有支撐、腳能踏地；偶爾往前坐、偶爾靠後，允許自己變換</li><li><strong>站坐交替</strong>：升降桌是好工具，但別站一整天不動——站太久一樣會累，重點還是「交替」</li></ul>
-<h2>別把久坐妖魔化</h2>
+<h2 id="sec-3">別把久坐妖魔化<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <p>坐著本身不會「壓壞」你的椎間盤。久坐之所以和腰痛有關，主要是「長時間不動 + 整體活動量不足」。所以真正的解方不是追求完美坐姿，而是——<strong>在一天裡，塞進更多的動。</strong></p>
-<h2>關於久坐腰痛，最常見的誤會是什麼？</h2>
+<h2 id="sec-4">關於久坐腰痛，最常見的誤會是什麼？<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <p>大多集中在下面這幾個：</p>
 <ul><li><strong>「一定要用力挺直腰才對」</strong>：刻意挺著是另一種僵住不動，背肌整天緊繃反而更容易痠</li><li><strong>「腰痛就要躺著休息」</strong>：躺太久會讓背更僵、更怕動，在能忍受的範圍內活動恢復通常比較快</li><li><strong>「痛就代表有東西歪掉」</strong>：久坐後的腰痠多半來自肌肉疲勞與敏感化，影像常找不到對應異常</li></ul>
-<h2>一整天下來可以怎麼安排？</h2>
+<h2 id="sec-5">一整天下來可以怎麼安排？<a class="hash" href="#sec-5" aria-label="複製這個段落的連結">#</a></h2>
 <p>久坐族的腰需要一天裡累積很多次的小活動，把「動」變成不需要意志力的預設值：</p>
 <ul><li><strong>早上出門前</strong>：骨盆前後傾與站姿後仰各 10 下，把腰喚醒</li><li><strong>上班時</strong>：每 30～45 分鐘站起來一次，倒水、走去列印、講電話時站著</li><li><strong>午休</strong>：走 10～15 分鐘</li><li><strong>下午容易痠時</strong>：扶椅背伸展髖屈肌 20～30 秒、繞肩 10 圈</li><li><strong>下班後</strong>：累積一般成人建議的活動量，每週約 150 分鐘的中等強度活動</li></ul>
-<h2>恢復大概需要多久？什麼時候該就醫？</h2>
+<h2 id="sec-6">恢復大概需要多久？什麼時候該就醫？<a class="hash" href="#sec-6" aria-label="複製這個段落的連結">#</a></h2>
 <p>單純因為久坐與活動量不足造成的腰痠，只要開始增加活動、常常換姿勢，<strong>多數人在幾天到幾週內就會明顯改善</strong>。過程中會有反覆，不代表退步。</p>
 <p>出現下面這些狀況，就不要只靠自我調整：</p>
 <ul><li>腰痛<strong>持續超過兩週完全沒有改善</strong>，或一直在加重</li><li>疼痛往下傳到小腿、腳掌，伴隨<strong>麻、無力、腳踩不穩</strong></li><li><strong>大小便控制改變、胯下或屁股附近麻木</strong>，可能是馬尾症候群，需要立刻就醫</li><li>發燒、夜間痛到睡不著，或<strong>不明原因的體重下降</strong></li><li>有骨質疏鬆、癌症病史，或近期跌倒撞擊後才開始痛</li></ul>
@@ -293,6 +347,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/back-stretches-mobility"><span>← 下背痛・較新一篇</span><b>下背痛的溫和伸展與活動度運動：從貓牛到抱膝</b></a>
+      <a class="nx" href="/posts/hip-hinge-lifting"><span>下背痛・較舊一篇 →</span><b>搬重物不再閃到腰：學會髖鉸鏈這個關鍵動作</b></a>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/hip-hinge-lifting">搬重物不再閃到腰：學會髖鉸鏈這個關鍵動作<span>下背痛</span></a>
@@ -308,6 +366,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -324,6 +387,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="sitting-back-pain";

@@ -226,6 +226,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -237,15 +264,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -269,22 +312,34 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">咀嚼肌的肌筋膜疼痛與轉移痛：為什麼牙齒查不出問題卻痛</h1>
     <p class="lede">明明是下巴的肌肉緊，痛卻跑到頭、耳朵、牙齒——這就是肌筋膜疼痛「轉移」的特性。帶你認識激痛點怎麼判斷、在家如何溫和放鬆咀嚼肌，以及多久沒改善就該就醫。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（7）</summary>
+      <ol>
+        <li><a href="#sec-1">特別之處：轉移痛</a></li>
+        <li><a href="#sec-2">怎麼判斷</a></li>
+        <li><a href="#sec-3">處理方向</a></li>
+        <li><a href="#sec-4">為什麼牙齒查不出問題卻痛？</a></li>
+        <li><a href="#sec-5">這種痛最常發生在什麼樣的人身上？</a></li>
+        <li><a href="#sec-6">在家可以怎麼放鬆咀嚼肌？</a></li>
+        <li><a href="#sec-7">越痛越要用力按嗎？多久會改善？</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>肌筋膜疼痛（myofascial pain）是一種帶有<strong>激痛點（trigger point）</strong>的肌肉疼痛：肌肉裡有緊繃的結節，按下去不只局部痛，還會「轉移」到別處。</p>
-<h2>特別之處：轉移痛</h2>
+<h2 id="sec-1">特別之處：轉移痛<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <p>咀嚼肌的激痛點常把痛送到——</p>
 <ul><li>顳肌 → 太陽穴痛，像偏頭痛</li><li>咬肌 → 耳朵痛、牙齒痛（常被誤會成牙病）</li><li>這也是為什麼有些人牙齒查不出問題，痛卻很真實</li></ul>
-<h2>怎麼判斷</h2>
+<h2 id="sec-2">怎麼判斷<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li>摸得到肌肉裡的緊繃帶與壓痛點</li><li>按壓時會<strong>重現你平常的痛</strong></li></ul>
-<h2>處理方向</h2>
+<h2 id="sec-3">處理方向<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li>激痛點鬆動（徒手、按壓、必要時乾針）</li><li>伸展、熱敷、姿勢調整</li><li>找出讓肌肉長期過勞的原因（緊咬、壓力、姿勢）</li></ul>
-<h2>為什麼牙齒查不出問題卻痛？</h2>
+<h2 id="sec-4">為什麼牙齒查不出問題卻痛？<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <p>因為咀嚼肌的激痛點會把疼痛<strong>轉移</strong>到牙齒、耳朵或太陽穴，讓人以為是牙病或耳疾。當牙科檢查一切正常、痛卻很真實時，很可能是肌筋膜在作怪，值得從肌肉的角度評估。</p>
-<h2>這種痛最常發生在什麼樣的人身上？</h2>
+<h2 id="sec-5">這種痛最常發生在什麼樣的人身上？<a class="hash" href="#sec-5" aria-label="複製這個段落的連結">#</a></h2>
 <p>一個典型的情境：上班族連續幾週趕案子，整天盯著螢幕、頭往前伸、睡眠不足，壓力一來牙齒就不知不覺咬在一起——這種<strong>白天的緊咬</strong>比夜間磨牙更難察覺。過幾天太陽穴脹痛、耳朵前方痠，看牙醫卻查不出問題。源頭是<strong>長期沒休息的咀嚼肌</strong>：姿勢、壓力、睡眠與緊咬習慣一起把肌肉推過負荷，考試週的學生也一樣。</p>
-<h2>在家可以怎麼放鬆咀嚼肌？</h2>
+<h2 id="sec-6">在家可以怎麼放鬆咀嚼肌？<a class="hash" href="#sec-6" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li><strong>牙齒分開的提醒</strong>：嘴唇輕閉、牙齒不接觸、舌尖輕抵上顎；設手機提醒，每小時檢查有沒有咬緊</li><li><strong>溫敷後伸展</strong>：顳肌與咬肌各敷 10～15 分鐘，接著張口到緊繃但不痛的位置停 5 秒，重複 5～10 次，一天 2～3 回</li><li><strong>自我按壓</strong>：指腹找到最痠的一點，<strong>持續按壓 30～60 秒</strong>，力道以「痠、但還能放鬆呼吸」為準</li><li><strong>減少肌肉工作量</strong>：避開口香糖、堅果、硬麵包，別老用同一邊嚼</li><li><strong>顧到上游</strong>：螢幕墊高到視線平高，每 30～60 分鐘起身動一動，肩頸鬆下巴才鬆</li></ul>
-<h2>越痛越要用力按嗎？多久會改善？</h2>
+<h2 id="sec-7">越痛越要用力按嗎？多久會改善？<a class="hash" href="#sec-7" aria-label="複製這個段落的連結">#</a></h2>
 <p>不要。<strong>按到瘀青或隔天更痛，代表劑量太重</strong>，肌肉只會更防衛。激痛點要的是持續、可忍受的壓力，加上放鬆與足夠睡眠。</p>
 <p>誘因調整得當時，肌筋膜疼痛通常在<strong>數週內逐步改善</strong>，順序常是「範圍先縮小、次數先變少」，不會一夜之間消失。出現下列情形請就醫——</p>
 <ul><li>調整生活習慣<strong>兩到四週仍沒有改善</strong>，或疼痛持續變強</li><li>痛到影響睡眠、無法正常進食</li><li>張口變小到<strong>放不進兩指</strong>，或關節卡住張不開</li><li>合併發燒、臉部腫脹、牙齦化膿（需先排除感染）</li><li>臉部麻木、無力、視力改變，或突發劇烈頭痛</li></ul>
@@ -301,6 +356,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/tmj-myospasm"><span>← 顳顎關節・較新一篇</span><b>肌肉痙攣：突然咬不攏、張不開</b></a>
+      <a class="nx" href="/posts/tmj-local-muscle-soreness"><span>顳顎關節・較舊一篇 →</span><b>局部肌肉痠痛：最常見的下巴肌肉痛</b></a>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/tmj-local-muscle-soreness">局部肌肉痠痛：最常見的下巴肌肉痛<span>顳顎關節</span></a>
@@ -316,6 +375,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -332,6 +396,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="tmj-myofascial-pain";

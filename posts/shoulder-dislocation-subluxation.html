@@ -226,6 +226,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -237,15 +264,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -269,27 +312,39 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">肩關節脫臼與半脫位：脫過一次之後怎麼辦</h1>
     <p class="lede">肩膀脫過一次，之後更容易再脫。本文說明保護期的日常該怎麼調整、復健要多久、還會不會再脫，以及最常見的幾個誤解。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（7）</summary>
+      <ol>
+        <li><a href="#sec-1">脫臼之後，身體發生了什麼</a></li>
+        <li><a href="#sec-2">急性處理</a></li>
+        <li><a href="#sec-3">復健的重點：把「主動穩定」練回來</a></li>
+        <li><a href="#sec-4">什麼情況可能需要手術？</a></li>
+        <li><a href="#sec-5">保護期的日常該注意什麼？</a></li>
+        <li><a href="#sec-6">復健要多久？還會再脫嗎？</a></li>
+        <li><a href="#sec-7">有哪些常見的誤解？</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>肩關節脫臼（dislocation）是肱骨頭完全跑出關節窩；半脫位（subluxation）則是滑出去一部分又自己回去。因為肩膀本來就淺、靠軟組織穩定，它是全身最容易脫臼的關節。</p>
-<h2>脫臼之後，身體發生了什麼</h2>
+<h2 id="sec-1">脫臼之後，身體發生了什麼<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <p>一次脫臼可能撐鬆或撕裂關節囊、韌帶，甚至傷到盂唇。這讓關節的「被動穩定」變差——於是<strong>脫過一次的人，之後再脫的風險會明顯升高</strong>，尤其年輕、活動量大的族群。</p>
-<h2>急性處理</h2>
+<h2 id="sec-2">急性處理<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li>剛脫臼時，需要由專業<strong>安全地復位</strong>，不要自己硬喬</li><li>復位後通常有一段保護期（依醫囑），讓受傷組織初步修復</li><li>這段期間仍會做溫和、不危險角度的活動，避免完全僵住</li></ul>
 <blockquote>脫臼的復健，是在「保護受傷組織」與「不讓肩膀卡住」之間，找到剛剛好的平衡。</blockquote>
-<h2>復健的重點：把「主動穩定」練回來</h2>
+<h2 id="sec-3">復健的重點：把「主動穩定」練回來<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <p>被動穩定（韌帶、關節囊）受傷了，就要靠<strong>主動穩定（肌肉控制）</strong>來補：</p>
 <ul><li>強化旋轉肌袖與肩胛周邊肌群</li><li>逐步在「容易脫的角度」（通常是外展外轉）建立控制與信心</li><li>漸進回到日常、工作與運動的需求</li></ul>
-<h2>什麼情況可能需要手術？</h2>
+<h2 id="sec-4">什麼情況可能需要手術？<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <p>反覆脫臼、盂唇或韌帶有明顯結構損傷、或高需求的運動員，骨科可能會評估手術修補。但許多首次脫臼者，透過良好的復健就能大幅降低再脫風險。</p>
-<h2>保護期的日常該注意什麼？</h2>
+<h2 id="sec-5">保護期的日常該注意什麼？<a class="hash" href="#sec-5" aria-label="複製這個段落的連結">#</a></h2>
 <p>復位之後的頭幾週，目標是讓受傷的關節囊與韌帶有機會安定下來：</p>
 <ul><li><strong>避開危險角度</strong>：最常見的是「手臂外展加外轉」——把手舉高往後、投擲的準備姿勢，或突然伸手去撐住跌倒</li><li><strong>穿脫衣服</strong>：<strong>先穿患側、後脫患側</strong>，前開扣的衣服比套頭省力</li><li><strong>睡覺</strong>：不要側睡壓患側；仰躺時可在手肘下墊小枕頭，讓肩膀不往後掉</li><li><strong>吊帶</strong>：戴多久、什麼時候可以拆，依醫囑，不要自己提早不戴或戴太久</li><li><strong>仍然要動</strong>：在安全角度做輕柔的肩胛動作，以及手肘、手腕的活動，避免整隻手臂僵掉</li></ul>
 <p>日常提東西盡量貼近身體、用好手，重物分次搬。</p>
-<h2>復健要多久？還會再脫嗎？</h2>
+<h2 id="sec-6">復健要多久？還會再脫嗎？<a class="hash" href="#sec-6" aria-label="複製這個段落的連結">#</a></h2>
 <p>合理的期待是：</p>
 <ul><li><strong>前 2 到 6 週</strong>：保護，以及安全範圍內的活動</li><li><strong>接下來數週到數月</strong>：逐步恢復活動度，開始旋轉肌袖與肩胛的控制訓練</li><li><strong>回到運動</strong>：常需要 3 到 6 個月以上，尤其是碰撞性或需要過頭出力的項目</li></ul>
 <p>再脫的風險確實升高，<strong>年紀越輕、活動需求越高的人越明顯</strong>。但這個風險是可以被降低的——把主動穩定練回來、避免在還沒準備好時回到高風險動作，是最實際的兩件事。</p>
-<h2>有哪些常見的誤解？</h2>
+<h2 id="sec-7">有哪些常見的誤解？<a class="hash" href="#sec-7" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li><strong>「自己喬回去比較快」</strong>：硬喬可能傷到神經血管或造成骨折，一定要由專業復位。</li><li><strong>「回去了就沒事了」</strong>：復位只解決當下，關節囊與韌帶的修復與控制訓練才是重點。</li><li><strong>「痛不痛決定能不能回去運動」</strong>：不痛不等於穩定，回場要看控制與力量。</li><li><strong>「戴吊帶越久越安全」</strong>：固定太久會讓肩膀僵硬、肌肉退化。</li><li><strong>「一定要開刀才不會再脫」</strong>：許多首次脫臼者靠良好復健就能大幅降低風險，是否手術由骨科依個別狀況評估。</li></ul>
 <p>出現下列情況請盡快就醫：復位後<strong>手臂麻木或無力</strong>、手部冰冷發白、肩膀持續腫脹變形，或反覆再脫。</p>
 <p>脫過一次不代表肩膀「壞了」——把控制力練回來，它可以再次值得信賴。</p>
@@ -306,6 +361,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/shoulder-stability-training"><span>← 肩膀痛・較新一篇</span><b>重建肩膀的信心：旋轉肌與肩胛的控制訓練</b></a>
+      <a class="nx" href="/posts/shoulder-instability"><span>肩膀痛・較舊一篇 →</span><b>肩關節不穩定：總覺得肩膀「快要掉出來」</b></a>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/shoulder-stability-training">重建肩膀的信心：旋轉肌與肩胛的控制訓練<span>肩膀痛</span></a>
@@ -321,6 +380,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -337,6 +401,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="shoulder-dislocation-subluxation";

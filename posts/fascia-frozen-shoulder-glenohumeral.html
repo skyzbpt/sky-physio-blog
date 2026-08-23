@@ -242,6 +242,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -253,15 +280,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -285,26 +328,37 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">五十肩的筋膜觀點：盂肱關節與關節囊</h1>
     <p class="lede">五十肩不只是卡住，而是關節囊發炎攣縮的過程。依分期說明每個階段該做什麼，附上鐘擺與爬牆等在家動作、為什麼忍痛硬拉反而更慢，以及復原時間的合理期待。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（6）</summary>
+      <ol>
+        <li><a href="#sec-1">五十肩發生在哪裡？</a></li>
+        <li><a href="#sec-2">為什麼會分期？</a></li>
+        <li><a href="#sec-3">每個階段怎麼照顧？</a></li>
+        <li><a href="#sec-4">每天在家可以怎麼動？</a></li>
+        <li><a href="#sec-5">忍痛硬拉會好得比較快嗎？</a></li>
+        <li><a href="#sec-6">什麼時候該就醫？</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>五十肩（冰凍肩）讓肩膀又痛又卡，穿衣、梳頭都困難。從關節囊與筋膜的角度看，能幫你理解它為什麼會這樣，也知道該怎麼陪它走過。</p>
-<h2>五十肩發生在哪裡？</h2>
+<h2 id="sec-1">五十肩發生在哪裡？<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <p>主要問題在<strong>盂肱關節</strong>——上臂與肩胛骨相接的主關節，以及包覆它的<strong>關節囊</strong>：</p>
 <ul><li>關節囊本是柔軟、有彈性的袋子</li><li>五十肩時關節囊發炎、增厚、攣縮</li><li>周邊筋膜也跟著變緊</li></ul>
 <p>結果就是關節活動空間被「縮小」，動起來又緊又痛。</p>
-<h2>為什麼會分期？</h2>
+<h2 id="sec-2">為什麼會分期？<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <p>五十肩通常會經歷幾個階段：</p>
 <ul><li><strong>疼痛期</strong>：越來越痛，活動漸受限</li><li><strong>僵硬期</strong>：痛稍緩，但卡得最明顯</li><li><strong>解凍期</strong>：活動度慢慢恢復</li></ul>
 <p>不同階段的處理重點不同——這也是為什麼「一招用到底」常常不對。</p>
-<h2>每個階段怎麼照顧？</h2>
+<h2 id="sec-3">每個階段怎麼照顧？<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li><strong>疼痛期</strong>：以止痛、溫和活動為主，不宜激進拉扯</li><li><strong>僵硬期</strong>：逐步增加活動度與伸展</li><li><strong>解凍期</strong>：加強活動與肌力，恢復功能</li></ul>
 <p>本站另有五十肩分期與復健的專文可搭配閱讀。若肩痛持續或活動嚴重受限，建議尋求專業評估。</p>
-<h2>每天在家可以怎麼動？</h2>
+<h2 id="sec-4">每天在家可以怎麼動？<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <p>活動前先熱敷 10～15 分鐘，組織會比較好動：</p>
 <ul><li><strong>鐘擺運動</strong>：身體微微向前彎，好手扶著桌子，患側手自然下垂，用身體帶動手臂畫小圈，前後、左右各 10～15 下，一天 2～3 次，不要用力甩。</li><li><strong>爬牆運動</strong>：面對牆，手指沿著牆面慢慢往上走，到「緊但可以忍受」的位置停 10 秒再下來，重複 5～8 次。</li><li><strong>毛巾背後伸展</strong>（疼痛期過後再做）：毛巾垂在背後，好手在上、患側在下，輕輕往上帶，停 15～20 秒，做 3 次。</li><li><strong>日常照顧</strong>：睡覺時在患側手臂下墊個枕頭；穿衣先穿患側、脫衣先脫好側。</li></ul>
 <p>判斷份量的原則很簡單：<strong>做完的痠感應該在半小時內退掉</strong>；如果隔天更痛更卡，就是做太多了。</p>
-<h2>忍痛硬拉會好得比較快嗎？</h2>
+<h2 id="sec-5">忍痛硬拉會好得比較快嗎？<a class="hash" href="#sec-5" aria-label="複製這個段落的連結">#</a></h2>
 <p>不會。疼痛期的關節囊正在發炎，硬拉會讓發炎與保護性的緊繃更明顯，晚上更難睡，結果是更不敢動、更卡。比較有效的做法是每天在「不引起隔天加劇」的範圍內，短時間、多次地活動，用次數換範圍。時間上也要有合理的期待：五十肩是會走完一個過程的問題，多數人以<strong>月</strong>為單位計算，從幾個月到一年以上都有，解凍期還會再拖一段。糖尿病患者或曾經長期不動的人，過程往往更久。僵硬期覺得沒進步是正常的，請跟「上個月」比，而不是跟「昨天」比。</p>
-<h2>什麼時候該就醫？</h2>
+<h2 id="sec-6">什麼時候該就醫？<a class="hash" href="#sec-6" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li>跌倒、拉扯等<strong>外傷後</strong>手臂就舉不起來</li><li>夜間痛到無法入睡，或痛得越來越厲害</li><li>肩膀紅腫、發熱、發燒</li><li>手臂<strong>越來越無力</strong>、麻木，或抓握變差</li><li>不明原因體重下降，或曾有癌症病史而新出現肩痛</li><li>活動度<strong>兩週以上</strong>完全沒有任何進展</li></ul>
 <blockquote>五十肩需要的不是硬拉，而是順著階段陪它解凍。</blockquote>
     </div>
@@ -319,6 +373,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/fascia-rotator-cuff-integration"><span>← 高級筋膜技術・較新一篇</span><b>旋轉肌袖與肩部筋膜整合</b></a>
+      <a class="nx" href="/posts/fascia-thenar-thumb"><span>高級筋膜技術・較舊一篇 →</span><b>大魚際與拇指：握、捏、滑手機的代價</b></a>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/fascia-thenar-thumb">大魚際與拇指：握、捏、滑手機的代價<span>高級筋膜技術</span></a>
@@ -334,6 +392,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -350,6 +413,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="fascia-frozen-shoulder-glenohumeral";

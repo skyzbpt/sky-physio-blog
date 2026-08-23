@@ -242,6 +242,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -253,15 +280,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -285,27 +328,38 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">腰大肌：最被誤解的核心肌</h1>
     <p class="lede">腰大肌同時連著腰椎與大腿，是最被誤解的核心肌。久坐讓它緊繃，但一味拉筋未必對。放鬆與啟動怎麼並重、在家做哪些動作與幾下，以及不能拖的就醫警訊。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（6）</summary>
+      <ol>
+        <li><a href="#sec-1">腰大肌到底連到哪裡？</a></li>
+        <li><a href="#sec-2">久坐會讓腰大肌變短嗎？</a></li>
+        <li><a href="#sec-3">那是不是拚命拉筋就好？</a></li>
+        <li><a href="#sec-4">上班族的一天，腰大肌經歷了什麼？</a></li>
+        <li><a href="#sec-5">在家可以怎麼放鬆、又怎麼啟動它？</a></li>
+        <li><a href="#sec-6">什麼時候該就醫？</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>腰大肌可能是身體裡最常被談論、也最常被誤解的一條肌肉。有人說它是「壓力肌」，有人一有下背痛就拚命拉它，但它的角色其實比想像中更微妙。</p>
-<h2>腰大肌到底連到哪裡？</h2>
+<h2 id="sec-1">腰大肌到底連到哪裡？<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <p>腰大肌是少數同時連結脊椎與腿的深層肌肉：</p>
 <ul><li>上端附著在<strong>腰椎</strong></li><li>向下穿過骨盆</li><li>連到<strong>大腿內側</strong>的股骨</li></ul>
 <p>正因為橫跨這麼多關節，它同時影響髖關節動作、脊椎穩定，也和下背、骨盆密切相關。</p>
-<h2>久坐會讓腰大肌變短嗎？</h2>
+<h2 id="sec-2">久坐會讓腰大肌變短嗎？<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <p>長時間坐著，髖關節長期處於彎曲的位置，腰大肌確實容易變得緊繃、失去彈性。這可能讓站起來時感覺腰部僵硬，或改變骨盆的排列。但緊繃不完全等於「太短」，有時是它一直在過度出力。</p>
-<h2>那是不是拚命拉筋就好？</h2>
+<h2 id="sec-3">那是不是拚命拉筋就好？<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <p>不是。腰大肌需要的往往是<strong>放鬆與啟動並重</strong>：</p>
 <ul><li>適度伸展、放鬆過度緊繃的部分</li><li>更重要的是重新學會「用對它」，例如抬腿與核心穩定的訓練</li><li>打斷久坐、常起身活動</li></ul>
 <p>一味拉筋反而可能忽略了它也需要被穩定與控制。若下背或髖部持續不適，建議尋求專業評估。</p>
-<h2>上班族的一天，腰大肌經歷了什麼？</h2>
+<h2 id="sec-4">上班族的一天，腰大肌經歷了什麼？<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <p>想像一位辦公室工作者：通勤、開會、打字，一天坐掉將近十小時。髖關節整天彎著，腰大肌又短又不用力。下班站起來那一刻，他會覺得<strong>腰卡卡的、要撐一下才站得直</strong>，走幾步反而順了——這通常不是腰壞掉，而是一條長期沒被好好用到的肌肉，突然被要求換工作模式。</p>
 <p>很多人因此誤會兩件事：</p>
 <ul><li>以為緊就要用力拉開，每天猛做弓箭步，腰卻越拉越酸</li><li>以為它是「壓力肌」，放鬆情緒就會好，忽略它同時需要被訓練</li></ul>
-<h2>在家可以怎麼放鬆、又怎麼啟動它？</h2>
+<h2 id="sec-5">在家可以怎麼放鬆、又怎麼啟動它？<a class="hash" href="#sec-5" aria-label="複製這個段落的連結">#</a></h2>
 <p>原則是先降張力，再教它做事。整套一天約十分鐘，過程中都不該腰痛或腿麻：</p>
 <ul><li><strong>打斷久坐</strong>：每三十到四十分鐘站起來走一到兩分鐘，效果常勝過單一伸展</li><li><strong>溫和的髖前側伸展</strong>：單膝跪地，骨盆微微後傾（肚子收住），重心慢慢往前，大腿前上方感覺被輕微拉開就停，維持二十到三十秒，兩側各二次</li><li><strong>仰躺抬腿控制</strong>：躺平、一腳屈膝踩地，另一腳伸直慢慢抬到約三十度，停三到五秒放下，每側十下、做二到三組</li></ul>
 <p><strong>規律做兩到四週</strong>，多數人會覺得站起來比較順、僵硬時間變短。只伸展不啟動，效果常撐不了幾天。</p>
-<h2>什麼時候該就醫？</h2>
+<h2 id="sec-6">什麼時候該就醫？<a class="hash" href="#sec-6" aria-label="複製這個段落的連結">#</a></h2>
 <p>立刻就醫：<strong>大小便失禁或突然解不出小便</strong>並伴隨跨部麻木，這是馬尾症候群的警訊；或<strong>腿部力量快速變差</strong>，例如墊腳無力、走路拖腳。</p>
 <p>以下也建議儘早安排評估：</p>
 <ul><li>下背或髖部疼痛<strong>持續超過六週</strong>沒改善</li><li>疼痛在<strong>夜間把你痛醒</strong>，休息也不緩解</li><li>伴隨<strong>發燒或不明原因體重下降</strong></li><li>明確外傷後才開始痛，或有骨質疏鬆、癌症病史</li><li>麻木、刺痛沿著大腿往下延伸</li></ul>
@@ -322,6 +376,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/fascia-mesentery-abdomen"><span>← 高級筋膜技術・較新一篇</span><b>腸繫膜與腹部：被忽略的內在張力</b></a>
+      <a class="nx" href="/posts/fascia-iliolumbar-12th-rib"><span>高級筋膜技術・較舊一篇 →</span><b>髂腰韌帶與第12肋：側腰痛的角落</b></a>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/fascia-iliolumbar-12th-rib">髂腰韌帶與第12肋：側腰痛的角落<span>高級筋膜技術</span></a>
@@ -337,6 +395,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -353,6 +416,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="fascia-psoas";

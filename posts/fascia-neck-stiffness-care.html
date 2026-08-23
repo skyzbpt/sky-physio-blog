@@ -250,6 +250,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -261,15 +288,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -293,27 +336,39 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">頸部僵硬：筋膜角度的長期保養</h1>
     <p class="lede">頸部僵硬很少只有一個原因。從活動、呼吸到姿勢多管齊下，才是長期之道。本文用一個上班族的例子，帶你看具體練習、常見誤解與該就醫的時機。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（7）</summary>
+      <ol>
+        <li><a href="#sec-1">頸部僵硬通常只有一個原因嗎？</a></li>
+        <li><a href="#sec-2">為什麼要「多管齊下」？</a></li>
+        <li><a href="#sec-3">日常可以怎麼保養？</a></li>
+        <li><a href="#sec-4">一個典型的情境長什麼樣子？</a></li>
+        <li><a href="#sec-5">具體的練習可以怎麼做？</a></li>
+        <li><a href="#sec-6">有哪些常見的誤解？</a></li>
+        <li><a href="#sec-7">什麼時候該就醫？</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>頸部僵硬幾乎是現代人的通病。與其一緊就猛壓猛轉，不如用筋膜整合的眼光，做長期的保養。</p>
-<h2>頸部僵硬通常只有一個原因嗎？</h2>
+<h2 id="sec-1">頸部僵硬通常只有一個原因嗎？<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <p>很少。頸部的緊，往往是好幾層一起的結果：</p>
 <ul><li>淺層筋膜與姿勢張力</li><li>深層枕下與後頸肌群過勞</li><li>頸側斜角肌因呼吸不良而緊繃</li><li>加上久坐、低頭、壓力</li></ul>
 <p>所以只處理單一層、單一肌肉，效果常常有限。</p>
-<h2>為什麼要「多管齊下」？</h2>
+<h2 id="sec-2">為什麼要「多管齊下」？<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <p>因為這些因素彼此牽連。姿勢不改，放鬆的效果撐不久；呼吸不順，頸肩就一直加班；只顧頸部、忽略上背與胸椎，活動度也難真正打開。整合地照顧，才能打斷惡性循環。</p>
-<h2>日常可以怎麼保養？</h2>
+<h2 id="sec-3">日常可以怎麼保養？<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li><strong>活動</strong>：規律做頸部與上背的活動度運動，打斷久坐</li><li><strong>呼吸</strong>：練習腹式呼吸，減少頸肩代償</li><li><strong>姿勢</strong>：螢幕墊高、收下巴，減少長時間前傾</li><li><strong>減壓與睡眠</strong>：緊張與睡姿也會影響頸部</li></ul>
-<h2>一個典型的情境長什麼樣子？</h2>
+<h2 id="sec-4">一個典型的情境長什麼樣子？<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <p>一位每天在辦公室待 9 小時的行政人員，筆電直接放桌上、螢幕比視線低了一截，於是整天低頭；接電話時把話筒夾在肩膀和耳朵之間；下班回家再側躺滑手機兩小時。她的頸部從早到晚幾乎沒有回到中立位置。</p>
 <p>這種情況下，按摩當天會鬆，隔天照樣緊——因為讓它緊的那些條件一個都沒有變。<strong>先改環境與習慣，放鬆才留得住</strong>，這是保養的核心順序。</p>
-<h2>具體的練習可以怎麼做？</h2>
+<h2 id="sec-5">具體的練習可以怎麼做？<a class="hash" href="#sec-5" aria-label="複製這個段落的連結">#</a></h2>
 <p>以下都在不痛的範圍內進行，緩慢、少量多次：</p>
 <ul><li><strong>收下巴</strong>：坐正，下巴水平往後收（像做出雙下巴）維持 5 秒再放鬆，重複 10 次，一天 2 到 3 回</li><li><strong>頸側伸展</strong>：一手輕扶椅面固定肩膀，頭往對側慢慢側倒，微微拉開就停，維持 20 到 30 秒，左右各 2 到 3 次</li><li><strong>胸椎伸展</strong>：坐在椅子上雙手抱頭，上背往後靠向椅背輕輕延伸 10 次，打開駝著的上背</li><li><strong>肩胛畫圈</strong>：肩膀向後畫大圈 10 次，一天數回</li><li><strong>腹式呼吸</strong>：鼻子吸 4 秒、慢慢吐 6 秒，一次 5 分鐘，減少頸肩幫忙呼吸</li></ul>
 <p>環境上把螢幕上緣調到與眼睛齊高、鍵盤拉近身體、椅子讓腳踏得到地。</p>
-<h2>有哪些常見的誤解？</h2>
+<h2 id="sec-6">有哪些常見的誤解？<a class="hash" href="#sec-6" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li><strong>「脖子緊就用力轉到喀一聲」</strong>：快速甩轉或自己扳頸風險不低，緩解也短暫，不建議當成日常習慣。</li><li><strong>「越用力壓越有效」</strong>：頸部組織薄、結構密，過強的力道容易讓它更防衛。</li><li><strong>「只要按脖子就好」</strong>：如前面說的，上背、胸椎與呼吸不處理，頸部就得一直加班。</li><li><strong>「不痛就代表好了」</strong>：習慣沒改，通常過一陣子又回來。</li></ul>
 <p>多數姿勢型的頸部僵硬，在調整環境加上規律練習後，<strong>兩到四週</strong> 會感覺到差別；要真正穩定下來，通常需要 <strong>一到三個月</strong> 讓新習慣長出來。</p>
-<h2>什麼時候該就醫？</h2>
+<h2 id="sec-7">什麼時候該就醫？<a class="hash" href="#sec-7" aria-label="複製這個段落的連結">#</a></h2>
 <p>若僵硬伴隨手麻無力、劇烈頭痛、頭暈，或持續加重，建議儘早尋求專業評估。</p>
 <blockquote>頸部的輕鬆，是每天一點一滴保養出來的。</blockquote>
     </div>
@@ -328,6 +383,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/fascia-tmj-muscles"><span>← 高級筋膜技術・較新一篇</span><b>顳顎關節的筋膜：咀嚼肌群的整合</b></a>
+      <a class="nx" href="/posts/fascia-scalenes"><span>高級筋膜技術・較舊一篇 →</span><b>斜角肌：頸肩與胸廓出口</b></a>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/fascia-scalenes">斜角肌：頸肩與胸廓出口<span>高級筋膜技術</span></a>
@@ -343,6 +402,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -359,6 +423,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="fascia-neck-stiffness-care";

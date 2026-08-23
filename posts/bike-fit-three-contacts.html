@@ -184,6 +184,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -195,15 +222,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -227,24 +270,33 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">三個接觸點，決定你和公路車的關係</h1>
     <p class="lede">坐墊、踏板、把手——你和車只在三個地方相遇。把這三點調對了，長途騎乘不該是受苦；調不對，身體會替你說。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（4）</summary>
+      <ol>
+        <li><a href="#sec-1">第一點：坐墊</a></li>
+        <li><a href="#sec-2">第二點：踏板</a></li>
+        <li><a href="#sec-3">第三點：把手</a></li>
+        <li><a href="#sec-4">疼痛在哪裡，答案往往不在那裡</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>你和一台公路車，只有三個地方真正接觸：坐墊、踏板、把手。Bike Fitting 做的事，說穿了就是讓這三個點，都落在對的位置上。</p>
 <p>聽起來很簡單，但每個人的骨盆寬度、股骨長度、髖部活動度、胸椎旋轉能力都不一樣——沒有一個公式可以套用在所有人身上。英國自行車隊物理治療師 Phil Burt 在他的著作《Bike Fit》裡說得很直白：他從來沒有找到那個「魔法數字」，也越來越確信它不存在。</p>
 <p>存在的，是一個「適合的區間」（fit window）：在這個區間裡，你能兼顧舒適與效率。今天這篇文章，帶你從物理治療師的角度，看懂這三個接觸點在說什麼。</p>
-<h2>第一點：坐墊</h2>
+<h2 id="sec-1">第一點：坐墊<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <p>坐墊高度是 Bike Fitting 裡最關鍵、也最常出錯的一個參數。</p>
 <p>一個基本的參考值是：踩到踏板最低點（BDC）時，膝蓋伸展角度維持在 30-35 度。太高，膝蓋後側與外側開始承壓，髂脛束被拉過長、腿後肌在末端反覆緊繃；太低，髕骨前側受到更大的壓迫，股四頭肌一直在短縮範圍內出力，膝蓋前痛的風險大幅上升。</p>
 <p>坐墊的前後位置（fore/aft）也很重要。坐得太前，膝蓋超過腳掌前緣的機率增加，前膝的負擔翻倍；坐得太後，伸展角度增加，大腿後側和膝蓋後外側容易有問題。而坐墊傾角——大多數情況下，水平或微微朝下是對的。把鼻子往上翹，會讓骨盆被鎖住、重量全部壓到手上，反而造成手腕和肩膀代償。</p>
 <p>坐墊寬度呢？選擇的起點是坐骨寬度（ischial tuberosity）。有個在家就能測的方法：把一張鋁箔紙鋪在地毯階梯上，坐上去、稍微前傾模擬騎姿，再把腳抬起來——鋁箔上最深的兩個印記之間的距離，就是你的坐骨寬度參考值。</p>
-<h2>第二點：踏板</h2>
+<h2 id="sec-2">第二點：踏板<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <p>踏板是力量唯一的出口，也是膝蓋問題最多的源頭之一。</p>
 <p>卡鞋扣片的前後位置，應該讓腳掌蹠球（metatarsal head，就是大腳趾根部那塊突起）對齊踏板軸心。扣片太前，踏板軸的力矩臂拉長，小腿和跟腱的負擔增加，踩起來也更費力；扣片太後，反而常常讓膝蓋後側疼痛。</p>
 <p>騎車時膝蓋的「追蹤路徑」也是重要的觀察指標。往內倒（knee in）或往外偏（knee out）都有可能，原因複雜——有的來自骨盆穩定度不足，有的來自足部的旋前或旋後，有的是曲柄長度不合適。書裡提到一個有意思的觀察：幾乎所有踝關節的代償策略，都可以透過調整曲柄長度來緩解——縮短曲柄是解決很多膝蓋問題的第一步，很多人沒想到這個方向。</p>
-<h2>第三點：把手</h2>
+<h2 id="sec-3">第三點：把手<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <p>把手寬度的參考基準，是肩峰（acromion）的寬度——鎖骨末端那個骨突，兩側之間的距離就是建議的把手寬度。把手太窄，肩膀塌陷、呼吸受限；太寬，手臂向外打開、手腕旋轉不自然。</p>
 <p>比起寬度，更常被忽略的是「reach」——從坐墊到把手的前後距離。伸太遠，手臂鎖死、手腕長期承壓，尺神經和正中神經都可能因此受到壓迫，輕則騎車時手麻，嚴重的案例（書裡有一個真實案例）是尺神經永久性損傷，留下小指無感覺的後遺症。手麻不是騎長途的正常副作用，是身體在要求你調整位置。</p>
 <p>Reach 不對的另一個訊號：騎車時手臂完全打直鎖住——這代表上半身肌肉都在繃緊對抗，三頭肌沒多久就會叫苦。正確的騎姿，手肘應該微微彎曲，手臂負責「吸震」，不是「撐重量」。</p>
-<h2>疼痛在哪裡，答案往往不在那裡</h2>
+<h2 id="sec-4">疼痛在哪裡，答案往往不在那裡<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <p>這是 Bike Fitting 裡最重要的一個觀念，也是物理治療師最常講的一句話。</p>
 <p>膝蓋前側痛 → 先看坐墊高度和扣片位置。膝蓋後外側痛 → 坐墊可能太高。膝蓋內側痛 → 檢查足部旋前與 stance width。手腕、肩膀、脖子一直很緊 → 先量 reach，再看把手高度。</p>
 <p>身體的代償很有效率——它不會讓你當場倒下，但會替你把問題記著，在幾百公里後以疼痛的方式還給你。Bike Fitting 的價值，在於在那之前就把帳算清楚。</p>
@@ -262,6 +314,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/strength-off-the-bike"><span>← 公路車・較新一篇</span><b>騎得快，先離開腳踏車：談公路車的離車訓練</b></a>
+      <a class="nx" href="/posts/cycling-periodization-overview"><span>公路車・較舊一篇 →</span><b>週期化訓練：為什麼不能一整年都用同一種課表</b></a>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/strength-off-the-bike">騎得快，先離開腳踏車：談公路車的離車訓練<span>公路車</span></a>
@@ -277,6 +333,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -293,6 +354,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="bike-fit-three-contacts";

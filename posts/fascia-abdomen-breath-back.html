@@ -242,6 +242,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -253,15 +280,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -285,23 +328,34 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">腹部深層、呼吸與下背的連結</h1>
     <p class="lede">支撐下背的不是死命縮小腹，而是由橫膈、骨盆底與腹背深層肌組成的核心圓柱。這篇說明腹內壓怎麼幫忙、縮小腹和用核心差在哪，以及在家的練習步驟與該就醫的警訊。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（6）</summary>
+      <ol>
+        <li><a href="#sec-1">核心其實是一個「圓柱」？</a></li>
+        <li><a href="#sec-2">腹內壓怎麼幫助下背？</a></li>
+        <li><a href="#sec-3">呼吸真的能支持下背嗎？</a></li>
+        <li><a href="#sec-4">「用力縮小腹」和「用核心」差在哪裡？</a></li>
+        <li><a href="#sec-5">在家可以怎麼練這個「圓柱」？</a></li>
+        <li><a href="#sec-6">什麼時候該就醫？</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>很多人以為保護下背就是「用力縮小腹」或「練出六塊肌」，其實真正支撐下背的，是一套會呼吸的深層系統。它安靜地在你每一次呼吸中運作。</p>
-<h2>核心其實是一個「圓柱」？</h2>
+<h2 id="sec-1">核心其實是一個「圓柱」？<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <p>深層核心不是單一肌肉，而是一個立體的圓柱形結構：</p>
 <ul><li><strong>上蓋</strong>是橫膈膜</li><li><strong>底部</strong>是骨盆底肌群</li><li><strong>四周</strong>是腹橫肌與深層背肌</li></ul>
 <p>當這四個面協調工作，就能在腹腔內形成穩定的支撐。</p>
-<h2>腹內壓怎麼幫助下背？</h2>
+<h2 id="sec-2">腹內壓怎麼幫助下背？<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <p>當你吸氣、橫膈下降，腹腔內的壓力會適度升高，這股「腹內壓」像一顆充氣的氣球，從內部支撐脊椎、分擔下背的負荷。關鍵在於這股壓力要能均勻、有彈性地調節，而不是靠死命憋氣或硬繃肚子。</p>
-<h2>呼吸真的能支持下背嗎？</h2>
+<h2 id="sec-3">呼吸真的能支持下背嗎？<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <p>可以。當呼吸順暢，橫膈與骨盆底能好好上下配合，核心圓柱才穩得住。反之，長期淺呼吸、聳肩式呼吸，會讓深層支撐失去節奏，下背就得額外費力。練習緩慢的腹式呼吸，讓肚子與肋廓自然起伏，是重建這份連結的第一步。若下背疼痛持續，建議尋求專業評估。</p>
-<h2>「用力縮小腹」和「用核心」差在哪裡？</h2>
+<h2 id="sec-4">「用力縮小腹」和「用核心」差在哪裡？<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <p>差在<strong>能不能一邊出力一邊呼吸</strong>。把肚子用力往內縮、憋氣硬撐，腹內壓會又高又僵，橫膈被鎖住，頸肩反而要幫忙代償。真正的核心工作是有彈性地把壓力撐起來，你同時還能說話、還能吸氣。另外兩個誤會也要說清楚：<strong>捲腹做很多不等於深層核心有力</strong>，六塊肌屬於外層；<strong>護腰不是核心</strong>，短期搬重輔助沒問題，長期依賴會讓支撐變懶。</p>
-<h2>在家可以怎麼練這個「圓柱」？</h2>
+<h2 id="sec-5">在家可以怎麼練這個「圓柱」？<a class="hash" href="#sec-5" aria-label="複製這個段落的連結">#</a></h2>
 <p>從呼吸開始，再加一點動作，每天 <strong>5 到 10 分鐘</strong>就有幫助：</p>
 <ul><li><strong>躺姿腹式呼吸</strong>：平躺、膝下墊枕頭，吸氣時感覺下肋骨往兩側擴、肚子微微隆起，吐氣自然收回，做 <strong>10 個呼吸</strong></li><li><strong>吐氣配合出力</strong>：吐氣到一半時，輕輕把一隻腳抬離地面幾公分再放下，左右交替<strong>各 8 下</strong>，全程都要能呼吸</li><li><strong>死蟲式</strong>：躺著、雙膝彎曲抬起，一手一腳交替慢慢伸出，<strong>各 8 到 10 下</strong>，下背一直輕貼地面</li><li><strong>橋式</strong>：踩地抬臀停 <strong>3 秒</strong>，<strong>10 下</strong>、2 組，用臀部發力而非硬撐下背</li><li><strong>平時提醒自己</strong>：坐著時想像「頭頂被輕輕往上提」，久坐每 <strong>30 到 40 分鐘</strong>起身動一下</li></ul>
 <p>多數人<strong>兩到四週</strong>會覺得腰不那麼容易累。如果某個動作做完當天或隔天疼痛明顯加重，就把次數減半或退回只做呼吸。</p>
-<h2>什麼時候該就醫？</h2>
+<h2 id="sec-6">什麼時候該就醫？<a class="hash" href="#sec-6" aria-label="複製這個段落的連結">#</a></h2>
 <p>大部分下背痛會自己好轉，但以下情況請儘快就醫：</p>
 <ul><li><strong>大小便失禁或解不出來</strong>、鞍部（跨下與屁股內側）麻木，這是<strong>馬尾症候群</strong>的警訊，屬於急症</li><li>單腳或雙腳<strong>越來越無力</strong>、走路拖腳</li><li>伴隨<strong>發燒、畏寒</strong>或近期感染病史</li><li><strong>不明原因體重下降</strong>、夜間痛到睡不著、有癌症病史</li><li>明顯外傷後劇痛，或本身有<strong>骨質疏鬆</strong>、長期用類固醇</li><li>一般照顧與練習做了<strong>四到六週</strong>仍沒改善，或疼痛越來越往腳延伸</li></ul>
 <blockquote>穩定的下背，始於一次好好的呼吸。</blockquote>
@@ -317,6 +371,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/fascia-diaphragm"><span>← 高級筋膜技術・較新一篇</span><b>橫膈膜：呼吸、核心與筋膜的交會</b></a>
+      <a class="nx" href="/posts/fascia-mesentery-abdomen"><span>高級筋膜技術・較舊一篇 →</span><b>腸繫膜與腹部：被忽略的內在張力</b></a>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/fascia-mesentery-abdomen">腸繫膜與腹部：被忽略的內在張力<span>高級筋膜技術</span></a>
@@ -332,6 +390,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -348,6 +411,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="fascia-abdomen-breath-back";

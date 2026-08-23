@@ -181,14 +181,26 @@ export function renderTextBlock(b) {
   return out.join('\n');
 }
 
+// 文章小標（## ）清單：供文章頁目錄與段落錨點使用。
+// id 用 sec-N（依出現順序），標題改寫時錨點才不會失效。
+export const headingsOf = content => String(content)
+  .replace(/<figure[\s\S]*?<\/figure>/g, '')
+  .split(/\n\s*\n/)
+  .map(b => b.trim())
+  .filter(b => b.startsWith('## '))
+  .map((b, i) => ({ id: `sec-${i + 1}`, text: plain(b.slice(3)) }));
+
 export function renderBody(text) {
   const figures = [];
+  let hn = 0;
   const protectedText = String(text).replace(/<figure[\s\S]*?<\/figure>/g, m => {
     figures.push(m); return `\n\n%%FIG${figures.length - 1}%%\n\n`;
   });
   return protectedText.trim().split(/\n\s*\n/).map(block => {
     const b = block.trim();
-    if (b.startsWith('## ')) return `<h2>${inlineFormat(b.slice(3))}</h2>`;
+    // 小標帶 id 與可複製的段落錨點：讀者能直接分享某一段，AI 也更容易引用到正確段落
+    if (b.startsWith('## ')) { const id = `sec-${++hn}`;
+      return `<h2 id="${id}">${inlineFormat(b.slice(3))}<a class="hash" href="#${id}" aria-label="複製這個段落的連結">#</a></h2>`; }
     if (b.startsWith('> ')) return `<blockquote>${inlineFormat(b.slice(2))}</blockquote>`;
     if (/^(-{3,}|\*{3,}|_{3,})$/.test(b)) return '<hr>';
     if (/^%%FIG(\d+)%%$/.test(b)) return figures[+b.match(/\d+/)[0]];

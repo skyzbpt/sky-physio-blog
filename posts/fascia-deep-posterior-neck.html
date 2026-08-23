@@ -242,6 +242,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -253,15 +280,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -285,24 +328,35 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">深層後頸：枕下肌與頸源性問題</h1>
     <p class="lede">低頭族的頭痛、眼睛痠，常和枕下那一小群深層肌肉有關。說明它們為什麼容易緊、與頸源性頭痛的關係，附上輕柔鬆動與收下巴練習、常見誤解與必須就醫的警訊。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（6）</summary>
+      <ol>
+        <li><a href="#sec-1">枕下肌群在哪、做什麼？</a></li>
+        <li><a href="#sec-2">為什麼低頭族容易這裡緊？</a></li>
+        <li><a href="#sec-3">枕下緊和頭痛、眼睛痠有關嗎？</a></li>
+        <li><a href="#sec-4">在家可以怎麼輕柔照顧？</a></li>
+        <li><a href="#sec-5">大家最常誤會什麼？</a></li>
+        <li><a href="#sec-6">什麼時候該就醫？</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>後腦杓與頸部交界處，藏著一小群深層肌肉——枕下肌群。它們雖小，卻和低頭族的頭痛、眼睛不適大有關係。</p>
-<h2>枕下肌群在哪、做什麼？</h2>
+<h2 id="sec-1">枕下肌群在哪、做什麼？<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <p>枕下肌群位在頭顱底部與最上兩節頸椎之間：</p>
 <ul><li>負責頭部細微的點頭與轉動</li><li>含有極高密度的<strong>本體感覺受器</strong>，回報頭的位置</li><li>與眼球動作、平衡都有連結</li></ul>
 <p>它們是頸部的「精密微調器」。</p>
-<h2>為什麼低頭族容易這裡緊？</h2>
+<h2 id="sec-2">為什麼低頭族容易這裡緊？<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <p>長時間低頭看手機、螢幕，頭部前傾，枕下肌群必須持續收縮把頭「拉住」，避免頭往前垮。這種長時間的靜態負荷，讓它們容易緊繃、缺血，進而引發後腦與頭部的緊繃感。</p>
-<h2>枕下緊和頭痛、眼睛痠有關嗎？</h2>
+<h2 id="sec-3">枕下緊和頭痛、眼睛痠有關嗎？<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <p>有關。枕下肌群的緊繃常和<strong>頸源性頭痛</strong>有關——痛從後腦往上、往眼睛周圍擴散。因為它們和眼球動作也有神經連結，緊繃時有些人會覺得眼睛跟著痠。改善方向：</p>
 <ul><li>輕柔鬆動枕下、避免大力猛壓</li><li>收下巴、減少頭部前傾的時間</li><li>規律打斷低頭姿勢</li></ul>
 <p>若頭痛頻繁或劇烈，建議尋求專業評估。</p>
-<h2>在家可以怎麼輕柔照顧？</h2>
+<h2 id="sec-4">在家可以怎麼輕柔照顧？<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <p>這一帶很敏感，力道以「舒服的痠」為準，出現頭暈或噁心就停下來：</p>
 <ul><li><strong>仰躺點頭</strong>：仰躺屈膝，頭不離地，下巴輕輕往胸口方向點一點點（真的只要一點點），停 5 秒放鬆，做 10 次，練的是深層的控制力。</li><li><strong>枕下鬆動</strong>：仰躺，把毛巾捲或兩顆網球放在後腦與頸部交界的兩側，讓頭的重量自然下沉 1～2 分鐘，配合慢慢呼吸，不要用手加壓或壓到正中間的骨頭。</li><li><strong>收下巴</strong>：坐直或靠牆站，下巴水平往後收，後頸有拉長感，停 5 秒，做 10 次，一天 2～3 回。</li><li><strong>打斷低頭</strong>：每看螢幕 20～30 分鐘，抬頭望遠處 20 秒，順手把螢幕墊高到眼睛的高度。</li></ul>
-<h2>大家最常誤會什麼？</h2>
+<h2 id="sec-5">大家最常誤會什麼？<a class="hash" href="#sec-5" aria-label="複製這個段落的連結">#</a></h2>
 <p>第一個誤解是「要用力按、脖子轉到有喀聲才算鬆開」。枕下肌又小又深，粗魯地按壓或自己硬扳頸部並不會比較有效，這一帶又靠近重要的血管與神經，不建議自己「扳」。第二個誤解是「頭痛都是睡不好或壓力大」；從後腦往上、往眼睛周圍延伸，轉頭或維持低頭時加重的頭痛，常和頸部有關，調整姿勢與輕柔放鬆往往有幫助。第三個誤解是「換一顆貴的枕頭就會好」，枕頭高度合適確實有幫助，但白天累積好幾個小時的低頭才是主因。多數人規律調整姿勢再加上輕柔鬆動，一到兩週內會覺得頭部的緊繃感變少，但要把姿勢習慣真正改過來，通常需要數週的提醒與練習。</p>
-<h2>什麼時候該就醫？</h2>
+<h2 id="sec-6">什麼時候該就醫？<a class="hash" href="#sec-6" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li>頭痛<strong>突然爆發</strong>，是這輩子最痛的一次</li><li>伴隨<strong>發燒與頸部僵硬</strong>，低頭碰不到胸口</li><li>出現手麻、手無力、走路不穩、講話不清、看東西有雙影或吞嚥困難</li><li>頭部外傷之後才開始的頭痛或頸痛</li><li>頭痛的頻率與強度<strong>持續增加</strong>，或需要吃止痛藥的天數越來越多</li><li>症狀<strong>持續超過兩週</strong>沒有改善</li></ul>
 <blockquote>小小的枕下肌，撐著你一整天的低頭。</blockquote>
     </div>
@@ -317,6 +371,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/fascia-scalenes"><span>← 高級筋膜技術・較新一篇</span><b>斜角肌：頸肩與胸廓出口</b></a>
+      <a class="nx" href="/posts/fascia-superficial-cervical"><span>高級筋膜技術・較舊一篇 →</span><b>淺層頸筋膜：頸部的第一層</b></a>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/fascia-superficial-cervical">淺層頸筋膜：頸部的第一層<span>高級筋膜技術</span></a>
@@ -332,6 +390,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -348,6 +411,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="fascia-deep-posterior-neck";

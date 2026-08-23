@@ -242,6 +242,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -253,15 +280,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -285,24 +328,35 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">腳踝活動度受限：認識深蹲卡住的原因</h1>
     <p class="lede">深蹲蹲不下去、腳踝前側卡卡？踝關節受限有不同型態，還會連累膝蓋與髖。本文帶你自我檢測、在家練活動度與控制，並認識該就醫的訊號。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（6）</summary>
+      <ol>
+        <li><a href="#sec-1">腳踝卡卡有哪些型態？</a></li>
+        <li><a href="#sec-2">為什麼腳踝卡會影響到膝蓋和髖？</a></li>
+        <li><a href="#sec-3">我可以怎麼改善？</a></li>
+        <li><a href="#sec-4">在家可以怎麼練？</a></li>
+        <li><a href="#sec-5">常見的誤解是什麼？</a></li>
+        <li><a href="#sec-6">什麼時候要找專業評估？</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>蹲不下去、上下樓梯覺得腳踝卡，這些常和「踝關節背屈受限」有關——也就是腳掌往上勾、脛骨往前傾的角度不夠。</p>
-<h2>腳踝卡卡有哪些型態？</h2>
+<h2 id="sec-1">腳踝卡卡有哪些型態？<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <p>踝關節受限的感覺，大致可分成兩種方向：</p>
 <ul><li><strong>前側夾擠</strong>：背屈到底時，腳踝前方有卡住、擠壓感</li><li><strong>後側緊繃</strong>：小腿與跟腱把腳踝往下拉，限制了往上勾的範圍</li></ul>
 <p>前者常和關節面、骨頭排列有關；後者則多是軟組織與筋膜張力。</p>
-<h2>為什麼腳踝卡會影響到膝蓋和髖？</h2>
+<h2 id="sec-2">為什麼腳踝卡會影響到膝蓋和髖？<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <p>因為身體很會「借」。當腳踝背屈不夠，深蹲或落地時，身體會從別處找角度——膝蓋往內、腰過度前彎、髖代償。長期下來，膝或髖反而變成受力與疼痛的地方。這就是筋膜張力沿著鏈往上傳的例子。</p>
-<h2>我可以怎麼改善？</h2>
+<h2 id="sec-3">我可以怎麼改善？<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li>溫和放鬆小腿與腳踝周邊軟組織</li><li>針對背屈方向做活動度練習</li><li>訓練足踝的穩定與控制</li></ul>
 <p>若腳踝曾嚴重扭傷、有明顯卡住或疼痛，建議尋求專業評估，分辨是關節還是軟組織的問題。</p>
-<h2>在家可以怎麼練？</h2>
+<h2 id="sec-4">在家可以怎麼練？<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <p>先鬆動、再練控制，順序反了效果會打折：</p>
 <ul><li><strong>膝碰牆測試</strong>：腳尖離牆約一個拳頭寬，腳跟不離地、膝蓋往前碰牆。碰不到就是背屈偏緊，可以拿它當每週的進步指標</li><li><strong>踝關節前推</strong>：同樣姿勢，膝蓋往前推到有緊感就停，前後來回 10 到 15 次，一天 2 到 3 回</li><li><strong>小腿伸展</strong>：後腳跟貼地、膝蓋伸直維持 20 到 30 秒，左右各 3 次；再把後腳膝蓋微彎重做一次，照顧比較深層的部分</li><li><strong>腳踝穩定</strong>：單腳站 20 到 30 秒，站穩後閉眼再試，左右各 3 次</li><li><strong>練完馬上用</strong>：接著做幾下慢速深蹲，讓身體把新的角度學進動作裡</li></ul>
 <p>前側有夾擠感的人，鬆動時可用彈性帶把腳踝往後拉一點，但請先由治療師示範過再自己做。</p>
-<h2>常見的誤解是什麼？</h2>
+<h2 id="sec-5">常見的誤解是什麼？<a class="hash" href="#sec-5" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li><strong>「用力壓一壓就會開」</strong>：粗暴地把腳踝往下壓，若問題出在關節排列，只會讓前側更痛。</li><li><strong>「拉筋拉夠就好」</strong>：只拉小腿不練控制，蹲下去仍會膝蓋往內、腰部代償。</li><li><strong>「蹲不下去是我核心不夠」</strong>：核心確實重要，但當腳踝角度不足，再怎麼用力也擠不出來。</li><li><strong>「腳踝不痛就不用管」</strong>：不痛的受限一樣會讓膝、髖長期代償，這也是很多膝痛的遠因。</li></ul>
-<h2>什麼時候要找專業評估？</h2>
+<h2 id="sec-6">什麼時候要找專業評估？<a class="hash" href="#sec-6" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li>曾經 <strong>嚴重扭傷或骨折</strong>，之後就一直卡</li><li>腳踝 <strong>突然卡住</strong> 動不了，或有明顯「鎖住」的感覺</li><li>關節 <strong>腫脹、發熱</strong>，或痛到無法踩地</li><li>反覆扭傷，走在不平的路上會突然「軟腳」</li><li>認真練 <strong>四到六週</strong> 活動度完全沒有進步</li></ul>
 <p>軟組織造成的受限，規律練習下常在 <strong>數週內</strong> 有感；關節或骨頭排列造成的則需要專業處理，自主練習只是輔助。</p>
 <blockquote>蹲不下去，未必是不夠努力，而是身體被卡住了。</blockquote>
@@ -318,6 +372,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/fascia-ankle-fibula"><span>← 高級筋膜技術・較新一篇</span><b>腳踝扭傷好不了？腓骨與筋膜的角色</b></a>
+      <a class="nx" href="/posts/fascia-plantar-fasciitis"><span>高級筋膜技術・較舊一篇 →</span><b>足底筋膜炎：從筋膜角度理解足跟痛</b></a>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/fascia-plantar-fasciitis">足底筋膜炎：從筋膜角度理解足跟痛<span>高級筋膜技術</span></a>
@@ -333,6 +391,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -349,6 +412,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="fascia-ankle-restrictions";

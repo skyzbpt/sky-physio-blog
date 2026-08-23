@@ -242,6 +242,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -253,15 +280,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -285,28 +328,39 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">「熱揮鞭」與「冷揮鞭」：急性與慢性的差別</h1>
     <p class="lede">揮鞭傷有兩種面貌：急性期發炎敏感的「熱」，與慢性防衛僵硬的「冷」。分清楚，處理方向才會對，也才知道各階段在家能做什麼、哪些警訊要立刻就醫。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（6）</summary>
+      <ol>
+        <li><a href="#sec-1">什麼是「熱揮鞭」？</a></li>
+        <li><a href="#sec-2">什麼是「冷揮鞭」？</a></li>
+        <li><a href="#sec-3">兩者的處理方向一樣嗎？</a></li>
+        <li><a href="#sec-4">急性期在家可以怎麼做？</a></li>
+        <li><a href="#sec-5">慢性期怎麼慢慢找回活動度？</a></li>
+        <li><a href="#sec-6">有哪些警訊要立刻就醫？</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>同樣是揮鞭傷，剛受傷和拖了很久的樣子截然不同。用「熱」與「冷」來比喻這兩個階段，能幫你理解為什麼處理方式要跟著調整。</p>
-<h2>什麼是「熱揮鞭」？</h2>
+<h2 id="sec-1">什麼是「熱揮鞭」？<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <p>指<strong>急性期</strong>——受傷後不久，身體處於發炎與高度敏感的狀態：</p>
 <ul><li>疼痛明顯、範圍較廣</li><li>組織腫脹、對觸碰與動作都很敏感</li><li>肌肉出現保護性緊繃</li></ul>
 <p>這時像一團「火」還在燒。</p>
-<h2>什麼是「冷揮鞭」？</h2>
+<h2 id="sec-2">什麼是「冷揮鞭」？<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <p>指<strong>慢性期</strong>——傷後拖了數週到數月，發炎退了，卻留下長期的防衛與僵硬：</p>
 <ul><li>頸部活動度持續受限、卡卡的</li><li>疼痛可能不再劇烈，但揮之不去</li><li>常伴隨對再次受傷的恐懼與緊繃</li></ul>
 <p>像火熄了，卻結成一塊「冷」的僵硬。</p>
-<h2>兩者的處理方向一樣嗎？</h2>
+<h2 id="sec-3">兩者的處理方向一樣嗎？<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <p>不一樣，這正是分辨的意義：</p>
 <ul><li><strong>熱（急性）</strong>：先安撫、降敏、適度休息與溫和活動，避免過度刺激</li><li><strong>冷（慢性）</strong>：則需要逐步鬆動、重建活動度與肌力，並處理動作恐懼</li></ul>
 <p>用錯階段的方法，可能事倍功半。建議由專業評估目前處於哪個階段。</p>
-<h2>急性期在家可以怎麼做？</h2>
+<h2 id="sec-4">急性期在家可以怎麼做？<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <p>「熱」的階段目標是降敏，不是躺著不動：</p>
 <ul><li><strong>保持溫和活動</strong>：在<strong>不引起明顯疼痛</strong>的範圍內，慢慢左右轉頭、點頭、側傾，每個方向 5 到 10 次，一天數回</li><li><strong>避免長時間固定姿勢</strong>：每 30 分鐘起來動一動，久坐不動反而更僵</li><li><strong>調整睡姿</strong>：仰睡用一個支撐得住頸部曲線的枕頭，側睡時枕頭高度大約等於肩寬，避免趴睡</li><li><strong>頸圈不要長期依賴</strong>：除非醫師特別交代，長時間固定通常不利於恢復</li><li><strong>暫時降低負荷</strong>：先避開提重物、長時間低頭與劇烈轉頭的動作</li></ul>
-<h2>慢性期怎麼慢慢找回活動度？</h2>
+<h2 id="sec-5">慢性期怎麼慢慢找回活動度？<a class="hash" href="#sec-5" aria-label="複製這個段落的連結">#</a></h2>
 <p>「冷」的階段是重新建立信任，關鍵是<strong>規律、漸進、可預期</strong>：</p>
 <ul><li>每天固定做頸部活動度練習，慢慢往受限的方向多走一點點</li><li>加入肩胛與上背的活動，分擔頸部的工作</li><li>逐步恢復日常與運動，讓身體重新相信「這樣動是安全的」</li><li>顧好睡眠與壓力，緊繃與疼痛敏感度往往互相影響</li></ul>
 <p>多數人在急性期的幾週內會逐步改善；若拖成慢性，恢復期較長，進步也比較像階梯而非直線，起伏是正常的。</p>
-<h2>有哪些警訊要立刻就醫？</h2>
+<h2 id="sec-6">有哪些警訊要立刻就醫？<a class="hash" href="#sec-6" aria-label="複製這個段落的連結">#</a></h2>
 <p>受傷後若出現以下情形，請盡快就醫，不要自行處理：</p>
 <ul><li><strong>手腳麻木、無力</strong>，或走路變得不穩</li><li><strong>劇烈頭痛、頭暈、嘔吐、意識改變</strong></li><li><strong>視力模糊或複視、講話不清、吞嚥困難</strong></li><li>大小便控制出現異常</li><li>頸部劇痛且完全無法轉動，或有明顯外傷、骨折疑慮</li></ul>
 <p>此外，若已經超過六週仍沒有任何進展，也建議回頭做一次完整評估，重新確認方向。</p>
@@ -323,6 +377,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/fascia-vestibular-whiplash"><span>← 高級筋膜技術・較新一篇</span><b>前庭系統與揮鞭後的頭暈</b></a>
+      <a class="nx" href="/posts/fascia-whiplash-overview"><span>高級筋膜技術・較舊一篇 →</span><b>揮鞭症候群：車禍後的頸部筋膜傷害</b></a>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/fascia-whiplash-overview">揮鞭症候群：車禍後的頸部筋膜傷害<span>高級筋膜技術</span></a>
@@ -338,6 +396,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -354,6 +417,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="fascia-hot-cold-whiplash";

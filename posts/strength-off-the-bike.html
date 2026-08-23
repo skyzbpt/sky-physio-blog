@@ -184,6 +184,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -195,15 +222,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -227,25 +270,35 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">騎得快，先離開腳踏車：談公路車的離車訓練</h1>
     <p class="lede">想騎得更快、更不容易受傷，答案常常不在更多的里程，而在你下車之後做了什麼。但「核心訓練」這四個字，可能正在浪費你的時間。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（5）</summary>
+      <ol>
+        <li><a href="#sec-1">騎車，是一種「很窄」的運動</a></li>
+        <li><a href="#sec-2">先說一件可能冒犯人的事：「核心訓練」</a></li>
+        <li><a href="#sec-3">高迴轉所以要「輕重量、高次數」？也是迷思</a></li>
+        <li><a href="#sec-4">那到底該怎麼開始？先評估，不要急著蹲</a></li>
+        <li><a href="#sec-5">給時間有限的車友：三個觀念帶著走</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>「我已經騎很多了，為什麼還要花時間做重訓？」這是我在門診最常被公路車友問到的問題。背後的擔心很實際：騎車的時間本來就不夠，週末好不容易出門，憑什麼要分兩三個小時進健身房？</p>
 <p>但英國國家自行車隊的物理治療師 Phil Burt 與肌力教練 Martin Evans，在《Strength and Conditioning for Cyclists》這本書裡給了一個很有說服力的答案——而且這個答案，跟大多數人想的不一樣。</p>
-<h2>騎車，是一種「很窄」的運動</h2>
+<h2 id="sec-1">騎車，是一種「很窄」的運動<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <p>先講一個容易被忽略的事實：以動作的角度看，騎車其實是一種非常單一、狹窄的活動。你的關節在一個很小的範圍裡重複同一個動作，幾萬次。久了，身體會非常擅長這件事——但也僅止於這件事。</p>
 <p>書裡用一個比喻：把你的整體體能想像成一座金字塔。底層是關節活動度、是動作控制，往上才是肌力，最頂端那一小塊，才是「騎車表現」。問題是，大多數車友的金字塔是倒過來的——頂端的騎車能力很強，底層卻又窄又薄。這樣的結構撐不住，稍微一個姿勢改變、一塊肌肉疲勞，就容易疼痛或受傷。</p>
 <p>離車訓練要做的，不是讓你更會騎車，而是把這座金字塔的底座一點一點拓寬。</p>
-<h2>先說一件可能冒犯人的事：「核心訓練」</h2>
+<h2 id="sec-2">先說一件可能冒犯人的事：「核心訓練」<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <p>這本書最讓我認同的，是它對「核心」這個詞的態度。</p>
 <p>很多車友一遇到騎車下背痠，直覺就是「我核心無力」，於是開始做大量躺在地上、幅度很小的核心運動。書的作者直接點出：這往往是誤會。1990 年代有研究指出腹橫肌無力和下背痛有關，整個健身與物理治療界就把「核心穩定」當成萬靈丹。但後來我們更清楚地知道：軀幹的穩定是許多肌肉共同、而且是「反射性」地完成的，它的啟動快到只差幾十毫秒——那是你的意識根本控制不來的速度。</p>
 <p>換句話說，刻意去「收緊、繃住」某一塊肌肉，常常沒打中真正的問題。騎車的下背痠，更可能來自不合適的 Bike Fit、單純的訓練不足，或者多個因素加在一起。把希望全押在核心運動上，往往是把時間花錯地方。</p>
-<h2>高迴轉所以要「輕重量、高次數」？也是迷思</h2>
+<h2 id="sec-3">高迴轉所以要「輕重量、高次數」？也是迷思<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <p>另一個常聽到的說法：既然踩踏是高迴轉，重訓也該輕重量、高次數來「模擬」騎車。</p>
 <p>書裡算了一筆帳很有意思：就算你做 5 組各 50 下，也才 250 下——而你在路上不到三分鐘就會踩超過這個數字。用重訓模擬騎車的迴轉，數學上根本不成立。重訓的目的不是複製騎車，而是改變肌肉本身的特性，再把這條更強壯的肌肉帶回車上。要刺激肌肉產生力量的改變，負荷必須足夠；一直做 20 下以上的輕負荷，多半只是低效率地耗時間。</p>
-<h2>那到底該怎麼開始？先評估，不要急著蹲</h2>
+<h2 id="sec-4">那到底該怎麼開始？先評估，不要急著蹲<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <p>這本書最值得借鏡的精神，是「每個騎士都不一樣」。</p>
 <p>它不給你一份通用菜單，而是先做一套自我評估——檢查髖、胸椎、肩膀、腳踝這些對騎士特別關鍵的部位，看你的活動度與控制力到哪裡。哪裡是弱點，那裡就是你的第一順位。作者特別提醒：幾乎每份網路上的單車重訓菜單都會放槓鈴深蹲，但大多數車友其實還沒有足夠的軀幹力量、活動度與技術，能安全地完成它。沒評估就直接上深蹲、硬舉，輕則無效，重則受傷。</p>
 <p>評估的順序大致是這樣：先看「活動度」夠不夠 → 再看你在這個範圍裡有沒有「控制力」（先簡單支撐的動作，再進階到不支撐的深蹲、分腿蹲）→ 最後才談「負重訓練」。每一關沒過，就先做對應的矯正運動，過了再往上。這也是為什麼書名雖然叫肌力訓練，前面卻花了大量篇幅在講活動度與控制——因為對多數人來說，光是把底座練穩，騎車表現和抗傷能力就會明顯提升，根本還用不到很重的槓片。</p>
-<h2>給時間有限的車友：三個觀念帶著走</h2>
+<h2 id="sec-5">給時間有限的車友：三個觀念帶著走<a class="hash" href="#sec-5" aria-label="複製這個段落的連結">#</a></h2>
 <p>一，把離車訓練當成季節規劃，不是天天進健身房。冬天（或你的淡季）做一個 8–12 週的肌力區塊，賽季前則回到維持就好。這段期間週日團騎可能會變慢，別意外——那是身體在重新打底，等你放開「肌力訓練的手煞車」回到車上，會突破原本的高原期。</p>
 <p>二，初期的活動度與控制訓練幾乎不需器材，一條彈力帶、一顆按摩球、一張瑜伽墊就能開始，而且不太會影響隔天騎乘。長途騎完、或久坐久站一整天後做，反而很舒服。</p>
 <p>三，疼痛要個別看待。急性受傷的初期過後，「漸進式的活動」通常比「完全休息」更能幫助恢復；但如果疼痛持續或來路不明，先找專業評估，別自己硬撐。</p>
@@ -263,6 +316,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/cycling-base-training"><span>← 公路車・較新一篇</span><b>基礎期：無聊，但決定你今年的天花板</b></a>
+      <a class="nx" href="/posts/bike-fit-three-contacts"><span>公路車・較舊一篇 →</span><b>三個接觸點，決定你和公路車的關係</b></a>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/bike-fit-three-contacts">三個接觸點，決定你和公路車的關係<span>公路車</span></a>
@@ -278,6 +335,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -294,6 +356,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="strength-off-the-bike";

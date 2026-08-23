@@ -242,6 +242,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -253,15 +280,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -285,23 +328,34 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">腸繫膜與腹部：被忽略的內在張力</h1>
     <p class="lede">腹部緊繃不一定只是腹肌的事。腸繫膜等筋膜結構懸吊著內臟，也需要滑動的空間。本文說明內在張力與呼吸姿勢的關係、在家能做的溫和練習，以及必須先看醫師的警訊。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（6）</summary>
+      <ol>
+        <li><a href="#sec-1">腸繫膜是做什麼的？</a></li>
+        <li><a href="#sec-2">腹部緊繃只跟肌肉有關嗎？</a></li>
+        <li><a href="#sec-3">這種內在張力和姿勢、呼吸有關嗎？</a></li>
+        <li><a href="#sec-4">在家可以怎麼溫和照顧腹部？</a></li>
+        <li><a href="#sec-5">關於腹部緊繃，最常見的誤解是什麼？</a></li>
+        <li><a href="#sec-6">什麼時候該就醫？</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>談到腹部，我們通常想到腹肌，卻很少注意到肚子「裡面」也有一整套筋膜結構。腸繫膜就是其中之一，它像一片薄膜，把腸道固定並連結到後方的腹壁。</p>
-<h2>腸繫膜是做什麼的？</h2>
+<h2 id="sec-1">腸繫膜是做什麼的？<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <p>腸繫膜是腹腔內的一層結締組織，功能不只是「固定內臟」：</p>
 <ul><li>支撐並懸吊腸道</li><li>讓血管與神經通往腸道</li><li>允許內臟在呼吸與活動時<strong>滑動、移動</strong></li></ul>
 <p>健康的腹腔，內臟之間能彼此順暢地滑動，而不是黏在一起。</p>
-<h2>腹部緊繃只跟肌肉有關嗎？</h2>
+<h2 id="sec-2">腹部緊繃只跟肌肉有關嗎？<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <p>不一定。腹部的緊繃感，除了腹肌張力，也可能和內臟活動度、腹腔內的筋膜張力有關。手術後的沾黏、長期姿勢不良、慢性壓力，都可能影響這片內在網絡，讓腹部感覺悶脹或緊繃。</p>
-<h2>這種內在張力和姿勢、呼吸有關嗎？</h2>
+<h2 id="sec-3">這種內在張力和姿勢、呼吸有關嗎？<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <p>有的。腹腔位在橫膈與骨盆底之間，呼吸時內臟會隨之上下移動。當呼吸淺、姿勢蜷縮時，這個空間受到壓縮，內在的滑動也可能受限。溫和的深呼吸、伸展與活動，有助於維持腹腔的柔軟。腹部若有持續不適，應先由醫療專業排除內科問題。</p>
-<h2>在家可以怎麼溫和照顧腹部？</h2>
+<h2 id="sec-4">在家可以怎麼溫和照顧腹部？<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <p>原則是<strong>溫和、規律、不硬壓</strong>，讓腹腔重新有空間活動：</p>
 <ul><li><strong>躺著練橫膈呼吸</strong>：仰躺屈膝，一手放胸口、一手放肚子，吸氣時肚子微鼓、胸口不動，五到十分鐘</li><li><strong>打斷久坐</strong>：每三十到六十分鐘站起來走動，坐著骨盆坐正，別讓肚子一直被壓摺</li><li><strong>溫熱敷腹部</strong>：一次約十五分鐘，悶脹時使用，注意別過燙</li><li><strong>溫和的軀幹活動</strong>：站著小幅度左右轉身、側彎、後仰，各五到十次</li><li><strong>每天散步二十到三十分鐘</strong>：走路的自然軀幹旋轉就是內臟最好的活動</li></ul>
 <p>所有動作都以<strong>不引起腹痛</strong>為界線；腹部開過刀的人要更保守，最好先請醫療專業確認。</p>
-<h2>關於腹部緊繃，最常見的誤解是什麼？</h2>
+<h2 id="sec-5">關於腹部緊繃，最常見的誤解是什麼？<a class="hash" href="#sec-5" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li><strong>誤解一：肚子緊就是核心太弱。</strong> 過量仰臥起坐反而增加腹內壓、讓呼吸更緊；先找回呼吸與活動度，再談肌力。</li><li><strong>誤解二：用力揉、大力推就會鬆開。</strong> 腹部裡有內臟與血管，粗暴按壓風險不低也未必有效，處理該溫和、可承受。</li><li><strong>誤解三：腹部悶脹一定是筋膜問題。</strong> 消化道、婦科與泌尿系統問題都可能有類似感覺，<strong>排除內科原因永遠是第一步</strong>。</li><li><strong>誤解四：手術後的沾黏完全沒辦法。</strong> 沾黏不會憑空消失，但改善呼吸、姿勢與活動度，常能讓不適明顯減輕。</li></ul>
-<h2>什麼時候該就醫？</h2>
+<h2 id="sec-6">什麼時候該就醫？<a class="hash" href="#sec-6" aria-label="複製這個段落的連結">#</a></h2>
 <p>腹部症狀來源很廣，出現下列任何一項請先看醫師：</p>
 <ul><li><strong>突然的劇烈腹痛</strong>，按壓後更痛，或肚子硬得像板子</li><li>合併<strong>發燒、嘔吐不止、解不出大便也排不出氣</strong></li><li><strong>大便帶血或呈黑色柏油狀</strong>，或排便習慣改變超過兩週</li><li><strong>不明原因體重下降</strong>、食慾明顯變差</li><li>夜間痛到醒、疼痛一路加重，或<strong>持續超過兩週沒有改善</strong></li><li>女性合併異常出血或下腹持續悶痛</li></ul>
 <blockquote>看不見的張力，也需要被溫柔看見。</blockquote>
@@ -317,6 +371,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/fascia-abdomen-breath-back"><span>← 高級筋膜技術・較新一篇</span><b>腹部深層、呼吸與下背的連結</b></a>
+      <a class="nx" href="/posts/fascia-psoas"><span>高級筋膜技術・較舊一篇 →</span><b>腰大肌：最被誤解的核心肌</b></a>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/fascia-psoas">腰大肌：最被誤解的核心肌<span>高級筋膜技術</span></a>
@@ -332,6 +390,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -348,6 +411,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="fascia-mesentery-abdomen";

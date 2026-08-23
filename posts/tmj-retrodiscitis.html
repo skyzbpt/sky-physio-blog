@@ -226,6 +226,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -237,15 +264,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -269,21 +312,33 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">關節後區發炎（retrodiscitis）：咬合為什麼突然對不準</h1>
     <p class="lede">下巴撞到後關節劇痛、後牙先咬到、咬合像變了——可能是關節後方組織發炎。這時千萬別急著調咬合，文中整理受傷後頭幾天的照顧方式，以及必須就醫的警訊。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（7）</summary>
+      <ol>
+        <li><a href="#sec-1">特徵</a></li>
+        <li><a href="#sec-2">為什麼咬合會變</a></li>
+        <li><a href="#sec-3">處理</a></li>
+        <li><a href="#sec-4">咬合變了要馬上去調牙齒嗎？</a></li>
+        <li><a href="#sec-5">撞到下巴之後，頭幾天可以怎麼做？</a></li>
+        <li><a href="#sec-6">這段期間可以做假牙或矯正嗎？</a></li>
+        <li><a href="#sec-7">多久會好？什麼情況要立刻就醫？</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>關節盤後方有一區血管神經豐富的組織。當它發炎，就是關節後區炎（retrodiscitis），常見於<strong>外傷</strong>（如下巴撞擊）之後。</p>
-<h2>特徵</h2>
+<h2 id="sec-1">特徵<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li>關節處<strong>明顯疼痛</strong>，尤其咬合時</li><li><strong>後牙先接觸、咬合對不準</strong>：因為腫脹把髁突稍微往前下推</li><li>可能伴隨張口受限</li></ul>
-<h2>為什麼咬合會變</h2>
+<h2 id="sec-2">為什麼咬合會變<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <p>發炎腫脹佔了關節後方空間，把下顎髁突「頂」開一點，患側後牙就會先咬到、前牙反而咬不緊。這通常是<strong>暫時</strong>的，發炎消了會恢復——所以此時<strong>不應急著去磨牙齒調咬合</strong>。</p>
-<h2>處理</h2>
+<h2 id="sec-3">處理<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li>關節休息、消炎、軟食</li><li>避免用力咬患側</li><li>物理治療與時間，多數會逐步緩解</li></ul>
-<h2>咬合變了要馬上去調牙齒嗎？</h2>
+<h2 id="sec-4">咬合變了要馬上去調牙齒嗎？<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <p>先不要。關節後區發炎腫脹時，會把下巴稍微頂開、讓後牙先咬到，這通常是<strong>暫時</strong>的，發炎消了咬合會恢復。此時急著磨牙齒調咬合，反而可能造成不可逆的問題。</p>
-<h2>撞到下巴之後，頭幾天可以怎麼做？</h2>
+<h2 id="sec-5">撞到下巴之後，頭幾天可以怎麼做？<a class="hash" href="#sec-5" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li><strong>前 48～72 小時冰敷</strong>：薄毛巾包著冰袋敷在關節處 10～15 分鐘，每 2～3 小時一次；之後若只剩僵硬感，可改成溫敷</li><li><strong>讓關節休息</strong>：連續 1～2 週軟食，食物切小塊、煮軟，暫時不咬硬的、韌的東西</li><li><strong>限制張口幅度</strong>：打呵欠時用手掌或拳頭輕托下巴，避免一張到底又把發炎的組織拉開一次</li><li><strong>少講話、不用患側用力咬</strong>，也別用牙齒咬開包裝</li><li><strong>不要一直「試咬看看」</strong>：反覆對咬合會持續刺激已經發炎的組織，也讓自己愈量愈焦慮</li><li><strong>睡覺避免壓到患側臉頰</strong>，平躺或側睡健側較舒服</li></ul>
-<h2>這段期間可以做假牙或矯正嗎？</h2>
+<h2 id="sec-6">這段期間可以做假牙或矯正嗎？<a class="hash" href="#sec-6" aria-label="複製這個段落的連結">#</a></h2>
 <p>先緩一緩。現在咬不準的原因是<strong>腫脹</strong>，不是牙齒的形狀；腫脹會消，牙齒磨掉卻補不回來。在發炎期把「暫時的咬合」當成標準去修磨、做新的假牙貼片或調整矯正，等腫脹退了反而可能變成真的咬不到，需要更複雜的處理。等關節安靜下來，量到的咬合才可靠。</p>
-<h2>多久會好？什麼情況要立刻就醫？</h2>
+<h2 id="sec-7">多久會好？什麼情況要立刻就醫？<a class="hash" href="#sec-7" aria-label="複製這個段落的連結">#</a></h2>
 <p>單純的關節後區發炎，在確實減載之後<strong>多半在數天到數週內逐步緩解</strong>，咬合感也會慢慢回到原本的樣子。不過外傷後的下巴痛不見得只是發炎，出現以下狀況請盡快就醫（牙科、口腔外科或急診）——</p>
 <ul><li>撞擊後<strong>完全張不開</strong>，或下巴歪向一邊、閉不起來</li><li>牙齒明顯咬不攏、牙齒鬆動或斷裂</li><li>耳朵流血、流出清澈液體，或聽力改變</li><li>頭暈、嘔吐、意識不清（要先排除頭部外傷）</li><li>關節處腫脹發熱合併發燒</li><li>疼痛與咬合異常<strong>超過兩週沒有改善</strong></li></ul>
 <blockquote>「咬合突然變了」不一定是牙齒的錯，可能是關節在腫——先別急著動咬合。</blockquote>
@@ -299,6 +354,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/tmj-osteoarthritis"><span>← 顳顎關節・較新一篇</span><b>顳顎關節退化性關節炎：摩擦聲與磨損</b></a>
+      <a class="nx" href="/posts/tmj-synovitis-capsulitis"><span>顳顎關節・較舊一篇 →</span><b>顳顎關節發炎：滑膜炎與關節囊炎</b></a>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/tmj-synovitis-capsulitis">顳顎關節發炎：滑膜炎與關節囊炎<span>顳顎關節</span></a>
@@ -314,6 +373,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -330,6 +394,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="tmj-retrodiscitis";

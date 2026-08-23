@@ -242,6 +242,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -253,15 +280,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -285,23 +328,34 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">慢性疼痛的規模：為什麼它是最大的健康負擔</h1>
     <p class="lede">慢性疼痛是失能最常見的原因，光美國每年的醫療與工作損失就超過 6500 億美元。痛多久算慢性、早期還來得及做什麼、哪些警訊要立刻就醫，一次看懂。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（6）</summary>
+      <ol>
+        <li><a href="#sec-1">這個負擔有多大？</a></li>
+        <li><a href="#sec-2">既然這麼嚴重，為什麼還是被低估？</a></li>
+        <li><a href="#sec-3">這對你意味著什麼？</a></li>
+        <li><a href="#sec-4">痛多久才算「慢性」？</a></li>
+        <li><a href="#sec-5">在變成慢性之前，我可以做什麼？</a></li>
+        <li><a href="#sec-6">哪些狀況要盡快就醫？</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>我們常把疼痛當成「忍一忍就過去」的小事，但把數字攤開來看，慢性疼痛其實是現代社會最沉重的健康負擔之一。</p>
-<h2>這個負擔有多大？</h2>
+<h2 id="sec-1">這個負擔有多大？<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <p>依《激痛點手冊》整理的資料，慢性（持續性）疼痛狀況是<strong>失能最常見的原因</strong>：</p>
 <ul><li>光是在美國，每年的醫療照護與工作損失就超過 <strong>6500 億美元</strong></li><li>這個經濟成本，<strong>超過糖尿病、癌症與心臟病三者的總和</strong></li><li>慢性疼痛所導致的死亡，比車禍還多</li></ul>
 <p>換句話說，它不只讓人不舒服，而是實實在在地奪走生活與生命。</p>
-<h2>既然這麼嚴重，為什麼還是被低估？</h2>
+<h2 id="sec-2">既然這麼嚴重，為什麼還是被低估？<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <p>這正是原文特別點出的矛盾：儘管經濟成本驚人、對個人的衝擊也極大，<strong>用來「預防」慢性疼痛、以及發展有實證依據的管理策略的努力，卻非常少</strong>。多數資源仍花在疼痛已經變成慢性之後的處理，而不是在它還來得及被攔下的階段。</p>
-<h2>這對你意味著什麼？</h2>
+<h2 id="sec-3">這對你意味著什麼？<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <p>如果你正處在疼痛的早期階段，別把「還可以忍」當成不需要處理的理由。及早理解自己的疼痛、及早尋求物理治療師或醫師的評估，本身就是一種預防——不讓一時的疼痛，有機會變成長年的負擔。</p>
-<h2>痛多久才算「慢性」？</h2>
+<h2 id="sec-4">痛多久才算「慢性」？<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <p>臨床上通常以<strong>持續超過三個月</strong>，或超過組織正常修復所需的時間，作為「慢性（持續性）疼痛」的分界。這裡有個很重要的觀念：急性期的痛大多和組織受傷有關，但當疼痛拖久了，神經系統會變得比較敏感，<strong>痛的強度不一定等於身體壞掉的程度</strong>。所以有些人影像還好卻很痛，也有人影像有退化卻不痛——這不代表疼痛是想像出來的，而是機制已經不只是「傷口」那麼單純。</p>
-<h2>在變成慢性之前，我可以做什麼？</h2>
+<h2 id="sec-5">在變成慢性之前，我可以做什麼？<a class="hash" href="#sec-5" aria-label="複製這個段落的連結">#</a></h2>
 <p>早期最關鍵的一件事是<strong>不要完全停下來</strong>，而是把活動調整到現在能負擔的量：</p>
 <ul><li><strong>保持活動</strong>：從每天走 10 分鐘開始，覺得穩定了再每週多加一點時間</li><li><strong>記錄一週</strong>：寫下哪些動作、多少量會誘發疼痛，這份紀錄能讓評估準確很多</li><li><strong>顧好睡眠</strong>：睡不好會明顯放大疼痛，固定起床時間、睡前少看螢幕都有幫助</li><li><strong>把目標放在功能</strong>：先追求「能走多久、能提多重、能睡多久」，而不是一開始就要求零疼痛</li><li><strong>不要等到不痛才動</strong>：等待換來的通常是更僵、更弱的身體</li></ul>
 <p>早期的疼痛在調整活動量之後，通常數週內會慢慢往好的方向走；拖得越久，改善會越慢，但仍然有進步空間。</p>
-<h2>哪些狀況要盡快就醫？</h2>
+<h2 id="sec-6">哪些狀況要盡快就醫？<a class="hash" href="#sec-6" aria-label="複製這個段落的連結">#</a></h2>
 <p>以下情形不適合自己觀察，請直接就醫：</p>
 <ul><li><strong>大小便功能改變</strong>，或屁股與會陰一帶麻木（可能是馬尾症候群，屬於急症）</li><li>手或腳<strong>一週一週地變無力</strong>，越來越難走路或拿東西</li><li>休息也不緩解、夜裡會把你痛醒的持續疼痛</li><li>發燒、患處紅腫發熱等感染徵象</li><li><strong>不明原因的體重下降</strong>，或本身有癌症病史</li></ul>
 <blockquote>疼痛的代價，從來不只寫在病歷上，也寫在生活裡。</blockquote>
@@ -317,6 +371,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/tps-two-types-chronic-pain"><span>← 疼痛科學・較新一篇</span><b>慢性疼痛不只是「痛得比較久」：兩種不同的類型</b></a>
+      <span></span>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/tps-two-types-chronic-pain">慢性疼痛不只是「痛得比較久」：兩種不同的類型<span>疼痛科學</span></a>
@@ -332,6 +390,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -348,6 +411,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="tps-chronic-pain-scale";

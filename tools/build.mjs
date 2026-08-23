@@ -13,6 +13,7 @@ import { REPO } from './lib.mjs';
 import { injectArticles } from './inject.mjs';
 import { genPosts } from './gen-posts.mjs';
 import { genExtras } from './gen-extras.mjs';
+import { genLegal } from './gen-legal.mjs';
 import { genLlms } from './gen-llms.mjs';
 
 console.log('=== 1/5 注入 index.html ===');
@@ -32,8 +33,9 @@ try {
 console.log('=== 2/5 文章頁 + OG + sitemap ===');
 await genPosts(page);
 
-console.log('=== 3/5 主題頁 + RSS + 404 ===');
+console.log('=== 3/5 主題頁 + RSS + 404 + 法律頁 ===');
 await genExtras(page);
+genLegal();
 
 if (browser) await browser.close();
 
@@ -47,6 +49,7 @@ rmSync(DIST, { recursive: true, force: true });
 mkdirSync(DIST, { recursive: true });
 const rootFiles = [
   'index.html', 'physio-guide.html', '404.html',
+  'privacy.html', 'cookies.html',
   'sitemap.xml', 'feed.xml', 'robots.txt',
   'llms.txt', 'llms-full.txt',
   'favicon.ico', 'apple-touch-icon.png', '.nojekyll', 'CNAME',

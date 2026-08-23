@@ -242,6 +242,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -253,15 +280,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -285,22 +328,33 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">筋膜是什麼？認識包覆全身的結締組織網</h1>
     <p class="lede">筋膜像一張立體的網，把全身連成整體。這篇帶你認識它的樣子與功能，再給出在家照顧筋膜的具體做法、最常被誤會的三件事，以及哪些疼痛該先讓專業評估。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（6）</summary>
+      <ol>
+        <li><a href="#sec-1">筋膜長什麼樣子？</a></li>
+        <li><a href="#sec-2">筋膜只是把東西固定住嗎？</a></li>
+        <li><a href="#sec-3">為什麼認識筋膜很重要？</a></li>
+        <li><a href="#sec-4">在家可以怎麼照顧筋膜？</a></li>
+        <li><a href="#sec-5">關於筋膜，大家最常誤會什麼？</a></li>
+        <li><a href="#sec-6">什麼時候該找專業評估？</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>你可能聽過「放鬆筋膜」，卻不太確定筋膜到底是什麼。它其實遍布全身，是把身體連成一個整體的關鍵組織。</p>
-<h2>筋膜長什麼樣子？</h2>
+<h2 id="sec-1">筋膜長什麼樣子？<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <p>筋膜是一層層、一片片的結締組織，像立體的蜘蛛網，把身體從裡到外連在一起：</p>
 <ul><li>包覆每一條肌肉，也深入肌肉纖維之間</li><li>包裹骨頭、血管、神經與內臟</li><li>由膠原纖維與大量水分組成，柔軟又有韌性</li></ul>
 <p>它不是可有可無的「包裝材料」，而是身體的支撐與連結系統。</p>
-<h2>筋膜只是把東西固定住嗎？</h2>
+<h2 id="sec-2">筋膜只是把東西固定住嗎？<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <p>不只。健康的筋膜含水、有彈性，能讓相鄰的組織彼此順暢滑動，也負責在動作中傳遞張力。當你走路、伸手、轉身，力量有很大一部分是透過這張網分散到全身的。</p>
-<h2>為什麼認識筋膜很重要？</h2>
+<h2 id="sec-3">為什麼認識筋膜很重要？<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <p>因為許多說不清楚的緊繃、卡卡與痠痛，背後常和筋膜的張力與滑動有關。理解筋膜，能幫你用「整體」的眼光看待身體，而不是只盯著痛的那一點。這也是這個系列想帶你認識的視角。</p>
-<h2>在家可以怎麼照顧筋膜？</h2>
+<h2 id="sec-4">在家可以怎麼照顧筋膜？<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <p>久坐、長時間維持同一姿勢、受傷後太久不敢動，都會讓筋膜變得比較不好滑動。日常可以這樣做：</p>
 <ul><li><strong>每三十到六十分鐘換一次姿勢</strong>，起來走動一兩分鐘，效果勝過偶爾一次的長時間伸展</li><li><strong>慢而大範圍的活動</strong>：轉肩、轉髖、側彎伸展，每個方向來回八到十次，動作放慢</li><li><strong>溫和的靜態伸展</strong>：拉到「緊但還能好好呼吸」的程度，停三十到六十秒，一天一到兩回</li><li><strong>按壓或滾筒</strong>：在痠緊處停留三十秒左右，力道以<strong>能正常呼吸、隔天不會更痛</strong>為上限</li><li><strong>喝足夠的水、把睡眠補回來</strong>：筋膜含水量高，缺水與睡不夠時會更容易覺得緊</li></ul>
-<h2>關於筋膜，大家最常誤會什麼？</h2>
+<h2 id="sec-5">關於筋膜，大家最常誤會什麼？<a class="hash" href="#sec-5" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li><strong>「要壓到很痛才有效」</strong>：疼痛會讓身體更保護性地收縮，往往反而更緊，有感覺就夠了</li><li><strong>「筋膜黏住了，要用力撕開」</strong>：身體不是被撕開才變好，而是靠反覆、規律的活動慢慢恢復滑動</li><li><strong>「放鬆一次就會一直好」</strong>：放鬆的舒服感通常維持數小時到數天，真正的改變來自持續的姿勢與活動習慣</li></ul>
-<h2>什麼時候該找專業評估？</h2>
+<h2 id="sec-6">什麼時候該找專業評估？<a class="hash" href="#sec-6" aria-label="複製這個段落的連結">#</a></h2>
 <p>大部分的緊繃可以自己照顧，但出現下列情況請先就醫，不要自己按：</p>
 <ul><li>疼痛<strong>持續超過兩週</strong>沒改善，或愈來愈嚴重</li><li><strong>休息與夜間也痛</strong>、痛到睡不著</li><li>伴隨發燒、局部紅腫發熱，或不明原因的體重下降</li><li>手腳<strong>逐漸無力</strong>、麻木範圍慢慢擴大</li><li>大小便功能改變、屁股與胯下一帶麻木，這需要立即就醫</li></ul>
 <blockquote>身體不是一塊塊拼起來的，而是被一張網溫柔地連在一起。</blockquote>
@@ -316,6 +370,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/fascia-how-it-changes"><span>← 高級筋膜技術・較新一篇</span><b>筋膜如何改變：含水、滑動與可塑性</b></a>
+      <span></span>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/fascia-how-it-changes">筋膜如何改變：含水、滑動與可塑性<span>高級筋膜技術</span></a>
@@ -331,6 +389,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -347,6 +410,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="fascia-what-is-fascia";

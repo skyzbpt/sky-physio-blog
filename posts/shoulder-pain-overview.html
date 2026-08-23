@@ -226,6 +226,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -237,15 +264,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -269,24 +312,35 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">肩膀痛：認識這個全身最靈活、也最容易出問題的關節</h1>
     <p class="lede">肩膀能往幾乎所有方向活動，代價是穩定度得靠肌肉主動維持。這篇帶你認識守護肩膀的結構、肩痛通常是怎麼開始的、剛痛起來的兩週可以做什麼，以及哪些狀況該盡快就醫。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（6）</summary>
+      <ol>
+        <li><a href="#sec-1">肩膀由誰在守護？</a></li>
+        <li><a href="#sec-2">常見的肩痛家族</a></li>
+        <li><a href="#sec-3">好消息</a></li>
+        <li><a href="#sec-4">肩膀痛通常是怎麼開始的？</a></li>
+        <li><a href="#sec-5">剛開始痛的時候可以做什麼？</a></li>
+        <li><a href="#sec-6">什麼時候該就醫？</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>肩膀是全身活動度最大的關節——你可以把手舉過頭、繞到背後、往各個方向轉。但這份靈活是有代價的：肩關節的骨頭接觸面很淺，像一顆高爾夫球放在球座上，穩定度大量仰賴周邊的肌肉與軟組織「主動」維持。</p>
 <p>這也是為什麼，肩膀痛的來源常常不只一個。</p>
-<h2>肩膀由誰在守護？</h2>
+<h2 id="sec-1">肩膀由誰在守護？<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li><strong>旋轉肌袖（rotator cuff）</strong>：四條包覆肩關節的深層肌肉，負責把肱骨頭「吸」在關節窩裡、引導動作</li><li><strong>肩胛骨與周邊肌肉</strong>：肩胛是肩膀的「地基」，它動得順，手才舉得高</li><li><strong>關節囊與韌帶</strong>：提供被動的穩定</li><li><strong>二頭肌肌腱</strong>：從肩膀前方通過</li></ul>
 <p>任何一環出狀況——旋轉肌袖、滑囊、關節囊、肌腱、肩胛控制——都可能讓你舉手就痛。</p>
 <blockquote>肩膀的穩定，是「動態」的：靠肌肉在每個角度即時協調，而不是靠骨頭卡住。</blockquote>
-<h2>常見的肩痛家族</h2>
+<h2 id="sec-2">常見的肩痛家族<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <p>這個系列會一一介紹：旋轉肌袖問題、肩夾擠、滑囊炎、肩關節不穩定與脫臼、冰凍肩、二頭肌肌腱病變，以及肩胛與胸椎如何影響肩膀。</p>
-<h2>好消息</h2>
+<h2 id="sec-3">好消息<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <p>絕大多數的肩膀痛，都能靠正確的活動與漸進的運動治療改善，不需要急著開刀。關鍵是——先分清楚是哪一種、在哪個階段，再對症下藥。</p>
-<h2>肩膀痛通常是怎麼開始的？</h2>
+<h2 id="sec-4">肩膀痛通常是怎麼開始的？<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <p>很少是一覺醒來突然壞掉。常見的劇本有幾種：一位行政人員週末大掃除擦了三小時天花板，隔天舉手梳頭就卡住；一位平常坐五天、週末打三小時羽球的上班族，某次殺球後肩膀前方開始痛。共通點是<strong>負荷突然超過肩膀當下的能力</strong>，而不是骨頭跑掉了。</p>
-<h2>剛開始痛的時候可以做什麼？</h2>
+<h2 id="sec-5">剛開始痛的時候可以做什麼？<a class="hash" href="#sec-5" aria-label="複製這個段落的連結">#</a></h2>
 <p>肩膀剛痛起來的頭兩週，目標是<strong>降低刺激，但不要完全不動</strong>：</p>
 <ul><li><strong>暫時避開最痛的動作</strong>：手舉過頭、往身後扣內衣、單手提重物，先減量而不是完全不用</li><li><strong>在不痛的範圍活動</strong>：手肘貼身輕輕內外轉，或身體微前傾讓手自然垂下畫小圈，各 30 秒，一天 3～4 次</li><li><strong>照顧肩胛與胸椎</strong>：坐姿把肩膀往後下方輕輕收住，維持 5 秒、做 10 下</li><li><strong>調整睡姿</strong>：避免側睡壓在痛的那一側，或抱一顆枕頭讓上臂有支撐</li><li><strong>逐步加回來</strong>：疼痛穩定後每週增加一點活動量或重量</li></ul>
 <p>肩膀的軟組織問題通常以<strong>週到月</strong>為單位改善，規律做運動治療的人常在六到十二週感覺到明顯進步。</p>
-<h2>什麼時候該就醫？</h2>
+<h2 id="sec-6">什麼時候該就醫？<a class="hash" href="#sec-6" aria-label="複製這個段落的連結">#</a></h2>
 <p>多數肩膀痛可以先自我調整，但出現下列情況請盡快讓專業人員評估：</p>
 <ul><li>跌倒、外傷後<strong>完全舉不起來</strong>，或肩膀外觀變形</li><li>疼痛<strong>持續超過兩週沒有改善</strong>，或夜間痛到無法入睡</li><li>手臂出現<strong>麻、刺、明顯無力</strong></li><li>肩膀<strong>活動範圍愈來愈小</strong>，例如扣不到背後，可能是冰凍肩早期</li><li>伴隨<strong>發燒、紅腫熱痛</strong>等感染徵象，或<strong>不明原因的體重下降</strong></li></ul>
 <blockquote>先認識這個關節，接下來的每一篇，你都會更看得懂自己的肩膀在說什麼。</blockquote>
@@ -302,6 +356,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/shoulder-acute-vs-chronic"><span>← 肩膀痛・較新一篇</span><b>肩膀痛該冰敷還是熱敷？先分清楚急性與慢性</b></a>
+      <span></span>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/shoulder-acute-vs-chronic">肩膀痛該冰敷還是熱敷？先分清楚急性與慢性<span>肩膀痛</span></a>
@@ -317,6 +375,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -333,6 +396,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="shoulder-pain-overview";

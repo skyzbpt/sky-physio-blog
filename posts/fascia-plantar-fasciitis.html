@@ -242,6 +242,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -253,15 +280,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -285,25 +328,36 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">足底筋膜炎：從筋膜角度理解足跟痛</h1>
     <p class="lede">早上下床第一步腳跟劇痛，是足底筋膜炎的典型。從筋膜與整條後鏈的角度理解它，並掌握在家的伸展與負荷調整、常見誤解，以及該就醫的時機。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（6）</summary>
+      <ol>
+        <li><a href="#sec-1">足底筋膜在做什麼？</a></li>
+        <li><a href="#sec-2">為什麼早上第一步最痛？</a></li>
+        <li><a href="#sec-3">只處理腳底就夠了嗎？</a></li>
+        <li><a href="#sec-4">在家可以怎麼照顧腳底？</a></li>
+        <li><a href="#sec-5">有哪些常見的誤解？</a></li>
+        <li><a href="#sec-6">什麼時候該就醫？多久會好？</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>「早上下床第一步，腳跟像被針刺」——這是足底筋膜炎最典型的抱怨。要照顧它，得先認識腳底那片筋膜。</p>
-<h2>足底筋膜在做什麼？</h2>
+<h2 id="sec-1">足底筋膜在做什麼？<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <p>足底筋膜是一片從腳跟延伸到腳趾的堅韌組織，像一條弓弦：</p>
 <ul><li>支撐足弓、吸收落地的衝擊</li><li>走路推進時幫忙儲存與釋放能量</li><li>承受你每一步的重量</li></ul>
 <p>長期過度負荷，它就可能發炎、變得敏感。</p>
-<h2>為什麼早上第一步最痛？</h2>
+<h2 id="sec-2">為什麼早上第一步最痛？<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <p>因為睡覺時腳處於放鬆姿勢，足底筋膜整晚沒有被拉長；一下床踩地，它突然被大力伸展，就會出現尖銳的疼痛。走幾步「熱開」後常會緩解，但久站或久走後又會加重。</p>
-<h2>只處理腳底就夠了嗎？</h2>
+<h2 id="sec-3">只處理腳底就夠了嗎？<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <p>通常不夠。足底筋膜和小腿、跟腱在同一條後側筋膜線上，小腿緊繃會增加腳底的張力。所以除了照顧腳底，也要放鬆小腿、改善踝關節活動與整體負荷：</p>
 <ul><li>溫和伸展小腿與足底</li><li>調整運動量與鞋子</li><li>循序漸進地強化足部</li></ul>
 <p>若疼痛持續數週未改善，建議尋求專業評估。</p>
-<h2>在家可以怎麼照顧腳底？</h2>
+<h2 id="sec-4">在家可以怎麼照顧腳底？<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <p>原則是「減少刺激、慢慢加回力量」，而不是拚命去踩去揉：</p>
 <ul><li><strong>起床前先熱身</strong>：下床前坐在床邊，用腳掌慢慢往上勾、往下踩各 10 次，讓筋膜先醒過來，第一步會沒那麼刺</li><li><strong>小腿伸展</strong>：面對牆、後腳跟貼地，前腳屈膝往前靠，感覺後小腿被拉開，維持 20 到 30 秒，左右各 3 次，一天 2 回</li><li><strong>腳底放鬆</strong>：坐著用網球在腳底前後滾動 1 到 2 分鐘，力道停在「有點痠但可以放鬆呼吸」</li><li><strong>腳趾抓毛巾</strong>：腳掌平放，用腳趾把毛巾往身體方向抓 10 次，練足底小肌肉</li><li><strong>調整負荷</strong>：暫時減少久站與跑量，改穿有點緩衝的鞋，別長時間赤腳踩硬地</li></ul>
 <p>以「當天與隔天都不加重」為標準；隔天更痛就把量減半。</p>
-<h2>有哪些常見的誤解？</h2>
+<h2 id="sec-5">有哪些常見的誤解？<a class="hash" href="#sec-5" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li><strong>「一定是長骨刺才會痛」</strong>：骨刺與疼痛不一定相關，很多有骨刺的人完全不痛，處理方向仍在負荷與軟組織。</li><li><strong>「越痛越要用力踩球」</strong>：把敏感的組織壓到瘀青只會更痛，力道該是可忍受的痠，不是折磨。</li><li><strong>「休息就會自己好」</strong>：完全不動能暫時止痛，但一回到原本的活動量常又復發，關鍵是循序漸進地把足踝力量練回來。</li><li><strong>「換一雙好鞋就解決」</strong>：鞋子能幫忙分擔，但撐起足弓的仍是自己的肌肉。</li></ul>
-<h2>什麼時候該就醫？多久會好？</h2>
+<h2 id="sec-6">什麼時候該就醫？多久會好？<a class="hash" href="#sec-6" aria-label="複製這個段落的連結">#</a></h2>
 <p>出現以下情況建議儘早評估：</p>
 <ul><li>自我照護 <strong>超過六週</strong> 沒有改善，或愈來愈痛</li><li>腳跟 <strong>紅腫發熱</strong> 或合併發燒</li><li>是明顯外傷、跳躍落地之後突然發生，且踩地困難</li><li>足跟 <strong>麻木、刺電感</strong>，或不適往上延伸到小腿</li><li>夜裡靜止時也持續疼痛</li></ul>
 <p>足底筋膜的問題多半 <strong>以週、月為單位</strong> 慢慢好轉，而且常是階梯式的：先是早上第一步變得可以忍受，接著久站的時間拉長，最後才回到跑跳。中間反覆一兩次很常見，不代表退回原點。</p>
@@ -320,6 +374,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/fascia-ankle-restrictions"><span>← 高級筋膜技術・較新一篇</span><b>腳踝活動度受限：認識深蹲卡住的原因</b></a>
+      <a class="nx" href="/posts/fascia-what-are-amt"><span>高級筋膜技術・較舊一篇 →</span><b>高級筋膜技術是什麼？與一般按摩的差別</b></a>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/fascia-what-are-amt">高級筋膜技術是什麼？與一般按摩的差別<span>高級筋膜技術</span></a>
@@ -335,6 +393,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -351,6 +414,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="fascia-plantar-fasciitis";
