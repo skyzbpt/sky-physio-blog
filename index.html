@@ -1663,9 +1663,19 @@ textarea#af-body.adm-input{
 <footer>
   <div class="wrap foot">
         <small>網站設計｜Sky — © 2026 · <a href="/privacy">隱私權保護聲明</a></small>
+        <small id="site-pv" hidden>衛教文章累計 <span class="pv-n"></span> 次瀏覽</small>
   </div>
 </footer>
 
+<script>
+(function(){
+  var el=document.getElementById('site-pv'); if(!el) return;
+  fetch('https://views.skythephysio.com/all').then(function(r){return r.json();}).then(function(d){
+    var n=d.total||0;
+    if(n>0){ el.querySelector('.pv-n').textContent=Number(n).toLocaleString('en-US'); el.hidden=false; }
+  }).catch(function(){});
+})();
+</script>
 <script>
 /* ============================================================
    ◆◆◆ 內容編輯區 ◆◆◆

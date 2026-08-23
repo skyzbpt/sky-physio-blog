@@ -277,6 +277,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in .t a{color:inherit;border-bottom:1px solid var(--line)}
 .foot-in .t a:hover{color:var(--teal);border-color:var(--teal)}
 .foot-in{flex-wrap:wrap}
+.foot-in .site-pv{margin-left:auto;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted)}
 .foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
 .foot-legal a{border-bottom:1px solid var(--line)}
 .foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
@@ -384,6 +385,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 <footer>
   <div class="foot-in">
     <div class="t">網站設計｜Sky — © 2026 · <a href="/privacy">隱私權保護聲明</a></div>
+    <span class="site-pv" id="site-pv" hidden>衛教文章累計 <span class="pv-n"></span> 次瀏覽</span>
   </div>
 </footer>
 
@@ -450,6 +452,14 @@ function copyLink(){
         .then(function(r){return r.json();}).then(function(d){try{sessionStorage.setItem('pv:'+slug,'1');}catch(e){} show(d.count||0);}).catch(function(){});
     }
   }catch(e){}
+})();
+/* 全站衛教文章累計瀏覽次數（頁尾） */
+(function(){
+  var el=document.getElementById('site-pv'); if(!el) return;
+  fetch("https://views.skythephysio.com"+'/all').then(function(r){return r.json();}).then(function(d){
+    var n=d.total||0;
+    if(n>0){ el.querySelector('.pv-n').textContent=Number(n).toLocaleString('en-US'); el.hidden=false; }
+  }).catch(function(){});
 })();
 </script>
 </body>
