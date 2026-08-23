@@ -307,11 +307,11 @@
 - [筋膜是什麼？認識包覆全身的結締組織網](https://skythephysio.com/posts/fascia-what-is-fascia): 筋膜像一張立體的網，把全身連成整體。這篇帶你認識它的樣子與功能，再給出在家照顧筋膜的具體做法、最常被誤會的三件事，以及哪些疼痛該先讓專業評估。
 
 ## 網站頁面
-- [專業領域](https://skythephysio.com/fields): 三鐵運動修復、紅繩懸吊、公路車 Bike Fitting、疼痛治療、顱薦椎整合。
+- [首頁（含專業領域、聯絡方式）](https://skythephysio.com/): 三鐵運動修復、紅繩懸吊、公路車 Bike Fitting、疼痛治療、顱薦椎整合；預約評估與聯絡方式。
+- [服務項目](https://skythephysio.com/services): 初診評估、徒手治療、紅繩懸吊訓練、Bike Fitting、顱薦椎治療等服務項目總覽。
 - [衛教文章](https://skythephysio.com/blog): 全站衛教文章列表，可依分類或關鍵字搜尋。
 - [產品專區](https://skythephysio.com/products): Isotonix 溶性營養品推薦專區。
 - [關於 Sky](https://skythephysio.com/about): 治療哲學、學經歷與專業證照。
-- [聯絡 Sky](https://skythephysio.com/contact): 預約評估與聯絡方式。
 
 ## 物理治療完整指南
 - [物理治療是什麼？如何挑選值得推薦的物理治療師](https://skythephysio.com/physio-guide): 物理治療的定義、物理治療師的執照與訓練、第一次療程流程、挑選值得推薦的物理治療師的 7 個標準、自費與健保的差異。

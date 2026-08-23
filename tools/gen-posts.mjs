@@ -298,6 +298,7 @@ ${ldJson(faqld)}
       <span class="brand-name">Sky 物理治療師</span>
     </a>
     <div class="nav-right">
+      <a class="nav-link" href="/services">服務項目</a>
       <a class="nav-link" href="/blog">更多文章</a>
       <a class="btn teal sm" href="https://calendar.app.google/wdsPTQDhF2YCigPu6" target="_blank" rel="noopener">預約評估</a>
     </div>
@@ -463,12 +464,6 @@ export async function genPosts(page) {
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>${BASE}/fields</loc>
-    <lastmod>${TODAY}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>${BASE}/blog</loc>
     <lastmod>${TODAY}</lastmod>
     <changefreq>daily</changefreq>
@@ -487,7 +482,7 @@ export async function genPosts(page) {
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>${BASE}/contact</loc>
+    <loc>${BASE}/services</loc>
     <lastmod>${TODAY}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

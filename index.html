@@ -1355,11 +1355,12 @@ textarea#af-body.adm-input{
       <span class="brand-name">Sky 物理治療師</span>
     </div>
     <div class="nav-links" id="nav-links">
-      <a class="nav-link" href="fields.html">專業領域</a>
+      <a class="nav-link" href="#fields" onclick="sectionTo('fields');closeMenu();return false;">專業領域</a>
+      <a class="nav-link" href="services.html">服務項目</a>
       <a class="nav-link" href="blog.html">衛教文章</a>
       <a class="nav-link" href="products.html">產品專區</a>
       <a class="nav-link" href="about.html">關於 Sky</a>
-      <a class="nav-link" href="contact.html">聯絡 Sky</a>
+      <a class="nav-link" href="#contact" onclick="sectionTo('contact');closeMenu();return false;">聯絡 Sky</a>
       <span class="nav-link nav-book" tabindex="0" role="button" onclick="window.open('https://calendar.app.google/wdsPTQDhF2YCigPu6','_blank');closeMenu()">預約評估 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="8 7 17 7 17 16"/></svg></span>
     </div>
     <button class="btn teal sm" onclick="window.open('https://calendar.app.google/wdsPTQDhF2YCigPu6','_blank')">預約評估</button>
@@ -1392,15 +1393,30 @@ textarea#af-body.adm-input{
     </div>
   </section>
 
+  <section id="fields">
+    <div class="wrap">
+      <div class="eyebrow rv">FIELDS・專業領域</div>
+      <h2 class="sec-title rv">四條路，走向同一個身體</h2>
+      <p class="sec-lead rv">從三鐵訓練後的修復，到紅繩上的深層穩定；從車架上的毫米調校，到一次五克的輕觸——徒手治療的方法不同，目的相同：讓身體回到它原本的樣子。</p>
+      <div class="field-grid" id="field-grid"></div>
+      <p class="rv" style="margin-top:24px"><a class="nav-link" href="services.html">查看完整服務項目 →</a></p>
+    </div>
+  </section>
+
   <section id="explore" class="wrap">
     <div class="eyebrow rv">EXPLORE・導覽</div>
-    <h2 class="sec-title rv">四條路，走向同一個身體</h2>
-    <p class="sec-lead rv">從三鐵訓練後的修復，到紅繩上的深層穩定；從車架上的毫米調校，到一次五克的輕觸——徒手治療的方法不同，目的相同：讓身體回到它原本的樣子。</p>
+    <h2 class="sec-title rv">認識完整內容</h2>
+    <p class="sec-lead rv">從衛教文章到營養補充，從我的故事到聯絡方式——這裡是快速導覽。</p>
     <div class="field-grid">
-      <a class="field-card" href="fields.html">
+      <a class="field-card" href="#fields" onclick="sectionTo('fields');return false;">
         <div class="field-no">FIELDS</div>
         <h3>專業領域</h3>
         <p>三鐵運動修復、紅繩懸吊、公路車 Bike Fitting、疼痛治療與顱薦椎整合——四條專長路徑。</p>
+      </a>
+      <a class="field-card" href="services.html">
+        <div class="field-no">SERVICES</div>
+        <h3>服務項目</h3>
+        <p>從初診評估、徒手治療到紅繩懸吊、Bike Fitting、顱薦椎治療——完整服務項目一次看清楚。</p>
       </a>
       <a class="field-card" href="blog.html">
         <div class="field-no">JOURNAL</div>
@@ -1417,11 +1433,24 @@ textarea#af-body.adm-input{
         <h3>關於 Sky</h3>
         <p>治療師的手 × 設計者的眼睛——認識我的治療哲學、學經歷與專業證照。</p>
       </a>
-      <a class="field-card" href="contact.html">
+      <a class="field-card" href="#contact" onclick="sectionTo('contact');return false;">
         <div class="field-no">CONTACT</div>
         <h3>聯絡 Sky</h3>
         <p>身體有話想說？讓我們先從一次評估開始——社群、Email 與預約評估連結都在這裡。</p>
       </a>
+    </div>
+  </section>
+
+  <section id="contact" class="wrap">
+    <div class="contact-panel rv">
+      <div>
+        <div class="eyebrow" style="color:#8E96B8">CONTACT・聯絡</div>
+        <h2>身體有話想說？<br>讓我們先從一次評估開始。</h2>
+        <p class="note">不確定自己適合徒手、紅繩還是 Fitting？沒關係——初次評估會花時間聽你說、看你動，再一起決定方向。</p>
+      </div>
+      <div>
+        <div class="contact-list" id="contact-list"></div>
+      </div>
     </div>
   </section>
 
@@ -3543,8 +3572,8 @@ const scrollMode = reduceMotion ? "auto" : "smooth";
 /* ---- 渲染：照片 ---- */
 $("#portrait-img").src = PHOTO;
 
-/* ---- 渲染：領域卡片（首頁已改為連結至 fields.html 的導覽卡，此區僅供後台預覽沿用） ---- */
-if($("#field-grid")) $("#field-grid").innerHTML = FIELDS.map(f => `
+/* ---- 渲染：領域卡片 ---- */
+$("#field-grid").innerHTML = FIELDS.map(f => `
   <div class="field-card rv">
     <div class="field-no">${f.no}</div>
     <h3>${f.title}</h3>
@@ -3584,8 +3613,8 @@ function showCopyToast(msg){
   clearTimeout(t._t);
   t._t=setTimeout(()=>{ t.style.opacity='0'; t.style.transform='translateX(-50%) translateY(20px)'; },2200);
 }
-/* 聯絡區已改為獨立頁 contact.html；此區僅供後台預覽沿用 */
-if($("#contact-list")) $("#contact-list").innerHTML = SITE.contacts.map(c=>`
+/* ---- 渲染：聯絡（首頁） ---- */
+$("#contact-list").innerHTML = SITE.contacts.map(c=>`
   <div class="contact-item" tabindex="0" role="button" onclick="contactClick('${c.href}','${c.href.startsWith('mailto:')? 'email':'link'}')" style="cursor:pointer">
     <span class="k">${c.k}</span><span class="v">${c.v}</span>
   </div>`).join("");

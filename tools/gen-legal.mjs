@@ -146,6 +146,7 @@ ${ldJson(breadcrumb)}
       <span class="brand-name">Sky 物理治療師</span>
     </a>
     <div class="nav-right">
+      <a class="nav-link" href="/services">服務項目</a>
       <a class="nav-link" href="/#blog">衛教文章</a>
       <a class="btn teal sm" href="https://calendar.app.google/wdsPTQDhF2YCigPu6" target="_blank" rel="noopener">預約評估</a>
     </div>
