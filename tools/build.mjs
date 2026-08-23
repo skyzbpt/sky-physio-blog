@@ -48,7 +48,7 @@ const DIST = join(REPO, 'dist');
 rmSync(DIST, { recursive: true, force: true });
 mkdirSync(DIST, { recursive: true });
 const rootFiles = [
-  'index.html', 'blog.html', 'products.html', 'about.html',
+  'index.html', 'blog.html', 'products.html', 'about.html', 'services.html',
   'physio-guide.html', '404.html',
   'privacy.html',
   'sitemap.xml', 'feed.xml', 'robots.txt',
