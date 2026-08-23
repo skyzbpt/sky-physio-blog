@@ -48,8 +48,9 @@ const DIST = join(REPO, 'dist');
 rmSync(DIST, { recursive: true, force: true });
 mkdirSync(DIST, { recursive: true });
 const rootFiles = [
-  'index.html', 'physio-guide.html', '404.html',
-  'privacy.html', 'cookies.html',
+  'index.html', 'fields.html', 'blog.html', 'products.html', 'about.html', 'contact.html',
+  'physio-guide.html', '404.html',
+  'privacy.html',
   'sitemap.xml', 'feed.xml', 'robots.txt',
   'llms.txt', 'llms-full.txt',
   'favicon.ico', 'apple-touch-icon.png', '.nojekyll', 'CNAME',

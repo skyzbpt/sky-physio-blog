@@ -224,7 +224,7 @@ ${heads.map(h => `        <li><a href="#${h.id}">${esc(h.text)}</a></li>`).join(
     ...(about ? { "about": about } : {}),
     "author": AUTHOR,
     "publisher": PUBLISHER,
-    "isPartOf": { "@type": "Blog", "@id": BASE + "/#blog", "name": "Sky 物理治療師｜衛教文章" }
+    "isPartOf": { "@type": "Blog", "@id": BASE + "/blog#blog", "url": BASE + "/blog", "name": "Sky 物理治療師｜衛教文章" }
   };
   // FAQ：僅在文章本身含問句小標時產生（真實 Q&A，利於 rich result 與 AI 問答抽取）
   const faqs = extractFaqs(a.content, a.title);
@@ -298,7 +298,7 @@ ${ldJson(faqld)}
       <span class="brand-name">Sky 物理治療師</span>
     </a>
     <div class="nav-right">
-      <a class="nav-link" href="/#blog">更多文章</a>
+      <a class="nav-link" href="/blog">更多文章</a>
       <a class="btn teal sm" href="https://calendar.app.google/wdsPTQDhF2YCigPu6" target="_blank" rel="noopener">預約評估</a>
     </div>
   </nav>
@@ -324,7 +324,7 @@ ${bodyHtml}
       <div>
         <div class="a-name">Sky 物理治療師</div>
         <div class="a-cred">國家高考合格物理治療師｜紅繩懸吊 Redcord・公路車 Bike Fitting・顱薦椎治療・疼痛科學</div>
-        <a class="a-link" href="/#about">認識 Sky・治療哲學 →</a>
+        <a class="a-link" href="/about">認識 Sky・治療哲學 →</a>
       </div>
     </aside>
 ${pagerHtml}
@@ -339,10 +339,9 @@ ${pagerHtml}
 <footer>
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
-    <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <div class="t"><b>Sky 物理治療師</b>網站設計｜Sky — © 2026 Sky 物理治療師</div>
     <nav class="foot-legal" aria-label="政策與聲明">
       <a href="/privacy">隱私權保護聲明</a>
-      <a href="/cookies">Cookie 政策</a>
       <a href="/physio-guide">物理治療完整指南</a>
     </nav>
   </div>
@@ -464,6 +463,36 @@ export async function genPosts(page) {
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>${BASE}/fields</loc>
+    <lastmod>${TODAY}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>${BASE}/blog</loc>
+    <lastmod>${TODAY}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>${BASE}/products</loc>
+    <lastmod>${TODAY}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>${BASE}/about</loc>
+    <lastmod>${TODAY}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>${BASE}/contact</loc>
+    <lastmod>${TODAY}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>${BASE}/physio-guide</loc>
     <lastmod>${TODAY}</lastmod>
     <changefreq>monthly</changefreq>
@@ -471,12 +500,6 @@ export async function genPosts(page) {
   </url>
   <url>
     <loc>${BASE}/privacy</loc>
-    <lastmod>${LEGAL_UPDATED}</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>${BASE}/cookies</loc>
     <lastmod>${LEGAL_UPDATED}</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
@@ -491,5 +514,5 @@ ${sorted.map(a => `  <url>
 </urlset>
 `;
   writeFileSync(join(REPO, 'sitemap.xml'), sitemap);
-  console.log('已更新 sitemap.xml（' + (articles.length + 3) + ' 個 URL）');
+  console.log('已更新 sitemap.xml（' + (articles.length + 8) + ' 個 URL）');
 }
