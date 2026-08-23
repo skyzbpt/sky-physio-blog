@@ -4,6 +4,7 @@
  * 端點：
  *   POST /hit   body: {"slug":"article-id"}   → 累加並回傳 {slug, count}
  *   GET  /get?slugs=a,b,c                      → 回傳 {counts:{a:1,b:2,c:0}}（唯讀，不累加）
+ *   GET  /all                                  → 回傳 {counts:{...所有 slug...}, total}（唯讀，不累加，供統計頁使用）
  *   GET  /health                               → {ok:true}
  *
  * 綁定：KV namespace 綁為變數名 VIEWS
@@ -62,6 +63,23 @@ export default {
         slugs.map(async s => [s, parseInt(await env.VIEWS.get(s), 10) || 0])
       );
       return json({ counts: Object.fromEntries(pairs) }, 200, cors);
+    }
+
+    // 讀取全部 slug 的計數（供統計總覽頁使用）
+    if (request.method === 'GET' && url.pathname === '/all') {
+      let cursor;
+      const keys = [];
+      do {
+        const page = await env.VIEWS.list({ cursor, limit: 1000 });
+        keys.push(...page.keys);
+        cursor = page.list_complete ? undefined : page.cursor;
+      } while (cursor);
+      const pairs = await Promise.all(
+        keys.map(async k => [k.name, parseInt(await env.VIEWS.get(k.name), 10) || 0])
+      );
+      const counts = Object.fromEntries(pairs);
+      const total = pairs.reduce((sum, [, n]) => sum + n, 0);
+      return json({ counts, total }, 200, { ...cors, 'Cache-Control': 'public, max-age=60' });
     }
 
     return json({ error: 'not found' }, 404, cors);
