@@ -575,6 +575,23 @@ header::before{
 .nav-links{display:flex;gap:28px;align-items:center}
 .nav-links a,.nav-link{font-size:.88rem;color:var(--ink-2);padding:4px 0;border-bottom:1.5px solid transparent;cursor:pointer;}
 .nav-links a:hover,.nav-link:hover{border-color:var(--teal);color:var(--ink)}
+
+/* ---- Nav 下拉選單 ---- */
+.nav-item{position:relative}
+.nav-item>.nav-link{display:inline-flex;align-items:center;gap:4px}
+.nav-caret{width:9px;height:9px;flex:none;transition:transform .18s ease}
+.nav-item:hover .nav-caret,.nav-item:focus-within .nav-caret{transform:rotate(180deg)}
+.nav-dropdown{position:absolute;top:100%;left:-14px;margin-top:10px;min-width:216px;
+  background:var(--bg,#fff);border:1px solid var(--line);border-radius:12px;
+  box-shadow:0 24px 48px -24px rgba(35,42,80,.4);padding:8px;
+  opacity:0;visibility:hidden;transform:translateY(6px);pointer-events:none;
+  transition:opacity .18s ease,transform .18s ease;z-index:120;list-style:none}
+.nav-item:hover .nav-dropdown,.nav-item:focus-within .nav-dropdown{
+  opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
+.nav-dropdown li{margin:0}
+.nav-dropdown a{display:block;padding:9px 12px;font-size:.84rem;line-height:1.4;
+  color:var(--ink-2);border-radius:7px;border-bottom:none!important;white-space:nowrap}
+.nav-dropdown a:hover{background:rgba(20,154,138,.09);color:var(--ink)}
 .btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;
   font-family:var(--sans);font-size:.9rem;letter-spacing:.06em;
   padding:11px 26px;border:1.5px solid var(--ink);background:transparent;color:var(--ink)}
@@ -600,6 +617,12 @@ header::before{
   .nav-links a,.nav-link{padding:14px 32px;width:100%;border-bottom:none;display:block}
   #menu-btn{display:block}
   .nav .btn{display:none}
+  .nav-item{position:static}
+  .nav-item>.nav-link{padding:14px 32px}
+  .nav-caret{display:none}
+  .nav-dropdown{position:static;opacity:1;visibility:visible;transform:none;pointer-events:auto;
+    box-shadow:none;border:none;border-radius:0;background:transparent;margin:0;padding:0 0 6px}
+  .nav-dropdown a{padding:9px 32px 9px 44px;font-size:.82rem}
 }
 
 /* 手機選單內的預約 CTA（桌面版由導覽列按鈕承擔） */
@@ -1355,11 +1378,55 @@ textarea#af-body.adm-input{
       <span class="brand-name">Sky 物理治療師</span>
     </div>
     <div class="nav-links" id="nav-links">
-      <a class="nav-link" href="#fields" onclick="sectionTo('fields');closeMenu();return false;">專業領域</a>
-      <a class="nav-link" href="services.html">服務項目</a>
-      <a class="nav-link" href="blog.html">衛教文章</a>
+      <div class="nav-item">
+        <a class="nav-link" href="#fields" onclick="sectionTo('fields');closeMenu();return false;" aria-haspopup="true" aria-expanded="false">專業領域<svg class="nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <ul class="nav-dropdown">
+          <li><a href="#field-triathlon" onclick="sectionTo('field-triathlon');closeMenu();return false;">三鐵運動修復 × 紅繩懸吊</a></li>
+          <li><a href="#field-cycling" onclick="sectionTo('field-cycling');closeMenu();return false;">公路車專項分析</a></li>
+          <li><a href="#field-pain" onclick="sectionTo('field-pain');closeMenu();return false;">疼痛治療與管理</a></li>
+          <li><a href="#field-craniosacral" onclick="sectionTo('field-craniosacral');closeMenu();return false;">顱薦椎整合 × 情緒能量釋放</a></li>
+        </ul>
+      </div>
+      <div class="nav-item">
+        <a class="nav-link" href="services.html" aria-haspopup="true" aria-expanded="false">服務項目<svg class="nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <ul class="nav-dropdown">
+          <li><a href="services.html#svc-assessment">初診評估</a></li>
+          <li><a href="services.html#svc-manual-therapy">徒手治療與疼痛治療</a></li>
+          <li><a href="services.html#svc-redcord">紅繩懸吊訓練</a></li>
+          <li><a href="services.html#svc-bike-fitting">Bike Fitting 公路車體態調校</a></li>
+          <li><a href="services.html#svc-craniosacral">顱薦椎治療</a></li>
+          <li><a href="services.html#svc-myofascial">肌筋膜放鬆 / 筋膜刀</a></li>
+          <li><a href="services.html#svc-tmj">顳顎關節治療</a></li>
+          <li><a href="services.html#svc-taping">運動貼紮</a></li>
+          <li><a href="services.html#svc-ai-assessment">AI 科學化動作評估</a></li>
+        </ul>
+      </div>
+      <div class="nav-item">
+        <a class="nav-link" href="blog.html" aria-haspopup="true" aria-expanded="false">衛教文章<svg class="nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <ul class="nav-dropdown">
+          <li><a href="blog.html">全部文章</a></li>
+          <li><a href="/topics/lower-back-pain">下背痛</a></li>
+          <li><a href="/topics/shoulder-pain">肩膀痛</a></li>
+          <li><a href="/topics/tmj">顳顎關節</a></li>
+          <li><a href="/topics/myofascial">高級筋膜技術</a></li>
+          <li><a href="/topics/craniosacral">顱薦椎</a></li>
+          <li><a href="/topics/cycling">公路車</a></li>
+          <li><a href="/topics/redcord">紅繩懸吊</a></li>
+          <li><a href="/topics/pain-science">疼痛科學</a></li>
+        </ul>
+      </div>
       <a class="nav-link" href="products.html">產品專區</a>
-      <a class="nav-link" href="about.html">關於 Sky</a>
+      <div class="nav-item">
+        <a class="nav-link" href="about.html" aria-haspopup="true" aria-expanded="false">關於 Sky<svg class="nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <ul class="nav-dropdown">
+          <li><a href="about.html#about-intro">治療理念</a></li>
+          <li><a href="about.html#roles">現職</a></li>
+          <li><a href="about.html#edu">學歷</a></li>
+          <li><a href="about.html#exp">過往經歷</a></li>
+          <li><a href="about.html#skills">專長領域</a></li>
+          <li><a href="about.html#certs">相關證照</a></li>
+        </ul>
+      </div>
       <a class="nav-link" href="#contact" onclick="sectionTo('contact');closeMenu();return false;">聯絡 Sky</a>
       <span class="nav-link nav-book" tabindex="0" role="button" onclick="window.open('https://calendar.app.google/wdsPTQDhF2YCigPu6','_blank');closeMenu()">預約評估 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="8 7 17 7 17 16"/></svg></span>
     </div>
@@ -1400,44 +1467,6 @@ textarea#af-body.adm-input{
       <p class="sec-lead rv">從三鐵訓練後的修復，到紅繩上的深層穩定；從車架上的毫米調校，到一次五克的輕觸——徒手治療的方法不同，目的相同：讓身體回到它原本的樣子。</p>
       <div class="field-grid" id="field-grid"></div>
       <p class="rv" style="margin-top:24px"><a class="nav-link" href="services.html">查看完整服務項目 →</a></p>
-    </div>
-  </section>
-
-  <section id="explore" class="wrap">
-    <div class="eyebrow rv">EXPLORE・導覽</div>
-    <h2 class="sec-title rv">認識完整內容</h2>
-    <p class="sec-lead rv">從衛教文章到營養補充，從我的故事到聯絡方式——這裡是快速導覽。</p>
-    <div class="field-grid">
-      <a class="field-card" href="#fields" onclick="sectionTo('fields');return false;">
-        <div class="field-no">FIELDS</div>
-        <h3>專業領域</h3>
-        <p>三鐵運動修復、紅繩懸吊、公路車 Bike Fitting、疼痛治療與顱薦椎整合——四條專長路徑。</p>
-      </a>
-      <a class="field-card" href="services.html">
-        <div class="field-no">SERVICES</div>
-        <h3>服務項目</h3>
-        <p>從初診評估、徒手治療到紅繩懸吊、Bike Fitting、顱薦椎治療——完整服務項目一次看清楚。</p>
-      </a>
-      <a class="field-card" href="blog.html">
-        <div class="field-no">JOURNAL</div>
-        <h3>衛教文章</h3>
-        <p>超過 150 篇免費衛教筆記，關於疼痛、關於騎車、關於治療床上發生的安靜時刻。</p>
-      </a>
-      <a class="field-card" href="products.html">
-        <div class="field-no">PRODUCTS</div>
-        <h3>產品專區</h3>
-        <p>我實際使用、也放心推薦的 Isotonix 溶性營養品，搭配復健與騎乘節奏。</p>
-      </a>
-      <a class="field-card" href="about.html">
-        <div class="field-no">ABOUT</div>
-        <h3>關於 Sky</h3>
-        <p>治療師的手 × 設計者的眼睛——認識我的治療哲學、學經歷與專業證照。</p>
-      </a>
-      <a class="field-card" href="#contact" onclick="sectionTo('contact');return false;">
-        <div class="field-no">CONTACT</div>
-        <h3>聯絡 Sky</h3>
-        <p>身體有話想說？讓我們先從一次評估開始——社群、Email 與預約評估連結都在這裡。</p>
-      </a>
     </div>
   </section>
 
@@ -1708,24 +1737,28 @@ const SITE = {
 
 const FIELDS = [
   {
+    id: "field-triathlon",
     no: "TRIATHLON RECOVERY", glyph: "復",
     title: "三鐵運動修復 × 紅繩懸吊",
     desc: "游泳、騎車、跑步輪流上場，傷多半是累積出來的。從負荷來源查起，以筋膜技術鬆開張力，再用紅繩懸吊重建深層穩定。",
     tags: ["鐵人三項", "Redcord", "動作控制"]
   },
   {
+    id: "field-cycling",
     no: "CYCLING ANALYSIS", glyph: "騎",
     title: "公路車專項分析",
     desc: "結合 Bike Fitting 與物理治療評估：量的是車，看的是人。從接觸點、關節角度到動作品質，處理騎乘中的疼痛與功率流失。",
     tags: ["Bike Fitting", "騎姿分析", "運動表現"]
   },
   {
+    id: "field-pain",
     no: "PAIN MANAGEMENT", glyph: "解",
     title: "疼痛治療與管理",
     desc: "以現代疼痛科學為基礎，理解疼痛不等於損傷。透過教育、漸進負荷與生活策略，把神經系統的警報音量，一格一格轉回來。",
     tags: ["慢性疼痛", "疼痛科學", "漸進負荷"]
   },
   {
+    id: "field-craniosacral",
     no: "CRANIOSACRAL", glyph: "靜",
     title: "顱薦椎整合 × 情緒能量釋放",
     desc: "大約五克的輕觸，讓長期戒備的神經系統願意鬆手。在安全與知情的前提下，陪伴身體完成那些一直沒機會完成的釋放。",
@@ -3574,7 +3607,7 @@ $("#portrait-img").src = PHOTO;
 
 /* ---- 渲染：領域卡片 ---- */
 $("#field-grid").innerHTML = FIELDS.map(f => `
-  <div class="field-card rv">
+  <div class="field-card rv" id="${f.id}">
     <div class="field-no">${f.no}</div>
     <h3>${f.title}</h3>
     <p>${f.desc}</p>
