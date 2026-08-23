@@ -189,6 +189,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -204,15 +231,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -236,26 +279,36 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">為什麼治療師的「狀態」會影響你的身體——談同步與安靜的臨在</h1>
     <p class="lede">1665 年，一位物理學家發現掛在同一面牆上的鐘擺，會慢慢擺成同一個節奏。三百多年後，這個現象成了理解徒手治療的一把鑰匙。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（5）</summary>
+      <ol>
+        <li><a href="#sec-1">兩個鐘擺的故事</a></li>
+        <li><a href="#sec-2">「狀態」不是玄學</a></li>
+        <li><a href="#sec-3">症狀，是一生累積的總和</a></li>
+        <li><a href="#sec-4">不是「做」治療，而是「傾聽」與「對話」</a></li>
+        <li><a href="#sec-5">一點誠實的說明</a></li>
+      </ol>
+    </details>
     <div class="post-body">
-<h2>兩個鐘擺的故事</h2>
+<h2 id="sec-1">兩個鐘擺的故事<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <p>1665 年，荷蘭物理學家惠更斯（Christiaan Huygens）生病臥床時，注意到一件奇怪的事：掛在同一面牆上的兩個擺鐘，無論一開始怎麼錯開，過一段時間後鐘擺都會慢慢擺成同一個節奏，而且方向相反、完美同步。</p>
 <p>這個現象後來被稱為「同步化（entrainment）」。它無所不在：蟋蟀會齊聲鳴叫、住在一起的人作息會逐漸接近、心臟裡的肌肉細胞會一起跳動。系統之間會互相影響，最後傾向於同步——而且通常是往「比較穩定、比較有力」的那一方靠攏。</p>
 <p>英國顱薦椎治療師 Thomas Attlee 在《Cranio-Sacral Integration》這本書裡，用這個物理現象來解釋一件臨床上很真實、卻很難言說的事：<strong>治療師的內在狀態，會影響病人的身體。</strong></p>
-<h2>「狀態」不是玄學</h2>
+<h2 id="sec-2">「狀態」不是玄學<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <p>很多人聽到「治療師的能量」、「臨在」這類詞會立刻聯想到玄學。但同步化提供了一個更務實的理解角度。</p>
 <p>Attlee 的說法是：在治療互動中，病人的系統和治療師的系統會互相同步——就像那兩個鐘擺一樣，傾向於往比較穩定、比較安定的那一方靠攏。如果治療師本身是焦慮、分心、急著想「做出成果」的，這個狀態也會被身體感覺到；反過來，如果治療師能安住在一種平靜、不急躁、開放的覺察裡，病人的神經系統比較容易跟著沉澱下來。</p>
 <p>這跟我們日常經驗其實一致：待在一個從容、安定的人身邊，你自己也會慢慢放鬆；待在一個焦躁不安的人旁邊，你也會莫名緊繃起來。治療室裡，這個效應被放大了。</p>
 <blockquote>治療師自身平靜、安靜的臨在，是整個過程裡最關鍵的因素。</blockquote>
-<h2>症狀，是一生累積的總和</h2>
+<h2 id="sec-3">症狀，是一生累積的總和<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <p>書裡另一個我很認同的觀點，是關於症狀的來源。</p>
 <p>Attlee 寫道：當身體出問題，很少是因為「單一一次」的受傷或疾病——即使表面上看起來有個明顯的觸發點。我們每個人都背負著一生累積下來的創傷、驚嚇、損傷、疾病與緊繃。一開始我們應付、適應、代償；但隨著身體在這些適應的重量下逐漸疲憊，我們開始失去效率、出現症狀。</p>
 <p>所以一個症狀，往往不是某一次事件的結果，而是「在那之前所累積的一切」的總和。</p>
 <p>這個觀點對臨床很有啟發：它提醒我不要太快把疼痛歸因於「上週搬重物」或「睡姿不對」這種單一原因。身體是一個有歷史的系統，眼前的症狀，常常是長期累積後終於浮上檯面的那一刻。</p>
-<h2>不是「做」治療，而是「傾聽」與「對話」</h2>
+<h2 id="sec-4">不是「做」治療，而是「傾聽」與「對話」<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <p>Attlee 用了一個很好的比喻：顱薦椎的過程，比較像一場對話，而不是一個技術操作。</p>
 <p>他說：當你的心思混亂、困惑時，找人談一談、把它說出來、單純被聽見，往往就能帶來清晰——不論是在心理諮商裡，還是日常生活中。身體也是一樣。治療的過程，是傾聽這個系統、讓它表達自己，在這個過程中，身體會自己找到重新整理的方向。</p>
 <p>治療師的角色，不是把「正確的狀態」強加在身體上，而是：幫一個人重新接觸到他內在的資源、並支持身體本來就有的修復潛能。</p>
-<h2>一點誠實的說明</h2>
+<h2 id="sec-5">一點誠實的說明<a class="hash" href="#sec-5" aria-label="複製這個段落的連結">#</a></h2>
 <p>我想誠實地說：顱薦椎治療中關於「中潮」、「長潮」、「量子場域」等概念，目前缺乏嚴謹的科學證據支持，這些更接近一套描述臨床經驗的語言與身體工作的哲學，而非已被驗證的生理機轉。對於書中將其與量子物理連結的部分，我會抱持保留態度看待。</p>
 <p>但「同步化」與「臨在」這兩個概念，對我的臨床工作有實實在在的提醒：治療不只是技術的施展，治療師自己處在什麼狀態，本身就是介入的一部分。一個夠安定的治療者，本身就能幫助對方的神經系統找到安定。</p>
 <p>這個提醒，無論用的是紅繩、徒手、還是任何方法，都成立。</p>
@@ -274,6 +327,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/vagus-wanderer"><span>← 顱薦椎・較新一篇</span><b>那條從腦幹一路漫遊到腸子的神經——認識「迷走」</b></a>
+      <a class="nx" href="/posts/biodynamic-stillness"><span>顱薦椎・較舊一篇 →</span><b>不是去「修理」，而是創造一個夠安全的空間——談生物動力顱薦椎</b></a>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/tmj-whole-person">下巴痛，問題不一定在下巴——從顳顎關節談「整體」的身體觀<span>顱薦椎</span></a>
@@ -289,6 +346,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -305,6 +367,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="entrainment-presence";

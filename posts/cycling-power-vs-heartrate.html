@@ -135,6 +135,10 @@
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.85;letter-spacing:.02em;-webkit-font-smoothing:antialiased;overflow-x:clip}
 ::selection{background:var(--teal);color:#fff}img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+/* 動效：與首頁一致的統一過場，尊重「減少動態」偏好 */
+@media(prefers-reduced-motion:no-preference){
+.btn,.nav-link,.brand,.crumb a,.pp-share,.author-box,.more a,.post-body figure img{transition:color .22s ease,background-color .22s ease,border-color .22s ease,box-shadow .3s ease,transform .3s cubic-bezier(.22,.7,.3,1)}
+}
 header{position:sticky;top:0;z-index:80;border-bottom:1px solid var(--line)}
 header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(224,240,251,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 .nav{max-width:1120px;margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
@@ -145,17 +149,18 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 .nav-link{font-size:.88rem;color:var(--ink-2);border-bottom:1.5px solid transparent;padding:4px 0}
 .nav-link:hover{border-color:var(--teal);color:var(--ink)}
 .btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.9rem;letter-spacing:.06em;padding:11px 26px;border:1.5px solid var(--ink);background:transparent;color:var(--ink)}
-.btn:hover{background:rgba(35,42,80,.06)}
-.btn:active{opacity:.8}
+.btn:hover{background:rgba(35,42,80,.06);transform:translateY(-2px)}
+.btn:active{opacity:.8;transform:translateY(0)}
 .btn.teal{background:#0C7365;border-color:#0C7365;color:#fff;font-weight:600}
-.btn.teal:hover{background:#0A5F53;border-color:#0A5F53}
+.btn.teal:hover{background:#0A5F53;border-color:#0A5F53;box-shadow:0 12px 24px -12px rgba(12,115,101,.75)}
 .btn.sm{padding:8px 20px;font-size:.84rem}
 @media(max-width:520px){.brand-name{font-size:.94rem}.nav-link{display:none}}
 .post-page{max-width:720px;margin:0 auto;padding:56px 32px 96px}
 .crumb{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--muted);margin-bottom:26px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .crumb a{color:var(--ink-2);border-bottom:1px solid var(--line)}
 .crumb a:hover{color:var(--teal);border-color:var(--teal)}
-.author-box{display:flex;align-items:center;gap:16px;margin-top:30px;padding:20px 22px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.author-box{display:flex;align-items:center;gap:16px;margin-top:30px;padding:20px 22px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);box-shadow:0 2px 12px -6px rgba(35,42,80,.16)}
+.author-box:hover{border-color:rgba(20,154,138,.45);box-shadow:0 16px 32px -22px rgba(20,154,138,.5)}
 .author-box img{width:52px;height:52px;flex:none;border-radius:50%;background:#fff;object-fit:contain}
 .author-box .a-name{font-family:var(--serif);font-weight:700;font-size:1.02rem}
 .author-box .a-cred{font-size:.8rem;color:var(--muted);margin:3px 0 6px;line-height:1.7}
@@ -184,26 +189,73 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
-.more a{display:block;font-family:var(--serif);font-size:1.05rem;color:var(--ink);padding:12px 0;border-bottom:1px solid var(--line)}
-.more a:hover{color:var(--teal)}
+.more a{position:relative;display:block;font-family:var(--serif);font-size:1.05rem;color:var(--ink);padding:12px 0 12px 0;border-bottom:1px solid var(--line)}
+.more a::before{content:"";position:absolute;left:-14px;top:14px;bottom:14px;width:2px;background:var(--red);border-radius:2px;opacity:0}
+.more a:hover{color:var(--teal);transform:translateX(8px)}
+.more a:hover::before{opacity:1}
+@media(prefers-reduced-motion:no-preference){.more a::before{transition:opacity .3s ease}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn:hover,.more a:hover{transform:none}}
 .more a span{display:block;font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;color:var(--muted);margin-top:4px}
 footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gradient(180deg,var(--bg) 0%,#D8ECF8 100%);margin-top:40px}
 .foot-in{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;align-items:center;gap:12px}
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -227,21 +279,30 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">功率與心率：一個是輸出，一個是代價</h1>
     <p class="lede">功率告訴你做了什麼，心率告訴你身體付出了多少。兩個一起看，才能發現疲勞、脫水、過熱與進步的訊號。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（4）</summary>
+      <ol>
+        <li><a href="#sec-1">兩者的本質差異</a></li>
+        <li><a href="#sec-2">心率的三個弱點</a></li>
+        <li><a href="#sec-3">但第三點正是它最有價值的地方</a></li>
+        <li><a href="#sec-4">實務建議</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>很多人買了功率計就不看心率了。這其實浪費了一半的資訊。</p>
-<h2>兩者的本質差異</h2>
+<h2 id="sec-1">兩者的本質差異<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li><strong>功率</strong>是<strong>輸出</strong>：你踩了多少瓦特，客觀、即時、不受心情影響</li><li><strong>心率</strong>是<strong>代價</strong>：身體為了產生那些瓦特，付出了多少循環成本</li></ul>
 <p>功率是「你做了什麼」，心率是「你花了多少」。</p>
-<h2>心率的三個弱點</h2>
+<h2 id="sec-2">心率的三個弱點<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <p><strong>一、延遲。</strong> 你猛踩 10 秒，功率立刻跳到 600 W，心率還在慢慢爬。所以短間歇不能看心率。</p>
 <p><strong>二、容易被干擾。</strong> 咖啡因、睡眠不足、脫水、氣溫、緊張，都會改變心率，但功率不會。</p>
 <p><strong>三、心率漂移。</strong> 長時間騎乘後，同樣功率下心率會慢慢上升。</p>
-<h2>但第三點正是它最有價值的地方</h2>
+<h2 id="sec-3">但第三點正是它最有價值的地方<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <p><strong>心率漂移（decoupling）是有氧耐力的體檢報告。</strong></p>
 <p>做法：一趟 Z2 長騎，把後半段的「功率／心率比」和前半段比較。</p>
 <ul><li>差異 <strong>&lt; 5%</strong>：有氧基礎扎實</li><li>差異 <strong>&gt; 5%</strong>：有氧耐力還不夠，或是那天脫水、太熱、疲勞</li></ul>
 <p>同樣的功率需要越來越高的心率，代表身體正在越來越吃力。</p>
-<h2>實務建議</h2>
+<h2 id="sec-4">實務建議<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li><strong>短間歇（&lt;3 分鐘）</strong>：看功率，心率當參考</li><li><strong>閾值課表</strong>：功率為主，心率確認狀態</li><li><strong>長距離耐力騎</strong>：兩個都看，觀察漂移</li><li><strong>比賽</strong>：功率配速，心率預警（心率異常低於平常＝可能還沒熱開或已經很累）</li></ul>
 <blockquote>功率是油門，心率是引擎溫度。只看油門的人，總有一天會把引擎開壞。</blockquote>
     </div>
@@ -256,6 +317,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/cycling-aerobic-decoupling"><span>← 公路車・較新一篇</span><b>心率漂移：檢驗有氧基礎最便宜的方法</b></a>
+      <a class="nx" href="/posts/cycling-power-profile-types"><span>公路車・較舊一篇 →</span><b>你是衝刺型、爬坡型還是計時賽型？功率剖面告訴你</b></a>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/cycling-power-profile-types">你是衝刺型、爬坡型還是計時賽型？功率剖面告訴你<span>公路車</span></a>
@@ -271,6 +336,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -287,6 +357,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="cycling-power-vs-heartrate";

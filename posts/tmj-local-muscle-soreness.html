@@ -231,6 +231,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -246,15 +273,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -278,24 +321,36 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">局部肌肉痠痛：最常見的下巴肌肉痛</h1>
     <p class="lede">咀嚼肌用過頭、繃太久，就會發痠發脹。這是顳顎障礙裡最常見的肌肉問題，也最能靠自我照護改善——從一天的放鬆安排、按摩力道，到什麼時候該找專業評估。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（7）</summary>
+      <ol>
+        <li><a href="#sec-1">你可能會感覺到</a></li>
+        <li><a href="#sec-2">常見誘因</a></li>
+        <li><a href="#sec-3">怎麼改善</a></li>
+        <li><a href="#sec-4">大概多久會好？</a></li>
+        <li><a href="#sec-5">一天當中可以怎麼安排？</a></li>
+        <li><a href="#sec-6">越痛的地方越要用力按嗎？</a></li>
+        <li><a href="#sec-7">什麼時候該找專業評估？</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>局部肌肉痠痛（local muscle soreness）是咀嚼肌因過度使用或長期共同收縮，出現的組織層級痠痛。它比保護性共同收縮更進一步，也更明確地「痛」。</p>
-<h2>你可能會感覺到</h2>
+<h2 id="sec-1">你可能會感覺到<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li>臉頰、太陽穴一片<strong>痠、脹、緊</strong></li><li>咀嚼、講話久了更明顯</li><li>按壓咬肌／顳肌會有壓痛</li></ul>
-<h2>常見誘因</h2>
+<h2 id="sec-2">常見誘因<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li>長時間緊咬、磨牙</li><li>壓力、焦慮讓肌肉持續繃緊</li><li>剛做完較久的牙科治療</li></ul>
-<h2>怎麼改善</h2>
+<h2 id="sec-3">怎麼改善<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li><strong>降載</strong>：軟食、避免嚼硬物與口香糖</li><li><strong>放鬆</strong>：熱敷、按摩、下巴休息位（牙齒微微分開、舌頂上顎）</li><li><strong>減壓</strong>：處理壓力與睡眠，常是真正的關鍵</li><li>物理治療可用徒手放鬆、伸展與衛教加速恢復</li></ul>
-<h2>大概多久會好？</h2>
+<h2 id="sec-4">大概多久會好？<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <p>多數局部肌肉痠痛在<strong>移除誘因、適當降載</strong>後，數天到兩、三週內會明顯改善。若拖過兩週沒有起色、或越來越痛，可能已往慢性走，建議尋求物理治療評估。</p>
-<h2>一天當中可以怎麼安排？</h2>
+<h2 id="sec-5">一天當中可以怎麼安排？<a class="hash" href="#sec-5" aria-label="複製這個段落的連結">#</a></h2>
 <p>先看一個很常見的畫面：趕專案的上班族，整天盯著螢幕、下顎不知不覺就咬著，晚上回家還一邊追劇一邊嚼零食——肌肉幾乎沒有一刻是鬆的。試著把放鬆拆進一天的三個時段：</p>
 <ul><li><strong>早上</strong>：起床後熱敷臉頰與太陽穴 10 到 15 分鐘，再開始吃早餐</li><li><strong>白天</strong>：每小時提醒自己檢查一次，上下排牙齒是不是碰在一起；只要有，就回到<strong>牙齒微分開、舌尖輕頂上顎</strong>的休息位。把提醒設在手機上，或貼張便利貼在螢幕邊</li><li><strong>睡前</strong>：用指腹在咬肌與顳肌畫小圈，各 1 到 2 分鐘，配合慢慢吐氣</li></ul>
 <p>同時把軟質飲食維持一到兩週，肌肉才真的有機會降載。</p>
-<h2>越痛的地方越要用力按嗎？</h2>
+<h2 id="sec-6">越痛的地方越要用力按嗎？<a class="hash" href="#sec-6" aria-label="複製這個段落的連結">#</a></h2>
 <p>不是。很多人把「痠痛」想成「要打通」，按到瘀青，或硬把嘴巴張到最大去伸展，結果肌肉更防衛、隔天更痛。比較好的做法是：力道停在<strong>有點痠、但還能放鬆呼吸</strong>的程度，每個點停留 30 到 60 秒就換位置。</p>
 <p>另一個誤解是「多嚼一點來訓練咀嚼肌」。咀嚼肌從來不缺使用量，它缺的是<strong>休息</strong>。</p>
-<h2>什麼時候該找專業評估？</h2>
+<h2 id="sec-7">什麼時候該找專業評估？<a class="hash" href="#sec-7" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li>調整習慣後<strong>超過兩週</strong>沒有起色，或痛的範圍越來越大</li><li>張口寬度<strong>不到兩指幅</strong>，或出現卡住、咬合改變</li><li>單側臉部<strong>腫脹</strong>、發燒，或伴隨明顯牙痛（要先由牙科排除牙齒問題）</li><li>痛到<strong>夜裡醒來</strong>，或已經影響睡眠與情緒</li><li>頭痛的頻率明顯增加</li></ul>
 <p>這些都不是「忍一忍就過去」的訊號；越早處理，恢復通常越單純。</p>
 <blockquote>肌肉會痠，常是它替你扛了太多「沒說出口的緊繃」。</blockquote>
@@ -311,6 +366,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/tmj-myofascial-pain"><span>← 顳顎關節・較新一篇</span><b>咀嚼肌的肌筋膜疼痛與轉移痛：為什麼牙齒查不出問題卻痛</b></a>
+      <a class="nx" href="/posts/tmj-protective-co-contraction"><span>顳顎關節・較舊一篇 →</span><b>咀嚼肌的第一道反應：保護性共同收縮</b></a>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/tmj-myofascial-pain">咀嚼肌的肌筋膜疼痛與轉移痛：為什麼牙齒查不出問題卻痛<span>顳顎關節</span></a>
@@ -326,6 +385,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -342,6 +406,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="tmj-local-muscle-soreness";

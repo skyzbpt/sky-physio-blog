@@ -64,7 +64,23 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 h1{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.45;margin-bottom:14px}
 .lede{font-family:var(--serif);color:var(--muted);font-size:1.02rem;line-height:2;border-bottom:1px solid var(--line);padding-bottom:28px;margin-bottom:16px}
 .count{font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;color:var(--muted);margin-bottom:8px}
+/* 篇數多的分類：先給搜尋，再逐批載入，避免一次平鋪上百篇 */
+.finder{display:flex;align-items:center;gap:10px;margin:18px 0 4px;padding:11px 16px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6)}
+.finder svg{width:15px;height:15px;color:var(--muted);flex:none}
+.finder input{flex:1;min-width:0;border:none;background:none;outline:none;font-family:var(--sans);font-size:.94rem;color:var(--ink)}
+.finder input::placeholder{color:var(--muted)}
+.finder button{border:none;background:none;cursor:pointer;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted);padding:2px 4px}
+.finder button:hover{color:var(--teal)}
+.finder button[hidden]{display:none}
+.list mark{background:var(--teal-soft);color:inherit;border-radius:3px;padding:0 2px}
+.no-hit{padding:40px 4px;color:var(--muted);font-size:.9rem}
+.no-hit[hidden]{display:none}
+.loadmore{display:block;width:100%;margin-top:26px;padding:14px 20px;border:1.5px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6);
+  font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;color:var(--ink-2);cursor:pointer}
+.loadmore:hover{border-color:var(--teal);color:var(--teal)}
+.loadmore[hidden]{display:none}
 .list a{position:relative;display:block;padding:22px 0;border-bottom:1px solid var(--line)}
+.list a[hidden]{display:none}
 .list a::before{content:"";position:absolute;left:-14px;top:20px;bottom:20px;width:2px;background:var(--red);border-radius:2px;opacity:0}
 .list a:hover{transform:translateX(8px)}
 .list a:hover .t{color:var(--teal)}
@@ -82,6 +98,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px}
 @media(max-width:480px){
   .hub{padding:40px 22px 72px}
@@ -201,18 +221,61 @@ ${ldJson(breadcrumb)}
   <div class="eyebrow">TOPIC・分類專頁</div>
   <h1>${esc(hub.cat)}衛教文章</h1>
   <p class="lede">${esc(hub.lede)}</p>
-  <div class="count">共 ${arts.length} 篇・由新到舊</div>
-  <div class="list">
+  <div class="count" id="count">共 ${arts.length} 篇・由新到舊</div>${arts.length > 12 ? `
+  <div class="finder">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="20" y1="20" x2="16.5" y2="16.5"/></svg>
+    <input id="q" type="search" autocomplete="off" placeholder="搜尋這個分類（標題或摘要關鍵字）" aria-label="搜尋這個分類的文章">
+    <button id="qx" type="button" hidden>清除</button>
+  </div>` : ''}
+  <div class="list" id="list">
     ${arts.map(a => `<a href="/posts/${a.id}">
       <div class="m">${a.date}<span class="pv" data-slug="${a.id}" hidden> ・ ${EYE_SVG}<span class="pv-n"></span> 次</span></div>
       <div class="t">${esc(a.title)}</div>
       <div class="e">${esc(plain(a.excerpt))}</div>
     </a>`).join('\n    ')}
   </div>
+  <p class="no-hit" id="nohit" hidden>沒有符合的文章——換個關鍵字試試，或回到全部文章。</p>
+  ${arts.length > 24 ? '<button class="loadmore" id="more" type="button">載入更多文章</button>' : ''}
   <a class="backhome" href="/#blog">回到全部文章</a>
 </main>
 
 <script>
+/* 分類專頁的檢索與分批顯示：所有文章連結都在 HTML 裡（利於索引），
+   只由前端決定先顯示哪些；沒有 JS 時全部照常顯示。 */
+(function(){
+  var PAGE=24, list=document.getElementById('list'); if(!list) return;
+  var rows=[].slice.call(list.children), total=rows.length;
+  var q=document.getElementById('q'), qx=document.getElementById('qx');
+  var more=document.getElementById('more'), nohit=document.getElementById('nohit'), count=document.getElementById('count');
+  var shown=Math.min(PAGE,total), hits=rows;
+  function text(r){ return (r.textContent||'').toLowerCase(); }
+  function paint(){
+    rows.forEach(function(r){ r.hidden=true; });
+    hits.slice(0,shown).forEach(function(r){ r.hidden=false; });
+    if(more) more.hidden = shown>=hits.length;
+    nohit.hidden = hits.length>0;
+    var q0=q&&q.value.trim();
+    count.textContent = q0
+      ? '找到 ' + hits.length + ' 篇・關鍵字「' + q0 + '」'
+      : '共 ' + total + ' 篇・由新到舊' + (shown<total ? '（顯示前 ' + shown + ' 篇）' : '');
+  }
+  if(more) more.addEventListener('click',function(){ shown+=PAGE; paint(); });
+  if(q){
+    var t;
+    q.addEventListener('input',function(){
+      clearTimeout(t);
+      t=setTimeout(function(){
+        var v=q.value.trim().toLowerCase();
+        qx.hidden=!v;
+        hits = v ? rows.filter(function(r){ return text(r).indexOf(v)>-1; }) : rows;
+        shown = v ? Math.max(PAGE,hits.length) : PAGE;
+        paint();
+      },120);
+    });
+    qx.addEventListener('click',function(){ q.value=''; qx.hidden=true; hits=rows; shown=PAGE; paint(); q.focus(); });
+  }
+  paint();
+})();
 /* 點閱次數（分類專頁，唯讀批次讀取；Worker 未部署時靜默略過） */
 (function(){
   var API=${JSON.stringify(VIEWS_API)};
@@ -230,6 +293,11 @@ ${ldJson(breadcrumb)}
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 </body>

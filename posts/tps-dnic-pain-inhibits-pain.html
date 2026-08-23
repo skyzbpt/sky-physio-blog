@@ -231,6 +231,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -246,15 +273,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -278,19 +321,28 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">以痛止痛：為什麼有些治療會有點痛卻有效</h1>
     <p class="lede">一個地方的疼痛刺激，竟然可以把另一個地方的痛壓下來。這種「以痛止痛」的內建機制，可能就是針灸、乾針有效的原因之一。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（4）</summary>
+      <ol>
+        <li><a href="#sec-1">身體真的會「以痛止痛」嗎？</a></li>
+        <li><a href="#sec-2">這和乾針、針灸有關嗎？</a></li>
+        <li><a href="#sec-3">每個人的效果都一樣嗎？</a></li>
+        <li><a href="#sec-4">這對慢性疼痛的人意味著什麼？</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>「以痛止痛」聽起來像民間說法，但它其實有明確的神經生理機制，研究上也有正式名稱。</p>
-<h2>身體真的會「以痛止痛」嗎？</h2>
+<h2 id="sec-1">身體真的會「以痛止痛」嗎？<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <p>會。研究上有一種抑制機制（英文縮寫 DNIC）的運作方式是這樣的：<strong>當身體某一處受到疼痛刺激，大腦會啟動一套由上往下的抑制系統，把其他地方的疼痛訊號一起壓下來。</strong></p>
 <p>關鍵條件是：<strong>一定要有一個真的會不舒服的刺激</strong>，這套系統才會被啟動。溫和的按摩不太算，得是身體判定為「有威脅」的那種刺激。</p>
-<h2>這和乾針、針灸有關嗎？</h2>
+<h2 id="sec-2">這和乾針、針灸有關嗎？<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <p>很可能有。針對激痛點的<strong>乾針治療</strong>常被感覺為一種不舒服的刺激，而研究者推測，它的止痛效果可能正是啟動了這套機制。</p>
 <p>這也解釋了一件常讓人困惑的事：治療當下有點痠痛，事後反而覺得鬆了。那點不適未必是壞事，它可能正是打開身體止痛開關的方式。</p>
 <p>不過要提醒：針具治療必須由受過訓練的專業人員執行，自己在家亂壓亂扎並不會複製同樣的效果。</p>
-<h2>每個人的效果都一樣嗎？</h2>
+<h2 id="sec-3">每個人的效果都一樣嗎？<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <p>不一樣，這點很有意思。研究發現這套機制的強弱<strong>存在個體與族群差異</strong>：</p>
 <ul><li>不同族群之間，疼痛被壓下來的幅度有顯著差距</li><li>一篇整合多項研究的回顧發現，<strong>男性的這套機制可能比女性有效率</strong>，不過個別研究並不總是得到相同結論</li></ul>
-<h2>這對慢性疼痛的人意味著什麼？</h2>
+<h2 id="sec-4">這對慢性疼痛的人意味著什麼？<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <p>研究者在這個段落下了一個很重要的結論：<strong>慢性疼痛的關鍵，往往不在組織壞了多少，而在身體處理與抑制疼痛的這套系統運作得好不好。</strong></p>
 <p>如果你的疼痛一直好不了，值得檢視的不只是受傷的地方，還有這套「止痛開關」是不是失靈了——這需要專業評估。</p>
 <blockquote>身體有自己的止痛開關，只是每個人的靈敏度不同。</blockquote>
@@ -306,6 +358,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/tps-quantitative-sensory-testing"><span>← 疼痛科學・較新一篇</span><b>疼痛能被測量嗎？認識定量感覺測試（QST）</b></a>
+      <a class="nx" href="/posts/tps-descending-inhibition-system"><span>疼痛科學・較舊一篇 →</span><b>大腦的下行抑制系統：身體內建的止痛機制</b></a>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/tps-descending-inhibition-system">大腦的下行抑制系統：身體內建的止痛機制<span>疼痛科學</span></a>
@@ -321,6 +377,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -337,6 +398,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="tps-dnic-pain-inhibits-pain";

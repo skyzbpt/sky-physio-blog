@@ -247,6 +247,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -262,15 +289,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -294,24 +337,35 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">薦骨與尾骨：身體結構的收尾</h1>
     <p class="lede">薦骨是骨盆的拱心石，尾骨則是脊椎的收尾。這篇說明久坐與跌倒為什麼最容易讓尾骨痛、坐墊與坐姿可以怎麼調整、一般大概多久會改善，以及哪些狀況該盡快就醫。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（6）</summary>
+      <ol>
+        <li><a href="#sec-1">薦骨在骨盆裡扮演什麼角色？</a></li>
+        <li><a href="#sec-2">尾骨為什麼會痛？</a></li>
+        <li><a href="#sec-3">尾骨痛需要激烈治療嗎？</a></li>
+        <li><a href="#sec-4">坐著時可以怎麼調整？</a></li>
+        <li><a href="#sec-5">尾骨痛通常多久會好？</a></li>
+        <li><a href="#sec-6">什麼時候該就醫？</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>薦骨與尾骨位在脊椎的最尾端，常常被忽略，卻是骨盆結構重要的收尾。它們雖然不大，一旦出狀況，坐著、起身都可能不舒服。</p>
-<h2>薦骨在骨盆裡扮演什麼角色？</h2>
+<h2 id="sec-1">薦骨在骨盆裡扮演什麼角色？<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <p>薦骨是一塊三角形的骨頭，卡在兩側髂骨之間，像骨盆的「拱心石」：</p>
 <ul><li>上方連接腰椎，承接脊椎的重量</li><li>兩側與髂骨形成薦髂關節</li><li>下方接著尾骨</li></ul>
 <p>它是力量往下傳到雙腿的關鍵樞紐，也是骨盆底肌群附著的重要基礎。</p>
-<h2>尾骨為什麼會痛？</h2>
+<h2 id="sec-2">尾骨為什麼會痛？<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <p>尾骨痛最常見的兩個原因是<strong>久坐</strong>與<strong>跌倒</strong>。長時間坐在硬椅子上、或跌坐時尾骨直接撞擊地面，都可能讓這個小小的骨頭與周邊軟組織受到刺激。懷孕生產、姿勢習慣也可能有關。症狀通常在坐下、久坐後起身、或由坐到站的瞬間特別明顯。</p>
-<h2>尾骨痛需要激烈治療嗎？</h2>
+<h2 id="sec-3">尾骨痛需要激烈治療嗎？<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <p>通常不需要。多數尾骨不適適合以<strong>輕柔</strong>的方式照顧：</p>
 <ul><li>使用中空或楔形坐墊減少壓力</li><li>避免長時間坐在硬表面</li><li>適度活動骨盆與髖部</li><li>放鬆過度緊繃的骨盆底肌群</li></ul>
-<h2>坐著時可以怎麼調整？</h2>
+<h2 id="sec-4">坐著時可以怎麼調整？<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <p>最有感的改變往往不是治療，而是<strong>每天坐著的那八個小時</strong>。以整天坐辦公室、下班還騎機車的上班族為例：</p>
 <ul><li><strong>坐墊</strong>：用中空或楔形坐墊，缺口對準尾骨，讓尾骨<strong>懸空</strong>，重量落在兩側坐骨</li><li><strong>坐法</strong>：坐深一點、屁股靠向椅背，避免半躺在沙發裡把重量壓在尾骨</li><li><strong>常換姿勢</strong>：每 20～30 分鐘起身或換邊坐 1 分鐘，比找到「完美坐姿」實用</li><li><strong>硬表面</strong>：木椅、機車坐墊都很傷，隨身一條折疊毛巾墊在兩側坐骨下就能減壓</li><li><strong>溫和放鬆</strong>：每天做 5～10 次緩慢腹式呼吸，吸氣時感覺骨盆底自然放鬆下沉</li><li><strong>要避開</strong>：突然重重坐下、長時間坐硬椅，以及自己用力按壓尾骨尖端</li></ul>
-<h2>尾骨痛通常多久會好？</h2>
+<h2 id="sec-5">尾骨痛通常多久會好？<a class="hash" href="#sec-5" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li><strong>久坐造成的</strong>：坐姿與坐墊調整好，多半幾週內逐漸緩解</li><li><strong>跌坐撞擊造成的</strong>：常見是數週到數月慢慢改善，變化通常是「一開始坐 10 分鐘就痛，後來坐 1 小時才痛，最後只剩起身那一下會痛」</li><li><strong>懷孕生產後出現的</strong>：多數會隨骨盆與軟組織恢復而改善；若持續好幾個月，建議尋求專業評估</li></ul>
 <p>要有心理準備的是，復原<strong>很少是一直線</strong>。開會坐太久可能讓它回頭一點，判斷進步要看「能坐多久」與「痛得多重」的整體趨勢。</p>
-<h2>什麼時候該就醫？</h2>
+<h2 id="sec-6">什麼時候該就醫？<a class="hash" href="#sec-6" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li><strong>跌倒撞擊後完全不能坐、不能走</strong>，或懷疑骨折</li><li>尾骨附近出現<strong>紅、腫、熱、流出分泌物</strong>，甚至伴隨<strong>發燒</strong></li><li>尾骨上方皮膚有<strong>破口、凹陷、反覆流膿</strong></li><li><strong>大小便功能改變</strong>、胯下與肛門周圍麻木，或雙腿無力，請立刻就醫</li><li>疼痛<strong>持續超過六到八週</strong>沒有改善，或影響睡眠與工作</li><li>不明原因的<strong>體重下降</strong>，或夜間持續疼痛</li></ul>
 <p>若疼痛持續、劇烈或伴隨其他症狀，應尋求專業評估，排除其他問題後再對症處理。</p>
 <blockquote>越是細緻的角落，越需要溫柔對待。</blockquote>
@@ -327,6 +381,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/fascia-thoracolumbar"><span>← 高級筋膜技術・較新一篇</span><b>胸腰筋膜：下背痛的關鍵一層</b></a>
+      <a class="nx" href="/posts/fascia-pelvic-girdle-integration"><span>高級筋膜技術・較舊一篇 →</span><b>骨盆帶疼痛的筋膜整合</b></a>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/fascia-pelvic-girdle-integration">骨盆帶疼痛的筋膜整合<span>高級筋膜技術</span></a>
@@ -342,6 +400,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -358,6 +421,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="fascia-sacrum-coccyx";

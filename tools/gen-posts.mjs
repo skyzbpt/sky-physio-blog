@@ -2,8 +2,9 @@
 // 資料來源：data/articles.json（唯一真實來源）
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, TODAY, esc, plain, readMins, CAT_SLUG, renderBody, loadArticles, logoDataURI, ogCard, shot, VIEWS_API, EYE_SVG, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, wordCountOf, keywordsFor, extractFaqs, ldJson, topicsOf } from './lib.mjs';
+import { REPO, BASE, TODAY, esc, plain, readMins, CAT_SLUG, renderBody, headingsOf, loadArticles, logoDataURI, ogCard, shot, VIEWS_API, EYE_SVG, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, wordCountOf, keywordsFor, extractFaqs, ldJson, topicsOf } from './lib.mjs';
 import { resolveModified } from './modified.mjs';
+import { LEGAL_UPDATED } from './gen-legal.mjs';
 
 // id → 真實修改日期（由 data/modified.json 的內容雜湊決定），genPosts 開頭填入
 let MODIFIED = new Map();
@@ -69,6 +70,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -84,11 +112,26 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 `;
 
@@ -109,6 +152,25 @@ function postPage(a, idx, all) {
   desc = [...desc].slice(0, 155).join('').trim();
   const bodyHtml = renderBody(a.content);
   const mins = readMins(a.content);
+  // 目錄：小標三個以上才顯示（兩個以下的短文，目錄只是雜訊）
+  const heads = headingsOf(a.content);
+  const tocHtml = heads.length >= 3 ? `
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（${heads.length}）</summary>
+      <ol>
+${heads.map(h => `        <li><a href="#${h.id}">${esc(h.text)}</a></li>`).join('\n')}
+      </ol>
+    </details>` : '';
+  // 上一篇 / 下一篇：同分類、日期相鄰，讓系列文章可以一路讀下去
+  const catList = all.filter(x => x.cat === a.cat).sort((x, y) => y.date.localeCompare(x.date));
+  const at = catList.findIndex(x => x.id === a.id);
+  const newer = at > 0 ? catList[at - 1] : null;
+  const older = at > -1 && at < catList.length - 1 ? catList[at + 1] : null;
+  const pagerHtml = (newer || older) ? `
+    <nav class="pager" aria-label="同分類前後文章">
+      ${newer ? `<a class="pv-prev" href="/posts/${newer.id}"><span>← ${esc(a.cat)}・較新一篇</span><b>${esc(newer.title)}</b></a>` : '<span></span>'}
+      ${older ? `<a class="nx" href="/posts/${older.id}"><span>${esc(a.cat)}・較舊一篇 →</span><b>${esc(older.title)}</b></a>` : '<span></span>'}
+    </nav>` : '';
   // 相關文章：同分類且發佈日期最接近者優先（每篇的內鏈組合因此不同，
   // 讓連結權重分散到全站，而非全分類都指向同樣前 3 篇），不足再補其他分類最新
   const near = (x) => Math.abs(new Date(x.date) - new Date(a.date));
@@ -228,6 +290,7 @@ ${ldJson(faqld)}
 <style>${CSS}</style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -250,7 +313,7 @@ ${ldJson(faqld)}
       <button class="pp-share" onclick="copyLink()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">${esc(a.title)}</h1>
-    <p class="lede">${esc(a.excerpt)}</p>
+    <p class="lede">${esc(a.excerpt)}</p>${tocHtml}
     <div class="post-body">
 ${bodyHtml}
     </div>
@@ -264,7 +327,7 @@ ${bodyHtml}
         <a class="a-link" href="/#about">認識 Sky・治療哲學 →</a>
       </div>
     </aside>
-
+${pagerHtml}
     <nav class="more">
       <h3>延伸閱讀</h3>
       ${related.map(r => `<a href="/posts/${r.id}">${esc(r.title)}<span>${esc(r.cat)}${crossIds.has(r.id) ? " ・另一個角度" : ""}</span></a>`).join("\n      ")}
@@ -277,6 +340,11 @@ ${bodyHtml}
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -293,6 +361,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API=${JSON.stringify(VIEWS_API)}, slug=${JSON.stringify(a.id)};
@@ -364,6 +469,18 @@ export async function genPosts(page) {
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>${BASE}/privacy</loc>
+    <lastmod>${LEGAL_UPDATED}</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>${BASE}/cookies</loc>
+    <lastmod>${LEGAL_UPDATED}</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
 ${hubEntries}
 ${sorted.map(a => `  <url>
     <loc>${BASE}/posts/${a.id}</loc>
@@ -374,5 +491,5 @@ ${sorted.map(a => `  <url>
 </urlset>
 `;
   writeFileSync(join(REPO, 'sitemap.xml'), sitemap);
-  console.log('已更新 sitemap.xml（' + (articles.length + 1) + ' 個 URL）');
+  console.log('已更新 sitemap.xml（' + (articles.length + 3) + ' 個 URL）');
 }

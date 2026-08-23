@@ -231,6 +231,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -246,15 +273,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -278,26 +321,38 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">核心不是仰臥起坐：認識真正在保護你腰的深層核心</h1>
     <p class="lede">保護下背的不是表層那塊六塊肌，而是一群你看不到的深層肌肉。本文教你一天練多少才夠、怎麼自我檢查練對了，以及哪些紅旗症狀該先就醫。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（7）</summary>
+      <ol>
+        <li><a href="#sec-1">你的「天然護腰」</a></li>
+        <li><a href="#sec-2">怎麼練？（由淺到深）</a></li>
+        <li><a href="#sec-3">重點原則</a></li>
+        <li><a href="#sec-4">一天要練多少才夠？</a></li>
+        <li><a href="#sec-5">怎麼知道自己練對了？</a></li>
+        <li><a href="#sec-6">有哪些常見的誤解？</a></li>
+        <li><a href="#sec-7">練多久有感？什麼時候該先就醫？</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>「腰痛要練核心」——這句話沒錯，但很多人一聽到核心就狂做仰臥起坐，結果腰更痛。問題出在：<strong>保護下背的核心，不是表層那塊六塊肌，而是更深、更安靜的一群肌肉。</strong></p>
-<h2>你的「天然護腰」</h2>
+<h2 id="sec-1">你的「天然護腰」<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <p>真正在穩定脊椎的深層核心包括：</p>
 <ul><li><strong>腹橫肌</strong>：像一條環繞腰腹的束腹，收縮時能提高腹內壓、穩定脊椎</li><li><strong>多裂肌</strong>：貼在脊椎後方一節一節的小肌肉，負責節段的細微穩定</li><li><strong>橫膈膜與骨盆底</strong>：和上面兩者一起，形成一個「壓力氣缸」</li></ul>
 <p>這四者協調運作，才是脊椎真正的「安全帶」。而仰臥起坐主要練的是表層腹直肌，還會反覆彎腰，對某些腰痛反而是刺激。</p>
 <blockquote>深層核心的工作不是「用力」，而是「在對的時機，剛剛好地撐住」。</blockquote>
-<h2>怎麼練？（由淺到深）</h2>
+<h2 id="sec-2">怎麼練？（由淺到深）<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li><strong>腹式呼吸與腹內壓</strong>：先學會用呼吸連動橫膈與核心，感覺肚子環繞一圈的輕微張力，而不是用力縮小腹</li><li><strong>死蟲（dead bug）</strong>：仰躺、對側手腳緩慢伸展，過程中腰不塌、核心穩住</li><li><strong>鳥狗（bird dog）</strong>：四足跪姿、對側手腳伸出，保持骨盆不晃</li><li><strong>橋式</strong>：啟動臀與後側核心</li></ul>
-<h2>重點原則</h2>
+<h2 id="sec-3">重點原則<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li><strong>品質 &gt; 次數</strong>：能穩穩控制 5 下，勝過亂做 50 下</li><li><strong>中立脊椎、順順呼吸</strong>：不要憋氣、不要硬凹腰</li><li><strong>循序加難度</strong>：穩了再加時間、加槓桿、加負荷</li></ul>
-<h2>一天要練多少才夠？</h2>
+<h2 id="sec-4">一天要練多少才夠？<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <p>深層核心靠的是頻率與品質，不是單次的量：</p>
 <ul><li><strong>每天 5 到 10 分鐘</strong>，比一週操一次一小時有效</li><li><strong>死蟲、鳥狗、橋式各 8 到 10 下、2 組</strong>，動作全程慢速，一下花 3 到 4 秒</li><li><strong>先練腹式呼吸</strong>：躺著手放肚子，鼻子吸 4 秒、慢慢吐 6 秒，一次 5 分鐘</li><li><strong>練到「穩得住」就停</strong>：一旦腰塌下去、骨盆開始晃，或必須憋氣，那一組就結束了</li><li><strong>融進日常</strong>：從椅子站起來、彎腰撿東西、提東西之前，先輕輕把核心「準備好」</li></ul>
-<h2>怎麼知道自己練對了？</h2>
+<h2 id="sec-5">怎麼知道自己練對了？<a class="hash" href="#sec-5" aria-label="複製這個段落的連結">#</a></h2>
 <p>幾個很實用的自我檢查：</p>
 <ul><li><strong>摸得到嗎</strong>：手指輕放在肚子側邊（骨盆上方一點），啟動時應該摸到一圈<strong>輕微、平均</strong>的張力，而不是肚子用力凹進去</li><li><strong>還能說話嗎</strong>：如果沒辦法一邊維持一邊正常呼吸講話，就是用力過頭了</li><li><strong>腰有沒有塌</strong>：做死蟲時把手掌塞在腰下，過程中腰對手掌的壓力應該幾乎不變</li><li><strong>隔天哪裡痠</strong>：應該是深層腹部或臀部有點痠；如果是脖子、腰椎或大腿前側特別痠，代表代償了</li></ul>
-<h2>有哪些常見的誤解？</h2>
+<h2 id="sec-6">有哪些常見的誤解？<a class="hash" href="#sec-6" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li><strong>「核心就是六塊肌」</strong>：看得到的那層負責彎腰出力，穩定脊椎靠的是更深的那群。</li><li><strong>「用力縮小腹就對了」</strong>：過度用力反而讓橫膈與骨盆底無法協調，還常伴隨憋氣。</li><li><strong>「腰痛就先練核心」</strong>：核心訓練幫助很大，但如果目前連走路都痛，先處理疼痛與活動再說。</li><li><strong>「平板撐越久越強」</strong>：撐得久不等於在日常動作裡撐得住，動態控制才是重點。</li><li><strong>「仰臥起坐一定不能做」</strong>：不是全面禁止，只是它練的不是穩定，且反覆彎腰對某些腰痛是刺激。</li></ul>
-<h2>練多久有感？什麼時候該先就醫？</h2>
+<h2 id="sec-7">練多久有感？什麼時候該先就醫？<a class="hash" href="#sec-7" aria-label="複製這個段落的連結">#</a></h2>
 <p>多數人<strong>兩到四週</strong>會覺得日常動作比較穩、腰比較不容易累；肌力與控制的明顯改變通常要 <strong>6 到 12 週</strong>。</p>
 <p>出現下列情況請先就醫，不要自己練：</p>
 <ul><li><strong>大小便控制改變、會陰部麻木</strong>——請立刻就醫</li><li>腿部<strong>進行性無力</strong>，或麻木範圍持續擴大</li><li>疼痛<strong>夜裡痛到醒</strong>，完全休息也不緩解</li><li>合併<strong>發燒、不明原因的體重下降</strong></li><li>有<strong>骨質疏鬆、癌症病史</strong>，或近期跌倒、撞擊後才開始痛</li></ul>
@@ -315,6 +370,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/hip-mobility-back-pain"><span>← 下背痛・較新一篇</span><b>腰痛，為什麼要練髖？髖不動，腰就替它受累</b></a>
+      <a class="nx" href="/posts/flexion-extension-preference"><span>下背痛・較舊一篇 →</span><b>屈曲型還是伸展型？找出你下背痛的「方向偏好」</b></a>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/flexion-extension-preference">屈曲型還是伸展型？找出你下背痛的「方向偏好」<span>下背痛</span></a>
@@ -330,6 +389,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -346,6 +410,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="deep-core-not-situps";

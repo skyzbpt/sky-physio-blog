@@ -189,6 +189,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -204,15 +231,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -236,21 +279,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">身體裡的第三種節律：認識顱薦椎脈動</h1>
     <p class="lede">你能感覺到心跳，也能感覺到呼吸的起伏。但還有第三種節律，安靜地在全身流動——大多數人一輩子沒察覺它的存在。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（5）</summary>
+      <ol>
+        <li><a href="#sec-1">一分鐘六到十二次</a></li>
+        <li><a href="#sec-2">頭與尾，為什麼一起動</a></li>
+        <li><a href="#sec-3">一個在手術台上的發現</a></li>
+        <li><a href="#sec-4">那雙手在讀什麼</a></li>
+        <li><a href="#sec-5">誠實的那一段</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>把手指放在手腕上，你能數出心跳；把手放在胸口，你能感覺呼吸的起落。這是兩種我們從小就熟悉的身體節律。但在治療床上，當我把手輕輕放在一個人的頭顱兩側、靜靜等待，常常會等到第三種——一種比心跳慢、比呼吸更深的律動。它有名字，叫顱薦椎脈動。</p>
-<h2>一分鐘六到十二次</h2>
+<h2 id="sec-1">一分鐘六到十二次<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <p>顱薦椎脈動是一種規律、持續、獨立運作的生理節律。在健康的成人身上，它大約每分鐘循環六到十二次——比安靜時的呼吸還慢，而且不像呼吸或心跳那樣，會因為你跑了一段路、或情緒一激動就忽快忽慢。它有自己的步調，安靜而穩定。也正因為這份穩定，它在徒手評估裡反而成了相對可靠的參考。</p>
 <p>最容易感覺到它的地方是頭部，但手熟了之後，全身幾乎任何部位都摸得到。它也不只在頭顱：在薦骨（脊椎最下方、骨盆正中央那塊三角形的骨頭）上，同樣能感受到一前一後、規律的微小轉動。</p>
-<h2>頭與尾，為什麼一起動</h2>
+<h2 id="sec-2">頭與尾，為什麼一起動<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <p>頭和尾隔著一整條脊椎，卻動得一致——這正是「顱薦椎」這個名字的由來。原因藏在解剖裡：從頭顱底部一路到薦骨，有一層堅韌的膜（硬腦膜）像套子一樣包覆著腦與脊髓，上端固定在枕骨、下端固定在薦骨。這層膜把一頭一尾繫在同一條線上，所以頭部的律動，能在尾端被讀到，反過來也一樣。</p>
 <p>對徒手治療師而言，這個連動很關鍵：它提醒我們身體是一個整體，頸部的張力可能在骨盆現形，骨盆的卡住也可能往上影響到頭。</p>
-<h2>一個在手術台上的發現</h2>
+<h2 id="sec-3">一個在手術台上的發現<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <p>這套系統的故事，要從兩位醫師說起。二十世紀初，骨病醫師威廉・沙特蘭盯著一具拆開的頭骨，注意到顱骨彼此交接的縫，看起來「像是設計來活動的」。這在當時是離經叛道的想法——解剖學的教條認為成人顱骨早就融合成一塊、固定不動。沙特蘭卻花了大半生主張：顱骨終其一生都保有細微而持續的活動。</p>
 <p>幾十年後，另一位醫師優普哲在一次手術中親身撞見了這件事。那台手術要從病人脊椎取出鈣化的斑塊，他的工作是用器械夾住硬腦膜、讓它別動。但他怎麼夾都夾不住——那層膜以大約每分鐘八次的頻率，規律地、自顧自地起伏著，和呼吸、心跳的節奏全對不上。當下沒有任何教科書能解釋他看到的東西。這份困惑，後來成了他投入餘生研究的起點，也寫成了《顱薦椎治療》這本書。</p>
-<h2>那雙手在讀什麼</h2>
+<h2 id="sec-4">那雙手在讀什麼<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <p>書裡有個很實用的觀察：身體左右對稱，所以只要比較兩側同一個位置的脈動——對不對稱、節律順不順、振幅夠不夠——就能找到「卡住」的地方。摸到失衡的那一側，不一定能告訴你那裡得了什麼病，但能告訴你：問題大概在這附近，值得再用別的方法細查。</p>
 <p>這也是為什麼我在這個領域裡，花最多時間練的是觸診。同一雙手，剛開始只摸得到心跳和呼吸；練久了，那層更安靜的律動會慢慢浮上來，清晰到難以忽略。一位前輩形容得很好：一旦感受過，就再也忘不掉。</p>
-<h2>誠實的那一段</h2>
+<h2 id="sec-5">誠實的那一段<a class="hash" href="#sec-5" aria-label="複製這個段落的連結">#</a></h2>
 <p>我想把話說清楚：顱薦椎脈動「為什麼存在」「確切如何運作」，到今天科學上仍有爭論，書的作者本人也坦承，許多臨床觀察還沒有經過嚴謹的研究驗證。我不會把它說成包治百病的神技，也不會假裝它的機轉早有定論。</p>
 <p>但它有兩個特質，讓我願意把它放進工具箱。一是風險極低——大約五克的力，推不動也傷不了任何人；二是它把治療師的注意力，從「哪裡痛就壓哪裡」，拉回到「整個身體是一個連動的整體」。對長期緊繃、自律神經失調、怎麼放鬆都鬆不掉的人，這個視角常常能補上別的方法漏掉的那一塊。</p>
 <blockquote>身體裡一直有三種節律。心跳和呼吸我們聽了一輩子，第三種，只是還在等一雙夠安靜的手，把它讀出來。</blockquote>
@@ -267,6 +320,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/biodynamic-stillness"><span>← 顱薦椎・較新一篇</span><b>不是去「修理」，而是創造一個夠安全的空間——談生物動力顱薦椎</b></a>
+      <a class="nx" href="/posts/craniosacral-5g"><span>顱薦椎・較舊一篇 →</span><b>顱薦椎整合：大約五克的力</b></a>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/tmj-whole-person">下巴痛，問題不一定在下巴——從顳顎關節談「整體」的身體觀<span>顱薦椎</span></a>
@@ -282,6 +339,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -298,6 +360,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="craniosacral-rhythm";

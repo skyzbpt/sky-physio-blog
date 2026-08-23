@@ -247,6 +247,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -262,15 +289,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -294,26 +337,37 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">口內咬肌放鬆：更深入的顳顎處理</h1>
     <p class="lede">從口腔內側直接處理咬肌，能碰到臉頰外側按不到的深層張力。這篇說明它適合誰、一次處理的實際流程與感受、做完會有什麼反應，以及哪些情況先別做、何時該就醫。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（6）</summary>
+      <ol>
+        <li><a href="#sec-1">什麼是口內咬肌放鬆？</a></li>
+        <li><a href="#sec-2">為什麼需要從口內處理？</a></li>
+        <li><a href="#sec-3">這樣處理會不舒服嗎？需要注意什麼？</a></li>
+        <li><a href="#sec-4">一次處理大概是什麼流程？</a></li>
+        <li><a href="#sec-5">做完會有什麼反應？多久看得到進展？</a></li>
+        <li><a href="#sec-6">哪些情況先不要做？什麼時候該就醫？</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>當一般從臉頰外側放鬆咬肌效果有限時，物理治療師有時會採用「口內」的方式，更直接地處理深層張力。這是一種需要專業與信任的處理方式。</p>
-<h2>什麼是口內咬肌放鬆？</h2>
+<h2 id="sec-1">什麼是口內咬肌放鬆？<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <p>指治療師戴手套，從<strong>口腔內側</strong>接觸咬肌與周邊組織：</p>
 <ul><li>能更貼近咬肌的深層與內側面</li><li>比從外側按壓更直接、更精準</li><li>常用於較頑固的顳顎緊繃</li></ul>
 <p>它是進階的徒手技術之一，屬於顳顎物理治療的一環。</p>
-<h2>為什麼需要從口內處理？</h2>
+<h2 id="sec-2">為什麼需要從口內處理？<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <p>因為咬肌有相當的厚度，部分張力從臉頰外側不易觸及。口內處理能繞過外層、更接近問題所在，對於長期緊咬、開口受限的人，有時能帶來外側處理達不到的鬆動。</p>
-<h2>這樣處理會不舒服嗎？需要注意什麼？</h2>
+<h2 id="sec-3">這樣處理會不舒服嗎？需要注意什麼？<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <p>過程中可能有痠脹感，但不該是劇痛。重點在於：</p>
 <ul><li>由<strong>受過訓練的專業人員</strong>執行，全程清楚溝通</li><li>事前告知、取得同意，過程可隨時喊停</li><li>注意衛生（手套）與適應症評估</li></ul>
 <p>若你有顳顎的長期困擾，可與物理治療師或牙科討論是否適合。這不是自己在家該嘗試的技術。</p>
-<h2>一次處理大概是什麼流程？</h2>
+<h2 id="sec-4">一次處理大概是什麼流程？<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <p>常見情境：一位長期趕案子的設計師，白天不自覺緊咬、晚上磨牙，臉頰外側按過幾次會鬆一兩天就回到原點。這種「外側有效但撐不久」的模式，正是考慮改從口內處理的時機之一。流程通常是：</p>
 <ul><li><strong>先評估</strong>：看開口大小、路徑會不會偏、關節有沒有聲音，並問清楚牙科病史與用藥</li><li><strong>說明與同意</strong>：解釋要碰哪裡、會有什麼感覺，並先約好喊停的手勢</li><li><strong>執行</strong>：戴手套，用一到兩根手指沿咬肌內側緩慢加壓與滑動，每個點停留數十秒，不會一路硬壓</li><li><strong>後續</strong>：搭配下巴活動練習、頸部與姿勢調整，並約好回診時間</li></ul>
-<h2>做完會有什麼反應？多久看得到進展？</h2>
+<h2 id="sec-5">做完會有什麼反應？多久看得到進展？<a class="hash" href="#sec-5" aria-label="複製這個段落的連結">#</a></h2>
 <p>當天到隔天臉頰輕微痠脹、咀嚼稍微沒力都很常見，一般一兩天內緩解。處理後你可以：</p>
 <ul><li>用熱毛巾溫熱敷臉頰兩側，一次十到十五分鐘</li><li>當天吃軟一點，避免大口咬與嚼口香糖</li><li>維持正常活動，不需要刻意讓下巴完全不動</li></ul>
 <p>進展多半是階梯式的：<strong>開口變順、緊繃減少通常最先出現，聲音與卡頓的改變最慢</strong>。若做了幾次完全沒變化，該重新評估方向，而不是加重力道。</p>
-<h2>哪些情況先不要做？什麼時候該就醫？</h2>
+<h2 id="sec-6">哪些情況先不要做？什麼時候該就醫？<a class="hash" href="#sec-6" aria-label="複製這個段落的連結">#</a></h2>
 <p>以下狀況請先暫緩，並主動告知專業人員：</p>
 <ul><li>口腔內有<strong>傷口、潰瘍或感染</strong>，或近期剛拔牙、剛做完口腔手術</li><li>正在<strong>發燒</strong>，或臉部腫脹、發紅發熱</li><li>嘔吐反射特別敏感，對口內接觸極度不適</li><li>頭頸部曾接受放射治療，或醫師已交代要避免</li></ul>
 <p>出現這些警訊請直接就醫：下巴突然<strong>卡住張不開或合不回來</strong>；疼痛<strong>持續超過兩週</strong>沒改善且加重；<strong>臉部麻木或咀嚼無力</strong>；不明原因體重下降，或頸部摸到不消的硬塊。</p>
@@ -330,6 +384,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/fascia-musculoskeletal-headache"><span>← 高級筋膜技術・較新一篇</span><b>肌肉骨骼型頭痛：頸與筋膜的角色</b></a>
+      <a class="nx" href="/posts/fascia-pterygoids"><span>高級筋膜技術・較舊一篇 →</span><b>翼內肌與翼外肌：深層咀嚼肌</b></a>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/fascia-pterygoids">翼內肌與翼外肌：深層咀嚼肌<span>高級筋膜技術</span></a>
@@ -345,6 +403,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -361,6 +424,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="fascia-intraoral-masseter";

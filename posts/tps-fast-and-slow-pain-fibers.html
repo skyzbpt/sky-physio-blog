@@ -223,6 +223,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -238,15 +265,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -270,17 +313,25 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">快痛與慢痛：兩種傳遞疼痛的神經纖維</h1>
     <p class="lede">撞到腳趾時先是一陣尖銳痛，隔一下才湧上悶悶的痛？那是因為身體有兩條速度不同的神經線路：一條像快遞、一條像平信，各自回報同一件事。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（3）</summary>
+      <ol>
+        <li><a href="#sec-1">為什麼痛常常分成兩波？</a></li>
+        <li><a href="#sec-2">細的神經纖維就等於「痛的線路」嗎？</a></li>
+        <li><a href="#sec-3">同一條線的門檻會變嗎？</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>撞到腳趾的瞬間，先是一陣尖銳、位置明確的痛；過一下，才湧上說不清哪裡在痛的悶痛。這不是錯覺——身體有兩條速度不同的線路，在回報同一件事。</p>
-<h2>為什麼痛常常分成兩波？</h2>
+<h2 id="sec-1">為什麼痛常常分成兩波？<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <p>因為負責傳話的神經纖維不只一種，而它們的速度差很多。可以想成快遞和平信：</p>
 <ul><li><strong>快線（醫學上叫 Aδ 纖維）</strong>：很細，但外面包了一層像電線絕緣皮的保護層，訊號跑得<strong>快</strong>，帶來<strong>位置明確</strong>的尖銳痛</li><li><strong>慢線（醫學上叫 C 纖維）</strong>：一樣細，卻<strong>沒有那層絕緣皮</strong>，訊號跑得<strong>慢</strong>，帶來<strong>悶悶的、說不清位置</strong>、而且<strong>慢一步才出現</strong>的痛</li></ul>
 <p>纖維的粗細，和它傳得多快、以及它連著哪一種末端感應器，是相關的。</p>
-<h2>細的神經纖維就等於「痛的線路」嗎？</h2>
+<h2 id="sec-2">細的神經纖維就等於「痛的線路」嗎？<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <p>不是，這是很重要的釐清。<strong>並不是所有又細又慢的纖維都在報告疼痛</strong>。</p>
 <ul><li>肌肉和皮膚的神經裡，有一群只要<strong>輕輕碰觸或壓一下</strong>就會反應的感應器</li><li>皮膚的神經裡還有專門<strong>感覺溫度</strong>的感應器</li></ul>
 <p>所以摸起來會痛，不代表那一帶的細纖維全都是痛的線路。</p>
-<h2>同一條線的門檻會變嗎？</h2>
+<h2 id="sec-3">同一條線的門檻會變嗎？<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <p>會，這正是慢性疼痛的關鍵。負責偵測危險訊號的神經末梢分成兩型：一型要很強的壓迫或化學刺激才會出聲，另一型則對熱特別敏感。而<strong>熱刺激持續得久了，原本很高的門檻會降下來</strong>（醫學上叫敏感化），本來不痛的刺激就開始痛了。</p>
 <p>這對你意味著什麼：尖銳痛、悶痛、燒灼感背後是不同的生理線路，不是你「講不清楚」。把痛的性質、位置與出現時間描述給治療師或醫師，比一句「就是痛」更有幫助。</p>
 <blockquote>兩種速度，兩種痛——身體用不同的語調，說著同一件事。</blockquote>
@@ -296,6 +347,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/tps-transduction-how-pain-signals-start"><span>← 疼痛科學・較新一篇</span><b>外界的刺激，怎麼變成神經看得懂的訊號？</b></a>
+      <a class="nx" href="/posts/tps-four-stages-of-nociception"><span>疼痛科學・較舊一篇 →</span><b>從刺激到「好痛」：疼痛訊號經過的四個關卡</b></a>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/tps-four-stages-of-nociception">從刺激到「好痛」：疼痛訊號經過的四個關卡<span>疼痛科學</span></a>
@@ -311,6 +366,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -327,6 +387,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="tps-fast-and-slow-pain-fibers";

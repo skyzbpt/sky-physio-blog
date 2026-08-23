@@ -135,6 +135,10 @@
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.85;letter-spacing:.02em;-webkit-font-smoothing:antialiased;overflow-x:clip}
 ::selection{background:var(--teal);color:#fff}img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+/* 動效：與首頁一致的統一過場，尊重「減少動態」偏好 */
+@media(prefers-reduced-motion:no-preference){
+.btn,.nav-link,.brand,.crumb a,.pp-share,.author-box,.more a,.post-body figure img{transition:color .22s ease,background-color .22s ease,border-color .22s ease,box-shadow .3s ease,transform .3s cubic-bezier(.22,.7,.3,1)}
+}
 header{position:sticky;top:0;z-index:80;border-bottom:1px solid var(--line)}
 header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(224,240,251,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 .nav{max-width:1120px;margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
@@ -145,17 +149,18 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 .nav-link{font-size:.88rem;color:var(--ink-2);border-bottom:1.5px solid transparent;padding:4px 0}
 .nav-link:hover{border-color:var(--teal);color:var(--ink)}
 .btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.9rem;letter-spacing:.06em;padding:11px 26px;border:1.5px solid var(--ink);background:transparent;color:var(--ink)}
-.btn:hover{background:rgba(35,42,80,.06)}
-.btn:active{opacity:.8}
+.btn:hover{background:rgba(35,42,80,.06);transform:translateY(-2px)}
+.btn:active{opacity:.8;transform:translateY(0)}
 .btn.teal{background:#0C7365;border-color:#0C7365;color:#fff;font-weight:600}
-.btn.teal:hover{background:#0A5F53;border-color:#0A5F53}
+.btn.teal:hover{background:#0A5F53;border-color:#0A5F53;box-shadow:0 12px 24px -12px rgba(12,115,101,.75)}
 .btn.sm{padding:8px 20px;font-size:.84rem}
 @media(max-width:520px){.brand-name{font-size:.94rem}.nav-link{display:none}}
 .post-page{max-width:720px;margin:0 auto;padding:56px 32px 96px}
 .crumb{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--muted);margin-bottom:26px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .crumb a{color:var(--ink-2);border-bottom:1px solid var(--line)}
 .crumb a:hover{color:var(--teal);border-color:var(--teal)}
-.author-box{display:flex;align-items:center;gap:16px;margin-top:30px;padding:20px 22px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.author-box{display:flex;align-items:center;gap:16px;margin-top:30px;padding:20px 22px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);box-shadow:0 2px 12px -6px rgba(35,42,80,.16)}
+.author-box:hover{border-color:rgba(20,154,138,.45);box-shadow:0 16px 32px -22px rgba(20,154,138,.5)}
 .author-box img{width:52px;height:52px;flex:none;border-radius:50%;background:#fff;object-fit:contain}
 .author-box .a-name{font-family:var(--serif);font-weight:700;font-size:1.02rem}
 .author-box .a-cred{font-size:.8rem;color:var(--muted);margin:3px 0 6px;line-height:1.7}
@@ -184,26 +189,73 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
-.more a{display:block;font-family:var(--serif);font-size:1.05rem;color:var(--ink);padding:12px 0;border-bottom:1px solid var(--line)}
-.more a:hover{color:var(--teal)}
+.more a{position:relative;display:block;font-family:var(--serif);font-size:1.05rem;color:var(--ink);padding:12px 0 12px 0;border-bottom:1px solid var(--line)}
+.more a::before{content:"";position:absolute;left:-14px;top:14px;bottom:14px;width:2px;background:var(--red);border-radius:2px;opacity:0}
+.more a:hover{color:var(--teal);transform:translateX(8px)}
+.more a:hover::before{opacity:1}
+@media(prefers-reduced-motion:no-preference){.more a::before{transition:opacity .3s ease}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn:hover,.more a:hover{transform:none}}
 .more a span{display:block;font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;color:var(--muted);margin-top:4px}
 footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gradient(180deg,var(--bg) 0%,#D8ECF8 100%);margin-top:40px}
 .foot-in{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;align-items:center;gap:12px}
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -227,15 +279,23 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">功率七區間：每一區到底在練什麼</h1>
     <p class="lede">從恢復騎到神經肌肉力量，七個功率區間對應七種不同的生理適應。看懂它們，你才知道今天這趟騎乘到底買到了什麼。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（3）</summary>
+      <ol>
+        <li><a href="#sec-1">各區間速覽</a></li>
+        <li><a href="#sec-2">三個常見誤區</a></li>
+        <li><a href="#sec-3">怎麼用</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>功率訓練把 FTP 切成七個區間，每一區訓練的東西不一樣。以下百分比以 FTP 為基準。</p>
-<h2>各區間速覽</h2>
+<h2 id="sec-1">各區間速覽<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li><strong>Z1 主動恢復（&lt;55%）</strong>：幾乎不累積疲勞，目的是促進血流、幫助恢復</li><li><strong>Z2 有氧耐力（56–75%）</strong>：脂肪代謝、微血管密度、粒線體——<strong>基礎期的主食</strong></li><li><strong>Z3 節奏（76–90%）</strong>：介於輕鬆與辛苦之間，能有效累積訓練量，但恢復成本比 Z2 高</li><li><strong>Z4 閾值（91–105%）</strong>：直接推高 FTP，也是計時賽的比賽強度</li><li><strong>Z5 VO2max（106–120%）</strong>：3～8 分鐘的間歇，提升最大攝氧量與心輸出量</li><li><strong>Z6 無氧耐力（121–150%）</strong>：30 秒～3 分鐘，練的是耐乳酸與反覆衝擊的能力</li><li><strong>Z7 神經肌肉力量（&gt;150%）</strong>：5～15 秒全力，練的是最大功率輸出與神經徵召</li></ul>
-<h2>三個常見誤區</h2>
+<h2 id="sec-2">三個常見誤區<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <p><strong>一、大部分時間卡在 Z3。</strong> 這是業餘車手最典型的問題：輕鬆的日子不夠輕鬆、辛苦的日子不夠辛苦。中間強度累積疲勞卻不特別有效。</p>
 <p><strong>二、以為高區間比較好。</strong> Z5 以上的訓練效果好，但恢復成本高、一週能吃的份量有限。真正撐起你能力的，是 Z2 累積的時數。</p>
 <p><strong>三、忘了戶外騎乘不會停在同一區。</strong> 起伏路段功率會亂跳，這時要看的是<strong>整段的 NP 與時間分佈</strong>，不是瞬間數字。</p>
-<h2>怎麼用</h2>
+<h2 id="sec-3">怎麼用<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <p>排課表時先問自己：這趟騎乘我想買到什麼？想買有氧底子，就設定為 Z2 並乖乖待著；想買閾值，就 2×20 分鐘 Z4。</p>
 <blockquote>區間不是限制，是意圖。當你說得出今天為什麼待在這一區，訓練才開始有方向。</blockquote>
     </div>
@@ -250,6 +310,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/cycling-normalized-power"><span>← 公路車・較新一篇</span><b>正規化功率 NP：為什麼平均功率會騙你</b></a>
+      <a class="nx" href="/posts/cycling-ftp-test-methods"><span>公路車・較舊一篇 →</span><b>怎麼測 FTP？三種常見方法與各自的坑</b></a>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/cycling-ftp-test-methods">怎麼測 FTP？三種常見方法與各自的坑<span>公路車</span></a>
@@ -265,6 +329,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -281,6 +350,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="cycling-power-zones";

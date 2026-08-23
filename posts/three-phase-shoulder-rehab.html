@@ -231,6 +231,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -246,15 +273,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -278,28 +321,40 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">肩膀復健的三個階段：從安撫到重返過頭動作</h1>
     <p class="lede">肩膀復健不是把同一組動作做到好，而是隨進步換檔。本文給你三階段路線圖、每個階段大概要多久，以及換階段時最常犯的錯。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（7）</summary>
+      <ol>
+        <li><a href="#sec-1">第一階段：安撫與保護活動度</a></li>
+        <li><a href="#sec-2">第二階段：恢復活動度與肩胛控制</a></li>
+        <li><a href="#sec-3">第三階段：建立力量與過頭／負重能力</a></li>
+        <li><a href="#sec-4">怎麼換階段？</a></li>
+        <li><a href="#sec-5">每個階段大概要多久？</a></li>
+        <li><a href="#sec-6">換階段最常犯什麼錯？</a></li>
+        <li><a href="#sec-7">什麼時候該找專業評估？</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>肩膀復健最常見的卡關，是「一組運動做到底」。有效的復健其實分成三個循序漸進的階段，每階段目標不同。</p>
-<h2>第一階段：安撫與保護活動度</h2>
+<h2 id="sec-1">第一階段：安撫與保護活動度<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <p>最痛、最敏感的時期。目標是<strong>降低疼痛、維持基本活動度</strong>，不讓肩膀因為不敢動而僵住。</p>
 <p>常做：鐘擺運動、在不痛範圍的輔助式活動度（例如用好手帶動患側、用木棍輔助）、輕柔的肩胛動作。重點是讓肩膀知道「動，是安全的」。</p>
-<h2>第二階段：恢復活動度與肩胛控制</h2>
+<h2 id="sec-2">第二階段：恢復活動度與肩胛控制<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <p>疼痛穩定後，把<strong>全範圍活動度與動作品質</strong>找回來。</p>
 <p>常做：主動活動度、肩胛穩定訓練（划船、聳肩下壓、牆上滑行）、旋轉肌袖的低負荷啟動（彈力帶內外轉）。這一階段你會發現「舉得越來越高、越來越順」。</p>
 <blockquote>肩膀復健的進步看的是「一週比一週能舉更高、用更多」，而不是「今天有沒有完全不痛」。</blockquote>
-<h2>第三階段：建立力量與過頭／負重能力</h2>
+<h2 id="sec-3">第三階段：建立力量與過頭／負重能力<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <p>最常被略過、卻最關鍵的一段。疼痛好了，如果力量與耐力沒回來，很容易復發。</p>
 <p>常做：漸進阻力的旋轉肌袖與肩胛強化、推與拉的複合動作、逐步加入過頭負重與（運動員的）專項動作。</p>
-<h2>怎麼換階段？</h2>
+<h2 id="sec-4">怎麼換階段？<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <p>原則：<strong>目前動作做起來輕鬆、隔天不加重疼痛，就往下一階段加一點難度。</strong> 少即是多，穩紮穩打。</p>
-<h2>每個階段大概要多久？</h2>
+<h2 id="sec-5">每個階段大概要多久？<a class="hash" href="#sec-5" aria-label="複製這個段落的連結">#</a></h2>
 <p>沒有標準時間表，但可以有合理的期待：</p>
 <ul><li><strong>第一階段</strong>：通常數天到兩、三週，看疼痛與敏感度降下來的速度</li><li><strong>第二階段</strong>：常需要數週到兩、三個月，取決於原本卡多久、以及有沒有規律練</li><li><strong>第三階段</strong>：至少 6 到 12 週。肌力與肌腱耐受度是<strong>以週、月累積</strong>的，沒有捷徑</li><li><strong>冰凍肩是例外</strong>：它以月為單位，整段病程可能數月到一兩年</li></ul>
 <p>實務上頻率比強度重要：<strong>活動度一天 1 到 2 回，力量一週 2 到 3 次</strong>，中間留恢復日。</p>
-<h2>換階段最常犯什麼錯？</h2>
+<h2 id="sec-6">換階段最常犯什麼錯？<a class="hash" href="#sec-6" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li><strong>太早跳到第三階段</strong>：疼痛剛降下來就急著推舉、拉單槓，常在幾天內把肩膀重新惹醒</li><li><strong>卡在第一階段太久</strong>：鐘擺做了兩個月還不敢主動抬手，活動度反而一點一點流失</li><li><strong>完全跳過第三階段</strong>：這是<strong>復發最常見的原因</strong>——不痛了就停練，力量從來沒回來</li><li><strong>只看今天痛不痛</strong>：進步要看一週的趨勢，單日的起伏參考價值很低</li><li><strong>只顧患側</strong>：好手代償久了也會出問題，練的時候兩側都要照顧</li></ul>
 <p>比較實際的做法是<strong>每一到兩週回頭比一次</strong>：舉得比上週高嗎？做同樣的事比較不費力嗎？</p>
-<h2>什麼時候該找專業評估？</h2>
+<h2 id="sec-7">什麼時候該找專業評估？<a class="hash" href="#sec-7" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li>明顯<strong>外傷後</strong>抬不起手臂，或肩膀外觀變形</li><li>手臂<strong>無力或麻木</strong>延伸到手指</li><li>活動度在<strong>幾週內明顯變小</strong>，梳頭、扣內衣做不到</li><li>夜間痛到無法入睡，持續一週以上</li><li>肩膀<strong>紅、腫、發熱並伴隨發燒</strong></li><li>自己按階段練<strong>兩到三個月</strong>完全沒有進展</li><li>左肩疼痛<strong>伴隨胸悶、冒冷汗、呼吸困難</strong>——請立刻就醫</li></ul>
 <p>三階段不是死時間表，而是隨身體回應調整的框架。</p>
 <blockquote>復健不是把一組動作做到好，而是知道什麼時候該換檔。</blockquote>
@@ -315,6 +370,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/shoulder-rest-or-move"><span>← 肩膀痛・較新一篇</span><b>肩膀痛該休息還是該動？答案同樣是「相對休息」</b></a>
+      <a class="nx" href="/posts/shoulder-bursitis"><span>肩膀痛・較舊一篇 →</span><b>肩滑囊炎：過頭動作時那股悶悶的痛</b></a>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/shoulder-bursitis">肩滑囊炎：過頭動作時那股悶悶的痛<span>肩膀痛</span></a>
@@ -330,6 +389,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -346,6 +410,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="three-phase-shoulder-rehab";

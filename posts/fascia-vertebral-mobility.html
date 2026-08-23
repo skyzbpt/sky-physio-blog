@@ -247,6 +247,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -262,15 +289,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -294,25 +337,36 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">椎體活動度：脊椎一節一節地鬆動</h1>
     <p class="lede">脊椎由一節節椎骨堆疊，健康時能像項鍊般依序捲曲。某段特別緊多半是軟組織張力，不是骨頭跑掉。分節活動怎麼練、做幾下，以及為什麼喬一下隔天又回來。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（6）</summary>
+      <ol>
+        <li><a href="#sec-1">什麼是脊椎的「分節活動」？</a></li>
+        <li><a href="#sec-2">某一節特別緊，就是「跑掉」了嗎？</a></li>
+        <li><a href="#sec-3">分節活動運動有什麼幫助？</a></li>
+        <li><a href="#sec-4">這些動作實際上怎麼做、做多久？</a></li>
+        <li><a href="#sec-5">為什麼「喬一下」當下很鬆，隔天又回來了？</a></li>
+        <li><a href="#sec-6">什麼時候該就醫？</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>脊椎不是一根硬邦邦的柱子，而是由一節一節的椎骨堆疊而成，中間還有椎間盤、韌帶與許多小關節。健康的脊椎，能一節一節順暢地彎、轉、伸。</p>
-<h2>什麼是脊椎的「分節活動」？</h2>
+<h2 id="sec-1">什麼是脊椎的「分節活動」？<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <p>分節活動指的是每一節椎骨都能各自參與動作，而不是整段脊椎僵硬地一起移動。想像彎腰時，脊椎能像一條珍珠項鍊般依序捲曲，這就是良好的活動度：</p>
 <ul><li>有些節段天生活動度較大</li><li>有些節段容易變得僵硬</li><li>僵硬的地方，相鄰節段常會代償</li></ul>
-<h2>某一節特別緊，就是「跑掉」了嗎？</h2>
+<h2 id="sec-2">某一節特別緊，就是「跑掉」了嗎？<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <p>通常不是。感覺某段脊椎卡卡的，多半和<strong>周邊軟組織</strong>的張力、日常姿勢或活動不足有關，並不代表骨頭「移位」了。與其追求把某一節「喬回去」，不如幫助它重新學會活動。</p>
-<h2>分節活動運動有什麼幫助？</h2>
+<h2 id="sec-3">分節活動運動有什麼幫助？<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <p>透過緩慢、有意識的動作，可以喚醒僵硬的節段、改善整體協調：</p>
 <ul><li>貓牛式等脊椎捲動練習</li><li>溫和的旋轉與側彎</li><li>配合呼吸、放慢節奏</li></ul>
 <p>這些運動不是「喬骨」，而是讓脊椎重新找回一節一節活動的能力。若有持續疼痛、麻木或無力，請先尋求專業評估。</p>
-<h2>這些動作實際上怎麼做、做多久？</h2>
+<h2 id="sec-4">這些動作實際上怎麼做、做多久？<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <p>關鍵不是幅度大，而是<strong>慢</strong>和<strong>分段</strong>。以下都在不痛範圍內進行，一天一到兩輪，約十分鐘：</p>
 <ul><li><strong>貓牛式</strong>：四足跪姿，吸氣時從尾骨一節一節延伸成微凹，吐氣時再一節一節捲成微駝，一來一回算一下，做八到十下。想像在數椎骨，而不是甩腰</li><li><strong>坐姿旋轉</strong>：坐穩、雙手輕輕抱胸，讓胸口帶頭往一側轉，到有點緊停三到五秒回中間，左右各八下</li><li><strong>躺姿膝倒</strong>：仰躺、雙膝彎曲併攏，膝蓋輕輕倒向一側，肩膀貼地，停五秒換邊，左右各十次</li></ul>
 <p>全程要能正常呼吸，不該出現腳麻、放電感或明顯疼痛。剛開始一定有某一段特別不聽話，那正是最需要練的。</p>
-<h2>為什麼「喬一下」當下很鬆，隔天又回來了？</h2>
+<h2 id="sec-5">為什麼「喬一下」當下很鬆，隔天又回來了？<a class="hash" href="#sec-5" aria-label="複製這個段落的連結">#</a></h2>
 <p>因為當下的舒服主要來自關節周邊<strong>張力與感覺被短暫改變</strong>；那個「喀」的聲音也不代表骨頭被推回原位——關節活動時本來就可能發出聲響。真正決定某一節長期順不順的，是它每天有沒有被使用、周邊軟組織有沒有機會延展。</p>
 <p>所以比較實在的做法是：把外力當成打開一扇窗，再用自己的動作把新的活動範圍<strong>留下來</strong>。規律練習<strong>兩到四週</strong>，多數人會覺得彎腰、轉身變順；長年僵硬的節段需要更久。</p>
-<h2>什麼時候該就醫？</h2>
+<h2 id="sec-6">什麼時候該就醫？<a class="hash" href="#sec-6" aria-label="複製這個段落的連結">#</a></h2>
 <p>立刻就醫，不要繼續自己練：<strong>大小便失禁或解不出來</strong>並伴隨跨部麻木，這是馬尾症候群的警訊；或手腳<strong>力量明顯變差</strong>，例如走路拖腳。</p>
 <p>以下情況建議儘早安排專業評估：</p>
 <ul><li>疼痛或僵硬<strong>持續超過六週</strong>沒改善</li><li><strong>夜間痛醒</strong>，休息也不會緩解</li><li>伴隨<strong>發燒或不明原因體重下降</strong></li><li>明確外傷之後才開始的脊椎疼痛</li><li>有骨質疏鬆或癌症病史</li></ul>
@@ -329,6 +383,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/fascia-iliolumbar-12th-rib"><span>← 高級筋膜技術・較新一篇</span><b>髂腰韌帶與第12肋：側腰痛的角落</b></a>
+      <a class="nx" href="/posts/fascia-thoracolumbar"><span>高級筋膜技術・較舊一篇 →</span><b>胸腰筋膜：下背痛的關鍵一層</b></a>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/fascia-thoracolumbar">胸腰筋膜：下背痛的關鍵一層<span>高級筋膜技術</span></a>
@@ -344,6 +402,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -360,6 +423,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="fascia-vertebral-mobility";

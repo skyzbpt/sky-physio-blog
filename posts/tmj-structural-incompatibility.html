@@ -231,6 +231,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -246,15 +273,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -278,25 +321,37 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">關節面的結構性問題：黏著、半脫位與脫位</h1>
     <p class="lede">除了關節盤移位，關節「面與面」之間也可能出狀況——從早上短暫黏住，到張太大口整個閉不起來。認識黏著、半脫位與脫位的差別，以及怎麼練習控制張口範圍。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（7）</summary>
+      <ol>
+        <li><a href="#sec-1">黏著與沾黏</a></li>
+        <li><a href="#sec-2">半脫位與脫位</a></li>
+        <li><a href="#sec-3">保養與處理</a></li>
+        <li><a href="#sec-4">日常可以怎麼保護？</a></li>
+        <li><a href="#sec-5">早上第一下卡卡的，是關節壞掉了嗎？</a></li>
+        <li><a href="#sec-6">張口控制可以怎麼練？</a></li>
+        <li><a href="#sec-7">脫位過一次，以後會一直發生嗎？</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>結構性不相容（structural incompatibility）指的是關節滑動面之間的問題，讓動作變得不順。常見幾種：</p>
-<h2>黏著與沾黏</h2>
+<h2 id="sec-1">黏著與沾黏<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li><strong>黏著（adherence）</strong>：長時間不動後關節面暫時「黏」住，第一下張口卡卡、然後「啵」一聲鬆開</li><li><strong>沾黏（adhesion）</strong>：真正的纖維性沾黏，較持久</li></ul>
-<h2>半脫位與脫位</h2>
+<h2 id="sec-2">半脫位與脫位<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li><strong>半脫位（subluxation）</strong>：張大口時髁突滑過關節結節，下巴「跳」一下、卡一下才回來</li><li><strong>脫位（dislocation／開鎖）</strong>：張太大口後<strong>閉不起來</strong>，需要協助復位</li></ul>
-<h2>保養與處理</h2>
+<h2 id="sec-3">保養與處理<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li>避免過度大張口（打哈欠用手托住下巴）</li><li>反覆脫位者要學會控制張口範圍</li><li>物理治療可訓練動作控制與活動度</li></ul>
-<h2>日常可以怎麼保護？</h2>
+<h2 id="sec-4">日常可以怎麼保護？<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li>打哈欠時用手托住下巴，避免張到底</li><li>少吃過硬、過大口的食物</li><li>反覆「跳」或脫位的人，練習控制張口範圍</li></ul>
 <p>若曾經整個閉不起來（脫位），下次發作應儘速就醫協助復位，不要自行硬扳。</p>
-<h2>早上第一下卡卡的，是關節壞掉了嗎？</h2>
+<h2 id="sec-5">早上第一下卡卡的，是關節壞掉了嗎？<a class="hash" href="#sec-5" aria-label="複製這個段落的連結">#</a></h2>
 <p>多半不是。整夜側睡幾乎沒有動，關節滑動面之間會暫時「黏」住，第一次張口自然卡一下、鬆開後就順了——這正是前面說的<strong>黏著</strong>。真正要留意的是它有沒有變成常態：如果白天久坐一段時間後也開始卡、或鬆開時越來越痛，就不只是「暖機」的問題了。</p>
 <p>起床後可以先熱敷臉頰兩側 10 分鐘，再輕輕地左右移動下巴幾下，然後才開始吃早餐。</p>
-<h2>張口控制可以怎麼練？</h2>
+<h2 id="sec-6">張口控制可以怎麼練？<a class="hash" href="#sec-6" aria-label="複製這個段落的連結">#</a></h2>
 <p>重點不是張得更大，而是張得<strong>更受控</strong>：</p>
 <ul><li>舌尖輕抵上顎並保持不離開，在這個前提下慢慢張口、慢慢閉上</li><li>舌頭快要掉下來的位置，大約就是你目前<strong>安全的張口範圍</strong></li><li>一次 5 到 10 下、一天 2 到 3 回，全程慢速，不追求張到底</li><li>打哈欠時用手托住下巴，或先讓舌尖頂住上顎</li><li>漢堡、大顆水果、厚三明治<strong>先切小塊</strong>再吃</li></ul>
 <p>會反覆「跳」一下的人，尤其要把「大口」這件事從日常習慣裡拿掉。</p>
-<h2>脫位過一次，以後會一直發生嗎？</h2>
+<h2 id="sec-7">脫位過一次，以後會一直發生嗎？<a class="hash" href="#sec-7" aria-label="複製這個段落的連結">#</a></h2>
 <p>不一定，但確實要更小心。復位之後的 1 到 2 週，建議維持軟質飲食、避免大笑與大張口，讓被拉鬆的軟組織有時間安定下來。多數人只要把張口範圍練到可控，就能明顯降低再發生的機會。</p>
 <p>若出現下列情形，請儘快就醫評估：<strong>曾經需要別人協助才閉得起來</strong>、脫位在短期內重複發生、卡住的時間越來越長，或每次發作後疼痛遲遲不退。</p>
 <blockquote>認識自己是「哪一種卡」，就知道哪些動作該避開。</blockquote>
@@ -312,6 +367,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/tmj-synovitis-capsulitis"><span>← 顳顎關節・較新一篇</span><b>顳顎關節發炎：滑膜炎與關節囊炎</b></a>
+      <a class="nx" href="/posts/tmj-closed-lock"><span>顳顎關節・較舊一篇 →</span><b>關節盤卡住（不可復位）：張不開的急性鎖住</b></a>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/tmj-closed-lock">關節盤卡住（不可復位）：張不開的急性鎖住<span>顳顎關節</span></a>
@@ -327,6 +386,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -343,6 +407,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="tmj-structural-incompatibility";

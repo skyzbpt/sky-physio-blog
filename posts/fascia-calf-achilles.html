@@ -247,6 +247,33 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body h2{scroll-margin-top:92px}
+.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal)}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal);font-size:.85rem}
+.toc[open]>summary::after{content:"－"}
+.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
+.toc li{counter-increment:toc}
+.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a:hover{color:var(--teal)}
+.toc li a.on,.toc li a.on::before{color:var(--teal)}
+.toc li a.on{font-weight:700}
+/* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.pager a:hover{border-color:var(--teal)}
+.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
+.pager a:hover b{color:var(--teal)}
+.pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -262,15 +289,31 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
+.foot-in{flex-wrap:wrap}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+@media(min-width:1140px){
+  .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
+  .post-page>*{grid-column:1;min-width:0}
+  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
+    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+    max-height:calc(100vh - 130px);overflow-y:auto}
+  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-page>.toc>summary::after{content:none}
+}
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
   .meta{gap:12px}
+  .toc{padding:12px 15px}
 }
 </style>
 </head>
 <body>
+<div class="reading" aria-hidden="true"><i></i></div>
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
@@ -294,24 +337,35 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
     </div>
     <h1 class="post-title">小腿與跟腱的筋膜張力</h1>
     <p class="lede">小腿與跟腱是後側筋膜線的重要一段。它們緊繃，影響的不只是腳踝，還可能一路牽連到腳底與膝蓋。附上在家就能做的伸展、強化步驟，以及該就醫的警訊。</p>
+    <details class="toc" id="toc" open>
+      <summary>本篇章節（6）</summary>
+      <ol>
+        <li><a href="#sec-1">小腿與跟腱怎麼連動？</a></li>
+        <li><a href="#sec-2">小腿緊為什麼會影響腳踝和腳底？</a></li>
+        <li><a href="#sec-3">我可以怎麼照顧它們？</a></li>
+        <li><a href="#sec-4">具體要怎麼伸展和練？</a></li>
+        <li><a href="#sec-5">哪些人特別容易小腿緊？</a></li>
+        <li><a href="#sec-6">什麼時候該就醫？</a></li>
+      </ol>
+    </details>
     <div class="post-body">
 <p>小腿和跟腱常被當成「跑步才要顧」的部位，其實對每個人的走路、蹲下與站立都很關鍵，也是全身筋膜網重要的一段。</p>
-<h2>小腿與跟腱怎麼連動？</h2>
+<h2 id="sec-1">小腿與跟腱怎麼連動？<a class="hash" href="#sec-1" aria-label="複製這個段落的連結">#</a></h2>
 <p>小腿後側主要由兩塊肌肉組成，往下匯集成跟腱，連到腳跟：</p>
 <ul><li><strong>腓腸肌</strong>：跨過膝與踝，膝伸直時特別緊</li><li><strong>比目魚肌</strong>：位在深層，站立與推進的主力</li><li>兩者透過跟腱把力量傳到腳跟</li></ul>
 <p>它們是後側筋膜線的一部分，向上連背、向下連腳底。</p>
-<h2>小腿緊為什麼會影響腳踝和腳底？</h2>
+<h2 id="sec-2">小腿緊為什麼會影響腳踝和腳底？<a class="hash" href="#sec-2" aria-label="複製這個段落的連結">#</a></h2>
 <p>因為小腿與跟腱把腳踝往下拉。太緊時，腳掌往上勾（背屈）的角度會受限，蹲不下去、走路代償；同時也增加足底筋膜的張力，可能加重足跟痛。一段緊，往往牽連上下。</p>
-<h2>我可以怎麼照顧它們？</h2>
+<h2 id="sec-3">我可以怎麼照顧它們？<a class="hash" href="#sec-3" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li>分別針對膝伸直與彎曲做小腿伸展（照顧到兩塊肌肉）</li><li>溫和放鬆小腿與跟腱周邊</li><li>漸進地強化小腿，別只拉不練</li></ul>
 <p>跟腱若有腫脹、晨僵或持續疼痛，可能是肌腱本身的問題，建議尋求專業評估。</p>
-<h2>具體要怎麼伸展和練？</h2>
+<h2 id="sec-4">具體要怎麼伸展和練？<a class="hash" href="#sec-4" aria-label="複製這個段落的連結">#</a></h2>
 <p>伸展和強化都要做，只拉不練，緊繃很快就回來：</p>
 <ul><li><strong>直膝伸展（顧腓腸肌）</strong>：面牆弓箭步，後腳跟踩地、膝蓋打直，身體前傾到小腿有拉感，停 30 秒，每邊 3 次</li><li><strong>屈膝伸展（顧比目魚肌）</strong>：同樣姿勢，但後腳膝蓋微彎，感覺會更靠近腳踝與跟腱，停 30 秒，每邊 3 次</li><li><strong>雙腳提踵</strong>：扶牆慢慢墊腳尖再放下，上 3 秒、下 3 秒，10 到 15 下為一組，做 2 到 3 組</li><li><strong>進階單腳提踵</strong>：雙腳版本不痠痛之後再換單腳，一樣慢上慢下</li></ul>
 <p>伸展可以天天做，強化建議<strong>隔天做一次</strong>，讓組織有時間適應。原則是做完當下與隔天早上不加痛。</p>
-<h2>哪些人特別容易小腿緊？</h2>
+<h2 id="sec-5">哪些人特別容易小腿緊？<a class="hash" href="#sec-5" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li><strong>久坐的上班族</strong>：整天腳踝幾乎不動，小腿長期處在縮短的位置</li><li><strong>常穿高跟鞋的人</strong>：腳跟墊高，小腿長時間變短，換平底鞋時反而拉扯感明顯</li><li><strong>久站與走很多的工作</strong>：老師、櫃檯、醫護人員，比目魚肌整天在撐</li><li><strong>突然加量的運動者</strong>：跑量或坡度一下增加太多，跟腱來不及適應</li></ul>
-<h2>什麼時候該就醫？</h2>
+<h2 id="sec-6">什麼時候該就醫？<a class="hash" href="#sec-6" aria-label="複製這個段落的連結">#</a></h2>
 <ul><li>跟腱處<strong>突然劇痛，像被人踢了一腳</strong>，或墊不起腳尖——需要盡快就醫</li><li>跟腱<strong>摸起來腫、變粗</strong>，或按壓有明顯壓痛點</li><li><strong>早上第一步特別痛</strong>、走幾步才鬆開，這樣的晨僵持續好幾週</li><li>自我照顧<strong>兩到三週沒有改善</strong>，或疼痛從運動後才痛變成走路就痛</li></ul>
 <p>單純的小腿緊繃，通常在規律伸展與減量下數週內就有感覺；肌腱本身的問題往往需要數月的漸進訓練，耐心比強度更重要。</p>
 <blockquote>走得穩不穩，常常先問問你的小腿。</blockquote>
@@ -327,6 +381,10 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
       </div>
     </aside>
 
+    <nav class="pager" aria-label="同分類前後文章">
+      <a class="pv-prev" href="/posts/fascia-hamstring-injury"><span>← 高級筋膜技術・較新一篇</span><b>大腿後肌反覆拉傷：筋膜的觀點</b></a>
+      <a class="nx" href="/posts/fascia-shoe-bound-arch"><span>高級筋膜技術・較舊一篇 →</span><b>足弓塌陷與「被鞋子綁架」的足弓</b></a>
+    </nav>
     <nav class="more">
       <h3>延伸閱讀</h3>
       <a href="/posts/fascia-hamstring-injury">大腿後肌反覆拉傷：筋膜的觀點<span>高級筋膜技術</span></a>
@@ -342,6 +400,11 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   <div class="foot-in">
     <img src="../assets/logo.png" alt="Sky 物理治療師 logo">
     <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <nav class="foot-legal" aria-label="政策與聲明">
+      <a href="/privacy">隱私權保護聲明</a>
+      <a href="/cookies">Cookie 政策</a>
+      <a href="/physio-guide">物理治療完整指南</a>
+    </nav>
   </div>
 </footer>
 
@@ -358,6 +421,43 @@ function copyLink(){
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
 }
+/* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
+(function(){
+  var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
+  if(!bar||!body) return;
+  var tick=false;
+  function upd(){
+    tick=false;
+    var top=body.getBoundingClientRect().top+window.pageYOffset;
+    var span=body.offsetHeight-window.innerHeight*0.5;
+    var p=span>0?(window.pageYOffset-top+window.innerHeight*0.5)/span:1;
+    bar.style.width=Math.max(0,Math.min(1,p))*100+'%';
+  }
+  addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
+  addEventListener('resize',upd,{passive:true}); upd();
+})();
+/* 目錄：手機預設收合；捲動時高亮目前段落 */
+(function(){
+  var toc=document.getElementById('toc'); if(!toc) return;
+  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
+  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if(!heads.length||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function paint(){
+    var cur=null;
+    heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+    paint();
+  },{rootMargin:'-90px 0px -70% 0px'});
+  heads.forEach(function(h){ io.observe(h); });
+  addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
+  paint();
+})();
 /* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
 (function(){
   var API="https://views.skythephysio.com", slug="fascia-calf-achilles";
