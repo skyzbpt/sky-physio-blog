@@ -463,12 +463,6 @@ export async function genPosts(page) {
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>${BASE}/fields</loc>
-    <lastmod>${TODAY}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>${BASE}/blog</loc>
     <lastmod>${TODAY}</lastmod>
     <changefreq>daily</changefreq>
@@ -482,12 +476,6 @@ export async function genPosts(page) {
   </url>
   <url>
     <loc>${BASE}/about</loc>
-    <lastmod>${TODAY}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>${BASE}/contact</loc>
     <lastmod>${TODAY}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

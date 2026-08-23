@@ -87,8 +87,8 @@ faqCount > 0 ? pass(`FAQ 結構化資料 ${faqCount} 篇`) : fail('FAQ 結構化
 const sm = read('sitemap.xml');
 !/\/posts\/[a-z0-9-]+\.html<\/loc>/.test(sm) ? pass('sitemap 皆為乾淨網址') : fail('sitemap 含 .html');
 const smLocs = (sm.match(/<loc>/g) || []).length;
-// 首頁 + fields + blog + products + about + contact + physio-guide + privacy 共 8 個非文章頁
-smLocs === arts.length + cats.length + 8 ? pass(`sitemap URL 數正確 (${smLocs})`) : fail('sitemap URL 數', `${smLocs} vs ${arts.length + cats.length + 8}`);
+// 首頁 + blog + products + about + physio-guide + privacy 共 6 個非文章頁
+smLocs === arts.length + cats.length + 6 ? pass(`sitemap URL 數正確 (${smLocs})`) : fail('sitemap URL 數', `${smLocs} vs ${arts.length + cats.length + 6}`);
 /* ---------- 4b. lastmod：每篇都要有，且必須反映真實修改（見 tools/modified.mjs） ---------- */
 const smPairs = [...sm.matchAll(/<loc>[^<]*\/posts\/([a-z0-9-]+)<\/loc>\s*<lastmod>([^<]+)<\/lastmod>/g)];
 smPairs.length === arts.length
@@ -110,7 +110,7 @@ const feed = read('feed.xml');
 !/\/posts\/[a-z0-9-]+\.html<\/link>/.test(feed) ? pass('feed 皆為乾淨網址') : fail('feed 含 .html');
 
 /* ---------- 5. 圖片 alt（Ahrefs） ---------- */
-const scanPages = [...postFiles.map(f => 'posts/' + f), ...hubFiles.map(f => 'topics/' + f), 'index.html', 'fields.html', 'blog.html', 'products.html', 'about.html', 'contact.html', 'physio-guide.html', '404.html', 'privacy.html'];
+const scanPages = [...postFiles.map(f => 'posts/' + f), ...hubFiles.map(f => 'topics/' + f), 'index.html', 'blog.html', 'products.html', 'about.html', 'physio-guide.html', '404.html', 'privacy.html'];
 let imgBadAlt = 0;
 for (const p of scanPages) for (const tag of read(p).match(/<img\b[^>]*>/g) || []) if (!/\balt="[^"]/.test(tag)) imgBadAlt++;
 imgBadAlt === 0 ? pass('所有圖片皆有非空 alt') : fail('圖片缺/空 alt', imgBadAlt);
