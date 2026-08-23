@@ -213,9 +213,11 @@ header::before{
     background:rgba(224,240,251,.97);
     backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
     border-bottom:1px solid var(--line);
-    flex-direction:column;align-items:stretch;gap:0;padding:8px 0;z-index:79;
+    flex-direction:column;align-items:stretch;gap:0;
+    padding:8px 0 max(24px, env(safe-area-inset-bottom));z-index:79;
     box-shadow:0 12px 32px rgba(35,42,80,.14);
-    max-height:calc(100vh - 64px);overflow-y:auto;-webkit-overflow-scrolling:touch;
+    max-height:calc(100vh - 64px);max-height:calc(100dvh - 64px);
+    overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
   }
   .nav-links.open{display:flex}
   .nav-links a,.nav-link{padding:14px 32px;width:100%;border-bottom:none;display:flex}
@@ -1135,10 +1137,12 @@ function toggleMenu(){
   const nl=document.getElementById("nav-links"), btn=document.getElementById("menu-btn");
   const open=nl.classList.toggle("open");
   btn.setAttribute("aria-expanded", open);
+  document.body.style.overflow=open?'hidden':'';
 }
 function closeMenu(){
   document.getElementById("nav-links").classList.remove("open");
   document.getElementById("menu-btn").setAttribute("aria-expanded","false");
+  document.body.style.overflow='';
 }
 document.addEventListener('click', e=>{
   const nl=document.getElementById("nav-links");
