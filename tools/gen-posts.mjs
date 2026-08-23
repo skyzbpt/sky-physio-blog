@@ -2,7 +2,7 @@
 // 資料來源：data/articles.json（唯一真實來源）
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, TODAY, esc, plain, readMins, CAT_SLUG, renderBody, headingsOf, loadArticles, logoDataURI, ogCard, shot, VIEWS_API, EYE_SVG, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, wordCountOf, keywordsFor, extractFaqs, ldJson, topicsOf } from './lib.mjs';
+import { REPO, BASE, TODAY, esc, plain, readMins, CAT_SLUG, renderBody, headingsOf, loadArticles, logoDataURI, ogCard, shot, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, wordCountOf, keywordsFor, extractFaqs, ldJson, topicsOf } from './lib.mjs';
 import { resolveModified } from './modified.mjs';
 import { LEGAL_UPDATED } from './gen-legal.mjs';
 
@@ -49,9 +49,6 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 .author-box .a-link:hover{text-decoration:underline}
 .meta{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-bottom:20px}
 .meta .cat{color:var(--red)}
-.pv{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
-.pv[hidden]{display:none!important}
-.pv svg{width:13px;height:13px;opacity:.75;flex:none}
 .pp-share{margin-left:auto;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;color:var(--teal);background:none;border:1px solid var(--line);border-radius:999px;padding:5px 14px;cursor:pointer;white-space:nowrap}
 .pp-share:hover{border-color:var(--teal);background:var(--teal-soft)}
 h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.45;margin-bottom:14px}
@@ -115,7 +112,6 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in .t a{color:inherit;border-bottom:1px solid var(--line)}
 .foot-in .t a:hover{color:var(--teal);border-color:var(--teal)}
 .foot-in{flex-wrap:wrap}
-.foot-in .site-pv{margin-left:auto;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted)}
 .foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
 .foot-legal a{border-bottom:1px solid var(--line)}
 .foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
@@ -313,7 +309,6 @@ ${ldJson(faqld)}
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › ${hubSlug ? `<a href="/topics/${hubSlug}">${esc(a.cat)}</a>` : esc(a.cat)} › <span>${esc(a.title)}</span></nav>
     <div class="meta">
       <span>${a.date}</span><span class="cat">${esc(a.cat)}</span><span>約 ${mins} 分鐘</span>
-      <span class="pv" id="pv" hidden>${EYE_SVG}<span class="pv-n"></span> 次瀏覽</span>
       <button class="pp-share" onclick="copyLink()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">${esc(a.title)}</h1>
@@ -343,7 +338,6 @@ ${pagerHtml}
 <footer>
   <div class="foot-in">
     <div class="t">網站設計｜Sky — © 2026 · <a href="/privacy">隱私權保護聲明</a></div>
-    <span class="site-pv" id="site-pv" hidden>衛教文章累計 <span class="pv-n"></span> 次瀏覽</span>
   </div>
 </footer>
 
@@ -396,28 +390,6 @@ function copyLink(){
   heads.forEach(function(h){ io.observe(h); });
   addEventListener('scroll',function(){ if(!window.__tp){ window.__tp=1; requestAnimationFrame(function(){ window.__tp=0; paint(); }); } },{passive:true});
   paint();
-})();
-/* 點閱次數：同一 session 只累加一次；Worker 未部署時靜默略過 */
-(function(){
-  var API=${JSON.stringify(VIEWS_API)}, slug=${JSON.stringify(a.id)};
-  var el=document.getElementById('pv'); if(!el) return;
-  function show(n){ if(n>0){ el.querySelector('.pv-n').textContent=Number(n).toLocaleString('en-US'); el.hidden=false; } }
-  try{
-    if(sessionStorage.getItem('pv:'+slug)){
-      fetch(API+'/get?slugs='+encodeURIComponent(slug)).then(function(r){return r.json();}).then(function(d){show((d.counts||{})[slug]||0);}).catch(function(){});
-    } else {
-      fetch(API+'/hit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slug:slug})})
-        .then(function(r){return r.json();}).then(function(d){try{sessionStorage.setItem('pv:'+slug,'1');}catch(e){} show(d.count||0);}).catch(function(){});
-    }
-  }catch(e){}
-})();
-/* 全站衛教文章累計瀏覽次數（頁尾） */
-(function(){
-  var el=document.getElementById('site-pv'); if(!el) return;
-  fetch(${JSON.stringify(VIEWS_API)}+'/all').then(function(r){return r.json();}).then(function(d){
-    var n=d.total||0;
-    if(n>0){ el.querySelector('.pv-n').textContent=Number(n).toLocaleString('en-US'); el.hidden=false; }
-  }).catch(function(){});
 })();
 </script>
 </body>

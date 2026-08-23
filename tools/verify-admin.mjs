@@ -21,8 +21,6 @@ const O = `http://127.0.0.1:${server.address().port}`;
 
 const b = await chromium.launch();
 const ctx = await b.newContext();
-// 點閱 Worker 在測試環境不可達，以空回應 stub
-await ctx.route('https://views.skythephysio.com/**', r => r.fulfill({ status: 200, contentType: 'application/json', body: '{"counts":{}}' }));
 const page = await ctx.newPage();
 const errs = [];
 page.on('pageerror', e => errs.push(e.message));
