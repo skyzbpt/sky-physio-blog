@@ -87,8 +87,8 @@ faqCount > 0 ? pass(`FAQ 結構化資料 ${faqCount} 篇`) : fail('FAQ 結構化
 const sm = read('sitemap.xml');
 !/\/posts\/[a-z0-9-]+\.html<\/loc>/.test(sm) ? pass('sitemap 皆為乾淨網址') : fail('sitemap 含 .html');
 const smLocs = (sm.match(/<loc>/g) || []).length;
-// 首頁 + physio-guide + privacy + cookies 共 4 個非文章頁
-smLocs === arts.length + cats.length + 4 ? pass(`sitemap URL 數正確 (${smLocs})`) : fail('sitemap URL 數', `${smLocs} vs ${arts.length + cats.length + 4}`);
+// 首頁 + fields + blog + products + about + contact + physio-guide + privacy 共 8 個非文章頁
+smLocs === arts.length + cats.length + 8 ? pass(`sitemap URL 數正確 (${smLocs})`) : fail('sitemap URL 數', `${smLocs} vs ${arts.length + cats.length + 8}`);
 /* ---------- 4b. lastmod：每篇都要有，且必須反映真實修改（見 tools/modified.mjs） ---------- */
 const smPairs = [...sm.matchAll(/<loc>[^<]*\/posts\/([a-z0-9-]+)<\/loc>\s*<lastmod>([^<]+)<\/lastmod>/g)];
 smPairs.length === arts.length
@@ -110,7 +110,7 @@ const feed = read('feed.xml');
 !/\/posts\/[a-z0-9-]+\.html<\/link>/.test(feed) ? pass('feed 皆為乾淨網址') : fail('feed 含 .html');
 
 /* ---------- 5. 圖片 alt（Ahrefs） ---------- */
-const scanPages = [...postFiles.map(f => 'posts/' + f), ...hubFiles.map(f => 'topics/' + f), 'index.html', 'physio-guide.html', '404.html', 'privacy.html', 'cookies.html'];
+const scanPages = [...postFiles.map(f => 'posts/' + f), ...hubFiles.map(f => 'topics/' + f), 'index.html', 'fields.html', 'blog.html', 'products.html', 'about.html', 'contact.html', 'physio-guide.html', '404.html', 'privacy.html'];
 let imgBadAlt = 0;
 for (const p of scanPages) for (const tag of read(p).match(/<img\b[^>]*>/g) || []) if (!/\balt="[^"]/.test(tag)) imgBadAlt++;
 imgBadAlt === 0 ? pass('所有圖片皆有非空 alt') : fail('圖片缺/空 alt', imgBadAlt);
@@ -132,7 +132,8 @@ const hdr = existsSync(join(REPO, '_headers')) ? read('_headers') : '';
 /* ---------- 8. 首頁 ---------- */
 const idx = read('index.html');
 (idx.match(/"@type": "BlogPosting"/g) || []).length === arts.length ? pass(`首頁 JSON-LD ${arts.length} 篇 BlogPosting`) : fail('首頁 BlogPosting');
-(idx.match(/href="\/topics\//g) || []).length === cats.length ? pass(`首頁 ${cats.length} 個分類專頁連結`) : fail('首頁分類連結');
+const blogHtml = read('blog.html');
+(blogHtml.match(/href="\/topics\//g) || []).length === cats.length ? pass(`衛教文章頁 ${cats.length} 個分類專頁連結`) : fail('衛教文章頁分類連結');
 for (const c of cats) idx.includes(`"${c}"`) || fail('首頁 cats 缺分類', c);
 idx.includes('const ARTICLES = [') ? pass('首頁 ARTICLES 已注入') : fail('ARTICLES 注入');
 // 後台：隱藏入口 + 功能保留
@@ -156,10 +157,10 @@ for (const c of cats) {
 }
 hubOk === cats.length && pass(`每個主題頁 canonical/清單/description 完整 (${hubOk})`);
 
-/* ---------- 9b. 法律頁（隱私權 / Cookie） ---------- */
-// 這兩頁描述的是網站的實際資料行為，必須存在、可被索引，且全站都連得到。
+/* ---------- 9b. 法律頁（隱私權） ---------- */
+// 這頁描述的是網站的實際資料行為，必須存在、可被索引，且全站都連得到。
 {
-  const legal = [['privacy.html', '/privacy'], ['cookies.html', '/cookies']];
+  const legal = [['privacy.html', '/privacy']];
   const bad = [];
   for (const [file, path] of legal) {
     if (!existsSync(join(REPO, file))) { bad.push(`${file} 不存在`); continue; }
@@ -172,10 +173,10 @@ hubOk === cats.length && pass(`每個主題頁 canonical/清單/description 完�
     }
     if (!sm.includes(`<loc>${BASE}${path}</loc>`)) bad.push(`${file} 未進 sitemap`);
   }
-  bad.length === 0 ? pass('隱私權 / Cookie 政策頁完整（canonical・description・JSON-LD・sitemap）') : fail('法律頁', bad.slice(0, 3).join('；'));
+  bad.length === 0 ? pass('隱私權政策頁完整（canonical・description・JSON-LD・sitemap）') : fail('法律頁', bad.slice(0, 3).join('；'));
 
   // 頁尾連結：首頁、指南頁、每篇文章、每個主題頁都要連得到
-  const linked = p => { const h = read(p); return h.includes('href="/privacy"') && h.includes('href="/cookies"'); };
+  const linked = p => { const h = read(p); return h.includes('href="/privacy"'); };
   const missing = ['index.html', 'physio-guide.html', 'posts/' + postFiles[0], 'topics/' + hubFiles[0]].filter(p => !linked(p));
   missing.length === 0 ? pass('全站頁尾皆有政策連結') : fail('頁尾政策連結缺漏', missing.join(','));
 }

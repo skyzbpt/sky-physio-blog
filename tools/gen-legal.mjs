@@ -1,4 +1,4 @@
-// 法律頁：隱私權保護聲明（/privacy）與 Cookie 政策（/cookies）
+// 法律頁：隱私權保護聲明（/privacy）
 // 內容必須與網站實際行為一致——本站是純靜態網站，沒有任何分析或廣告追蹤碼，
 // 唯一的後端是點閱計數 Worker（cf-worker/worker.js），KV 只存「slug → 次數」。
 // 若日後加入表單、分析工具或第三方腳本，這兩頁必須同步更新。
@@ -172,10 +172,9 @@ ${body}
 <footer>
   <div class="foot-in">
     <img src="assets/logo.png" alt="Sky 物理治療師 logo">
-    <div class="t"><b>Sky 物理治療師</b>身・心・靈徒手治療 × 紅繩 × 公路車專項</div>
+    <div class="t"><b>Sky 物理治療師</b>網站設計｜Sky — © 2026 Sky 物理治療師</div>
     <nav class="foot-legal" aria-label="政策與聲明">
       <a href="/privacy">隱私權保護聲明</a>
-      <a href="/cookies">Cookie 政策</a>
       <a href="/physio-guide">物理治療完整指南</a>
     </nav>
   </div>
@@ -221,12 +220,13 @@ const privacy = {
 </ul>` },
 
     { h: '四、瀏覽器本機儲存', body: `
-<p>本站使用瀏覽器的本機儲存空間，<strong>資料只留在你自己的裝置，不會傳送到伺服器</strong>：</p>
+<p>本站使用瀏覽器的本機儲存空間，<strong>資料只留在你自己的裝置，不會傳送到伺服器</strong>，也不使用任何分析或廣告用的 cookie：</p>
 <ul>
   <li><code>sessionStorage：pv:文章代號</code> — 記住這個分頁已經計算過一次點閱，避免同一次瀏覽重複累加。關閉分頁即消失。</li>
   <li><code>localStorage：sky_articles_v1</code> — 只有我本人使用網站後台編輯文章時才會產生的草稿暫存，一般讀者不會用到。</li>
+  <li>主機／CDN 供應商 Cloudflare 可能設置維持網站安全運作所需的必要性 cookie（例如辨識自動化流量、防止濫用與攻擊）。</li>
 </ul>
-<p>詳細說明與清除方式，請見 <a class="in" href="/cookies">Cookie 政策</a>。</p>` },
+<p>你可以隨時在瀏覽器設定中檢視或清除這些本機資料；清除後本站的文章、排版與所有功能仍會照常運作，唯一的差別是同一篇文章的點閱可能在你重新造訪時被再計算一次。</p>` },
 
     { h: '五、第三方服務', body: `
 <ul>
@@ -270,77 +270,10 @@ const privacy = {
   ]
 };
 
-/* ---------- Cookie 政策 ---------- */
-const cookies = {
-  slug: 'cookies',
-  title: 'Cookie 政策｜Sky 物理治療師',
-  h1: 'Cookie 政策',
-  eyebrow: 'COOKIES・Cookie 政策',
-  desc: 'Sky 物理治療師網站的 Cookie 政策：說明本站不使用分析或廣告追蹤 cookie、Cloudflare 可能設置的必要性 cookie、瀏覽器本機儲存（localStorage 與 sessionStorage）的實際用途，以及你可以如何檢視、封鎖或清除這些資料。',
-  lede: '簡短版本：<strong>本站不放置分析用或廣告用的 cookie，也沒有第三方追蹤器。</strong>你會遇到的，只有主機商為了資安而設置的必要性 cookie，以及兩項存在你自己瀏覽器裡的本機資料。以下是完整說明。',
-  sections: [
-    { h: '一、Cookie 是什麼', body: `
-<p>Cookie 是網站儲存在你瀏覽器中的小型文字檔，網站下次造訪時可以讀回。它可以用於記住偏好設定、維持登入狀態，也可以被用來跨網站追蹤瀏覽行為——本站不做後者。</p>
-<p>另外還有兩種常被一起討論的儲存方式：<strong>localStorage</strong>（長期留在裝置上，除非手動清除）與 <strong>sessionStorage</strong>（關閉分頁就消失）。它們不會像 cookie 那樣自動隨每個請求送到伺服器。</p>` },
-
-    { h: '二、本站使用的項目一覽', body: `
-<div class="tbl-wrap">
-<table class="tbl">
-  <thead><tr><th>名稱</th><th>類型</th><th>設置者</th><th>用途</th><th>保存期間</th></tr></thead>
-  <tbody>
-    <tr><td><code>pv:文章代號</code></td><td>sessionStorage</td><td>本站</td><td>記住這次瀏覽已計算過點閱，避免重複累加</td><td>關閉分頁即消失</td></tr>
-    <tr><td><code>sky_articles_v1</code></td><td>localStorage</td><td>本站</td><td>網站管理者編輯文章時的草稿暫存（一般讀者不會產生）</td><td>直到手動清除</td></tr>
-    <tr><td><code>__cf_bm</code>、<code>cf_clearance</code> 等</td><td>Cookie</td><td>Cloudflare（主機／CDN）</td><td>辨識自動化流量、防止濫用與攻擊，屬於維持網站運作的必要性 cookie</td><td>由 Cloudflare 決定，通常為數十分鐘至數日</td></tr>
-  </tbody>
-</table>
-</div>
-<p>以上就是全部。<strong>本站沒有 Google Analytics、沒有廣告像素、沒有社群外掛腳本、沒有 A/B 測試工具。</strong></p>` },
-
-    { h: '三、本站不使用的 Cookie', body: `
-<ul>
-  <li><strong>分析型</strong>：不統計你的瀏覽路徑、停留時間或裝置指紋。文章點閱只是一個不含任何識別資訊的累加數字。</li>
-  <li><strong>廣告型</strong>：不投放廣告，也不參與任何廣告聯播網或再行銷名單。</li>
-  <li><strong>社群追蹤型</strong>：社群連結是單純的超連結，不會在本站載入平台的追蹤腳本。</li>
-</ul>` },
-
-    { h: '四、第三方網站的 Cookie', body: `
-<p>當你點擊以下連結離開本站，對方網站會依其自身政策設置 cookie：</p>
-<ul>
-  <li>預約評估 → Google 日曆（Google 隱私權政策）</li>
-  <li>產品專區 → Isotonix 購物網站（含聯盟連結，可能記錄推薦來源）</li>
-  <li>Instagram / Threads → Meta 平台</li>
-</ul>
-<p>這些 cookie 不在本站的控制範圍內，建議你參閱各平台的說明。</p>` },
-
-    { h: '五、如何檢視、封鎖或清除', body: `
-<p>你可以隨時在瀏覽器中管理這些資料：</p>
-<ul>
-  <li><strong>Chrome</strong>：設定 → 隱私權和安全性 → 第三方 Cookie／網站資料</li>
-  <li><strong>Safari</strong>：設定 → 隱私權 → 管理網站資料</li>
-  <li><strong>Firefox</strong>：設定 → 隱私權與安全性 → Cookie 和網站資料</li>
-  <li><strong>Edge</strong>：設定 → Cookie 和網站權限</li>
-  <li>使用<strong>無痕／私密視窗</strong>瀏覽，關閉後即清除本次的所有本機資料</li>
-</ul>
-<div class="note">
-<p><strong>封鎖或清除後會怎樣？</strong>本站的文章、排版與所有功能都會照常運作。唯一的差別是：同一篇文章的點閱可能在你重新造訪時被再計算一次。<strong>沒有任何內容需要你接受 cookie 才能閱讀。</strong></p>
-</div>` },
-
-    { h: '六、為什麼本站沒有 Cookie 同意橫幅', body: `
-<p>常見的「同意 Cookie」彈窗，主要是為了取得<strong>非必要 cookie</strong>（分析、廣告）的同意。本站沒有使用這類 cookie，只保留維持網站安全運作所需的必要項目，因此不以彈窗打斷閱讀。</p>
-<p>若日後導入任何分析或行銷工具，我會先更新本頁，並在需要時提供選擇機制。</p>` },
-
-    { h: '七、政策更新與聯絡方式', body: `
-<p>本政策的最新版本以本頁公告為準，頁首標示最後更新日期。相關的資料處理說明請一併參閱 <a class="in" href="/privacy">隱私權保護聲明</a>。</p>
-<p>有任何疑問，歡迎來信：<a class="in" href="mailto:${CONTACT}">${CONTACT}</a>。</p>` }
-  ]
-};
-
 export function genLegal() {
-  for (const spec of [privacy, cookies]) {
-    writeFileSync(join(REPO, `${spec.slug}.html`), legalPage(spec));
-  }
-  console.log('已產生 privacy.html / cookies.html（最後更新 ' + UPDATED + '）');
+  writeFileSync(join(REPO, `${privacy.slug}.html`), legalPage(privacy));
+  console.log('已產生 privacy.html（最後更新 ' + UPDATED + '）');
 }
 
-export const LEGAL_PAGES = [privacy, cookies].map(s => ({ slug: s.slug, title: s.h1 }));
+export const LEGAL_PAGES = [privacy].map(s => ({ slug: s.slug, title: s.h1 }));
 export const LEGAL_UPDATED = UPDATED;
