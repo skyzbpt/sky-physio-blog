@@ -43,12 +43,18 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 .nav-link{font-size:.88rem;color:var(--ink-2);border-bottom:1.5px solid transparent;padding:4px 0}
 .nav-link:hover{border-color:var(--teal);color:var(--ink)}
 .btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.9rem;letter-spacing:.06em;padding:11px 26px;border:1.5px solid var(--ink);background:transparent;color:var(--ink)}
-.btn:hover{background:rgba(35,42,80,.06)}
-.btn:active{opacity:.8}
+.btn:hover{background:rgba(35,42,80,.06);transform:translateY(-2px)}
+.btn:active{opacity:.8;transform:translateY(0)}
 .btn.teal{background:#0C7365;border-color:#0C7365;color:#fff;font-weight:600}
-.btn.teal:hover{background:#0A5F53;border-color:#0A5F53}
+.btn.teal:hover{background:#0A5F53;border-color:#0A5F53;box-shadow:0 12px 24px -12px rgba(12,115,101,.75)}
 .btn.sm{padding:8px 20px;font-size:.84rem}
 @media(max-width:520px){.brand-name{font-size:.94rem}.nav-link{display:none}}
+/* 動效：與首頁一致的統一過場，尊重「減少動態」偏好 */
+@media(prefers-reduced-motion:no-preference){
+.btn,.nav-link,.brand,.crumb a,.list a,.list .t,.backhome{transition:color .22s ease,background-color .22s ease,border-color .22s ease,box-shadow .3s ease,transform .3s cubic-bezier(.22,.7,.3,1)}
+.list a::before{transition:opacity .3s ease}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn:hover,.list a:hover{transform:none}}
 .hub{max-width:820px;margin:0 auto;padding:56px 32px 96px}
 .crumb{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--muted);margin-bottom:26px}
 .crumb a{color:var(--ink-2);border-bottom:1px solid var(--line)}
@@ -66,7 +72,6 @@ h1{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.45;
 .finder button{border:none;background:none;cursor:pointer;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted);padding:2px 4px}
 .finder button:hover{color:var(--teal)}
 .finder button[hidden]{display:none}
-.list a[hidden]{display:none}
 .list mark{background:var(--teal-soft);color:inherit;border-radius:3px;padding:0 2px}
 .no-hit{padding:40px 4px;color:var(--muted);font-size:.9rem}
 .no-hit[hidden]{display:none}
@@ -74,8 +79,12 @@ h1{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.45;
   font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;color:var(--ink-2);cursor:pointer}
 .loadmore:hover{border-color:var(--teal);color:var(--teal)}
 .loadmore[hidden]{display:none}
-.list a{display:block;padding:22px 0;border-bottom:1px solid var(--line)}
+.list a{position:relative;display:block;padding:22px 0;border-bottom:1px solid var(--line)}
+.list a[hidden]{display:none}
+.list a::before{content:"";position:absolute;left:-14px;top:20px;bottom:20px;width:2px;background:var(--red);border-radius:2px;opacity:0}
+.list a:hover{transform:translateX(8px)}
 .list a:hover .t{color:var(--teal)}
+.list a:hover::before{opacity:1}
 .list .m{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
 .list .pv{display:inline-flex;align-items:center;gap:4px}
 .list .pv[hidden]{display:none!important}

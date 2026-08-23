@@ -539,6 +539,19 @@ body{
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 
+/* ---------- 動效：全站統一過場 ----------
+   互動元件（卡片、列、按鈕、標籤）過去沒有 transition，hover 是硬切；
+   統一在此宣告，並尊重系統「減少動態」偏好。 */
+@media (prefers-reduced-motion:no-preference){
+  .btn,.chip,.nav-links a,.nav-link,.brand,.brand-logo,
+  .field-card,.field-tags span,.post-row,.post-title,.post-arrow,
+  .contact-item,.product-card,.about-col-box,.about-col-box li,
+  .topic-links a,.pp-share,#back-top,.back-link{
+    transition:color .22s ease,background-color .22s ease,border-color .22s ease,
+               box-shadow .3s ease,transform .3s cubic-bezier(.22,.7,.3,1),opacity .25s ease;
+  }
+}
+
 /* ---------- 導覽 ---------- */
 header{
   position:sticky;top:0;z-index:80;
@@ -565,12 +578,13 @@ header::before{
 .btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;
   font-family:var(--sans);font-size:.9rem;letter-spacing:.06em;
   padding:11px 26px;border:1.5px solid var(--ink);background:transparent;color:var(--ink)}
-.btn:hover{background:rgba(35,42,80,.06)}
-.btn:active{opacity:.8}
+.btn:hover{background:rgba(35,42,80,.06);transform:translateY(-2px)}
+.btn:active{opacity:.8;transform:translateY(0)}
 .btn.solid{background:var(--ink);color:#fff}
-.btn.solid:hover{background:var(--ink-2)}
+.btn.solid:hover{background:var(--ink-2);box-shadow:0 12px 24px -12px rgba(35,42,80,.7)}
 .btn.teal{background:#0C7365;border-color:#0C7365;color:#fff;font-weight:600}
-.btn.teal:hover{background:#0A5F53;border-color:#0A5F53}
+.btn.teal:hover{background:#0A5F53;border-color:#0A5F53;
+  box-shadow:0 12px 24px -12px rgba(12,115,101,.75)}
 .btn.sm{padding:8px 20px;font-size:.84rem}
 #menu-btn{display:none;background:none;border:none;cursor:pointer;font-family:var(--mono);
   font-size:.8rem;letter-spacing:.2em;color:var(--ink);padding:8px}
@@ -661,9 +675,18 @@ h1 .en{color:var(--teal)}
 }
 /* 平板直向以下：單欄堆疊（與手機選單斷點一致） */
 @media (max-width:820px){
-  .hero-grid{grid-template-columns:1fr;gap:44px}
+  .hero-grid{grid-template-columns:1fr;gap:36px}
   .portrait-zone{order:-1}
-  #hero{padding-top:44px;padding-bottom:80px}
+  #hero{padding-top:40px;padding-bottom:80px}
+}
+/* 手機：形象照改為較淺的裁切，讓標題儘早進入首屏 */
+@media (max-width:560px){
+  .hero-grid{gap:28px}
+  .portrait{width:min(268px,64vw);aspect-ratio:4/5;border-radius:18px}
+  .portrait-zone::before{width:min(244px,58vw);aspect-ratio:4/5;top:11px;border-radius:18px}
+  .portrait-zone{gap:18px}
+  .hero-sub{margin:22px 0 26px}
+  .hero-roles{margin-bottom:26px}
 }
 
 /* ---------- 領域卡片 ---------- */
@@ -694,8 +717,10 @@ h1 .en{color:var(--teal)}
 .chip{font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;cursor:pointer;
   border:1px solid var(--line);border-radius:999px;padding:7px 16px;background:transparent;
   color:var(--ink-2);white-space:nowrap}
-.chip:hover{border-color:var(--ink-2)}
-.chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip:hover{border-color:var(--teal);color:var(--ink);background:rgba(255,255,255,.6)}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff;
+  box-shadow:0 8px 18px -10px rgba(35,42,80,.65)}
+.chip.on:hover{background:var(--ink-2);border-color:var(--ink-2);color:#fff}
 /* 手機：分類標籤改為單列橫向滑動，省下垂直空間 */
 @media(max-width:640px){
   .chips{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;
@@ -800,6 +825,8 @@ h1 .en{color:var(--teal)}
 .product-card{display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap;
   background:var(--bg-soft);border:1px solid var(--line);border-radius:16px;padding:30px 36px;
   box-shadow:0 4px 20px rgba(35,42,80,.06)}
+.product-card:hover{border-color:var(--teal);
+  box-shadow:0 18px 40px -24px rgba(20,154,138,.45),0 4px 20px rgba(35,42,80,.06)}
 .product-brand{font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;color:var(--teal);margin-bottom:10px}
 .product-card h3{font-family:var(--serif);font-size:1.3rem;margin-bottom:6px}
 .product-card-body p{color:var(--muted);font-size:.95rem}
@@ -861,22 +888,28 @@ h1 .en{color:var(--teal)}
   background:rgba(20,154,138,.1);border:1px solid rgba(20,154,138,.25);color:var(--ink);
   white-space:nowrap}
 
-/* 底部三欄 */
-.about-cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;align-items:start}
+/* 底部三欄：等高對齊，底線齊平不參差 */
+.about-cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;align-items:stretch}
 @media(max-width:900px){.about-cols{grid-template-columns:1fr 1fr}}
 @media(max-width:640px){.about-cols{grid-template-columns:1fr}}
 
-.about-col-box{background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.8);
-  border-radius:14px;padding:26px 24px}
-.about-col-box h4{font-family:var(--mono);font-size:1rem;letter-spacing:.12em;
-  color:var(--teal);margin-bottom:14px}
+.about-col-box{background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.9);
+  border-radius:14px;padding:28px 26px;
+  box-shadow:0 2px 12px -6px rgba(35,42,80,.14)}
+.about-col-box:hover{box-shadow:0 16px 34px -22px rgba(35,42,80,.4)}
+/* 標題：mono 小標 + 玉綠短標線，與全站 eyebrow 語彙一致 */
+.about-col-box h4{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;
+  color:var(--teal);margin-bottom:14px;display:flex;align-items:center;gap:9px}
+.about-col-box h4::after{content:"";flex:1;height:1px;background:rgba(20,154,138,.28)}
 .about-col-box h4 + h4{margin-top:22px}
-.about-col-box ul + h4{margin-top:20px;padding-top:18px;border-top:1px solid rgba(35,42,80,.1)}
+.about-col-box ul + h4{margin-top:22px;padding-top:20px;border-top:1px solid rgba(35,42,80,.1)}
 .about-col-box ul{list-style:none}
-.about-col-box li{padding:8px 0;border-bottom:1px dashed rgba(35,42,80,.12);
-  font-size:.95rem;display:flex;gap:10px;align-items:baseline;line-height:1.6}
+.about-col-box li{padding:9px 0;border-bottom:1px dashed rgba(35,42,80,.12);
+  font-size:.92rem;display:flex;gap:10px;align-items:baseline;line-height:1.7}
 .about-col-box li:last-child{border-bottom:none}
-.about-col-box li::before{content:"·";color:var(--red);font-weight:700;flex:none}
+.about-col-box li::before{content:"";width:4px;height:4px;border-radius:50%;
+  background:var(--red);flex:none;transform:translateY(-3px)}
+.about-col-box li:hover{color:var(--teal)}
 
 
 /* ---------- 聯絡 ---------- */
@@ -917,7 +950,9 @@ footer{border-top:1px solid var(--line);padding:48px 0 60px;background:linear-gr
   opacity:0;pointer-events:none;
 }
 #back-top.show{opacity:1;pointer-events:auto}
-#back-top:hover{background:var(--teal)}
+#back-top:hover{background:var(--teal);transform:translateY(-3px);
+  box-shadow:0 10px 26px rgba(20,154,138,.42)}
+#back-top:active{transform:translateY(-1px)}
 
 /* ---------- Nav active ---------- */
 .nav-link.active,.nav-links a.active{
@@ -940,8 +975,20 @@ footer{border-top:1px solid var(--line);padding:48px 0 60px;background:linear-gr
   position:relative;overflow:hidden;background:var(--bg-soft);
   border:1px solid var(--line);border-radius:14px;padding:36px 32px 32px;
   cursor:default;
+  box-shadow:0 2px 10px -4px rgba(35,42,80,.10);
 }
-.field-card:hover{border-color:var(--teal)}
+/* 左側玉綠脈衝條：靜止時收起，hover 時展開 */
+.field-card::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--teal);transform:scaleY(0);transform-origin:top;
+  transition:transform .34s cubic-bezier(.22,.7,.3,1);
+}
+.field-card:hover{
+  border-color:var(--teal);transform:translateY(-4px);
+  box-shadow:0 22px 44px -24px rgba(20,154,138,.45),0 2px 10px -4px rgba(35,42,80,.10);
+}
+.field-card:hover::before{transform:scaleY(1)}
+.field-card:hover .field-tags span{border-color:rgba(20,154,138,.42)}
 
 /* ---------- About 盒子 2×2 格 ---------- */
 .about-boxes-grid{
@@ -960,24 +1007,47 @@ footer{border-top:1px solid var(--line);padding:48px 0 60px;background:linear-gr
 
 /* ---------- Post row 強化 ---------- */
 .post-row{
+  position:relative;
   display:grid;grid-template-columns:130px 1fr 48px;gap:24px;
-  align-items:start;padding:24px 12px;
+  align-items:start;padding:24px 18px;
   border-bottom:1px solid var(--line);cursor:pointer;
-  border-radius:10px;margin:0 -12px;
+  border-radius:10px;margin:0 -18px;
 }
-.post-row:hover{background:rgba(255,255,255,.7);}
+/* 左側紅繩記號：hover 時抽出，呼應全站「一條紅繩」的設計語言 */
+.post-row::before{
+  content:"";position:absolute;left:0;top:14px;bottom:14px;width:2px;
+  background:var(--red);border-radius:2px;
+  transform:scaleY(0);transform-origin:center;opacity:0;
+}
+.post-row:hover{background:rgba(255,255,255,.72);box-shadow:0 10px 26px -20px rgba(35,42,80,.4)}
+.post-row:hover::before{transform:scaleY(1);opacity:1}
 .post-row:hover .post-title{color:var(--teal)}
+.post-row:hover .post-arrow{color:var(--teal);transform:translateX(4px)}
+@media (prefers-reduced-motion:no-preference){
+  .post-row::before{transition:transform .3s cubic-bezier(.22,.7,.3,1),opacity .3s ease}
+}
 
 /* ---------- Contact item 強化 ---------- */
 .contact-item{
   display:flex;justify-content:space-between;align-items:center;gap:18px;
   border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:18px 22px;
-  cursor:pointer;
+  cursor:pointer;background:rgba(255,255,255,.02);
 }
-.contact-item:hover{border-color:var(--teal)}
+.contact-item:hover{
+  border-color:var(--teal);background:rgba(20,154,138,.12);transform:translateX(4px);
+}
+.contact-item:hover .k{color:#C8F0E9}
 
 /* ---------- 回頂標記 ---------- */
 .section-anchor{scroll-margin-top:80px}
+
+/* ---------- 減少動態：關閉位移與縮放，只保留顏色變化 ---------- */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .btn:hover,.post-row:hover .post-arrow,.contact-item:hover,
+  .field-card:hover,#back-top:hover{transform:none}
+  .field-card::before,.post-row::before{transition:none}
+}
 
 
 /* ═══════════════════════════════════════════

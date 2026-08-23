@@ -16,6 +16,10 @@ const CSS = `
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.85;letter-spacing:.02em;-webkit-font-smoothing:antialiased;overflow-x:clip}
 ::selection{background:var(--teal);color:#fff}img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+/* 動效：與首頁一致的統一過場，尊重「減少動態」偏好 */
+@media(prefers-reduced-motion:no-preference){
+.btn,.nav-link,.brand,.crumb a,.pp-share,.author-box,.more a,.post-body figure img{transition:color .22s ease,background-color .22s ease,border-color .22s ease,box-shadow .3s ease,transform .3s cubic-bezier(.22,.7,.3,1)}
+}
 header{position:sticky;top:0;z-index:80;border-bottom:1px solid var(--line)}
 header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(224,240,251,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 .nav{max-width:1120px;margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
@@ -26,17 +30,18 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 .nav-link{font-size:.88rem;color:var(--ink-2);border-bottom:1.5px solid transparent;padding:4px 0}
 .nav-link:hover{border-color:var(--teal);color:var(--ink)}
 .btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.9rem;letter-spacing:.06em;padding:11px 26px;border:1.5px solid var(--ink);background:transparent;color:var(--ink)}
-.btn:hover{background:rgba(35,42,80,.06)}
-.btn:active{opacity:.8}
+.btn:hover{background:rgba(35,42,80,.06);transform:translateY(-2px)}
+.btn:active{opacity:.8;transform:translateY(0)}
 .btn.teal{background:#0C7365;border-color:#0C7365;color:#fff;font-weight:600}
-.btn.teal:hover{background:#0A5F53;border-color:#0A5F53}
+.btn.teal:hover{background:#0A5F53;border-color:#0A5F53;box-shadow:0 12px 24px -12px rgba(12,115,101,.75)}
 .btn.sm{padding:8px 20px;font-size:.84rem}
 @media(max-width:520px){.brand-name{font-size:.94rem}.nav-link{display:none}}
 .post-page{max-width:720px;margin:0 auto;padding:56px 32px 96px}
 .crumb{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--muted);margin-bottom:26px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .crumb a{color:var(--ink-2);border-bottom:1px solid var(--line)}
 .crumb a:hover{color:var(--teal);border-color:var(--teal)}
-.author-box{display:flex;align-items:center;gap:16px;margin-top:30px;padding:20px 22px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
+.author-box{display:flex;align-items:center;gap:16px;margin-top:30px;padding:20px 22px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);box-shadow:0 2px 12px -6px rgba(35,42,80,.16)}
+.author-box:hover{border-color:rgba(20,154,138,.45);box-shadow:0 16px 32px -22px rgba(20,154,138,.5)}
 .author-box img{width:52px;height:52px;flex:none;border-radius:50%;background:#fff;object-fit:contain}
 .author-box .a-name{font-family:var(--serif);font-weight:700;font-size:1.02rem}
 .author-box .a-cred{font-size:.8rem;color:var(--muted);margin:3px 0 6px;line-height:1.7}
@@ -95,8 +100,12 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
-.more a{display:block;font-family:var(--serif);font-size:1.05rem;color:var(--ink);padding:12px 0;border-bottom:1px solid var(--line)}
-.more a:hover{color:var(--teal)}
+.more a{position:relative;display:block;font-family:var(--serif);font-size:1.05rem;color:var(--ink);padding:12px 0 12px 0;border-bottom:1px solid var(--line)}
+.more a::before{content:"";position:absolute;left:-14px;top:14px;bottom:14px;width:2px;background:var(--red);border-radius:2px;opacity:0}
+.more a:hover{color:var(--teal);transform:translateX(8px)}
+.more a:hover::before{opacity:1}
+@media(prefers-reduced-motion:no-preference){.more a::before{transition:opacity .3s ease}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn:hover,.more a:hover{transform:none}}
 .more a span{display:block;font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;color:var(--muted);margin-top:4px}
 footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gradient(180deg,var(--bg) 0%,#D8ECF8 100%);margin-top:40px}
 .foot-in{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;align-items:center;gap:12px}
