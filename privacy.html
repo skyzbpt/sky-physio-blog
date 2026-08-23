@@ -189,7 +189,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offse
 
 <h2 id="s1">一、適用範圍</h2>
 
-<p>本聲明適用於 <strong>skythephysio.com</strong> 及其子網域（包含文章頁 /posts、分類專頁 /topics 與點閱計數服務 views.skythephysio.com）。</p>
+<p>本聲明適用於 <strong>skythephysio.com</strong> 及其子網域（包含文章頁 /posts、分類專頁 /topics）。</p>
 <p>本站可能連結到外部網站（例如預約用的 Google 日曆、社群平台、產品專區的購買連結）。<strong>一旦你離開本站，就適用該網站自己的隱私權政策</strong>，本聲明不及於此。</p>
 <h2 id="s2">二、本站會取得哪些資料</h2>
 
@@ -198,7 +198,6 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offse
   <thead><tr><th>類型</th><th>內容</th><th>目的與保存</th></tr></thead>
   <tbody>
     <tr><td>連線紀錄</td><td>由主機／CDN 供應商 Cloudflare 於伺服器端記錄，可能包含 IP 位址、瀏覽器 User-Agent、要求時間與網址</td><td>防止攻擊與濫用、確保網站正常運作；由 Cloudflare 依其政策保存，我不會另行匯出或做個人層級分析</td></tr>
-    <tr><td>文章點閱次數</td><td>只有「文章代號 → 累計次數」的數字（例如 <code>cycling-ftp-what-is-it → 128</code>）</td><td>了解哪些主題比較被需要；<strong>不含 IP、不含識別碼、無法回推到個人</strong>，長期保存為統計數字</td></tr>
     <tr><td>你主動寄來的訊息</td><td>你透過 Email 寄給我的內容與寄件資訊</td><td>回覆你的詢問；保存在我的信箱直到不再需要</td></tr>
     <tr><td>預約資訊</td><td>你在 Google 日曆預約頁填寫的姓名、聯絡方式與時段</td><td>由 Google 依其政策處理，我僅取得預約所需的必要資訊</td></tr>
   </tbody>
@@ -218,11 +217,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offse
 
 <p>本站使用瀏覽器的本機儲存空間，<strong>資料只留在你自己的裝置，不會傳送到伺服器</strong>，也不使用任何分析或廣告用的 cookie：</p>
 <ul>
-  <li><code>sessionStorage：pv:文章代號</code> — 記住這個分頁已經計算過一次點閱，避免同一次瀏覽重複累加。關閉分頁即消失。</li>
   <li><code>localStorage：sky_articles_v1</code> — 只有我本人使用網站後台編輯文章時才會產生的草稿暫存，一般讀者不會用到。</li>
   <li>主機／CDN 供應商 Cloudflare 可能設置維持網站安全運作所需的必要性 cookie（例如辨識自動化流量、防止濫用與攻擊）。</li>
 </ul>
-<p>你可以隨時在瀏覽器設定中檢視或清除這些本機資料；清除後本站的文章、排版與所有功能仍會照常運作，唯一的差別是同一篇文章的點閱可能在你重新造訪時被再計算一次。</p>
+<p>你可以隨時在瀏覽器設定中檢視或清除這些本機資料；清除後本站的文章、排版與所有功能仍會照常運作。</p>
 <h2 id="s5">五、第三方服務</h2>
 
 <ul>
@@ -236,7 +234,6 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offse
 <ul>
   <li>全站以 <strong>HTTPS</strong> 傳輸，並啟用 HSTS 強制加密連線。</li>
   <li>設有內容安全政策（CSP）、<code>X-Content-Type-Options</code>、<code>X-Frame-Options</code> 等安全標頭，降低惡意腳本與點擊劫持風險。</li>
-  <li>點閱計數服務僅接受本站網域的來源請求，且只接受「小寫英數與連字號」的文章代號。</li>
 </ul>
 <p>然而，網際網路上沒有百分之百的安全。若你要傳送敏感的健康資訊，請優先在正式療程中面談，而不是透過 Email。</p>
 <h2 id="s7">七、你的權利</h2>

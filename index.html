@@ -784,9 +784,6 @@ h1 .en{color:var(--teal)}
   display:flex;flex-direction:column;gap:4px}
 .post-meta span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .post-meta .cat{color:var(--red)}
-.post-meta .pv{display:inline-flex;align-items:center;gap:4px;color:var(--muted)}
-.post-meta .pv[hidden]{display:none!important}
-.post-meta .pv svg{width:12px;height:12px;opacity:.7;flex:none}
 .post-title{font-family:var(--serif);font-size:1.22rem;font-weight:700;line-height:1.5}
 .post-ex{margin-top:8px;font-size:.88rem;color:var(--muted);
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
@@ -1663,19 +1660,9 @@ textarea#af-body.adm-input{
 <footer>
   <div class="wrap foot">
         <small>網站設計｜Sky — © 2026 · <a href="/privacy">隱私權保護聲明</a></small>
-        <small id="site-pv" hidden>衛教文章累計 <span class="pv-n"></span> 次瀏覽</small>
   </div>
 </footer>
 
-<script>
-(function(){
-  var el=document.getElementById('site-pv'); if(!el) return;
-  fetch('https://views.skythephysio.com/all').then(function(r){return r.json();}).then(function(d){
-    var n=d.total||0;
-    if(n>0){ el.querySelector('.pv-n').textContent=Number(n).toLocaleString('en-US'); el.hidden=false; }
-  }).catch(function(){});
-})();
-</script>
 <script>
 /* ============================================================
    ◆◆◆ 內容編輯區 ◆◆◆
@@ -3714,7 +3701,7 @@ function renderList(){
   if(more) more.hidden = all.length <= list.length;
   $("#post-list").innerHTML = list.length ? list.map(a=>`
     <a class="post-row" href="/posts/${a.id}">
-      <div class="post-meta"><span>${a.date}</span><span class="cat">${a.cat}</span><span class="pv" data-slug="${a.id}" hidden>${VIEWS_EYE}<span class="pv-n"></span> 次</span></div>
+      <div class="post-meta"><span>${a.date}</span><span class="cat">${a.cat}</span></div>
       <div>
         <div class="post-title">${a.title}</div>
         <div class="post-ex">${inlineFormat(a.excerpt)}</div>
@@ -3722,7 +3709,6 @@ function renderList(){
       <div class="post-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
     </a>`).join("")
     : `<div class="post-empty">${postQuery.trim() ? "沒有符合的文章——換個關鍵字試試。" : "這個分類還沒有文章——很快會有的。"}</div>`;
-  loadListViews();
 }
 
 /* 搜尋框與載入更多 */
@@ -3737,22 +3723,6 @@ function renderList(){
   });
   qx.addEventListener("click",function(){ q.value=""; postQuery=""; qx.hidden=true; shownCount=PAGE_SIZE; renderList(); q.focus(); });
 })();
-
-/* 點閱次數（首頁列表，唯讀批次讀取；Worker 未部署時靜默略過） */
-const VIEWS_API='https://views.skythephysio.com';
-const VIEWS_EYE='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>';
-function loadListViews(){
-  var spans=[].slice.call(document.querySelectorAll('#post-list .pv[data-slug]'));
-  if(!spans.length) return;
-  var slugs=spans.map(function(s){return s.getAttribute('data-slug');});
-  fetch(VIEWS_API+'/get?slugs='+encodeURIComponent(slugs.join(','))).then(function(r){return r.json();}).then(function(d){
-    var counts=d.counts||{};
-    spans.forEach(function(s){
-      var n=counts[s.getAttribute('data-slug')]||0;
-      if(n>0){ s.querySelector('.pv-n').textContent=Number(n).toLocaleString('en-US'); s.hidden=false; }
-    });
-  }).catch(function(){});
-}
 
 function inlineFormat(s){
   return s.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
