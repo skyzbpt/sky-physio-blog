@@ -168,6 +168,7 @@ header::before{
 .nav-item>.nav-link{display:inline-flex;align-items:center;gap:4px}
 .nav-caret{width:9px;height:9px;flex:none;transition:transform .18s ease}
 .nav-item:hover .nav-caret,.nav-item:focus-within .nav-caret{transform:rotate(180deg)}
+.nav-icon{display:none;width:16px;height:16px;flex:none;margin-right:8px;opacity:.75;vertical-align:-3px}
 .nav-dropdown{position:absolute;top:100%;left:-14px;margin-top:0;min-width:216px;
   background:var(--bg,#fff);border:1px solid var(--line);border-radius:12px;
   box-shadow:0 24px 48px -24px rgba(35,42,80,.4);padding:14px 8px 8px;
@@ -199,6 +200,7 @@ header::before{
     border-bottom:1px solid var(--line);
     flex-direction:column;gap:0;padding:8px 0;z-index:79;
     box-shadow:0 12px 32px rgba(35,42,80,.14);
+    max-height:calc(100vh - 64px);overflow-y:auto;-webkit-overflow-scrolling:touch;
   }
   .nav-links.open{display:flex}
   .nav-links a,.nav-link{padding:14px 32px;width:100%;border-bottom:none;display:block}
@@ -207,6 +209,7 @@ header::before{
   .nav-item{position:static}
   .nav-item>.nav-link{padding:14px 32px}
   .nav-caret{display:none}
+  .nav-icon{display:inline-block}
   .nav-dropdown{position:static;opacity:1;visibility:visible;transform:none;pointer-events:auto;
     box-shadow:none;border:none;border-radius:0;background:transparent;margin:0;padding:0 0 6px}
   .nav-dropdown a{padding:9px 32px 9px 44px;font-size:.82rem}
@@ -965,7 +968,7 @@ textarea#af-body.adm-input{
     </a>
     <div class="nav-links" id="nav-links">
       <div class="nav-item">
-        <a class="nav-link" href="/#fields" aria-haspopup="true" aria-expanded="false">專業領域<svg class="nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <a class="nav-link" href="/#fields" aria-haspopup="true" aria-expanded="false"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>專業領域<svg class="nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
         <ul class="nav-dropdown">
           <li><a href="/#field-triathlon">三鐵運動修復 × 紅繩懸吊</a></li>
           <li><a href="/#field-cycling">公路車專項分析</a></li>
@@ -974,7 +977,7 @@ textarea#af-body.adm-input{
         </ul>
       </div>
       <div class="nav-item">
-        <a class="nav-link" href="services.html" aria-haspopup="true" aria-expanded="false">服務項目<svg class="nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <a class="nav-link" href="services.html" aria-haspopup="true" aria-expanded="false"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>服務項目<svg class="nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
         <ul class="nav-dropdown">
           <li><a href="services.html#svc-assessment">初診評估</a></li>
           <li><a href="services.html#svc-manual-therapy">徒手治療與疼痛治療</a></li>
@@ -988,7 +991,7 @@ textarea#af-body.adm-input{
         </ul>
       </div>
       <div class="nav-item">
-        <a class="nav-link" href="blog.html" aria-haspopup="true" aria-expanded="false">衛教文章<svg class="nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <a class="nav-link" href="blog.html" aria-haspopup="true" aria-expanded="false"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>衛教文章<svg class="nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
         <ul class="nav-dropdown">
           <li><a href="blog.html">全部文章</a></li>
           <li><a href="/topics/lower-back-pain">下背痛</a></li>
@@ -1001,9 +1004,9 @@ textarea#af-body.adm-input{
           <li><a href="/topics/pain-science">疼痛科學</a></li>
         </ul>
       </div>
-      <a class="nav-link" href="products.html">產品專區</a>
+      <a class="nav-link" href="products.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41 13.42 20.59a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><circle cx="7" cy="7" r="1"/></svg>產品專區</a>
       <div class="nav-item">
-        <a class="nav-link" href="about.html" aria-haspopup="true" aria-expanded="false">關於 Sky<svg class="nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <a class="nav-link" href="about.html" aria-haspopup="true" aria-expanded="false"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>關於 Sky<svg class="nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
         <ul class="nav-dropdown">
           <li><a href="about.html#about-intro">治療理念</a></li>
           <li><a href="about.html#roles">現職</a></li>
@@ -1013,8 +1016,8 @@ textarea#af-body.adm-input{
           <li><a href="about.html#certs">相關證照</a></li>
         </ul>
       </div>
-      <a class="nav-link" href="/#contact">聯絡 Sky</a>
-      <a class="nav-link nav-book" href="https://calendar.app.google/wdsPTQDhF2YCigPu6" target="_blank" rel="noopener">預約評估 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="8 7 17 7 17 16"/></svg></a>
+      <a class="nav-link" href="/#contact"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>聯絡 Sky</a>
+      <a class="nav-link nav-book" href="https://calendar.app.google/wdsPTQDhF2YCigPu6" target="_blank" rel="noopener"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>預約評估 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="8 7 17 7 17 16"/></svg></a>
     </div>
     <a class="btn teal sm" href="https://calendar.app.google/wdsPTQDhF2YCigPu6" target="_blank" rel="noopener">預約評估</a>
     <button id="menu-btn" aria-expanded="false" aria-controls="nav-links" onclick="toggleMenu()">MENU</button>
@@ -1040,11 +1043,7 @@ textarea#af-body.adm-input{
 
 <footer>
   <div class="wrap foot">
-    <div class="foot-brand">
-      <img src="assets/logo.png" style="height:48px;width:48px;object-fit:contain" alt="Sky 物理治療師 logo">
-      <div class="t"><b>Sky 物理治療師</b></div>
-    </div>
-    <small>網站設計｜Sky — © 2026 Sky 物理治療師</small>
+        <small>網站設計｜Sky — © 2026</small>
     <nav class="foot-legal" aria-label="政策與聲明">
       <a href="/privacy">隱私權保護聲明</a>
       <a href="/physio-guide">物理治療完整指南</a>
