@@ -29,7 +29,7 @@ const HUBS = [
 /* ---------- 主題頁 CSS ---------- */
 const CSS = `
 :root{--bg:#E0F0FB;--bg-soft:#F7FBFE;--ink:#232A50;--ink-2:#3A4270;--muted:#54708C;--line:#BAD7EA;--teal:#149A8A;--teal-soft:#DCEEEB;--red:#C2402E;
---serif:"Noto Serif TC","Songti TC","PMingLiU","Times New Roman",serif;--sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei","Helvetica Neue",sans-serif;--mono:"SF Mono","Cascadia Mono",Menlo,Consolas,"Courier New",monospace}
+--serif:"Noto Sans TC","PingFang TC","Microsoft JhengHei","Helvetica Neue",sans-serif;--sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei","Helvetica Neue",sans-serif;--mono:"SF Mono","Cascadia Mono",Menlo,Consolas,"Courier New",monospace}
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.85;letter-spacing:.02em;-webkit-font-smoothing:antialiased;overflow-x:clip}
 ::selection{background:var(--teal);color:#fff}img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
@@ -314,10 +314,10 @@ body{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
   padding:80px 90px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
 body::before{content:"";position:absolute;left:0;top:0;bottom:0;width:14px;background:#149A8A}
 .eyebrow{font-family:"SF Mono",Menlo,Consolas,monospace;font-size:26px;letter-spacing:.22em;color:#C2402E;margin-bottom:30px}
-h1{font-family:"Noto Serif TC","Songti TC",serif;font-weight:700;font-size:68px;line-height:1.35;max-width:1000px}
+h1{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-weight:700;font-size:68px;line-height:1.35;max-width:1000px}
 .foot{display:flex;align-items:center;gap:20px}
 .foot img{width:64px;height:64px;border-radius:50%;background:#fff}
-.foot .n{font-family:"Noto Serif TC",serif;font-weight:700;font-size:34px}
+.foot .n{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-weight:700;font-size:34px}
 .foot .n small{display:block;font-family:"SF Mono",monospace;font-size:19px;letter-spacing:.16em;color:#54708C;font-weight:400;margin-top:4px}
 </style></head><body>
 <div><div class="eyebrow">GUIDE · 完整指南</div><h1>物理治療是什麼？<br>如何挑選值得推薦的物理治療師</h1></div>

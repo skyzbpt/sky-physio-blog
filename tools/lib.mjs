@@ -216,11 +216,11 @@ export const ogCard = ({ eyebrow, title, footer, logo }) => `<!doctype html><htm
     padding:80px 90px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
   body::before{content:"";position:absolute;left:0;top:0;bottom:0;width:14px;background:#149A8A}
   .eyebrow{font-family:"SF Mono",Menlo,Consolas,monospace;font-size:26px;letter-spacing:.22em;color:#C2402E;margin-bottom:30px}
-  h1{font-family:"Noto Serif TC","Songti TC",serif;font-weight:700;font-size:74px;line-height:1.32;
+  h1{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-weight:700;font-size:74px;line-height:1.32;
     max-width:1000px;letter-spacing:.01em;overflow:hidden;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical}
   .foot{display:flex;align-items:center;gap:20px}
   .foot img{width:64px;height:64px;border-radius:50%;background:#fff}
-  .foot .n{font-family:"Noto Serif TC",serif;font-weight:700;font-size:34px}
+  .foot .n{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-weight:700;font-size:34px}
   .foot .n small{display:block;font-family:"SF Mono",monospace;font-size:19px;letter-spacing:.16em;color:#54708C;font-weight:400;margin-top:4px}
 </style></head><body>
   <div><div class="eyebrow">${esc(eyebrow)}</div><h1>${esc(title)}</h1></div>
