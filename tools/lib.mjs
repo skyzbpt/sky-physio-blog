@@ -153,6 +153,7 @@ export const topicsOf = a => {
 export const loadArticles = () => JSON.parse(readFileSync(join(REPO, 'data/articles.json'), 'utf8'));
 export const loadSite = () => JSON.parse(readFileSync(join(REPO, 'data/site.json'), 'utf8'));
 export const logoDataURI = () => 'data:image/png;base64,' + readFileSync(join(REPO, 'assets/logo.png')).toString('base64');
+export const photoDataURI = () => 'data:image/jpeg;base64,' + readFileSync(join(REPO, 'assets/sky-photo.jpg')).toString('base64');
 
 /* ---------- markdown → HTML（與 index.html 後台預覽 admRenderTextBlock 對齊） ---------- */
 export const inlineFormat = s => esc(s)
@@ -225,6 +226,35 @@ export const ogCard = ({ eyebrow, title, footer, logo }) => `<!doctype html><htm
 </style></head><body>
   <div><div class="eyebrow">${esc(eyebrow)}</div><h1>${esc(title)}</h1></div>
   <div class="foot"><img src="${logo}" alt="Sky 物理治療師 logo"><div class="n">Sky 物理治療師<small>${esc(footer)}</small></div></div>
+</body></html>`;
+
+/* ---------- 首頁 OG 分享卡（含人像照，1200×630） ---------- */
+export const ogHomeCard = ({ eyebrow, titleLines, footer, logo, photo }) => `<!doctype html><html><head><meta charset="utf-8">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1200px;height:630px;overflow:hidden}
+  body{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+    background:linear-gradient(135deg,#E0F0FB 0%,#DCEEEB 100%);color:#232A50;
+    padding:80px 90px;display:flex;justify-content:space-between;align-items:center;position:relative}
+  body::before{content:"";position:absolute;left:0;top:0;bottom:0;width:14px;background:#149A8A}
+  .left{display:flex;flex-direction:column;justify-content:space-between;align-self:stretch;flex:1;min-width:0}
+  .eyebrow{font-family:"SF Mono",Menlo,Consolas,monospace;font-size:26px;letter-spacing:.22em;color:#C2402E;margin-bottom:30px}
+  h1{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-weight:700;font-size:52px;line-height:1.4;
+    letter-spacing:.01em}
+  h1 .line{white-space:nowrap}
+  .foot{display:flex;align-items:center;gap:20px}
+  .foot img{width:64px;height:64px;border-radius:50%;background:#fff}
+  .foot .n{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-weight:700;font-size:34px}
+  .foot .n small{display:block;font-family:"SF Mono",monospace;font-size:19px;letter-spacing:.16em;color:#54708C;font-weight:400;margin-top:4px}
+  .photo-wrap{flex:0 0 auto;width:300px;height:470px;border-radius:24px;overflow:hidden;margin-left:60px;
+    box-shadow:0 20px 50px rgba(20,50,60,.18);border:5px solid #fff}
+  .photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:top center}
+</style></head><body>
+  <div class="left">
+    <div><div class="eyebrow">${esc(eyebrow)}</div><h1>${titleLines.map(l => `<div class="line">${esc(l)}</div>`).join('')}</h1></div>
+    <div class="foot"><img src="${logo}" alt="Sky 物理治療師 logo"><div class="n">Sky 物理治療師<small>${esc(footer)}</small></div></div>
+  </div>
+  <div class="photo-wrap"><img src="${photo}" alt="Sky 物理治療師"></div>
 </body></html>`;
 
 export async function shot(page, html, outPath) {
