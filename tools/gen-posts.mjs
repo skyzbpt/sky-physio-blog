@@ -2,7 +2,7 @@
 // 資料來源：data/articles.json（唯一真實來源）
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, TODAY, esc, plain, readMins, CAT_SLUG, renderBody, headingsOf, loadArticles, logoDataURI, ogCard, shot, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, wordCountOf, keywordsFor, extractFaqs, ldJson, topicsOf } from './lib.mjs';
+import { REPO, BASE, TODAY, esc, plain, readMins, CAT_SLUG, renderBody, headingsOf, loadArticles, logoDataURI, photoDataURI, roundedFontDataURI, ogCard, ogHomeCard, shot, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, wordCountOf, keywordsFor, extractFaqs, ldJson, topicsOf } from './lib.mjs';
 import { resolveModified } from './modified.mjs';
 import { LEGAL_UPDATED } from './gen-legal.mjs';
 
@@ -399,6 +399,8 @@ function copyLink(){
 export async function genPosts(page) {
   const articles = loadArticles();
   const logo = logoDataURI();
+  const photo = photoDataURI();
+  const roundedFont = roundedFontDataURI();
   console.log(`讀到 ${articles.length} 篇文章`);
   MODIFIED = resolveModified(articles);
 
@@ -414,7 +416,7 @@ export async function genPosts(page) {
   mkdirSync(join(REPO, 'assets/og'), { recursive: true });
 
   // 首頁 OG 卡（page 為 null 時略過圖片，沿用已提交的圖片）
-  if (page) await shot(page, ogCard({ eyebrow: 'PHYSIOTHERAPY · 台灣', title: '身・心・靈徒手治療 × 紅繩 × 公路車專項', footer: 'skythephysio.com', logo }), join(REPO, 'assets/og-home.jpg'));
+  if (page) await shot(page, ogHomeCard({ eyebrow: 'PHYSIOTHERAPY', titleLines: ['三鐵運動修復', '紅繩懸吊訓練'], footer: 'skythephysio.com', logo, photo, roundedFont }), join(REPO, 'assets/og-home.jpg'));
 
   // 每篇 OG 卡 + 靜態頁
   for (let i = 0; i < articles.length; i++) {
