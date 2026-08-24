@@ -416,7 +416,7 @@ export async function genPosts(page) {
   mkdirSync(join(REPO, 'assets/og'), { recursive: true });
 
   // 首頁 OG 卡（page 為 null 時略過圖片，沿用已提交的圖片）
-  if (page) await shot(page, ogHomeCard({ eyebrow: 'PHYSIOTHERAPY · 台灣', titleLines: ['三鐵運動修復', '紅繩懸吊', '公路車專項'], footer: 'skythephysio.com', logo, photo, roundedFont }), join(REPO, 'assets/og-home.jpg'));
+  if (page) await shot(page, ogHomeCard({ eyebrow: 'PHYSIOTHERAPY · 台灣', titleLines: ['三鐵運動修復', '紅繩懸吊・公路車專項'], footer: 'skythephysio.com', logo, photo, roundedFont }), join(REPO, 'assets/og-home.jpg'));
 
   // 每篇 OG 卡 + 靜態頁
   for (let i = 0; i < articles.length; i++) {

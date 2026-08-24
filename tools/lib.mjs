@@ -246,7 +246,7 @@ export const ogHomeCard = ({ eyebrow, titleLines, footer, logo, photo, roundedFo
     margin-bottom:30px;display:flex;align-items:center;gap:11px}
   .eyebrow::before{content:"";width:11px;height:11px;border-radius:50%;background:#149A8A;flex:none}
   .eyebrow::after{content:"";height:1px;flex:1;max-width:90px;background:#BAD7EA}
-  h1{font-family:"OpenHuninn","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-weight:400;font-size:72px;line-height:1.36;
+  h1{font-family:"OpenHuninn","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-weight:400;font-size:56px;line-height:1.5;
     letter-spacing:0}
   h1 .line{white-space:nowrap}
   .foot{display:flex;align-items:center;gap:20px}
