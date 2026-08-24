@@ -237,24 +237,30 @@ export const ogHomeCard = ({ eyebrow, titleLines, footer, logo, photo, roundedFo
   html,body{width:1200px;height:630px;overflow:hidden}
   body{font-family:"OpenHuninn","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
     background:linear-gradient(135deg,#E0F0FB 0%,#DCEEEB 100%);color:#232A50;
-    padding:80px 90px;display:flex;justify-content:space-between;align-items:center;position:relative}
+    padding:80px 90px;display:flex;justify-content:space-between;align-items:center;position:relative;overflow:hidden}
   body::before{content:"";position:absolute;left:0;top:0;bottom:0;width:14px;background:#149A8A}
-  .left{display:flex;flex-direction:column;justify-content:space-between;align-self:stretch;flex:1;min-width:0}
-  .eyebrow{font-family:"OpenHuninn","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-size:26px;letter-spacing:.1em;color:#C2402E;margin-bottom:30px}
+  .glow{position:absolute;right:-60px;top:50%;transform:translateY(-50%);width:560px;height:560px;border-radius:50%;
+    background:radial-gradient(circle,rgba(20,154,138,.22) 0%,rgba(20,154,138,0) 70%)}
+  .left{display:flex;flex-direction:column;justify-content:space-between;align-self:stretch;flex:1;min-width:0;position:relative;z-index:1}
+  .eyebrow{font-family:"OpenHuninn","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-size:26px;letter-spacing:.1em;color:#C2402E;
+    margin-bottom:30px;display:flex;align-items:center;gap:11px}
+  .eyebrow::before{content:"";width:11px;height:11px;border-radius:50%;background:#C2402E;flex:none}
   h1{font-family:"OpenHuninn","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-weight:400;font-size:58px;line-height:1.4;
     letter-spacing:0}
   h1 .line{white-space:nowrap}
   .foot{display:flex;align-items:center;gap:20px}
   .foot img{width:64px;height:64px;border-radius:50%;background:#fff}
   .foot .n{font-family:"OpenHuninn","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-weight:400;font-size:34px}
+  .foot .n .sky{color:#149A8A}
   .foot .n small{display:block;font-family:"OpenHuninn","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-size:19px;letter-spacing:.05em;color:#54708C;font-weight:400;margin-top:4px}
-  .photo-wrap{flex:0 0 auto;width:270px;height:420px;border-radius:24px;overflow:hidden;margin-left:40px;
-    box-shadow:0 20px 50px rgba(20,50,60,.18);border:5px solid #fff}
+  .photo-wrap{flex:0 0 auto;width:270px;height:420px;border-radius:24px;overflow:hidden;margin-left:40px;position:relative;z-index:1;
+    box-shadow:0 20px 50px rgba(20,50,60,.18),0 0 0 3px rgba(20,154,138,.35);border:5px solid #fff}
   .photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:top center}
 </style></head><body>
+  <div class="glow"></div>
   <div class="left">
     <div><div class="eyebrow">${esc(eyebrow)}</div><h1>${titleLines.map(l => `<div class="line">${esc(l)}</div>`).join('')}</h1></div>
-    <div class="foot"><img src="${logo}" alt="Sky 物理治療師 logo"><div class="n">Sky 物理治療師<small>${esc(footer)}</small></div></div>
+    <div class="foot"><img src="${logo}" alt="Sky 物理治療師 logo"><div class="n"><span class="sky">Sky</span> 物理治療師<small>${esc(footer)}</small></div></div>
   </div>
   <div class="photo-wrap"><img src="${photo}" alt="Sky 物理治療師"></div>
 </body></html>`;
