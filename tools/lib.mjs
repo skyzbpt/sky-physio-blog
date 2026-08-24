@@ -241,12 +241,12 @@ export const ogHomeCard = ({ eyebrow, titleLines, footer, logo, photo, roundedFo
   body::before{content:"";position:absolute;left:0;top:0;bottom:0;width:14px;background:#149A8A}
   .glow{position:absolute;right:-60px;top:50%;transform:translateY(-50%);width:560px;height:560px;border-radius:50%;
     background:radial-gradient(circle,rgba(20,154,138,.22) 0%,rgba(20,154,138,0) 70%)}
-  .left{display:flex;flex-direction:column;justify-content:space-between;align-self:stretch;flex:1;min-width:0;position:relative;z-index:1}
+  .left{display:flex;flex-direction:column;justify-content:center;gap:64px;align-self:stretch;flex:1;min-width:0;position:relative;z-index:1}
   .eyebrow{font-family:"OpenHuninn","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-size:26px;letter-spacing:.1em;color:#54708C;
     margin-bottom:30px;display:flex;align-items:center;gap:11px}
   .eyebrow::before{content:"";width:11px;height:11px;border-radius:50%;background:#149A8A;flex:none}
   .eyebrow::after{content:"";height:1px;flex:1;max-width:90px;background:#BAD7EA}
-  h1{font-family:"OpenHuninn","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-weight:400;font-size:56px;line-height:1.5;
+  h1{font-family:"OpenHuninn","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-weight:400;font-size:68px;line-height:1.45;
     letter-spacing:0}
   h1 .line{white-space:nowrap}
   .foot{display:flex;align-items:center;gap:20px}
