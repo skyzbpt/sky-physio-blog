@@ -242,9 +242,10 @@ export const ogHomeCard = ({ eyebrow, titleLines, footer, logo, photo, roundedFo
   .glow{position:absolute;right:-60px;top:50%;transform:translateY(-50%);width:560px;height:560px;border-radius:50%;
     background:radial-gradient(circle,rgba(20,154,138,.22) 0%,rgba(20,154,138,0) 70%)}
   .left{display:flex;flex-direction:column;justify-content:space-between;align-self:stretch;flex:1;min-width:0;position:relative;z-index:1}
-  .eyebrow{font-family:"OpenHuninn","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-size:26px;letter-spacing:.1em;color:#C2402E;
+  .eyebrow{font-family:"OpenHuninn","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-size:26px;letter-spacing:.1em;color:#54708C;
     margin-bottom:30px;display:flex;align-items:center;gap:11px}
   .eyebrow::before{content:"";width:11px;height:11px;border-radius:50%;background:#C2402E;flex:none}
+  .eyebrow::after{content:"";height:1px;flex:1;max-width:90px;background:#BAD7EA}
   h1{font-family:"OpenHuninn","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-weight:400;font-size:58px;line-height:1.4;
     letter-spacing:0}
   h1 .line{white-space:nowrap}
