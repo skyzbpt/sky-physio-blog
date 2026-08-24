@@ -154,7 +154,7 @@ export const loadArticles = () => JSON.parse(readFileSync(join(REPO, 'data/artic
 export const loadSite = () => JSON.parse(readFileSync(join(REPO, 'data/site.json'), 'utf8'));
 export const logoDataURI = () => 'data:image/png;base64,' + readFileSync(join(REPO, 'assets/logo.png')).toString('base64');
 export const photoDataURI = () => 'data:image/jpeg;base64,' + readFileSync(join(REPO, 'assets/sky-photo.jpg')).toString('base64');
-export const roundedFontDataURI = () => 'data:font/woff2;base64,' + readFileSync(join(REPO, 'assets/iansui-tc.woff2')).toString('base64');
+export const roundedFontDataURI = () => 'data:font/ttf;base64,' + readFileSync(join(REPO, 'assets/jf-openhuninn.ttf')).toString('base64');
 
 /* ---------- markdown → HTML（與 index.html 後台預覽 admRenderTextBlock 對齊） ---------- */
 export const inlineFormat = s => esc(s)
@@ -232,7 +232,7 @@ export const ogCard = ({ eyebrow, title, footer, logo }) => `<!doctype html><htm
 /* ---------- 首頁 OG 分享卡（含人像照，1200×630） ---------- */
 export const ogHomeCard = ({ eyebrow, titleLines, footer, logo, photo, roundedFont }) => `<!doctype html><html><head><meta charset="utf-8">
 <style>
-  @font-face{font-family:"Iansui";src:url(${roundedFont}) format("woff2");font-weight:400;font-display:block}
+  @font-face{font-family:"OpenHuninn";src:url(${roundedFont}) format("truetype");font-weight:400;font-display:block}
   *{margin:0;padding:0;box-sizing:border-box}
   html,body{width:1200px;height:630px;overflow:hidden}
   body{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
@@ -241,7 +241,7 @@ export const ogHomeCard = ({ eyebrow, titleLines, footer, logo, photo, roundedFo
   body::before{content:"";position:absolute;left:0;top:0;bottom:0;width:14px;background:#149A8A}
   .left{display:flex;flex-direction:column;justify-content:space-between;align-self:stretch;flex:1;min-width:0}
   .eyebrow{font-family:"SF Mono",Menlo,Consolas,monospace;font-size:26px;letter-spacing:.22em;color:#C2402E;margin-bottom:30px}
-  h1{font-family:"Iansui","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-weight:400;font-size:58px;line-height:1.4;
+  h1{font-family:"OpenHuninn","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-weight:400;font-size:58px;line-height:1.4;
     letter-spacing:0}
   h1 .line{white-space:nowrap}
   .foot{display:flex;align-items:center;gap:20px}
