@@ -73,14 +73,111 @@ export const CAT_ABOUT = {
 // 中文字數（供 wordCount）
 export const wordCountOf = content => (String(content).match(/[一-鿿]/g) || []).length;
 
-// 每篇 keywords：標題 + 分類 + 主題實體名 + 通用詞
+/* ---------- meta description ----------
+   摘要（excerpt）平均只有 60 字，低於 Ahrefs 的 110 字門檻，所以需要補字。
+   舊做法是把內文前 N 個字直接接上去，結果 260 篇裡有 241 篇斷在半句——
+   而這段文字 Google 會原樣顯示在搜尋結果上，斷句等於白白損失點閱。
+   改成以「完整句子」為單位補；補不滿才退到最近的句讀（先逗號、頓號次之）收尾並補上句號。 */
+export const DESC_MIN = 110, DESC_MAX = 155;
+const cLen = s => [...s].length;
+const isListBlock = b => /^\s*([-*]\s+|\d+\.\s+)/.test(b);
+
+// 內文可用區塊：跳過小標、引言、圖片與分隔線（接進描述會讀起來像斷句）
+const descBlocks = content => String(content).trim().split(/\n\s*\n/).map(b => b.trim())
+  .filter(b => b && !b.startsWith('##') && !b.startsWith('>') && !/^%%FIG/.test(b)
+            && !/^!\[/.test(b) && !/^<figure/.test(b) && !/^(-{3,}|\*{3,}|_{3,})$/.test(b));
+
+// 條列編號（一、／1.／（2））是版面結構，不是句子的一部分；
+// 留在描述裡會變成「一、現代生活。」這種讀不通的殘句。
+const ENUM = /^[（(]?[一二三四五六七八九十百\d]+[、）)．.]\s*/;
+
+// 區塊 → 句子。逐區塊切，不把區塊接起來再切——否則「……當其中任何一個環節不足：」
+// 這種引出清單的殘句，會和下一段的第一句黏成一句讀不通的話。
+// 清單整塊以「、」串成一句，讓需要截斷時永遠有標點可退。
+const sentencesOf = blocks => blocks.flatMap(b => {
+  if (isListBlock(b)) {
+    const items = plain(b.split('\n').map(l => l.replace(/^\s*([-*]\s+|\d+\.\s+)/, '').replace(ENUM, '').trim())
+      .filter(Boolean).join('、')).replace(/[、，：]+$/, '');
+    return items ? [items + '。'] : [];
+  }
+  const parts = plain(b).split(/(?<=[。！？])/).map(x => x.trim().replace(ENUM, '')).filter(Boolean);
+  // 區塊結尾若不是完整句子（多半是引出清單的「……：」），丟掉，不要接到下一段去
+  if (parts.length && !/[。！？]$/.test(parts[parts.length - 1])) parts.pop();
+  return parts;
+});
+
+// 描述能不能就這樣收尾：結尾若是「很少。」這種孤零零的短句，
+// 讀者在搜尋結果上看到的就是一個沒頭沒尾的殘句，寧可再多接一句。
+const okTail = d => {
+  const last = d.split(/(?<=[。！？])/).filter(Boolean).pop() || '';
+  return [...last].length >= 8;
+};
+
+export function metaDescription(a) {
+  const seed = plain(a.excerpt).trim();
+  const blocks = descBlocks(a.content);
+  // 先只用散文（讀起來最自然）；湊不到下限時才把清單內容也納入
+  const pools = [sentencesOf(blocks.filter(b => !isListBlock(b))), sentencesOf(blocks)];
+  let best = seed;
+  for (const pool of pools) {
+    let desc = seed, i = 0;
+    // 補到下限為止；若結尾是殘句，只要還放得下就再接一句
+    while (i < pool.length && (cLen(desc) < DESC_MIN || !okTail(desc))
+           && cLen(desc) + cLen(pool[i]) <= DESC_MAX) desc += pool[i++];
+    if (cLen(desc) >= DESC_MIN && okTail(desc)) return desc.trim();
+    if (cLen(desc) > cLen(best)) best = desc;
+
+    // 整句補不滿下限 → 取下一句的前半，切在句讀處再補上句號。
+    // 先找真正的子句邊界「，；」；切在頓號上會留下說到一半的並列，讀起來較差，故為次選。
+    if (i < pool.length) {
+      let d = desc;
+      const room = DESC_MAX - cLen(d) - 1;               // 保留 1 字給補上的句號
+      const head = [...pool[i]].slice(0, room);
+      let cut = -1;
+      for (const marks of ['，；', '、：']) {
+        for (let k = head.length - 1; k >= DESC_MIN - cLen(d); k--)
+          if (marks.includes(head[k])) { cut = k; break; }
+        if (cut > 0) break;
+      }
+      if (cut > 0) {
+        const tail = head.slice(0, cut).join('').replace(/[，、；：—－·／]+$/, '');
+        if (tail) d += tail + '。';
+        if (cLen(d) >= DESC_MIN && okTail(d)) return d.trim();
+        if (cLen(d) > cLen(best)) best = d;
+      }
+    }
+  }
+  return best.trim();
+}
+
+// 標題主題詞：切出乾淨的名詞短語當關鍵字。
+// 含「得／地」的是副詞結構（「騎得快」不是關鍵字），排除。
+const titleTerm = title => {
+  const s = subjectOf(title);
+  return s && !/[得地]/.test(s) ? s : '';
+};
+
+// 每篇 keywords：文章真正談到的實體優先，其次標題主題詞、分類實體與站台通用詞。
+// 舊版把「整個標題」當成一個關鍵字（例如「FTP 是什麼？公路車訓練最重要的那一個數字」）——
+// 那不是關鍵字，只是把標題再抄一次。
 export const keywordsFor = a => {
   const about = CAT_ABOUT[a.cat];
-  const ks = [a.title, a.cat];
-  if (about) { ks.push(about.name); if (about.alternateName) ks.push(about.alternateName); }
-  ks.push('物理治療', '復健', '衛教', 'Sky 物理治療師');
-  return [...new Set(ks.filter(Boolean))].join(',');
+  const entities = topicsOf(a);
+  const subj = titleTerm(a.title);
+  const ks = [
+    ...(subj && subj !== a.cat ? [subj] : []),
+    ...entities,
+    a.cat,
+    ...(about ? [about.name, about.alternateName].filter(Boolean) : []),
+  ];
+  // 實體最多取 6 個再接通用詞——關鍵字堆到 20 個不會更好，只會稀釋主題
+  const head = [...new Set(ks.filter(Boolean))].slice(0, 6 + (about ? 3 : 1));
+  return [...new Set([...head, '物理治療', '復健', '衛教', 'Sky 物理治療師'])].join(',');
 };
+
+// JSON-LD mentions：把文章實際談到的實體標成具名節點，
+// 讓搜尋引擎與 AI 引擎知道這篇涉及哪些主題（GEO 的實體訊號）。
+export const mentionsFor = a => topicsOf(a).slice(0, 8).map(name => ({ '@type': 'Thing', 'name': name }));
 
 // 從文章內容抽出「## 問句？」→ 後續段落作為答案，產生高品質 FAQ（SEO rich result / GEO 問答抽取）
 const faqAnswerText = md => md.split('\n')
@@ -131,17 +228,37 @@ export function extractFaqs(content, title) {
   return faqs;
 }
 
-// 臨床主題詞：用來找出「不同分類但談同一主題」的文章，
-// 讓這些文章互相連結並標示彼此角度不同（避免搜尋引擎誤判為重複內容）
+// 臨床／訓練主題詞：一篇文章「實際在談的東西」。三個地方用到它——
+//   1. 找出不同分類但談同一主題的文章，互相連結並標示角度不同（避免被判為重複內容）
+//   2. 每篇的 keywords
+//   3. JSON-LD 的 mentions（讓搜尋與 AI 引擎知道這篇涉及哪些實體）
+// 選詞原則：夠具體，兩篇同時命中才代表真的在談同一件事。
+// 「恢復」「訓練」這種泛用詞不收；「把手」「減量」這類會誤中一般語句的詞也不收
+// （「把手放在胸口」出現在顱薦椎文章裡，會和公路車把手文章假連結），改用 Taper 這類無歧義的寫法。
 export const TOPIC_TERMS = [
+  // 肩
   '五十肩', '冰凍肩', '旋轉肌袖', '肩夾擠', '肩滑囊', '肩關節不穩', '肩胛',
+  // 腰・骨盆・髖
   '坐骨神經', '椎間盤', '椎管狹窄', '薦髂', '梨狀肌', '腰大肌', '胸腰筋膜', '髖鉸鏈',
-  '足底筋膜', '足弓', '跟腱', '腳踝', '錘狀趾', '膕旁肌', '大腿後肌',
+  '骨盆', '臀肌', '髖關節活動度',
+  // 下肢
+  '足底筋膜', '足弓', '跟腱', '腳踝', '錘狀趾', '膕旁肌', '大腿後肌', '髂脛束', '後側鏈',
+  // 顳顎
   '顳顎', '咀嚼肌', '咬肌', '磨牙', '關節盤', '翼狀肌',
-  '激痛點', '緊帶', '轉移痛', '中樞敏感化', '乾針',
+  // 疼痛科學
+  '激痛點', '緊帶', '轉移痛', '中樞敏感化', '乾針', '肌腱病變', '本體感覺', '動作控制', '神經滑動',
+  // 呼吸・核心
   '橫膈', '呼吸', '核心', '骨盆底', '腹內壓',
-  '揮鞭', '枕下', '斜角肌', '胸廓出口', '腕隧道', '大魚際',
+  // 頸・上肢・胸廓
+  '揮鞭', '枕下', '斜角肌', '胸廓出口', '腕隧道', '大魚際', '胸椎',
+  // 治療取向
   '紅繩', '懸吊', 'Bike Fitting', '顱薦椎', '迷走神經', '筋膜線',
+  // 自行車與耐力訓練（公路車是站上最大的分類，需要對應的實體詞才不會只剩分類名可用）
+  'FTP', '功率計', '正規化功率', '強度係數', 'VO2max', '乳酸閾值', '換氣閾',
+  '能量系統', '騎乘經濟性', '心率漂移', 'HRV', '無氧',
+  '週期化', '基礎期', 'Taper', '極化訓練', 'Sweet Spot', '間歇', '訓練台', '過度訓練',
+  '熱適應', '補給', '迴轉速', '踩踏', '曲柄長度', '座墊高度', '卡踏', '空力姿勢',
+  '閉鎖鏈', '離車訓練',
 ];
 
 // 取出一篇文章（標題優先，其次內文）涉及的主題詞

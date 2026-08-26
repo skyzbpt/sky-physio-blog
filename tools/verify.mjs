@@ -3,7 +3,7 @@
 // 放在 repo 內（而非暫存區），確保不會因環境重建而遺失。
 import { readFileSync, readdirSync, existsSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, TODAY, loadArticles, CAT_SLUG } from './lib.mjs';
+import { REPO, BASE, TODAY, loadArticles, CAT_SLUG, DESC_MIN, DESC_MAX } from './lib.mjs';
 import { hashOf } from './modified.mjs';
 
 const results = [];
@@ -60,7 +60,9 @@ function parseStrict(txt) {
   }
   return true;
 }
-let seoOk = 0, ldOk = 0, descShort = 0, faqCount = 0, ldErr = [];
+const unesc = s => s.replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+let seoOk = 0, ldOk = 0, descShort = 0, descLong = 0, descCut = [], faqCount = 0, ldErr = [];
+let kwTitle = [], mentionsCount = 0;
 for (const f of postFiles) {
   const id = f.replace('.html', '');
   const html = read('posts/' + f);
@@ -68,7 +70,20 @@ for (const f of postFiles) {
   const hasOg = html.includes(`og:image" content="${BASE}/assets/og/${id}.jpg"`);
   const hasLarge = html.includes('summary_large_image');
   const m = html.match(/<meta name="description" content="([^"]*)"/);
-  if (!m || [...m[1]].length < 110) descShort++;
+  if (!m || [...unesc(m[1])].length < DESC_MIN) descShort++;
+  // 上限 155：超過的部分 Google 會自己截掉，而且常常截在半句
+  if (m && [...unesc(m[1])].length > DESC_MAX) descLong++;
+  // 斷句檢查：描述會原樣顯示在搜尋結果，結尾必須是完整的句子
+  if (m && !/[。！？」）]$/.test(unesc(m[1]))) descCut.push(id);
+  // 關鍵字要是「詞」，不是把標題再抄一次：
+  // 帶句讀／副標點的一定是標題（例如「FTP 是什麼？公路車訓練最重要的那一個數字」），
+  // 過長的中文串也一樣。純英文實體名（Temporomandibular Disorders (TMD)）不受長度限制。
+  const km = html.match(/<meta name="keywords" content="([^"]*)"/);
+  if (km) for (const k of unesc(km[1]).split(',')) {
+    const hasCjk = /[一-鿿]/.test(k);
+    if (/[。？！：—－，、；]/.test(k) || (hasCjk && [...k].length > 16)) { kwTitle.push(`${id}「${k}」`); break; }
+  }
+  if (html.includes('"mentions"')) mentionsCount++;
   if (hasCanon && hasOg && hasLarge && m) seoOk++;
   const blocks = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
   let allOk = blocks.length > 0;
@@ -80,7 +95,16 @@ for (const f of postFiles) {
 }
 seoOk === postFiles.length ? pass('每篇 canonical/og:image/大圖卡/description 完整') : fail('文章頁 SEO', `${seoOk}/${postFiles.length}`);
 ldOk === postFiles.length ? pass('每篇 JSON-LD 皆合法且無重複鍵') : fail('JSON-LD', ldErr.slice(0, 3).join(' | '));
-descShort === 0 ? pass('每篇 description ≥110 字（Ahrefs）') : fail('description 過短', descShort + ' 篇');
+descShort === 0 ? pass(`每篇 description ≥${DESC_MIN} 字（Ahrefs）`) : fail('description 過短', descShort + ' 篇');
+descLong === 0 ? pass(`每篇 description ≤${DESC_MAX} 字（不會被 Google 截斷）`) : fail('description 過長', descLong + ' 篇');
+// 這條是重點：description 會原樣顯示在搜尋結果，斷在半句等於白白損失點閱
+descCut.length === 0
+  ? pass('每篇 description 皆以完整句子結尾')
+  : fail('description 斷在半句', `${descCut.length} 篇，例如 ${descCut.slice(0, 3).join(', ')}`);
+kwTitle.length === 0
+  ? pass('keywords 皆為主題實體（不是把標題再抄一次）')
+  : fail('keywords 含標題式字串', `${kwTitle.length} 篇，例如 ${kwTitle.slice(0, 2).join('、')}`);
+mentionsCount > 0 ? pass(`JSON-LD mentions 實體標註 ${mentionsCount} 篇`) : fail('JSON-LD mentions', 0);
 faqCount > 0 ? pass(`FAQ 結構化資料 ${faqCount} 篇`) : fail('FAQ 結構化資料', 0);
 
 /* ---------- 4. 乾淨網址（無 .html） ---------- */
@@ -125,8 +149,10 @@ literal === 0 ? pass('文章內容無殘留 markdown 語法') : fail('殘留 mar
 
 /* ---------- 7. 安全性標頭 ---------- */
 const hdr = existsSync(join(REPO, '_headers')) ? read('_headers') : '';
+// 註：原本這裡還要求 connect-src 含 views.skythephysio.com，但瀏覽次數功能已移除，
+// 站上不再對該網域發出請求，因此該斷言一併移除（留著只會讓 verify 永遠失敗）。
 (hdr.includes('Content-Security-Policy:') && hdr.includes('X-Content-Type-Options: nosniff')
-  && hdr.includes('Strict-Transport-Security:') && /connect-src[^;]*views\.skythephysio\.com/.test(hdr))
+  && hdr.includes('Strict-Transport-Security:') && /connect-src[^;]*'self'/.test(hdr))
   ? pass('_headers 安全標頭完整（CSP/HSTS/nosniff）') : fail('_headers');
 
 /* ---------- 8. 首頁 ---------- */

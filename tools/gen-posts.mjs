@@ -2,7 +2,7 @@
 // 資料來源：data/articles.json（唯一真實來源）
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, TODAY, esc, plain, readMins, CAT_SLUG, renderBody, headingsOf, loadArticles, logoDataURI, photoDataURI, roundedFontDataURI, ogCard, ogHomeCard, shot, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, wordCountOf, keywordsFor, extractFaqs, ldJson, topicsOf } from './lib.mjs';
+import { REPO, BASE, TODAY, esc, readMins, CAT_SLUG, renderBody, headingsOf, loadArticles, logoDataURI, photoDataURI, roundedFontDataURI, ogCard, ogHomeCard, shot, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, wordCountOf, keywordsFor, mentionsFor, metaDescription, extractFaqs, ldJson, topicsOf } from './lib.mjs';
 import { resolveModified } from './modified.mjs';
 import { LEGAL_UPDATED } from './gen-legal.mjs';
 
@@ -139,16 +139,8 @@ function postPage(a, idx, all) {
   // 正式網址採乾淨路徑（無 .html）：Cloudflare 靜態資產會將 .html 網址 308 轉向乾淨網址
   const url = `${BASE}/posts/${a.id}`;
   const ogImg = `${BASE}/assets/og/${a.id}.jpg`;
-  // meta description：摘要偏短時補上內文，穩定湊到 ~140–155 字（避免 Ahrefs「描述過短」，門檻約 110）
-  const excerptText = plain(a.excerpt).trim();
-  const bodyText = plain(a.content).replace(/[-•]\s*/g, '').replace(/\s+/g, ' ').trim();
-  let desc = excerptText;
-  if ([...desc].length < 120 && bodyText) {
-    const need = 150 - [...desc].length - 1;
-    const extra = [...bodyText].slice(0, need).join('').trim();
-    desc = excerptText + '｜' + extra;
-  }
-  desc = [...desc].slice(0, 155).join('').trim();
+  // meta description：摘要 + 內文的完整句子，110–155 字且絕不斷在半句（見 lib.mjs metaDescription）
+  const desc = metaDescription(a);
   const bodyHtml = renderBody(a.content);
   const mins = readMins(a.content);
   // 目錄：小標三個以上才顯示（兩個以下的短文，目錄只是雜訊）
@@ -203,6 +195,7 @@ ${heads.map(h => `        <li><a href="#${h.id}">${esc(h.text)}</a></li>`).join(
   };
   const about = CAT_ABOUT[a.cat];
   const keywords = keywordsFor(a);
+  const mentions = mentionsFor(a);
   const jsonld = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -221,6 +214,7 @@ ${heads.map(h => `        <li><a href="#${h.id}">${esc(h.text)}</a></li>`).join(
     "image": { "@type": "ImageObject", "url": ogImg, "width": 1200, "height": 630 },
     "url": url,
     ...(about ? { "about": about } : {}),
+    ...(mentions.length ? { "mentions": mentions } : {}),
     "author": AUTHOR,
     "publisher": PUBLISHER,
     "isPartOf": { "@type": "Blog", "@id": BASE + "/blog#blog", "url": BASE + "/blog", "name": "Sky 物理治療師｜衛教文章" }
