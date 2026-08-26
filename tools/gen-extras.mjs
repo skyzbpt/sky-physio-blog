@@ -3,6 +3,7 @@
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
 import { REPO, BASE, esc, plain, loadArticles, logoDataURI, ogCard, shot, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, ldJson } from './lib.mjs';
+import { SHELL } from './css.mjs';
 
 // 與 lib.mjs 的 CAT_SLUG 保持一致（此處另需 lede 文案）
 const HUBS = [
@@ -27,28 +28,11 @@ const HUBS = [
 ];
 
 /* ---------- 主題頁 CSS ---------- */
-const CSS = `
-:root{--bg:#E0F0FB;--bg-soft:#F7FBFE;--ink:#232A50;--ink-2:#3A4270;--muted:#54708C;--line:#BAD7EA;--teal:#149A8A;--teal-soft:#DCEEEB;--red:#C2402E;
---serif:"Noto Sans TC","PingFang TC","Microsoft JhengHei","Helvetica Neue",sans-serif;--sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei","Helvetica Neue",sans-serif;--mono:"SF Mono","Cascadia Mono",Menlo,Consolas,"Courier New",monospace}
-*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.85;letter-spacing:.02em;-webkit-font-smoothing:antialiased;overflow-x:clip}
-::selection{background:var(--teal);color:#fff}img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
-header{position:sticky;top:0;z-index:80;border-bottom:1px solid var(--line)}
-header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(224,240,251,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-.nav{max-width:1120px;margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+const CSS = SHELL + `
 .brand{display:flex;align-items:center;gap:10px}
-.brand-logo{height:44px;width:44px;object-fit:contain;display:block}
-.brand-name{font-family:var(--serif);font-weight:700;font-size:1.04rem;color:var(--ink);letter-spacing:.04em;white-space:nowrap}
-.nav-right{display:flex;align-items:center;gap:24px}
-.nav-link{font-size:.88rem;color:var(--ink-2);border-bottom:1.5px solid transparent;padding:4px 0}
-.nav-link:hover{border-color:var(--teal);color:var(--ink)}
-.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.9rem;letter-spacing:.06em;padding:11px 26px;border:1.5px solid var(--ink);background:transparent;color:var(--ink)}
 .btn:hover{background:rgba(35,42,80,.06);transform:translateY(-2px)}
 .btn:active{opacity:.8;transform:translateY(0)}
-.btn.teal{background:#0C7365;border-color:#0C7365;color:#fff;font-weight:600}
 .btn.teal:hover{background:#0A5F53;border-color:#0A5F53;box-shadow:0 12px 24px -12px rgba(12,115,101,.75)}
-.btn.sm{padding:8px 20px;font-size:.84rem}
-@media(max-width:520px){.brand-name{font-size:.94rem}.nav-link{display:none}}
 /* 動效：與首頁一致的統一過場，尊重「減少動態」偏好 */
 @media(prefers-reduced-motion:no-preference){
 .btn,.nav-link,.brand,.crumb a,.list a,.list .t,.backhome{transition:color .22s ease,background-color .22s ease,border-color .22s ease,box-shadow .3s ease,transform .3s cubic-bezier(.22,.7,.3,1)}
@@ -57,8 +41,6 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn:hover,.list a:hover{transform:none}}
 .hub{max-width:820px;margin:0 auto;padding:56px 32px 96px}
 .crumb{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--muted);margin-bottom:26px}
-.crumb a{color:var(--ink-2);border-bottom:1px solid var(--line)}
-.crumb a:hover{color:var(--teal);border-color:var(--teal)}
 .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:10px}
 .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red)}
 h1{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.45;margin-bottom:14px}
@@ -90,22 +72,12 @@ h1{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.45;
 .list .e{color:var(--muted);font-size:.92rem;margin-top:4px}
 .backhome{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--ink-2);margin-top:36px;padding:10px 18px;border:1.5px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6)}
 .backhome:hover{border-color:var(--teal);color:var(--teal)}
-footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gradient(180deg,var(--bg) 0%,#D8ECF8 100%);margin-top:40px}
 .foot-in{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;align-items:center;gap:12px}
-.foot-in img{width:30px;height:30px}
-.foot-in .t{font-size:.84rem;color:var(--ink-2)}
-.foot-in .t b{display:block;font-family:var(--serif)}
-.foot-in .t a{color:inherit;border-bottom:1px solid var(--line)}
-.foot-in .t a:hover{color:var(--teal);border-color:var(--teal)}
 .foot-in{flex-wrap:wrap}
-.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
-.foot-legal a{border-bottom:1px solid var(--line)}
-.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px}
 @media(max-width:480px){
   .hub{padding:40px 22px 72px}
-}
-`;
+}`;
 
 /* ---------- 主題頁模板 ---------- */
 function hubPage(hub, arts) {
@@ -199,7 +171,7 @@ ${ldJson(jsonld)}
 <script type="application/ld+json">
 ${ldJson(breadcrumb)}
 </script>
-<style>${CSS}</style>
+<link rel="stylesheet" href="/assets/topic.css">
 </head>
 <body>
 <header>
@@ -292,6 +264,7 @@ export async function genExtras(page) {
   const logo = logoDataURI();
   console.log('讀到', articles.length, '篇');
   mkdirSync(join(REPO, 'topics'), { recursive: true });
+  writeFileSync(join(REPO, 'assets/topic.css'), CSS);
 
   // 每個主題頁 + OG 卡
   let hubCount = 0;
@@ -360,7 +333,8 @@ ${sorted.map(a => `  <item>
 <meta name="robots" content="noindex">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<style>${CSS}
+<link rel="stylesheet" href="/assets/topic.css">
+<style>
 .nf{max-width:640px;margin:0 auto;padding:96px 32px;text-align:center}
 .nf .code{font-family:var(--mono);font-size:.78rem;letter-spacing:.24em;color:var(--red);margin-bottom:16px}
 .nf p{color:var(--muted);margin:14px 0 30px}

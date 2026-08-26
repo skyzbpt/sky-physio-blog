@@ -3,6 +3,7 @@
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
 import { REPO, BASE, TODAY, esc, readMins, CAT_SLUG, renderBody, headingsOf, loadArticles, logoDataURI, photoDataURI, roundedFontDataURI, ogCard, ogHomeCard, shot, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, wordCountOf, keywordsFor, mentionsFor, metaDescription, extractFaqs, ldJson, topicsOf } from './lib.mjs';
+import { SHELL } from './css.mjs';
 import { resolveModified } from './modified.mjs';
 import { LEGAL_UPDATED } from './gen-legal.mjs';
 
@@ -10,36 +11,17 @@ import { LEGAL_UPDATED } from './gen-legal.mjs';
 let MODIFIED = new Map();
 
 /* ---------- 靜態頁 CSS（取自 index.html，確保一致）---------- */
-const CSS = `
-:root{--bg:#E0F0FB;--bg-soft:#F7FBFE;--ink:#232A50;--ink-2:#3A4270;--muted:#54708C;--line:#BAD7EA;--teal:#149A8A;--teal-soft:#DCEEEB;--red:#C2402E;
---serif:"Noto Sans TC","PingFang TC","Microsoft JhengHei","Helvetica Neue",sans-serif;--sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei","Helvetica Neue",sans-serif;--mono:"SF Mono","Cascadia Mono",Menlo,Consolas,"Courier New",monospace}
-*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.85;letter-spacing:.02em;-webkit-font-smoothing:antialiased;overflow-x:clip}
-::selection{background:var(--teal);color:#fff}img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+const CSS = SHELL + `
 /* 動效：與首頁一致的統一過場，尊重「減少動態」偏好 */
 @media(prefers-reduced-motion:no-preference){
 .btn,.nav-link,.brand,.crumb a,.pp-share,.author-box,.more a,.post-body figure img{transition:color .22s ease,background-color .22s ease,border-color .22s ease,box-shadow .3s ease,transform .3s cubic-bezier(.22,.7,.3,1)}
 }
-header{position:sticky;top:0;z-index:80;border-bottom:1px solid var(--line)}
-header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(224,240,251,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-.nav{max-width:1120px;margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .brand{display:flex;align-items:center;gap:10px;cursor:pointer}
-.brand-logo{height:44px;width:44px;object-fit:contain;display:block}
-.brand-name{font-family:var(--serif);font-weight:700;font-size:1.04rem;color:var(--ink);letter-spacing:.04em;white-space:nowrap}
-.nav-right{display:flex;align-items:center;gap:24px}
-.nav-link{font-size:.88rem;color:var(--ink-2);border-bottom:1.5px solid transparent;padding:4px 0}
-.nav-link:hover{border-color:var(--teal);color:var(--ink)}
-.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.9rem;letter-spacing:.06em;padding:11px 26px;border:1.5px solid var(--ink);background:transparent;color:var(--ink)}
 .btn:hover{background:rgba(35,42,80,.06);transform:translateY(-2px)}
 .btn:active{opacity:.8;transform:translateY(0)}
-.btn.teal{background:#0C7365;border-color:#0C7365;color:#fff;font-weight:600}
 .btn.teal:hover{background:#0A5F53;border-color:#0A5F53;box-shadow:0 12px 24px -12px rgba(12,115,101,.75)}
-.btn.sm{padding:8px 20px;font-size:.84rem}
-@media(max-width:520px){.brand-name{font-size:.94rem}.nav-link{display:none}}
 .post-page{max-width:720px;margin:0 auto;padding:56px 32px 96px}
 .crumb{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--muted);margin-bottom:26px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.crumb a{color:var(--ink-2);border-bottom:1px solid var(--line)}
-.crumb a:hover{color:var(--teal);border-color:var(--teal)}
 .author-box{display:flex;align-items:center;gap:16px;margin-top:30px;padding:20px 22px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);box-shadow:0 2px 12px -6px rgba(35,42,80,.16)}
 .author-box:hover{border-color:rgba(20,154,138,.45);box-shadow:0 16px 32px -22px rgba(20,154,138,.5)}
 .author-box img{width:52px;height:52px;flex:none;border-radius:50%;background:#fff;object-fit:contain}
@@ -104,17 +86,8 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 @media(prefers-reduced-motion:no-preference){.more a::before{transition:opacity .3s ease}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn:hover,.more a:hover{transform:none}}
 .more a span{display:block;font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;color:var(--muted);margin-top:4px}
-footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gradient(180deg,var(--bg) 0%,#D8ECF8 100%);margin-top:40px}
 .foot-in{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;align-items:center;gap:12px}
-.foot-in img{width:30px;height:30px}
-.foot-in .t{font-size:.84rem;color:var(--ink-2)}
-.foot-in .t b{display:block;font-family:var(--serif)}
-.foot-in .t a{color:inherit;border-bottom:1px solid var(--line)}
-.foot-in .t a:hover{color:var(--teal);border-color:var(--teal)}
 .foot-in{flex-wrap:wrap}
-.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
-.foot-legal a{border-bottom:1px solid var(--line)}
-.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
 @media(min-width:1140px){
   .post-page{max-width:1064px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center}
@@ -131,8 +104,7 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
   .post-body p{text-align:left}
   .meta{gap:12px}
   .toc{padding:12px 15px}
-}
-`;
+}`;
 
 /* ---------- 靜態文章頁模板 ---------- */
 function postPage(a, idx, all) {
@@ -280,7 +252,7 @@ ${ldJson(breadcrumb)}
 ${ldJson(faqld)}
 </script>` : ''}
 <link rel="alternate" type="application/rss+xml" title="Sky 物理治療師衛教文章" href="../feed.xml">
-<style>${CSS}</style>
+<link rel="stylesheet" href="/assets/post.css">
 </head>
 <body>
 <div class="reading" aria-hidden="true"><i></i></div>
@@ -407,6 +379,8 @@ export async function genPosts(page) {
   }
 
   mkdirSync(join(REPO, 'posts'), { recursive: true });
+  // 樣式改為外部檔：260 篇文章頁共用同一份，讀者連讀多篇時只需下載一次
+  writeFileSync(join(REPO, 'assets/post.css'), CSS);
   mkdirSync(join(REPO, 'assets/og'), { recursive: true });
 
   // 首頁 OG 卡（page 為 null 時略過圖片，沿用已提交的圖片）

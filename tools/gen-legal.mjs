@@ -4,36 +4,18 @@
 import { writeFileSync } from 'fs';
 import { join } from 'path';
 import { REPO, BASE, esc, ROBOTS, AUTHOR, PUBLISHER, ldJson } from './lib.mjs';
+import { SHELL } from './css.mjs';
 
 // 最後更新日期：內容有實質變動時再手動前進（不要每次建置都改，否則是假更新訊號）
 const UPDATED = '2026-08-23';
 const CONTACT = 'skyzbpt@gmail.com';
 
-const CSS = `
-:root{--bg:#E0F0FB;--bg-soft:#F7FBFE;--ink:#232A50;--ink-2:#3A4270;--muted:#54708C;--line:#BAD7EA;--teal:#149A8A;--teal-soft:#DCEEEB;--red:#C2402E;
---serif:"Noto Sans TC","PingFang TC","Microsoft JhengHei","Helvetica Neue",sans-serif;--sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei","Helvetica Neue",sans-serif;--mono:"SF Mono","Cascadia Mono",Menlo,Consolas,"Courier New",monospace}
-*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.85;letter-spacing:.02em;-webkit-font-smoothing:antialiased;overflow-x:clip}
-::selection{background:var(--teal);color:#fff}img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
-header{position:sticky;top:0;z-index:80;border-bottom:1px solid var(--line)}
-header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(224,240,251,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-.nav{max-width:1120px;margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+const CSS = SHELL + `
 .brand{display:flex;align-items:center;gap:10px}
-.brand-logo{height:44px;width:44px;object-fit:contain;display:block}
-.brand-name{font-family:var(--serif);font-weight:700;font-size:1.04rem;color:var(--ink);letter-spacing:.04em;white-space:nowrap}
-.nav-right{display:flex;align-items:center;gap:24px}
-.nav-link{font-size:.88rem;color:var(--ink-2);border-bottom:1.5px solid transparent;padding:4px 0}
-.nav-link:hover{border-color:var(--teal);color:var(--ink)}
-.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.9rem;letter-spacing:.06em;padding:11px 26px;border:1.5px solid var(--ink);background:transparent;color:var(--ink)}
 .btn:hover{background:rgba(35,42,80,.06)}
-.btn.teal{background:#0C7365;border-color:#0C7365;color:#fff;font-weight:600}
 .btn.teal:hover{background:#0A5F53;border-color:#0A5F53}
-.btn.sm{padding:8px 20px;font-size:.84rem}
-@media(max-width:520px){.brand-name{font-size:.94rem}.nav-link{display:none}}
 .legal{max-width:760px;margin:0 auto;padding:56px 32px 96px}
 .crumb{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--muted);margin-bottom:26px}
-.crumb a{color:var(--ink-2);border-bottom:1px solid var(--line)}
-.crumb a:hover{color:var(--teal);border-color:var(--teal)}
 .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:10px}
 .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red)}
 h1{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.45;margin-bottom:14px}
@@ -64,19 +46,9 @@ h1{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.45;
 .toc-box a:hover{color:var(--teal)}
 .backhome{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--ink-2);margin-top:40px;padding:10px 18px;border:1.5px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6)}
 .backhome:hover{border-color:var(--teal);color:var(--teal)}
-footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gradient(180deg,var(--bg) 0%,#D8ECF8 100%);margin-top:40px}
 .foot-in{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.foot-in img{width:30px;height:30px}
-.foot-in .t{font-size:.84rem;color:var(--ink-2)}
-.foot-in .t b{display:block;font-family:var(--serif)}
-.foot-in .t a{color:inherit;border-bottom:1px solid var(--line)}
-.foot-in .t a:hover{color:var(--teal);border-color:var(--teal)}
-.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
-.foot-legal a{border-bottom:1px solid var(--line)}
-.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}
 a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px}
-@media(max-width:480px){.legal{padding:40px 22px 72px}}
-`;
+@media(max-width:480px){.legal{padding:40px 22px 72px}}`;
 
 /* ---------- 頁面模板 ---------- */
 function legalPage({ slug, title, h1, eyebrow, desc, lede, sections }) {
@@ -137,7 +109,7 @@ ${ldJson(jsonld)}
 <script type="application/ld+json">
 ${ldJson(breadcrumb)}
 </script>
-<style>${CSS}</style>
+<link rel="stylesheet" href="/assets/legal.css">
 </head>
 <body>
 <header>
@@ -265,6 +237,7 @@ const privacy = {
 };
 
 export function genLegal() {
+  writeFileSync(join(REPO, 'assets/legal.css'), CSS);
   writeFileSync(join(REPO, `${privacy.slug}.html`), legalPage(privacy));
   console.log('已產生 privacy.html（最後更新 ' + UPDATED + '）');
 }

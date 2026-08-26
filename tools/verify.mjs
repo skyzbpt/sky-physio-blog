@@ -147,6 +147,46 @@ for (const f of postFiles) {
 }
 literal === 0 ? pass('文章內容無殘留 markdown 語法') : fail('殘留 markdown', literal + ' 篇');
 
+/* ---------- 6b. 共用樣式／腳本（避免又退回每頁各自內嵌一份） ---------- */
+// 這幾個檔案是全站共用的單一真實來源：site.css 給五個主要頁面，
+// post/topic/legal.css 由 tools/ 的產生器寫出，nav.js 是手機選單與回頂按鈕。
+{
+  const shared = [
+    ['assets/site.css', 20000, ['index.html', 'blog.html', 'about.html', 'services.html', 'products.html']],
+    ['assets/post.css', 6000, ['posts/' + postFiles[0]]],
+    ['assets/topic.css', 4000, ['topics/' + hubFiles[0]]],
+    ['assets/legal.css', 3000, ['privacy.html']],
+    ['assets/nav.js', 500, ['blog.html', 'about.html', 'services.html', 'products.html']],
+  ];
+  const bad = [];
+  for (const [file, minBytes, users] of shared) {
+    if (!existsSync(join(REPO, file))) { bad.push(`${file} 不存在`); continue; }
+    const size = read(file).length;
+    if (size < minBytes) bad.push(`${file} 只有 ${size} 位元組（疑似產生失敗）`);
+    const href = '/' + file;
+    for (const u of users) if (!read(u).includes(href)) bad.push(`${u} 未引用 ${href}`);
+  }
+  bad.length === 0
+    ? pass(`共用樣式／腳本齊備且被正確引用 (${shared.length} 個檔案)`)
+    : fail('共用資產', bad.slice(0, 3).join('；'));
+
+  // 任何頁面若又出現大塊內嵌 CSS，代表共用檔被繞過、重複又長回來了
+  const fat = [];
+  for (const p2 of ['index.html', 'blog.html', 'about.html', 'services.html', 'products.html',
+                    'posts/' + postFiles[0], 'topics/' + hubFiles[0], 'privacy.html']) {
+    const inline = (read(p2).match(/<style[^>]*>([\s\S]*?)<\/style>/g) || []).join('').length;
+    // index.html 保留後台樣式（只有它有後台），門檻放寬
+    const limit = p2 === 'index.html' ? 16000 : 4000;
+    if (inline > limit) fat.push(`${p2} 內嵌 ${(inline / 1024).toFixed(1)}KB`);
+  }
+  fat.length === 0 ? pass('各頁未再出現大塊內嵌 CSS') : fail('內嵌 CSS 過大', fat.join('；'));
+
+  // base64 內嵌圖：assets/ 已有實體檔案，內嵌會讓 HTML 變大且無法跨頁快取
+  const b64 = ['index.html', 'about.html', 'blog.html', 'services.html', 'products.html']
+    .filter(p2 => /data:image\/[a-z]+;base64,[A-Za-z0-9+/=]{500,}/.test(read(p2)));
+  b64.length === 0 ? pass('頁面未內嵌 base64 圖片（改引用 assets/）') : fail('base64 內嵌圖', b64.join(','));
+}
+
 /* ---------- 7. 安全性標頭 ---------- */
 const hdr = existsSync(join(REPO, '_headers')) ? read('_headers') : '';
 // 註：原本這裡還要求 connect-src 含 views.skythephysio.com，但瀏覽次數功能已移除，
