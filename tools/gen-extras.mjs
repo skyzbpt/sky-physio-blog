@@ -40,38 +40,38 @@ const CSS = SHELL + `
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn:hover,.list a:hover{transform:none}}
 .hub{max-width:820px;margin:0 auto;padding:56px 32px 96px}
-.crumb{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--muted);margin-bottom:26px}
+.crumb{font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;color:var(--muted);margin-bottom:26px}
 .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:10px}
 .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red)}
 h1{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.45;margin-bottom:14px}
 .lede{font-family:var(--serif);color:var(--muted);font-size:1.02rem;line-height:2;border-bottom:1px solid var(--line);padding-bottom:28px;margin-bottom:16px}
-.count{font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;color:var(--muted);margin-bottom:8px}
+.count{font-family:var(--mono);font-size:.74rem;letter-spacing:.05em;color:var(--muted);margin-bottom:8px}
 /* 篇數多的分類：先給搜尋，再逐批載入，避免一次平鋪上百篇 */
 .finder{display:flex;align-items:center;gap:10px;margin:18px 0 4px;padding:11px 16px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6)}
 .finder svg{width:15px;height:15px;color:var(--muted);flex:none}
 .finder input{flex:1;min-width:0;border:none;background:none;outline:none;font-family:var(--sans);font-size:.94rem;color:var(--ink)}
 .finder input::placeholder{color:var(--muted)}
 .finder button{border:none;background:none;cursor:pointer;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted);padding:2px 4px}
-.finder button:hover{color:var(--teal)}
+.finder button:hover{color:var(--teal-ink)}
 .finder button[hidden]{display:none}
 .list mark{background:var(--teal-soft);color:inherit;border-radius:3px;padding:0 2px}
 .no-hit{padding:40px 4px;color:var(--muted);font-size:.9rem}
 .no-hit[hidden]{display:none}
 .loadmore{display:block;width:100%;margin-top:26px;padding:14px 20px;border:1.5px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6);
   font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;color:var(--ink-2);cursor:pointer}
-.loadmore:hover{border-color:var(--teal);color:var(--teal)}
+.loadmore:hover{border-color:var(--teal);color:var(--teal-ink)}
 .loadmore[hidden]{display:none}
 .list a{position:relative;display:block;padding:22px 0;border-bottom:1px solid var(--line)}
 .list a[hidden]{display:none}
 .list a::before{content:"";position:absolute;left:-14px;top:20px;bottom:20px;width:2px;background:var(--red);border-radius:2px;opacity:0}
 .list a:hover{transform:translateX(8px)}
-.list a:hover .t{color:var(--teal)}
+.list a:hover .t{color:var(--teal-ink)}
 .list a:hover::before{opacity:1}
-.list .m{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.list .m{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);margin-bottom:6px}
 .list .t{font-family:var(--serif);font-size:1.12rem;font-weight:700;line-height:1.6}
-.list .e{color:var(--muted);font-size:.92rem;margin-top:4px}
+.list .e{color:var(--muted);font-size:.92rem;margin-top:4px;max-width:46em}
 .backhome{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--ink-2);margin-top:36px;padding:10px 18px;border:1.5px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6)}
-.backhome:hover{border-color:var(--teal);color:var(--teal)}
+.backhome:hover{border-color:var(--teal);color:var(--teal-ink)}
 .foot-in{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;align-items:center;gap:12px}
 .foot-in{flex-wrap:wrap}
 a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px}
@@ -340,7 +340,7 @@ ${sorted.map(a => `  <item>
 .nf p{color:var(--muted);margin:14px 0 30px}
 .nf .links{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
 .nf .links a{font-family:var(--mono);font-size:.76rem;letter-spacing:.1em;color:var(--ink-2);border:1.5px solid var(--line);border-radius:999px;padding:8px 16px;background:rgba(255,255,255,.6)}
-.nf .links a:hover{border-color:var(--teal);color:var(--teal)}
+.nf .links a:hover{border-color:var(--teal);color:var(--teal-ink)}
 </style>
 </head>
 <body>

@@ -15,7 +15,7 @@ const CSS = SHELL + `
 .btn:hover{background:rgba(35,42,80,.06)}
 .btn.teal:hover{background:#0A5F53;border-color:#0A5F53}
 .legal{max-width:760px;margin:0 auto;padding:56px 32px 96px}
-.crumb{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--muted);margin-bottom:26px}
+.crumb{font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;color:var(--muted);margin-bottom:26px}
 .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:10px}
 .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red)}
 h1{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.45;margin-bottom:14px}
@@ -27,10 +27,10 @@ h1{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.45;
 .legal p{font-family:var(--serif);font-size:1.02rem;line-height:2.05;letter-spacing:.03em;color:var(--ink-2);margin-bottom:1.5em}
 .legal ul,.legal ol{font-family:var(--serif);font-size:1.02rem;line-height:2;letter-spacing:.03em;color:var(--ink-2);margin:0 0 1.5em;padding-left:1.5em}
 .legal li{margin-bottom:.5em;padding-left:.25em}
-.legal li::marker{color:var(--teal)}
+.legal li::marker{color:var(--teal-ink)}
 .legal strong{color:var(--ink)}
 .legal code{font-family:var(--mono);font-size:.84em;background:rgba(255,255,255,.7);border:1px solid var(--line);border-radius:5px;padding:1px 6px;white-space:nowrap}
-.legal a.in{color:var(--teal);border-bottom:1px solid var(--teal-soft)}
+.legal a.in{color:var(--teal-ink);border-bottom:1px solid var(--teal-soft)}
 .legal a.in:hover{border-color:var(--teal)}
 .note{border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;background:rgba(255,255,255,.55);padding:18px 22px;margin:0 0 1.7em}
 .note p:last-child{margin-bottom:0}
@@ -43,9 +43,9 @@ h1{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.45;
 .toc-box{border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:16px 20px;margin-bottom:38px}
 .toc-box div{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);margin-bottom:8px}
 .toc-box ol{margin:0;padding-left:1.3em;font-size:.94rem}
-.toc-box a:hover{color:var(--teal)}
+.toc-box a:hover{color:var(--teal-ink)}
 .backhome{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--ink-2);margin-top:40px;padding:10px 18px;border:1.5px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6)}
-.backhome:hover{border-color:var(--teal);color:var(--teal)}
+.backhome:hover{border-color:var(--teal);color:var(--teal-ink)}
 .foot-in{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px}
 @media(max-width:480px){.legal{padding:40px 22px 72px}}`;

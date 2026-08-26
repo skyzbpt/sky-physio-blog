@@ -5,7 +5,7 @@
 //
 // 各模板的頁面專屬樣式仍留在自己的產生器裡（見各檔的 const CSS）。
 export const SHELL = `
-:root{--bg:#E0F0FB;--bg-soft:#F7FBFE;--ink:#232A50;--ink-2:#3A4270;--muted:#54708C;--line:#BAD7EA;--teal:#149A8A;--teal-soft:#DCEEEB;--red:#C2402E;
+:root{--bg:#E0F0FB;--bg-soft:#F7FBFE;--ink:#232A50;--ink-2:#3A4270;--muted:#516D88;--line:#BAD7EA;--teal:#149A8A;--teal-soft:#DCEEEB;--red:#BE3F2D;--teal-ink:#0C7365;
 --serif:"Noto Sans TC","PingFang TC","Microsoft JhengHei","Helvetica Neue",sans-serif;--sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei","Helvetica Neue",sans-serif;--mono:"SF Mono","Cascadia Mono",Menlo,Consolas,"Courier New",monospace}
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.85;letter-spacing:.02em;-webkit-font-smoothing:antialiased;overflow-x:clip}
@@ -23,13 +23,13 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 .btn.sm{padding:8px 20px;font-size:.84rem}
 @media(max-width:520px){.brand-name{font-size:.94rem}.nav-link{display:none}}
 .crumb a{color:var(--ink-2);border-bottom:1px solid var(--line)}
-.crumb a:hover{color:var(--teal);border-color:var(--teal)}
+.crumb a:hover{color:var(--teal-ink);border-color:var(--teal)}
 footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gradient(180deg,var(--bg) 0%,#D8ECF8 100%);margin-top:40px}
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
 .foot-in .t a{color:inherit;border-bottom:1px solid var(--line)}
-.foot-in .t a:hover{color:var(--teal);border-color:var(--teal)}
+.foot-in .t a:hover{color:var(--teal-ink);border-color:var(--teal)}
 .foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
 .foot-legal a{border-bottom:1px solid var(--line)}
-.foot-legal a:hover{color:var(--teal);border-color:var(--teal)}`;
+.foot-legal a:hover{color:var(--teal-ink);border-color:var(--teal)}`;
