@@ -248,6 +248,30 @@ hubOk === cats.length && pass(`每個主題頁 canonical/清單/description 完�
   missing.length === 0 ? pass('全站頁尾皆有政策連結') : fail('頁尾政策連結缺漏', missing.join(','));
 }
 
+/* ---------- 9c. <title> 長度 ---------- */
+// 中文 SERP 大約在 30–32 個全形字截斷，超過的部分等於沒顯示。
+// 上限抓 34：品牌後綴「｜Sky 物理治療師」固定佔 10 字，主詞還有 24 字可用。
+// 文章頁若標題本來就長，在 data/articles.json 補一個 seoTitle 短版即可（只影響 <title>）。
+{
+  const TITLE_MAX = 34;
+  const fileFor = loc => {
+    const path = loc.slice(BASE.length);
+    return path === '/' ? 'index.html' : path.replace(/^\//, '') + '.html';
+  };
+  const over = [];
+  for (const loc of (sm.match(/<loc>([^<]+)<\/loc>/g) || []).map(m => m.slice(5, -6))) {
+    const f = fileFor(loc);
+    if (!existsSync(join(REPO, f))) { over.push(`${f} 不存在`); continue; }
+    const m = read(f).match(/<title>([\s\S]*?)<\/title>/);
+    if (!m) { over.push(`${f} 沒有 <title>`); continue; }
+    const t = unesc(m[1].replace(/\s+/g, ' ').trim());
+    if ([...t].length > TITLE_MAX) over.push(`${loc.slice(BASE.length)} (${[...t].length} 字)`);
+  }
+  over.length === 0
+    ? pass(`每頁 <title> 皆 ≤${TITLE_MAX} 字（不會被 SERP 截斷）`)
+    : fail(`<title> 過長 ${over.length} 頁`, over.slice(0, 3).join('；'));
+}
+
 /* ---------- 10. 全形標點 ---------- */
 const halfWidth = arts.filter(a => /[一-鿿][,;:!?()]/.test(a.content) || /[一-鿿][,;:!?()]/.test(a.excerpt));
 halfWidth.length === 0 ? pass('中文標點皆全形') : fail('半形標點', halfWidth.slice(0, 3).map(a => a.id).join(','));
