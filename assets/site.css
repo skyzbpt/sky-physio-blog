@@ -147,9 +147,14 @@ section{padding-top:96px;padding-bottom:96px}
   font-size:.72rem;letter-spacing:.22em;color:var(--muted);margin-bottom:20px}
 .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red);flex:none}
 .eyebrow::after{content:"";width:42px;height:1px;background:var(--line)}
-h2.sec-title{font-family:var(--serif);font-weight:700;
+/* 四個主要頁面的頁首標題：語意上是該頁的 h1，樣式沿用原本的段落標題尺寸，
+   因此選擇器不綁標籤名（原為 h2.sec-title）。letter-spacing 明寫以抵銷下方 h1 規則。 */
+.sec-title{font-family:var(--serif);font-weight:700;letter-spacing:.02em;
   font-size:clamp(1.7rem,3.4vw,2.3rem);line-height:1.4;margin-bottom:14px}
 .sec-lead{color:var(--muted);max-width:34em;margin-bottom:48px}
+/* 內文中的行內連結：.nav-link 的底線是透明的，放在句子裡看不出可以點 */
+.inline-link{color:var(--teal-ink);border-bottom:1px solid var(--teal);padding-bottom:1px}
+.inline-link:hover{color:var(--ink);border-color:var(--ink)}
 
 /* ---------- Hero ---------- */
 #hero{padding-top:72px;padding-bottom:110px}
