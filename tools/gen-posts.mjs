@@ -223,7 +223,7 @@ ${heads.map(h => `        <li><a href="#${h.id}">${esc(h.text)}</a></li>`).join(
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#E0F0FB">
-<title>${esc(a.title)}｜Sky 物理治療師</title>
+<title>${esc(a.seoTitle || a.title)}｜Sky 物理治療師</title>
 <meta name="description" content="${esc(desc)}">
 <meta name="keywords" content="${esc(keywords)}">
 <meta name="author" content="Sky 物理治療師">
@@ -376,6 +376,9 @@ function copyLink(){
 </html>`;
 }
 
+// <title> 若有 seoTitle 就用它：中文 SERP 約在 30–32 個全形字截斷，標題較長的文章
+// 在 data/articles.json 補一個短版即可。只影響 <title>——H1、麵包屑、og:title、
+// JSON-LD headline、OG 卡圖、RSS、llms.txt 一律沿用完整的 title。
 export async function genPosts(page) {
   const articles = loadArticles();
   const logo = logoDataURI();
