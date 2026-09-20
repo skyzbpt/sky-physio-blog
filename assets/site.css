@@ -442,6 +442,8 @@ h1 .en{color:var(--teal-ink)}
 .contact-panel h2{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.1rem);
   line-height:1.5;margin-bottom:16px;color:#fff}
 .contact-panel .note{font-size:.88rem;color:#AEB4CD;max-width:30em}
+.contact-panel .note a{color:#fff;border-bottom:1px solid rgba(255,255,255,.42)}
+.contact-panel .note a:hover{border-color:#fff}
 .contact-list{display:flex;flex-direction:column;gap:14px}
 .contact-item{display:flex;justify-content:space-between;align-items:center;gap:18px;
   border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:16px 22px;}
