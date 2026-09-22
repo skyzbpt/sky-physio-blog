@@ -43,6 +43,8 @@ export const SOCIAL = [
    「台北 物理治療師推薦」這類在地查詢根本不會把這個站算進候選。
    以下三個常數是全站唯一來源，改這裡就會流到 260 篇文章頁、9 個主題頁與隱私權頁。 */
 export const REAL_NAME = '張博源';
+// 英文拼音（使用者提供的寫法，名在前、姓在後）——英文查詢與跨語言的 AI 回答用得到
+export const REAL_NAME_EN = 'Bo Yuan Zhang';
 export const BRAND_NAME = 'Sky 物理治療師';
 // 署名：品牌名 + 本名，可見文字與 meta author 共用（人看得懂，爬蟲也抓得到別名）
 export const BYLINE = `${BRAND_NAME}（${REAL_NAME}）`;
@@ -67,7 +69,7 @@ export const AUTHOR = {
   '@id': BASE + '/#sky',
   'name': 'Sky',
   // 本名、品牌名與常見打法都列進來：讓「張博源 物理治療師」與「Sky 物理治療師」指向同一個人
-  'alternateName': ['Sky 物理治療師', REAL_NAME, `${REAL_NAME} 物理治療師`, `Sky ${REAL_NAME}`, 'Sky PT'],
+  'alternateName': ['Sky 物理治療師', REAL_NAME, `${REAL_NAME} 物理治療師`, `Sky ${REAL_NAME}`, REAL_NAME_EN, 'Sky PT'],
   'familyName': '張',
   'givenName': '博源',
   'url': BASE + '/',
