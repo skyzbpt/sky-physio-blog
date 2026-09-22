@@ -28,14 +28,19 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 /* 400px 以下收起品牌名（與 site.css 的主要頁面一致）。
    留著的話「Sky 物理治療師」會和右側的預約鈕重疊。 */
 @media(max-width:400px){.brand-name{display:none}}
-.crumb a{color:var(--ink-2);border-bottom:1px solid var(--line)}
+.crumb a{color:var(--ink-2);border-bottom:1px solid var(--line);position:relative}
+.crumb a::after{content:"";position:absolute;inset:-15px -5px}
 .crumb a:hover{color:var(--teal-ink);border-color:var(--teal)}
 footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gradient(180deg,var(--bg) 0%,#D8ECF8 100%);margin-top:40px}
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
-.foot-in .t a{color:inherit;border-bottom:1px solid var(--line)}
+.foot-in .t a{color:inherit;border-bottom:1px solid var(--line);position:relative}
+.foot-in .t a::after{content:"";position:absolute;inset:-15px -6px}
 .foot-in .t a:hover{color:var(--teal-ink);border-color:var(--teal)}
-.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
-.foot-legal a{border-bottom:1px solid var(--line)}
+.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+/* 行內連結：用 ::after 疊一層透明感應區把可點高度拉到 44px，
+   直接加 padding 會撐壞行高，麵包屑還會破壞 text-overflow:ellipsis。 */
+.foot-legal a{border-bottom:1px solid var(--line);position:relative}
+.foot-legal a::after{content:"";position:absolute;inset:-15px -6px}
 .foot-legal a:hover{color:var(--teal-ink);border-color:var(--teal)}`;

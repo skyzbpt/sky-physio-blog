@@ -105,12 +105,12 @@ const CSS = SHELL + `
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn:hover,.list a:hover{transform:none}}
 .hub{max-width:820px;margin:0 auto;padding:56px 32px 96px}
-.crumb{font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;color:var(--muted);margin-bottom:26px}
-.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.crumb{font-family:var(--mono);font-size:.75rem;letter-spacing:.05em;color:var(--muted);margin-bottom:26px}
+.eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.22em;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:10px}
 .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red)}
 h1{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.45;margin-bottom:14px}
 .lede{font-family:var(--serif);color:var(--muted);font-size:1.02rem;line-height:2;border-bottom:1px solid var(--line);padding-bottom:28px;margin-bottom:16px}
-.count{font-family:var(--mono);font-size:.74rem;letter-spacing:.05em;color:var(--muted);margin-bottom:8px}
+.count{font-family:var(--mono);font-size:.75rem;letter-spacing:.05em;color:var(--muted);margin-bottom:8px}
 /* 分類長篇內容（HUBS 的 intro）：沒填就整塊不輸出，版面與原本一致 */
 .hub-intro{border-bottom:1px solid var(--line);padding-bottom:30px;margin-bottom:24px}
 .hub-intro section+section{margin-top:28px}
@@ -120,7 +120,7 @@ h1{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.45;
 .hub-intro p+p{margin-top:14px}
 /* 常見問題（HUBS 的 faqs）：可收合，內容仍在 HTML 裡供索引 */
 .hub-faq{margin-top:46px;padding-top:30px;border-top:1px solid var(--line)}
-.hub-faq h2{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;color:var(--muted);margin-bottom:18px}
+.hub-faq h2{font-family:var(--mono);font-size:.75rem;letter-spacing:.22em;color:var(--muted);margin-bottom:18px}
 .hub-faq details{border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.6);padding:0 18px;margin-bottom:10px}
 .hub-faq summary{cursor:pointer;list-style:none;padding:15px 0;font-family:var(--serif);font-size:.97rem;color:var(--ink);display:flex;align-items:center;justify-content:space-between;gap:14px}
 .hub-faq summary::-webkit-details-marker{display:none}
@@ -133,7 +133,7 @@ h1{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.45;
 .finder svg{width:15px;height:15px;color:var(--muted);flex:none}
 .finder input{flex:1;min-width:0;border:none;background:none;outline:none;font-family:var(--sans);font-size:.94rem;color:var(--ink)}
 .finder input::placeholder{color:var(--muted)}
-.finder button{border:none;background:none;cursor:pointer;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted);padding:2px 4px}
+.finder button{border:none;background:none;cursor:pointer;font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;color:var(--muted);padding:2px 4px;display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px}
 .finder button:hover{color:var(--teal-ink)}
 .finder button[hidden]{display:none}
 .list mark{background:var(--teal-soft);color:inherit;border-radius:3px;padding:0 2px}
@@ -149,7 +149,7 @@ h1{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.45;
 .list a:hover{transform:translateX(8px)}
 .list a:hover .t{color:var(--teal-ink)}
 .list a:hover::before{opacity:1}
-.list .m{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--muted);margin-bottom:6px}
+.list .m{font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;color:var(--muted);margin-bottom:6px}
 .list .t{font-family:var(--serif);font-size:1.12rem;font-weight:700;line-height:1.6}
 .list .e{color:var(--muted);font-size:.92rem;margin-top:4px;max-width:46em}
 .backhome{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--ink-2);margin-top:36px;padding:10px 18px;border:1.5px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6)}

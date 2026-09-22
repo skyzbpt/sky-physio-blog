@@ -32,19 +32,19 @@ const CSS = SHELL + `
     box-shadow:0 22px 54px -36px rgba(35,42,80,.5);
     margin-top:36px;margin-bottom:64px;padding:56px 56px 72px}
 }
-.crumb{font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;color:var(--muted);margin-bottom:26px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.crumb{font-family:var(--mono);font-size:.75rem;letter-spacing:.05em;color:var(--muted);margin-bottom:26px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .author-box{display:flex;align-items:center;gap:16px;margin-top:30px;padding:20px 22px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);box-shadow:0 2px 12px -6px rgba(35,42,80,.16)}
 .author-box:hover{border-color:rgba(20,154,138,.45);box-shadow:0 16px 32px -22px rgba(20,154,138,.5)}
 .author-box img{width:52px;height:52px;flex:none;border-radius:50%;background:#fff;object-fit:contain}
 .author-box .a-name{font-family:var(--serif);font-weight:700;font-size:1.02rem}
 .author-box .a-cred{font-size:.8rem;color:var(--muted);margin:3px 0 6px;line-height:1.7}
-.author-box .a-link{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;color:var(--teal-ink)}
+.author-box .a-link{font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;color:var(--teal-ink);display:inline-flex;align-items:center;min-height:44px}
 .author-box .a-link:hover{text-decoration:underline}
 /* 字距只給拉丁字母與數字：中文字本來就等寬，再加 .16em 會被拆成「肩 膀 痛」 */
-.meta{font-family:var(--mono);font-size:.72rem;letter-spacing:normal;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-bottom:20px}
+.meta{font-family:var(--mono);font-size:.75rem;letter-spacing:normal;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-bottom:20px}
 .meta .date{letter-spacing:.16em}
 .meta .cat{color:var(--red)}
-.pp-share{margin-left:auto;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;color:var(--teal-ink);background:none;border:1px solid var(--line);border-radius:999px;padding:5px 14px;cursor:pointer;white-space:nowrap}
+.pp-share{margin-left:auto;font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;color:var(--teal-ink);background:none;border:1px solid var(--line);border-radius:999px;padding:5px 16px;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;min-height:44px}
 .pp-share:hover{border-color:var(--teal);background:var(--teal-soft)}
 h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.45;margin-bottom:14px}
 .lede{font-family:var(--serif);color:var(--muted);font-size:1.02rem;line-height:2;border-bottom:1px solid var(--line);padding-bottom:30px;margin-bottom:38px}
@@ -61,7 +61,7 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .post-body hr{border:none;border-top:1px solid var(--line);margin:2.6em 0}
 .post-body figure{margin:2em 0;text-align:center}
 .post-body figure img{max-width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
-.post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+.post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;color:var(--muted)}
 .post-body h2{scroll-margin-top:92px}
 .post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
 .post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal-ink)}
@@ -70,14 +70,14 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .reading i{display:block;height:100%;width:0;background:var(--teal)}
 /* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
 .toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
-.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
+.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.75rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
 .toc>summary::-webkit-details-marker{display:none}
 .toc>summary::after{content:"＋";margin-left:auto;color:var(--teal-ink);font-size:.85rem}
 .toc[open]>summary::after{content:"－"}
 .toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
 .toc li{counter-increment:toc}
 .toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
-.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted)}
+.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.75rem;letter-spacing:.06em;color:var(--muted)}
 .toc li a:hover{color:var(--teal-ink)}
 .toc li a.on,.toc li a.on::before{color:var(--teal-ink)}
 .toc li a.on{font-weight:700}
@@ -85,20 +85,20 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
 .pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
 .pager a:hover{border-color:var(--teal)}
-.pager a span{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
+.pager a span{display:block;font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
 .pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
 .pager a:hover b{color:var(--teal-ink)}
 .pager .nx{text-align:right}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
-.more h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
+.more h3{font-family:var(--mono);font-size:.75rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
 .more a{position:relative;display:block;font-family:var(--serif);font-size:1.05rem;color:var(--ink);padding:12px 0 12px 0;border-bottom:1px solid var(--line)}
 .more a::before{content:"";position:absolute;left:-14px;top:14px;bottom:14px;width:2px;background:var(--red);border-radius:2px;opacity:0}
 .more a:hover{color:var(--teal-ink);transform:translateX(8px)}
 .more a:hover::before{opacity:1}
 @media(prefers-reduced-motion:no-preference){.more a::before{transition:opacity .3s ease}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn:hover,.more a:hover{transform:none}}
-.more a span{display:block;font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;color:var(--muted);margin-top:4px}
+.more a span{display:block;font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;color:var(--muted);margin-top:4px}
 .foot-in{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;align-items:center;gap:12px}
 .foot-in{flex-wrap:wrap}
 .nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
