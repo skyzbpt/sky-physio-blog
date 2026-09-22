@@ -227,7 +227,24 @@ const blogHtml = read('blog.html');
 const blogTopicLinksBlock = blogHtml.match(/<nav class="topic-links"[\s\S]*?<\/nav>/);
 ((blogTopicLinksBlock ? blogTopicLinksBlock[0] : '').match(/href="\/topics\//g) || []).length === cats.length ? pass(`衛教文章頁 ${cats.length} 個分類專頁連結`) : fail('衛教文章頁分類連結');
 for (const c of cats) idx.includes(`"${c}"`) || fail('首頁 cats 缺分類', c);
-idx.includes('const ARTICLES = [') ? pass('首頁 ARTICLES 已注入') : fail('ARTICLES 注入');
+// 首頁不再內嵌 260 筆 metadata（54KB）：清單在 /blog，資料改由 assets/articles-index.json 供應
+/const ARTICLES = \[\];/.test(idx) ? pass('首頁 ARTICLES 未內嵌（改由 articles-index.json 供應）') : fail('首頁仍內嵌 ARTICLES');
+{
+  const IDX_MAX = 200 * 1024;
+  const size = Buffer.byteLength(idx);
+  size <= IDX_MAX
+    ? pass(`首頁 HTML ≤${IDX_MAX / 1024}KB（${Math.round(size / 1024)}KB）`)
+    : fail('首頁 HTML 過大', `${Math.round(size / 1024)}KB`);
+}
+try {
+  const light = JSON.parse(read('assets/articles-index.json'));
+  const sameIds = light.length === arts.length && light.every((a, i) => a.id === arts[i].id);
+  const noBody = light.every(a => a.content === undefined);
+  const used = read('blog.html').includes("fetch('/assets/articles-index.json')");
+  sameIds && noBody && used
+    ? pass(`articles-index.json 與文章同步且不含內文 (${light.length} 筆・${Math.round(Buffer.byteLength(read('assets/articles-index.json')) / 1024)}KB)`)
+    : fail('articles-index.json 不同步', !sameIds ? `${light.length} vs ${arts.length} 篇` : !noBody ? '含 content' : '/blog 未取用');
+} catch { fail('assets/articles-index.json 讀取失敗（請重新 npm run build）'); }
 // 後台：隱藏入口 + 功能保留
 (!idx.includes('id="admin-dot"') && /location\.hash==='#admin'/.test(idx)
   && /function pwSubmit\(\)/.test(idx) && /function admOpen\(\)/.test(idx))

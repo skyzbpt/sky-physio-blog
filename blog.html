@@ -232,8 +232,10 @@ function renderList(){
 })();
 renderChips();
 document.getElementById("post-list").innerHTML = '<div class="post-empty">文章載入中…</div>';
-fetch('/data/articles.json').then(r=>r.json()).then(data=>{
-  ARTICLES = data.map(({content, ...rest})=>rest);
+/* 清單只需要標題／摘要／分類／日期。抓 /data/articles.json 會連 260 篇內文
+   一起下載（724KB），為了一張清單多花 639KB——改抓不含內文的精簡索引（85KB）。 */
+fetch('/assets/articles-index.json').then(r=>r.json()).then(data=>{
+  ARTICLES = data;
   renderList();
 }).catch(()=>{ document.getElementById("post-list").innerHTML = '<div class="post-empty">文章載入失敗，請重新整理頁面。</div>'; });
 </script>
