@@ -372,6 +372,25 @@ staleHubs.length === 0 && staleOg.length === 0
   ? pass('無殘留的主題頁與 OG 卡')
   : fail('殘留檔案', [...staleHubs, ...staleOg].join(','));
 
+/* ---------- 12a. 主題頁內容量（Ahrefs：low word count） ---------- */
+// /topics/redcord 曾經只有 247 字、/topics/craniosacral 600 字，而這兩類
+// 正是文章篇數最少的分類——字數幾乎全靠引言撐。補了長篇內容與 FAQ 之後，
+// 這裡守住下限，避免日後刪內容又悄悄掉回薄頁面。
+{
+  const HUB_MIN = 1000;
+  const thin = [];
+  for (const f of hubFiles) {
+    const body = read('topics/' + f)
+      .replace(/<script[\s\S]*?<\/script>/g, '').replace(/<style[\s\S]*?<\/style>/g, '')
+      .replace(/<head>[\s\S]*?<\/head>/g, '').replace(/<[^>]*>/g, ' ');
+    const n = cjk(body);
+    if (n < HUB_MIN) thin.push(`${f.replace('.html', '')} ${n} 字`);
+  }
+  thin.length === 0
+    ? pass(`每個主題頁內容 ≥${HUB_MIN} 字 (${hubFiles.length})`)
+    : fail('主題頁內容過少', thin.join('、'));
+}
+
 /* ---------- 12b. /about 的學經歷與證照是靜態 HTML，且字數足夠 ---------- */
 // 這五份清單原本是 JS 從 SITE 物件塞進空 <ul> 的——不跑 JS 的爬蟲看到的是空頁面，
 // 而這些正是 E-E-A-T 最該被讀到的資歷訊號。改成靜態後，這裡守住不要再退回去，
