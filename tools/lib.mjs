@@ -37,14 +37,45 @@ export const SOCIAL = [
   'https://www.threads.com/@sky_the_physio'
 ];
 
+/* ---------- 身分與服務地區（SEO / GEO / AEO 的單一真實來源） ----------
+   「Sky」是品牌名，「張博源」是本名——搜尋引擎與 AI 引擎不會自己把兩者連起來，
+   除非我們在每一頁都用同一組實體明講。服務地區同理：沒有地區訊號，
+   「台北 物理治療師推薦」這類在地查詢根本不會把這個站算進候選。
+   以下三個常數是全站唯一來源，改這裡就會流到 260 篇文章頁、9 個主題頁與隱私權頁。 */
+export const REAL_NAME = '張博源';
+// 英文拼音（使用者提供的寫法，名在前、姓在後）——英文查詢與跨語言的 AI 回答用得到
+export const REAL_NAME_EN = 'Bo Yuan Zhang';
+export const BRAND_NAME = 'Sky 物理治療師';
+// 署名：品牌名 + 本名，可見文字與 meta author 共用（人看得懂，爬蟲也抓得到別名）
+export const BYLINE = `${BRAND_NAME}（${REAL_NAME}）`;
+
+// 服務地區：只寫到「市」這一層——沒有經過確認的門牌與座標不要編，
+// 假地址在 Google 商家與 AI 引擎眼中比沒有地址更傷。
+export const CITY = '台北市';
+export const ADDRESS = {
+  '@type': 'PostalAddress',
+  'addressLocality': CITY,
+  'addressRegion': CITY,
+  'addressCountry': 'TW'
+};
+export const AREA_SERVED = [
+  { '@type': 'City', 'name': CITY, 'alternateName': ['臺北市', 'Taipei City'] },
+  { '@type': 'AdministrativeArea', 'name': '大台北地區' }
+];
+
 // 可跨頁重用的作者實體（與首頁 #sky 同一 @id，補齊 E-E-A-T）
 export const AUTHOR = {
   '@type': 'Person',
   '@id': BASE + '/#sky',
   'name': 'Sky',
-  'alternateName': ['Sky 物理治療師', 'Sky PT'],
+  // 本名、品牌名與常見打法都列進來：讓「張博源 物理治療師」與「Sky 物理治療師」指向同一個人
+  'alternateName': ['Sky 物理治療師', REAL_NAME, `${REAL_NAME} 物理治療師`, `Sky ${REAL_NAME}`, REAL_NAME_EN, 'Sky PT'],
+  'familyName': '張',
+  'givenName': '博源',
   'url': BASE + '/',
   'jobTitle': '物理治療師',
+  'workLocation': { '@type': 'Place', 'name': CITY, 'address': ADDRESS },
+  'areaServed': AREA_SERVED,
   'sameAs': SOCIAL
 };
 
@@ -52,10 +83,17 @@ export const AUTHOR = {
 export const PUBLISHER = {
   '@type': 'Organization',
   '@id': BASE + '/#clinic',
-  'name': 'Sky 物理治療師',
+  'name': BRAND_NAME,
+  'alternateName': [BYLINE, `${REAL_NAME} 物理治療師`, `${CITY}物理治療師 Sky`],
   'logo': { '@type': 'ImageObject', 'url': BASE + '/assets/logo.png' },
+  'address': ADDRESS,
+  'areaServed': AREA_SERVED,
+  'founder': { '@id': BASE + '/#sky' },
   'sameAs': SOCIAL
 };
+
+// 全站共用頁尾署名（人看得到的名字與服務地區，每一頁都有）
+export const FOOTER_BYLINE = `${BYLINE}・${CITY}服務`;
 
 // 分類 → 主題實體（供 schema.org about，強化醫療語意與 GEO）
 export const CAT_ABOUT = {

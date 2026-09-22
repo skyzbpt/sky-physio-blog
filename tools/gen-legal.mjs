@@ -3,7 +3,7 @@
 // 若日後加入表單、分析工具或第三方腳本，這兩頁必須同步更新。
 import { writeFileSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, esc, ROBOTS, AUTHOR, PUBLISHER, ldJson } from './lib.mjs';
+import { REPO, BASE, esc, ROBOTS, AUTHOR, PUBLISHER, ldJson, BYLINE, FOOTER_BYLINE } from './lib.mjs';
 import { SHELL } from './css.mjs';
 
 // 最後更新日期：內容有實質變動時再手動前進（不要每次建置都改，否則是假更新訊號）
@@ -85,7 +85,7 @@ function legalPage({ slug, title, h1, eyebrow, desc, lede, sections }) {
 <meta name="theme-color" content="#E0F0FB">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
-<meta name="author" content="Sky 物理治療師">
+<meta name="author" content="${esc(BYLINE)}">
 <meta name="robots" content="${ROBOTS}">
 <link rel="canonical" href="${url}">
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -145,7 +145,7 @@ ${body}
 
 <footer>
   <div class="foot-in">
-    <div class="t">網站設計｜Sky — © 2026 · <a href="/privacy">隱私權保護聲明</a></div>
+    <div class="t">${esc(FOOTER_BYLINE)} — © 2026 · <a href="/privacy">隱私權保護聲明</a></div>
   </div>
 </footer>
 </body>

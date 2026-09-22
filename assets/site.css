@@ -170,6 +170,13 @@ h1 .en{color:var(--teal-ink)}
 .hero-sub p{font-family:var(--serif);font-size:clamp(1rem,1.7vw,1.18rem);
   color:var(--ink-2);letter-spacing:.05em}
 .hero-sub p .x{color:var(--teal-ink);font-family:var(--mono);font-size:.85em;margin:0 6px}
+/* 本名與服務地區：品牌名是 Sky、本名是張博源——兩個名字必須在同一個視線範圍內
+   被讀到，搜尋引擎與 AI 引擎才會把它們接成同一個人；服務地區同理，
+   沒有寫出「台北市」，在地查詢就不會把這個站算進候選。 */
+.hero-name{margin-top:14px;font-family:var(--serif);font-size:clamp(.95rem,1.5vw,1.06rem);
+  letter-spacing:.06em;color:var(--ink-2)}
+.hero-name b{font-weight:700;color:var(--ink)}
+.hero-name .dot{color:var(--teal-ink);margin:0 10px}
 .hero-roles{font-family:var(--mono);font-size:.74rem;line-height:2;
   letter-spacing:.12em;color:var(--muted);margin:0 0 36px}
 .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
@@ -210,6 +217,7 @@ h1 .en{color:var(--teal-ink)}
   .portrait{width:min(268px,64vw);aspect-ratio:4/5;border-radius:18px}
   .portrait-zone::before{width:min(244px,58vw);aspect-ratio:4/5;top:11px;border-radius:18px}
   .portrait-zone{gap:18px}
+  .hero-name{margin-top:10px}
   .hero-sub{margin:22px 0 26px}
   .hero-roles{margin-bottom:26px}
 }
