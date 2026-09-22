@@ -6,6 +6,21 @@ import { REPO, BASE, esc, plain, loadArticles, logoDataURI, ogCard, shot, ROBOTS
 import { SHELL } from './css.mjs';
 
 // 與 lib.mjs 的 CAT_SLUG 保持一致（此處另需 lede 文案）
+//
+// 每個分類除了 lede（列表上方那段引言）之外，還可以選填兩個欄位。
+// 兩者都留空（或整個不寫）時，版面完全照舊、不會多出空白區塊：
+//
+//   intro: [                          // 引言與文章清單之間的長篇內容
+//     { h: '小標題', p: ['第一段文字', '第二段文字'] },
+//     { h: '另一個小標題', p: ['……'] },
+//   ],
+//   faqs: [                           // 頁尾的常見問題（可收合）
+//     { q: '讀者真的會問的問題？', a: '用淺白的話回答，兩三句即可。' },
+//   ],
+//
+// faqs 會一併輸出 FAQPage 結構化資料，有機會在 Google 拿到問答複合式結果。
+// 目前 /topics/redcord（247 字）與 /topics/craniosacral（600 字）明顯比其他
+// 分類單薄（其餘都在 1500 字以上），下面兩欄留著給 Sky 補文案。
 const HUBS = [
   { cat: '下背痛', slug: 'lower-back-pain',
     lede: '下背痛是最常見的肌肉骨骼困擾——閃到腰、椎間盤突出、坐骨神經痛、椎管狹窄、薦髂關節……這個系列從疼痛科學到分階段復健，帶你讀懂自己的腰，並知道每個階段該做什麼。' },
@@ -16,13 +31,17 @@ const HUBS = [
   { cat: '高級筋膜技術', slug: 'myofascial',
     lede: '筋膜是包覆全身、把身體連成一張網的結締組織。這個系列從筋膜科學談起，走過足踝、骨盆、下背、呼吸、頸部、顳顎到上肢——用「筋膜整合」的眼光，理解疼痛與活動受限背後那張看不見的張力網。' },
   { cat: '顱薦椎', slug: 'craniosacral',
-    lede: '大約五克的輕觸，讓長期戒備的神經系統願意鬆手。這個系列談顱薦椎脈動、迷走神經、顳顎關節與生物動力取向——從解剖到臨在，理解這門安靜的手法。' },
+    lede: '大約五克的輕觸，讓長期戒備的神經系統願意鬆手。這個系列談顱薦椎脈動、迷走神經、顳顎關節與生物動力取向——從解剖到臨在，理解這門安靜的手法。',
+    intro: [],   // ← 待補：五克的輕觸是什麼、誰適合、一次療程會發生什麼事
+    faqs: [] },  // ← 待補：常被問到的問題（會不會痛、要做幾次、和整脊差在哪）
   { cat: '三鐵運動修復', slug: 'triathlon',
     lede: '游泳靠肩、自行車靠髖、跑步靠整條腿吸收落地——三項輪流上場，承受的是同一副身體。鐵人三項的傷很少是撞出來的，是一次一次累積的。這個系列談反覆性負荷、動作控制與賽後恢復，陪你在痛還小的時候，把身體讀懂。' },
   { cat: '公路車', slug: 'cycling',
     lede: '量的是車，看的是人。Bike Fitting、騎乘下背痛、離車訓練——這個系列把物理治療的眼光帶上公路車，處理疼痛，也提升表現。' },
   { cat: '紅繩懸吊', slug: 'redcord',
-    lede: 'Redcord Neurac 紅繩懸吊：在無痛、不代償的條件下，重新喚醒深層穩定系統。這個系列談懸吊治療的原理與應用——先被支撐，才談出力。' },
+    lede: 'Redcord Neurac 紅繩懸吊：在無痛、不代償的條件下，重新喚醒深層穩定系統。這個系列談懸吊治療的原理與應用——先被支撐，才談出力。',
+    intro: [],   // ← 待補：Neurac 的原理、弱連結測試、哪些人適合、和一般核心訓練的差別
+    faqs: [] },  // ← 待補：常被問到的問題（會不會很累、幾次有感、可以自己在家做嗎）
   { cat: '疼痛科學', slug: 'pain-science',
     lede: '疼痛不等於損傷——它是大腦對危險的判斷。這個系列用現代疼痛科學，解釋為什麼同樣的傷有人劇痛有人無感，以及如何把警報音量一格一格轉回來。' },
 ];
@@ -46,6 +65,23 @@ const CSS = SHELL + `
 h1{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.45;margin-bottom:14px}
 .lede{font-family:var(--serif);color:var(--muted);font-size:1.02rem;line-height:2;border-bottom:1px solid var(--line);padding-bottom:28px;margin-bottom:16px}
 .count{font-family:var(--mono);font-size:.74rem;letter-spacing:.05em;color:var(--muted);margin-bottom:8px}
+/* 分類長篇內容（HUBS 的 intro）：沒填就整塊不輸出，版面與原本一致 */
+.hub-intro{border-bottom:1px solid var(--line);padding-bottom:30px;margin-bottom:24px}
+.hub-intro section+section{margin-top:28px}
+.hub-intro h2{font-family:var(--serif);font-size:1.1rem;line-height:1.7;color:var(--ink);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.hub-intro h2::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--teal);flex:none}
+.hub-intro p{color:var(--ink-2);font-size:.97rem;line-height:2.05}
+.hub-intro p+p{margin-top:14px}
+/* 常見問題（HUBS 的 faqs）：可收合，內容仍在 HTML 裡供索引 */
+.hub-faq{margin-top:46px;padding-top:30px;border-top:1px solid var(--line)}
+.hub-faq h2{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;color:var(--muted);margin-bottom:18px}
+.hub-faq details{border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.6);padding:0 18px;margin-bottom:10px}
+.hub-faq summary{cursor:pointer;list-style:none;padding:15px 0;font-family:var(--serif);font-size:.97rem;color:var(--ink);display:flex;align-items:center;justify-content:space-between;gap:14px}
+.hub-faq summary::-webkit-details-marker{display:none}
+.hub-faq summary::after{content:"+";font-family:var(--mono);font-size:1.05rem;color:var(--teal-ink);flex:none}
+.hub-faq details[open] summary{border-bottom:1px solid var(--line)}
+.hub-faq details[open] summary::after{content:"−"}
+.hub-faq .a{padding:14px 0 18px;color:var(--ink-2);font-size:.94rem;line-height:2.05}
 /* 篇數多的分類：先給搜尋，再逐批載入，避免一次平鋪上百篇 */
 .finder{display:flex;align-items:center;gap:10px;margin:18px 0 4px;padding:11px 16px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6)}
 .finder svg{width:15px;height:15px;color:var(--muted);flex:none}
@@ -132,6 +168,19 @@ function hubPage(hub, arts) {
       { "@type": "ListItem", "position": 2, "name": hub.cat, "item": url }
     ]
   };
+  // 長篇內容與常見問題：HUBS 沒填就是空陣列，整塊不輸出
+  const intro = hub.intro || [], faqs = hub.faqs || [];
+  const faqld = faqs.length ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": url + "#faq",
+    "inLanguage": "zh-TW",
+    "mainEntity": faqs.map(f => ({
+      "@type": "Question",
+      "name": f.q,
+      "acceptedAnswer": { "@type": "Answer", "text": f.a }
+    }))
+  } : null;
   return `<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -170,7 +219,10 @@ ${ldJson(jsonld)}
 </script>
 <script type="application/ld+json">
 ${ldJson(breadcrumb)}
-</script>
+</script>${faqld ? `
+<script type="application/ld+json">
+${ldJson(faqld)}
+</script>` : ''}
 <link rel="stylesheet" href="/assets/topic.css">
 </head>
 <body>
@@ -192,7 +244,13 @@ ${ldJson(breadcrumb)}
   <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › ${esc(hub.cat)}</nav>
   <div class="eyebrow">TOPIC・分類專頁</div>
   <h1>${esc(hub.cat)}衛教文章</h1>
-  <p class="lede">${esc(hub.lede)}</p>
+  <p class="lede">${esc(hub.lede)}</p>${intro.length ? `
+  <div class="hub-intro">
+    ${intro.map(sec => `<section>${sec.h ? `
+      <h2>${esc(sec.h)}</h2>` : ''}
+      ${(sec.p || []).map(t => `<p>${esc(t)}</p>`).join('\n      ')}
+    </section>`).join('\n    ')}
+  </div>` : ''}
   <div class="count" id="count">共 ${arts.length} 篇・由新到舊</div>${arts.length > 12 ? `
   <div class="finder">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="20" y1="20" x2="16.5" y2="16.5"/></svg>
@@ -207,7 +265,14 @@ ${ldJson(breadcrumb)}
     </a>`).join('\n    ')}
   </div>
   <p class="no-hit" id="nohit" hidden>沒有符合的文章——換個關鍵字試試，或回到全部文章。</p>
-  ${arts.length > 24 ? '<button class="loadmore" id="more" type="button">載入更多文章</button>' : ''}
+  ${arts.length > 24 ? '<button class="loadmore" id="more" type="button">載入更多文章</button>' : ''}${faqs.length ? `
+  <section class="hub-faq" aria-label="${esc(hub.cat)}常見問題">
+    <h2>FAQ・常見問題</h2>
+    ${faqs.map(f => `<details>
+      <summary>${esc(f.q)}</summary>
+      <div class="a">${esc(f.a)}</div>
+    </details>`).join('\n    ')}
+  </section>` : ''}
   <a class="backhome" href="/blog">回到全部文章</a>
 </main>
 

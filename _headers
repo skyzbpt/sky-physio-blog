@@ -10,3 +10,10 @@
 # GSC 目前把 https 版列為「已檢索未建索引」、http 版列為「重複；使用者未選 canonical」。
 /feed.xml
   X-Robots-Tag: noindex
+
+# 資料檔是給頁面 fetch 用的，不該自己被列進搜尋結果（仍可被檢索，
+# 否則 Google 無法渲染 /blog 的清單）。
+/assets/articles-index.json
+  X-Robots-Tag: noindex
+/data/articles.json
+  X-Robots-Tag: noindex

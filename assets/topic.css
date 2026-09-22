@@ -44,6 +44,23 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 h1{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.45;margin-bottom:14px}
 .lede{font-family:var(--serif);color:var(--muted);font-size:1.02rem;line-height:2;border-bottom:1px solid var(--line);padding-bottom:28px;margin-bottom:16px}
 .count{font-family:var(--mono);font-size:.74rem;letter-spacing:.05em;color:var(--muted);margin-bottom:8px}
+/* 分類長篇內容（HUBS 的 intro）：沒填就整塊不輸出，版面與原本一致 */
+.hub-intro{border-bottom:1px solid var(--line);padding-bottom:30px;margin-bottom:24px}
+.hub-intro section+section{margin-top:28px}
+.hub-intro h2{font-family:var(--serif);font-size:1.1rem;line-height:1.7;color:var(--ink);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.hub-intro h2::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--teal);flex:none}
+.hub-intro p{color:var(--ink-2);font-size:.97rem;line-height:2.05}
+.hub-intro p+p{margin-top:14px}
+/* 常見問題（HUBS 的 faqs）：可收合，內容仍在 HTML 裡供索引 */
+.hub-faq{margin-top:46px;padding-top:30px;border-top:1px solid var(--line)}
+.hub-faq h2{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;color:var(--muted);margin-bottom:18px}
+.hub-faq details{border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.6);padding:0 18px;margin-bottom:10px}
+.hub-faq summary{cursor:pointer;list-style:none;padding:15px 0;font-family:var(--serif);font-size:.97rem;color:var(--ink);display:flex;align-items:center;justify-content:space-between;gap:14px}
+.hub-faq summary::-webkit-details-marker{display:none}
+.hub-faq summary::after{content:"+";font-family:var(--mono);font-size:1.05rem;color:var(--teal-ink);flex:none}
+.hub-faq details[open] summary{border-bottom:1px solid var(--line)}
+.hub-faq details[open] summary::after{content:"−"}
+.hub-faq .a{padding:14px 0 18px;color:var(--ink-2);font-size:.94rem;line-height:2.05}
 /* 篇數多的分類：先給搜尋，再逐批載入，避免一次平鋪上百篇 */
 .finder{display:flex;align-items:center;gap:10px;margin:18px 0 4px;padding:11px 16px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6)}
 .finder svg{width:15px;height:15px;color:var(--muted);flex:none}

@@ -1,9 +1,9 @@
 // 全站驗證：資料完整性、SEO、結構化資料、安全標頭、渲染與後台
 // 用法：node tools/verify.mjs
 // 放在 repo 內（而非暫存區），確保不會因環境重建而遺失。
-import { readFileSync, readdirSync, existsSync } from 'fs';
+import { readFileSync, readdirSync, existsSync, statSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, TODAY, loadArticles, CAT_SLUG, DESC_MIN, DESC_MAX } from './lib.mjs';
+import { REPO, BASE, TODAY, loadArticles, CAT_SLUG, DESC_MIN, DESC_MAX, BLOGPOST_MAX } from './lib.mjs';
 import { hashOf } from './modified.mjs';
 
 const results = [];
@@ -139,6 +139,31 @@ let imgBadAlt = 0;
 for (const p of scanPages) for (const tag of read(p).match(/<img\b[^>]*>/g) || []) if (!/\balt="[^"]/.test(tag)) imgBadAlt++;
 imgBadAlt === 0 ? pass('所有圖片皆有非空 alt') : fail('圖片缺/空 alt', imgBadAlt);
 
+/* ---------- 5b. 頁面引用的圖片檔案大小（Ahrefs：Image file size too large） ---------- */
+// 首頁形象照曾經直接掛原始檔（3854×5781／3.2MB），只為了顯示 340px 寬的版位——
+// 這是 LCP 最大的單一負擔。改用 sky-photo-680/360.jpg 之後，這裡守住不再退回去。
+{
+  const IMG_MAX = 200 * 1024;
+  const heavy = new Set();
+  for (const p of scanPages) {
+    const dir = p.includes('/') ? p.split('/')[0] + '/' : '';
+    for (const tag of read(p).match(/<img\b[^>]*>/g) || []) {
+      const srcs = [...tag.matchAll(/(?:src|srcset)="([^"]+)"/g)]
+        .flatMap(m => m[1].split(',').map(x => x.trim().split(/\s+/)[0]));
+      for (const src of srcs) {
+        if (!src || /^(data:|https?:)/.test(src)) continue;
+        const rel = src.startsWith('/') ? src.slice(1) : (src.startsWith('../') ? src.slice(3) : dir + src);
+        if (!existsSync(join(REPO, rel))) continue;
+        const size = statSync(join(REPO, rel)).size;
+        if (size > IMG_MAX) heavy.add(`${rel} (${Math.round(size / 1024)}KB)`);
+      }
+    }
+  }
+  heavy.size === 0
+    ? pass(`頁面引用的圖片皆 ≤${IMG_MAX / 1024}KB（LCP）`)
+    : fail('頁面引用了過大的圖片', [...heavy].join('、'));
+}
+
 /* ---------- 6. Markdown 渲染（無殘留語法） ---------- */
 let literal = 0;
 for (const f of postFiles) {
@@ -197,12 +222,38 @@ const hdr = existsSync(join(REPO, '_headers')) ? read('_headers') : '';
 
 /* ---------- 8. 首頁 ---------- */
 const idx = read('index.html');
-(idx.match(/"@type": "BlogPosting"/g) || []).length === arts.length ? pass(`首頁 JSON-LD ${arts.length} 篇 BlogPosting`) : fail('首頁 BlogPosting');
+// 首頁只列最新 BLOGPOST_MAX 篇；其餘 260 篇各自的 BlogPosting 在文章頁上，sitemap 也全涵蓋
+{
+  const want = Math.min(BLOGPOST_MAX, arts.length);
+  const got = (idx.match(/"@type": "BlogPosting"/g) || []).length;
+  const newest = [...arts].sort((x, y) => y.date.localeCompare(x.date)).slice(0, want);
+  const listed = newest.every(a => idx.includes(`"${BASE}/posts/${a.id}"`));
+  got === want && listed
+    ? pass(`首頁 JSON-LD ${want} 篇 BlogPosting（最新）`)
+    : fail('首頁 BlogPosting', got !== want ? `${got} 筆，應為 ${want}` : '列的不是最新的幾篇');
+}
 const blogHtml = read('blog.html');
 const blogTopicLinksBlock = blogHtml.match(/<nav class="topic-links"[\s\S]*?<\/nav>/);
 ((blogTopicLinksBlock ? blogTopicLinksBlock[0] : '').match(/href="\/topics\//g) || []).length === cats.length ? pass(`衛教文章頁 ${cats.length} 個分類專頁連結`) : fail('衛教文章頁分類連結');
 for (const c of cats) idx.includes(`"${c}"`) || fail('首頁 cats 缺分類', c);
-idx.includes('const ARTICLES = [') ? pass('首頁 ARTICLES 已注入') : fail('ARTICLES 注入');
+// 首頁不再內嵌 260 筆 metadata（54KB）：清單在 /blog，資料改由 assets/articles-index.json 供應
+/const ARTICLES = \[\];/.test(idx) ? pass('首頁 ARTICLES 未內嵌（改由 articles-index.json 供應）') : fail('首頁仍內嵌 ARTICLES');
+{
+  const IDX_MAX = 120 * 1024;
+  const size = Buffer.byteLength(idx);
+  size <= IDX_MAX
+    ? pass(`首頁 HTML ≤${IDX_MAX / 1024}KB（${Math.round(size / 1024)}KB）`)
+    : fail('首頁 HTML 過大', `${Math.round(size / 1024)}KB`);
+}
+try {
+  const light = JSON.parse(read('assets/articles-index.json'));
+  const sameIds = light.length === arts.length && light.every((a, i) => a.id === arts[i].id);
+  const noBody = light.every(a => a.content === undefined);
+  const used = read('blog.html').includes("fetch('/assets/articles-index.json')");
+  sameIds && noBody && used
+    ? pass(`articles-index.json 與文章同步且不含內文 (${light.length} 筆・${Math.round(Buffer.byteLength(read('assets/articles-index.json')) / 1024)}KB)`)
+    : fail('articles-index.json 不同步', !sameIds ? `${light.length} vs ${arts.length} 篇` : !noBody ? '含 content' : '/blog 未取用');
+} catch { fail('assets/articles-index.json 讀取失敗（請重新 npm run build）'); }
 // 後台：隱藏入口 + 功能保留
 (!idx.includes('id="admin-dot"') && /location\.hash==='#admin'/.test(idx)
   && /function pwSubmit\(\)/.test(idx) && /function admOpen\(\)/.test(idx))
