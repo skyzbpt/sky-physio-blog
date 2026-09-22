@@ -65,6 +65,18 @@ header::before{
   color:var(--ink);letter-spacing:.04em;white-space:nowrap}
 @media (max-width:400px){.brand-name{display:none}}
 
+/* 導覽列文字一律不折行：.nav 是 flex，空間不足時中文會被從中折斷，
+   選單項變兩行後撐破 64px 的列高，品牌名也會和第一個項目重疊。 */
+.nav-links a,.nav-link,.nav .btn{white-space:nowrap}
+/* 平板橫向～小筆電（821–1071）：已切回桌面版導覽，但六個項目加 CTA 放不下。
+   先收起裝飾用的項目圖示並收窄間距；最窄的一段再讓出品牌名的位置。 */
+@media (min-width:821px) and (max-width:1071px){
+  .nav-links{gap:14px}
+  .nav-link{font-size:.82rem}
+  .nav-icon{display:none}
+}
+@media (min-width:821px) and (max-width:919px){.brand-name{display:none}}
+
 .nav-links{display:flex;gap:28px;align-items:center}
 .nav-links a,.nav-link{display:inline-flex;align-items:center;gap:7px;font-size:.88rem;color:var(--ink-2);padding:4px 0;border-bottom:1.5px solid transparent;cursor:pointer;}
 .nav-links a:hover,.nav-link:hover{border-color:var(--teal);color:var(--ink)}
@@ -290,13 +302,6 @@ h1 .en{color:var(--teal-ink)}
 .post-arrow{font-family:var(--mono);color:var(--line);font-size:1.1rem;justify-self:end}
 .post-row:hover .post-arrow{color:var(--teal-ink)}
 .post-empty{padding:48px 8px;color:var(--muted);font-size:.9rem}
-@media (max-width:680px){
-  .post-row{grid-template-columns:1fr;gap:8px}
-  .post-meta{flex-direction:column;gap:3px;font-size:.82rem;letter-spacing:.06em}
-  .post-arrow{display:none}
-  .post-title{font-size:1rem}
-  .post-ex{font-size:.8rem}
-}
 
 /* ---------- 文章內頁（保留樣式，供後台預覽等使用） ---------- */
 .post-page{max-width:720px;margin:0 auto;padding:64px 32px 110px}
@@ -565,6 +570,18 @@ footer{border-top:1px solid var(--line);padding:48px 0 60px;background:linear-gr
   .post-row::before{transition:transform .3s cubic-bezier(.22,.7,.3,1),opacity .3s ease}
 }
 
+/* 手機：文章列表改單欄堆疊。
+   這段必須排在上面的「Post row 強化」之後——該區塊同樣是 .post-row（權重相同），
+   若放在它前面會被重新宣告的 grid-template-columns 蓋掉，
+   標題欄在 320px 只剩 33px 寬，中文標題會被擠成一字一行。 */
+@media (max-width:680px){
+  .post-row{grid-template-columns:1fr;gap:8px}
+  .post-meta{flex-direction:column;gap:3px;font-size:.82rem;letter-spacing:.06em}
+  .post-arrow{display:none}
+  .post-title{font-size:1rem}
+  .post-ex{font-size:.8rem}
+}
+
 /* ---------- Contact item 強化 ---------- */
 .contact-item{
   display:flex;justify-content:space-between;align-items:center;gap:18px;
@@ -575,6 +592,17 @@ footer{border-top:1px solid var(--line);padding:48px 0 60px;background:linear-gr
   border-color:var(--teal);background:rgba(20,154,138,.12);transform:translateX(4px);
 }
 .contact-item:hover .k{color:#C8F0E9}
+
+/* 窄螢幕：聯絡項目改上下堆疊。
+   左右分置時，@sky_the_physio、skyzbpt@gmail.com 這類不可斷行的帳號
+   會把 flex 項目的 min-width:auto 撐到 254px，超過面板內容寬，
+   又因 body 有 overflow-x:clip，被切掉的部分連橫向捲動都看不到。
+   這段同樣必須排在上面的「Contact item 強化」之後，
+   否則 align-items:center 會被重新宣告蓋回去，文字變成置中。 */
+@media (max-width:420px){
+  .contact-item{flex-direction:column;align-items:flex-start;gap:6px}
+  .contact-item .v{text-align:left}
+}
 
 /* ---------- 回頂標記 ---------- */
 .section-anchor{scroll-margin-top:80px}

@@ -21,7 +21,13 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 .btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.9rem;letter-spacing:.06em;padding:11px 26px;border:1.5px solid var(--ink);background:transparent;color:var(--ink)}
 .btn.teal{background:#0C7365;border-color:#0C7365;color:#fff;font-weight:600}
 .btn.sm{padding:8px 20px;font-size:.84rem}
+/* 導覽列文字一律不折行：.nav 是 flex，空間不足時「預約評估」會被折成兩行，
+   在 320–360px 撐成 68px 高，超出 64px 的列高。 */
+.nav-link,.nav .btn{white-space:nowrap}
 @media(max-width:520px){.brand-name{font-size:.94rem}.nav-link{display:none}}
+/* 400px 以下收起品牌名（與 site.css 的主要頁面一致）。
+   留著的話「Sky 物理治療師」會和右側的預約鈕重疊。 */
+@media(max-width:400px){.brand-name{display:none}}
 .crumb a{color:var(--ink-2);border-bottom:1px solid var(--line)}
 .crumb a:hover{color:var(--teal-ink);border-color:var(--teal)}
 footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gradient(180deg,var(--bg) 0%,#D8ECF8 100%);margin-top:40px}
