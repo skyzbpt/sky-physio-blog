@@ -1,7 +1,7 @@
 // 全站驗證：資料完整性、SEO、結構化資料、安全標頭、渲染與後台
 // 用法：node tools/verify.mjs
 // 放在 repo 內（而非暫存區），確保不會因環境重建而遺失。
-import { readFileSync, readdirSync, existsSync } from 'fs';
+import { readFileSync, readdirSync, existsSync, statSync } from 'fs';
 import { join } from 'path';
 import { REPO, BASE, TODAY, loadArticles, CAT_SLUG, DESC_MIN, DESC_MAX } from './lib.mjs';
 import { hashOf } from './modified.mjs';
@@ -138,6 +138,31 @@ const scanPages = [...postFiles.map(f => 'posts/' + f), ...hubFiles.map(f => 'to
 let imgBadAlt = 0;
 for (const p of scanPages) for (const tag of read(p).match(/<img\b[^>]*>/g) || []) if (!/\balt="[^"]/.test(tag)) imgBadAlt++;
 imgBadAlt === 0 ? pass('所有圖片皆有非空 alt') : fail('圖片缺/空 alt', imgBadAlt);
+
+/* ---------- 5b. 頁面引用的圖片檔案大小（Ahrefs：Image file size too large） ---------- */
+// 首頁形象照曾經直接掛原始檔（3854×5781／3.2MB），只為了顯示 340px 寬的版位——
+// 這是 LCP 最大的單一負擔。改用 sky-photo-680/360.jpg 之後，這裡守住不再退回去。
+{
+  const IMG_MAX = 200 * 1024;
+  const heavy = new Set();
+  for (const p of scanPages) {
+    const dir = p.includes('/') ? p.split('/')[0] + '/' : '';
+    for (const tag of read(p).match(/<img\b[^>]*>/g) || []) {
+      const srcs = [...tag.matchAll(/(?:src|srcset)="([^"]+)"/g)]
+        .flatMap(m => m[1].split(',').map(x => x.trim().split(/\s+/)[0]));
+      for (const src of srcs) {
+        if (!src || /^(data:|https?:)/.test(src)) continue;
+        const rel = src.startsWith('/') ? src.slice(1) : (src.startsWith('../') ? src.slice(3) : dir + src);
+        if (!existsSync(join(REPO, rel))) continue;
+        const size = statSync(join(REPO, rel)).size;
+        if (size > IMG_MAX) heavy.add(`${rel} (${Math.round(size / 1024)}KB)`);
+      }
+    }
+  }
+  heavy.size === 0
+    ? pass(`頁面引用的圖片皆 ≤${IMG_MAX / 1024}KB（LCP）`)
+    : fail('頁面引用了過大的圖片', [...heavy].join('、'));
+}
 
 /* ---------- 6. Markdown 渲染（無殘留語法） ---------- */
 let literal = 0;

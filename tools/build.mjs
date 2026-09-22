@@ -8,7 +8,7 @@
 // 因此當無法啟動時會「略過 OG 圖片產生」，改沿用 repo 內已提交的圖片——
 // HTML／sitemap／feed／llms 皆為純 Node 產生，不需瀏覽器，仍會照常重建。
 import { rmSync, mkdirSync, cpSync, existsSync } from 'fs';
-import { join } from 'path';
+import { join, basename } from 'path';
 import { REPO } from './lib.mjs';
 import { injectArticles } from './inject.mjs';
 import { genPosts } from './gen-posts.mjs';
@@ -62,9 +62,16 @@ for (const f of rootFiles) {
   const src = join(REPO, f);
   if (existsSync(src)) { cpSync(src, join(DIST, f)); copiedFiles++; }
 }
+// assets/ 內有兩個「只在建置時用到」的大檔：OG 卡排版用的圓體字（4.7MB）
+// 與形象照原始檔（3.2MB，頁面改用 sky-photo-680/360.jpg）。兩者沒有任何頁面連到，
+// 卻會被一起部署出去——排除掉，省下 8MB 的對外靜態資產。
+const BUILD_ONLY = new Set(['jf-openhuninn.ttf', 'sky-photo.jpeg']);
 for (const d of ['posts', 'topics', 'assets']) {
   const src = join(REPO, d);
-  if (existsSync(src)) cpSync(src, join(DIST, d), { recursive: true });
+  if (existsSync(src)) cpSync(src, join(DIST, d), {
+    recursive: true,
+    filter: (from) => !BUILD_ONLY.has(basename(from)),
+  });
 }
 // 後台延遲載入內文用（首頁只注入 metadata，內文改由此檔取得）
 mkdirSync(join(DIST, 'data'), { recursive: true });

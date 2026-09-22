@@ -19,6 +19,7 @@
 <meta name="msvalidate.01" content="73840AAF2A50BC89A7EA2FCCD1279283">
 <meta name="google-site-verification" content="wGYzdCM3wfgaQAncD0TO_emqlUedxg535vj6TbT5m7M" />
 <link rel="canonical" href="https://skythephysio.com/">
+<link rel="preload" as="image" href="assets/sky-photo-680.jpg" imagesrcset="assets/sky-photo-360.jpg 360w, assets/sky-photo-680.jpg 680w" imagesizes="(max-width:560px) 268px, (max-width:1023px) 300px, 340px" fetchpriority="high">
 
 <!-- Open Graph（Facebook、LINE、AI 爬蟲） -->
 <meta property="og:type" content="website">
@@ -898,7 +899,11 @@ textarea#af-body.adm-input{
         </div>
       </div>
       <div class="portrait-zone rv">
-        <img class="portrait" id="portrait-img" src="assets/sky-photo.jpeg" alt="Sky 物理治療師">
+        <img class="portrait" id="portrait-img" src="assets/sky-photo-680.jpg"
+             srcset="assets/sky-photo-360.jpg 360w, assets/sky-photo-680.jpg 680w"
+             sizes="(max-width:560px) 268px, (max-width:1023px) 300px, 340px"
+             fetchpriority="high" decoding="async"
+             alt="Sky 物理治療師">
       </div>
     </div>
   </section>
