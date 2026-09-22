@@ -372,6 +372,43 @@ staleHubs.length === 0 && staleOg.length === 0
   ? pass('無殘留的主題頁與 OG 卡')
   : fail('殘留檔案', [...staleHubs, ...staleOg].join(','));
 
+/* ---------- 12b. /about 的學經歷與證照是靜態 HTML，且字數足夠 ---------- */
+// 這五份清單原本是 JS 從 SITE 物件塞進空 <ul> 的——不跑 JS 的爬蟲看到的是空頁面，
+// 而這些正是 E-E-A-T 最該被讀到的資歷訊號。改成靜態後，這裡守住不要再退回去，
+// 並比對內容與 index.html 的 SITE（唯一真實來源）一致。
+{
+  const about = read('about.html');
+  const arrIn = (html, key) => {
+    const m = html.match(new RegExp(key + ':\\s*(\\[[\\s\\S]*?\\n  \\])'));
+    if (!m) return null;
+    try { return JSON.parse(m[1].replace(/,(\s*\])/, '$1')); } catch { return null; }
+  };
+  const liOf = id => {
+    const m = about.match(new RegExp('<ul id="' + id + '">([\\s\\S]*?)</ul>'));
+    return m ? [...m[1].matchAll(/<li>([\s\S]*?)<\/li>/g)].map(x => x[1].trim()) : null;
+  };
+  const pairs = [['about-roles', 'roles'], ['about-edu', 'education'], ['about-exp', 'experience'],
+                 ['about-skills', 'specialties'], ['about-certs', 'certs']];
+  const bad = [];
+  let total = 0;
+  for (const [id, key] of pairs) {
+    const got = liOf(id), want = arrIn(idx, key);
+    if (!got || !got.length) { bad.push(`${id} 是空的（又變回 JS 渲染？）`); continue; }
+    if (!want) { bad.push(`index.html 解析不到 ${key}`); continue; }
+    if (JSON.stringify(got) !== JSON.stringify(want)) bad.push(`${id} 與 index.html 的 ${key} 不一致`);
+    total += got.length;
+  }
+  bad.length === 0
+    ? pass(`/about 資歷清單為靜態 HTML 且與首頁一致 (${total} 筆)`)
+    : fail('/about 資歷清單', bad.join('；'));
+
+  const visible = about.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<style[\s\S]*?<\/style>/g, '')
+    .replace(/<head>[\s\S]*?<\/head>/g, '').replace(/<[^>]*>/g, ' ');
+  const n = cjk(visible);
+  const ABOUT_MIN = 1000;
+  n >= ABOUT_MIN ? pass(`/about 內容 ≥${ABOUT_MIN} 字（${n} 字）`) : fail('/about 內容過少', `${n} 字`);
+}
+
 /* ---------- 13. data/site.json 與 index.html 的 SITE 未漂移 ---------- */
 // 同一份自我介紹存在兩個地方：data/site.json 餵 llms.txt（給 AI 讀），
 // index.html 的 SITE 物件餵渲染出來的頁面（給人讀）。沒有任何機制在同步它們，

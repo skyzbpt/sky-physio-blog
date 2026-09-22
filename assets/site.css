@@ -402,6 +402,16 @@ h1 .en{color:var(--teal-ink)}
   letter-spacing:.2em;color:var(--teal-ink);margin-bottom:9px}
 .about-philosophy p{font-family:var(--serif);font-size:1.14rem;font-weight:700;color:var(--ink);line-height:1.7}
 .about-philosophy em{font-style:normal;color:var(--teal-ink)}
+/* 關於頁的兩段長內文（我常遇到的身體／我手上的工具）：沿用 philosophy 卡片的視覺語彙 */
+.about-block{max-width:680px;margin:34px auto 0;background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.9);border-radius:18px;padding:26px 28px}
+.about-block .blk-label{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.2em;color:var(--muted);margin-bottom:14px}
+.about-block .blk-lead{font-size:.95rem;color:var(--ink-2);line-height:1.95;padding-bottom:18px;border-bottom:1px solid rgba(35,42,80,.1)}
+.about-block .blk-list{margin-top:18px}
+.about-block dt{font-family:var(--serif);font-weight:700;font-size:.97rem;color:var(--ink);margin-top:16px;display:flex;align-items:center;gap:9px}
+.about-block dt:first-child{margin-top:0}
+.about-block dt::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--teal);flex:none}
+.about-block dd{margin:6px 0 0 15px;font-size:.92rem;color:var(--muted);line-height:1.95}
+@media(max-width:600px){.about-block{padding:22px 20px;border-radius:16px}}
 
 /* 專長 chip 區 */
 .about-specialty{margin-bottom:48px}
