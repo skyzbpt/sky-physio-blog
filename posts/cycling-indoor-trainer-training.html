@@ -254,10 +254,31 @@ function copyLink(){
   addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
   addEventListener('resize',upd,{passive:true}); upd();
 })();
-/* 目錄：手機預設收合；捲動時高亮目前段落 */
+/* 目錄：手機預設收合；桌機為常駐側欄；捲動時高亮目前段落 */
 (function(){
   var toc=document.getElementById('toc'); if(!toc) return;
-  if(matchMedia('(max-width:1139px)').matches) toc.open=false;
+  /* 1140px 以上，目錄是釘住的側欄：CSS 已用 pointer-events:none 讓 summary 不可點，
+     開合指示（::after）也拿掉了。但 summary 本身仍可聚焦，鍵盤按 Enter 會把側欄收起來，
+     之後滑鼠點不回去（被 pointer-events:none 擋住），畫面上也沒有還原入口。
+     因此在這個斷點把 summary 移出 Tab 順序，並強制保持展開。
+     另外，原本只在載入時判斷一次斷點，從手機寬度拉寬或平板轉向後
+     側欄會停在收合狀態、同樣打不開；改成跟著斷點變化同步。 */
+  var deskMq=matchMedia('(min-width:1140px)');
+  var sum=toc.querySelector('summary');
+  function syncToc(){
+    if(deskMq.matches){
+      toc.open=true;
+      if(sum) sum.setAttribute('tabindex','-1');
+    }else if(sum){
+      sum.removeAttribute('tabindex');
+    }
+  }
+  /* 桌機下若仍被收合（例如鍵盤觸發），立刻還原 */
+  toc.addEventListener('toggle',function(){ if(deskMq.matches&&!toc.open) toc.open=true; });
+  if(deskMq.addEventListener) deskMq.addEventListener('change',syncToc);
+  else if(deskMq.addListener) deskMq.addListener(syncToc);
+  if(!deskMq.matches) toc.open=false;
+  syncToc();
   var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
   var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
   var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
