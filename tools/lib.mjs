@@ -79,6 +79,12 @@ export const wordCountOf = content => (String(content).match(/[一-鿿]/g) || []
    而這段文字 Google 會原樣顯示在搜尋結果上，斷句等於白白損失點閱。
    改成以「完整句子」為單位補；補不滿才退到最近的句讀（先逗號、頓號次之）收尾並補上句號。 */
 export const DESC_MIN = 110, DESC_MAX = 155;
+
+/* 首頁 Blog 結構化資料要列幾篇。
+   原本 260 篇全列，光這段就 122KB，佔了首頁 HTML 的六成以上。
+   每篇文章頁本來就各有自己的 BlogPosting，sitemap 也涵蓋全部 260 篇，
+   首頁這份的作用是「最近在寫什麼」的樣本，列最新 30 篇就夠。 */
+export const BLOGPOST_MAX = 30;
 const cLen = s => [...s].length;
 const isListBlock = b => /^\s*([-*]\s+|\d+\.\s+)/.test(b);
 

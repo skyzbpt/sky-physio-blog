@@ -3,7 +3,7 @@
 // 放在 repo 內（而非暫存區），確保不會因環境重建而遺失。
 import { readFileSync, readdirSync, existsSync, statSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, TODAY, loadArticles, CAT_SLUG, DESC_MIN, DESC_MAX } from './lib.mjs';
+import { REPO, BASE, TODAY, loadArticles, CAT_SLUG, DESC_MIN, DESC_MAX, BLOGPOST_MAX } from './lib.mjs';
 import { hashOf } from './modified.mjs';
 
 const results = [];
@@ -222,7 +222,16 @@ const hdr = existsSync(join(REPO, '_headers')) ? read('_headers') : '';
 
 /* ---------- 8. 首頁 ---------- */
 const idx = read('index.html');
-(idx.match(/"@type": "BlogPosting"/g) || []).length === arts.length ? pass(`首頁 JSON-LD ${arts.length} 篇 BlogPosting`) : fail('首頁 BlogPosting');
+// 首頁只列最新 BLOGPOST_MAX 篇；其餘 260 篇各自的 BlogPosting 在文章頁上，sitemap 也全涵蓋
+{
+  const want = Math.min(BLOGPOST_MAX, arts.length);
+  const got = (idx.match(/"@type": "BlogPosting"/g) || []).length;
+  const newest = [...arts].sort((x, y) => y.date.localeCompare(x.date)).slice(0, want);
+  const listed = newest.every(a => idx.includes(`"${BASE}/posts/${a.id}"`));
+  got === want && listed
+    ? pass(`首頁 JSON-LD ${want} 篇 BlogPosting（最新）`)
+    : fail('首頁 BlogPosting', got !== want ? `${got} 筆，應為 ${want}` : '列的不是最新的幾篇');
+}
 const blogHtml = read('blog.html');
 const blogTopicLinksBlock = blogHtml.match(/<nav class="topic-links"[\s\S]*?<\/nav>/);
 ((blogTopicLinksBlock ? blogTopicLinksBlock[0] : '').match(/href="\/topics\//g) || []).length === cats.length ? pass(`衛教文章頁 ${cats.length} 個分類專頁連結`) : fail('衛教文章頁分類連結');
@@ -230,7 +239,7 @@ for (const c of cats) idx.includes(`"${c}"`) || fail('首頁 cats 缺分類', c)
 // 首頁不再內嵌 260 筆 metadata（54KB）：清單在 /blog，資料改由 assets/articles-index.json 供應
 /const ARTICLES = \[\];/.test(idx) ? pass('首頁 ARTICLES 未內嵌（改由 articles-index.json 供應）') : fail('首頁仍內嵌 ARTICLES');
 {
-  const IDX_MAX = 200 * 1024;
+  const IDX_MAX = 120 * 1024;
   const size = Buffer.byteLength(idx);
   size <= IDX_MAX
     ? pass(`首頁 HTML ≤${IDX_MAX / 1024}KB（${Math.round(size / 1024)}KB）`)

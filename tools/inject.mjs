@@ -7,7 +7,7 @@
 // 後台開啟時才向 /data/articles.json 取全文。
 import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, loadArticles } from './lib.mjs';
+import { REPO, BASE, loadArticles, BLOGPOST_MAX } from './lib.mjs';
 
 const plain = t => String(t).replace(/!\[[^\]]*\]\([^)]*\)/g, '').replace(/[#>*`]/g, '').replace(/\s+/g, ' ').trim();
 // </script> 防護：JSON 內若出現會截斷 HTML 的 <script> 標籤
@@ -35,9 +35,9 @@ export function injectArticles() {
     + '/*===ARTICLES-JSON:END===*/';
   html = html.replace(re, block);
 
-  /* --- 3) Blog JSON-LD blogPost 清單 --- */
+  /* --- 3) Blog JSON-LD blogPost 清單（最新 BLOGPOST_MAX 篇） --- */
   const sorted = [...articles].sort((x, y) => y.date.localeCompare(x.date));
-  const entries = sorted.map(a =>
+  const entries = sorted.slice(0, BLOGPOST_MAX).map(a =>
     `        {"@type": "BlogPosting", "headline": ${JSON.stringify(a.title)}, "url": ${JSON.stringify(BASE + '/posts/' + a.id)}, "datePublished": ${JSON.stringify(a.date)}, "articleSection": ${JSON.stringify(a.cat)}, "description": ${JSON.stringify(plain(a.excerpt).slice(0, 155))}}`
   ).join(',\n');
   const ldRe = /"blogPost": \[[\s\S]*?\n      \]/;
@@ -51,5 +51,5 @@ export function injectArticles() {
   const m = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
   const g = JSON.parse(m[1])['@graph'];
   const blog = g.find(x => x['@type'] === 'Blog');
-  console.log('已產生 assets/articles-index.json', light.length, '筆｜index.html blogPost', blog.blogPost.length, '筆');
+  console.log('已產生 assets/articles-index.json', light.length, '筆｜index.html blogPost', blog.blogPost.length, '筆（最新）');
 }
