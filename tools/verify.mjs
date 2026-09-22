@@ -3,7 +3,7 @@
 // 放在 repo 內（而非暫存區），確保不會因環境重建而遺失。
 import { readFileSync, readdirSync, existsSync, statSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, TODAY, loadArticles, CAT_SLUG, DESC_MIN, DESC_MAX, BLOGPOST_MAX } from './lib.mjs';
+import { REPO, BASE, TODAY, loadArticles, CAT_SLUG, DESC_MIN, DESC_MAX, BLOGPOST_MAX, REAL_NAME, CITY } from './lib.mjs';
 import { hashOf } from './modified.mjs';
 
 const results = [];
@@ -451,6 +451,64 @@ staleHubs.length === 0 && staleOg.length === 0
   drift.length === 0
     ? pass(`site.json 與首頁 SITE 一致 (${Object.keys(site).join('/')})`)
     : fail('site.json 與首頁 SITE 漂移', drift.join('；'));
+}
+
+/* ---------- 14. 身分與服務地區訊號（SEO / GEO / AEO） ---------- */
+// 「Sky」是品牌名、「張博源」是本名，兩者不會被搜尋引擎自動連起來；
+// 服務地區沒寫出來，在地查詢也不會把這個站算進候選。這一段守住三件事：
+//   1. 每一頁（含 260 篇文章頁與 9 個主題頁）都看得到本名與服務地區
+//   2. 首頁的 Person／MedicalBusiness 實體有 alternateName 與 areaServed
+//   3. 給 AI 引擎讀的 llms.txt 明講「Sky 與張博源是同一個人」
+{
+  const bad = [];
+
+  // 14a. 全站可見署名：頁尾在每一頁上，抽樣涵蓋每一種版型。
+  // 404.html 不列入——它是 noindex，署名在那裡對搜尋與 AI 引擎沒有任何作用。
+  const everyPage = ['index.html', 'blog.html', 'about.html', 'services.html', 'products.html',
+                     'physio-guide.html', 'privacy.html',
+                     'posts/' + postFiles[0], 'posts/' + postFiles[postFiles.length - 1],
+                     'topics/' + hubFiles[0]];
+  for (const f of everyPage) {
+    const h = read(f);
+    if (!h.includes(REAL_NAME)) bad.push(`${f} 沒有本名「${REAL_NAME}」`);
+    if (!h.includes(CITY)) bad.push(`${f} 沒有服務地區「${CITY}」`);
+  }
+
+  // 14b. 結構化資料：本名要在 alternateName 裡，服務地區要在 areaServed／address 裡
+  for (const f of ['index.html', 'about.html', 'services.html', 'products.html', 'privacy.html',
+                   'posts/' + postFiles[0], 'topics/' + hubFiles[0]]) {
+    const blocks = [...read(f).matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(m => m[1]);
+    const merged = blocks.join('\n');
+    if (!/"alternateName"[\s\S]{0,400}張博源/.test(merged)) bad.push(`${f} JSON-LD 的 alternateName 缺本名`);
+    if (!/"areaServed"/.test(merged)) bad.push(`${f} JSON-LD 缺 areaServed`);
+    if (!/"addressLocality":\s*"台北市"/.test(merged)) bad.push(`${f} JSON-LD 缺 addressLocality`);
+  }
+
+  // 14c. AEO：首頁與 /about 要有「本名是什麼／在哪裡服務」的問答，答案引擎才抽得到
+  for (const f of ['index.html', 'about.html']) {
+    const h = read(f);
+    if (!h.includes('"@type": "FAQPage"')) { bad.push(`${f} 缺 FAQPage`); continue; }
+    if (!/本名/.test(h)) bad.push(`${f} FAQ 沒有回答本名`);
+    if (!new RegExp(`在哪裡服務|服務地區`).test(h)) bad.push(`${f} FAQ 沒有回答服務地區`);
+  }
+  // /about 的問答必須是可見文字（只寫在 JSON-LD 裡，Google 不給複合式結果）
+  {
+    const visible = read('about.html').replace(/<script[\s\S]*?<\/script>/g, '')
+      .replace(/<head>[\s\S]*?<\/head>/g, '');
+    if (!visible.includes(REAL_NAME)) bad.push('/about 的本名只寫在 JSON-LD，頁面上看不到');
+    if (!visible.includes('常見問題')) bad.push('/about 缺可見的常見問題區塊');
+  }
+
+  // 14d. GEO：llms.txt 要明講兩個名字是同一個人
+  const llms = read('llms.txt');
+  if (!llms.includes(REAL_NAME)) bad.push('llms.txt 缺本名');
+  if (!llms.includes('同一人') && !llms.includes('同一位')) bad.push('llms.txt 沒有說明 Sky 與本名為同一人');
+  if (!llms.includes(`服務地區：${CITY}`)) bad.push('llms.txt 缺服務地區');
+  if (!read('llms-full.txt').includes(REAL_NAME)) bad.push('llms-full.txt 缺本名');
+
+  bad.length === 0
+    ? pass(`本名「${REAL_NAME}」與服務地區「${CITY}」訊號完整（頁面・JSON-LD・FAQ・llms）`)
+    : fail('身分／地區訊號缺漏', `${bad.length} 項，例如 ${bad.slice(0, 3).join('；')}`);
 }
 
 /* ---------- 輸出 ---------- */

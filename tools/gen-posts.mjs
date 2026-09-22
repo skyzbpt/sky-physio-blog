@@ -2,7 +2,7 @@
 // 資料來源：data/articles.json（唯一真實來源）
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, TODAY, esc, readMins, CAT_SLUG, renderBody, headingsOf, loadArticles, logoDataURI, photoDataURI, roundedFontDataURI, ogCard, ogHomeCard, shot, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, wordCountOf, keywordsFor, mentionsFor, metaDescription, extractFaqs, ldJson, topicsOf } from './lib.mjs';
+import { REPO, BASE, TODAY, esc, readMins, CAT_SLUG, renderBody, headingsOf, loadArticles, logoDataURI, photoDataURI, roundedFontDataURI, ogCard, ogHomeCard, shot, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, wordCountOf, keywordsFor, mentionsFor, metaDescription, extractFaqs, ldJson, topicsOf, BYLINE, CITY, FOOTER_BYLINE } from './lib.mjs';
 import { SHELL } from './css.mjs';
 import { resolveModified } from './modified.mjs';
 import { LEGAL_UPDATED } from './gen-legal.mjs';
@@ -226,7 +226,7 @@ ${heads.map(h => `        <li><a href="#${h.id}">${esc(h.text)}</a></li>`).join(
 <title>${esc(a.seoTitle || a.title)}｜Sky 物理治療師</title>
 <meta name="description" content="${esc(desc)}">
 <meta name="keywords" content="${esc(keywords)}">
-<meta name="author" content="Sky 物理治療師">
+<meta name="author" content="${esc(BYLINE)}">
 <meta name="robots" content="${ROBOTS}">
 <link rel="canonical" href="${url}">
 <link rel="icon" href="../favicon.ico" sizes="any">
@@ -249,7 +249,7 @@ ${heads.map(h => `        <li><a href="#${h.id}">${esc(h.text)}</a></li>`).join(
 <meta property="article:modified_time" content="${modified}">
 <meta property="article:section" content="${esc(a.cat)}">
 <meta property="article:tag" content="${esc(a.cat)}">
-<meta property="article:author" content="Sky 物理治療師">
+<meta property="article:author" content="${esc(BYLINE)}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(a.title)}">
 <meta name="twitter:description" content="${esc(desc)}">
@@ -301,8 +301,8 @@ ${bodyHtml}
     <aside class="author-box">
       <img src="../assets/logo.png" alt="Sky 物理治療師">
       <div>
-        <div class="a-name">Sky 物理治療師</div>
-        <div class="a-cred">國家高考合格物理治療師｜紅繩懸吊 Redcord・公路車 Bike Fitting・顱薦椎治療・疼痛科學</div>
+        <div class="a-name">${esc(BYLINE)}</div>
+        <div class="a-cred">國家高考合格物理治療師｜${esc(CITY)}服務｜紅繩懸吊 Redcord・公路車 Bike Fitting・顱薦椎治療・疼痛科學</div>
         <a class="a-link" href="/about">認識 Sky・治療哲學 →</a>
       </div>
     </aside>
@@ -317,7 +317,7 @@ ${pagerHtml}
 
 <footer>
   <div class="foot-in">
-    <div class="t">網站設計｜Sky — © 2026 · <a href="/privacy">隱私權保護聲明</a></div>
+    <div class="t">${esc(FOOTER_BYLINE)} — © 2026 · <a href="/privacy">隱私權保護聲明</a></div>
   </div>
 </footer>
 

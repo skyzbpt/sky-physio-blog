@@ -2,7 +2,7 @@
 // 資料來源：data/articles.json
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, esc, plain, loadArticles, logoDataURI, ogCard, shot, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, ldJson } from './lib.mjs';
+import { REPO, BASE, esc, plain, loadArticles, logoDataURI, ogCard, shot, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, ldJson, BYLINE, FOOTER_BYLINE } from './lib.mjs';
 import { SHELL } from './css.mjs';
 
 // 與 lib.mjs 的 CAT_SLUG 保持一致（此處另需 lede 文案）
@@ -236,7 +236,7 @@ function hubPage(hub, arts) {
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 <meta name="keywords" content="${esc([...new Set(keywords)].join(','))}">
-<meta name="author" content="Sky 物理治療師">
+<meta name="author" content="${esc(BYLINE)}">
 <meta name="robots" content="${ROBOTS}">
 <link rel="canonical" href="${url}">
 <link rel="icon" href="../favicon.ico" sizes="any">
@@ -363,7 +363,7 @@ ${ldJson(faqld)}
 
 <footer>
   <div class="foot-in">
-    <div class="t">網站設計｜Sky — © 2026 · <a href="/privacy">隱私權保護聲明</a></div>
+    <div class="t">${esc(FOOTER_BYLINE)} — © 2026 · <a href="/privacy">隱私權保護聲明</a></div>
   </div>
 </footer>
 </body>
