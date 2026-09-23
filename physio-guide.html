@@ -149,7 +149,8 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-in img{width:30px;height:30px}
 .foot-in .t{font-size:.84rem;color:var(--ink-2)}
 .foot-in .t b{display:block;font-family:var(--serif)}
-.foot-in .t a{color:inherit;border-bottom:1px solid var(--line);position:relative}
+/* 連結文字不從中斷開：窄螢幕上寧可整段換到下一行，也不要斷成「隱私權／保護聲明」。 */
+.foot-in .t a{color:inherit;border-bottom:1px solid var(--line);position:relative;white-space:nowrap}
 .foot-in .t a::after{content:"";position:absolute;inset:-15px -6px}
 .foot-in .t a:hover{color:var(--teal-ink);border-color:var(--teal)}
 .foot-in{flex-wrap:wrap}
