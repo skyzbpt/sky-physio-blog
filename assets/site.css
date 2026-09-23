@@ -481,6 +481,13 @@ h1 .en{color:var(--teal-ink)}
 
 /* ---------- Footer ---------- */
 footer{border-top:1px solid var(--line);padding:48px 0 60px;background:linear-gradient(180deg,var(--bg) 0%,#D8ECF8 100%)}
+/* 手機：頁尾底部要讓出回頂端鈕的位置。
+   #back-top 固定在右下角（bottom:32px、44×44），佔住視窗底部 32–76px；
+   原本頁尾底部只留 60px，捲到底時文字正好落在按鈕那一段，
+   375px 會蓋掉「隱私權保護聲明」約 23% 的面積。
+   把底部留到 88px，文字整個在按鈕上方，不受字級或文字長度影響。
+   桌機頁尾文字在左、按鈕在右，本來就不會重疊。 */
+@media (max-width:820px){footer{padding-bottom:88px}}
 .foot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
 .foot-brand{display:flex;align-items:center;gap:12px}
 .foot-brand svg{width:30px;height:30px}
