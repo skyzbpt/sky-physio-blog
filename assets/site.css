@@ -496,7 +496,8 @@ footer{border-top:1px solid var(--line);padding:48px 0 60px;background:linear-gr
 .foot small{font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;color:var(--muted)}
 /* 頁尾政策連結夾在版權句子中，加 padding 會撐壞行高，
    改用 ::after 疊一層透明感應區把可點高度拉到 44px，視覺完全不變。 */
-.foot small a{color:var(--muted);border-bottom:1px solid var(--line);position:relative}
+/* 連結文字不從中斷開：窄螢幕上寧可整段換到下一行，也不要斷成「隱私權／保護聲明」。 */
+.foot small a{color:var(--muted);border-bottom:1px solid var(--line);position:relative;white-space:nowrap}
 .foot small a::after{content:"";position:absolute;inset:-15px -6px}
 .foot small a:hover{color:var(--teal-ink);border-color:var(--teal)}
 
