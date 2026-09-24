@@ -104,12 +104,6 @@
 .post-meta .pv{display:inline-flex;align-items:center;gap:4px;color:var(--muted)}
 .post-meta .pv[hidden]{display:none!important}
 .post-meta .pv svg{width:12px;height:12px;opacity:.7;flex:none}
-
-/* 大頭貼形象照 */
-.about-photo-wrap{display:flex;justify-content:center;padding-top:8px}
-.about-photo{width:168px;height:168px;border-radius:50%;object-fit:cover;object-position:top;
-  box-shadow:0 10px 30px rgba(35,42,80,.18);border:4px solid #fff}
-@media(max-width:600px){.about-photo{width:132px;height:132px}}
 </style>
 </head>
 <body>
@@ -182,21 +176,28 @@
 
 <main>
   <section class="wrap" style="padding-top:56px">
-    <div class="eyebrow">ABOUT・關於</div>
-    <h1 class="sec-title">關於 Sky</h1>
+    <!-- 手機依 DOM 順序單欄堆疊；電腦版（≥1024px）由 grid-template-areas 排成「左照片、右文字」 -->
+    <div class="about-hero">
+      <div class="about-head">
+        <div class="eyebrow">ABOUT・關於</div>
+        <h1 class="sec-title">關於 Sky</h1>
+      </div>
 
-    <div class="about-photo-wrap">
-      <img class="about-photo" id="about-photo" src="assets/sky-photo-360.jpg"
-           decoding="async" alt="Sky 物理治療師">
-    </div>
+      <div class="about-photo-wrap">
+        <img class="about-photo" id="about-photo" src="assets/sky-photo-360.jpg"
+             srcset="assets/sky-photo-360.jpg 360w, assets/sky-photo-680.jpg 680w"
+             sizes="(min-width:1024px) 320px, 168px"
+             decoding="async" alt="Sky 物理治療師">
+      </div>
 
-    <div class="about-quote-wrap" id="about-intro">
-      <p class="about-quote">「治療不只是解除疼痛，<br>而是<em>陪身體想起它原本的樣子</em>。」</p>
+      <div class="about-quote-wrap" id="about-intro">
+        <p class="about-quote">「治療不只是解除疼痛，<br>而是<em>陪身體想起它原本的樣子</em>。」</p>
+      </div>
+
+      <p class="about-lead">我是 <strong>Sky</strong>，一名物理治療師，工作的重心放在三鐵與耐力運動的身體。我做的事橫跨兩邊——</p>
     </div>
 
     <div class="about-bio">
-      <p class="about-lead">我是 <strong>Sky</strong>，一名物理治療師，工作的重心放在三鐵與耐力運動的身體。我做的事橫跨兩邊——</p>
-
       <div class="about-worlds">
         <div class="world">
           <svg class="w-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><line x1="12" y1="1.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22.5"/><line x1="1.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22.5" y2="12"/><circle cx="12" cy="12" r="2.4"/></svg>
@@ -227,19 +228,29 @@
         <span class="phil-label">MY PHILOSOPHY・身體先說的話</span>
         <p>身體很少突然壞掉。游、騎、跑輪流上場，它卻只有一副——換氣偏向的那一邊、踩起來不順的那隻腳，都是它在說話。我在紅繩上先把支撐還給它，讓身體<em>不必每次都得用痛，才把話說完</em>。</p>
       </div>
+    </div>
 
+    <div class="about-blocks">
       <div class="about-block">
         <span class="blk-label">WHAT I SEE・我常遇到的身體</span>
         <p class="blk-lead">三鐵與耐力運動的身體來找我的時候，位置其實很固定——因為游、騎、跑輪流上場，承受的是同一副身體。</p>
         <dl class="blk-list">
-          <dt>下背與骨盆</dt>
-          <dd>騎乘時間一拉長，腰先出聲。可能是坐姿、可能是髖的活動度，也可能只是身體一直找不到穩定的支點。<a class="inline-link" href="/topics/lower-back-pain">下背痛系列</a>與<a class="inline-link" href="/topics/cycling">公路車系列</a>談的多半是這一區。</dd>
-          <dt>肩膀與上肢</dt>
-          <dd>換氣總是偏向同一邊，肩膀就替這個習慣付了帳。旋轉肌袖、肩夾擠、五十肩——種類多，但有脈絡可循。<a class="inline-link" href="/topics/shoulder-pain">肩膀痛系列</a></dd>
-          <dt>顳顎關節</dt>
-          <dd>張嘴會痛、有聲音、甚至卡住。這一區比多數人以為的常見，也和頸部、呼吸連在一起。<a class="inline-link" href="/topics/tmj">顳顎關節系列</a></dd>
-          <dt>說不清從哪天開始的痛</dt>
-          <dd>影像看不出東西，痛卻是真的。疼痛不等於損傷——它是大腦對危險的判斷，所以要處理的往往不只組織。<a class="inline-link" href="/topics/pain-science">疼痛科學系列</a></dd>
+          <div class="blk-item">
+            <dt>下背與骨盆</dt>
+            <dd>騎乘時間一拉長，腰先出聲。可能是坐姿、可能是髖的活動度，也可能只是身體一直找不到穩定的支點。<a class="inline-link" href="/topics/lower-back-pain">下背痛系列</a>與<a class="inline-link" href="/topics/cycling">公路車系列</a>談的多半是這一區。</dd>
+          </div>
+          <div class="blk-item">
+            <dt>肩膀與上肢</dt>
+            <dd>換氣總是偏向同一邊，肩膀就替這個習慣付了帳。旋轉肌袖、肩夾擠、五十肩——種類多，但有脈絡可循。<a class="inline-link" href="/topics/shoulder-pain">肩膀痛系列</a></dd>
+          </div>
+          <div class="blk-item">
+            <dt>顳顎關節</dt>
+            <dd>張嘴會痛、有聲音、甚至卡住。這一區比多數人以為的常見，也和頸部、呼吸連在一起。<a class="inline-link" href="/topics/tmj">顳顎關節系列</a></dd>
+          </div>
+          <div class="blk-item">
+            <dt>說不清從哪天開始的痛</dt>
+            <dd>影像看不出東西，痛卻是真的。疼痛不等於損傷——它是大腦對危險的判斷，所以要處理的往往不只組織。<a class="inline-link" href="/topics/pain-science">疼痛科學系列</a></dd>
+          </div>
         </dl>
       </div>
 
@@ -247,18 +258,30 @@
         <span class="blk-label">HOW I WORK・我手上的工具</span>
         <p class="blk-lead">工具沒有高下，只有適不適合現在的身體。多數時候我會照這個順序想：先讓它有支撐，再讓它鬆開，最後把改變留下來。</p>
         <dl class="blk-list">
-          <dt>紅繩懸吊 Redcord Neurac</dt>
-          <dd>在無痛、不代償的條件下，重新喚醒深層穩定系統。先被支撐，才談出力。<a class="inline-link" href="/topics/redcord">紅繩懸吊系列</a></dd>
-          <dt>肌筋膜徒手與筋膜刀</dt>
-          <dd>筋膜把全身連成一張網，鬆開一處，受益的常常不只那一處。<a class="inline-link" href="/topics/myofascial">高級筋膜技術系列</a></dd>
-          <dt>顱薦椎治療</dt>
-          <dd>大約五克的輕觸，讓長期戒備的神經系統願意鬆手。身體需要安靜的時候，就交給它。<a class="inline-link" href="/topics/craniosacral">顱薦椎系列</a></dd>
-          <dt>運動貼紮</dt>
-          <dd>肌貼、動態貼布、雷可貼布。離開治療室之後，讓身體帶著一點提醒回去。</dd>
-          <dt>數據評估 Vald DynaMo</dt>
-          <dd>把肌力量成數字。手感會騙人，數字比較誠實，也讓「有沒有進步」不必用感覺猜。</dd>
-          <dt>公路車專項分析</dt>
-          <dd>量的是車，看的是人。Bike Fitting 處理疼痛，也處理效率。<a class="inline-link" href="/topics/cycling">公路車系列</a></dd>
+          <div class="blk-item">
+            <dt>紅繩懸吊 Redcord Neurac</dt>
+            <dd>在無痛、不代償的條件下，重新喚醒深層穩定系統。先被支撐，才談出力。<a class="inline-link" href="/topics/redcord">紅繩懸吊系列</a></dd>
+          </div>
+          <div class="blk-item">
+            <dt>肌筋膜徒手與筋膜刀</dt>
+            <dd>筋膜把全身連成一張網，鬆開一處，受益的常常不只那一處。<a class="inline-link" href="/topics/myofascial">高級筋膜技術系列</a></dd>
+          </div>
+          <div class="blk-item">
+            <dt>顱薦椎治療</dt>
+            <dd>大約五克的輕觸，讓長期戒備的神經系統願意鬆手。身體需要安靜的時候，就交給它。<a class="inline-link" href="/topics/craniosacral">顱薦椎系列</a></dd>
+          </div>
+          <div class="blk-item">
+            <dt>運動貼紮</dt>
+            <dd>肌貼、動態貼布、雷可貼布。離開治療室之後，讓身體帶著一點提醒回去。</dd>
+          </div>
+          <div class="blk-item">
+            <dt>數據評估 Vald DynaMo</dt>
+            <dd>把肌力量成數字。手感會騙人，數字比較誠實，也讓「有沒有進步」不必用感覺猜。</dd>
+          </div>
+          <div class="blk-item">
+            <dt>公路車專項分析</dt>
+            <dd>量的是車，看的是人。Bike Fitting 處理疼痛，也處理效率。<a class="inline-link" href="/topics/cycling">公路車系列</a></dd>
+          </div>
         </dl>
       </div>
     </div>
@@ -314,7 +337,7 @@
       </div>
     </div>
 
-    <p style="margin-top:36px;color:var(--muted);max-width:44em">想知道物理治療師的執照與訓練是怎麼一回事、挑治療師該看哪些條件？我把這些整理在<a class="inline-link" href="/physio-guide">物理治療完整指南</a>。</p>
+    <p class="about-more">想知道物理治療師的執照與訓練是怎麼一回事、挑治療師該看哪些條件？我把這些整理在<a class="inline-link" href="/physio-guide">物理治療完整指南</a>。</p>
   </section>
 </main>
 
