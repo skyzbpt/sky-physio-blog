@@ -1,8 +1,21 @@
 # Cloudflare Workers 靜態資產轉址規則
 # 文件：https://developers.cloudflare.com/workers/static-assets/redirects/
 # 上限：靜態規則 2000 條、動態規則 100 條
-#
-# 舊的 /posts/*.html 網址由 Cloudflare 的 html_handling 自動轉址（308），不需在此列出。
+
+# ── 舊的 .html 網址 → 乾淨網址（永久轉址）──────────────────────────────
+# 網站早期的網址帶 .html，Google 至今仍記得並持續回來檢索（Search Console「頁面會重新導向」）。
+# Cloudflare 的 html_handling 雖然會自動把 /x.html 導到 /x，但用的是 307「暫時」轉址，
+# 等於告訴 Google「舊網址之後還會回來」，舊網址的排名訊號也不會確定地移到新網址。
+# 這裡改用 301 明確宣告永久搬家。_redirects 在 html_handling 之前執行，所以會優先生效。
+/index.html          /                301
+/blog.html           /blog            301
+/products.html       /products        301
+/about.html          /about           301
+/services.html       /services        301
+/physio-guide.html   /physio-guide    301
+/privacy.html        /privacy         301
+/posts/:slug.html    /posts/:slug     301
+/topics/:slug.html   /topics/:slug    301
 
 # 「身心靈」分類於 2026-08 改版為「三鐵運動修復」。
 # 該分類原本唯一的文章〈眼淚從筋膜裡來：談情緒能量釋放〉已移入「顱薦椎」分類，

@@ -14,5 +14,10 @@
     "not_found_handling": "404-page"
     // html_handling 預設為 auto-trailing-slash：/posts/foo.html → 服務於乾淨網址 /posts/foo
     // 與我們全站的 canonical／sitemap 一致，無需另外設定。
+    // 注意：html_handling 對 .html 舊網址回的是 307（暫時轉址），
+    // 因此 _redirects 另外寫了 301 規則蓋過它，讓 Google 確定是永久搬家。
+    //
+    // http → https 無法在這裡設定：請在 Cloudflare 儀表板開啟
+    //   SSL/TLS → Edge Certificates → Always Use HTTPS
   }
 }

@@ -359,6 +359,36 @@ if (!existsSync(join(REPO, '_redirects'))) {
   read('tools/build.mjs').includes("'_redirects'")
     ? pass('_redirects 已納入 dist 組裝')
     : fail('_redirects 未複製到 dist');
+
+  // 模擬 Cloudflare 的比對：靜態規則（無 : 與 *）優先，其次依行序比對動態規則
+  const esc = s => s.replace(/[-/\\^$+?.()|[\]{}]/g, '\\$&');
+  const isStatic = ([from]) => !/[:*]/.test(from);
+  const match = path => {
+    const hit = rules.filter(isStatic).find(([from]) => from === path);
+    if (hit) return { to: hit[1], code: hit[2] || '302' };
+    for (const [from, to, code] of rules.filter(r => !isStatic(r))) {
+      const re = new RegExp('^' + from.split('*').map(esc).join('(?<splat>.*)')
+        .replace(/:([A-Za-z]\w*)/g, '(?<$1>[^/]+)') + '$');
+      const m = re.exec(path);
+      if (m) return { to: to.replace(/:([A-Za-z]\w*)/g, (_, k) => m.groups[k] ?? ''), code: code || '302' };
+    }
+    return null;
+  };
+  // sitemap 裡的正式網址本身絕不能被轉址，否則 Search Console 會列為「頁面會重新導向」
+  const cleanPaths = [...sm.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1].replace(BASE, '') || '/');
+  const selfRedirect = cleanPaths.filter(p => match(p));
+  selfRedirect.length === 0
+    ? pass(`sitemap 網址皆不會被轉址 (${cleanPaths.length})`)
+    : fail('sitemap 網址被轉址', selfRedirect.slice(0, 3).join('、'));
+  // 每個正式網址的 .html 舊版本，都要「一步」永久轉址到它——
+  // Cloudflare 的 html_handling 只給 307（暫時），Google 不會把它當成確定的搬家
+  const notPermanent = cleanPaths.filter(p => {
+    const r = match(p === '/' ? '/index.html' : p + '.html');
+    return !r || !/^30[18]$/.test(r.code) || r.to !== p;
+  });
+  notPermanent.length === 0
+    ? pass(`.html 舊網址皆永久轉址到乾淨網址 (${cleanPaths.length})`)
+    : fail('.html 舊網址未永久轉址', `${notPermanent.length} 個，例如 ${notPermanent.slice(0, 3).join('、')}`);
 }
 
 /* ---------- 12. 無殘留的主題頁 ---------- */
