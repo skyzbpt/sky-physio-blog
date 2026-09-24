@@ -141,15 +141,24 @@
     <div class="eyebrow">JOURNAL・文章</div>
     <h1 class="sec-title">把治療室裡的話，寫下來</h1>
     <p class="sec-lead">這裡是我的筆記：關於疼痛、關於騎車、關於那些在治療床上發生的安靜時刻。內容僅供衛教參考，不能取代專業評估。</p>
-    <div class="chips" id="chips"></div>
-    <div class="post-find">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="20" y1="20" x2="16.5" y2="16.5"/></svg>
-      <input id="post-q" type="search" autocomplete="off" placeholder="搜尋全站文章（標題或摘要關鍵字）" aria-label="搜尋全站文章">
-      <button id="post-qx" type="button" hidden>清除</button>
+    <!-- 手機依 DOM 順序堆疊（分類 → 搜尋 → 清單），與原本相同；
+         電腦版（≥1024px）左側是黏性側欄（搜尋在上、分類直列附篇數），右側兩欄卡片 -->
+    <div class="blog-layout">
+      <aside class="blog-side" aria-label="文章分類與搜尋">
+        <div class="side-label">分類</div>
+        <div class="chips" id="chips"></div>
+        <div class="post-find">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="20" y1="20" x2="16.5" y2="16.5"/></svg>
+          <input id="post-q" type="search" autocomplete="off" placeholder="搜尋文章（標題或摘要）" aria-label="搜尋全站文章">
+          <button id="post-qx" type="button" hidden>清除</button>
+        </div>
+      </aside>
+      <div class="blog-main">
+        <div class="post-count" id="post-count"></div>
+        <div class="post-list" id="post-list"></div>
+        <button class="post-more" id="post-more" type="button" hidden>載入更多文章</button>
+      </div>
     </div>
-    <div class="post-count" id="post-count"></div>
-    <div class="post-list" id="post-list"></div>
-    <button class="post-more" id="post-more" type="button" hidden>載入更多文章</button>
     <nav class="topic-links" aria-label="分類專頁">
       <a href="/physio-guide"><strong>物理治療完整指南</strong></a> ・
       分類專頁：
@@ -184,9 +193,15 @@ const PAGE_SIZE = 12;
 let shownCount = PAGE_SIZE;
 let postQuery = "";
 
+/* 篇數只在電腦版側欄顯示（手機的橫向分類列用 CSS 藏起來）；資料載入前先不給數字 */
+function catCount(c){
+  if(!ARTICLES.length) return "";
+  return c==="精選文章" ? FEATURED.filter(id=>ARTICLES.some(a=>a.id===id)).length
+                        : ARTICLES.filter(a=>a.cat===c).length;
+}
 function renderChips(){
   document.getElementById("chips").innerHTML = cats.map(c=>
-    `<button class="chip ${c===currentCat?"on":""}" onclick="setCat('${c}')">${c}</button>`).join("");
+    `<button class="chip ${c===currentCat?"on":""}" onclick="setCat('${c}')" aria-pressed="${c===currentCat}">${c} <span class="n">${catCount(c)}</span></button>`).join("");
 }
 function setCat(c){ currentCat=c; shownCount=PAGE_SIZE; renderChips(); renderList(); }
 function matchedArticles(){
@@ -236,6 +251,7 @@ document.getElementById("post-list").innerHTML = '<div class="post-empty">文章
    一起下載（724KB），為了一張清單多花 639KB——改抓不含內文的精簡索引（85KB）。 */
 fetch('/assets/articles-index.json').then(r=>r.json()).then(data=>{
   ARTICLES = data;
+  renderChips();
   renderList();
 }).catch(()=>{ document.getElementById("post-list").innerHTML = '<div class="post-empty">文章載入失敗，請重新整理頁面。</div>'; });
 </script>
