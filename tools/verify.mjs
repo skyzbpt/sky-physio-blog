@@ -232,6 +232,25 @@ const idx = read('index.html');
     ? pass(`首頁 JSON-LD ${want} 篇 BlogPosting（最新）`)
     : fail('首頁 BlogPosting', got !== want ? `${got} 筆，應為 ${want}` : '列的不是最新的幾篇');
 }
+// schema.org 的 medicalSpecialty 只能掛在 Hospital／MedicalClinic／MedicalOrganization／Physician，
+// 值也只收 MedicalSpecialty 列舉（如 https://schema.org/Physiotherapy）。首頁的 MedicalBusiness
+// 曾填五個中文服務名稱，Ahrefs 一次報 10 個錯誤——服務名稱改放 knowsAbout，這裡守住不再退回去。
+{
+  const SPECIALTY_TYPES = new Set(['Hospital', 'MedicalClinic', 'MedicalOrganization', 'Physician']);
+  const bad = [];
+  for (const b of idx.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+    let data;
+    try { data = JSON.parse(b[1]); } catch (e) { bad.push(`JSON-LD 無法解析：${e.message}`); continue; }
+    for (const node of data['@graph'] || [data]) {
+      if (!('medicalSpecialty' in node)) continue;
+      const types = [].concat(node['@type']);
+      if (!types.some(t => SPECIALTY_TYPES.has(t))) { bad.push(`${types.join('/')} 不能用 medicalSpecialty`); continue; }
+      for (const v of [].concat(node.medicalSpecialty))
+        if (!/^https:\/\/schema\.org\/[A-Z]\w+$/.test(v)) bad.push(`medicalSpecialty 非標準值：${v}`);
+    }
+  }
+  bad.length === 0 ? pass('首頁 JSON-LD 的 medicalSpecialty 用法合法') : fail('首頁 medicalSpecialty', bad.slice(0, 3).join('；'));
+}
 const blogHtml = read('blog.html');
 const blogTopicLinksBlock = blogHtml.match(/<nav class="topic-links"[\s\S]*?<\/nav>/);
 ((blogTopicLinksBlock ? blogTopicLinksBlock[0] : '').match(/href="\/topics\//g) || []).length === cats.length ? pass(`衛教文章頁 ${cats.length} 個分類專頁連結`) : fail('衛教文章頁分類連結');

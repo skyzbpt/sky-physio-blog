@@ -19,8 +19,8 @@ import { SHELL } from './css.mjs';
 //   ],
 //
 // faqs 會一併輸出 FAQPage 結構化資料，有機會在 Google 拿到問答複合式結果。
-// 目前 /topics/redcord（247 字）與 /topics/craniosacral（600 字）明顯比其他
-// 分類單薄（其餘都在 1500 字以上），下面兩欄留著給 Sky 補文案。
+// /topics/redcord 與 /topics/craniosacral 原本只有一段 lede（Ahrefs 報「字數過少」），
+// 2026-09-22 已用 intro／faqs 補上文案；verify.mjs 守住每個主題頁 ≥1000 字。
 const HUBS = [
   { cat: '下背痛', slug: 'lower-back-pain',
     lede: '下背痛是最常見的肌肉骨骼困擾——閃到腰、椎間盤突出、坐骨神經痛、椎管狹窄、薦髂關節……這個系列從疼痛科學到分階段復健，帶你讀懂自己的腰，並知道每個階段該做什麼。' },
