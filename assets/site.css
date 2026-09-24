@@ -316,6 +316,39 @@ h1 .en{color:var(--teal-ink)}
 .post-arrow{font-family:var(--mono);color:var(--line);font-size:1.1rem;justify-self:end}
 .post-row:hover .post-arrow{color:var(--teal-ink)}
 .post-empty{padding:48px 8px;color:var(--muted);font-size:.9rem}
+.side-label,.chip .n{display:none}
+
+/* 電腦版：原本每篇一整列、摘要只佔左半，右側大片空白。
+   改成左側黏性側欄（搜尋在上、分類直列附篇數）＋右側兩欄文章卡片。 */
+@media(min-width:1024px){
+  .blog-layout{display:grid;grid-template-columns:232px minmax(0,1fr);gap:48px;align-items:start}
+  .blog-side{position:sticky;top:96px;display:flex;flex-direction:column}
+  .blog-side .post-find{order:-1;margin-bottom:26px;padding:9px 14px}
+  .blog-side .post-find input{font-size:.88rem}
+  .side-label{display:block;font-family:var(--mono);font-size:.75rem;letter-spacing:.2em;
+    color:var(--muted);margin:0 0 8px 14px}
+  .blog-side .chips{flex-direction:column;gap:2px;margin:0}
+  .blog-side .chip{justify-content:space-between;width:100%;border:none;border-radius:10px;
+    padding:6px 14px;font-family:var(--sans);font-size:.9rem;letter-spacing:.02em}
+  .blog-side .chip:hover{background:rgba(255,255,255,.7)}
+  .blog-side .chip.on{box-shadow:none}
+  .chip .n{display:inline;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+  .chip.on .n{color:rgba(255,255,255,.72)}
+
+  .blog-main .post-count{margin-bottom:14px}
+  .blog-main .post-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;border-top:none}
+  .blog-main .post-row{display:flex;flex-direction:column;gap:0;margin:0;padding:24px 26px 20px;
+    background:var(--bg-soft);border:1px solid var(--line);border-radius:16px;
+    box-shadow:0 2px 10px -4px rgba(35,42,80,.10)}
+  .blog-main .post-row:hover{background:#fff;border-color:var(--teal);transform:translateY(-3px);
+    box-shadow:0 18px 40px -24px rgba(20,154,138,.45),0 2px 10px -4px rgba(35,42,80,.10)}
+  .blog-main .post-meta{flex-direction:row;gap:12px;margin-bottom:12px}
+  .blog-main .post-title{font-size:1.1rem;line-height:1.6}
+  .blog-main .post-ex{max-width:none;margin-top:10px;-webkit-line-clamp:3}
+  .blog-main .post-arrow{margin-top:auto;padding-top:14px;align-self:flex-end;line-height:0}
+  .blog-main .post-empty{grid-column:1/-1}
+}
+@media(min-width:1024px) and (prefers-reduced-motion:reduce){.blog-main .post-row:hover{transform:none}}
 
 /* ---------- 文章內頁（保留樣式，供後台預覽等使用） ---------- */
 .post-page{max-width:720px;margin:0 auto;padding:64px 32px 110px}
