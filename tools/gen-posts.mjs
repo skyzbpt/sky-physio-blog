@@ -457,12 +457,6 @@ export async function genPosts(page) {
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>${BASE}/products</loc>
-    <lastmod>${TODAY}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>${BASE}/about</loc>
     <lastmod>${TODAY}</lastmod>
     <changefreq>monthly</changefreq>

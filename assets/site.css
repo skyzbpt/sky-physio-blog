@@ -1,5 +1,5 @@
 /* Sky 物理治療師 — 全站共用樣式
-   index／blog／about／services／products 五頁共用。
+   index／blog／about／services 四頁共用。
    原本每頁各自內嵌一份幾乎相同的副本；抽成單一檔案後可跨頁快取，也只剩一處要維護。
    文章頁與主題頁有各自的樣式，見 tools/gen-posts.mjs、tools/gen-extras.mjs。 */
 /* ============================================================
