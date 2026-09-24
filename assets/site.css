@@ -365,6 +365,75 @@ h1 .en{color:var(--teal-ink)}
   .sec-lead{margin-bottom:36px}
 }
 
+/* ---------- 服務項目 ----------
+   原本內嵌在 services.html；加上電腦版排版後超過單頁內嵌上限，搬來與產品專區、關於同處。 */
+.service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:40px}
+.service-card{position:relative;overflow:hidden;background:var(--bg-soft);
+  border:1px solid var(--line);border-radius:14px;padding:32px 28px 28px;
+  box-shadow:0 2px 10px -4px rgba(35,42,80,.10)}
+.service-card::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--teal);transform:scaleY(0);transform-origin:top;
+  transition:transform .34s cubic-bezier(.22,.7,.3,1);
+}
+.service-card:hover{transform:translateY(-4px);border-color:var(--teal);
+  box-shadow:0 20px 44px -26px rgba(20,154,138,.4),0 2px 10px -4px rgba(35,42,80,.10)}
+.service-card:hover::before{transform:scaleY(1)}
+.service-card h3{font-family:var(--serif);font-size:1.14rem;font-weight:700;margin-bottom:12px;line-height:1.5}
+.service-card h3 .en{color:var(--teal);font-size:.92rem}
+.service-card p{font-size:.88rem;color:var(--muted);line-height:1.8}
+@media (max-width:900px){.service-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.service-grid{grid-template-columns:1fr}}
+.service-cta{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;
+  background:var(--bg-soft);border:1px solid var(--line);border-radius:16px;padding:28px 34px;margin-bottom:18px}
+.service-cta p{font-family:var(--serif);font-size:1.02rem;color:var(--ink-2);max-width:34em}
+@media(max-width:600px){.service-cta{flex-direction:column;align-items:flex-start}
+  .service-cta .btn{width:100%;justify-content:center}}
+/* 卡片改為直向 flex：「適合」那一列用 margin-top:auto 推到卡片底部 */
+.service-card{display:flex;flex-direction:column;scroll-margin-top:88px}
+.service-card h3 + p{margin-bottom:18px}
+.service-card .svc-fit{margin-top:auto;padding-top:14px;border-top:1px dashed rgba(35,42,80,.14);
+  color:var(--ink-2);line-height:1.75}
+.svc-fit span{display:inline-block;margin-right:8px;padding:0 9px;border-radius:999px;
+  background:var(--teal-soft);color:var(--teal-ink);font-size:.75rem;letter-spacing:.08em;line-height:1.8}
+/* 從選單的子項目（/services#svc-…）點進來時，標出是哪一張 */
+.service-card:target{border-color:var(--teal);box-shadow:0 0 0 3px rgba(20,154,138,.18)}
+.svc-guide{margin:-32px 0 44px;color:var(--muted);max-width:44em}
+.svc-more{margin-top:26px;color:var(--muted);max-width:44em}
+
+/* 頁首的「療程怎麼走」：三步驟直向時間軸，接預約鈕 */
+.svc-flow{margin:0 0 44px;background:var(--bg-soft);border:1px solid var(--line);border-radius:18px;
+  padding:24px 24px 26px;box-shadow:0 4px 20px rgba(35,42,80,.06)}
+.flow-label{font-family:var(--mono);font-size:.75rem;letter-spacing:.2em;color:var(--teal-ink);margin-bottom:18px}
+.flow-steps{list-style:none;counter-reset:flow;margin-bottom:22px}
+.flow-steps li{counter-increment:flow;position:relative;padding:0 0 18px 44px}
+.flow-steps li:last-child{padding-bottom:0}
+.flow-steps li::before{content:counter(flow);position:absolute;left:0;top:0;width:28px;height:28px;
+  border-radius:50%;background:#C5E2F6;color:var(--ink);font-family:var(--mono);font-size:.8rem;
+  display:flex;align-items:center;justify-content:center}
+.flow-steps li:not(:last-child)::after{content:"";position:absolute;left:13.5px;top:32px;bottom:4px;
+  width:1px;background:var(--line)}
+.flow-steps b{display:block;font-family:var(--serif);font-size:1rem;line-height:1.6;color:var(--ink)}
+.flow-steps span{display:block;font-size:.86rem;color:var(--muted);line-height:1.75}
+.svc-flow .btn{width:100%;justify-content:center}
+
+/* 電腦版：頁首左文右圖，填掉原本右半邊的空白；卡片與底部預約區放大一級 */
+@media(min-width:1024px){
+  .svc-hero{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:72px;align-items:center;margin-bottom:64px}
+  .svc-hero .sec-lead{margin-bottom:20px}
+  .svc-guide{margin:0}
+  .svc-flow{margin:0;padding:30px 30px 28px}
+  .service-grid{gap:24px;margin-bottom:48px}
+  .service-card{padding:34px 30px 26px;border-radius:16px}
+  .service-card h3{font-size:1.2rem}
+  .service-card p{font-size:.9rem}
+  /* 「適合」固定兩行高：有的一行、有的兩行，推到底之後同一排的虛線才會齊 */
+  .service-card .svc-fit{min-height:calc(14px + 2 * 1.75em)}
+  .service-cta{padding:36px 48px;border-radius:20px;
+    background:linear-gradient(120deg,var(--bg-soft) 0%,#E6F3FC 55%,#D2E8F8 100%)}
+  .service-cta p{font-size:1.12rem}
+}
+
 /* 產品專區 */
 .product-card{display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap;
   background:var(--bg-soft);border:1px solid var(--line);border-radius:16px;padding:30px 36px;

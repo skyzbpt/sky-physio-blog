@@ -116,33 +116,6 @@
 .post-meta .pv{display:inline-flex;align-items:center;gap:4px;color:var(--muted)}
 .post-meta .pv[hidden]{display:none!important}
 .post-meta .pv svg{width:12px;height:12px;opacity:.7;flex:none}
-
-
-
-
-/* ---------- 服務項目 ---------- */
-.service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:40px}
-.service-card{position:relative;overflow:hidden;background:var(--bg-soft);
-  border:1px solid var(--line);border-radius:14px;padding:32px 28px 28px;
-  box-shadow:0 2px 10px -4px rgba(35,42,80,.10)}
-.service-card::before{
-  content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
-  background:var(--teal);transform:scaleY(0);transform-origin:top;
-  transition:transform .34s cubic-bezier(.22,.7,.3,1);
-}
-.service-card:hover{transform:translateY(-4px);border-color:var(--teal);
-  box-shadow:0 20px 44px -26px rgba(20,154,138,.4),0 2px 10px -4px rgba(35,42,80,.10)}
-.service-card:hover::before{transform:scaleY(1)}
-.service-card h3{font-family:var(--serif);font-size:1.14rem;font-weight:700;margin-bottom:12px;line-height:1.5}
-.service-card h3 .en{color:var(--teal);font-size:.92rem}
-.service-card p{font-size:.88rem;color:var(--muted);line-height:1.8}
-@media (max-width:900px){.service-grid{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:600px){.service-grid{grid-template-columns:1fr}}
-.service-cta{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;
-  background:var(--bg-soft);border:1px solid var(--line);border-radius:16px;padding:28px 34px;margin-bottom:18px}
-.service-cta p{font-family:var(--serif);font-size:1.02rem;color:var(--ink-2);max-width:34em}
-@media(max-width:600px){.service-cta{flex-direction:column;align-items:flex-start}
-  .service-cta .btn{width:100%;justify-content:center}}
 </style>
 </head>
 <body>
@@ -215,62 +188,84 @@
 
 <main>
   <section class="wrap" style="padding-top:56px">
-    <div class="eyebrow">SERVICES・服務項目</div>
-    <h1 class="sec-title">從評估到訓練，一次說清楚</h1>
-    <p class="sec-lead">每個人的身體都有自己的故事。以下是我目前提供的服務項目——實際會用到哪些方法，會依評估結果與你討論後再決定。詳細療程規劃與費用，請於預約時直接洽詢。</p>
-    <p style="margin:-32px 0 44px;color:var(--muted);max-width:44em">沒做過物理治療、不知道該從哪一項開始？<a class="inline-link" href="/physio-guide">物理治療完整指南</a>裡寫了初診會發生什麼、自費與健保復健的差異，以及挑選治療師可以看哪些條件。</p>
+    <div class="svc-hero">
+      <div class="svc-hero-text">
+        <div class="eyebrow">SERVICES・服務項目</div>
+        <h1 class="sec-title">從評估到訓練，一次說清楚</h1>
+        <p class="sec-lead">每個人的身體都有自己的故事。以下是我目前提供的服務項目——實際會用到哪些方法，會依評估結果與你討論後再決定。詳細療程規劃與費用，請於預約時直接洽詢。</p>
+        <p class="svc-guide">沒做過物理治療、不知道該從哪一項開始？<a class="inline-link" href="/physio-guide">物理治療完整指南</a>裡寫了初診會發生什麼、自費與健保復健的差異，以及挑選治療師可以看哪些條件。</p>
+      </div>
+      <aside class="svc-flow" aria-label="療程怎麼走">
+        <div class="flow-label">HOW IT WORKS・療程怎麼走</div>
+        <ol class="flow-steps">
+          <li><b>預約初診評估</b><span>問診、姿勢與動作評估，先找出根源。</span></li>
+          <li><b>一起決定方法</b><span>依評估結果討論適合的治療方式。</span></li>
+          <li><b>治療與訓練</b><span>照著計畫進行，把改變一步步留下來。</span></li>
+        </ol>
+        <a class="btn teal" href="https://calendar.app.google/wdsPTQDhF2YCigPu6" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>預約初診評估</a>
+      </aside>
+    </div>
     <div class="service-grid">
       <div class="service-card" id="svc-assessment">
         <div class="field-no">01</div>
         <h3>初診評估</h3>
-        <p>第一次到診，透過問診、姿勢與動作評估，找出疼痛或功能受限背後的根源，並規劃後續治療方向。適合第一次就診、想先了解狀況的人。</p>
+        <p>第一次到診，透過問診、姿勢與動作評估，找出疼痛或功能受限背後的根源，並規劃後續治療方向。</p>
+        <p class="svc-fit"><span>適合</span>第一次就診、想先了解狀況的人</p>
       </div>
       <div class="service-card" id="svc-manual-therapy">
         <div class="field-no">02</div>
         <h3>徒手治療與疼痛治療</h3>
-        <p>結合肌筋膜、關節鬆動與現代疼痛科學，處理急性拉傷到慢性疼痛。適合各種原因造成的痠痛、僵硬與活動度受限。</p>
+        <p>結合肌筋膜、關節鬆動與現代疼痛科學，處理急性拉傷到慢性疼痛。</p>
+        <p class="svc-fit"><span>適合</span>各種原因造成的痠痛、僵硬與活動度受限</p>
       </div>
       <div class="service-card" id="svc-redcord">
         <div class="field-no">03</div>
         <h3>紅繩懸吊訓練<br><span class="en">Redcord Neurac</span></h3>
-        <p>以紅繩懸吊系統重建深層核心穩定與動作控制，是三鐵與耐力運動傷害修復的核心方法。適合反覆受傷、動作代償明顯的運動族群。</p>
+        <p>以紅繩懸吊系統重建深層核心穩定與動作控制，是三鐵與耐力運動傷害修復的核心方法。</p>
+        <p class="svc-fit"><span>適合</span>反覆受傷、動作代償明顯的運動族群</p>
       </div>
       <div class="service-card" id="svc-bike-fitting">
         <div class="field-no">04</div>
         <h3>Bike Fitting<br>公路車體態調校</h3>
-        <p>結合物理治療評估與騎乘姿勢分析，從接觸點、關節角度到動作品質全面檢視，處理騎乘中的疼痛並改善功率流失。適合公路車、鐵人三項選手。</p>
+        <p>結合物理治療評估與騎乘姿勢分析，從接觸點、關節角度到動作品質全面檢視，處理騎乘中的疼痛並改善功率流失。</p>
+        <p class="svc-fit"><span>適合</span>公路車、鐵人三項選手</p>
       </div>
       <div class="service-card" id="svc-craniosacral">
         <div class="field-no">05</div>
         <h3>顱薦椎治療</h3>
-        <p>大約五克的輕觸，協助長期處於緊繃狀態的神經系統放鬆下來。適合自律神經失調、慢性壓力或身心緊繃的族群。</p>
+        <p>大約五克的輕觸，協助長期處於緊繃狀態的神經系統放鬆下來。</p>
+        <p class="svc-fit"><span>適合</span>自律神經失調、慢性壓力或身心緊繃的族群</p>
       </div>
       <div class="service-card" id="svc-myofascial">
         <div class="field-no">06</div>
         <h3>肌筋膜放鬆<br>筋膜刀 & 筋膜鏈訓練</h3>
-        <p>以筋膜刀等工具處理筋膜沾黏，搭配筋膜鏈訓練強化整體動力鏈。適合肌肉緊繃、活動卡卡或姿勢代償的人。</p>
+        <p>以筋膜刀等工具處理筋膜沾黏，搭配筋膜鏈訓練強化整體動力鏈。</p>
+        <p class="svc-fit"><span>適合</span>肌肉緊繃、活動卡卡或姿勢代償的人</p>
       </div>
       <div class="service-card" id="svc-tmj">
         <div class="field-no">07</div>
         <h3>顳顎關節治療</h3>
-        <p>針對張口障礙、咬合不正、下巴或太陽穴周圍疼痛，進行專項評估與徒手治療。適合有咀嚼疼痛、磨牙或頭痛困擾的人。</p>
+        <p>針對張口障礙、咬合不正、下巴或太陽穴周圍疼痛，進行專項評估與徒手治療。</p>
+        <p class="svc-fit"><span>適合</span>有咀嚼疼痛、磨牙或頭痛困擾的人</p>
       </div>
       <div class="service-card" id="svc-taping">
         <div class="field-no">08</div>
         <h3>運動貼紮</h3>
-        <p>依訓練或比賽需求，搭配肌貼、動態貼布或雷可貼布，提供關節與肌肉額外的保護與支持。適合訓練期或賽前的運動員。</p>
+        <p>依訓練或比賽需求，搭配肌貼、動態貼布或雷可貼布，提供關節與肌肉額外的保護與支持。</p>
+        <p class="svc-fit"><span>適合</span>訓練期或賽前的運動員</p>
       </div>
       <div class="service-card" id="svc-ai-assessment">
         <div class="field-no">09</div>
         <h3>AI 科學化動作評估<br><span class="en">Vald DynaMo</span></h3>
-        <p>以 Vald DynaMo 儀器量化肌力與動作表現，用具體數據追蹤治療與訓練的進展，而不只是憑感覺判斷。適合想要客觀掌握恢復進度的人。</p>
+        <p>以 Vald DynaMo 儀器量化肌力與動作表現，用具體數據追蹤治療與訓練的進展，而不只是憑感覺判斷。</p>
+        <p class="svc-fit"><span>適合</span>想要客觀掌握恢復進度的人</p>
       </div>
     </div>
     <div class="service-cta">
       <p>想先了解自己的狀況適合哪一種治療方式？直接預約評估，我們見面聊。</p>
       <button class="btn teal" onclick="window.open('https://calendar.app.google/wdsPTQDhF2YCigPu6','_blank')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>預約評估</button>
     </div>
-    <p style="margin-top:26px;color:var(--muted);max-width:44em">治療與訓練之外，恢復也仰賴日常的營養補給——我自己實際在用、也放心推薦的補充品，整理在<a class="inline-link" href="/products">產品專區</a>。</p>
+    <p class="svc-more">治療與訓練之外，恢復也仰賴日常的營養補給——我自己實際在用、也放心推薦的補充品，整理在<a class="inline-link" href="/products">產品專區</a>。</p>
     <p class="product-note">＊實際適用的治療方式會依評估結果調整；詳細療程規劃與費用請洽詢預約。物理治療為醫療行為，若有特殊病史或正在接受其他治療，請於預約時告知。</p>
   </section>
 </main>
