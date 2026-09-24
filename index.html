@@ -1143,12 +1143,31 @@ function toggleMenu(){
   const open=$("#nav-links").classList.toggle("open");
   $("#menu-btn").setAttribute("aria-expanded", open);
   document.body.style.overflow=open?'hidden':'';
+  if(!open) collapseSubmenus();
 }
 function closeMenu(){
   $("#nav-links").classList.remove("open");
   $("#menu-btn").setAttribute("aria-expanded","false");
   document.body.style.overflow='';
+  collapseSubmenus();
 }
+/* 手機選單的子選單預設收合，點標題才展開（一次只開一組）——與 assets/nav.js 相同。
+   用捕獲階段攔截：「專業領域」標題有 inline onclick 會直接捲動並關選單，得在它之前擋下。 */
+function collapseSubmenus(except){
+  document.querySelectorAll('#nav-links .nav-item.sub-open').forEach(it=>{
+    if(it===except) return;
+    it.classList.remove('sub-open');
+    it.querySelector('.nav-link').setAttribute('aria-expanded','false');
+  });
+}
+document.addEventListener('click', e=>{
+  const head=e.target instanceof Element && e.target.closest('#nav-links .nav-item > .nav-link');
+  if(!head || !matchMedia('(max-width:820px)').matches) return;
+  e.preventDefault(); e.stopPropagation();
+  const item=head.parentElement, open=item.classList.toggle('sub-open');
+  head.setAttribute('aria-expanded', open);
+  collapseSubmenus(item);
+}, true);
 /* 點選單以外的地方關閉手機選單 */
 document.addEventListener('click', e=>{
   const nl=$("#nav-links");
