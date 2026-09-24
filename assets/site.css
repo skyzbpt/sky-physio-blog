@@ -237,8 +237,39 @@ h1 .en{color:var(--teal-ink)}
   .hero-roles{margin-bottom:26px}
 }
 
+/* 專業認證列：手機不顯示（首屏留給標題與照片） */
+.hero-creds{display:none}
+@media(min-width:1024px){
+  #hero{padding-bottom:48px}
+  .hero-creds{display:flex;align-items:center;justify-content:space-between;gap:12px 28px;flex-wrap:wrap;
+    list-style:none;margin-top:64px;padding:18px 28px;border-radius:16px;
+    background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.9);
+    box-shadow:0 2px 12px -6px rgba(35,42,80,.14)}
+  .hero-creds li{display:flex;align-items:center;gap:9px;font-size:.88rem;color:var(--ink-2);white-space:nowrap}
+  .hero-creds li:not(.more)::before{content:"";flex:none;width:18px;height:18px;border-radius:50%;
+    background:var(--teal-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230C7365' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/11px no-repeat}
+  .hero-creds .more a{font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;color:var(--teal-ink);
+    border-bottom:1px solid var(--teal);position:relative}
+  .hero-creds .more a::after{content:"";position:absolute;inset:-15px -6px}
+  .hero-creds .more a:hover{color:var(--ink);border-color:var(--ink)}
+}
+
 /* ---------- 領域卡片 ---------- */
-#fields{background:linear-gradient(180deg,var(--bg) 0%,#CEE7F8 100%)}
+/* 漸層收回底色：原本停在 #CEE7F8，下一段（聯絡）是 --bg，交界會出現一條硬邊 */
+#fields{background:linear-gradient(180deg,var(--bg) 0%,#CEE7F8 55%,var(--bg) 100%)}
+.fields-links{margin-top:24px;display:flex;gap:28px;flex-wrap:wrap}
+/* 電腦版：兩個延伸連結移到標題右側，與導言底部對齊 */
+@media(min-width:1024px){
+  #fields>.wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:48px;
+    grid-template-areas:"eyebrow ." "title ." "lead links" "grid grid"}
+  #fields>.wrap>.eyebrow{grid-area:eyebrow}
+  #fields>.wrap>.sec-title{grid-area:title}
+  #fields>.wrap>.sec-lead{grid-area:lead}
+  #fields>.wrap>.field-grid{grid-area:grid}
+  #fields .sec-lead{max-width:38em}
+  #fields .fields-links{grid-area:links;align-self:end;margin:0 0 48px;flex-direction:column;align-items:flex-end;gap:10px}
+  .field-grid{gap:24px}
+}
 .field-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 .field-card{position:relative;overflow:hidden;background:var(--bg-soft);
   border:1px solid var(--line);border-radius:12px;padding:36px 32px 32px;}

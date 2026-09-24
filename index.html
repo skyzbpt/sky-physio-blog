@@ -676,6 +676,8 @@ textarea#af-body.adm-input{
              alt="Sky 物理治療師">
       </div>
     </div>
+    <!-- 專業認證列：只在電腦版顯示，內容由下方腳本取 SITE.certs 前三項 -->
+    <ul class="hero-creds" id="hero-creds" aria-label="專業認證"></ul>
   </section>
 
   <section id="fields">
@@ -684,7 +686,7 @@ textarea#af-body.adm-input{
       <h2 class="sec-title rv">四條路，走向同一個身體</h2>
       <p class="sec-lead rv">從三鐵訓練後的修復，到紅繩上的深層穩定；從車架上的毫米調校，到一次五克的輕觸——徒手治療的方法不同，目的相同：讓身體回到它原本的樣子。</p>
       <div class="field-grid" id="field-grid"></div>
-      <p class="rv" style="margin-top:24px;display:flex;gap:28px;flex-wrap:wrap"><a class="nav-link" href="/services">查看完整服務項目 →</a><a class="nav-link" href="https://www.markettaiwan.com.tw/SKYDPT" target="_blank" rel="noopener sponsored nofollow">恢復期的營養補充・產品專區 →</a></p>
+      <p class="fields-links rv"><a class="nav-link" href="/services">查看完整服務項目 →</a><a class="nav-link" href="https://www.markettaiwan.com.tw/SKYDPT" target="_blank" rel="noopener sponsored nofollow">恢復期的營養補充・產品專區 →</a></p>
     </div>
   </section>
 
@@ -998,6 +1000,10 @@ $("#field-grid").innerHTML = FIELDS.map(f => `
     <p>${f.desc}</p>
     <div class="field-tags">${f.tags.map(t=>`<span>${t}</span>`).join("")}</div>
   </div>`).join("");
+
+/* ---- 渲染：首頁專業認證列（電腦版才顯示；前三項＋連結排成一列，全部見 /about#certs） ---- */
+if($("#hero-creds")) $("#hero-creds").innerHTML = SITE.certs.slice(0,3).map(s=>`<li>${s}</li>`).join("")
+  + `<li class="more"><a href="/about#certs">全部 ${SITE.certs.length} 項證照 →</a></li>`;
 
 /* ---- 渲染：關於（獨立頁 about.html 已接手公開頁面；SITE 仍保留供 llms.txt／後台使用） ---- */
 if($("#about-skills")) $("#about-skills").innerHTML  = SITE.specialties.map(s=>`<li>${s}</li>`).join("");
