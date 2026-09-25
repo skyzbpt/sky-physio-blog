@@ -95,6 +95,8 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 /* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
 .reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
 .reading i{display:block;height:100%;width:0;background:var(--teal)}
+/* 側欄預約卡：只在 ≥1140px 的右側欄顯示（見下方 media query） */
+.side-cta{display:none}
 /* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
 .toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
 .toc>summary{cursor:pointer;font-family:var(--mono);font-size:.75rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
@@ -132,12 +134,31 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 @media(min-width:1140px){
   .post-page{max-width:1160px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center;padding:60px 64px 76px}
   .post-page>*{grid-column:1;min-width:0}
-  .post-page>.toc{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
-    margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0;
+  .post-page>.post-side{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
     max-height:calc(100vh - 130px);overflow-y:auto}
-  .post-page>.toc>summary{pointer-events:none;margin-bottom:2px}
-  .post-page>.toc>summary::after{content:none}
+  .post-side>.toc{margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0}
+  .post-side>.toc>summary{pointer-events:none;margin-bottom:2px}
+  .post-side>.toc>summary::after{content:none}
+  .side-cta{display:block;margin-top:28px;padding:20px 20px 16px;border:1px solid var(--line);border-radius:14px;
+    background:rgba(255,255,255,.7);box-shadow:0 2px 12px -6px rgba(35,42,80,.14)}
+  .side-cta:first-child{margin-top:0}
+  .side-cta .t{font-family:var(--serif);font-weight:700;font-size:1rem;color:var(--ink);margin-bottom:6px}
+  .side-cta p{font-size:.84rem;line-height:1.8;color:var(--muted);margin-bottom:14px}
+  .side-cta .btn{width:100%;justify-content:center}
+  .side-hub{display:flex;align-items:center;justify-content:center;min-height:44px;margin-top:6px;
+    font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;color:var(--teal-ink)}
+  .side-hub:hover{color:var(--ink)}
 }
+/* 延伸閱讀（≥1024px）：一列一篇改成兩欄卡片，分類專頁連結橫跨整列 */
+@media(min-width:1024px){
+  .more{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .more h3{grid-column:1/-1;margin-bottom:6px}
+  .more a{padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.55);line-height:1.6}
+  .more a::before{display:none}
+  .more a:hover{border-color:var(--teal);background:#fff}
+  .more a.more-hub{grid-column:1/-1;text-align:center}
+}
+@media(min-width:1024px) and (prefers-reduced-motion:no-preference){.more a:hover{transform:translateY(-2px)}}
 @media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
