@@ -160,6 +160,59 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .foot-legal a:hover{color:var(--teal-ink);border-color:var(--teal)}
 a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
 @media(max-width:480px){.post-page{padding:40px 22px 72px}}
+.post-body h2[id]{scroll-margin-top:88px}
+.guide-toc{display:none}
+/* 電腦版：原本 720px 的單欄置中，兩側大片空白。右側加黏性目錄；
+   「能處理哪些問題」改兩欄卡片、「第一次」改時間軸、「7 個標準」改編號圓點、
+   「自費 vs 健保」並排對照、常見問題改卡片。手機一律維持原本的單欄文章。 */
+@media(min-width:1024px){
+  .guide-wrap{max-width:1120px;margin:0 auto;padding:0 32px;display:grid;
+    grid-template-columns:minmax(0,720px) 232px;gap:72px;justify-content:center;align-items:start}
+  .post-page{max-width:none;margin:0;padding:56px 0 96px}
+  .guide-toc{display:block;position:sticky;top:96px;padding-top:56px}
+  .toc-label{font-family:var(--mono);font-size:.75rem;letter-spacing:.2em;color:var(--muted);margin-bottom:12px}
+  .guide-toc ol{list-style:none;counter-reset:toc;border-left:1px solid var(--line);margin-bottom:24px}
+  .guide-toc li{counter-increment:toc}
+  .guide-toc ol a{display:flex;gap:10px;margin-left:-1px;padding:7px 0 7px 16px;border-left:2px solid transparent;
+    font-size:.86rem;line-height:1.6;color:var(--ink-2)}
+  .guide-toc ol a::before{content:counter(toc,decimal-leading-zero);flex:none;padding-top:2px;
+    font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+  .guide-toc ol a:hover{color:var(--teal-ink)}
+  .guide-toc ol a[aria-current]{border-left-color:var(--teal);color:var(--teal-ink);font-weight:700}
+
+  .post-body .guide-cards{list-style:none;margin:0 0 1.7em;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .guide-cards li{margin:0;padding:16px 18px;background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;
+    font-size:.94rem;line-height:1.85}
+  .guide-cards li strong{display:block;margin-bottom:4px;font-size:1rem}
+
+  .post-body .guide-steps{list-style:none;margin:0 0 1.7em;counter-reset:step}
+  .guide-steps li{counter-increment:step;position:relative;margin:0;padding:0 0 18px 48px}
+  .guide-steps li:last-child{padding-bottom:0}
+  .guide-steps li::before{content:counter(step);position:absolute;left:0;top:2px;width:30px;height:30px;border-radius:50%;
+    background:#C5E2F6;color:var(--ink);font-family:var(--mono);font-size:.82rem;display:flex;align-items:center;justify-content:center}
+  .guide-steps li:not(:last-child)::after{content:"";position:absolute;left:14.5px;top:36px;bottom:4px;width:1px;background:var(--line)}
+  .guide-steps li strong{display:block}
+
+  .post-body .guide-criteria{list-style:none;margin:0 0 1.7em;counter-reset:crit}
+  .guide-criteria li{counter-increment:crit;position:relative;margin:0 0 10px;padding:16px 20px 16px 64px;
+    background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;font-size:.96rem;line-height:1.9}
+  .guide-criteria li::before{content:counter(crit);position:absolute;left:18px;top:16px;width:30px;height:30px;border-radius:50%;
+    background:var(--teal-ink);color:#fff;font-family:var(--mono);font-size:.82rem;display:flex;align-items:center;justify-content:center}
+  .guide-criteria li strong{display:block;margin-bottom:2px}
+
+  .guide-compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:1.7em}
+  .post-body .guide-compare p{margin:0;padding:20px 22px;background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;
+    font-size:.96rem;line-height:1.95}
+  .guide-compare p:last-child{border-color:var(--teal);box-shadow:0 0 0 3px rgba(20,154,138,.08)}
+  .guide-compare p strong{display:block;margin-bottom:6px;font-size:1.04rem}
+
+  /* 標題獨立成一行時，後面的全形冒號會掉到下一行開頭，電腦版藏起來（手機仍照原樣顯示） */
+  .guide-cards .sep,.guide-steps .sep,.guide-criteria .sep,.guide-compare .sep{display:none}
+
+  .faq-item{padding:18px 22px;margin-bottom:12px;background:var(--bg-soft);border:1px solid var(--line);border-radius:12px}
+  .post-body .faq-item h3{margin:0 0 .4em}
+  .post-body .faq-item p{margin:0;font-size:.98rem}
+}
 </style>
 </head>
 <body>
@@ -178,6 +231,8 @@ a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6
 </header>
 
 <main>
+  <!-- 電腦版（≥1024px）：左邊文章、右邊黏性目錄；手機只有文章，版面與原本相同 -->
+  <div class="guide-wrap">
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › 物理治療完整指南</nav>
     <div class="meta"><span>2026-07-07</span><span class="cat">完整指南</span><span>約 8 分鐘</span></div>
@@ -186,63 +241,71 @@ a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6
 
     <div class="post-body">
 
-      <h2>物理治療是什麼？</h2>
+      <h2 id="g-what">物理治療是什麼？</h2>
       <p>物理治療（Physical Therapy / Physiotherapy）是一門以<strong>動作科學</strong>為基礎的醫療專業。它不開藥、不開刀，而是透過<strong>評估、徒手治療、運動治療、儀器與衛教</strong>，處理疼痛、受傷與動作功能的問題——幫你恢復活動能力、回到生活與運動場上，並預防下一次受傷。</p>
       <p>現代物理治療的核心觀念是：<strong>身體是可以被訓練與重建的</strong>。多數常見的疼痛（下背痛、肩膀痛、運動傷害）都能透過正確的評估與漸進的運動治療改善，而不是只能依賴止痛藥或被動地「做電療、熱敷」。</p>
       <blockquote>物理治療的目標，不只是「不痛」，而是讓你的身體重新變得能用、耐用、值得信賴。</blockquote>
 
-      <h2>物理治療師是誰？受過什麼訓練？</h2>
+      <h2 id="g-who">物理治療師是誰？受過什麼訓練？</h2>
       <p>在台灣，<strong>物理治療師（Physical Therapist，簡稱 PT）是法定醫事人員</strong>：必須完成大專院校的物理治療專業教育（解剖、生理、動作科學、臨床實習等），通過<strong>國家高等考試</strong>取得執照，並依《物理治療師法》執業。</p>
       <p>這也是物理治療師與一般推拿、按摩最大的差別——物理治療師會先做<strong>系統性的評估</strong>找出問題的根源（是關節、肌肉、神經，還是動作模式與生活型態？），再依據醫學實證設計治療與運動計畫，而不是每個人都給同一套被動放鬆。</p>
       <p>許多物理治療師還會進修國際認證的專項技術，例如紅繩懸吊（Redcord Neurac）、徒手治療、運動貼紮、顱薦椎治療、自行車 Bike Fitting 等，深化特定領域的專業。</p>
 
-      <h2>物理治療能處理哪些問題？</h2>
-      <ul>
-        <li><strong>肌肉骨骼疼痛</strong>：<a href="/topics/lower-back-pain">下背痛</a>、<a href="/topics/shoulder-pain">肩膀痛</a>、頸痛、膝痛、閃到腰、五十肩、坐骨神經痛</li>
-        <li><strong>運動傷害</strong>：扭傷拉傷、肌腱問題、反覆舊傷，以及重返運動的訓練</li>
-        <li><strong>術後恢復</strong>：骨科手術後的活動度與肌力重建</li>
-        <li><strong>動作與姿勢問題</strong>：久坐痠痛、動作代償、核心與穩定訓練</li>
-        <li><strong>運動表現</strong>：例如<a href="/topics/cycling">公路車 Bike Fitting</a> 與專項體能</li>
-        <li><strong>疼痛管理</strong>：以<a href="/topics/pain-science">現代疼痛科學</a>處理慢性疼痛，重建對身體的信心</li>
+      <h2 id="g-conditions">物理治療能處理哪些問題？</h2>
+      <ul class="guide-cards">
+        <li><strong>肌肉骨骼疼痛</strong><span class="sep">：</span><a href="/topics/lower-back-pain">下背痛</a>、<a href="/topics/shoulder-pain">肩膀痛</a>、頸痛、膝痛、閃到腰、五十肩、坐骨神經痛</li>
+        <li><strong>運動傷害</strong><span class="sep">：</span>扭傷拉傷、肌腱問題、反覆舊傷，以及重返運動的訓練</li>
+        <li><strong>術後恢復</strong><span class="sep">：</span>骨科手術後的活動度與肌力重建</li>
+        <li><strong>動作與姿勢問題</strong><span class="sep">：</span>久坐痠痛、動作代償、核心與穩定訓練</li>
+        <li><strong>運動表現</strong><span class="sep">：</span>例如<a href="/topics/cycling">公路車 Bike Fitting</a> 與專項體能</li>
+        <li><strong>疼痛管理</strong><span class="sep">：</span>以<a href="/topics/pain-science">現代疼痛科學</a>處理慢性疼痛，重建對身體的信心</li>
       </ul>
 
-      <h2>第一次做物理治療，會發生什麼？</h2>
-      <ol>
-        <li><strong>問診</strong>：了解你的症狀史、生活型態、工作與運動需求、你的目標</li>
-        <li><strong>身體評估</strong>：動作測試、關節活動度、肌力與神經檢查，找出問題根源</li>
-        <li><strong>說明與計畫</strong>：用聽得懂的話解釋評估發現，一起訂出治療計畫與目標</li>
-        <li><strong>開始治療</strong>：依需求組合徒手治療、運動治療與儀器</li>
-        <li><strong>運動處方</strong>：給你回家的練習——真正的改變，一半發生在治療室外</li>
+      <h2 id="g-first">第一次做物理治療，會發生什麼？</h2>
+      <ol class="guide-steps">
+        <li><strong>問診</strong><span class="sep">：</span>了解你的症狀史、生活型態、工作與運動需求、你的目標</li>
+        <li><strong>身體評估</strong><span class="sep">：</span>動作測試、關節活動度、肌力與神經檢查，找出問題根源</li>
+        <li><strong>說明與計畫</strong><span class="sep">：</span>用聽得懂的話解釋評估發現，一起訂出治療計畫與目標</li>
+        <li><strong>開始治療</strong><span class="sep">：</span>依需求組合徒手治療、運動治療與儀器</li>
+        <li><strong>運動處方</strong><span class="sep">：</span>給你回家的練習——真正的改變，一半發生在治療室外</li>
       </ol>
       <p>一次完整的自費物理治療通常是<strong>一對一 40–60 分鐘</strong>。好的治療師會讓你在第一次結束時，就對「我的問題是什麼、接下來怎麼走」有清楚的圖像。</p>
 
-      <h2>如何挑選值得推薦的物理治療師？7 個標準</h2>
+      <h2 id="g-choose">如何挑選值得推薦的物理治療師？7 個標準</h2>
       <p>「有沒有推薦的物理治療師？」是我最常被問的問題之一。與其給一個名字，我更想給你一把尺——用這 7 個標準，你在任何城市都能自己挑出好的物理治療師：</p>
-      <ol>
-        <li><strong>有執照，也持續進修</strong>：國家高考執照是底線；持續進修專項認證（徒手、紅繩、運動醫學等）代表他還在成長。</li>
-        <li><strong>專長跟你的問題對口</strong>：下背痛找擅長脊椎的、運動傷害找懂你這項運動的。就像醫師有分科，物理治療師也有專長領域。</li>
-        <li><strong>願意花時間評估</strong>：第一次見面就直接上儀器、沒有動作測試——這是個警訊。沒有評估，就沒有對症的治療。</li>
-        <li><strong>解釋得讓你聽得懂</strong>：能把「你為什麼會痛」講成人話的治療師，通常也更知道自己在做什麼。</li>
-        <li><strong>以主動運動為核心</strong>：被動放鬆（按摩、電熱療）可以是配角，但實證上真正讓身體變強、不復發的，是漸進的主動訓練。</li>
-        <li><strong>設定目標、追蹤進度</strong>：好的治療有方向感——這週比上週能做什麼？什麼時候可以回球場？</li>
-        <li><strong>你感覺被聽見</strong>：疼痛的經驗是主觀的。一位會聆聽、尊重你的步調的治療師，治療效果通常也更好——這是有研究支持的。</li>
+      <ol class="guide-criteria">
+        <li><strong>有執照，也持續進修</strong><span class="sep">：</span>國家高考執照是底線；持續進修專項認證（徒手、紅繩、運動醫學等）代表他還在成長。</li>
+        <li><strong>專長跟你的問題對口</strong><span class="sep">：</span>下背痛找擅長脊椎的、運動傷害找懂你這項運動的。就像醫師有分科，物理治療師也有專長領域。</li>
+        <li><strong>願意花時間評估</strong><span class="sep">：</span>第一次見面就直接上儀器、沒有動作測試——這是個警訊。沒有評估，就沒有對症的治療。</li>
+        <li><strong>解釋得讓你聽得懂</strong><span class="sep">：</span>能把「你為什麼會痛」講成人話的治療師，通常也更知道自己在做什麼。</li>
+        <li><strong>以主動運動為核心</strong><span class="sep">：</span>被動放鬆（按摩、電熱療）可以是配角，但實證上真正讓身體變強、不復發的，是漸進的主動訓練。</li>
+        <li><strong>設定目標、追蹤進度</strong><span class="sep">：</span>好的治療有方向感——這週比上週能做什麼？什麼時候可以回球場？</li>
+        <li><strong>你感覺被聽見</strong><span class="sep">：</span>疼痛的經驗是主觀的。一位會聆聽、尊重你的步調的治療師，治療效果通常也更好——這是有研究支持的。</li>
       </ol>
       <blockquote>值得推薦的物理治療師，不是讓你「離不開他」，而是讓你越來越不需要他。</blockquote>
 
-      <h2>自費物理治療 vs 健保復健，差在哪？</h2>
-      <p><strong>健保復健</strong>：以儀器治療（電療、熱敷、牽引）為主，單次時間較短、費用低，適合單純需要儀器輔助、時間充裕的情況。</p>
-      <p><strong>自費物理治療</strong>：一對一 40–60 分鐘，包含完整評估、徒手治療與個人化運動訓練。適合問題反覆或複雜、想找出根源、時間寶貴、或有運動表現需求的人。</p>
+      <h2 id="g-cost">自費物理治療 vs 健保復健，差在哪？</h2>
+      <div class="guide-compare">
+        <p><strong>健保復健</strong><span class="sep">：</span>以儀器治療（電療、熱敷、牽引）為主，單次時間較短、費用低，適合單純需要儀器輔助、時間充裕的情況。</p>
+        <p><strong>自費物理治療</strong><span class="sep">：</span>一對一 40–60 分鐘，包含完整評估、徒手治療與個人化運動訓練。適合問題反覆或複雜、想找出根源、時間寶貴、或有運動表現需求的人。</p>
+      </div>
       <p>兩者沒有絕對好壞——重點是你的問題需要哪一種深度。很多人是在健保復健「做了很久都一樣」之後，才透過完整評估找到真正的原因。</p>
 
-      <h2>常見問題</h2>
-      <h3>物理治療需要醫師轉介嗎？</h3>
-      <p>在台灣，物理治療所執行治療原則上需要醫師的診斷與照會（依現行法規）；許多物理治療所會協助你完成這個流程，預約時直接詢問即可。</p>
-      <h3>做一次就會好嗎？</h3>
-      <p>急性單純的問題可能幾次內明顯改善；累積多年的慢性問題，身體需要時間重新訓練——負責任的治療師會在評估後給你合理的期待，而不是保證速效。</p>
-      <h3>物理治療會痛嗎？</h3>
-      <p>好的治療會在「有感」與「安全」之間拿捏。可能有痠、有伸展感，但不應該是咬牙硬撐的劇痛——如果會，隨時告訴你的治療師調整。</p>
+      <h2 id="g-faq">常見問題</h2>
+      <div class="faq-item">
+        <h3>物理治療需要醫師轉介嗎？</h3>
+        <p>在台灣，物理治療所執行治療原則上需要醫師的診斷與照會（依現行法規）；許多物理治療所會協助你完成這個流程，預約時直接詢問即可。</p>
+      </div>
+      <div class="faq-item">
+        <h3>做一次就會好嗎？</h3>
+        <p>急性單純的問題可能幾次內明顯改善；累積多年的慢性問題，身體需要時間重新訓練——負責任的治療師會在評估後給你合理的期待，而不是保證速效。</p>
+      </div>
+      <div class="faq-item">
+        <h3>物理治療會痛嗎？</h3>
+        <p>好的治療會在「有感」與「安全」之間拿捏。可能有痠、有伸展感，但不應該是咬牙硬撐的劇痛——如果會，隨時告訴你的治療師調整。</p>
+      </div>
 
-      <h2>關於作者</h2>
+      <h2 id="g-author">關於作者</h2>
       <p>我是 <strong>Sky</strong>，台灣國家高考合格物理治療師。專長包括三鐵運動修復（鐵人三項累積性運動傷害與恢復）、紅繩懸吊（Redcord Neurac 國際認證）、高級肌筋膜技術 AMT、公路車 Bike Fitting 專項分析、顱薦椎治療與疼痛科學衛教。課表與配速是教練的事，我處理的是承接這些訓練的身體。我的治療哲學是：<strong>先讓身體感到安全、讓情緒被承接——身體的訊號通常出現得很早，只是常常被訓練的聲音蓋過去。</strong></p>
       <p>這個網站上有超過 150 篇免費衛教文章，涵蓋<a href="/topics/lower-back-pain">下背痛</a>、<a href="/topics/shoulder-pain">肩膀痛</a>、<a href="/topics/tmj">顳顎關節</a>、<a href="/topics/myofascial">高級筋膜技術</a>、<a href="/topics/pain-science">疼痛科學</a>、<a href="/topics/redcord">紅繩懸吊</a>、<a href="/topics/cycling">公路車</a>與<a href="/topics/craniosacral">顱薦椎</a>——歡迎從你正在困擾的主題讀起。</p>
 
@@ -257,6 +320,21 @@ a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>
   </article>
+  <nav class="guide-toc" aria-label="本頁目錄">
+    <div class="toc-label">本頁目錄</div>
+    <ol>
+        <li><a href="#g-what">物理治療是什麼</a></li>
+        <li><a href="#g-who">物理治療師受過什麼訓練</a></li>
+        <li><a href="#g-conditions">能處理哪些問題</a></li>
+        <li><a href="#g-first">第一次會發生什麼</a></li>
+        <li><a href="#g-choose">挑選治療師的 7 個標準</a></li>
+        <li><a href="#g-cost">自費 vs 健保復健</a></li>
+        <li><a href="#g-faq">常見問題</a></li>
+        <li><a href="#g-author">關於作者</a></li>
+    </ol>
+    <a class="btn teal sm" href="https://calendar.app.google/wdsPTQDhF2YCigPu6" target="_blank" rel="noopener">預約評估</a>
+  </nav>
+  </div>
 </main>
 
 <footer>
@@ -264,5 +342,22 @@ a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6
     <div class="t">網站設計｜Sky — © 2026 · <a href="/privacy">隱私權保護聲明</a></div>
   </div>
 </footer>
+<script>
+/* 電腦版目錄：捲到哪一節，就把目錄裡對應的那一項標亮 */
+(function(){
+  var links=document.querySelectorAll('.guide-toc a[href^="#g-"]');
+  if(!links.length||!('IntersectionObserver' in window))return;
+  var map={};
+  links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a;});
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting)return;
+      links.forEach(function(a){a.removeAttribute('aria-current');});
+      map[e.target.id].setAttribute('aria-current','true');
+    });
+  },{rootMargin:'-80px 0px -60% 0px'});
+  Object.keys(map).forEach(function(id){io.observe(document.getElementById(id));});
+})();
+</script>
 </body>
 </html>
