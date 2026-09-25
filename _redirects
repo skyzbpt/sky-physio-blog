@@ -9,18 +9,13 @@
 # 這裡改用 301 明確宣告永久搬家。_redirects 在 html_handling 之前執行，所以會優先生效。
 /index.html          /                301
 /blog.html           /blog            301
+/products.html       /products        301
 /about.html          /about           301
 /services.html       /services        301
 /physio-guide.html   /physio-guide    301
 /privacy.html        /privacy         301
 /posts/:slug.html    /posts/:slug     301
 /topics/:slug.html   /topics/:slug    301
-
-# ── 產品專區搬到 marketTaiwan ──────────────────────────────────────────
-# 站內產品頁已移除，選單與內文都直接連到 marketTaiwan；舊網址（含書籤、搜尋結果）一併導過去。
-# 用 302：外部商店網址日後若變動，瀏覽器不會死記舊的去處。
-/products            https://www.markettaiwan.com.tw/SKYDPT   302
-/products.html       https://www.markettaiwan.com.tw/SKYDPT   302
 
 # 「身心靈」分類於 2026-08 改版為「三鐵運動修復」。
 # 該分類原本唯一的文章〈眼淚從筋膜裡來：談情緒能量釋放〉已移入「顱薦椎」分類，

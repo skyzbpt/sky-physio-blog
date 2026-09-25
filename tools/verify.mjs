@@ -111,8 +111,8 @@ faqCount > 0 ? pass(`FAQ 結構化資料 ${faqCount} 篇`) : fail('FAQ 結構化
 const sm = read('sitemap.xml');
 !/\/posts\/[a-z0-9-]+\.html<\/loc>/.test(sm) ? pass('sitemap 皆為乾淨網址') : fail('sitemap 含 .html');
 const smLocs = (sm.match(/<loc>/g) || []).length;
-// 首頁 + blog + about + services + physio-guide + privacy 共 6 個非文章頁
-smLocs === arts.length + cats.length + 6 ? pass(`sitemap URL 數正確 (${smLocs})`) : fail('sitemap URL 數', `${smLocs} vs ${arts.length + cats.length + 6}`);
+// 首頁 + blog + products + about + services + physio-guide + privacy 共 7 個非文章頁
+smLocs === arts.length + cats.length + 7 ? pass(`sitemap URL 數正確 (${smLocs})`) : fail('sitemap URL 數', `${smLocs} vs ${arts.length + cats.length + 7}`);
 /* ---------- 4b. lastmod：每篇都要有，且必須反映真實修改（見 tools/modified.mjs） ---------- */
 const smPairs = [...sm.matchAll(/<loc>[^<]*\/posts\/([a-z0-9-]+)<\/loc>\s*<lastmod>([^<]+)<\/lastmod>/g)];
 smPairs.length === arts.length
@@ -134,7 +134,7 @@ const feed = read('feed.xml');
 !/\/posts\/[a-z0-9-]+\.html<\/link>/.test(feed) ? pass('feed 皆為乾淨網址') : fail('feed 含 .html');
 
 /* ---------- 5. 圖片 alt（Ahrefs） ---------- */
-const scanPages = [...postFiles.map(f => 'posts/' + f), ...hubFiles.map(f => 'topics/' + f), 'index.html', 'blog.html', 'about.html', 'services.html', 'physio-guide.html', '404.html', 'privacy.html'];
+const scanPages = [...postFiles.map(f => 'posts/' + f), ...hubFiles.map(f => 'topics/' + f), 'index.html', 'blog.html', 'products.html', 'about.html', 'services.html', 'physio-guide.html', '404.html', 'privacy.html'];
 let imgBadAlt = 0;
 for (const p of scanPages) for (const tag of read(p).match(/<img\b[^>]*>/g) || []) if (!/\balt="[^"]/.test(tag)) imgBadAlt++;
 imgBadAlt === 0 ? pass('所有圖片皆有非空 alt') : fail('圖片缺/空 alt', imgBadAlt);
@@ -177,11 +177,11 @@ literal === 0 ? pass('文章內容無殘留 markdown 語法') : fail('殘留 mar
 // post/topic/legal.css 由 tools/ 的產生器寫出，nav.js 是手機選單與回頂按鈕。
 {
   const shared = [
-    ['assets/site.css', 20000, ['index.html', 'blog.html', 'about.html', 'services.html']],
+    ['assets/site.css', 20000, ['index.html', 'blog.html', 'about.html', 'services.html', 'products.html']],
     ['assets/post.css', 6000, ['posts/' + postFiles[0]]],
     ['assets/topic.css', 4000, ['topics/' + hubFiles[0]]],
     ['assets/legal.css', 3000, ['privacy.html']],
-    ['assets/nav.js', 500, ['blog.html', 'about.html', 'services.html']],
+    ['assets/nav.js', 500, ['blog.html', 'about.html', 'services.html', 'products.html']],
   ];
   const bad = [];
   for (const [file, minBytes, users] of shared) {
@@ -197,7 +197,7 @@ literal === 0 ? pass('文章內容無殘留 markdown 語法') : fail('殘留 mar
 
   // 任何頁面若又出現大塊內嵌 CSS，代表共用檔被繞過、重複又長回來了
   const fat = [];
-  for (const p2 of ['index.html', 'blog.html', 'about.html', 'services.html',
+  for (const p2 of ['index.html', 'blog.html', 'about.html', 'services.html', 'products.html',
                     'posts/' + postFiles[0], 'topics/' + hubFiles[0], 'privacy.html']) {
     const inline = (read(p2).match(/<style[^>]*>([\s\S]*?)<\/style>/g) || []).join('').length;
     // index.html 保留後台樣式（只有它有後台），門檻放寬
@@ -207,7 +207,7 @@ literal === 0 ? pass('文章內容無殘留 markdown 語法') : fail('殘留 mar
   fat.length === 0 ? pass('各頁未再出現大塊內嵌 CSS') : fail('內嵌 CSS 過大', fat.join('；'));
 
   // base64 內嵌圖：assets/ 已有實體檔案，內嵌會讓 HTML 變大且無法跨頁快取
-  const b64 = ['index.html', 'about.html', 'blog.html', 'services.html']
+  const b64 = ['index.html', 'about.html', 'blog.html', 'services.html', 'products.html']
     .filter(p2 => /data:image\/[a-z]+;base64,[A-Za-z0-9+/=]{500,}/.test(read(p2)));
   b64.length === 0 ? pass('頁面未內嵌 base64 圖片（改引用 assets/）') : fail('base64 內嵌圖', b64.join(','));
 }
