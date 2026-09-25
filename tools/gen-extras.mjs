@@ -159,7 +159,33 @@ h1{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.45;
 a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px}
 @media(max-width:480px){
   .hub{padding:40px 22px 72px}
-}`;
+}
+/* 電腦版（≥1024px）：原本 820px 單欄置中，兩側大片空白、文章一篇一列。
+   改成滿版：長篇介紹兩欄卡片、文章三欄卡片（與 /blog 同一套卡片語彙）、
+   篇數與搜尋同一列、常見問題兩欄。手機維持原本的單欄清單。 */
+@media(min-width:1024px){
+  .hub{max-width:1120px}
+  .hub .lede{max-width:44em;border-bottom:none;padding-bottom:12px}
+  .hub-intro{display:grid;grid-template-columns:1fr 1fr;gap:18px;border-bottom:none;padding-bottom:0;margin:12px 0 48px}
+  .hub-intro section{padding:24px 26px;background:var(--bg-soft);border:1px solid var(--line);border-radius:16px}
+  .hub-intro section+section{margin-top:0}
+  .list-head{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:24px;border-top:1px solid var(--line);margin-bottom:18px}
+  .list-head .count{margin:0}
+  .list-head .finder{margin:0;flex:0 1 380px}
+  .list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+  .list a{display:flex;flex-direction:column;padding:22px 24px;background:var(--bg-soft);border:1px solid var(--line);border-radius:16px;
+    box-shadow:0 2px 10px -4px rgba(35,42,80,.10)}
+  .list a::before{display:none}
+  .list a:hover{transform:translateY(-3px);background:#fff;border-color:var(--teal);
+    box-shadow:0 18px 40px -24px rgba(20,154,138,.45),0 2px 10px -4px rgba(35,42,80,.10)}
+  .list .t{font-size:1.05rem}
+  .list .e{max-width:none;margin-top:8px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .no-hit{padding:32px 4px}
+  .hub-faq{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;align-items:start}
+  .hub-faq h2{grid-column:1/-1;margin-bottom:8px}
+  .hub-faq details{margin:0}
+}
+@media(min-width:1024px) and (prefers-reduced-motion:reduce){.list a:hover{transform:none}}`;
 
 /* ---------- 主題頁模板 ---------- */
 function hubPage(hub, arts) {
@@ -297,12 +323,14 @@ ${ldJson(faqld)}
       ${(sec.p || []).map(t => `<p>${esc(t)}</p>`).join('\n      ')}
     </section>`).join('\n    ')}
   </div>` : ''}
+  <div class="list-head">
   <div class="count" id="count">共 ${arts.length} 篇・由新到舊</div>${arts.length > 12 ? `
   <div class="finder">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="20" y1="20" x2="16.5" y2="16.5"/></svg>
     <input id="q" type="search" autocomplete="off" placeholder="搜尋這個分類（標題或摘要關鍵字）" aria-label="搜尋這個分類的文章">
     <button id="qx" type="button" hidden>清除</button>
   </div>` : ''}
+  </div>
   <div class="list" id="list">
     ${arts.map(a => `<a href="/posts/${a.id}">
       <div class="m">${a.date}</div>
