@@ -1,5 +1,5 @@
 /* 全站共用：手機選單開合 + 回頂按鈕
-   blog／about／services 三頁原本各自內嵌一份一模一樣的副本。
+   blog／about／services／products 四頁原本各自內嵌一份一模一樣的副本。
    （首頁 index.html 的版本另外要處理單頁導覽的高亮，因此保留它自己的實作。） */
 function toggleMenu(){
   const nl=document.getElementById("nav-links"), btn=document.getElementById("menu-btn");
