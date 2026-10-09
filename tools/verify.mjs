@@ -364,7 +364,8 @@ if (!existsSync(join(REPO, '_redirects'))) {
   // （先前這裡假設「靜態規則一律優先」，但以 wrangler dev 實測，寫在動態規則之後的
   //  /topics/mind-body.html 會被 /topics/:slug.html 先攔走——模擬必須照檔案順序。）
   const esc = s => s.replace(/[-/\\^$+?.()|[\]{}]/g, '\\$&');
-  const isStatic = ([from]) => !/[:*]/.test(from);
+  // 與 Cloudflare 解析器相同：只有 * 或 :名稱 才算動態規則（單純含冒號的路徑仍是靜態）
+  const isStatic = ([from]) => !/\*|:[A-Za-z]\w*/.test(from);
   const match = path => {
     for (const [from, to, code] of rules) {
       if (isStatic([from])) {
