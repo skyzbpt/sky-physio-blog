@@ -360,13 +360,18 @@ if (!existsSync(join(REPO, '_redirects'))) {
     ? pass('_redirects 已納入 dist 組裝')
     : fail('_redirects 未複製到 dist');
 
-  // 模擬 Cloudflare 的比對：靜態規則（無 : 與 *）優先，其次依行序比對動態規則
+  // 模擬 Cloudflare 的比對：由上往下，第一條命中的生效。
+  // （先前這裡假設「靜態規則一律優先」，但以 wrangler dev 實測，寫在動態規則之後的
+  //  /topics/mind-body.html 會被 /topics/:slug.html 先攔走——模擬必須照檔案順序。）
   const esc = s => s.replace(/[-/\\^$+?.()|[\]{}]/g, '\\$&');
-  const isStatic = ([from]) => !/[:*]/.test(from);
+  // 與 Cloudflare 解析器相同：只有 * 或 :名稱 才算動態規則（單純含冒號的路徑仍是靜態）
+  const isStatic = ([from]) => !/\*|:[A-Za-z]\w*/.test(from);
   const match = path => {
-    const hit = rules.filter(isStatic).find(([from]) => from === path);
-    if (hit) return { to: hit[1], code: hit[2] || '302' };
-    for (const [from, to, code] of rules.filter(r => !isStatic(r))) {
+    for (const [from, to, code] of rules) {
+      if (isStatic([from])) {
+        if (from === path) return { to, code: code || '302' };
+        continue;
+      }
       const re = new RegExp('^' + from.split('*').map(esc).join('(?<splat>.*)')
         .replace(/:([A-Za-z]\w*)/g, '(?<$1>[^/]+)') + '$');
       const m = re.exec(path);
@@ -374,6 +379,12 @@ if (!existsSync(join(REPO, '_redirects'))) {
     }
     return null;
   };
+  // 官方文件：靜態規則應寫在動態規則之前，否則可能被動態規則遮蔽
+  const firstDynamic = rules.findIndex(r => !isStatic(r));
+  const lateStatic = firstDynamic < 0 ? [] : rules.slice(firstDynamic).filter(isStatic).map(([from]) => from);
+  lateStatic.length === 0
+    ? pass('_redirects 靜態規則皆在動態規則之前')
+    : fail('_redirects 靜態規則寫在動態規則之後', lateStatic.slice(0, 3).join('、'));
   // sitemap 裡的正式網址本身絕不能被轉址，否則 Search Console 會列為「頁面會重新導向」
   const cleanPaths = [...sm.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1].replace(BASE, '') || '/');
   const selfRedirect = cleanPaths.filter(p => match(p));
@@ -389,6 +400,19 @@ if (!existsSync(join(REPO, '_redirects'))) {
   notPermanent.length === 0
     ? pass(`.html 舊網址皆永久轉址到乾淨網址 (${cleanPaths.length})`)
     : fail('.html 舊網址未永久轉址', `${notPermanent.length} 個，例如 ${notPermanent.slice(0, 3).join('、')}`);
+  // 轉址鏈：退役網址（例如 /topics/mind-body）的 .html 版本會先被 /topics/:slug.html 導到
+  // 退役網址本身、再轉一次——Search Console 曾把 /topics/mind-body.html 回報為 404。
+  // 每個舊網址都要一步到位，因此對所有靜態來源及其 .html 版本追蹤到底，超過一跳即失敗。
+  const legacy = [...new Set(rules.filter(isStatic).map(([from]) => from)
+    .flatMap(p => p.endsWith('/') || p.endsWith('.html') ? [p] : [p, p + '.html']))];
+  const chained = legacy.filter(p => {
+    let hops = 0, cur = p, r;
+    while ((r = match(cur)) && hops < 5) { cur = r.to; hops++; }
+    return hops > 1;
+  });
+  chained.length === 0
+    ? pass(`舊網址皆一步轉址到最終頁面，無轉址鏈 (${legacy.length})`)
+    : fail('轉址鏈（兩跳以上）', chained.slice(0, 3).join('、'));
 }
 
 /* ---------- 12. 無殘留的主題頁 ---------- */
