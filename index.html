@@ -19,7 +19,7 @@
 <meta name="msvalidate.01" content="73840AAF2A50BC89A7EA2FCCD1279283">
 <meta name="google-site-verification" content="wGYzdCM3wfgaQAncD0TO_emqlUedxg535vj6TbT5m7M" />
 <link rel="canonical" href="https://skythephysio.com/">
-<link rel="preload" as="image" href="assets/sky-photo-680.jpg" imagesrcset="assets/sky-photo-360.jpg 360w, assets/sky-photo-680.jpg 680w" imagesizes="(max-width:560px) 268px, (max-width:1023px) 300px, 340px" fetchpriority="high">
+<link rel="preload" as="image" href="assets/sky-photo-680.webp" imagesrcset="assets/sky-photo-360.webp 360w, assets/sky-photo-680.webp 680w" imagesizes="(max-width:560px) 268px, (max-width:1023px) 300px, 340px" fetchpriority="high">
 
 <!-- Open Graph（Facebook、LINE、AI 爬蟲） -->
 <meta property="og:type" content="website">
@@ -499,7 +499,8 @@ textarea#af-body.adm-input{
 .adm-preview-wrap{
   flex:1;overflow-y:auto;padding:28px 32px 60px;max-width:720px;
 }
-.adm-preview-wrap h1{font-family:var(--serif);font-size:1.6rem;margin-bottom:10px;color:var(--adm-ink)}
+/* 預覽標題刻意不用 h1 標籤：首頁只能有一個 H1（SEO 工具連 JS 字串裡的標籤也會算） */
+.adm-pv-title{font-family:var(--serif);font-size:1.6rem;font-weight:700;line-height:1.45;margin-bottom:10px;color:var(--adm-ink)}
 .adm-preview-wrap .lede{font-family:var(--serif);color:var(--adm-muted);font-size:.97rem;
   line-height:2;border-bottom:1px solid var(--adm-border);padding-bottom:18px;margin-bottom:24px}
 .adm-preview-wrap .body-p{font-family:var(--serif);font-size:.98rem;line-height:2.1;
@@ -588,7 +589,7 @@ textarea#af-body.adm-input{
 <header>
   <nav class="nav">
     <div class="brand" tabindex="0" role="button" aria-label="回到首頁" onclick="go('home');window.scrollTo({top:0,behavior:scrollMode})">
-      <img src="assets/logo.png" class="brand-logo" alt="Sky PT Logo">
+      <img src="assets/logo.webp" class="brand-logo" alt="Sky PT Logo">
       <span class="brand-name">Sky 物理治療師</span>
     </div>
     <div class="nav-links" id="nav-links">
@@ -669,8 +670,8 @@ textarea#af-body.adm-input{
         </div>
       </div>
       <div class="portrait-zone rv">
-        <img class="portrait" id="portrait-img" src="assets/sky-photo-680.jpg"
-             srcset="assets/sky-photo-360.jpg 360w, assets/sky-photo-680.jpg 680w"
+        <img class="portrait" id="portrait-img" src="assets/sky-photo-680.webp"
+             srcset="assets/sky-photo-360.webp 360w, assets/sky-photo-680.webp 680w"
              sizes="(max-width:560px) 268px, (max-width:1023px) 300px, 340px"
              fetchpriority="high" decoding="async"
              alt="Sky 物理治療師">
@@ -685,8 +686,120 @@ textarea#af-body.adm-input{
       <div class="eyebrow rv">FIELDS・專業領域</div>
       <h2 class="sec-title rv">四條路，走向同一個身體</h2>
       <p class="sec-lead rv">從三鐵訓練後的修復，到紅繩上的深層穩定；從車架上的毫米調校，到一次五克的輕觸——徒手治療的方法不同，目的相同：讓身體回到它原本的樣子。</p>
-      <div class="field-grid" id="field-grid"></div>
+      <div class="field-grid" id="field-grid">
+        <div class="field-card rv" id="field-triathlon">
+          <div class="field-no">TRIATHLON RECOVERY</div>
+          <h3>三鐵運動修復 × 紅繩懸吊</h3>
+          <p>游泳、騎車、跑步輪流上場，傷多半是累積出來的。從負荷來源查起，以筋膜技術鬆開張力，再用紅繩懸吊重建深層穩定。</p>
+          <div class="field-tags"><span>鐵人三項</span><span>Redcord</span><span>動作控制</span></div>
+        </div>
+        <div class="field-card rv" id="field-cycling">
+          <div class="field-no">CYCLING ANALYSIS</div>
+          <h3>公路車專項分析</h3>
+          <p>結合 Bike Fitting 與物理治療評估：量的是車，看的是人。從接觸點、關節角度到動作品質，處理騎乘中的疼痛與功率流失。</p>
+          <div class="field-tags"><span>Bike Fitting</span><span>騎姿分析</span><span>運動表現</span></div>
+        </div>
+        <div class="field-card rv" id="field-pain">
+          <div class="field-no">PAIN MANAGEMENT</div>
+          <h3>疼痛治療與管理</h3>
+          <p>以現代疼痛科學為基礎，理解疼痛不等於損傷。透過教育、漸進負荷與生活策略，把神經系統的警報音量，一格一格轉回來。</p>
+          <div class="field-tags"><span>慢性疼痛</span><span>疼痛科學</span><span>漸進負荷</span></div>
+        </div>
+        <div class="field-card rv" id="field-craniosacral">
+          <div class="field-no">CRANIOSACRAL</div>
+          <h3>顱薦椎整合 × 情緒能量釋放</h3>
+          <p>大約五克的輕觸，讓長期戒備的神經系統願意鬆手。在安全與知情的前提下，陪伴身體完成那些一直沒機會完成的釋放。</p>
+          <div class="field-tags"><span>顱薦椎</span><span>自律神經</span><span>身心釋放</span></div>
+        </div>
+      </div>
       <p class="fields-links rv"><a class="nav-link" href="/services">查看完整服務項目 →</a><a class="nav-link" href="/products">恢復期的營養補充・產品專區 →</a></p>
+    </div>
+  </section>
+
+  <section id="concerns">
+    <div class="wrap">
+      <div class="eyebrow rv">CONCERNS・常見困擾</div>
+      <h2 class="sec-title rv">你是不是也有這些狀況？</h2>
+      <p class="sec-lead rv">來找我的人，多半不是「哪裡斷了」，而是「一直好不了」。下面這些情況很常見，也都有機會改善——點進去，有對應主題的免費衛教文章。</p>
+      <div class="concern-grid">
+        <a class="concern rv" href="/topics/cycling">
+          <h3>騎車騎到下背痛、膝蓋痛、手麻</h3>
+          <p>騎乘疼痛常常不是「練太多」，而是車架、騎姿和身體能力沒對上。先看人、再調車，兩邊一起處理才不會反覆。</p>
+        </a>
+        <a class="concern rv" href="/topics/lower-back-pain">
+          <h3>下背痛反覆發作，休息就好、一動又痛</h3>
+          <p>大部分下背痛跟「骨頭壞掉」無關，而是負荷超過身體當下能承受的量。找出誘發動作、慢慢把能力練回來，是最實在的路。</p>
+        </a>
+        <a class="concern rv" href="/topics/shoulder-pain">
+          <h3>肩膀卡卡、舉手會痛、游泳划不開</h3>
+          <p>肩膀是活動度最大的關節，也最仰賴周邊肌肉的協調。除了放鬆緊繃處，更要讓肩胛骨和核心重新學會一起工作。</p>
+        </a>
+        <a class="concern rv" href="/topics/myofascial">
+          <h3>全身緊繃、按摩完只舒服一下子</h3>
+          <p>筋膜像一件包住全身的緊身衣，一處拉緊，遠處也會被牽動。高級筋膜技術從張力來源下手，而不是哪裡痛就只按哪裡。</p>
+        </a>
+        <a class="concern rv" href="/topics/pain-science">
+          <h3>檢查都正常，卻痛了好幾個月</h3>
+          <p>疼痛是大腦發出的保護警報，不是損傷的計量表。慢性疼痛時警報變得太敏感——理解它、再用漸進活動把音量調回來。</p>
+        </a>
+        <a class="concern rv" href="/topics/craniosacral">
+          <h3>壓力大、睡不好、咬牙、頭頸常緊繃</h3>
+          <p>身體長期處在「備戰模式」，肌肉自然放不下來。輕柔的顱薦椎手法協助自律神經切回休息模式，讓緊繃從根本鬆開。</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="first-visit">
+    <div class="wrap home-split">
+      <div>
+        <div class="eyebrow rv">FIRST VISIT・初次評估</div>
+        <h2 class="sec-title rv">第一次來，會做什麼？</h2>
+        <p class="sec-lead rv">評估不是走個流程，而是整個療程的地圖。地圖畫得準，後面每一次治療才不會白費力氣。一對一的時間裡，我會先聽、再看、最後才動手。</p>
+      </div>
+      <div class="svc-flow rv">
+        <div class="flow-label">HOW IT WORKS・評估怎麼走</div>
+        <ol class="flow-steps">
+          <li><b>聽你說</b><span>什麼時候開始痛？做什麼會更痛、什麼會比較好？訓練量、工作型態、睡眠和壓力，都是找線索的地方。</span></li>
+          <li><b>看你動</b><span>姿勢、關節活動度、肌力與動作控制；騎車的人會一起看騎姿與車架設定，跑步、游泳則看動作模式。</span></li>
+          <li><b>找出根源，說清楚</b><span>用你聽得懂的話解釋問題從哪裡來、為什麼會痛，以及合理的恢復時間，不給速效保證。</span></li>
+          <li><b>治療與回家功課</b><span>依評估結果選擇徒手、紅繩或顱薦椎等方式，並帶走幾個簡單、做得到的居家運動。</span></li>
+        </ol>
+        <button class="btn teal" onclick="window.open('https://calendar.app.google/wdsPTQDhF2YCigPu6','_blank')">預約初次評估</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="eyebrow rv">FAQ・常見問題</div>
+      <h2 class="sec-title rv">預約前，大家最常問的事</h2>
+      <div class="home-faq">
+        <div class="faq-q rv">
+          <h3>我不是運動員，也可以來嗎？</h3>
+          <p>當然可以。三鐵和公路車是我的專長，但久坐上班族的肩頸痛、媽媽的下背痛、長輩的膝蓋痛，處理邏輯是一樣的：找出負荷從哪裡來，再把身體的能力練回來。</p>
+        </div>
+        <div class="faq-q rv">
+          <h3>物理治療和按摩、整復有什麼不同？</h3>
+          <p>物理治療師是國家考試合格的醫事人員，重點在「評估」與「訓練」：不只放鬆痛的地方，而是找出為什麼會痛，並教你怎麼讓它不再回來。</p>
+        </div>
+        <div class="faq-q rv">
+          <h3>治療會痛嗎？</h3>
+          <p>可能會有痠、有伸展感，但不應該是咬牙硬撐的劇痛。顱薦椎手法更是只用約五克的輕觸。過程中任何不舒服，隨時說，我會調整。</p>
+        </div>
+        <div class="faq-q rv">
+          <h3>要來幾次才會好？</h3>
+          <p>看問題而定。急性、單純的狀況可能幾次內就明顯改善；累積多年的慢性問題需要時間重新訓練。評估後我會給你合理的預期，而不是保證速效。</p>
+        </div>
+        <div class="faq-q rv">
+          <h3>需要準備什麼？</h3>
+          <p>穿方便活動的衣服即可；如果有 X 光、MRI 等檢查報告可以一起帶來。想做騎姿分析的車友，請帶著自己的車、車鞋與車褲。</p>
+        </div>
+        <div class="faq-q rv">
+          <h3>想先自己了解，可以從哪裡開始讀？</h3>
+          <p>可以先讀<a href="/physio-guide">物理治療完整指南</a>，或到<a href="/blog">衛教文章</a>依主題挑選。超過 250 篇文章都用白話寫成，免費閱讀。</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -946,38 +1059,6 @@ const SITE = {
     "數位科技開發 / 健康品牌顧問"
   ]
 };
-
-const FIELDS = [
-  {
-    id: "field-triathlon",
-    no: "TRIATHLON RECOVERY", glyph: "復",
-    title: "三鐵運動修復 × 紅繩懸吊",
-    desc: "游泳、騎車、跑步輪流上場，傷多半是累積出來的。從負荷來源查起，以筋膜技術鬆開張力，再用紅繩懸吊重建深層穩定。",
-    tags: ["鐵人三項", "Redcord", "動作控制"]
-  },
-  {
-    id: "field-cycling",
-    no: "CYCLING ANALYSIS", glyph: "騎",
-    title: "公路車專項分析",
-    desc: "結合 Bike Fitting 與物理治療評估：量的是車，看的是人。從接觸點、關節角度到動作品質，處理騎乘中的疼痛與功率流失。",
-    tags: ["Bike Fitting", "騎姿分析", "運動表現"]
-  },
-  {
-    id: "field-pain",
-    no: "PAIN MANAGEMENT", glyph: "解",
-    title: "疼痛治療與管理",
-    desc: "以現代疼痛科學為基礎，理解疼痛不等於損傷。透過教育、漸進負荷與生活策略，把神經系統的警報音量，一格一格轉回來。",
-    tags: ["慢性疼痛", "疼痛科學", "漸進負荷"]
-  },
-  {
-    id: "field-craniosacral",
-    no: "CRANIOSACRAL", glyph: "靜",
-    title: "顱薦椎整合 × 情緒能量釋放",
-    desc: "大約五克的輕觸，讓長期戒備的神經系統願意鬆手。在安全與知情的前提下，陪伴身體完成那些一直沒機會完成的釋放。",
-    tags: ["顱薦椎", "自律神經", "身心釋放"]
-  }
-];
-
 /*===ARTICLES-JSON:START=== 由 tools/build.mjs 維護，勿直接手改
    首頁沒有文章清單（清單在 /blog），這份資料只有後台會用到——
    所以不再內嵌 260 筆 metadata（85KB），改由 admEnsureContent()
@@ -992,15 +1073,6 @@ const ARTICLES = [];
 const $ = s => document.querySelector(s);
 const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const scrollMode = reduceMotion ? "auto" : "smooth";
-
-/* ---- 渲染：領域卡片 ---- */
-$("#field-grid").innerHTML = FIELDS.map(f => `
-  <div class="field-card rv" id="${f.id}">
-    <div class="field-no">${f.no}</div>
-    <h3>${f.title}</h3>
-    <p>${f.desc}</p>
-    <div class="field-tags">${f.tags.map(t=>`<span>${t}</span>`).join("")}</div>
-  </div>`).join("");
 
 /* ---- 渲染：首頁專業認證列（電腦版才顯示；前三項＋連結排成一列，全部見 /about#certs） ---- */
 if($("#hero-creds")) $("#hero-creds").innerHTML = SITE.certs.slice(0,3).map(s=>`<li>${s}</li>`).join("")
@@ -1437,7 +1509,7 @@ function admRenderPreview(){
   const lede=document.getElementById('af-excerpt').value;
   const body=document.getElementById('af-body').value;
   const wrap=document.getElementById('adm-preview-wrap');
-  wrap.innerHTML=`<h1>${admEsc(title)}</h1>`
+  wrap.innerHTML=`<div class="adm-pv-title">${admEsc(title)}</div>`
     +(lede?`<p class="lede">${admEsc(lede)}</p>`:'')
     +body.trim().split(/\n\s*\n/).map(block=>{
       const b=block.trim();

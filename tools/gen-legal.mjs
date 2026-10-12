@@ -115,7 +115,7 @@ ${ldJson(breadcrumb)}
 <header>
   <nav class="nav">
     <a class="brand" href="/" aria-label="回到首頁">
-      <img class="brand-logo" src="assets/logo.png" alt="Sky 物理治療師 logo">
+      <img class="brand-logo" src="assets/logo.webp" alt="Sky 物理治療師 logo">
       <span class="brand-name">Sky 物理治療師</span>
     </a>
     <div class="nav-right">

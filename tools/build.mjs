@@ -63,7 +63,7 @@ for (const f of rootFiles) {
   if (existsSync(src)) { cpSync(src, join(DIST, f)); copiedFiles++; }
 }
 // assets/ 內有兩個「只在建置時用到」的大檔：OG 卡排版用的圓體字（4.7MB）
-// 與形象照原始檔（3.2MB，頁面改用 sky-photo-680/360.jpg）。兩者沒有任何頁面連到，
+// 與形象照原始檔（3.2MB，頁面改用 sky-photo-680/360.webp）。兩者沒有任何頁面連到，
 // 卻會被一起部署出去——排除掉，省下 8MB 的對外靜態資產。
 const BUILD_ONLY = new Set(['jf-openhuninn.ttf', 'sky-photo.jpeg']);
 for (const d of ['posts', 'topics', 'assets']) {
