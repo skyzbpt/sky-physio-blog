@@ -60,7 +60,7 @@ export function injectArticles() {
 /* ---------- /blog 靜態內容 ----------
    /blog 的清單原本完全由 JS 在 fetch 之後畫出來，原始碼只剩約 110 字，
    SEO 工具判定「內容偏少」，也看不到任何文章連結。這裡在建置時先輸出：
-   1) 精選文章（與 JS 預設分類相同的那份清單、相同的標記）——JS 載入後直接取代
+   1) 精選文章與篇數（與 JS 預設分類相同的那份清單、相同的標記）——JS 載入後直接取代
    2) 依主題閱讀：每個分類的篇數、專頁連結與最新三篇 */
 const ARROW = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
 
@@ -77,6 +77,8 @@ function injectBlog(articles) {
   const fm = html.match(/const FEATURED = \[([\s\S]*?)\];/);
   if (!fm) throw new Error('blog.html 找不到 FEATURED');
   const featured = [...fm[1].matchAll(/"([^"]+)"/g)].map(m => articles.find(a => a.id === m[1])).filter(Boolean);
+  // 篇數那一行與 JS renderList() 的預設輸出逐字相同；留空的話，fetch 完補上會把整份清單往下推（版面位移）
+  put('BLOG-STATIC-COUNT', `精選文章・共 ${featured.length} 篇`);
   put('BLOG-STATIC-LIST', '\n' + featured.map(a => `    <a class="post-row" href="/posts/${a.id}">
       <div class="post-meta"><span>${a.date}</span><span class="cat">${esc(a.cat)}</span></div>
       <div>

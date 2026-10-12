@@ -306,7 +306,8 @@ h1 .en{color:var(--teal-ink)}
   #concerns,#first-visit,#faq{padding-top:52px;padding-bottom:52px}}
 
 /* ---------- /blog：依主題閱讀（建置時輸出的靜態內容） ---------- */
-.blog-topics{margin-top:56px;padding-top:40px;border-top:1px solid var(--line)}
+/* 通用的 section{padding-bottom:96px} 也會套到這裡，底部明寫歸零，不然和下方分類連結之間會空出一大段 */
+.blog-topics{margin-top:56px;padding-top:40px;padding-bottom:0;border-top:1px solid var(--line)}
 .blog-topics h2{font-family:var(--serif);font-size:1.4rem;font-weight:700;margin-bottom:8px}
 .blog-topics-lead{color:var(--muted);max-width:40em;margin-bottom:24px}
 .blog-topics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
