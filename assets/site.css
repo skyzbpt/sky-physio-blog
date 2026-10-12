@@ -305,6 +305,23 @@ h1 .en{color:var(--teal-ink)}
 @media(max-width:760px){.concern-grid,.home-faq{grid-template-columns:1fr}
   #concerns,#first-visit,#faq{padding-top:52px;padding-bottom:52px}}
 
+/* ---------- /blog：依主題閱讀（建置時輸出的靜態內容） ---------- */
+.blog-topics{margin-top:56px;padding-top:40px;border-top:1px solid var(--line)}
+.blog-topics h2{font-family:var(--serif);font-size:1.4rem;font-weight:700;margin-bottom:8px}
+.blog-topics-lead{color:var(--muted);max-width:40em;margin-bottom:24px}
+.blog-topics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.blog-topic{background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:20px 20px 18px;display:flex;flex-direction:column}
+.blog-topic h3{font-family:var(--serif);font-size:1.04rem;font-weight:700;display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:10px}
+.blog-topic h3 a:hover{color:var(--teal-ink)}
+.blog-topic h3 span{font-family:var(--mono);font-size:.75rem;font-weight:400;color:var(--muted);letter-spacing:.08em}
+.blog-topic ul{list-style:none;margin-bottom:12px}
+.blog-topic li{font-size:.86rem;line-height:1.7;padding:5px 0;border-top:1px dashed rgba(35,42,80,.12)}
+.blog-topic li a{color:var(--ink-2)}
+.blog-topic li a:hover{color:var(--teal-ink)}
+.blog-topic-more{margin-top:auto;font-size:.82rem;color:var(--teal-ink)}
+@media(max-width:1023px){.blog-topics-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.blog-topics-grid{grid-template-columns:1fr}}
+
 /* 頁尾政策連結 */
 .foot-legal{width:100%;margin-top:16px;padding-top:14px;border-top:1px solid var(--line);
   font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;color:var(--muted);
@@ -464,8 +481,8 @@ h1 .en{color:var(--teal-ink)}
 .service-card:hover{transform:translateY(-4px);border-color:var(--teal);
   box-shadow:0 20px 44px -26px rgba(20,154,138,.4),0 2px 10px -4px rgba(35,42,80,.10)}
 .service-card:hover::before{transform:scaleY(1)}
-.service-card h3{font-family:var(--serif);font-size:1.14rem;font-weight:700;margin-bottom:12px;line-height:1.5}
-.service-card h3 .en{color:var(--teal);font-size:.92rem}
+.service-card h2{font-family:var(--serif);font-size:1.14rem;font-weight:700;margin-bottom:12px;line-height:1.5}
+.service-card h2 .en{color:var(--teal);font-size:.92rem}
 .service-card p{font-size:.88rem;color:var(--muted);line-height:1.8}
 @media (max-width:900px){.service-grid{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:600px){.service-grid{grid-template-columns:1fr}}
@@ -476,7 +493,7 @@ h1 .en{color:var(--teal-ink)}
   .service-cta .btn{width:100%;justify-content:center}}
 /* 卡片改為直向 flex：「適合」那一列用 margin-top:auto 推到卡片底部 */
 .service-card{display:flex;flex-direction:column;scroll-margin-top:88px}
-.service-card h3 + p{margin-bottom:18px}
+.service-card h2 + p{margin-bottom:18px}
 .service-card .svc-fit{margin-top:auto;padding-top:14px;border-top:1px dashed rgba(35,42,80,.14);
   color:var(--ink-2);line-height:1.75}
 .svc-fit span{display:inline-block;margin-right:8px;padding:0 9px;border-radius:999px;
@@ -510,7 +527,7 @@ h1 .en{color:var(--teal-ink)}
   .svc-flow{margin:0;padding:30px 30px 28px}
   .service-grid{gap:24px;margin-bottom:48px}
   .service-card{padding:34px 30px 26px;border-radius:16px}
-  .service-card h3{font-size:1.2rem}
+  .service-card h2{font-size:1.2rem}
   .service-card p{font-size:.9rem}
   /* 「適合」固定兩行高：有的一行、有的兩行，推到底之後同一排的虛線才會齊 */
   .service-card .svc-fit{min-height:calc(14px + 2 * 1.75em)}
@@ -607,7 +624,7 @@ h1 .en{color:var(--teal-ink)}
 .about-photo{width:168px;height:168px;border-radius:50%;object-fit:cover;object-position:top;
   box-shadow:0 10px 30px rgba(35,42,80,.18);border:4px solid #fff}
 @media(max-width:600px){.about-photo{width:132px;height:132px}}
-#about-intro,.about-col-box h4[id]{scroll-margin-top:88px}
+#about-intro,.about-col-box h2[id]{scroll-margin-top:88px}
 
 /* Quote - 全寬置中 */
 .about-quote-wrap{text-align:center;padding:56px 0 40px;max-width:720px;margin:0 auto}
@@ -664,7 +681,7 @@ h1 .en{color:var(--teal-ink)}
 
 /* 專長 chip 區 */
 .about-specialty{margin-bottom:48px}
-.about-specialty h4{font-family:var(--mono);font-size:.75rem;letter-spacing:.22em;
+.about-specialty h2{font-family:var(--mono);font-size:.75rem;letter-spacing:.22em;
   color:var(--teal-ink);margin-bottom:16px}
 .about-skill-chips{display:flex;flex-wrap:wrap;gap:8px}
 .about-skill-chip{font-size:.82rem;padding:6px 16px;border-radius:999px;
@@ -681,11 +698,11 @@ h1 .en{color:var(--teal-ink)}
   box-shadow:0 2px 12px -6px rgba(35,42,80,.14)}
 .about-col-box:hover{box-shadow:0 16px 34px -22px rgba(35,42,80,.4)}
 /* 標題：mono 小標 + 玉綠短標線，與全站 eyebrow 語彙一致 */
-.about-col-box h4{font-family:var(--mono);font-size:.75rem;letter-spacing:.2em;
+.about-col-box h2{font-family:var(--mono);font-size:.75rem;letter-spacing:.2em;
   color:var(--teal-ink);margin-bottom:14px;display:flex;align-items:center;gap:9px}
-.about-col-box h4::after{content:"";flex:1;height:1px;background:rgba(20,154,138,.28)}
-.about-col-box h4 + h4{margin-top:22px}
-.about-col-box ul + h4{margin-top:22px;padding-top:20px;border-top:1px solid rgba(35,42,80,.1)}
+.about-col-box h2::after{content:"";flex:1;height:1px;background:rgba(20,154,138,.28)}
+.about-col-box h2 + h2{margin-top:22px}
+.about-col-box ul + h2{margin-top:22px;padding-top:20px;border-top:1px solid rgba(35,42,80,.1)}
 .about-col-box ul{list-style:none}
 .about-col-box li{padding:9px 0;border-bottom:1px dashed rgba(35,42,80,.12);
   font-size:.92rem;display:flex;gap:10px;align-items:baseline;line-height:1.7}
