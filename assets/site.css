@@ -284,6 +284,27 @@ h1 .en{color:var(--teal-ink)}
   color:var(--ink-2);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
 @media (max-width:760px){.field-grid{grid-template-columns:1fr}}
 
+/* ---------- 首頁：常見困擾／初次評估／常見問題（靜態內容，爬蟲讀得到） ---------- */
+#concerns,#first-visit,#faq{padding-top:72px;padding-bottom:72px}
+.concern-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.concern{display:block;background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:24px 24px 22px}
+.concern:hover{border-color:var(--teal)}
+.concern h3{font-family:var(--serif);font-size:1.04rem;font-weight:700;line-height:1.6;margin-bottom:8px}
+.concern p{font-size:.88rem;color:var(--muted);line-height:1.8}
+.home-split .svc-flow{margin:0}
+.home-faq{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.faq-q{background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:20px 22px}
+.faq-q h3{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;margin-bottom:6px}
+.faq-q p{font-size:.9rem;color:var(--muted);line-height:1.8}
+.faq-q a{color:var(--teal-ink);border-bottom:1px solid var(--line)}
+@media(min-width:1024px){
+  .home-split{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:64px;align-items:center}
+  .home-split .sec-lead{margin-bottom:0}
+}
+@media(max-width:1023px){.concern-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){.concern-grid,.home-faq{grid-template-columns:1fr}
+  #concerns,#first-visit,#faq{padding-top:52px;padding-bottom:52px}}
+
 /* 頁尾政策連結 */
 .foot-legal{width:100%;margin-top:16px;padding-top:14px;border-top:1px solid var(--line);
   font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;color:var(--muted);

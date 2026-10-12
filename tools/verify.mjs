@@ -141,7 +141,7 @@ imgBadAlt === 0 ? pass('所有圖片皆有非空 alt') : fail('圖片缺/空 alt
 
 /* ---------- 5b. 頁面引用的圖片檔案大小（Ahrefs：Image file size too large） ---------- */
 // 首頁形象照曾經直接掛原始檔（3854×5781／3.2MB），只為了顯示 340px 寬的版位——
-// 這是 LCP 最大的單一負擔。改用 sky-photo-680/360.jpg 之後，這裡守住不再退回去。
+// 這是 LCP 最大的單一負擔。改用 sky-photo-680/360.webp 之後，這裡守住不再退回去。
 {
   const IMG_MAX = 200 * 1024;
   const heavy = new Set();
@@ -162,6 +162,23 @@ imgBadAlt === 0 ? pass('所有圖片皆有非空 alt') : fail('圖片缺/空 alt
   heavy.size === 0
     ? pass(`頁面引用的圖片皆 ≤${IMG_MAX / 1024}KB（LCP）`)
     : fail('頁面引用了過大的圖片', [...heavy].join('、'));
+
+  // 次世代格式：頁面上的點陣圖一律用 WebP／AVIF（OG 卡與 JSON-LD 的 logo 不在 <img> 內，維持 JPG／PNG 給社群平台）
+  const legacy = new Set();
+  for (const p of scanPages) for (const tag of read(p).match(/<img\b[^>]*>/g) || [])
+    for (const m of tag.matchAll(/(?:src|srcset)="([^"]+)"/g))
+      for (const src of m[1].split(',').map(x => x.trim().split(/\s+/)[0]))
+        if (!/^(data:|https?:)/.test(src) && /\.(jpe?g|png)$/i.test(src)) legacy.add(src.replace(/^(\.\.\/)+/, ''));
+  legacy.size === 0
+    ? pass('頁面圖片皆為 WebP／AVIF（次世代格式）')
+    : fail('頁面仍引用 JPG／PNG', [...legacy].slice(0, 5).join('、'));
+}
+
+/* ---------- 5c. 每頁只有一個 H1 ---------- */
+// SEO 工具是直接數原始碼裡的 <h1，連 <script> 字串裡的也算（首頁後台預覽曾因此被判成兩個 H1）。
+{
+  const multi = scanPages.filter(p => (read(p).match(/<h1\b/gi) || []).length !== 1);
+  multi.length === 0 ? pass('每頁恰好一個 H1') : fail('H1 數量不是 1', multi.slice(0, 5).join('、'));
 }
 
 /* ---------- 6. Markdown 渲染（無殘留語法） ---------- */
