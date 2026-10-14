@@ -120,8 +120,8 @@
     "d": "2026-07-21"
   },
   "cycling-ctl-atl-tsb": {
-    "h": "8389f4bc6769",
-    "d": "2026-09-20"
+    "h": "47bdec837f5f",
+    "d": "2026-10-13"
   },
   "cycling-descending-cornering": {
     "h": "a283df55687b",
@@ -152,8 +152,8 @@
     "d": "2026-05-17"
   },
   "cycling-ftp-what-is-it": {
-    "h": "157c5ee8d48a",
-    "d": "2026-05-16"
+    "h": "32730bc613b0",
+    "d": "2026-10-14"
   },
   "cycling-fueling-during-rides": {
     "h": "86da85283587",
@@ -200,8 +200,8 @@
     "d": "2026-06-25"
   },
   "cycling-intensity-factor": {
-    "h": "f5929bbea792",
-    "d": "2026-09-20"
+    "h": "967c8acf8abd",
+    "d": "2026-10-13"
   },
   "cycling-itbs-lateral-knee": {
     "h": "27ae08071382",
@@ -264,8 +264,8 @@
     "d": "2026-09-20"
   },
   "cycling-normalized-power": {
-    "h": "1ef3cfd2394a",
-    "d": "2026-05-19"
+    "h": "183bfc3a1706",
+    "d": "2026-10-13"
   },
   "cycling-nutrition-periodization": {
     "h": "2006f21f4e3e",
@@ -292,8 +292,8 @@
     "d": "2026-09-20"
   },
   "cycling-periodization-overview": {
-    "h": "f806bd5f95ed",
-    "d": "2026-06-13"
+    "h": "de32ba6a6fe1",
+    "d": "2026-10-14"
   },
   "cycling-physical-assessment-before-fit": {
     "h": "510352bc61e1",
@@ -308,8 +308,8 @@
     "d": "2026-07-08"
   },
   "cycling-power-duration-curve": {
-    "h": "bf41a8cfdd96",
-    "d": "2026-05-24"
+    "h": "0a1b72e10cdb",
+    "d": "2026-10-13"
   },
   "cycling-power-meter-types": {
     "h": "ad00932b882d",
@@ -320,16 +320,16 @@
     "d": "2026-09-20"
   },
   "cycling-power-vs-heartrate": {
-    "h": "9d1d88a29508",
-    "d": "2026-05-27"
+    "h": "ca3875e9681e",
+    "d": "2026-10-14"
   },
   "cycling-power-zones": {
-    "h": "714af378144a",
-    "d": "2026-05-18"
+    "h": "e0373950724e",
+    "d": "2026-10-14"
   },
   "cycling-quadrant-analysis": {
-    "h": "c0d09f40d0a1",
-    "d": "2026-09-20"
+    "h": "78cca1fa6d67",
+    "d": "2026-10-14"
   },
   "cycling-race-day-routine": {
     "h": "96b638bdb023",
@@ -380,12 +380,12 @@
     "d": "2026-08-17"
   },
   "cycling-sweet-spot": {
-    "h": "5a29bb028dec",
-    "d": "2026-08-23"
+    "h": "37f68e3a1b6c",
+    "d": "2026-10-13"
   },
   "cycling-tapering-peak": {
-    "h": "a2dadbae6902",
-    "d": "2026-06-16"
+    "h": "623f63b1f06a",
+    "d": "2026-10-14"
   },
   "cycling-tendons-aging": {
     "h": "900d0c2b7e38",
@@ -400,32 +400,32 @@
     "d": "2026-08-19"
   },
   "cycling-time-trial-pacing": {
-    "h": "8bff6b4ad8db",
-    "d": "2026-08-09"
+    "h": "bdf18ad1d74a",
+    "d": "2026-10-13"
   },
   "cycling-training-diary": {
     "h": "bd689ca8f7e1",
     "d": "2026-09-20"
   },
   "cycling-tss-training-load": {
-    "h": "d0607c8dac69",
-    "d": "2026-05-21"
+    "h": "137f44f420b8",
+    "d": "2026-10-13"
   },
   "cycling-variability-index": {
-    "h": "8d262508eeb7",
-    "d": "2026-09-20"
+    "h": "7a2d0a5aab2d",
+    "d": "2026-10-13"
   },
   "cycling-vo2max-explained": {
     "h": "51ae323645b0",
     "d": "2026-06-01"
   },
   "cycling-vo2max-intervals": {
-    "h": "462b27f50bd4",
-    "d": "2026-06-21"
+    "h": "16fa9cf82485",
+    "d": "2026-10-14"
   },
   "cycling-w-prime-anaerobic": {
-    "h": "3d55d4632d17",
-    "d": "2026-05-25"
+    "h": "52f59c9c7605",
+    "d": "2026-10-13"
   },
   "cycling-warmup-cooldown": {
     "h": "19ad77619cbd",
@@ -436,8 +436,8 @@
     "d": "2026-06-06"
   },
   "cycling-weekly-schedule": {
-    "h": "188e6e31187c",
-    "d": "2026-06-24"
+    "h": "1a051b92bd8d",
+    "d": "2026-10-14"
   },
   "cycling-women-menstrual-cycle": {
     "h": "7083a050f3a5",

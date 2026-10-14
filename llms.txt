@@ -139,20 +139,20 @@
 - [用 HRV 監測恢復：好用，但別被單日數字綁架](https://skythephysio.com/posts/cycling-hrv-monitoring): 心率變異度反映自律神經的平衡狀態。看趨勢不看單點、建立自己的基準，它才是一個真正有用的訓練決策工具。
 - [過度訓練症候群：從功能性疲勞到真正的坑](https://skythephysio.com/posts/cycling-overtraining-syndrome): 短期的功能性疲勞是訓練的一部分，但持續數週的表現下滑、情緒改變與睡眠障礙是另一回事。認識這條界線很重要。
 - [訓練台訓練：效率極高，但有三個要注意的差異](https://skythephysio.com/posts/cycling-indoor-trainer-training): 沒有紅綠燈、沒有滑行、沒有風。室內訓練的高效率背後，是散熱、姿勢固定與功率差異這三個必須處理的問題。
-- [一週課表怎麼排？把強度、長騎與恢復放在對的位置](https://skythephysio.com/posts/cycling-weekly-schedule): 同樣的訓練內容，排列順序不同，效果差很多。這篇給你六到十二小時可用時間的實際排法。
+- [一週課表怎麼排？把強度、長騎與恢復放在對的位置](https://skythephysio.com/posts/cycling-weekly-schedule): 同樣的訓練內容，排列順序不同，效果可能差很多。這篇給你一週六到十二小時的實際排法，連訓練量都一起算好。
 - [長騎的意義：不只是累積公里數](https://skythephysio.com/posts/cycling-long-ride-endurance): 三小時以上的騎乘帶來的適應，是短課表無法取代的。但長騎也有做法，配速、補給與後段的處理決定它的價值。
 - [無氧與衝刺訓練：比賽最後三公里決定的能力](https://skythephysio.com/posts/cycling-anaerobic-sprint-training): 三十秒到兩分鐘的耐乳酸、五到十五秒的最大功率。這兩種能力訓練方式完全不同，恢復時間也完全不同。
 - [VO2max 間歇怎麼做：三到八分鐘的痛苦藝術](https://skythephysio.com/posts/cycling-vo2max-intervals): 要練到最大攝氧量，你必須待在那個強度夠久。這篇談間歇長度、恢復比例、常見錯誤與一週該做幾次。
-- [Sweet Spot 訓練：時間有限車手的最佳投報率](https://skythephysio.com/posts/cycling-sweet-spot): FTP 的 88–94%，介於節奏與閾值之間。它的刺激夠強、恢復成本卻可控，是一週只有六小時的人最划算的選擇。
+- [Sweet Spot 訓練：時間有限車手的最佳投報率](https://skythephysio.com/posts/cycling-sweet-spot): FTP 的 88–94%，介於節奏與閾值之間。它的刺激夠強、恢復成本卻可控，是一週只有六小時的人最划算的選擇之一。
 - [極化訓練：為什麼要嘛很輕鬆、要嘛很痛苦](https://skythephysio.com/posts/cycling-polarized-training): 菁英耐力運動員約八成的時間在很低的強度，兩成在很高的強度，中間地帶反而很少。這個分佈對業餘車手也有啟發。
 - [一致性勝過一切：業餘車手最被低估的能力](https://skythephysio.com/posts/cycling-consistency-beats-everything): 每週穩定騎六小時、持續一年，勝過偶爾爆練十五小時然後停兩週。訓練的複利，來自不中斷。
 - [恢復週：三週加一週的邏輯，以及為什麼中年人需要調整](https://skythephysio.com/posts/cycling-recovery-week): 連續加量三週、第四週減量，是最常見的訓練節奏。但這個比例不是聖旨，年齡、生活壓力與訓練史都會改變答案。
-- [減量（Taper）：賽前兩週怎麼練，才會在對的那天最快](https://skythephysio.com/posts/cycling-tapering-peak): 砍掉訓練量、保留強度、拉長恢復。減量做對可以帶來 2–6% 的表現提升，做錯則讓你在起跑線上覺得腿是空的。
+- [減量（Taper）：賽前兩週怎麼練，才會在對的那天最快](https://skythephysio.com/posts/cycling-tapering-peak): 砍掉訓練量、保留強度和騎乘頻率。以競技選手為對象的研究裡，減量後的表現通常比減量前好約 3%；做錯則讓你在起跑線上覺得腿是空的。
 - [進展期：把有氧底盤變成比賽能力](https://skythephysio.com/posts/cycling-build-phase): 量開始降，強度開始升，課表越來越像目標賽事。這是最容易練過頭、也最容易讓你突然變強的階段。
 - [基礎期：無聊，但決定你今年的天花板](https://skythephysio.com/posts/cycling-base-training): 大量的 Z2、肌力訓練與技術打磨。基礎期不會讓你下週變快，但它決定你在賽季中後段還剩多少。
 - [騎得快，先離開腳踏車：談公路車的離車訓練](https://skythephysio.com/posts/strength-off-the-bike): 想騎得更快、更不容易受傷，答案常常不在更多的里程，而在你下車之後做了什麼。但「核心訓練」這四個字，可能正在浪費你的時間。
 - [三個接觸點，決定你和公路車的關係](https://skythephysio.com/posts/bike-fit-three-contacts): 坐墊、踏板、把手——你和車只在三個地方相遇。把這三點調對了，長途騎乘不該是受苦；調不對，身體會替你說。
-- [週期化訓練：為什麼不能一整年都用同一種課表](https://skythephysio.com/posts/cycling-periodization-overview): 身體會對重複的刺激失去反應。週期化是有計畫地改變訓練的量、強度與專項性，讓進步持續發生，並讓巔峰出現在你要的日子。
+- [週期化訓練：為什麼不能一整年都用同一種課表](https://skythephysio.com/posts/cycling-periodization-overview): 同一份課表練久了，進步會越來越慢。週期化是有計畫地改變訓練的量、強度與專項性，讓身體持續有新的刺激、也有時間吸收，並讓巔峰出現在你要的日子。
 - [睡眠不足對騎乘表現的傷害，比你想的大](https://skythephysio.com/posts/cycling-sleep-and-performance): 少睡兩小時，隔天的最大功率或許還在，但你的耐痛、判斷、免疫與長期適應全部打折。這是最便宜也最被忽略的訓練。
 - [恢復策略排行榜：哪些真的有效，哪些只是感覺良好](https://skythephysio.com/posts/cycling-recovery-strategies): 睡眠、營養、低強度活動是三大主力。冰浴、按摩槍、加壓褲有它們的位置，但別讓它們排擠掉真正重要的事。
 - [騎車的疲勞從哪裡來？四種累，四種對策](https://skythephysio.com/posts/cycling-fatigue-sources): 燃料耗盡、代謝物累積、中樞保護、結構損傷——同樣叫「累」，成因不同，處理方式也完全不同。
@@ -167,18 +167,18 @@
 - [VO2max 是什麼？它有多重要、又有多不重要](https://skythephysio.com/posts/cycling-vo2max-explained): 最大攝氧量是耐力運動的天花板，但天花板高不代表你住得滿。理解它的可塑性與極限，能讓你把訓練時間花在對的地方。
 - [三大能量系統：從十秒衝刺到五小時長征](https://skythephysio.com/posts/cycling-energy-systems): 磷酸系統、醣解系統、有氧系統不是輪流上工，而是同時運轉、比例不同。理解它們，你的課表設計才有生理學根據。
 - [功率計怎麼選？位置、準確度與一致性](https://skythephysio.com/posts/cycling-power-meter-types): 踏板式、曲柄式、大盤式、花鼓式各有優缺。但對訓練來說，最重要的不是絕對準確，而是每天都給你同樣的答案。
-- [象限分析：同樣的瓦特，用不同的方式產生](https://skythephysio.com/posts/cycling-quadrant-analysis): 250 W 可以是高迴轉輕齒比，也可以是低迴轉重踩。象限分析把功率拆成力與速度兩個維度，讓你看見比賽真正的肌肉需求。
+- [象限分析：同樣的瓦特，用不同的方式產生](https://skythephysio.com/posts/cycling-quadrant-analysis): 250 W 可以是高迴轉輕齒比，也可以是低迴轉重踩。象限分析把功率拆成踩踏力與踏板速度兩個維度，讓你看見比賽真正的肌肉需求。
 - [心率漂移：檢驗有氧基礎最便宜的方法](https://skythephysio.com/posts/cycling-aerobic-decoupling): 不用實驗室、不用抽血，只要一趟兩小時的穩定騎乘，就能算出你的有氧耐力有多扎實——以及基礎期練得夠不夠。
 - [功率與心率：一個是輸出，一個是代價](https://skythephysio.com/posts/cycling-power-vs-heartrate): 功率告訴你做了什麼，心率告訴你身體付出了多少。兩個一起看，才能發現疲勞、脫水、過熱與進步的訊號。
 - [你是衝刺型、爬坡型還是計時賽型？功率剖面告訴你](https://skythephysio.com/posts/cycling-power-profile-types): 用 5 秒、1 分鐘、5 分鐘、FTP 四個時間點的 W/kg 排出來，就能看出你的天賦傾向。認識自己的類型，才知道該補短還是揚長。
 - [W'（W prime）：你的無氧儲備就像一張有額度的信用卡](https://skythephysio.com/posts/cycling-w-prime-anaerobic): 超過臨界功率的每一次努力都在刷卡，回到臨界功率以下才會慢慢還款。理解 W' 的收支，你就懂了比賽中什麼時候該衝、什麼時候該忍。
 - [功率-時間曲線：一張圖看完你是哪種車手](https://skythephysio.com/posts/cycling-power-duration-curve): 從 5 秒到 5 小時，你能維持的最大功率畫成一條曲線。這條曲線的形狀，比任何單一數字都更誠實地說明你的強項與弱點。
-- [變異指數 VI：你的配速有你以為的那麼穩嗎](https://skythephysio.com/posts/cycling-variability-index): VI 是正規化功率除以平均功率。計時賽該接近 1.0，繞圈賽可能到 1.3。這個比值直接揭露你騎乘中的能量浪費。
-- [CTL、ATL、TSB：看懂表現管理圖，就懂怎麼調狀態](https://skythephysio.com/posts/cycling-ctl-atl-tsb): 體能是長期累積、疲勞來得快去得也快，而狀態是兩者相減。這三條線解釋了為什麼你不能一路練到比賽前一天。
-- [TSS 訓練量分數：把時間和強度合成一個數字](https://skythephysio.com/posts/cycling-tss-training-load): 一小時全力＝100 TSS。這個簡單的基準讓你能比較「兩小時輕鬆騎」和「四十分鐘間歇」到底哪個比較重，也讓訓練變成可以計量的劑量。
-- [強度係數 IF：一個數字說完「今天騎得多硬」](https://skythephysio.com/posts/cycling-intensity-factor): IF 等於 NP 除以 FTP。0.65 是恢復騎，0.85 是紮實的節奏騎，1.0 是一小時全力。學會看 IF，你就能快速判斷一趟騎乘的性質。
-- [正規化功率 NP：為什麼平均功率會騙你](https://skythephysio.com/posts/cycling-normalized-power): 起伏路段的平均功率常常低估了你實際承受的生理壓力。NP 用一套加權演算法還原「這趟騎起來有多累」，是解讀戶外騎乘的關鍵。
-- [功率七區間：每一區到底在練什麼](https://skythephysio.com/posts/cycling-power-zones): 從恢復騎到神經肌肉力量，七個功率區間對應七種不同的生理適應。看懂它們，你才知道今天這趟騎乘到底買到了什麼。
+- [變異指數 VI：你的配速有你以為的那麼穩嗎](https://skythephysio.com/posts/cycling-variability-index): VI 是正規化功率除以平均功率。計時賽該接近 1.0，繞圈賽可能到 1.3。在該穩的時候，它能幫你抓出不必要的爆衝。
+- [CTL、ATL、TSB：看懂表現管理圖，就懂怎麼調狀態](https://skythephysio.com/posts/cycling-ctl-atl-tsb): CTL 是長期累積的訓練負荷，ATL 是來得快去得也快的疲勞，TSB 是兩者相減的新鮮度。這三條線解釋了為什麼你不能一路練到比賽前一天。
+- [TSS 訓練量分數：把時間和強度合成一個數字](https://skythephysio.com/posts/cycling-tss-training-load): 一小時全力＝100 TSS。這個簡單的基準，讓「兩小時輕鬆騎」和「四十分鐘間歇」能放在同一把尺上比較，也讓訓練變成可以計量的劑量。
+- [強度係數 IF：一個數字說完「今天騎得多硬」](https://skythephysio.com/posts/cycling-intensity-factor): IF 等於 NP 除以 FTP。0.65 以下是恢復騎，0.85 是紮實的節奏騎，1.0 是一小時全力。學會看 IF，你就能快速判斷一趟騎乘的性質。
+- [正規化功率 NP：為什麼平均功率會騙你](https://skythephysio.com/posts/cycling-normalized-power): 起伏路段的平均功率常常低估了你實際承受的生理壓力。NP 用一套加權演算法估算「這趟騎起來有多累」，是解讀戶外騎乘的關鍵。
+- [功率七區間：每一區到底在練什麼](https://skythephysio.com/posts/cycling-power-zones): 從恢復騎到神經肌肉爆發，七個功率區間大致對應不同的訓練目的。看懂它們，你才知道今天這趟騎乘到底買到了什麼。
 - [怎麼測 FTP？三種常見方法與各自的坑](https://skythephysio.com/posts/cycling-ftp-test-methods): 20 分鐘測試乘以 0.95、比賽數據推估、或直接用軟體估算——每種方法都有它的偏誤。這篇教你選一種、然後每次都用同一種。
 - [FTP 是什麼？公路車訓練最重要的那一個數字](https://skythephysio.com/posts/cycling-ftp-what-is-it): FTP 是你能穩定維持約一小時的最大功率，它決定你的訓練區間、強度係數與訓練量分數。搞懂它，你的每一次踩踏才開始有刻度。
 - [公路車騎士的下背痛，答案常常不在腰](https://skythephysio.com/posts/cyclist-low-back): 「騎到六十公里腰就開始痠。」這句話我在治療室聽過無數次。腰是受害者，但它通常不是兇手。
