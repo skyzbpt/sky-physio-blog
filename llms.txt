@@ -133,7 +133,7 @@
 - [座墊前後與角度：骨盆穩不穩，決定了很多事](https://skythephysio.com/posts/cycling-saddle-fore-aft): 前後位置改變髖膝的力學與體重分佈，角度則直接影響會陰壓力。這兩個調整往往比座高更能解決騎乘不適。
 - [座墊高度：一個影響膝蓋、下背與功率的關鍵數字](https://skythephysio.com/posts/cycling-saddle-height): 太高會左右晃、膝後與下背受苦；太低則膝前壓力大、髖屈曲受限。這篇談怎麼判斷、怎麼調、以及調完要觀察什麼。
 - [曲柄長度：更短的曲柄可能對你的髖和膝更友善](https://skythephysio.com/posts/cycling-crank-length): 曲柄長度改變的不只是槓桿，更是髖膝踝的活動範圍。近年趨勢往短走，對活動度受限或有下背、膝前痛的人特別值得考慮。
-- [迴轉速該用多少？高轉與低轉的取捨](https://skythephysio.com/posts/cycling-cadence-explained): 高迴轉降低單次踩踏的力量但提高心肺負擔，低迴轉相反。最佳答案取決於路段、能力與你想保護什麼。
+- [迴轉速該用多少？高轉與低轉的取捨](https://skythephysio.com/posts/cycling-cadence-explained): 同樣的功率下，高迴轉讓每一踩變輕，但心肺付得比較多；低迴轉相反。最佳答案取決於路段、齒比，以及你想保護什麼。
 - [踩踏週期的四個階段：力量到底在哪裡產生](https://skythephysio.com/posts/cycling-pedal-stroke-phases): 從十二點到六點的下踩期產生了絕大部分的功率。理解各階段的肌肉分工，你才知道該練什麼、又有哪些迷思該放下。
 - [訓練日誌：功率檔案不會記錄的那一半](https://skythephysio.com/posts/cycling-training-diary): 軟體會自動存下瓦特與心率，但睡了幾小時、腿感覺如何、賽後想到什麼——這些才是幾個月後最有價值的資料。
 - [用 HRV 監測恢復：好用，但別被單日數字綁架](https://skythephysio.com/posts/cycling-hrv-monitoring): 心率變異度反映自律神經的平衡狀態。看趨勢不看單點、建立自己的基準，它才是一個真正有用的訓練決策工具。
@@ -156,21 +156,21 @@
 - [睡眠不足對騎乘表現的傷害，比你想的大](https://skythephysio.com/posts/cycling-sleep-and-performance): 少睡兩小時，隔天的最大功率或許還在，但你的耐痛、判斷、免疫與長期適應全部打折。這是最便宜也最被忽略的訓練。
 - [恢復策略排行榜：哪些真的有效，哪些只是感覺良好](https://skythephysio.com/posts/cycling-recovery-strategies): 睡眠、營養、低強度活動是三大主力。冰浴、按摩槍、加壓褲有它們的位置，但別讓它們排擠掉真正重要的事。
 - [騎車的疲勞從哪裡來？四種累，四種對策](https://skythephysio.com/posts/cycling-fatigue-sources): 燃料耗盡、代謝物累積、中樞保護、結構損傷——同樣叫「累」，成因不同，處理方式也完全不同。
-- [騎車該喝多少水？從流汗率算出你的個人答案](https://skythephysio.com/posts/cycling-hydration): 每小時 500ml 只是平均值。用一個簡單的體重秤測試，就能算出屬於你的補水策略，避免脫水也避免喝太多。
+- [騎車該喝多少水？從流汗率算出你的個人答案](https://skythephysio.com/posts/cycling-hydration): 「每小時一瓶水」只是通則。騎前騎後各量一次體重，就能算出自己的流汗率，訂出補水的下限與上限，避免脫水，也避免喝太多。
 - [騎車為什麼那麼熱？體溫調節與熱適應](https://skythephysio.com/posts/cycling-thermoregulation): 你踩出的能量有四分之三變成熱。理解散熱的機制與極限，能讓你在夏天騎得更安全，也騎得更快。
 - [高度對騎乘表現的影響：氧氣少了，但阻力也小了](https://skythephysio.com/posts/cycling-altitude-effect): 海拔上升讓攝氧量下降，卻也讓空氣阻力變小。理解這個取捨，才知道高地騎乘該怎麼配速、怎麼適應。
 - [W/kg：爬坡的貨幣，也是最容易被誤用的數字](https://skythephysio.com/posts/cycling-watts-per-kilo): 每公斤瓦特決定你在坡上的速度，但把分母壓到極致的代價，常常是骨質、荷爾蒙與免疫力。這篇談怎麼健康地提高它。
 - [耐力訓練把心臟改造成什麼樣子](https://skythephysio.com/posts/cycling-cardiac-adaptations): 更大的心室、更強的每搏輸出量、更低的靜止心率。運動員心臟的變化是適應而非疾病，但也有需要注意的邊界。
 - [騎乘經濟性：同樣的瓦特，有人花的力氣比較少](https://skythephysio.com/posts/cycling-efficiency-economy): 效率決定你把多少化學能變成推進力。人類騎車的效率大約 20–25%，而這幾個百分點，就是長距離比賽的勝負。
 - [快肌與慢肌：你的肌纖維組成能被訓練改變嗎](https://skythephysio.com/posts/cycling-muscle-fibre-types): 第一型耐疲勞、第二型爆發力強。基因決定了大致比例，但訓練能改變它們的代謝特性、徵召順序與疲勞方式。
-- [乳酸閾值與換氣閾：身體的兩道分水嶺](https://skythephysio.com/posts/cycling-lactate-threshold): 乳酸不是廢物，也不是造成隔天酸痛的兇手。搞懂第一與第二閾值，你就知道自己該待在哪個強度、待多久。
+- [乳酸閾值與換氣閾：身體的兩道分水嶺](https://skythephysio.com/posts/cycling-lactate-threshold): 乳酸不是廢物，也不是造成隔天痠痛的兇手。搞懂第一與第二閾值，你就知道自己該待在哪個強度、待多久。
 - [VO2max 是什麼？它有多重要、又有多不重要](https://skythephysio.com/posts/cycling-vo2max-explained): 最大攝氧量是耐力運動的天花板，但天花板高不代表你住得滿。理解它的可塑性與極限，能讓你把訓練時間花在對的地方。
 - [三大能量系統：從十秒衝刺到五小時長征](https://skythephysio.com/posts/cycling-energy-systems): 磷酸系統、醣解系統、有氧系統不是輪流上工，而是同時運轉、比例不同。理解它們，你的課表設計才有生理學根據。
 - [功率計怎麼選？位置、準確度與一致性](https://skythephysio.com/posts/cycling-power-meter-types): 踏板式、曲柄式、大盤式、花鼓式各有優缺。但對訓練來說，最重要的不是絕對準確，而是每天都給你同樣的答案。
 - [象限分析：同樣的瓦特，用不同的方式產生](https://skythephysio.com/posts/cycling-quadrant-analysis): 250 W 可以是高迴轉輕齒比，也可以是低迴轉重踩。象限分析把功率拆成踩踏力與踏板速度兩個維度，讓你看見比賽真正的肌肉需求。
-- [心率漂移：檢驗有氧基礎最便宜的方法](https://skythephysio.com/posts/cycling-aerobic-decoupling): 不用實驗室、不用抽血，只要一趟兩小時的穩定騎乘，就能算出你的有氧耐力有多扎實——以及基礎期練得夠不夠。
+- [心率漂移：檢驗有氧基礎最便宜的方法](https://skythephysio.com/posts/cycling-aerobic-decoupling): 不用實驗室、不用抽血，一趟穩定的長騎，就能看出你的有氧耐力撐不撐得住。前提是條件固定、算法正確，再看連續幾次的趨勢。
 - [功率與心率：一個是輸出，一個是代價](https://skythephysio.com/posts/cycling-power-vs-heartrate): 功率告訴你做了什麼，心率告訴你身體付出了多少。兩個一起看，才能發現疲勞、脫水、過熱與進步的訊號。
-- [你是衝刺型、爬坡型還是計時賽型？功率剖面告訴你](https://skythephysio.com/posts/cycling-power-profile-types): 用 5 秒、1 分鐘、5 分鐘、FTP 四個時間點的 W/kg 排出來，就能看出你的天賦傾向。認識自己的類型，才知道該補短還是揚長。
+- [你是衝刺型、爬坡型還是計時賽型？功率剖面告訴你](https://skythephysio.com/posts/cycling-power-profile-types): 把 5 秒、1 分鐘、5 分鐘和 FTP 四個時間點的 W/kg 放進分級表，就能看出你目前偏哪一型。認識自己的形狀，才知道該挑哪種比賽、該補短還是揚長。
 - [W'（W prime）：你的無氧儲備就像一張有額度的信用卡](https://skythephysio.com/posts/cycling-w-prime-anaerobic): 超過臨界功率的每一次努力都在刷卡，回到臨界功率以下才會慢慢還款。理解 W' 的收支，你就懂了比賽中什麼時候該衝、什麼時候該忍。
 - [功率-時間曲線：一張圖看完你是哪種車手](https://skythephysio.com/posts/cycling-power-duration-curve): 從 5 秒到 5 小時，你能維持的最大功率畫成一條曲線。這條曲線的形狀，比任何單一數字都更誠實地說明你的強項與弱點。
 - [變異指數 VI：你的配速有你以為的那麼穩嗎](https://skythephysio.com/posts/cycling-variability-index): VI 是正規化功率除以平均功率。計時賽該接近 1.0，繞圈賽可能到 1.3。在該穩的時候，它能幫你抓出不必要的爆衝。
