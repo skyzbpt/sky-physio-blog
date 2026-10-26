@@ -101,7 +101,7 @@
 - [中年車手的恢復：不是練得比較少，是休得比較久](https://skythephysio.com/posts/cycling-midlife-recovery): 同樣的課表，四十歲需要的恢復時間比二十歲更長。調整訓練節奏而不是訓練強度，是中年持續進步的關鍵。
 - [四十歲後怎麼守住 VO2max：不能只騎慢的](https://skythephysio.com/posts/cycling-maintaining-vo2max-midlife): 最大攝氧量會隨年齡下降，越往後掉得越快；只騎輕鬆的，守不住它。這篇用一位中年車手的例子，談怎麼把間歇安全地放回課表。
 - [中年車手的肌腱：為什麼小傷變多、好得更慢](https://skythephysio.com/posts/cycling-tendons-aging): 肌腱的膠原蛋白周轉速度隨年齡下降，彈性減少、對負荷變化更敏感。理解它的節奏，才知道漸進要多慢。
-- [車手的骨密度危機：騎越多不代表骨頭越強](https://skythephysio.com/posts/cycling-bone-density-cyclists): 自行車是非衝擊運動，對骨骼幾乎沒有刺激。長期高量訓練加上能量不足，反而讓許多車手骨密度低於一般人。
+- [車手的骨密度危機：騎越多不代表骨頭越強](https://skythephysio.com/posts/cycling-bone-density-cyclists): 騎公路車給骨頭的衝擊很小，長期只騎車又吃不夠，骨密度可能比同齡人低。這篇算算踩踏給骨頭多少負荷，也整理重訓、跳躍、飲食與檢查怎麼做。
 - [中年荷爾蒙與訓練：睪固酮、雌激素與生長激素](https://skythephysio.com/posts/cycling-midlife-hormones): 荷爾蒙的變化影響肌肉合成、恢復速度與骨密度。理解它們與訓練、睡眠、營養的關係，比追求捷徑重要得多。
 - [四十歲之後的身體，騎車時到底改變了什麼](https://skythephysio.com/posts/cycling-midlife-physiology): 最大心率會照著年紀往下走，肌肉、心肺、肌腱和骨頭雖然會退化，對訓練仍有反應。分清楚哪些擋不住、哪些改得動，四十歲以後的力氣才花得到對的地方。
 - [跟車與集團：省下三成力氣的免費技術](https://skythephysio.com/posts/cycling-drafting-peloton): 跟在別人後面能省下 20–40% 的功率。理解氣流、隊形與安全距離，讓你在同樣的體能下騎得更遠更快。
@@ -115,13 +115,13 @@
 - [摔車之後：現場處理、就醫時機與回歸的節奏](https://skythephysio.com/posts/cycling-crash-what-to-do): 從鎖骨骨折到單純擦傷，摔車後的判斷影響很大。這篇整理現場檢查、紅旗症狀，以及重新上車的身心準備。
 - [傷後回到車上：漸進負荷的四個階段](https://skythephysio.com/posts/cycling-return-to-ride-after-injury): 完全休息到痛消失再全力練，是最常見的復發劇本。這篇給你一套可以量化、可以自我判斷的回歸流程。
 - [騎士版的疼痛科學：痛不等於身體壞了](https://skythephysio.com/posts/cycling-pain-is-not-damage): 疼痛是大腦對威脅的判斷，不是組織損傷的量表。理解這一點，能讓你在傷後更快、更安全地回到車上。
-- [阿基里斯腱與腳掌痛：卡踏位置與鞋子的問題](https://skythephysio.com/posts/cycling-achilles-foot-pain): 腳是動力鏈的起點，卻常常被忽略。蹠骨痛、足底不適與阿基里斯腱疼痛，多數來自卡踏位置、鞋楦與足弓支撐。
+- [阿基里斯腱與腳掌痛：卡踏位置與鞋子的問題](https://skythephysio.com/posts/cycling-achilles-foot-pain): 騎車腳跟上方痛、前腳掌又燒又麻，常和爬坡量、低迴轉速、扣片位置與鞋子太窄有關。這篇用槓桿算出肌腱受力，說明先調什麼、什麼時候該就醫。
 - [座墊瘡與會陰麻木：不該被當成勳章的問題](https://skythephysio.com/posts/cycling-saddle-sores-perineal): 摩擦、壓力與濕熱是三大成因。座墊選擇、車褲品質與騎乘習慣能解決絕大多數問題，而會陰麻木更需要積極處理。
 - [手掌麻木與尺神經壓迫：不是騎久了都會這樣](https://skythephysio.com/posts/cycling-hand-numbness-palsy): 小指與無名指麻是尺神經，拇指側麻是正中神經。長期壓迫可能造成持續性的無力，值得認真處理而不是忍耐。
 - [騎車頸肩痛：問題常常在胸椎與把手高度](https://skythephysio.com/posts/cycling-neck-shoulder-pain): 為了看路，頸椎必須在前傾姿勢下持續後仰。當胸椎不動、把手太低太遠，頸部的小肌肉就要撐住整顆頭好幾小時。
 - [騎車下背痛：腰椎在替髖關節和胸椎加班](https://skythephysio.com/posts/cycling-low-back-pain-riding): 騎乘中的下背痛很少是腰的問題。當髖屈曲不夠、胸椎不會伸展、核心撐不住，腰椎就成了那個被迫代償的環節。
 - [膝蓋外側痛：髂脛束症候群怎麼處理](https://skythephysio.com/posts/cycling-itbs-lateral-knee): 外側膝痛常在騎了一段時間後突然出現、下坡與特定角度最痛。滾髂脛束往往沒用，因為問題常在臀部與卡踏。
-- [騎車膝蓋前面痛：最常見的自行車傷害](https://skythephysio.com/posts/cycling-knee-pain-anterior): 髕骨周圍的疼痛通常來自負荷突然增加、座墊太低或太前、齒比太重。這篇教你分辨、調整與漸進回歸。
+- [騎車膝蓋前面痛：最常讓車手停練的過度使用傷害](https://skythephysio.com/posts/cycling-knee-pain-anterior): 騎車膝蓋前面痛，多半是負荷加得太快，不是膝蓋壞掉。這篇算清爬坡量、齒比與座墊的帳，教你先減量、再用髖膝訓練慢慢把坡加回來。
 - [Bike fit 之前，該先做的身體評估](https://skythephysio.com/posts/cycling-physical-assessment-before-fit): 好的 fit 從身體開始，不是從量尺開始。長短腳、活動度受限、舊傷、足部結構——這些沒被看見，量得再準也是白量。
 - [你是軟的還是硬的？兩種身體，兩種騎乘策略](https://skythephysio.com/posts/cycling-hypermobile-vs-stiff): 關節過動的人容易撐不住姿勢、需要更多穩定訓練；僵硬的人受限於活動範圍、需要更多鬆動。認錯類型，努力就會白費。
 - [腳被鎖在踏板上：閉鎖鏈運動的代價與意義](https://skythephysio.com/posts/cycling-closed-kinetic-chain): 卡鞋把你的腳固定在一個軌跡上，每小時重複五千次。這種高度重複、低變異的動作模式，是自行車傷害的根本背景。
@@ -132,7 +132,7 @@
 - [卡踏位置：腳下三公分，膝蓋差很多](https://skythephysio.com/posts/cycling-cleat-position): 前後、內外、旋轉角度——卡踏的三個維度直接決定膝關節的受力路徑。很多膝痛與腳麻，答案就在這裡。
 - [座墊前後與角度：骨盆穩不穩，決定了很多事](https://skythephysio.com/posts/cycling-saddle-fore-aft): 前後位置改變髖膝的力學與體重分佈，角度則直接影響會陰壓力。這兩個調整往往比座高更能解決騎乘不適。
 - [座墊高度：一個影響膝蓋、下背與功率的關鍵數字](https://skythephysio.com/posts/cycling-saddle-height): 座墊太高，骨盆會晃、膝蓋後側發緊；太低，膝蓋前側受壓。這篇用跨下長算出起點，再靠影片、小步調整和紀錄，找到屬於你的座高。
-- [曲柄長度：更短的曲柄可能對你的髖和膝更友善](https://skythephysio.com/posts/cycling-crank-length): 曲柄長度改變的不只是槓桿，更是髖膝踝的活動範圍。近年趨勢往短走，對活動度受限或有下背、膝前痛的人特別值得考慮。
+- [曲柄長度：更短的曲柄可能對你的髖和膝更友善](https://skythephysio.com/posts/cycling-crank-length): 曲柄長度決定髖和膝在最高點要折多深。研究顯示在常見範圍內，長短對功率影響不大；猶豫時選短一點，並記得座墊升高同樣的量。
 - [迴轉速該用多少？高轉與低轉的取捨](https://skythephysio.com/posts/cycling-cadence-explained): 同樣的功率下，高迴轉讓每一踩變輕，但心肺付得比較多；低迴轉相反。最佳答案取決於路段、齒比，以及你想保護什麼。
 - [踩踏週期的四個階段：力量到底在哪裡產生](https://skythephysio.com/posts/cycling-pedal-stroke-phases): 下踩是功率的主戰場，回程的腳多半還在扯一點後腿。研究發現刻意上拉讓數字變好看，身體卻更耗能。看懂四個階段，就知道哪些該練、哪些可以放下。
 - [訓練日誌：功率檔案不會記錄的那一半](https://skythephysio.com/posts/cycling-training-diary): 功率檔案記下你做了多少功，卻記不下睡眠、壓力和哪裡怪怪的。每天花兩分鐘寫五格，把自覺費力分數乘上分鐘數，就能粗估身體付了多少代價。
@@ -153,7 +153,7 @@
 - [騎得快，先離開腳踏車：談公路車的離車訓練](https://skythephysio.com/posts/strength-off-the-bike): 想騎得更快、更不容易受傷，答案常常不在更多的里程，而在你下車之後做了什麼。但「核心訓練」這四個字，可能正在浪費你的時間。
 - [三個接觸點，決定你和公路車的關係](https://skythephysio.com/posts/bike-fit-three-contacts): 坐墊、踏板、把手——你和車只在三個地方相遇。把這三點調對了，長途騎乘不該是受苦；調不對，身體會替你說。
 - [週期化訓練：為什麼不能一整年都用同一種課表](https://skythephysio.com/posts/cycling-periodization-overview): 同一份課表練久了，進步會越來越慢。週期化是有計畫地改變訓練的量、強度與專項性，讓身體持續有新的刺激、也有時間吸收，並讓巔峰出現在你要的日子。
-- [睡眠不足對騎乘表現的傷害，比你想的大](https://skythephysio.com/posts/cycling-sleep-and-performance): 少睡兩小時，隔天的最大功率或許還在，但你的耐痛、判斷、免疫與長期適應全部打折。這是最便宜也最被忽略的訓練。
+- [睡眠不足對騎乘表現的傷害，比你想的大](https://skythephysio.com/posts/cycling-sleep-and-performance): 少睡一兩晚，最大功率常還在，同樣的瓦數卻更費力、反應更慢，自己還不一定察覺。跟著一位工程師算睡眠帳，看怎麼把睡眠排回一週。
 - [恢復策略排行榜：哪些真的有效，哪些只是感覺良好](https://skythephysio.com/posts/cycling-recovery-strategies): 睡眠、吃夠和真正輕鬆的恢復騎是三大主力。冰浴、按摩槍和加壓褲各有位置，但別讓它們佔掉睡覺的時間，冰浴也別緊接在重訓之後。
 - [騎車的疲勞從哪裡來？四種累，四種對策](https://skythephysio.com/posts/cycling-fatigue-sources): 同樣叫累，可能是燃料見底、代謝物累積、大腦調低出力，或肌肉組織受損。分清楚是哪一種，才知道該吃、放輕、補眠，還是等它修好。
 - [騎車該喝多少水？從流汗率算出你的個人答案](https://skythephysio.com/posts/cycling-hydration): 「每小時一瓶水」只是通則。騎前騎後各量一次體重，就能算出自己的流汗率，訂出補水的下限與上限，避免脫水，也避免喝太多。
@@ -161,12 +161,12 @@
 - [高度對騎乘表現的影響：氧氣少了，但阻力也小了](https://skythephysio.com/posts/cycling-altitude-effect): 海拔上升讓攝氧量下降，卻也讓空氣阻力變小。理解這個取捨，才知道高地騎乘該怎麼配速、怎麼適應。
 - [W/kg：爬坡的貨幣，也是最容易被誤用的數字](https://skythephysio.com/posts/cycling-watts-per-kilo): 每公斤瓦特決定你在坡上的速度，但把分母壓到極致的代價，常常是骨質、荷爾蒙與免疫力。這篇談怎麼健康地提高它。
 - [耐力訓練把心臟改造成什麼樣子](https://skythephysio.com/posts/cycling-cardiac-adaptations): 更大的心室、更強的每搏輸出量、更低的靜止心率。運動員心臟的變化是適應而非疾病，但也有需要注意的邊界。
-- [騎乘經濟性：同樣的瓦特，有人花的力氣比較少](https://skythephysio.com/posts/cycling-efficiency-economy): 效率決定你把多少化學能變成推進力。人類騎車的效率大約 20–25%，而這幾個百分點，就是長距離比賽的勝負。
-- [快肌與慢肌：你的肌纖維組成能被訓練改變嗎](https://skythephysio.com/posts/cycling-muscle-fibre-types): 第一型耐疲勞、第二型爆發力強。基因決定了大致比例，但訓練能改變它們的代謝特性、徵召順序與疲勞方式。
+- [騎乘經濟性：同樣的瓦特，有人花的力氣比較少](https://skythephysio.com/posts/cycling-efficiency-economy): 同樣的瓦特，有人燒掉的能量比較少。人騎車的總效率約兩成到兩成五，差一兩個百分點就差好幾瓦；但對業餘車手來說，先處理空氣阻力常更划算。
+- [快肌與慢肌：你的肌纖維組成能被訓練改變嗎](https://skythephysio.com/posts/cycling-muscle-fibre-types): 你天生的快慢肌比例約有一半與遺傳有關，但訓練多半在快肌家族裡改造它們。只騎輕鬆騎，衝刺會慢慢變弱；短衝刺和重訓能把它練回來。
 - [乳酸閾值與換氣閾：身體的兩道分水嶺](https://skythephysio.com/posts/cycling-lactate-threshold): 乳酸不是廢物，也不是造成隔天痠痛的兇手。搞懂第一與第二閾值，你就知道自己該待在哪個強度、待多久。
 - [VO2max 是什麼？它有多重要、又有多不重要](https://skythephysio.com/posts/cycling-vo2max-explained): 最大攝氧量是耐力運動的天花板，但天花板高，不代表你住得滿。看懂它由什麼決定、能練多少、怎麼隨年齡改變，訓練時間才會花在對的地方。
 - [三大能量系統：從十秒衝刺到五小時長征](https://skythephysio.com/posts/cycling-energy-systems): 磷酸系統、醣解系統、有氧系統不是輪流上工，而是同時運轉、比例不同。全力騎四分鐘，約八成能量其實來自有氧；看懂比例，課表才練得到對的地方。
-- [功率計怎麼選？位置、準確度與一致性](https://skythephysio.com/posts/cycling-power-meter-types): 踏板式、曲柄式、大盤式、花鼓式各有優缺。但對訓練來說，最重要的不是絕對準確，而是每天都給你同樣的答案。
+- [功率計怎麼選？位置、準確度與一致性](https://skythephysio.com/posts/cycling-power-meter-types): 功率計裝在踏板、曲柄、大盤或花鼓，量的是力量傳遞路上的不同點。對訓練來說，最重要的不是絕對準確，而是每次都用同一把尺，也知道它何時會說錯話。
 - [象限分析：同樣的瓦特，用不同的方式產生](https://skythephysio.com/posts/cycling-quadrant-analysis): 250 W 可以是高迴轉輕齒比，也可以是低迴轉重踩。象限分析把功率拆成踩踏力與踏板速度兩個維度，讓你看見比賽真正的肌肉需求。
 - [心率漂移：檢驗有氧基礎最便宜的方法](https://skythephysio.com/posts/cycling-aerobic-decoupling): 不用實驗室、不用抽血，一趟穩定的長騎，就能看出你的有氧耐力撐不撐得住。前提是條件固定、算法正確，再看連續幾次的趨勢。
 - [功率與心率：一個是輸出，一個是代價](https://skythephysio.com/posts/cycling-power-vs-heartrate): 功率告訴你做了什麼，心率告訴你身體付出了多少。兩個一起看，才能發現疲勞、脫水、過熱與進步的訊號。
