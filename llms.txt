@@ -83,7 +83,7 @@
 - [五年的視角：長期進步是什麼樣子](https://skythephysio.com/posts/cycling-long-term-development): 第一年進步最快，之後曲線變平。理解長期發展的節奏，能讓你避免用短期的失望，毀掉長期的可能。
 - [訓練台軟體與線上賽：好處、限制與該注意的事](https://skythephysio.com/posts/cycling-indoor-apps-virtual-racing): 虛擬平台讓室內訓練變得有趣且有社交性，但它也帶來過度訓練、功率不一致與姿勢僵化的風險。
 - [公路車第一年：從買車到完成第一場百公里](https://skythephysio.com/posts/cycling-first-year-roadmap): 不要一開始就追功率與課表。第一年最該累積的是里程、技術、身體適應與樂趣——這四樣決定你會不會有第二年。
-- [一週只有六小時：時間有限車手的訓練策略](https://skythephysio.com/posts/cycling-time-crunched-rider): 時間少不代表練不好，但代表每一分鐘都要有目的。這篇談優先順序、通勤的利用，以及該放棄什麼。
+- [一週只有六小時：時間有限車手的訓練策略](https://skythephysio.com/posts/cycling-time-crunched-rider): 時間少不代表練不好，但每一分鐘都要有目的。這篇談一週六小時該先保住什麼、怎麼利用通勤，以及哪些騎法看似努力卻偷走恢復。
 - [車手最常見的六個營養錯誤](https://skythephysio.com/posts/cycling-nutrition-pitfalls): 吃太少、補太晚、蛋白質不足、賽前亂吃、把減重排在錯的時期、忽略騎後補充——這六個問題比缺任何補充品都嚴重。
 - [車手的補充品：哪些有證據，哪些是花錢買希望](https://skythephysio.com/posts/cycling-supplements-evidence): 咖啡因、硝酸鹽、肌酸和兩種緩衝劑有扎實證據，但效果因人而異。大部分產品的價值，遠不如睡飽、吃夠、練對，還可能藏著禁藥風險。
 - [營養週期化：不同的訓練期，該吃不一樣的東西](https://skythephysio.com/posts/cycling-nutrition-periodization): 碳水跟著當天的課表加減，蛋白質每天穩定供應。跟著一位開花店的車友算一週的份量，看減重、肝醣超補和少吃碳水去練，各該放在哪個階段。
@@ -94,9 +94,9 @@
 - [攻擊與突圍：時機比腿力重要](https://skythephysio.com/posts/cycling-attacking-breakaway): 什麼時候攻、在哪裡攻、攻多久——這是一場賽局。理解集團的心理與地形的槓桿，能讓你用更少的力氣做成更多的事。
 - [下坡與過彎：省時間、也保命的技術](https://skythephysio.com/posts/cycling-descending-cornering): 下坡是唯一不用花力氣就能追回時間的地方。重心、視線、煞車時機與路線選擇，這四件事決定你的安全與速度。
 - [計時賽配速：平順到無聊，才是最快的](https://skythephysio.com/posts/cycling-time-trial-pacing): 獨自對抗時間的比賽，勝負常常在前五分鐘就決定了。功率配速、姿勢維持與坡段的處理，是計時賽的三大課題。
-- [爬坡的配速與策略：前兩分鐘決定後面二十分鐘](https://skythephysio.com/posts/cycling-climbing-strategy): 多數人在坡的開頭燒光無氧儲備，然後痛苦地慢慢死。這篇談用功率配速、齒比選擇、坐姿與站姿的切換。
+- [爬坡的配速與策略：前兩分鐘決定後面二十分鐘](https://skythephysio.com/posts/cycling-climbing-strategy): 多數人在坡的開頭就把力氣燒光，後面只能慢慢撐。這篇依坡長抓功率，算給你看一段六公里的坡要騎多久、齒比夠不夠輕，也談坐姿和站姿怎麼換。
 - [女性車手的訓練：生理週期、能量可用性與骨骼](https://skythephysio.com/posts/cycling-women-menstrual-cycle): 荷爾蒙週期會影響體溫、代謝與主觀感受。理解自己的週期並不是為了設限，而是為了做出更好的訓練與補給決策。
-- [中年車手的十條訓練原則](https://skythephysio.com/posts/cycling-midlife-training-principles): 把前面幾篇的內容收攏成一份可以執行的清單：什麼要保留、什麼要調整、什麼絕對不能省。
+- [中年車手的十條訓練原則](https://skythephysio.com/posts/cycling-midlife-training-principles): 四十歲以後想騎得快又騎得久，強度要留、肌力和骨頭要補、恢復要更勤。十條原則各用幾句話講重點，並附上一週的數字範例。
 - [運動量與心臟健康：中年車手該知道的爭議與建議](https://skythephysio.com/posts/cycling-heart-health-exercise-dose): 規律運動大幅降低心血管風險，但長年高量的耐力訓練也帶來一些需要留意的發現。這篇整理現有的理解與務實作法。
 - [中年車手的恢復：不是練得比較少，是休得比較久](https://skythephysio.com/posts/cycling-midlife-recovery): 同樣一堂硬課，中年車手常要多等幾天才長得回來。用靜止心率和關鍵課的功率找出自己的恢復間隔，再把蛋白質、睡眠和輕鬆日顧好。
 - [四十歲後怎麼守住 VO2max：不能只騎慢的](https://skythephysio.com/posts/cycling-maintaining-vo2max-midlife): 最大攝氧量會隨年齡下降，越往後掉得越快；只騎輕鬆的，守不住它。這篇用一位中年車手的例子，談怎麼把間歇安全地放回課表。
@@ -107,8 +107,8 @@
 - [跟車與集團：省下三成力氣的免費技術](https://skythephysio.com/posts/cycling-drafting-peloton): 跟在別人後面能省下 20–40% 的功率。理解氣流、隊形與安全距離，讓你在同樣的體能下騎得更遠更快。
 - [比賽日流程：從前一晚到起跑線的每一步](https://skythephysio.com/posts/cycling-race-day-routine): 比賽日不是嘗試新東西的日子。把賽前餐、咖啡因、熱身和配速寫成一張往回推的時間表，能減少當天的決定，讓注意力留給比賽本身。
 - [騎乘中的補給：每小時該吃多少碳水](https://skythephysio.com/posts/cycling-fueling-during-rides): 騎一小時通常不必吃，兩三小時每小時最多約 60 克，更久才需要葡萄糖加果糖、吃到約 90 克。從一位車友的兩次失敗，算出一整趟怎麼吃，也怎麼把腸胃練起來。
-- [車手的核心訓練：要的是耐力，不是六塊肌](https://skythephysio.com/posts/cycling-core-training-for-riders): 核心在騎乘中的工作是「維持姿勢不變」，那是等長收縮的耐力工作。所以訓練方式應該是抗動作，不是捲腹。
-- [車手的六個核心動作：從深蹲到髖推](https://skythephysio.com/posts/cycling-key-strength-exercises): 不需要複雜的課表。深蹲、硬舉、分腿蹲、髖推、划船、棒式——把這六個做好做重，就涵蓋了車手需要的大部分。
+- [車手的核心訓練：要的是耐力，不是六塊肌](https://skythephysio.com/posts/cycling-core-training-for-riders): 核心在車上的工作多半是維持姿勢，要練的是撐得久的耐力。這篇用四個耐力秒數算給你看弱在哪一側，也說清楚證據能支持到哪裡。
+- [車手的六個核心動作：從深蹲到髖推](https://skythephysio.com/posts/cycling-key-strength-exercises): 車手的重訓不必花俏，深蹲、硬舉、分腿蹲、髖推、划船和抗動作核心做好做重就夠。這篇整理動作要點、加重方法、怎麼和騎車排在一起，以及研究看到的效果。
 - [車手為什麼需要重量訓練：五個騎車給不了你的東西](https://skythephysio.com/posts/cycling-strength-training-why): 肌力、骨密度、第二型肌纖維、多平面穩定、傷害韌性——這些是踩踏永遠練不到的，而它們隨年齡流失得最快。
 - [伸展對車手有沒有用？答案取決於你想解決什麼](https://skythephysio.com/posts/cycling-stretching-role): 伸展最確定的效果是增加活動範圍，多半來自耐受度提高；它幾乎不能預防受傷或減少痠痛。這篇算給你每週該拉多久，以及何時該停。
 - [熱身與收操：不是儀式，是有生理目的的步驟](https://skythephysio.com/posts/cycling-warmup-cooldown): 熱身讓身體在主課表前就進入狀態，收操讓人平順下車。這篇依課表排出熱身長度，也說明收操研究真正能證明到哪裡。
@@ -118,15 +118,15 @@
 - [阿基里斯腱與腳掌痛：扣片位置與鞋子的問題](https://skythephysio.com/posts/cycling-achilles-foot-pain): 騎車腳跟上方痛、前腳掌又燒又麻，常和爬坡量、低迴轉速、扣片位置與鞋子太窄有關。這篇用槓桿算出肌腱受力，說明先調什麼、什麼時候該就醫。
 - [座墊瘡與會陰麻木：不該被當成勳章的問題](https://skythephysio.com/posts/cycling-saddle-sores-perineal): 座墊瘡來自摩擦、壓力與濕熱，會陰麻木則是神經血管被壓住。這篇算清長騎的摩擦次數，教你從車褲、座墊到把手一步步調整，並列出該就醫的警訊。
 - [手掌麻木與尺神經壓迫：不是騎久了都會這樣](https://skythephysio.com/posts/cycling-hand-numbness-palsy): 小指和無名指麻多半是尺神經，拇指側麻是正中神經。這篇算給你看手上壓了幾公斤，說明怎麼調車、換把位，以及哪些手麻要看醫師。
-- [騎車頸肩痛：問題常常在胸椎與把手高度](https://skythephysio.com/posts/cycling-neck-shoulder-pain): 為了看路，頸椎必須在前傾姿勢下持續後仰。當胸椎不動、把手太低太遠，頸部的小肌肉就要撐住整顆頭好幾小時。
+- [騎車頸肩痛：問題常常在胸椎與把手高度](https://skythephysio.com/posts/cycling-neck-shoulder-pain): 騎車時軀幹前傾、眼睛還要看前方，頭就像掛在釣竿末端。這篇算給你看脖子要出多少力，也說明把手怎麼調、上背和頸部肌肉怎麼練，以及哪些情況要就醫。
 - [騎車下背痛：腰椎在替髖關節和胸椎加班](https://skythephysio.com/posts/cycling-low-back-pain-riding): 騎乘中的下背痛很少是腰的問題。當髖屈曲不夠、胸椎不會伸展、核心撐不住，腰椎就成了那個被迫代償的環節。
 - [膝蓋外側痛：髂脛束症候群怎麼處理](https://skythephysio.com/posts/cycling-itbs-lateral-knee): 膝蓋外側痛常在騎了一段時間後才出現。它多半和加量太快、座墊太高與髖部控制有關，滾髂脛束很難把它滾鬆。
 - [騎車膝蓋前面痛：最常讓車手停練的過度使用傷害](https://skythephysio.com/posts/cycling-knee-pain-anterior): 騎車膝蓋前面痛，多半是負荷加得太快，不是膝蓋壞掉。這篇算清爬坡量、齒比與座墊的帳，教你先減量、再用髖膝訓練慢慢把坡加回來。
-- [Bike fit 之前，該先做的身體評估](https://skythephysio.com/posts/cycling-physical-assessment-before-fit): 好的 fit 從身體開始，不是從量尺開始。長短腳、活動度受限、舊傷、足部結構——這些沒被看見，量得再準也是白量。
+- [Bike fit 之前，該先做的身體評估](https://skythephysio.com/posts/cycling-physical-assessment-before-fit): 好的 Bike Fitting 從身體開始。髖、腳踝、胸椎與舊傷沒先看清楚，數字量得再準，騎兩週還是可能腰痠。這篇說明該評估什麼、長短腳怎麼看、何時該先看醫師。
 - [你是軟的還是硬的？兩種身體，兩種騎乘策略](https://skythephysio.com/posts/cycling-hypermobile-vs-stiff): 關節過動的人多半缺的是控制，僵硬的人缺的是範圍。先用 Beighton 分數和騎乘錄影認清自己，再決定把時間花在穩定訓練還是活動度。
 - [腳被鎖在踏板上：閉鎖鏈運動的代價與意義](https://skythephysio.com/posts/cycling-closed-kinetic-chain): 卡鞋把你的腳固定在一個軌跡上，每小時重複五千次。這種高度重複、低變異的動作模式，是自行車傷害的根本背景。
 - [後側鏈：臀肌、腿後肌與你沒用到的一半功率](https://skythephysio.com/posts/cycling-posterior-chain): 多數車手的臀肌一直有在出力，問題常在分工與耐力。看懂後側鏈在踩踏裡的角色，先在地上練強，再小幅調整齒比與座墊，讓膝蓋少扛一點。
-- [髖關節活動度：騎乘姿勢的天花板](https://skythephysio.com/posts/cycling-hip-angle-mobility): 踩踏一小時約五千次髖屈曲。當髖關節的活動範圍不夠，腰椎就會替它加班——這是騎士下背痛最常見的機轉。
+- [髖關節活動度：騎乘姿勢的天花板](https://skythephysio.com/posts/cycling-hip-angle-mobility): 踩踏一小時，每條腿要折起五千多次。髖關節給不出的角度，會轉給腰椎去彎。先量清楚你的髖給得出多少，再決定把手能降到哪裡。
 - [空力姿勢的取捨：更低不一定更快](https://skythephysio.com/posts/cycling-aero-position-tradeoffs): 趴低能減少風阻，但髖角變緊、呼吸受限時功率也會掉。用實際數字算給你看，怎麼一步步找到能維持整場、又不掉瓦的空力姿勢。
 - [把手的伸展與落差：舒適與空力之間的那條線](https://skythephysio.com/posts/cycling-handlebar-reach-drop): 把手的伸展決定你要伸多遠，落差決定你要彎多低。這篇算給你看一片墊圈、一支龍頭換到多少，也說明身體哪幾段決定你能騎多低。
 - [扣片位置：腳下差一點，膝蓋差很多](https://skythephysio.com/posts/cycling-cleat-position): 扣片的前後、左右和旋轉角度，決定膝蓋每一下踩踏怎麼受力。我用一個實際案例，說明怎麼找到腳天生的角度，一次一兩度地慢慢調整。
