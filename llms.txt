@@ -53,13 +53,13 @@
 - [肩膀痛：認識這個全身最靈活、也最容易出問題的關節](https://skythephysio.com/posts/shoulder-pain-overview): 肩膀能往幾乎所有方向活動，代價是穩定度得靠肌肉主動維持。這篇帶你認識守護肩膀的結構、肩痛通常是怎麼開始的、剛痛起來的兩週可以做什麼，以及哪些狀況該盡快就醫。
 
 ### 下背痛
-- [預防勝於治療：下背的長期保養計畫（prehab）](https://skythephysio.com/posts/back-prehab-prevention): 腰痛好了之後怎麼不再犯？答案是一份排得進生活的保養計畫。力量、活動度與有氧怎麼分配到一週裡，加量的時機怎麼抓，還有哪些警訊該找人看看。
+- [預防勝於治療：下背的長期保養計畫（prehab）](https://skythephysio.com/posts/back-prehab-prevention): 腰痛好了之後，怎麼讓它少復發？這篇跟著一位竹山菜販，把力量、活動度與有氧排進一週，算清楚份量與加量規則，也談睡眠、體重和菸的證據有多強。
 - [下背與臀部的軟組織放鬆：滾筒與按摩球怎麼用](https://skythephysio.com/posts/soft-tissue-back-release): 滾筒和按摩球能讓背暫時比較鬆、比較好動，但效果短又小。這篇說明該壓哪裡、壓多久、哪些人要小心，以及為什麼放鬆完一定要接著動。
 - [下背痛的溫和伸展與活動度運動：從貓牛到抱膝](https://skythephysio.com/posts/back-stretches-mobility): 伸展不是要把腰拉開，而是讓身體重新習慣移動。這篇說明怎麼照方向挑溫和的動作、做多少、哪些人要調整，以及研究對伸展的把握有多大。
 - [久坐與下背痛：問題不是坐姿，是「坐太久不動」](https://skythephysio.com/posts/sitting-back-pain): 久坐腰痠多半不是坐姿錯，而是同一個姿勢撐太久。這篇跟著一位旅行社票務的一天，算給你看怎麼把最長的久坐切短，也說明升降桌、好椅子的證據和就醫警訊。
 - [搬重物不再閃到腰：學會髖鉸鏈這個關鍵動作](https://skythephysio.com/posts/hip-hinge-lifting): 搬重物時「用髖不用腰」到底怎麼做？這篇跟著一位搬礦泉水閃到腰的上班族，說明髖鉸鏈怎麼練、為什麼東西要貼身，也說明搬重技巧的研究其實比口號保守。
-- [腰痛，為什麼要練髖？髖不動，腰就替它受累](https://skythephysio.com/posts/hip-mobility-back-pain): 髖該轉的沒轉、該彎的沒彎，那些角度就會被下背硬吃下來。這篇帶你認出髖太緊的生活場景、在家該練哪些方向與做幾下、多久會有感覺，以及哪些腰痛不是練髖能解決的。
-- [核心不是仰臥起坐：認識真正在保護你腰的深層核心](https://skythephysio.com/posts/deep-core-not-situps): 保護下背的不是表層那塊六塊肌，而是一群你看不到的深層肌肉。本文教你一天練多少才夠、怎麼自我檢查練對了，以及哪些紅旗症狀該先就醫。
+- [腰痛，為什麼要練髖？髖不動，腰就替它受累](https://skythephysio.com/posts/hip-mobility-back-pain): 髖轉不開、彎不下，動作常改由下背多分擔。這篇帶你看懂髖與腰的分工、在家怎麼依卡住的方向練，以及三份研究各看到什麼、哪些情況要先就醫。
+- [核心不是仰臥起坐：認識真正在保護你腰的深層核心](https://skythephysio.com/posts/deep-core-not-situps): 保護下背的不只是表層六塊肌，還有一群深層肌肉。本文說明它怎麼運作、一天練幾分鐘夠、怎麼自我檢查，以及研究其實能證明多少。
 - [屈曲型還是伸展型？找出你下背痛的「方向偏好」](https://skythephysio.com/posts/flexion-extension-preference): 同樣的運動，有人做了變好、有人越做越痛，差別常在方向。這篇用一位公車司機的記錄，教你在家安全地找方向偏好、看懂向心化，也說明哪些情況要先就醫。
 - [脊椎解離與滑脫：報告上寫著「斷」和「滑」，先別慌](https://skythephysio.com/posts/spondylolysis-listhesis): 脊椎解離與滑脫聽起來嚇人，但多數人的滑移穩定、可以管理。這篇用一位送貨老闆的 X 光報告，帶你算出滑脫分級、看懂研究，並整理怎麼動、何時要就醫。
 - [薦髂關節疼痛：屁股上方單側那個點在痛](https://skythephysio.com/posts/si-joint-low-back): 腰帶下方、屁股上方單側那個點在痛，翻身、上下車特別有感，可能是薦髂關節。本文說明它其實很少錯位、檢查為何要成組判讀、在家怎麼練穩定，以及哪些情況要就醫。
@@ -68,7 +68,7 @@
 - [神經滑動：讓敏感的神經重新動起來](https://skythephysio.com/posts/nerve-glides-flossing): 腿麻、坐骨神經痛時硬拉腿後側，常常越拉越麻。這篇說明神經滑動和拉筋差在哪裡、在家怎麼做、做到什麼程度要停，以及研究目前支持多少。
 - [坐骨神經痛：從屁股一路電到腿的那種痛](https://skythephysio.com/posts/sciatica-explained): 痛在腿，問題常在腰。這篇說明坐骨神經痛和一般轉移痛怎麼分、腿上哪一條線對應哪一節神經根、多久會好轉，以及哪些情況要立刻就醫。
 - [椎間盤突出到底是什麼？沒你想的那麼可怕](https://skythephysio.com/posts/disc-herniation-explained): 「你的椎間盤突出了。」這句話讓很多人以為要開刀。其實多數人不必手術，擠出去越多的突出，影像上反而越常自己縮小。
-- [腰痛到底該休息還是該動？答案是「相對休息」](https://skythephysio.com/posts/relative-rest-back-pain): 完全躺平會越躺越糟，硬撐硬操又怕受傷，中間那條路叫相對休息。本文把它落成一天的具體安排，並列出不該只靠休息的紅旗症狀。
+- [腰痛到底該休息還是該動？答案是「相對休息」](https://skythephysio.com/posts/relative-rest-back-pain): 腰痛時整天躺床或硬撐都不好，相對休息是只避開讓疼痛加重的動作，其他照常進行。本文用一位燙衣師傅的例子，示範怎麼拆工作、怎麼加量。
 - [下背痛復健的三個階段：從止痛到重返生活](https://skythephysio.com/posts/three-phase-back-rehab): 下背痛復健可以分成安撫、找回控制、練出負荷三段。這篇跟著一位賣豆腐的老闆娘，說明換段要看哪些條件、提水桶的重量怎麼一週一週加，以及哪些情況要先就醫。
 - [閃到腰的當下，該做什麼、不該做什麼](https://skythephysio.com/posts/tweaked-back-first-aid): 閃到腰很痛，但多半會在幾週內好轉。這篇跟著一位帶孫阿公的頭三天，說明怎麼一天一天動回來、熱敷該擺在什麼位置，也列出不能只在家處理的警訊。
 - [下背痛的真相：X 光上的「異常」不一定是你痛的原因](https://skythephysio.com/posts/back-pain-not-equal-damage): 報告上寫著椎間盤退化、膨出、骨刺，不代表背壞掉了。很多沒有腰痛的人也有這些發現。本文談影像與疼痛的落差、報告用詞的影響、今天能做的事，以及何時真的需要影像。
