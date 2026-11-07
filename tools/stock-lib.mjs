@@ -4,10 +4,11 @@
 //   PIXABAY_API_KEY=…
 //   OPENVERSE_CLIENT_ID=…　OPENVERSE_CLIENT_SECRET=…
 //   UNSPLASH_ACCESS_KEY=…
+//   WIKIMEDIA_TOKEN=…（選填，Wikimedia 不需金鑰；有的話額度較高）
 // 也可以直接用同名的環境變數。
 //
-// 各圖庫的工具：tools/pixabay.mjs、tools/openverse.mjs、tools/unsplash.mjs
-// 三家一起搜：tools/images.mjs
+// 各圖庫的工具：tools/pixabay.mjs、tools/openverse.mjs、tools/unsplash.mjs、tools/wikimedia.mjs
+// 全部一起搜：tools/images.mjs
 import { readFileSync, writeFileSync, existsSync, unlinkSync, mkdirSync } from 'fs';
 import { join } from 'path';
 import { REPO, esc } from './lib.mjs';
@@ -17,7 +18,7 @@ export const PHOTO_W = 960;                  // 文章欄寬 700px，960 足夠�
 const MAX_BYTES = 150 * 1024;                // verify.mjs 上限 200KB，留餘裕
 
 /* ---------- 金鑰 ---------- */
-export function env(name) {
+export function optEnv(name) {
   if (!process.env.__STOCK_ENV_LOADED) {
     const f = join(REPO, '.env.local');
     if (existsSync(f)) for (const line of readFileSync(f, 'utf8').split('\n')) {
@@ -26,12 +27,17 @@ export function env(name) {
     }
     process.env.__STOCK_ENV_LOADED = '1';
   }
-  const v = process.env[name];
+  return process.env[name];
+}
+export function env(name) {
+  const v = optEnv(name);
   if (!v) throw new Error(`缺少 ${name}：請在 .env.local 設定（見 tools/stock-lib.mjs 開頭說明）`);
   return v;
 }
 
 /* ---------- 網路 ---------- */
+// Wikimedia 規定要帶能辨識用途的 User-Agent
+export const WIKI_UA = 'sky-physio-blog-image-tool/1.0 (https://skythephysio.com)';
 export async function getJSON(url, headers = {}) {
   const r = await fetch(url, { headers });
   if (!r.ok) throw new Error(`${r.status} ${r.statusText}：${url.replace(/key=[^&]+/, 'key=***')}`);

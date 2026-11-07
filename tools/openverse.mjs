@@ -7,7 +7,7 @@
 //   node tools/openverse.mjs pick <文章 id> <Openverse 圖片 id> [--alt "替代文字"]
 // 金鑰：.env.local 的 OPENVERSE_CLIENT_ID、OPENVERSE_CLIENT_SECRET（每次執行換一次約 12 小時的存取權杖）
 import { pathToFileURL } from 'url';
-import { env, getJSON, getBuffer, toWebp, setArticleFigure, link, run, usageError, PHOTO_DIR } from './stock-lib.mjs';
+import { env, getJSON, getBuffer, toWebp, setArticleFigure, link, run, usageError, PHOTO_DIR, WIKI_UA } from './stock-lib.mjs';
 
 const API = 'https://api.openverse.org/v1';
 const OK_LICENSES = new Set(['cc0', 'pdm', 'by', 'by-sa']);   // 可商用、可改作
@@ -47,7 +47,7 @@ async function download(r, h) {
   let url = r.url;
   const wm = url.match(/^https:\/\/upload\.wikimedia\.org\/wikipedia\/commons\/(\w\/\w\w)\/([^/]+)$/);
   if (wm && r.width > 1280) url = `https://upload.wikimedia.org/wikipedia/commons/thumb/${wm[1]}/${wm[2]}/1280px-${wm[2]}`;
-  try { return await getBuffer(url, { 'User-Agent': 'sky-physio-blog-image-tool/1.0 (https://skythephysio.com)' }); }
+  try { return await getBuffer(url, { 'User-Agent': WIKI_UA }); }
   catch (e) { throw new Error(`下載失敗（Openverse 縮圖服務與來源網站都失敗）：${e.message}`); }
 }
 
