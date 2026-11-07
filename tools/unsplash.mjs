@@ -25,15 +25,18 @@ export async function search(query, n = 10) {
   // Unsplash+ 的付費圖不在免費授權內，排除
   return d.results.filter(r => !r.premium && !r.plus).slice(0, n).map(r => ({
     provider: 'unsplash', id: r.id, desc: r.alt_description || r.description || '', w: r.width, h: r.height,
-    author: r.user.name, license: 'Unsplash', page: r.links.html, preview: r.urls.small,
+    author: r.user.name, license: 'Unsplash', page: r.links.html, preview: r.urls.small, raw: r,
   }));
 }
 
-export async function pick(articleId, imageId, { alt } = {}) {
-  const h = auth();
-  const r = await getJSON(`${API}/photos/${imageId}`, h);
+export async function pick(articleId, imageId, opts = {}) {
+  return place(articleId, await getJSON(`${API}/photos/${imageId}`, auth()), opts);
+}
+
+// 用搜尋結果裡的照片資料直接放進文章（search 回傳的 raw），省一次 API 額度
+export async function place(articleId, r, { alt } = {}) {
   if (r.premium || r.plus) throw new Error('這張是 Unsplash+ 付費圖，不能用');
-  await getJSON(r.links.download_location, h);   // 條款 2：回報使用
+  await getJSON(r.links.download_location, auth());   // 條款 2：回報使用
   const src = `${r.urls.raw}&w=${PHOTO_W}&q=75&fm=webp&fit=max`;   // 條款 1：保留 ixid 熱連結
   const html = setArticleFigure(articleId, {
     src, w: PHOTO_W, h: Math.round(r.height * PHOTO_W / r.width), ...(alt ? { alt } : {}),
