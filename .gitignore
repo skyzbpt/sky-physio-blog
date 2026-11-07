@@ -4,3 +4,7 @@ package-lock.json
 
 # Cloudflare 部署輸出（由 npm run build 產生）
 dist/
+
+# 圖庫 API 金鑰（只放本機，不可提交）
+.env.local
+.env*.local
