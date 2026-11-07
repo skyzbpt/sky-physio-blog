@@ -225,7 +225,7 @@ export function extractFaqs(content, title) {
     const ans = [];
     for (let j = i + 1; j < blocks.length; j++) {
       if (/^##\s+/.test(blocks[j])) break;
-      if (/^%%FIG\d+%%$/.test(blocks[j])) continue;
+      if (/^%%FIG\d+%%$/.test(blocks[j]) || /^<figure[\s>]/.test(blocks[j])) continue;
       ans.push(blocks[j]);
     }
     const answer = faqAnswerText(ans.join('\n'));
