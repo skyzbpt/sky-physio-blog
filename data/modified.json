@@ -1,31 +1,31 @@
 {
   "achilles-rupture": {
-    "h": "ac42f11ed16b",
-    "d": "2026-11-03"
+    "h": "aba35d4f4929",
+    "d": "2026-11-08"
   },
   "achilles-tendinopathy": {
-    "h": "942180a49853",
-    "d": "2026-11-02"
+    "h": "503f9ccb5f61",
+    "d": "2026-11-08"
   },
   "acl-injury-rehab": {
-    "h": "8e3292f31556",
-    "d": "2026-10-23"
+    "h": "3ddfc0185ae6",
+    "d": "2026-11-08"
   },
   "acl-return-to-sport": {
-    "h": "cc26e1c212b3",
-    "d": "2026-10-24"
+    "h": "f9f19ee224e3",
+    "d": "2026-11-08"
   },
   "acute-vs-chronic-back-pain": {
     "h": "a92a28e6cf2e",
     "d": "2026-11-07"
   },
   "ankle-sprain": {
-    "h": "4e3015cc85ac",
-    "d": "2026-10-29"
+    "h": "00566b29b923",
+    "d": "2026-11-08"
   },
   "athletic-pubalgia": {
-    "h": "da4ca2e7f386",
-    "d": "2026-11-07"
+    "h": "8a150fb827b1",
+    "d": "2026-11-08"
   },
   "back-pain-not-equal-damage": {
     "h": "d0e6d5b1a030",
@@ -60,8 +60,8 @@
     "d": "2026-11-07"
   },
   "chronic-ankle-instability": {
-    "h": "d83af5fc90c0",
-    "d": "2026-10-30"
+    "h": "2a88970b1ac4",
+    "d": "2026-11-08"
   },
   "craniosacral-5g": {
     "h": "abe3456cffe5",
@@ -492,8 +492,8 @@
     "d": "2026-11-07"
   },
   "fai-labral-tear": {
-    "h": "1a9848a7dbca",
-    "d": "2026-11-05"
+    "h": "bb246314d2fb",
+    "d": "2026-11-08"
   },
   "fascia-abdomen-breath-back": {
     "h": "34766bfc9fbe",
@@ -708,16 +708,16 @@
     "d": "2026-11-08"
   },
   "groin-strain-adductor": {
-    "h": "bec4d23dce7e",
-    "d": "2026-11-06"
+    "h": "d70dae009e78",
+    "d": "2026-11-08"
   },
   "hamstring-strain": {
-    "h": "d383ce336da0",
+    "h": "d44f211f447b",
     "d": "2026-11-08"
   },
   "high-ankle-sprain": {
-    "h": "35ed1eaf3c3b",
-    "d": "2026-10-31"
+    "h": "78d8a0d75add",
+    "d": "2026-11-08"
   },
   "hip-hinge-lifting": {
     "h": "4cc85cdc8c6b",
@@ -728,32 +728,32 @@
     "d": "2026-11-07"
   },
   "hip-osteoarthritis": {
-    "h": "0a8130c61a49",
-    "d": "2026-11-06"
+    "h": "bf5817850531",
+    "d": "2026-11-08"
   },
   "hip-pain-overview": {
-    "h": "27ef570f83fa",
-    "d": "2026-11-04"
+    "h": "daefedfd2562",
+    "d": "2026-11-08"
   },
   "knee-osteoarthritis": {
-    "h": "390c49c6c673",
-    "d": "2026-10-27"
+    "h": "a4c733ea1e74",
+    "d": "2026-11-08"
   },
   "knee-pain-overview": {
-    "h": "8fb1caa81046",
-    "d": "2026-10-20"
+    "h": "a53f8bfa823c",
+    "d": "2026-11-08"
   },
   "lumbar-stenosis": {
     "h": "fb5c76a3d100",
     "d": "2026-11-07"
   },
   "mcl-sprain": {
-    "h": "9359298e1dd8",
-    "d": "2026-10-26"
+    "h": "489c6fe1c897",
+    "d": "2026-11-08"
   },
   "meniscus-tear": {
-    "h": "b8268761d697",
-    "d": "2026-10-25"
+    "h": "80528d92ced9",
+    "d": "2026-11-08"
   },
   "nerve-glides-flossing": {
     "h": "c1757870c9e7",
@@ -768,16 +768,16 @@
     "d": "2026-11-07"
   },
   "patellar-tendinopathy": {
-    "h": "a5e016b2b051",
+    "h": "e3221c217fd6",
     "d": "2026-11-08"
   },
   "patellofemoral-pain": {
-    "h": "e07e5587f400",
+    "h": "6a6f11532555",
     "d": "2026-11-08"
   },
   "plantar-heel-pain": {
-    "h": "930d96fc9328",
-    "d": "2026-11-01"
+    "h": "e5c7bc1a4ab7",
+    "d": "2026-11-08"
   },
   "redcord-support": {
     "h": "b1091fa73b29",
@@ -788,8 +788,8 @@
     "d": "2026-11-07"
   },
   "return-to-running": {
-    "h": "acc48514142b",
-    "d": "2026-11-05"
+    "h": "6419c21013ef",
+    "d": "2026-11-08"
   },
   "rotator-cuff-basics": {
     "h": "79c547ed7758",
@@ -980,12 +980,12 @@
     "d": "2026-11-07"
   },
   "total-hip-replacement-rehab": {
-    "h": "beae873fa006",
-    "d": "2026-11-07"
+    "h": "04de9e8af324",
+    "d": "2026-11-08"
   },
   "total-knee-replacement-rehab": {
-    "h": "beea263f9d31",
-    "d": "2026-10-28"
+    "h": "3e3ed9e4c9b1",
+    "d": "2026-11-08"
   },
   "tps-active-vs-latent-trigger-points": {
     "h": "01702fee401d",
@@ -1124,8 +1124,8 @@
     "d": "2026-11-07"
   },
   "turf-toe": {
-    "h": "b1c9410b7fe6",
-    "d": "2026-11-04"
+    "h": "69b1ed7ee645",
+    "d": "2026-11-08"
   },
   "tweaked-back-first-aid": {
     "h": "607ba9f37b70",
