@@ -3,9 +3,73 @@
 <channel>
   <title>Sky 物理治療師｜衛教文章</title>
   <link>https://skythephysio.com/</link>
-  <description>下背痛、肩膀痛、膝蓋痛、顳顎關節、高級筋膜技術、顱薦椎、公路車、紅繩懸吊、疼痛科學——從三鐵運動修復到日常疼痛管理，台灣物理治療師 Sky 的衛教筆記。</description>
+  <description>下背痛、肩膀痛、膝蓋痛、足踝痛、顳顎關節、高級筋膜技術、顱薦椎、公路車、紅繩懸吊、疼痛科學——從三鐵運動修復到日常疼痛管理，台灣物理治療師 Sky 的衛教筆記。</description>
   <language>zh-tw</language>
   <atom:link href="https://skythephysio.com/feed.xml" rel="self" type="application/rss+xml"/>
+  <item>
+    <title>傷後回跑計畫：從走跑交替開始，一步一步加回來</title>
+    <link>https://skythephysio.com/posts/return-to-running</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/return-to-running</guid>
+    <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
+    <category>足踝痛</category>
+    <description>下肢受傷好了，第一次回去跑步最容易再受傷。這篇跟著一位脛前痛的跑團成員，說明回跑前要先通過哪些小測驗、為什麼慢跑比快走多出六成的衝擊、走跑交替與隔天跑的規則，以及什麼時候該停下來。</description>
+  </item>
+  <item>
+    <title>草皮趾：大拇趾根部扭傷，推蹬就痛</title>
+    <link>https://skythephysio.com/posts/turf-toe</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/turf-toe</guid>
+    <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+    <category>足踝痛</category>
+    <description>腳趾被往上扳到底、大拇趾根部腫痛，之後每次推蹬起跑都痛——這是第一蹠趾關節扭傷，俗稱草皮趾。這篇跟著一位足球校隊員，說明它怎麼發生、為什麼鞋底太軟會增加風險、復健的重點，以及回場前大拇趾要能翹多少度。</description>
+  </item>
+  <item>
+    <title>阿基里斯腱斷裂：像被人從後面踢一腳</title>
+    <link>https://skythephysio.com/posts/achilles-rupture</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/achilles-rupture</guid>
+    <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
+    <category>足踝痛</category>
+    <description>打球起跳時，小腿後方突然像被人踢了一腳，回頭卻沒有人——這常是阿基里斯腱斷裂。這篇跟著一位週末打羽球的中年老闆，說明怎麼自我檢查、開刀與不開刀怎麼選、早期功能復健怎麼走，以及大概多久能回到運動。</description>
+  </item>
+  <item>
+    <title>阿基里斯腱痛：跑者的腳跟後方，怎麼練回來</title>
+    <link>https://skythephysio.com/posts/achilles-tendinopathy</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/achilles-tendinopathy</guid>
+    <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
+    <category>足踝痛</category>
+    <description>早上起床腳跟後方那條粗肌腱又緊又痛、跑步剛開始痛熱開了又好——這是阿基里斯腱病變。這篇跟著一位準備全馬的上班族，說明中段與附著處的差別、Alfredson 離心訓練怎麼做、能不能邊跑邊練，以及哪些藥物要留意。</description>
+  </item>
+  <item>
+    <title>足底筋膜炎：早上下床第一步最痛</title>
+    <link>https://skythephysio.com/posts/plantar-heel-pain</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/plantar-heel-pain</guid>
+    <pubDate>Sun, 01 Nov 2026 00:00:00 GMT</pubDate>
+    <category>足踝痛</category>
+    <description>早上下床第一步、久坐後站起來，腳跟底部一陣刺痛，走幾步又好一點——這是足底筋膜炎的招牌。這篇跟著一位百貨專櫃人員，說明它跟其他足跟痛怎麼分、伸展和肌力訓練怎麼做、鞋子與夜間副木的角色，以及大概要多久會好。</description>
+  </item>
+  <item>
+    <title>高位腳踝扭傷：痛在腳踝上方，恢復比一般扭傷久</title>
+    <link>https://skythephysio.com/posts/high-ankle-sprain</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/high-ankle-sprain</guid>
+    <pubDate>Sat, 31 Oct 2026 00:00:00 GMT</pubDate>
+    <category>足踝痛</category>
+    <description>同樣是扭到腳踝，有一種痛在腳踝上方兩根小腿骨之間，恢復時間常是一般扭傷的兩倍——這是脛腓聯合韌帶的高位扭傷。這篇跟著一位橄欖球員，說明它怎麼發生、怎麼分辨、為什麼要比較保守，以及回場前要確認什麼。</description>
+  </item>
+  <item>
+    <title>慢性腳踝不穩：一扭再扭，問題不只是韌帶鬆</title>
+    <link>https://skythephysio.com/posts/chronic-ankle-instability</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/chronic-ankle-instability</guid>
+    <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
+    <category>足踝痛</category>
+    <description>走在不平的路上就怕、常常莫名拐到腳——腳踝扭傷後有一部分人會變成慢性不穩。這篇跟著一位越野跑者，說明機械性與功能性不穩的差別、擾動訓練怎麼做、什麼時候該考慮手術，以及為什麼要及早處理。</description>
+  </item>
+  <item>
+    <title>腳踝扭傷：不是冰一冰就好，平衡才是重點</title>
+    <link>https://skythephysio.com/posts/ankle-sprain</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/ankle-sprain</guid>
+    <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
+    <category>足踝痛</category>
+    <description>腳踝扭傷是最常見的運動傷害，很多人休息幾天能走就不管它，結果一扭再扭。這篇跟著一位籃球社的大學生，說明什麼時候要照 X 光、三個分級、為什麼越早踩地越好，以及平衡訓練怎麼練才能少扭一次。</description>
+  </item>
   <item>
     <title>人工膝關節置換術後復健：先伸直，再彎曲，再走穩</title>
     <link>https://skythephysio.com/posts/total-knee-replacement-rehab</link>

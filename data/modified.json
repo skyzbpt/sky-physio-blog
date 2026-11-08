@@ -1,4 +1,12 @@
 {
+  "achilles-rupture": {
+    "h": "ac42f11ed16b",
+    "d": "2026-11-03"
+  },
+  "achilles-tendinopathy": {
+    "h": "942180a49853",
+    "d": "2026-11-02"
+  },
   "acl-injury-rehab": {
     "h": "8e3292f31556",
     "d": "2026-10-23"
@@ -10,6 +18,10 @@
   "acute-vs-chronic-back-pain": {
     "h": "a92a28e6cf2e",
     "d": "2026-11-07"
+  },
+  "ankle-sprain": {
+    "h": "4e3015cc85ac",
+    "d": "2026-10-29"
   },
   "back-pain-not-equal-damage": {
     "h": "d0e6d5b1a030",
@@ -42,6 +54,10 @@
   "biopsychosocial-pendulum": {
     "h": "2746d5620580",
     "d": "2026-11-07"
+  },
+  "chronic-ankle-instability": {
+    "h": "d83af5fc90c0",
+    "d": "2026-10-30"
   },
   "craniosacral-5g": {
     "h": "abe3456cffe5",
@@ -683,6 +699,10 @@
     "h": "394d8cfa8101",
     "d": "2026-11-08"
   },
+  "high-ankle-sprain": {
+    "h": "35ed1eaf3c3b",
+    "d": "2026-10-31"
+  },
   "hip-hinge-lifting": {
     "h": "4cc85cdc8c6b",
     "d": "2026-11-07"
@@ -731,6 +751,10 @@
     "h": "e07e5587f400",
     "d": "2026-11-08"
   },
+  "plantar-heel-pain": {
+    "h": "930d96fc9328",
+    "d": "2026-11-01"
+  },
   "redcord-support": {
     "h": "b1091fa73b29",
     "d": "2026-11-07"
@@ -738,6 +762,10 @@
   "relative-rest-back-pain": {
     "h": "471b6b074214",
     "d": "2026-11-07"
+  },
+  "return-to-running": {
+    "h": "acc48514142b",
+    "d": "2026-11-05"
   },
   "rotator-cuff-basics": {
     "h": "79c547ed7758",
@@ -1066,6 +1094,10 @@
   "tps-why-trigger-points-form": {
     "h": "df6b5b7bcf48",
     "d": "2026-11-07"
+  },
+  "turf-toe": {
+    "h": "b1c9410b7fe6",
+    "d": "2026-11-04"
   },
   "tweaked-back-first-aid": {
     "h": "607ba9f37b70",

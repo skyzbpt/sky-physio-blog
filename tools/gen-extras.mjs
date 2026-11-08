@@ -625,7 +625,7 @@ h1{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font
 <channel>
   <title>Sky 物理治療師｜衛教文章</title>
   <link>${BASE}/</link>
-  <description>下背痛、肩膀痛、膝蓋痛、顳顎關節、高級筋膜技術、顱薦椎、公路車、紅繩懸吊、疼痛科學——從三鐵運動修復到日常疼痛管理，台灣物理治療師 Sky 的衛教筆記。</description>
+  <description>下背痛、肩膀痛、膝蓋痛、足踝痛、顳顎關節、高級筋膜技術、顱薦椎、公路車、紅繩懸吊、疼痛科學——從三鐵運動修復到日常疼痛管理，台灣物理治療師 Sky 的衛教筆記。</description>
   <language>zh-tw</language>
   <atom:link href="${BASE}/feed.xml" rel="self" type="application/rss+xml"/>
 ${sorted.map(a => `  <item>
