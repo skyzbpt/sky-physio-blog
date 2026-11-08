@@ -42,8 +42,20 @@
   "@type": "BlogPosting",
   "@id": "https://skythephysio.com/posts/cycling-normalized-power#article",
   "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://skythephysio.com/posts/cycling-normalized-power"
+    "@type": "MedicalWebPage",
+    "@id": "https://skythephysio.com/posts/cycling-normalized-power",
+    "lastReviewed": "2026-11-07",
+    "reviewedBy": {
+      "@id": "https://skythephysio.com/#sky"
+    },
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [
+        ".post-title",
+        ".lede",
+        ".quick dd"
+      ]
+    }
   },
   "headline": "正規化功率 NP：為什麼平均功率會騙你",
   "description": "起伏路段的平均功率常常低估了你實際承受的生理壓力。NP 用一套加權演算法估算「這趟騎起來有多累」，是解讀戶外騎乘的關鍵。你和車友各騎 90 分鐘，平均功率都是 200 W。他全程在平路穩穩踩，你在起伏路段一路衝坡、下坡滑行。",
@@ -210,6 +222,19 @@
     </div>
     <h1 class="post-title">正規化功率 NP：為什麼平均功率會騙你</h1>
     <p class="lede">起伏路段的平均功率常常低估了你實際承受的生理壓力。NP 用一套加權演算法估算「這趟騎起來有多累」，是解讀戶外騎乘的關鍵。</p>
+    <section class="quick" id="quick" aria-labelledby="quick-h">
+      <h2 id="quick-h">快速解答</h2>
+      <dl>
+        <dt><a href="#sec-9">正規化功率 NP 為什麼有時候比平均功率還低？</a></dt>
+        <dd>一整趟騎乘的 NP，數學上不會明顯低於平均功率，看到它比較低，多半是兩個原因。</dd>
+        <dt><a href="#sec-10">正規化功率 NP 可以拿來估 FTP 嗎？</a></dt>
+        <dd>可以當初步估計，但有條件：大約一小時、從頭到尾都盡全力。Coggan 指出，這類比賽的 NP 常和平路 40 公里計時賽能維持的平均功率相近。</dd>
+        <dt><a href="#sec-11">Strava 的「加權平均功率」和正規化功率 NP 一樣嗎？</a></dt>
+        <dd>概念一樣，都是在估「如果全程定速，等值的功率是多少」。但 NP 是 Coggan 的算法，也是 TrainingPeaks 的註冊商標；Strava 沒有說它的算法和 NP 完全相同，同一趟騎乘的數字可能差幾瓦。</dd>
+        <dt><a href="#sec-12">鐵人三項的自行車段，該用正規化功率 NP 來配速嗎？</a></dt>
+        <dd>可以用 NP 定目標，但騎的時候別把它當即時油門。NP 的目標就是 IF 目標乘上 FTP，全程和半程的建議值在 IF 那篇；理想上整段騎得平穩，NP 和平均功率只差幾瓦。</dd>
+      </dl>
+    </section>
     <aside class="post-side" aria-label="本篇章節與預約">
     <details class="toc" id="toc" open>
       <summary>本篇章節（13）</summary>

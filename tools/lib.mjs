@@ -194,13 +194,68 @@ export const keywordsFor = a => {
 export const mentionsFor = a => topicsOf(a).slice(0, 8).map(name => ({ '@type': 'Thing', 'name': name }));
 
 // 從文章內容抽出「## 問句？」→ 後續段落作為答案，產生高品質 FAQ（SEO rich result / GEO 問答抽取）
-const faqAnswerText = md => md.split('\n')
-  .map(l => l.replace(/^\s*[-*]\s+/, '').replace(/^\s*\d+\.\s+/, '').replace(/^\s*>\s+/, ''))
-  .join(' ')
-  .replace(/\*\*(.+?)\*\*/g, '$1')
-  .replace(/\*([^\s*][^*\n]*?)\*/g, '$1')
-  .replace(/\s+/g, ' ')
-  .trim();
+// 每一行（段落、清單項目）視為一個完整句子：沒有句尾標點就補標點，
+// 避免清單項目接成「…時 非接觸性…」這種沒有斷句的長串（AI 摘要與 rich result 會原文引用）。
+// 連續的清單項目以「；」相接、最後一項收「。」，讀起來才像一段完整的回答。
+const isItem = l => /^\s*([-*]|\d+\.)\s+/.test(l);
+const mdInline = l => l
+  .replace(/^\s*[-*]\s+/, '').replace(/^\s*\d+\.\s+/, '').replace(/^\s*>\s+/, '')
+  .replace(/\*\*(.+?)\*\*/g, '$1').replace(/\*([^\s*][^*\n]*?)\*/g, '$1')
+  .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/<[^>]+>/g, '')
+  .replace(/\s+/g, ' ').trim();
+const ENDP = /[。！？；：…」』）)!?.:;]$/;
+const faqAnswerText = md => {
+  const lines = md.split('\n').filter(l => l.trim() && !/^%%FIG\d+%%$/.test(l.trim()));
+  return lines.map((l, i) => {
+    const t = mdInline(l);
+    if (!t) return '';
+    if (ENDP.test(t)) return t;
+    const nextIsItem = i + 1 < lines.length && isItem(lines[i + 1]);
+    return t + (isItem(l) && nextIsItem ? '；' : '。');
+  }).join('').trim();
+};
+
+// 「快速解答」用的精簡答案：取答案開頭完整的句子，約 40–140 字，絕不斷在半句。
+// Google AI 摘要偏好「問句小標 → 緊接一兩句直接回答」的段落，這段同時顯示在頁面上。
+//   - 第一段若以「幾個參考：」這類引言收尾，引言之前的句子已夠完整就只取那些
+//   - 第一段只有引言（或直接是清單）時，接上清單項目
+const sentsOf = t => String(t).match(/[^。！？]+[。！？]+」?|[^。！？]+$/g) || [];
+function shortAnswerOf(blocks, min = 40, max = 140) {
+  const paras = blocks.filter(b => !/^%%FIG\d+%%$/.test(b) && !/^<figure[\s>]/.test(b));
+  if (!paras.length) return '';
+  const first = paras[0];
+  let out = '';
+  if (!first.split('\n').some(isItem)) {
+    const sents = sentsOf(faqAnswerText(first));
+    // 去掉結尾的清單引言（「幾個參考：」）
+    const lastIntro = sents.length && /([：:]|(這樣做|如下|以下幾點|幾個方向)。)$/.test(sents[sents.length - 1].trim());
+    const body = lastIntro ? sents.slice(0, -1) : sents;
+    for (const s of body) {
+      // 已有一句像樣的回答就不硬塞；只有「通常不會。」這種短答才再接下一句說明
+      if (out && [...out].length >= 20 && [...out + s].length > max) break;
+      out += s;
+      if ([...out].length >= min) break;
+    }
+    if ([...out].length < 15) out = '';
+  }
+  if (!out) {
+    out = faqAnswerText(paras.slice(0, 2).join('\n'));
+  }
+  out = out.trim();
+  if ([...out].length > max) {
+    const sents = sentsOf(out);
+    let acc = '';
+    for (const s of sents) { if ([...acc + s].length > max) break; acc += s; }
+    if ([...acc].length >= 20) {
+      out = acc;
+    } else {
+      const cut = [...out].slice(0, max).join('');
+      const at = Math.max(cut.lastIndexOf('；'), cut.lastIndexOf('。'));
+      out = at >= min ? cut.slice(0, at) + '。' : cut.slice(0, Math.max(cut.lastIndexOf('，'), min)) + '…';
+    }
+  }
+  return out.trim();
+}
 
 // 由標題取「乾淨的名詞主題」：切在首個標點，再切在首個系詞／疑問詞前，
 // 只接受無連接詞的短名詞短語，否則回傳空字串（寧可不補，也不要造出病句）。
@@ -210,6 +265,7 @@ export const subjectOf = title => {
   const s = ((m && m[0]) || seg).trim();
   const len = [...s].length;
   if (len < 3 || len > 12) return '';
+  if (/[嗎呢吧]$/.test(s)) return '';              // 本身是問句（「疼痛能被測量嗎」）→ 不是名詞
   if (/[，、和與或及]/.test(s)) return '';         // 含連接詞 → 非單一名詞
   if (/[不勝再讓把別做用給幫從對]/.test(s)) return ''; // 含動詞／副詞 → 像子句而非名詞
   return s;
@@ -218,7 +274,10 @@ export const subjectOf = title => {
 // 讓問句能獨立成立（利於 FAQ rich result 與 AI 問答抽取）
 function qualifyQuestion(q, subject) {
   if (!subject || q.includes(subject)) return q;
-  if (/^(它|這|其|該)[們個某]?/.test(q)) return subject + q.replace(/^(它|這|其|該)[們個某]?/, '');
+  // 「這些動作…」→「X 的動作…」；「它在做什麼」→「X 在做什麼」
+  if (/^(這|那)(幾|樣|麼)/.test(q)) return q;       // 「這幾天」「這樣」不是指代主題，補了反而成病句
+  if (/^(這|那)(些|個|種|類|項)/.test(q)) return subject + '的' + q.replace(/^(這|那)(些|個|種|類|項)/, '');
+  if (/^(它|這|其|該)[們]?/.test(q)) return subject + q.replace(/^(它|這|其|該)[們]?/, '');
   if ([...q].length <= 7 || /^(要|會|該|怎|為|如何|多|有沒有|需不需要|什麼|哪)/.test(q)) return subject + q;
   return q;
 }
@@ -237,7 +296,7 @@ export function extractFaqs(content, title) {
       ans.push(blocks[j]);
     }
     const answer = faqAnswerText(ans.join('\n'));
-    if (answer && answer.length >= 8) faqs.push({ q: qualifyQuestion(m[1].trim(), subject), a: answer });
+    if (answer && answer.length >= 8) faqs.push({ q: qualifyQuestion(m[1].trim(), subject), heading: m[1].trim(), a: answer, short: shortAnswerOf(ans) });
   }
   return faqs;
 }
