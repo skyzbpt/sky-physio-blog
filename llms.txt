@@ -31,12 +31,12 @@
 ## 衛教文章
 
 ### 肩膀痛
-- [肩膀的長期保養（prehab）：過頭族、久坐族都該練](https://skythephysio.com/posts/shoulder-prehab-prevention): 肩膀不痛之後，才是保養真正開始的時候。這篇整理過頭族與久坐族都適用的肩膀保養菜單：一週怎麼排、每個動作做幾下、練多久才會有感覺，還有四個最常見的誤解，以及該找專業評估的訊號。
-- [肩膀與後側旋轉肌的軟組織放鬆：滾筒與按摩球](https://skythephysio.com/posts/shoulder-soft-tissue-release): 按摩球能暫時降低張力、讓肩膀更好動，但它是開場不是結局。本文說明一天壓幾次才夠、為什麼隔天又緊回來，以及哪些情況不該壓、該先就醫。
-- [肩膀的活動度：為什麼多用 mobility、少用死拉筋](https://skythephysio.com/posts/shoulder-mobility-vs-stretching): 除了冰凍肩，多數肩痛我們不建議長時間靜態拉筋——因為問題常常不是「肌肉太短」。
-- [胸椎活動度與肩膀：駝背如何偷走你舉手的角度](https://skythephysio.com/posts/thoracic-mobility-shoulder): 手舉不高、過頭就卡，問題可能不在肩膀，而在僵硬的上背。這篇教你一個當場見效的自我測試、每天五分鐘的胸椎活動度動作與次數，還有三個很常見的誤解。
-- [肩胛骨的角色：肩膀動得順不順，看肩胛](https://skythephysio.com/posts/scapular-control): 手要舉得高，肩胛骨得跟著漂亮地轉。這篇說明肩胛這個地基怎麼影響夾擠與疼痛、在家練習的次數組數怎麼安排、最常被誤會的幾件事，以及何時該找專業評估。
-- [肌腱要「漸進負荷」，不是「休息到好」](https://skythephysio.com/posts/tendon-loading-principles): 肩膀肌腱痛，越休息越弱？肌腱的修復靠的是漸進負荷。本文教你等長收縮怎麼做、一天幾次、怎麼用隔天的反應判斷劑量對不對，也列出哪些情況該先就醫。
+- [肩膀的長期保養（prehab）：過頭族、久坐族都該練](https://skythephysio.com/posts/shoulder-prehab-prevention): 肩膀不痛之後，才是保養真正開始的時候。這篇跟著一位社區棒球隊的爸爸，整理過頭族與久坐族都適用的肩膀保養菜單、一週怎麼排、為什麼「半力」常常不是半力，以及該找專業評估的訊號。
+- [肩膀與後側旋轉肌的軟組織放鬆：滾筒與按摩球](https://skythephysio.com/posts/shoulder-soft-tissue-release): 按摩球能暫時降低張力、讓肩膀更好動，但它是開場不是結局。這篇跟著一位烘焙師，說明哪幾塊肌肉最常緊、一天壓幾次才夠、為什麼隔天又緊回來，以及哪些情況不該壓、該先就醫。
+- [肩膀的活動度：為什麼多用 mobility、少用死拉筋](https://skythephysio.com/posts/shoulder-mobility-vs-stretching): 除了冰凍肩，多數肩痛不建議長時間死拉筋，因為問題常常不是肌肉太短。這篇跟著一位壘球投手，說明活動度和柔軟度差在哪、什麼時候真的需要伸展（例如後側肩膀太緊），以及睡姿伸展和橫胸伸展怎麼做才安全。
+- [胸椎活動度與肩膀：駝背如何偷走你舉手的角度](https://skythephysio.com/posts/thoracic-mobility-shoulder): 手舉不高、過頭就卡，問題可能不在肩膀，而在僵硬的上背。這篇跟著一位設計師，說明駝背怎麼一路影響到肩膀、一個當場見效的自我測試、每天五分鐘的胸椎活動度動作，以及三個常見的誤解。
+- [肩胛骨的角色：肩膀動得順不順，看肩胛](https://skythephysio.com/posts/scapular-control): 手要舉得高，肩胛骨得跟著漂亮地轉。這篇跟著一位網球愛好者，說明肩胛異動是什麼、為什麼要從腳和軀幹練起、教科書的三階段肩胛訓練怎麼排，以及何時該找專業評估。
+- [肌腱要「漸進負荷」，不是「休息到好」](https://skythephysio.com/posts/tendon-loading-principles): 肩膀肌腱痛，越休息越弱？肌腱的修復靠的是漸進負荷。這篇跟著一位外送員，說明肌腱病變到底是發炎還是退化、等長與離心收縮怎麼做、教科書的加量規則，以及怎麼用隔天反應判斷劑量對不對。
 - [二頭肌肌腱病變：肩膀前側那一條線在痛](https://skythephysio.com/posts/biceps-tendinopathy): 痛點在肩膀前方、彎手提東西或轉門把時明顯——這條從肩膀通過的二頭肌肌腱，是常被忽略的痛源。這篇跟著一位手搖飲店員，說明它跟旋轉肌袖痛怎麼分、為什麼常一起出現、在家怎麼練，以及什麼時候要就醫。
 - [冰凍肩的復健：為什麼它反而需要「拉伸」](https://skythephysio.com/posts/frozen-shoulder-stretching): 多數肩痛少用死拉筋，但冰凍肩是例外——問題出在關節囊本身變緊。這篇延續一位會計師的復健，說明一天拉幾次、每次停多久、拉到什麼程度算剛好、教科書設定的角度目標，以及伸展不夠時還有哪些選擇。
 - [冰凍肩（五十肩）：卡住又痛的三個階段](https://skythephysio.com/posts/frozen-shoulder-stages): 手舉不高、摸不到背、夜裡痛到醒？冰凍肩有它獨特的病程。這篇跟著一位有糖尿病的會計師，說明各階段大概多久、怎麼跟其他肩痛分辨、長期結果如何，以及現在該安撫還是該伸展。
