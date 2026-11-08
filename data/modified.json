@@ -39,6 +39,10 @@
     "h": "7255d0037f3b",
     "d": "2026-11-07"
   },
+  "beitou-hot-spring-soreness": {
+    "h": "1ddc575bb607",
+    "d": "2026-11-08"
+  },
   "biceps-tendinopathy": {
     "h": "3e6106164408",
     "d": "2026-11-08"
@@ -931,6 +935,10 @@
     "h": "6c3bd6097c6a",
     "d": "2026-11-08"
   },
+  "tianmu-running-lateral-knee-pain": {
+    "h": "113d48b16160",
+    "d": "2026-11-08"
+  },
   "tmd-classification-muscle-vs-joint": {
     "h": "bbe0cd55e4f1",
     "d": "2026-11-07"
@@ -1170,5 +1178,13 @@
   "vagus-wanderer": {
     "h": "e3bd6b7fb448",
     "d": "2026-11-07"
+  },
+  "yangmingshan-cycling-climb-pain": {
+    "h": "b425a6fde6fa",
+    "d": "2026-11-08"
+  },
+  "yangmingshan-hiking-knee-pain": {
+    "h": "643213c498a8",
+    "d": "2026-11-08"
   }
 }
