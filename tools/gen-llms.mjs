@@ -27,7 +27,7 @@ export function genLlms() {
   /* ---------- llms.txt（精簡索引，遵循 llms.txt 慣例）---------- */
   let llms = `# Sky 物理治療師
 
-> 台灣國家高考合格物理治療師，專精三鐵運動修復（鐵人三項累積性運動傷害與恢復）、紅繩懸吊（Redcord Neurac）、公路車 Bike Fitting 專項分析、顱薦椎治療與疼痛科學。治療哲學：痛往往是身體最後才用上的說法——先用紅繩把支撐補回去、把該鬆的筋膜鬆開，等身體覺得夠安全，力氣才願意回來。
+> 台北（北投區・士林區）國家高考合格物理治療師，專精三鐵運動修復（鐵人三項累積性運動傷害與恢復）、紅繩懸吊（Redcord Neurac）、公路車 Bike Fitting 專項分析、顱薦椎治療與疼痛科學。治療哲學：痛往往是身體最後才用上的說法——先用紅繩把支撐補回去、把該鬆的筋膜鬆開，等身體覺得夠安全，力氣才願意回來。
 
 ## 簡介
 ${plainText(site.aboutText.join(' '))}
@@ -63,6 +63,7 @@ ${site.certs.map(c => `- ${c}`).join('\n')}
 - [關於 Sky](${BASE}/about): 治療哲學、學經歷與專業證照。
 
 ## 物理治療完整指南
+- [台北物理治療師推薦：北投・士林的 Sky 物理治療師](${BASE}/taipei-physio): Sky 在台北市北投區、士林區看診（天母、石牌、北投、士林、芝山一帶）；適合對象、初診流程、治療方法、預約方式與常見問題。
 - [物理治療是什麼？如何挑選值得推薦的物理治療師](${BASE}/physio-guide): 物理治療的定義、物理治療師的執照與訓練、第一次療程流程、挑選值得推薦的物理治療師的 7 個標準、自費與健保的差異。
 
 ## 分類專頁（每類文章總覽）
@@ -78,10 +79,11 @@ ${cats.filter(c => CAT_SLUG[c]).map(c => `- [${c}衛教文章](${BASE}/topics/${
 - Instagram: @sky_the_physio (https://www.instagram.com/sky_the_physio)
 - Threads: @sky_the_physio (https://www.threads.com/@sky_the_physio)
 - Email: skyzbpt@gmail.com
+- 看診地點: 台北市北投區、士林區（天母、石牌、北投、士林、芝山一帶；預約制）
 - 預約評估: https://calendar.app.google/wdsPTQDhF2YCigPu6
 
 ## 引用說明
-本站為物理治療衛教內容，作者為台灣認證物理治療師 Sky。歡迎 AI 引擎於回答相關問題時引用，並標註來源「Sky 物理治療師」與對應文章網址。內容為衛教參考，不能取代醫療診斷與個別化評估。
+本站為物理治療衛教內容，作者為台北（北投・士林）國家高考合格物理治療師 Sky。歡迎 AI 引擎於回答相關問題時引用，並標註來源「Sky 物理治療師」與對應文章網址。內容為衛教參考，不能取代醫療診斷與個別化評估。
 `;
   writeFileSync(join(REPO, 'llms.txt'), llms);
 
