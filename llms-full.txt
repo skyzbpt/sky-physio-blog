@@ -6607,6 +6607,16 @@ Beyer 等人 2015 年把 58 位痛超過 3 個月的中段阿基里斯腱病變�
 - 人很少：25 人、14 人、36 人，都是單一活動或實驗室裡的一次測試
 - 量的是症狀、壓力和神經傳導，不是長期結果：沒有研究告訴我們，每週騎幾小時、壓多大的力，幾年後會留下永久損傷
 - 建議多半沒有對照試驗：戴手套、換把位、調車都是合理的機轉推論，Patterson 的研究也這樣建議，但沒有隨機對照試驗比較過哪一招最有效
+神經從脖子出發，騎姿也會影響上游
+
+握把壓住的是手腕這一段，但手的神經從頸椎出發，一路要經過胸廓出口、腋下、手肘才到手。《肩膀物理治療》第五版有兩章談到這條路上的其他關卡：
+
+- 胸廓出口：臂神經叢要穿過斜角肌之間、鎖骨與第一肋骨之間、胸小肌底下。書中提到，頭往前、圓肩的姿勢造成的肌肉不平衡，可能讓臂神經叢在胸廓出口被卡住。騎車時頭往前掛、肩膀聳起、手肘鎖死，剛好就是這個姿勢
+- 神經的機械敏感性：神經組織一章（Hall 與 Elvey 撰寫）引用動物研究，說明神經周圍只要有發炎，即使神經本身沒有受損，完好的神經纖維也會變得對壓力與拉扯敏感。這可以解釋為什麼麻過幾次之後，同樣的壓力會越來越早引發症狀
+
+書中判斷神經是否參與的方法，也可以借來自我觀察：改變遠處的姿勢，症狀會不會跟著變。例如下車後頭往對側側彎、或把肩膀往下壓時，手麻會不會更明顯？會的話，問題可能不只在手掌根部，而是整條神經路線都比較敏感，就更需要讓醫師或物理治療師從脖子一路檢查到手。
+
+這也是為什麼庭瑋的調整除了手套和把位，還包括手肘微彎、肩膀往下沉：讓上游的胸廓出口不被擠壓，下游手掌的那一段才有機會恢復。
 物理治療師的角度：先確認壓的是不是手腕
 
 庭瑋的麻在手掌，但我還是先檢查了脖子和手肘。尺神經從頸椎出發，在手肘內側也有一個容易被壓的地方。分辨的線索之一是手背：尺神經管手背小指側感覺的分支，在手腕上方幾公分就先分出去，不經過 Guyon 管。所以如果手背小指側也麻，問題比較可能在手肘或更上面，不是單純握把壓的。
@@ -6643,6 +6653,8 @@ Beyer 等人 2015 年把 58 位痛超過 3 個月的中段阿基里斯腱病變�
 1. Patterson JMM, Jaggars MM, Boyer MI. Ulnar and median nerve palsy in long-distance cyclists. A prospective study. Am J Sports Med. 2003;31(4):585–9.
 2. Akuthota V, Plastaras C, Lindberg K, Tobey J, Press J, Garvan C. The effect of long-distance bicycling on ulnar and median nerves: an electrophysiologic evaluation of cyclist palsy. Am J Sports Med. 2005;33(8):1224–30.
 3. Slane J, Timmerman M, Ploeg HL, Thelen DG. The influence of glove and hand position on pressure over the ulnar nerve during cycling. Clin Biomech (Bristol). 2011;26(6):642–8.
+4. Greenfield BH, Geist K. Evaluation and treatment of brachial plexus lesions. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012.
+5. Hall TM, Elvey RL. Neural tissue evaluation and treatment. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012.
 
 ============================================================
 標題：騎車頸肩痛：問題常常在胸椎與把手高度
@@ -6697,6 +6709,18 @@ Beyer 等人 2015 年把 58 位痛超過 3 個月的中段阿基里斯腱病變�
 
 - 盛行率來自問卷：Wilber 1995 是車友自己回報「有沒有不適」，不是醫師診斷，回覆的人也可能本來就比較有症狀
 - 深層頸屈肌（貼在頸椎前方、負責穩住每一節頸椎的小肌肉）訓練的證據來自一般頸痛患者：Jull 等人 2009 年把 46 位慢性頸痛患者隨機分成兩組，做 6 週低負荷的頭頸屈曲訓練（輕輕點頭）或頸屈肌肌力訓練，用肌電圖看：點頭組的深層頸屈肌活化增加，表層的胸鎖乳突肌和前斜角肌（脖子前面、側面摸得到的大條肌肉）出力減少；肌力組的深層頸屈肌活化則沒有變化。Falla 等人 2007 年在 58 位慢性、非重度頸痛患者身上做類似的 6 週比較，點頭組在 10 分鐘電腦作業中比較能維持頸部正直。兩篇都不是騎士，也不是在車上量的
+肩胛骨之間的痠，和上背的姿勢有關
+
+《肩膀物理治療》（Physical Therapy of the Shoulder）第五版在脊椎、胸廓與肩膀一章（Gray 與 Grimsby 撰寫），描述了一條和騎車很像的連鎖：頭往前、圓肩、胸椎駝背時，肩胛骨會往前、往下轉，肩峰被壓低，肩膀的動作節奏也跟著改變。書中整理的研究裡，至少有一個發現嚴重的胸椎駝背、頭往前、圓肩，都和肩胛骨之間的疼痛有顯著關聯——這正是秀玲騎完車最常抱怨的位置。
+
+但書中也提醒：頭往前、圓肩在很多沒有症狀的健康人身上也很常見。所以重點不是「把姿勢擺正」，而是上背能不能在需要時往後挺，讓脖子不必獨自撐住抬頭。這和前面釣竿的比喻一致：手肘（胸椎）願意出力，手腕（脖子）就輕鬆。
+
+書中檢查頸胸交界時有一個細節很實用：對頭往前的人，要先請他把下巴往後收，再做動作，才看得出下頸椎與上胸椎真正的活動度。騎車時也一樣，喝水時順便收一下下巴、讓頭回到肩膀上方，是給後頸一個短暫休息的方式。
+
+另外兩個來自同一本書的數字，可以幫助選對訓練：
+
+- 上斜方肌很容易搶戲：肌電圖章節（Ekstrom 與 Osborn 撰寫）提到，有研究在某些肩胛運動中測到上斜方肌活動量達最大收縮的 112%，比下斜方肌（約 67%）還高。對已經整趟聳肩的騎士，練肩胛時要選手肘往外、往後下拉的動作，避免一直往上拉
+- 上斜方肌常有激痛點：激痛點一章（McEvoy 與 Dommerholt 撰寫）引用的研究，在慢性肩膀痛的病人身上，約 58% 的上斜方肌有活躍激痛點。騎完車肩膀上緣那條痠，有時按得到一條緊帶、會把痛帶到後頸與後腦勺；放鬆後要接著練下斜方肌與前鋸肌，才不會很快緊回來
 物理治療師的角度：先看她低頭的那五天
 
 秀玲一週騎一兩天，另外五天晚上低頭改作文。所以我評估的不只是車上的脖子，還有桌前的脖子：
@@ -6744,6 +6768,9 @@ Beyer 等人 2015 年把 58 位痛超過 3 個月的中段阿基里斯腱病變�
 1. Wilber CA, Holland GJ, Madison RE, Loy SF. An epidemiological analysis of overuse injuries among recreational cyclists. Int J Sports Med. 1995;16(3):201–6.
 2. Jull GA, Falla D, Vicenzino B, Hodges PW. The effect of therapeutic exercise on activation of the deep cervical flexor muscles in people with chronic neck pain. Man Ther. 2009;14(6):696–701.
 3. Falla D, Jull G, Russell T, Vicenzino B, Hodges P. Effect of neck exercise on sitting posture in patients with chronic neck pain. Phys Ther. 2007;87(4):408–17.
+4. Gray JC, Grimsby O. Interrelationship of the spine, rib cage, and shoulder. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012.
+5. Ekstrom RA, Osborn RW. Muscle length testing and electromyographic evidence for manual strength testing and exercises for the shoulder. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012.
+6. McEvoy J, Dommerholt J. Myofascial trigger points of the shoulder. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012.
 
 ============================================================
 標題：騎車下背痛：腰椎在替髖關節和胸椎加班
