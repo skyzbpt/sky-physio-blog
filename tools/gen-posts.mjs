@@ -346,7 +346,7 @@ ${pagerHtml}
 
 <footer>
   <div class="foot-in">
-    <div class="t">網站設計｜Sky — © 2026 · <a href="/privacy">隱私權保護聲明</a></div>
+    <div class="t">Sky 物理治療師・<a href="/taipei-physio">台北市北投區・士林區</a> · 網站設計｜Sky — © 2026 · <a href="/privacy">隱私權保護聲明</a></div>
   </div>
 </footer>
 
@@ -505,6 +505,12 @@ export async function genPosts(page) {
   </url>
   <url>
     <loc>${BASE}/physio-guide</loc>
+    <lastmod>${TODAY}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>${BASE}/taipei-physio</loc>
     <lastmod>${TODAY}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
