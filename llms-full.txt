@@ -7900,6 +7900,18 @@ Andersson 等人 2017 年在挪威 660 位菁英手球選手做了一個試驗�
 - 「保養要練很重」：保養以中低負荷、規律為主；真正的負荷來自你的運動與生活
 - 「熱身就是甩甩手」：靜態甩手不夠，要包含旋轉肌袖、肩胛與全身的動態動作
 - 「年紀大了肩膀本來就會痛」：年紀會讓組織恢復變慢，但規律訓練在任何年紀都能提升肩膀的耐受度
+肩膀受傷，常常是「最弱的一環」出事
+
+《肩膀物理治療》第五版的投擲傷害一章（Cooper、Donley、Morgan 撰寫）有一句很重要的話：投擲造成的肩膀傷害，最常是整條動力鏈某處失效，最後在最弱的一環表現出來。腳、髖、軀幹沒有把力量傳上來，肩膀就得多扛；肩膀剛好是那最弱的一環。
+
+所以長期保養除了練肩膀，也要定期檢查自己的「鏈條」：
+
+- 下肢與軀幹：單腳站 30 秒穩不穩、單腳蹲時膝蓋會不會往內夾
+- 肩膀穩定度：可以用書中介紹的閉鎖鏈上肢穩定測試當自我檢查——地上兩條膠帶相距約 90 公分，伏地挺身姿勢（女性可跪姿）雙手輪流去碰另一手，計算 15 秒內碰幾次；書中列的常模約男性 18.5 次、女性 20.5 次。和自己上個月比，就知道有沒有退步
+- 後側肩膀的柔軟度：投擲手往內轉的角度有沒有越來越少
+
+國棟現在每個月第一週測一次，記在手機裡。季中數字掉了兩次，他就把保養從一週兩次加回三次，那個球季沒有再受傷。
+預防不是練最強的地方，而是找到最弱的那一環。
 目前證據還說不清的部分
 
 - 預防運動的研究大多在運動員身上，一般民眾、久坐族的效果還缺乏大型試驗
@@ -7927,6 +7939,8 @@ Andersson 等人 2017 年在挪威 660 位菁英手球選手做了一個試驗�
 1. Guido JA Jr, Meister K. Shoulder exercises for injury prevention in the throwing athlete. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018.
 2. Upper extremity interval throwing progressions. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018.
 3. Andersson SH, Bahr R, Clarsen B, Myklebust G. Preventing overuse shoulder injuries among throwing athletes: a cluster-randomised controlled trial in 660 elite handball players. Br J Sports Med. 2017;51(14):1073–80.
+4. Cooper J, Donley PB, Morgan CD. Throwing injuries. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012.
+5. Carp KC. Sensory integration and neuromuscular control of the shoulder. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012.
 
 ============================================================
 標題：顳顎障礙的自我照護：軟食、熱敷、姿勢與放鬆
@@ -8610,6 +8624,22 @@ Cheatham 等人 2015 年整理滾筒放鬆的系統性回顧（把同一主題�
 - 皮膚有傷口、感染、靜脈曲張或血栓病史的地方
 - 服用抗凝血劑、容易瘀青的人，力道要非常輕或先詢問醫師
 - 按壓時出現麻、電、刺痛往手指跑：可能壓到神經，馬上停止
+激痛點：為什麼按肩胛骨，痛在肩膀前面？
+
+《肩膀物理治療》第五版用一整章談肩膀的肌筋膜激痛點（McEvoy 與 Dommerholt 撰寫）：
+
+- 活躍型激痛點：會自己痛，而且會把痛轉移到別的地方，是病人主訴疼痛的來源之一
+- 潛伏型激痛點：平常不痛，只有按壓或針刺時才痛
+
+書中引用的研究數字很驚人：
+
+- 肩夾擠的病人，棘上肌有活躍激痛點的比例約 67%，棘下肌與肩胛下肌各約 42%
+- 荷蘭一個物理治療所研究 72 位慢性單側肩膀痛的病人，每一位都找得到活躍激痛點；最常見的是棘下肌（78%），其次是上斜方肌（58%）、三角肌與小圓肌（約 44% 到 50%）
+
+棘下肌在肩胛骨背面，但它的激痛點常把痛轉移到肩膀前方深處與上臂。這就是為什麼美華明明前面痛，治療師卻在她的肩胛骨背面找到最痛的那一點。
+
+這也提醒我們：按摩球壓肩胛骨背面時，如果肩膀前方「被叫醒」那種熟悉的痛，可能就是找到了來源。壓 30 到 60 秒、等它慢慢退，比一直滾來滾去有效。
+痛的地方不一定是問題的地方；肩膀前面的痛，有時住在肩胛骨背面。
 目前證據還說不清的部分
 
 - 按摩球、滾筒的長期效果研究很少，多數研究看的是單次使用後幾十分鐘的變化
@@ -8638,6 +8668,7 @@ Cheatham 等人 2015 年整理滾筒放鬆的系統性回顧（把同一主題�
 1. Kibler WB, Sciascia A, McMullen J. Scapular dyskinesis. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018.
 2. Loudon JK. Postural consideration for the female athlete's shoulder. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018.
 3. Cheatham SW, Kolber MJ, Cain M, Lee M. The effects of self-myofascial release using a foam roll or roller massager on joint range of motion, muscle recovery, and performance: a systematic review. Int J Sports Phys Ther. 2015;10(6):827–38.
+4. McEvoy J, Dommerholt J. Myofascial trigger points of the shoulder. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012.
 
 ============================================================
 標題：激痛點的生化環境：研究在局部發現了什麼
@@ -9727,6 +9758,19 @@ McClure 等人 2007 年比較了橫胸伸展與睡姿伸展，四週後，做橫
 - 牆上滑手：前臂貼牆往上滑，最上面停 3 秒，10 下
 - 四足跪姿轉身：一手放後腦勺，手肘往下再往上打開，左右各 8 下
 - 彈力帶拉開：雙手握彈力帶往兩側拉開，10 到 15 下
+拉到手麻，不是筋太緊
+
+有些人做肩膀伸展時，會覺得手臂一路麻、刺到手指。這通常不是「筋終於被拉開了」，而是神經被拉到了。
+
+《肩膀物理治療》第五版的神經組織一章（Hall 與 Elvey 撰寫）介紹神經組織激發測試（也叫神經動力學測試）：治療師把肩膀、手肘、手腕、頸部依序擺到讓某條神經被拉長的位置，看症狀會不會出現、會不會隨著頸部或手腕的位置改變。例如手臂往外打開、手腕往後扳、頭往對側歪，常會拉到正中神經。
+
+這給我們兩個實用的提醒：
+
+- 伸展時出現麻、刺、電、往手指跑的感覺，請立刻放鬆，換一個角度或降低幅度；神經不喜歡被持續拉扯
+- 如果你的「緊」一直跟著麻感一起出現，問題可能在神經的活動度或頸椎，而不是肌肉長度，需要的是神經滑動，而不是更用力地拉
+
+書中的肌肉長度章節也提醒，判斷「肌肉真的太短」需要標準化的長度測試，例如胸小肌、背闊肌各有特定的檢查方式，不能只靠「感覺很緊」。
+緊不一定是短；分清楚是肌肉、關節囊還是神經，伸展才會有效。
 目前證據還說不清的部分
 
 - GIRD 和受傷風險的關係，在棒球投手的研究中較多，例如 Wilk 等人 2011 年發現內轉不足與總旋轉角度不足的投手受傷風險較高；但在其他運動與一般人身上，證據較少
@@ -9754,6 +9798,7 @@ McClure 等人 2007 年比較了橫胸伸展與睡姿伸展，四週後，做橫
 2. McClure P, Balaicuis J, Heiland D, Broersma ME, Thorndike CK, Wood A. A randomized controlled comparison of stretching procedures for posterior shoulder tightness. J Orthop Sports Phys Ther. 2007;37(3):108–14.
 3. Behm DG, Blazevich AJ, Kay AD, McHugh M. Acute effects of muscle stretching on physical performance, range of motion, and injury incidence in healthy active individuals: a systematic review. Appl Physiol Nutr Metab. 2016;41(1):1–11.
 4. Wilk KE, Macrina LC, Fleisig GS, et al. Correlation of glenohumeral internal rotation deficit and total rotational motion to shoulder injuries in professional baseball pitchers. Am J Sports Med. 2011;39(2):329–35.
+5. Hall TM, Elvey RL. Neural tissue evaluation and treatment. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012.
 
 ============================================================
 標題：旋轉肌袖與肩部筋膜整合
@@ -10994,6 +11039,18 @@ TSB 是新鮮度，不是成績預測。 Coggan 自己說，表現同時取決�
 - 「駝背就是姿勢不好，要一直挺胸」：長時間用力挺胸也會累，而且不是每個駝背都會造成症狀；重點是胸椎「能動」，可以在需要的時候伸展開來
 - 「上背要喬一喬才會開」：Mintken 等人 2016 年的多中心試驗發現，肩膀痛的病人在運動治療之外再加上頸胸椎的手法治療，並沒有帶來額外的好處。手法可以是開窗的工具，但真正留下來的是自己練出來的
 - 「只要胸椎鬆了，肩膀就會好」：胸椎只是肩膀的其中一個環節，旋轉肌袖與肩胛的力量一樣要練
+舉手時，上背和肋骨也在動
+
+《肩膀物理治療》第五版用一整章談「脊椎、胸廓與肩膀」的關係（Gray 與 Grimsby 撰寫）。幾個和怡君有關的重點：
+
+- 姿勢好的人，手可以順順地舉到 160 到 180 度，肩峰下的軟組織不會被夾到；駝背、頭往前時，肩胛骨的動作節奏被改變，舉手時更容易夾到棘上肌、二頭肌長頭和滑囊
+- 肩胛骨是貼在肋骨上滑動的，上段肋骨與胸椎動不了，肩胛就跟著卡
+- 鎖骨、第一肋骨、胸小肌與頸部筋膜彼此相連，胸前上方太緊也會把肩胛往前拉
+
+書中也提醒，評估下頸椎與上胸椎時，對頭往前的人，要先請他把下巴往後收、再做動作，才看得到真正的活動度。
+
+所以怡君的胸椎運動，第一步常常是先把下巴輕輕往後收，讓頭回到肩膀上方，再做椅背後仰與滾筒伸展；頭還往前凸著時，上背往往伸不開。
+舉手不只是肩膀的事，從脖子、上背到肋骨，都要讓出空間。
 目前證據還說不清的部分
 
 - 靜態的姿勢（看起來駝不駝）和肩膀疼痛的關聯，研究結果並不一致；動作中的胸椎活動度可能比靜態姿勢更重要
@@ -11021,6 +11078,7 @@ TSB 是新鮮度，不是成績預測。 Coggan 自己說，表現同時取決�
 1. Loudon JK. Postural consideration for the female athlete's shoulder. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018.
 2. Kebaetse M, McClure P, Pratt NA. Thoracic position effect on shoulder range of motion, strength, and three-dimensional scapular kinematics. Arch Phys Med Rehabil. 1999;80(8):945–50.
 3. Mintken PE, McDevitt AW, Cleland JA, et al. Cervicothoracic manual therapy plus exercise therapy versus exercise therapy alone in the management of individuals with shoulder pain: a multicenter randomized controlled trial. J Orthop Sports Phys Ther. 2016;46(8):617–28.
+4. Gray JC, Grimsby O. Interrelationship of the spine, rib cage, and shoulder. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012.
 
 ============================================================
 標題：進展期：把有氧底盤變成比賽能力
@@ -12922,6 +12980,25 @@ Ludewig 與 Cook 2000 年比較了有、沒有肩夾擠症狀的建築工人，�
 - 「肩胛翹起來就是有病」：沒症狀的人也常見輕微肩胛異動，重點是它是否和你的症狀有關
 - 「挺胸夾背就好」：一直用力夾背會讓肩胛卡在一個位置，需要的是「會動、動得對」
 - 「只練肩膀周圍」：髖與軀幹沒力，肩胛就沒有穩定的地基
+哪些動作最能練到前鋸肌與下斜方肌？
+
+《肩膀物理治療》第五版的肌電圖章節（Ekstrom 與 Osborn 撰寫），整理了肩胛穩定肌在不同運動中的活動量（以最大自主收縮的百分比表示）：
+
+前鋸肌（把肩胛貼住胸廓、往上轉）
+
+- 肩胛平面舉手超過 120 度、用 5 次就力竭的重量：約 96%
+- 前鋸肌出拳（仰躺把手往天花板推，最後多推一點）與動態擁抱（像抱一棵大樹往前環抱）：研究測到 94% 到 109%，但書中提醒，這些數字的計算基準不同，可能高估
+- 一般往前出拳、中等阻力：約 49%
+
+下斜方肌（穩住肩胛位置）
+
+- 俯臥手外展外轉、5 次力竭重量：約 79%
+- 站姿單手彈力帶划船：約 51%，菱形肌約 59%
+
+書中也提到，有些動作會讓上斜方肌大量參與（例如某些划船測到上斜方肌 112%），對上斜方肌已經過度代償的人來說，選動作時要留意。
+
+所以建宏的菜單裡，除了閉鎖鏈的扶牆伏地挺身，後期也加入了肩胛平面舉手到頭頂與俯臥外轉——兩個正好是前鋸肌與下斜方肌活動量最高的動作之一。
+選對動作，同樣十下，練到的是你真正需要的那塊肌肉。
 目前證據還說不清的部分
 
 - 肩胛異動和肩膀疼痛之間是「原因」還是「結果」，研究還沒有定論；Kibler 等人 2013 年的共識也承認，它常常是一起出現的現象
@@ -12949,6 +13026,7 @@ Ludewig 與 Cook 2000 年比較了有、沒有肩夾擠症狀的建築工人，�
 2. Manske RC, Pontillo M. General principles of shoulder rehabilitation. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018.
 3. Ludewig PM, Cook TM. Alterations in shoulder kinematics and associated muscle activity in people with symptoms of shoulder impingement. Phys Ther. 2000;80(3):276–91.
 4. Kibler WB, Ludewig PM, McClure PW, et al. Clinical implications of scapular dyskinesis in shoulder injury: the 2013 consensus statement from the 'Scapular Summit'. Br J Sports Med. 2013;47(14):877–85.
+5. Ekstrom RA, Osborn RW. Muscle length testing and electromyographic evidence for manual strength testing and exercises for the shoulder. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012.
 
 ============================================================
 標題：W/kg：爬坡的貨幣，也是最容易被誤用的數字
@@ -14342,6 +14420,19 @@ Rio 等人 2015 年的小型研究（6 位排球選手的髕骨肌腱）發現�
 - 「痛就是在受傷」：肌腱痛和組織損傷的關係並不直接；在可接受的疼痛範圍內訓練是安全的
 - 「打一針就好」：教科書提到，類固醇注射可能短期止痛，但反覆打進肌腱內有減弱肌腱的風險
 - 「只做離心就好」：離心訓練研究很多，但教科書也承認它的確切角色還不完全清楚；重點是「漸進」，而不是哪一種收縮方式
+肌腱過度使用時，裡面發生了什麼？
+
+《肩膀物理治療》第五版的肌力訓練一章（Dimond 與 Donatelli 撰寫）提到一個有趣的細節：肌腱長期被過度使用時，身體會增加膠原蛋白的製造，但偏向製造第三型膠原——這種膠原比較細、比較亂，強度不如正常肌腱裡的第一型膠原。
+
+換句話說，肌腱不是不修，而是在「趕工」：用比較粗糙的材料先補起來。如果負荷一直超過它的修補速度，就會一直用次級材料補，肌腱越補越不耐用。
+
+書中也提醒兩件和劑量有關的事：
+
+- 離心訓練能讓肌肉承受比一般訓練更大的負荷，常被用在肌腱病變的復健
+- 高強度或離心為主的訓練後，要給組織超過 48 小時的恢復
+
+這就是文傑的訓練為什麼一週三次、隔天練：給肌腱足夠的時間，把趕工的第三型膠原慢慢換成強韌的第一型。
+肌腱需要的是負荷，也需要把負荷消化完的時間。
 目前證據還說不清的部分
 
 - 肩膀肌腱病變的最佳訓練劑量（重量、次數、頻率）研究差異很大，目前沒有標準答案
@@ -14370,6 +14461,7 @@ Rio 等人 2015 年的小型研究（6 位排球選手的髕骨肌腱）發現�
 2. Cook JL, Purdam CR. Is tendon pathology a continuum? A pathology model to explain the clinical presentation of load-induced tendinopathy. Br J Sports Med. 2009;43(6):409–16.
 3. Magnusson SP, Langberg H, Kjaer M. The pathogenesis of tendinopathy: balancing the response to loading. Nat Rev Rheumatol. 2010;6(5):262–8.
 4. Rio E, Kidgell D, Purdam C, et al. Isometric exercise induces analgesia and reduces inhibition in patellar tendinopathy. Br J Sports Med. 2015;49(19):1277–83.
+5. Dimond D, Donatelli RA. Strength training concepts. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012.
 
 ============================================================
 標題：心率漂移：檢驗有氧基礎最便宜的方法
@@ -15673,6 +15765,19 @@ IF 是一支很好用的溫度計：它讓「今天騎得多硬」從感覺變�
 什麼情況可能需要手術？
 
 多數二頭肌肌腱病變靠調整負荷與運動就能改善。少數長期保守治療無效、或合併上盂唇撕裂、肌腱從溝裡滑脫的人，醫師可能建議「肌腱固定術」（把肌腱改接到肱骨上）或「肌腱切斷術」。切斷後，部分人上臂會出現一個隆起（俗稱大力水手徵象），通常對日常功能影響不大，但年輕、需要旋轉力量的人比較常選擇固定術。
+肩膀深處痛、卡卡的：上盂唇（SLAP）損傷
+
+二頭肌長頭肌腱最上端，接在關節窩上緣的盂唇。這裡受傷，叫做上盂唇前後撕裂（SLAP 損傷），常和二頭肌肌腱的問題一起出現。
+
+《肩膀物理治療》第五版的投擲傷害一章整理了幾個數字：
+
+- 在一組投擲選手的研究中，55% 屬於第二型 SLAP，也就是上盂唇和二頭肌腱一起從關節窩上緣剝離
+- 慢性 SLAP 的病人中，約 31% 同時有旋轉肌袖下表面的損傷
+- 過頭投擲選手接受修補後，約 87% 有很好的結果
+
+和一般二頭肌肌腱病變怎麼分？ SLAP 的痛常描述在肩膀深處或後方，伴隨卡住、喀喀聲，在手舉高往後（投球準備姿勢）時明顯；跌倒手撐地、手臂被突然往下拉，或長年投擲是常見的原因。二頭肌肌腱病變的痛則比較在肩膀前方那道溝。
+
+家豪的痛點清楚在前方的溝上、沒有卡住感，比較不像 SLAP。如果你有肩膀深處的卡住、喀喀聲合併無力，尤其是投擲或過頭運動員，請讓骨科醫師評估，必要時安排 MRI 關節攝影。
 目前證據還說不清的部分
 
 - 單純針對二頭肌肌腱病變的運動治療試驗很少，目前的做法大多借用其他部位肌腱病變的漸進負荷原則
@@ -15701,6 +15806,7 @@ IF 是一支很好用的溫度計：它讓「今天騎得多硬」從感覺變�
 2. Van Thiel GS, Bhatia S, Ghodadra NS, Kim JY, Provencher MT. Rehabilitation for biceps tendon disorders and SLAP lesions. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018.
 3. Manske RC. Tendinopathy. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018.
 4. Krupp RJ, Kevern MA, Gaines MD, Kotara S, Singleton SB. Long head of the biceps tendon pain: differential diagnosis and treatment. J Orthop Sports Phys Ther. 2009;39(2):55–70.
+5. Cooper J, Donley PB, Morgan CD. Throwing injuries. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012.
 
 ============================================================
 標題：正規化功率 NP：為什麼平均功率會騙你
@@ -16563,6 +16669,19 @@ Travell 醫師常被視為第一位專注研究肌筋膜疼痛與激痛點的人
 - 關節鏡關節囊鬆解：尤其是前上方的旋轉肌間隙與喙肱韌帶，鬆解後往外轉的角度可明顯增加
 
 這些處置之後，同樣需要接著做伸展，否則角度可能再縮回去。
+為什麼要「撐住不動」，而不是用力拉？
+
+《肩膀物理治療》第五版的冰凍肩一章，用組織力學解釋伸展的方式：
+
+- 潛變：給一個固定的力量，組織會隨時間慢慢被拉長。像一般的重量伸展
+- 應力鬆弛：把組織拉到一個固定的長度後撐住不動，組織裡的張力會隨時間慢慢下降。等張力降下來，再往前推一點、再撐住
+
+書中介紹的靜態漸進式伸展，就是一再重複應力鬆弛：拉到有拉扯感 → 撐住 → 感覺鬆一點 → 再往前一點 → 再撐住。研究顯示，使用這類靜態漸進式伸展支架，能讓頑固的冰凍肩明顯改善角度與功能。
+
+淑芬在家沒有支架，但可以用同樣的原理做門框外轉：拉到有拉扯感停 20 秒，感覺鬆一點，身體再轉一點點，再停 20 秒，一次做三輪。比起用力反覆拉扯，這種「等它鬆」的方式比較不痛，效果也比較好。
+
+書中的徒手治療章節則提到，研究支持在活動末端做的關節滑動技術。Vermeulen 等人 2006 年的隨機試驗也發現，對冰凍肩做推到末端的高等級鬆動術，一年後的角度與功能比低等級的溫和鬆動術更好。
+冰凍肩的關節囊不是被「拉開」的，而是被「等開」的。
 目前證據還說不清的部分
 
 - 各種伸展方式的隨機試驗少、人數小，又常合併多種治療，很難說哪一種最好
@@ -16590,6 +16709,8 @@ Travell 醫師常被視為第一位專注研究肌筋膜疼痛與激痛點的人
 1. Durall CJ. Adhesive capsulitis (frozen shoulder). In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018.
 2. Diercks RL, Stevens M. Gentle thawing of the frozen shoulder: a prospective study of supervised neglect versus intensive physical therapy in seventy-seven patients with frozen shoulder syndrome followed up for two years. J Shoulder Elbow Surg. 2004;13(5):499–502.
 3. Jewell DV, Riddle DL, Thacker LR. Interventions associated with an increased or decreased likelihood of pain reduction and improved function in patients with adhesive capsulitis: a retrospective cohort study. Phys Ther. 2009;89(5):419–29.
+4. Beyers M, Bonutti P. Frozen shoulder. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012.
+5. Vermeulen HM, Rozing PM, Obermann WR, le Cessie S, Vliet Vlieland TPM. Comparison of high-grade and low-grade mobilization techniques in the management of adhesive capsulitis of the shoulder: randomized controlled trial. Phys Ther. 2006;86(3):355–68.
 
 ============================================================
 標題：咬肌、顳肌與二腹肌：下巴的筋膜張力
@@ -16948,6 +17069,26 @@ Diercks 與 Stevens 2004 年比較了兩種做法：一組在不痛的範圍內�
 - 最常留下的是往外轉受限
 
 所以「等它自己好」不是最佳策略；在各階段做對的事，能讓這段路走得比較順。
+另一種分期：從關節鏡看到的四個階段
+
+除了依症狀分期，《肩膀物理治療》第五版的冰凍肩一章（Beyers 與 Bonutti 撰寫）也介紹從關節鏡觀察到的四個階段：
+
+1. 沾黏前期：活動幾乎不受限，關節囊開始發炎
+2. 急性沾黏性滑膜炎：滑膜增生、開始出現沾黏
+3. 成熟期：滑膜炎減少，腋下的關節囊皺摺消失
+4. 慢性期：沾黏成熟，活動角度明顯受限
+
+書中也引用 Reeves 1975 年追蹤 49 位冰凍肩病人的自然病程研究：
+
+- 疼痛期約 10 到 36 週
+- 僵硬期約 4 到 12 個月
+- 解凍期約 5 到 26 個月，而且僵硬期越長，解凍期也越長
+- 不做任何治療，症狀消失平均需要約 30 個月
+
+另一個值得注意的數字：糖尿病族群發生冰凍肩的比例約 10.8%。淑芬有糖尿病，所以除了復健，把血糖控制好同樣重要。
+
+書中也整理了注射的研究：類固醇注射可能對早期的疼痛與角度有幫助，改善最多的是前 4 週；這和淑芬在疼痛期打針後感覺最明顯的經驗相符。
+冰凍肩有它的時間表，但我們可以讓每一段走得比較順。
 目前證據還說不清的部分
 
 - 冰凍肩的成因仍不清楚，為什麼糖尿病、甲狀腺疾病的人比較容易得，機轉還在研究
@@ -16977,6 +17118,7 @@ Diercks 與 Stevens 2004 年比較了兩種做法：一組在不痛的範圍內�
 2. Hannafin JA, Chiaia TA. Adhesive capsulitis: a treatment approach. Clin Orthop Relat Res. 2000;(372):95–109.
 3. Diercks RL, Stevens M. Gentle thawing of the frozen shoulder: a prospective study of supervised neglect versus intensive physical therapy in seventy-seven patients with frozen shoulder syndrome followed up for two years. J Shoulder Elbow Surg. 2004;13(5):499–502.
 4. Hand C, Clipsham K, Rees JL, Carr AJ. Long-term outcome of frozen shoulder. J Shoulder Elbow Surg. 2008;17(2):231–6.
+5. Beyers M, Bonutti P. Frozen shoulder. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012.
 
 ============================================================
 標題：公路車騎士的下背痛，答案常常不在腰
@@ -17273,6 +17415,22 @@ Fitting 與身體，要一起調
 要練多久才有感覺？
 
 肌肉協調與反應速度通常在 4 到 6 週開始有感：日常動作比較踏實、手舉高時比較不怕。要回到需要末端角度、爆發力或碰撞的運動，常需要 3 到 6 個月。志明在第八週發現吊在單手上不再「心虛」，第十二週回到原本的難度。
+自己在家也能測：閉鎖鏈上肢穩定測試
+
+怎麼知道穩定訓練有沒有效？《肩膀物理治療》第五版介紹一個簡單、可以量化的測試：閉鎖鏈上肢穩定測試（CKC UE stability test）。
+
+做法
+
+1. 地上貼兩條平行的膠帶，相距約 90 公分（3 英尺）
+2. 男性從標準伏地挺身的姿勢開始、女性從跪姿伏地挺身開始，兩手各放在一條膠帶上
+3. 一隻手離地去碰另一隻手，再回到自己的膠帶上，兩手輪流
+4. 計算 15 秒內碰了幾次，做 3 次取平均
+
+參考值：書中列出的常模，男性平均約 18.5 次、女性約 20.5 次。書中也提到，這個測試的專一度約 82%，是評估肩膀神經肌肉控制的實用工具。
+
+志明第一次測只有 13 次，碰到第 10 下右肩就開始晃；第八週再測是 19 次，動作也穩了。這個數字讓他知道「不心虛」不只是感覺，而是真的進步了。
+
+注意：這個測試對肩膀負擔不小，還在痛、剛脫臼過、或術後還在保護期的人不要做；測試時肩膀有鬆脫感或疼痛就停止。
 目前證據還說不清的部分
 
 - 穩定訓練的內容與劑量，各研究差異很大，多數來自專家流程與小型研究；比較確定的是「漸進、規律、包含肩胛與本體感覺」這幾個原則
@@ -17300,6 +17458,7 @@ Fitting 與身體，要一起調
 1. Lodha S, Mazloom S, Resler AG, et al. Shoulder instability treatment and rehabilitation. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018.
 2. Guido JA Jr, Meister K. Shoulder exercises for injury prevention in the throwing athlete. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018.
 3. Reinold MM, Wilk KE, Fleisig GS, et al. Electromyographic analysis of the rotator cuff and deltoid musculature during common shoulder external rotation exercises. J Orthop Sports Phys Ther. 2004;34(7):385–94.
+4. Carp KC. Sensory integration and neuromuscular control of the shoulder. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012.
 
 ============================================================
 標題：關節盤卡住（不可復位）：張不開的急性鎖住
@@ -17583,6 +17742,19 @@ Fitting 與身體，要一起調
 - 「越早回去打球越好」：不痛不代表穩了，太早回到碰撞運動是再脫最常見的時機
 - 「自己會推回去就不用看醫生」：反覆脫出可能讓骨頭缺損變大，請讓醫師評估
 - 「開刀就不用復健」：術後復健通常要半年，是手術成功的一部分
+脫臼後，關節裡留下了什麼？
+
+《肩膀物理治療》第五版的肩關節不穩定一章，說明前方脫臼常留下的兩種「痕跡」：
+
+- Bankart 損傷：關節窩前下方的盂唇被扯下來，有時連一小片骨頭一起帶走（骨性 Bankart）
+- Hill-Sachs 損傷：脫臼時，肱骨頭後外側撞在關節窩邊緣，被壓出一個凹陷
+
+書中引用的生物力學研究指出：盂唇像杯口一圈墊高的邊，讓肱骨頭被旋轉肌袖往盤子裡壓時更穩，這叫做「凹面加壓」機制；盂唇不見了，這個機制的穩定效果大約少了 20%。這就是為什麼脫過一次，關節本身就比較容易再滑出去。
+
+另一個重點是：旋轉肌袖在活動範圍的末端，提供的穩定度比中段少約 20%。冠宇搶籃板時手舉高往後被扯，正是肩膀最不穩的姿勢。所以他的復健最後階段，一定要在「手外展加外轉」的位置做穩定訓練，而不是只在手肘貼身的安全位置練。
+
+術後的復健，書中的手術章節也強調要依修補方式保護修補的組織，逐步恢復角度，力量訓練要等組織有足夠時間癒合；書中的案例在術後 24 週時，外轉力量才和健側相當。
+脫臼留下的痕跡改不了，但周圍的肌肉可以學會替它多撐一點。
 目前證據還說不清的部分
 
 - 第一次脫臼的年輕運動員，要立刻手術還是先保守治療，研究與專家意見仍有分歧
@@ -17608,6 +17780,8 @@ Fitting 與身體，要一起調
 
 1. Lodha S, Mazloom S, Resler AG, et al. Shoulder instability treatment and rehabilitation. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018.
 2. Hovelius L, Olofsson A, Sandström B, et al. Nonoperative treatment of primary anterior shoulder dislocation in patients forty years of age and younger: a prospective twenty-five-year follow-up. J Bone Joint Surg Am. 2008;90(5):945–52.
+3. Zazzali MS, Vad VB. Shoulder instability. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012.
+4. Bascharon RA, Manske RC. Surgical approach to shoulder instabilities. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012.
 
 ============================================================
 標題：深層後頸：枕下肌與頸源性問題
@@ -17942,6 +18116,20 @@ Minetama 等人 2019 年在日本做的隨機對照試驗，86 位經 MRI（磁�
 要練多久才有感覺？
 
 肌肉的「反應速度」和協調，通常在 4 到 6 週開始有感；要穩到能回到大量過頭運動，常需要 3 到 6 個月。教科書的建議是，非外傷性、多方向的不穩定，至少要認真做 6 個月的保守治療，失敗了才考慮手術。宜蓁在第三個月回到正常的蝶式課表，那種「鬆一下」的感覺從一週好幾次，降到偶爾一次。
+穩定不只靠「本體感覺」
+
+很多人把肩膀穩定和「本體感覺」畫上等號。《肩膀物理治療》第五版的神經肌肉控制一章（Carp 撰寫）特別澄清：神經肌肉控制是一整套系統，包括：
+
+- 感覺輸入：關節與結締組織裡的機械受器（感覺壓力、張力、震動）、內耳的平衡感、眼睛
+- 大腦整合：把這些訊息組合成「手臂現在在哪裡、正在怎麼動」
+- 動作輸出：肌肉在對的時間、用對的力量反應
+
+書中引用的研究指出，肩關節不穩定的人，感知手臂動作的能力（動覺）比較差；而且隨著年紀增加，機械受器會萎縮，各關節的感覺都會變遲鈍。
+
+這解釋了宜蓁為什麼需要的不只是「練力氣」：她的訓練裡同時有閉眼的位置感練習（家人把她的手臂擺到一個角度，她閉眼再自己擺回去）、不預期的干擾（節律性穩定），以及看著目標的動作（對牆拍球）。把眼睛、關節、肌肉三個系統一起練，肩膀才學得會在晃動中穩住。
+
+書中的肩關節不穩定章節也提到一個關鍵數字：旋轉肌袖在活動範圍的末端，提供的穩定度比在中段低約 20%。所以不穩定的人最容易在手舉到最高、轉到最後時出事，訓練也要漸漸練到那些角度。
+穩定是感覺、大腦和肌肉的合作；只練其中一個，肩膀還是會心虛。
 目前證據還說不清的部分
 
 - Warby 等人 2014 年整理多方向不穩定運動治療的系統性回顧（把同一主題的研究有系統地整理），研究數量少、品質參差，雖然多數顯示有改善，但「哪一套運動最有效」還說不清
@@ -17969,6 +18157,8 @@ Minetama 等人 2019 年在日本做的隨機對照試驗，86 位經 MRI（磁�
 1. Lodha S, Mazloom S, Resler AG, et al. Shoulder instability treatment and rehabilitation. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018.
 2. Romeyn R, Manske RC. Importance of the history in the diagnosis of shoulder pathology. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018.
 3. Warby SA, Pizzari T, Ford JJ, Hahne AJ, Watson L. The effect of exercise-based management for multidirectional instability of the glenohumeral joint: a systematic review. J Shoulder Elbow Surg. 2014;23(1):128–42.
+4. Carp KC. Sensory integration and neuromuscular control of the shoulder. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012.
+5. Zazzali MS, Vad VB. Shoulder instability. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012.
 
 ============================================================
 標題：磨牙與咬緊牙關：夜間磨牙和顳顎障礙的關係
@@ -18321,6 +18511,14 @@ Neto 等人 2017 年的統合分析只有 10 篇試驗、502 人，其中 5 篇�
 多久會好？
 
 一般的肌腱或滑囊刺激，規律照相對休息的原則調整、加上漸進運動，常在六到十二週明顯進步；如果已經出現明顯的活動度流失、往冰凍肩的方向走，就要以月為單位計算。
+為什麼「完全不動」對冰凍肩的高風險族群特別不利？
+
+《肩膀物理治療》第五版的冰凍肩一章（Beyers 與 Bonutti 撰寫）提到，糖尿病族群發生冰凍肩的比例約 10.8%，比一般人高很多；而且有研究發現，糖尿病病人的冰凍肩接受麻醉下鬆動術的效果也比較差。
+
+這讓秀玉的例子更值得警惕：六十一歲、長時間完全不動右手，如果再加上血糖控制不好，就落在冰凍肩的高風險區。對這類族群來說，「在不痛的範圍每天動一動」不是選擇性的建議，而是預防。
+
+書中的肌力訓練章節也提醒：肌肉的適應是「用進廢退」的，停止使用一段時間，力量就會往下掉。秀玉三週不用右手，回來時除了角度變小，舉起來也明顯沒力，所以我們除了活動度，也很早就加入手肘貼身的等長收縮。
+對糖尿病、甲狀腺問題或中年以上的人來說，肩膀痛時保持活動，是在保護它不被冰起來。
 目前證據還說不清的部分
 
 - 「相對休息」是臨床上廣泛使用的原則，但劑量（多少活動算剛好）沒有研究能給出精準數字，目前最實用的工具仍是疼痛分數和隔天反應
@@ -18349,6 +18547,7 @@ Neto 等人 2017 年的統合分析只有 10 篇試驗、502 人，其中 5 篇�
 1. Durall CJ. Adhesive capsulitis (frozen shoulder). In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018.
 2. Romeyn R, Manske RC. Importance of the history in the diagnosis of shoulder pathology. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018.
 3. Magnusson SP, Langberg H, Kjaer M. The pathogenesis of tendinopathy: balancing the response to loading. Nat Rev Rheumatol. 2010;6(5):262–8.
+4. Beyers M, Bonutti P. Frozen shoulder. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012.
 
 ============================================================
 標題：細胞層次的調節與「疼痛預敏」現象
@@ -18803,6 +19002,15 @@ Bike Fitting 調整之後，要騎多久才看得出有沒有效？
 - 完全跳過第三階段：這是復發最常見的原因——不痛了就停練，力量從來沒回來
 - 只看今天痛不痛：進步要看一週的趨勢，單日的起伏參考價值很低
 - 只練肩膀：忽略下肢與軀幹，肩膀就得用更多力去補
+換檔背後的三個訓練原則
+
+《肩膀物理治療》第五版的肌力訓練一章（Dimond 與 Donatelli 撰寫），整理了幾個讓三階段有效的原則：
+
+- 超負荷：肌肉要承受比平常多一點的負荷才會進步。雅婷的黃色彈力帶做到毫不費力，就是沒有超負荷了
+- 專一性（SAID 原則：身體會針對施加的需求做出特定的適應）：要回到殺球，最後就要在手舉高、快速的姿勢練習；只在手肘貼身的位置練，很難轉移到過頭的動作
+- 恢復：書中提醒，高強度或離心為主的訓練後，要給肌肉超過 48 小時的恢復時間。這也是為什麼力量訓練建議一週二到三次、中間留休息日
+- 停練會退步：書中整理的研究顯示，停止訓練後，肌肉在訓練中產生的適應會慢慢回到原點。這就是第三階段之後還要長期保養的原因
+進步需要一點點超過，回到運動需要練得夠像，維持需要不要停。
 目前證據還說不清的部分
 
 - 各階段的進階條件大多來自臨床共識與專家流程，不同流程之間的細節差異不小；沒有哪一套被證明一定最好
@@ -18832,6 +19040,7 @@ Bike Fitting 調整之後，要騎多久才看得出有沒有效？
 1. Manske RC, Pontillo M. General principles of shoulder rehabilitation. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018.
 2. O'Brien MJ, Savoie FH 3rd. Rotator cuff tendinitis in the overhead athlete. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018.
 3. Kibler WB, Sciascia A. Current concepts: scapular dyskinesis. Br J Sports Med. 2010;44(5):300–5.
+4. Dimond D, Donatelli RA. Strength training concepts. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012.
 
 ============================================================
 標題：肌肉痙攣：突然咬不攏、張不開
@@ -19178,6 +19387,15 @@ Chiu 等人 2015 年發表在《臨床復健》期刊的系統性回顧，收集
 - 「發炎就完全別動」：不動會讓肩膀變僵、肌力掉更快。要避開夾到的角度，但保留不痛範圍的活動
 - 「用力拉開、多按幾下就會鬆」：滑囊正在發炎，硬拉與大力按壓只是在刺激它
 - 「消炎處置做完就沒事」：把發炎壓下來會舒服很多，但沒改掉被夾的原因，症狀常過幾個月又回來
+長時間舉手的工作，為什麼特別傷？
+
+《肩膀物理治療》第五版在脊椎、肋骨與肩膀關係一章（Gray 與 Grimsby 撰寫）提到兩個和滑囊炎很有關的觀察：
+
+- 姿勢好的人，手可以順順地舉到 160 到 180 度，肩峰下的軟組織不會被夾到；駝背、頭往前的人，肩胛骨的動作節奏改變，舉手時更容易夾到肩峰下滑囊、二頭肌長頭肌腱與棘上肌
+- 需要長時間把手舉高的工作，旋轉肌袖會慢慢疲勞；疲勞後壓不住肱骨頭，球頭往上跑，就把肌腱和滑囊擠向肩峰下的屋簷，久了可能變成棘上肌肌腱病變
+
+國華刷天花板的十天，兩個條件都中了：仰頭工作讓上背更駝，八小時舉手讓旋轉肌袖一路疲勞到底。所以我們的調整不只是換加長桿，也包括每 20 分鐘換一次工作——讓旋轉肌袖在疲勞前休息，比累到極限再休息有效得多。
+滑囊被夾，常常發生在旋轉肌袖累了之後。
 目前證據還說不清的部分
 
 - 超音波上看到滑囊增厚很常見，但增厚的程度和疼痛的關係並不一致，沒症狀的人也可能看到
@@ -19206,6 +19424,7 @@ Chiu 等人 2015 年發表在《臨床復健》期刊的系統性回顧，收集
 1. Rosenthal MD, Moore JH, Lynch JR. Impingement syndrome. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018.
 2. Romeyn R, Manske RC. Importance of the history in the diagnosis of shoulder pathology. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018.
 3. Neer CS 2nd. Impingement lesions. Clin Orthop Relat Res. 1983;(173):70–7.
+4. Gray JC, Grimsby O. Interrelationship of the spine, rib cage, and shoulder. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012.
 
 ============================================================
 標題：咀嚼肌的肌筋膜疼痛與轉移痛：為什麼牙齒查不出問題卻痛
@@ -19472,6 +19691,19 @@ Chiu 等人 2015 年發表在《臨床復健》期刊的系統性回顧，收集
 - 「空間被夾住了，所以一定要開刀把空間磨大」：上面兩個試驗已經說明，多數人不需要
 - 「痛就完全不要舉手」：長期不舉，肩膀會更僵、更沒力，那道痛弧反而更難消失
 - 「一直拉筋就會好」：伸展能改善緊繃，但補不了穩定性；把肩胛與旋轉肌袖練起來才是重點
+還有一種夾擠，發生在關節裡面
+
+《肩膀物理治療》第五版的夾擠一章（Greenfield 撰寫），除了肩峰下的夾擠，還特別介紹過頭運動員常見的內夾擠：
+
+- 位置：不是在肩峰底下，而是在關節裡面的後上方
+- 時機：手舉到「投球準備」的姿勢（手臂外展、往外轉到底）時，旋轉肌袖的關節面那一側，會被夾在肱骨頭和關節窩的後上緣之間
+- 後果：反覆夾擠可能磨損旋轉肌袖的下表面，以及關節窩上方的盂唇
+- 背後原因：常和肩膀前方偏鬆、肩胛控制不良、後側關節囊太緊有關
+
+書中強調：區分原發與續發夾擠非常關鍵。續發夾擠的根源是不穩定，如果把它當成原發夾擠處理，例如只做休息與消炎，甚至去磨骨頭，底下的不穩定沒有解決，症狀就會一直回來。
+
+俊傑的肩膀在投球準備姿勢時後方也會痛，所以我們在第二階段加入「手 90 度外展的外轉」與節律性穩定訓練，練的正是那個角度的控制。
+痛在肩膀前方要看屋簷，痛在肩膀後方深處，要看關節的穩定。
 目前證據還說不清的部分
 
 - 「夾擠」這個名稱本身近年受到質疑，不少學者認為疼痛主要來自肌腱本身的負荷問題，而不只是被骨頭夾到；所以有些文獻改稱「肩峰下疼痛」
@@ -19499,6 +19731,7 @@ Chiu 等人 2015 年發表在《臨床復健》期刊的系統性回顧，收集
 1. Rosenthal MD, Moore JH, Lynch JR. Impingement syndrome. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018.
 2. Beard DJ, Rees JL, Cook JA, et al. Arthroscopic subacromial decompression for subacromial shoulder pain (CSAW): a multicentre, pragmatic, parallel group, placebo-controlled, three-group, randomised surgical trial. Lancet. 2018;391(10118):329–38.
 3. Holmgren T, Björnsson Hallgren H, Öberg B, Adolfsson L, Johansson K. Effect of specific exercise strategy on need for surgery in patients with subacromial impingement syndrome: randomised controlled study. BMJ. 2012;344:e787.
+4. Greenfield BH. Impingement syndrome and impingement-related instability. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012.
 
 ============================================================
 標題：局部肌肉痠痛：最常見的下巴肌肉痛
@@ -19844,6 +20077,17 @@ Chiu 等人 2015 年發表在《臨床復健》期刊的系統性回顧，收集
 - 約 12 週以後：才逐步加入肌力訓練；回到過頭運動或重勞力通常要四到六個月以上
 
 撕裂越大、組織品質越差，進度會越慢；這部分一定要依開刀醫師的指示調整。
+肌腱為什麼會斷？一次受傷，還是長期磨損
+
+《肩膀物理治療》第五版的旋轉肌袖章節（Ellenbecker 撰寫）提醒：很多人說得出「那一天搬東西拉到」，但在那之前，反覆的小傷與退化往往已經讓肌腱變得脆弱，那一次只是最後一根稻草。書中也整理了幾個讓肌腱更容易出問題的因素：
+
+- 肩膀後側關節囊太緊：會讓手舉起來時肱骨頭往上、往前跑，擠壓旋轉肌袖
+- 肩胛骨往前傾：肩峰這塊屋簷壓得更低
+- 後側旋轉肌袖的離心負荷：投擲、揮拍時，後側肌腱要在手臂往前甩的瞬間「踩煞車」，反覆的離心力量可能讓肌腱疲乏斷裂
+
+這也是為什麼正雄的運動處方不只練力量，還包括後側肩膀的伸展與肩胛的控制：撕裂已經在那裡了，要減少的是讓它繼續被擠、被拉的條件。
+
+書中的旋轉肌袖修補章節則提醒，術後保護期要依撕裂大小與組織品質調整，早期以鐘擺與被動活動為主，修補的肌腱需要時間長回骨頭上，太早用力是再撕裂的常見原因。
 目前證據還說不清的部分
 
 - 長期來看，不開刀的撕裂有多少比例會慢慢變大、變大後是否影響功能，研究結果不一致，所以保守治療期間建議定期回診
@@ -19876,6 +20120,8 @@ Chiu 等人 2015 年發表在《臨床復健》期刊的系統性回顧，收集
 2. Kuhn JE, Dunn WR, Sanders R, et al. Effectiveness of physical therapy in treating atraumatic full-thickness rotator cuff tears: a multicenter prospective cohort study. J Shoulder Elbow Surg. 2013;22(10):1371–9.
 3. Kukkonen J, Joukainen A, Lehtinen J, et al. Treatment of non-traumatic rotator cuff tears: a randomised controlled trial with one-year clinical results. Bone Joint J. 2014;96-B(1):75–81.
 4. Tempelhof S, Rupp S, Seil R. Age-related prevalence of rotator cuff tears in asymptomatic shoulders. J Shoulder Elbow Surg. 1999;8(4):296–9.
+5. Ellenbecker TS. Etiology and evaluation of rotator cuff pathologic conditions and rehabilitation. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012.
+6. Wilkes JS. Rotator cuff repairs. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012.
 
 ============================================================
 標題：咀嚼肌的第一道反應：保護性共同收縮
@@ -20143,6 +20389,16 @@ French 等人 2006 年的考科藍系統性回顧（Cochrane，以嚴謹整合�
 - 「報告寫撕裂，就一定要開刀」：要不要開刀看的是你的疼痛與功能，不是只看影像
 - 「拉筋拉開就會好」：多數旋轉肌袖問題缺的是穩定與力量，硬拉到痛反而多刺激已經敏感的肌腱
 - 「五十肩和旋轉肌袖是同一件事」：五十肩是整個關節囊變緊、每個方向都卡，連別人幫你抬都抬不上去；旋轉肌袖問題通常是特定動作、特定角度才痛，別人幫你抬多半抬得上去
+哪些動作真的練得到旋轉肌袖？
+
+《肩膀物理治療》第五版有一章整理肩膀運動的肌電圖研究（量測肌肉在動作中出力多少，以「最大自主收縮的百分比」表示）。幾個和旋轉肌袖有關的重點：
+
+- 棘上肌很容易被用到：書中引用 Townsend 等人的研究，即使是中等強度的運動，棘上肌的活動量也可以達到最大收縮的 80% 左右
+- 肩胛平面舉手（手臂往前斜約 30 度、拇指朝上舉到肩膀高度）：棘上肌與棘下肌的活動量約在 62% 到 64%
+- 三角肌常常一起搶戲：同樣的動作，前、中三角肌的活動量也有 70% 以上，所以重量太重時，大肌肉很容易把旋轉肌袖蓋過去
+
+實務上的意思是：練旋轉肌袖不需要很重。佩珊用一瓶 600 毫升的水做側躺外轉、肩胛平面舉手，就已經給了這幾條肌肉足夠的刺激；動作慢、姿勢對，比重量重要。
+旋轉肌袖是精密的小肌肉，用輕的重量、對的角度，就能把它們叫醒。
 目前證據還說不清的部分
 
 - 肌電圖研究告訴我們哪個動作「用到」哪條肌肉比較多，但用得多不等於練了效果就最好；臨床上還是要看個人能不能忍受
@@ -20171,6 +20427,7 @@ French 等人 2006 年的考科藍系統性回顧（Cochrane，以嚴謹整合�
 2. Romeyn R, Manske RC. Importance of the history in the diagnosis of shoulder pathology. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018.
 3. Reinold MM, Wilk KE, Fleisig GS, et al. Electromyographic analysis of the rotator cuff and deltoid musculature during common shoulder external rotation exercises. J Orthop Sports Phys Ther. 2004;34(7):385–94.
 4. Tempelhof S, Rupp S, Seil R. Age-related prevalence of rotator cuff tears in asymptomatic shoulders. J Shoulder Elbow Surg. 1999;8(4):296–9.
+5. Ekstrom RA, Osborn RW. Muscle length testing and electromyographic evidence for manual strength testing and exercises for the shoulder. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012.
 
 ============================================================
 標題：椎體活動度：脊椎一節一節地鬆動
@@ -20521,6 +20778,19 @@ MRI 報告寫椎間盤退化和骨刺，是不是代表腰已經壞掉了？
 - 加入低負荷的旋轉肌袖與肩胛訓練，重量輕、次數多、動作慢
 
 肩膀在這段時間反覆一兩次很常見，不代表退回原點，通常只是那週做多了；減量幾天再接回去。
+治療師的手法，也分急性與慢性
+
+不只冰敷熱敷，徒手治療的「力道與幅度」也會依階段調整。《肩膀物理治療》第五版在徒手治療一章，引用 Maitland 的四個等級來說明關節鬆動：
+
+- 第一級：在活動範圍的起點，做小幅度的擺動
+- 第二級：在範圍中間做大幅度擺動，但不碰到卡住的地方
+- 第三級：大幅度擺動，一路推到卡住的邊緣
+- 第四級：在卡住的邊緣，做小幅度擺動
+
+第一、二級主要用來減輕疼痛，適合急性、敏感的肩膀；第三、四級則用來改善僵硬，適合痛已經穩定、主要是卡住的慢性期。
+
+志宏第一週來時，我只用很輕的第一、二級擺動，讓他當下比較敢動；第三週肩膀早上變緊、痛退了，才改用推到邊緣的第三級。同一雙手，不同時期，給的劑量完全不同。
+急性期給肩膀安全感，慢性期才跟僵硬討價還價。
 目前證據還說不清的部分
 
 - 冰敷與熱敷對肩膀的「長期」恢復有沒有影響，目前沒有好的研究能回答；比較確定的只是短期的舒適感
@@ -20552,6 +20822,7 @@ MRI 報告寫椎間盤退化和骨刺，是不是代表腰已經壞掉了？
 1. Romeyn R, Manske RC. Importance of the history in the diagnosis of shoulder pathology. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018.
 2. Durall CJ. Adhesive capsulitis (frozen shoulder). In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018.
 3. Bleakley C, McDonough S, MacAuley D. The use of ice in the treatment of acute soft-tissue injury: a systematic review of randomized controlled trials. Am J Sports Med. 2004;32(1):251–61.
+4. Donatelli RA, McMahon TJ. Manual therapy techniques. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012.
 
 ============================================================
 標題：外界的刺激，怎麼變成神經看得懂的訊號？
@@ -20915,6 +21186,17 @@ MRI 報告寫椎間盤退化和骨刺，是不是代表腰已經壞掉了？
 常見的肩痛家族
 
 這個系列會一一介紹：旋轉肌袖問題與撕裂、肩夾擠、滑囊炎、肩關節不穩定與脫臼、冰凍肩、二頭肌肌腱病變，以及肩胛與胸椎如何影響肩膀。不需要一次讀完，從最像你的那一篇開始就好。
+不是每個肩膀痛都來自肩膀：內臟的轉移痛
+
+《肩膀物理治療》（Physical Therapy of the Shoulder）第五版用一整章談「內臟轉移到肩膀的痛」。內臟和肩膀皮膚的感覺神經，會在脊髓的同一層交會，大腦有時分不清楚訊號是哪裡來的，就把內臟的痛「投射」到肩膀上。書中整理幾個常見的來源：
+
+- 心臟：由第一到第五胸神經支配，心絞痛、心包膜炎可以痛到肩膀與手臂，最常見在左側
+- 膽囊：由第七到第九胸神經支配，可以轉移到右肩與右肩胛骨附近
+- 橫膈膜中央：由第三到第五頸神經（經膈神經）支配，會把痛轉移到肩膀上方。肺、食道、胃、肝、胰臟只要刺激到橫膈膜，都可能讓肩膀痛；腹腔鏡手術後肚子裡殘留的空氣，也常讓人術後一兩天肩膀痛
+- 肺尖腫瘤：侵犯上方肋骨與神經叢時，會出現肩膀與手臂內側痛
+
+怎麼起疑？書中提醒幾個線索：肩膀怎麼動、怎麼按，都重現不了那個痛；痛和走路爬坡、吃飯、呼吸、咳嗽有關，而不是和舉手有關；合併喘、冒冷汗、噁心、發燒或體重下降。這時候該做的不是更多肩膀運動，而是先看醫師。
+肩膀痛卻怎麼檢查都找不到肩膀的問題，就該把眼光往身體裡面看。
 目前證據還說不清的部分
 
 - 病史線索來自臨床經驗與觀察，能縮小範圍，但不能取代完整的理學檢查；同一個人身上也常同時有兩三種問題
@@ -20948,6 +21230,7 @@ MRI 報告寫椎間盤退化和骨刺，是不是代表腰已經壞掉了？
 1. Romeyn R, Manske RC. Importance of the history in the diagnosis of shoulder pathology. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018.
 2. Manske RC, Pontillo M. General principles of shoulder rehabilitation. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018.
 3. Tempelhof S, Rupp S, Seil R. Age-related prevalence of rotator cuff tears in asymptomatic shoulders. J Shoulder Elbow Surg. 1999;8(4):296–9.
+4. Gray JC. Visceral referred pain to the shoulder. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012.
 
 ============================================================
 標題：快痛與慢痛：兩種傳遞疼痛的神經纖維
