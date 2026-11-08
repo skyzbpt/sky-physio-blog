@@ -731,6 +731,14 @@
     "h": "d70dae009e78",
     "d": "2026-11-08"
   },
+  "guandu-birdwatching-neck-pain": {
+    "h": "d97bb5906853",
+    "d": "2026-11-08"
+  },
+  "guandu-youbike-knee-pain": {
+    "h": "10caeacf2de3",
+    "d": "2026-11-08"
+  },
   "hamstring-strain": {
     "h": "d44f211f447b",
     "d": "2026-11-08"
@@ -1201,6 +1209,14 @@
   },
   "yangmingshan-hiking-knee-pain": {
     "h": "643213c498a8",
+    "d": "2026-11-08"
+  },
+  "zhishan-elderly-balance-falls": {
+    "h": "8c49ac955e7b",
+    "d": "2026-11-08"
+  },
+  "zhishan-new-mom-de-quervain": {
+    "h": "b043184b5540",
     "d": "2026-11-08"
   }
 }
