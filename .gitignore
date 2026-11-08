@@ -6,5 +6,11 @@ package-lock.json
 dist/
 
 # 圖庫 API 金鑰（只放本機，不可提交）
-.env.local
+# 這個 repo 是公開的：任何金鑰檔一旦提交，全世界都看得到（刪掉也會留在 git 歷史）。
+.env
+.env.*
 .env*.local
+!.env.example
+# Wrangler 的本機機密與暫存（Cloudflare 本機開發用，可能含 API 權杖）
+.dev.vars*
+.wrangler/
