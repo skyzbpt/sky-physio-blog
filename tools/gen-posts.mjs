@@ -91,6 +91,17 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
 .pager a:hover b{color:var(--teal-ink)}
 .pager .nx{text-align:right}
+/* 快速解答：問句小標 + 一兩句直接回答，放在導言下方。
+   Google AI 摘要與精選摘要偏好「問題 → 緊接著的簡短答案」，這區塊也讓讀者先看到結論。 */
+.quick{margin:0 0 38px;padding:20px 22px 8px;border:1px solid var(--line);border-left:3px solid #4BA3D9;border-radius:14px;background:#EEF7FD}
+.quick h2{font-family:var(--mono);font-size:.75rem;letter-spacing:.18em;color:var(--muted);font-weight:400;margin:0 0 12px}
+.quick dl{margin:0}
+.quick dt{font-family:var(--serif);font-weight:700;font-size:.98rem;line-height:1.7;color:var(--ink);margin:0 0 4px}
+.quick dt a{color:inherit}
+.quick dt a:hover{color:var(--teal-ink);text-decoration:underline}
+.quick dd{font-family:var(--serif);font-size:.95rem;line-height:1.95;color:var(--ink-2);margin:0 0 14px;padding-bottom:14px;border-bottom:1px dashed var(--line)}
+.quick dd:last-child{border-bottom:none;padding-bottom:0}
+@media(max-width:480px){.quick{padding:16px 16px 6px}}
 .post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.75rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
@@ -206,7 +217,13 @@ ${heads.map(h => `        <li><a href="#${h.id}">${esc(h.text)}</a></li>`).join(
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "@id": url + "#article",
-    "mainEntityOfPage": { "@type": "WebPage", "@id": url },
+    // 醫療衛教頁：標明由物理治療師撰寫與審閱、最後審閱日期，並指出適合語音／AI 朗讀的段落
+    "mainEntityOfPage": {
+      "@type": "MedicalWebPage", "@id": url,
+      "lastReviewed": modified,
+      "reviewedBy": { "@id": AUTHOR['@id'] },
+      "speakable": { "@type": "SpeakableSpecification", "cssSelector": [".post-title", ".lede", ".quick dd"] }
+    },
     "headline": a.title,
     "description": desc,
     "datePublished": a.date,
@@ -227,6 +244,17 @@ ${heads.map(h => `        <li><a href="#${h.id}">${esc(h.text)}</a></li>`).join(
   };
   // FAQ：僅在文章本身含問句小標時產生（真實 Q&A，利於 rich result 與 AI 問答抽取）
   const faqs = extractFaqs(a.content, a.title);
+  // 快速解答：問句小標的錨點與 headingsOf 的 id 對應（同一份內容、同樣順序）
+  const headId = new Map(heads.map(h => [h.text, h.id]));
+  const quick = faqs.filter(f => f.short && headId.has(f.heading)).slice(0, 5);
+  const quickHtml = quick.length >= 2 ? `
+    <section class="quick" id="quick" aria-labelledby="quick-h">
+      <h2 id="quick-h">快速解答</h2>
+      <dl>
+${quick.map(f => `        <dt><a href="#${headId.get(f.heading)}">${esc(f.q)}</a></dt>
+        <dd>${esc(f.short)}</dd>`).join('\n')}
+      </dl>
+    </section>` : '';
   const faqld = faqs.length ? {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -313,7 +341,7 @@ ${ldJson(faqld)}
       <button class="pp-share" onclick="copyLink()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">${esc(a.title)}</h1>
-    <p class="lede">${esc(a.excerpt)}</p>
+    <p class="lede">${esc(a.excerpt)}</p>${quickHtml}
     <aside class="post-side" aria-label="本篇章節與預約">${tocHtml}
       <div class="side-cta">
         <div class="t">身體有話想說？</div>
