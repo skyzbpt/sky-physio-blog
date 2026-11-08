@@ -7,6 +7,7 @@
 // 金鑰：.env.local 的 PIXABAY_API_KEY（每分鐘 100 次）
 import { pathToFileURL } from 'url';
 import { env, getJSON, getBuffer, toWebp, setArticleFigure, link, run, usageError, PHOTO_DIR } from './stock-lib.mjs';
+import { esc } from './lib.mjs';
 
 const API = 'https://pixabay.com/api/';
 const q = params => API + '?' + new URLSearchParams({ key: env('PIXABAY_API_KEY'), ...params });
@@ -27,7 +28,7 @@ export async function pick(articleId, imageId, { alt } = {}) {
   const img = await toWebp(await getBuffer(h.largeImageURL), out);
   const html = setArticleFigure(articleId, {
     src: '/' + out, w: img.w, h: img.h, ...(alt ? { alt } : {}),
-    credit: `圖片：${h.user}／${link(h.pageURL, 'Pixabay')}`,
+    credit: `圖片：${esc(h.user)}／${link(h.pageURL, 'Pixabay')}`,   // 使用者名稱是上傳者自訂的，要跳脫
   });
   return { out, ...img, html };
 }

@@ -75,7 +75,8 @@ export async function pick(articleId, pageId, { alt } = {}) {
   const buf = Buffer.from(await (await wfetch(r.file)).arrayBuffer());
   const out = `${PHOTO_DIR}/${articleId}.webp`;
   const img = await toWebp(buf, out);
-  const lic = r.licenseUrl ? link(r.licenseUrl, r.license) : r.license;
+  // 授權名稱與網址都取自上傳者可編輯的檔案頁面：一律經 link()（只收 http(s)；沒網址時輸出跳脫後的純文字）
+  const lic = link(r.licenseUrl, r.license);
   const html = setArticleFigure(articleId, {
     src: '/' + out, w: img.w, h: img.h, ...(alt ? { alt } : {}),
     credit: `圖片：${link(r.page, r.author.slice(0, 60))}／${lic}／Wikimedia Commons`,

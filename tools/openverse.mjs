@@ -57,7 +57,7 @@ export async function pick(articleId, imageId, { alt } = {}) {
   if (!OK_LICENSES.has(r.license)) throw new Error(`這張是 ${licenseName(r)}，禁止商用或改作，不能用`);
   const out = `${PHOTO_DIR}/${articleId}.webp`;
   const img = await toWebp(await download(r, h), out);
-  const lic = r.license_url ? link(r.license_url, licenseName(r)) : licenseName(r);
+  const lic = link(r.license_url, licenseName(r));   // 沒有（或不是 http(s)）授權網址時，link() 只輸出跳脫後的純文字
   const html = setArticleFigure(articleId, {
     src: '/' + out, w: img.w, h: img.h, ...(alt ? { alt } : {}),
     credit: `圖片：${link(r.foreign_landing_url, r.creator || '佚名')}／${lic}／經 Openverse`,

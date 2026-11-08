@@ -409,7 +409,9 @@ function matchedArticles(){
     ? FEATURED.map(id=>ARTICLES.find(a=>a.id===id)).filter(Boolean)
     : ARTICLES.filter(a=>a.cat===currentCat).sort((x,y)=>y.date.localeCompare(x.date));
 }
-function inlineFormat(s){ return s.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>'); }
+/* 清單資料會用 innerHTML 畫出來：先跳脫，與建置時輸出的靜態清單（tools/inject.mjs 的 esc）一致 */
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function inlineFormat(s){ return esc(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>'); }
 function renderList(){
   const all = matchedArticles();
   const list = all.slice(0, shownCount);
@@ -420,10 +422,10 @@ function renderList(){
   const more = document.getElementById("post-more");
   if(more) more.hidden = all.length <= list.length;
   document.getElementById("post-list").innerHTML = list.length ? list.map(a=>`
-    <a class="post-row" href="/posts/${a.id}">
-      <div class="post-meta"><span>${a.date}</span><span class="cat">${a.cat}</span></div>
+    <a class="post-row" href="/posts/${encodeURIComponent(a.id)}">
+      <div class="post-meta"><span>${esc(a.date)}</span><span class="cat">${esc(a.cat)}</span></div>
       <div>
-        <div class="post-title">${a.title}</div>
+        <div class="post-title">${esc(a.title)}</div>
         <div class="post-ex">${inlineFormat(a.excerpt)}</div>
       </div>
       <div class="post-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>

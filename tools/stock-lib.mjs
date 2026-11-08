@@ -84,11 +84,17 @@ const ARTICLES = join(REPO, 'data/articles.json');
 const isStockFigure = b => /^<figure>/.test(b) && /(\/assets\/photos\/|images\.unsplash\.com)/.test(b);
 export const shortTitle = t => String(t).split(/[：？?！]|——/)[0].trim();
 
+// credit 是 HTML，會原樣寫進文章：組 credit 時，圖庫回傳的任何文字都必須先經過 esc() 或 link()。
 export function figureHtml({ src, alt, w, h, credit }) {
   return `<figure><img src="${esc(src)}" alt="${esc(alt)}" width="${w}" height="${h}" loading="lazy" decoding="async">`
     + `<figcaption>${credit}</figcaption></figure>`;
 }
-export const link = (href, text) => `<a href="${esc(href)}" target="_blank" rel="noopener nofollow">${esc(text)}</a>`;
+// 圖庫回傳的網址（作者頁、授權連結）有些來自上傳者可自由編輯的頁面（例如 Wikimedia 的授權欄位）。
+// esc() 不會過濾 javascript: 這類網址，也不該指望各家瀏覽器替我們擋下。因此只接受 http(s)，其餘只留純文字。
+const isHttpUrl = u => { try { return ['http:', 'https:'].includes(new URL(u).protocol); } catch { return false; } };
+export const link = (href, text) => isHttpUrl(href)
+  ? `<a href="${esc(href)}" target="_blank" rel="noopener nofollow">${esc(text)}</a>`
+  : esc(text);
 
 // 把一張配圖放進文章：已有圖庫配圖就換掉，沒有就放在第一段之後。
 export function setArticleFigure(articleId, fig) {
