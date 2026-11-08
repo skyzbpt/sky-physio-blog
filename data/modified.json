@@ -1,4 +1,12 @@
 {
+  "acl-injury-rehab": {
+    "h": "8e3292f31556",
+    "d": "2026-10-23"
+  },
+  "acl-return-to-sport": {
+    "h": "cc26e1c212b3",
+    "d": "2026-10-24"
+  },
   "acute-vs-chronic-back-pain": {
     "h": "a92a28e6cf2e",
     "d": "2026-11-07"
@@ -683,9 +691,25 @@
     "h": "efe4fa7aa8be",
     "d": "2026-11-07"
   },
+  "knee-osteoarthritis": {
+    "h": "390c49c6c673",
+    "d": "2026-10-27"
+  },
+  "knee-pain-overview": {
+    "h": "8fb1caa81046",
+    "d": "2026-10-20"
+  },
   "lumbar-stenosis": {
     "h": "fb5c76a3d100",
     "d": "2026-11-07"
+  },
+  "mcl-sprain": {
+    "h": "9359298e1dd8",
+    "d": "2026-10-26"
+  },
+  "meniscus-tear": {
+    "h": "b8268761d697",
+    "d": "2026-10-25"
   },
   "nerve-glides-flossing": {
     "h": "c1757870c9e7",
@@ -698,6 +722,14 @@
   "pain-alarm": {
     "h": "68ce5f561804",
     "d": "2026-11-07"
+  },
+  "patellar-tendinopathy": {
+    "h": "a5e016b2b051",
+    "d": "2026-11-08"
+  },
+  "patellofemoral-pain": {
+    "h": "e07e5587f400",
+    "d": "2026-11-08"
   },
   "redcord-support": {
     "h": "b1091fa73b29",
@@ -894,6 +926,10 @@
   "tmj-whole-person": {
     "h": "8bd60dc35127",
     "d": "2026-11-07"
+  },
+  "total-knee-replacement-rehab": {
+    "h": "beea263f9d31",
+    "d": "2026-10-28"
   },
   "tps-active-vs-latent-trigger-points": {
     "h": "01702fee401d",

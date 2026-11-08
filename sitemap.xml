@@ -55,6 +55,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/topics/knee-pain</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/topics/tmj</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -89,6 +95,60 @@
     <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/total-knee-replacement-rehab</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/knee-osteoarthritis</loc>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/mcl-sprain</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/meniscus-tear</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/acl-return-to-sport</loc>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/acl-injury-rehab</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/patellar-tendinopathy</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/patellofemoral-pain</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/knee-pain-overview</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://skythephysio.com/posts/cycling-common-training-mistakes</loc>
