@@ -3,7 +3,7 @@
 <channel>
   <title>Sky 物理治療師｜衛教文章</title>
   <link>https://skythephysio.com/</link>
-  <description>下背痛、肩膀痛、膝蓋痛、足踝痛、髖與鼠蹊痛、顳顎關節、高級筋膜技術、顱薦椎、公路車、紅繩懸吊、疼痛科學——從三鐵運動修復到日常疼痛管理，台灣物理治療師 Sky 的衛教筆記。</description>
+  <description>下背痛、肩膀痛、膝蓋痛、足踝痛、髖與鼠蹊痛、手肘與手腕痛、顳顎關節、高級筋膜技術、顱薦椎、公路車、紅繩懸吊、疼痛科學——從三鐵運動修復到日常疼痛管理，台灣物理治療師 Sky 的衛教筆記。</description>
   <language>zh-tw</language>
   <atom:link href="https://skythephysio.com/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
@@ -13,6 +13,14 @@
     <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
     <category>髖與鼠蹊痛</category>
     <description>衝刺到一半，大腿後側突然一抽、像被射了一箭——這是大腿後肌拉傷，也是最容易復發的運動傷害之一。這篇跟著一位壘球隊的上班族，說明衝刺型與伸展型的差別、為什麼不能只看不痛就回場、北歐式訓練與延長訓練怎麼做。</description>
+  </item>
+  <item>
+    <title>槌狀指：指尖垂下來伸不直，副木一天都不能拿</title>
+    <link>https://skythephysio.com/posts/mallet-finger</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/mallet-finger</guid>
+    <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
+    <category>手肘與手腕痛</category>
+    <description>接球時球打到指尖，之後最後一節手指垂下來、自己伸不直——這是槌狀指，伸指肌腱在指尖斷了。這篇跟著一位壘球隊員，說明為什麼要盡快就醫、副木要連續戴六到八週、拿下來清潔時要注意什麼，以及拆掉副木後怎麼練。</description>
   </item>
   <item>
     <title>人工髖關節術後：哪些姿勢要避開、怎麼走回來</title>
@@ -31,6 +39,22 @@
     <description>衝刺、踢球、仰臥起坐時下腹部靠近恥骨一陣痛，咳嗽也會痛，卻摸不到疝氣——這可能是運動疝氣，也叫運動員恥骨痛。這篇跟著一位冰球員，說明它和真正的疝氣有什麼不同、為什麼要排除很多問題，以及保守治療多久沒進步要考慮手術。</description>
   </item>
   <item>
+    <title>三角纖維軟骨損傷：手腕小指側痛，轉門把就卡</title>
+    <link>https://skythephysio.com/posts/tfcc-injury</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/tfcc-injury</guid>
+    <pubDate>Sat, 07 Nov 2026 00:00:00 GMT</pubDate>
+    <category>手肘與手腕痛</category>
+    <description>手腕小指那一側痛，轉門把、擰毛巾、撐地做伏地挺身時特別明顯，有時還喀喀響——這可能是三角纖維軟骨（TFCC）受傷。這篇跟著一位瑜伽愛好者，說明外傷性與退化性的差別、手腕護具怎麼用，以及要保守治療多久。</description>
+  </item>
+  <item>
+    <title>滑雪拇指：大拇指被往外扳後，捏東西沒力</title>
+    <link>https://skythephysio.com/posts/skiers-thumb</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/skiers-thumb</guid>
+    <pubDate>Sat, 07 Nov 2026 00:00:00 GMT</pubDate>
+    <category>手肘與手腕痛</category>
+    <description>跌倒時大拇指被往外扳，之後大拇指根部腫痛、捏鑰匙沒力——這是拇指尺側副韌帶受傷，俗稱滑雪拇指。這篇跟著一位排球愛好者，說明為什麼有些要開刀、有些只要固定四週，以及拆掉副木後怎麼練回捏力。</description>
+  </item>
+  <item>
     <title>髖關節炎：穿襪子、剪腳趾甲變困難的時候</title>
     <link>https://skythephysio.com/posts/hip-osteoarthritis</link>
     <guid isPermaLink="true">https://skythephysio.com/posts/hip-osteoarthritis</guid>
@@ -45,6 +69,14 @@
     <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
     <category>髖與鼠蹊痛</category>
     <description>踢球、側併步、急轉時大腿內側靠近鼠蹊一陣痛——這是內收肌拉傷，也是足球、冰球選手最常見的鼠蹊痛來源。這篇跟著一位五人制足球員，說明怎麼跟其他鼠蹊痛分、為什麼「主動訓練」比休息有效，以及哥本哈根內收肌運動怎麼做。</description>
+  </item>
+  <item>
+    <title>舟狀骨骨折：跌倒撐地後，手腕痛不能只當扭傷</title>
+    <link>https://skythephysio.com/posts/scaphoid-fracture</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/scaphoid-fracture</guid>
+    <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
+    <category>手肘與手腕痛</category>
+    <description>跌倒時手往後撐地，手腕大拇指那一側一直痛，X 光卻說沒事——這可能是最常被漏掉的舟狀骨骨折。這篇跟著一位滑板少年，說明它為什麼容易不癒合、鼻煙壺壓痛的意義、為什麼要固定那麼久，以及拆石膏後的復健。</description>
   </item>
   <item>
     <title>傷後回跑計畫：從走跑交替開始，一步一步加回來</title>
@@ -63,6 +95,14 @@
     <description>深蹲、盤腿、坐深沙發時鼠蹊深處卡住刺痛，有時還喀一聲——這可能是髖關節夾擠合併盂唇撕裂。這篇延續一位瑜伽老師的故事，說明凸輪型與鉗夾型、為什麼影像異常很常見、運動治療怎麼做，以及關節鏡手術的角色。</description>
   </item>
   <item>
+    <title>肘隧道症候群：無名指、小指麻，問題在手肘</title>
+    <link>https://skythephysio.com/posts/cubital-tunnel-syndrome</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/cubital-tunnel-syndrome</guid>
+    <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
+    <category>手肘與手腕痛</category>
+    <description>講電話、滑手機、睡覺時手肘彎久了，無名指和小指就麻——這常是尺神經在手肘被壓到的肘隧道症候群。這篇跟著一位客服人員，說明怎麼和腕隧道、頸椎與騎車的手掌麻分辨，以及夜間姿勢和神經滑動怎麼做。</description>
+  </item>
+  <item>
     <title>草皮趾：大拇趾根部扭傷，推蹬就痛</title>
     <link>https://skythephysio.com/posts/turf-toe</link>
     <guid isPermaLink="true">https://skythephysio.com/posts/turf-toe</guid>
@@ -79,12 +119,28 @@
     <description>鼠蹊深處卡卡的、大腿內側一踢球就痛、側睡壓到屁股外側會痛——髖與鼠蹊痛的來源很多，還常和下背痛混在一起。這篇跟著一位瑜伽老師，說明關節內、關節外與轉移痛怎麼分，以及哪些警訊不能等。</description>
   </item>
   <item>
+    <title>腕隧道症候群：半夜手麻醒，甩一甩才好</title>
+    <link>https://skythephysio.com/posts/carpal-tunnel-syndrome</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/carpal-tunnel-syndrome</guid>
+    <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+    <category>手肘與手腕痛</category>
+    <description>半夜被手指麻醒、要甩一甩才好，騎車或滑手機久了拇指到中指發麻——這是腕隧道症候群，最常見的手部神經壓迫。這篇跟著一位懷孕的會計師，說明為什麼夜裡最麻、副木怎麼戴、神經滑動運動怎麼做，以及什麼時候該考慮手術。</description>
+  </item>
+  <item>
     <title>阿基里斯腱斷裂：像被人從後面踢一腳</title>
     <link>https://skythephysio.com/posts/achilles-rupture</link>
     <guid isPermaLink="true">https://skythephysio.com/posts/achilles-rupture</guid>
     <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
     <category>足踝痛</category>
     <description>打球起跳時，小腿後方突然像被人踢了一腳，回頭卻沒有人——這常是阿基里斯腱斷裂。這篇跟著一位週末打羽球的中年老闆，說明怎麼自我檢查、開刀與不開刀怎麼選、早期功能復健怎麼走，以及大概多久能回到運動。</description>
+  </item>
+  <item>
+    <title>高爾夫球肘：手肘內側痛，握拳用力就抽</title>
+    <link>https://skythephysio.com/posts/golfers-elbow</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/golfers-elbow</guid>
+    <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
+    <category>手肘與手腕痛</category>
+    <description>握拳用力、手腕往下彎、提重物時手肘內側痛——這是高爾夫球肘，比網球肘少見，也常合併尺神經的問題。這篇跟著一位水電師傅，說明它跟網球肘的差別、為什麼要留意小指麻、訓練怎麼做，以及哪些投手的內側痛不能拖。</description>
   </item>
   <item>
     <title>阿基里斯腱痛：跑者的腳跟後方，怎麼練回來</title>
@@ -95,12 +151,28 @@
     <description>早上起床腳跟後方那條粗肌腱又緊又痛、跑步剛開始痛熱開了又好——這是阿基里斯腱病變。這篇跟著一位準備全馬的上班族，說明中段與附著處的差別、Alfredson 離心訓練怎麼做、能不能邊跑邊練，以及哪些藥物要留意。</description>
   </item>
   <item>
+    <title>網球肘：手肘外側痛，不打網球也會得</title>
+    <link>https://skythephysio.com/posts/tennis-elbow</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/tennis-elbow</guid>
+    <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
+    <category>手肘與手腕痛</category>
+    <description>擰毛巾、提水壺、握滑鼠時手肘外側一陣痛——網球肘大多發生在不打網球的人身上。這篇跟著一位烘焙坊老闆，說明它其實是肌腱退化而不是發炎、打類固醇為什麼長期反而較差、離心訓練與護肘怎麼用，以及大概多久會好。</description>
+  </item>
+  <item>
     <title>足底筋膜炎：早上下床第一步最痛</title>
     <link>https://skythephysio.com/posts/plantar-heel-pain</link>
     <guid isPermaLink="true">https://skythephysio.com/posts/plantar-heel-pain</guid>
     <pubDate>Sun, 01 Nov 2026 00:00:00 GMT</pubDate>
     <category>足踝痛</category>
     <description>早上下床第一步、久坐後站起來，腳跟底部一陣刺痛，走幾步又好一點——這是足底筋膜炎的招牌。這篇跟著一位百貨專櫃人員，說明它跟其他足跟痛怎麼分、伸展和肌力訓練怎麼做、鞋子與夜間副木的角色，以及大概要多久會好。</description>
+  </item>
+  <item>
+    <title>手肘與手腕痛：是肌腱、神經，還是骨頭？</title>
+    <link>https://skythephysio.com/posts/elbow-wrist-pain-overview</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/elbow-wrist-pain-overview</guid>
+    <pubDate>Sun, 01 Nov 2026 00:00:00 GMT</pubDate>
+    <category>手肘與手腕痛</category>
+    <description>手肘外側一擰毛巾就痛、半夜手指麻醒、跌倒撐地後手腕一直痛——手肘、手腕和手指的問題種類多，但從位置和症狀就能先分出大方向。這篇跟著一位咖啡師，說明怎麼分辨，以及哪些狀況不能等。</description>
   </item>
   <item>
     <title>高位腳踝扭傷：痛在腳踝上方，恢復比一般扭傷久</title>

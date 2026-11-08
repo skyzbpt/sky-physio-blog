@@ -73,6 +73,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/topics/elbow-wrist-pain</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/topics/tmj</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -115,6 +121,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/posts/mallet-finger</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/posts/total-hip-replacement-rehab</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
@@ -123,6 +135,18 @@
   <url>
     <loc>https://skythephysio.com/posts/athletic-pubalgia</loc>
     <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/tfcc-injury</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/skiers-thumb</loc>
+    <lastmod>2026-11-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -139,6 +163,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/posts/scaphoid-fracture</loc>
+    <lastmod>2026-11-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/posts/return-to-running</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
@@ -147,6 +177,12 @@
   <url>
     <loc>https://skythephysio.com/posts/fai-labral-tear</loc>
     <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/cubital-tunnel-syndrome</loc>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -163,8 +199,20 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/posts/carpal-tunnel-syndrome</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/posts/achilles-rupture</loc>
     <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/golfers-elbow</loc>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -175,8 +223,20 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://skythephysio.com/posts/tennis-elbow</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://skythephysio.com/posts/plantar-heel-pain</loc>
     <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skythephysio.com/posts/elbow-wrist-pain-overview</loc>
+    <lastmod>2026-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
