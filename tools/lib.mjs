@@ -18,6 +18,10 @@ export const readMins = content => Math.max(1, Math.round(((String(content).matc
 export const CAT_SLUG = {
   '下背痛': 'lower-back-pain',
   '肩膀痛': 'shoulder-pain',
+  '膝蓋痛': 'knee-pain',
+  '足踝痛': 'foot-ankle-pain',
+  '髖與鼠蹊痛': 'hip-groin-pain',
+  '手肘與手腕痛': 'elbow-wrist-pain',
   '顳顎關節': 'tmj',
   '高級筋膜技術': 'myofascial',
   '顱薦椎': 'craniosacral',
@@ -61,6 +65,10 @@ export const PUBLISHER = {
 export const CAT_ABOUT = {
   '下背痛':   { '@type': 'MedicalCondition', 'name': '下背痛', 'alternateName': 'Low Back Pain' },
   '肩膀痛':   { '@type': 'MedicalCondition', 'name': '肩膀疼痛', 'alternateName': 'Shoulder Pain' },
+  '膝蓋痛':   { '@type': 'MedicalCondition', 'name': '膝蓋疼痛', 'alternateName': 'Knee Pain' },
+  '足踝痛':   { '@type': 'MedicalCondition', 'name': '足踝疼痛', 'alternateName': 'Foot and Ankle Pain' },
+  '髖與鼠蹊痛': { '@type': 'MedicalCondition', 'name': '髖關節與鼠蹊部疼痛', 'alternateName': 'Hip and Groin Pain' },
+  '手肘與手腕痛': { '@type': 'MedicalCondition', 'name': '手肘與手腕疼痛', 'alternateName': 'Elbow and Wrist Pain' },
   '顳顎關節': { '@type': 'MedicalCondition', 'name': '顳顎關節障礙', 'alternateName': 'Temporomandibular Disorders (TMD)' },
   '高級筋膜技術': { '@type': 'MedicalTherapy', 'name': '肌筋膜放鬆', 'alternateName': 'Myofascial Release' },
   '顱薦椎':   { '@type': 'MedicalTherapy',  'name': '顱薦椎治療', 'alternateName': 'Craniosacral Therapy' },
@@ -249,6 +257,10 @@ export const TOPIC_TERMS = [
   '骨盆', '臀肌', '髖關節活動度',
   // 下肢
   '足底筋膜', '足弓', '跟腱', '腳踝', '錘狀趾', '膕旁肌', '大腿後肌', '髂脛束', '後側鏈',
+  // 膝・足踝・髖（骨科復健分類）
+  '前十字韌帶', '半月板', '髕骨', '髕骨肌腱', '內側副韌帶', '膝關節炎', '人工膝關節',
+  '腳踝扭傷', '阿基里斯腱', '草皮趾', '髖關節夾擠', '盂唇', '髖關節炎', '人工髖關節', '鼠蹊', '內收肌', '運動疝氣',
+  '網球肘', '高爾夫球肘', '腕隧道', '肘隧道', '尺神經', '舟狀骨', '三角纖維軟骨', '槌狀指',
   // 顳顎
   '顳顎', '咀嚼肌', '咬肌', '磨牙', '關節盤', '翼狀肌',
   // 疼痛科學

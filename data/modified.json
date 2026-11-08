@@ -1,7 +1,31 @@
 {
+  "achilles-rupture": {
+    "h": "aba35d4f4929",
+    "d": "2026-11-08"
+  },
+  "achilles-tendinopathy": {
+    "h": "503f9ccb5f61",
+    "d": "2026-11-08"
+  },
+  "acl-injury-rehab": {
+    "h": "3ddfc0185ae6",
+    "d": "2026-11-08"
+  },
+  "acl-return-to-sport": {
+    "h": "f9f19ee224e3",
+    "d": "2026-11-08"
+  },
   "acute-vs-chronic-back-pain": {
     "h": "a92a28e6cf2e",
     "d": "2026-11-07"
+  },
+  "ankle-sprain": {
+    "h": "00566b29b923",
+    "d": "2026-11-08"
+  },
+  "athletic-pubalgia": {
+    "h": "8a150fb827b1",
+    "d": "2026-11-08"
   },
   "back-pain-not-equal-damage": {
     "h": "d0e6d5b1a030",
@@ -16,8 +40,8 @@
     "d": "2026-11-07"
   },
   "biceps-tendinopathy": {
-    "h": "5632e454cd82",
-    "d": "2026-11-07"
+    "h": "c079a229d204",
+    "d": "2026-11-08"
   },
   "bike-fit-three-contacts": {
     "h": "f16e000d49ab",
@@ -35,6 +59,14 @@
     "h": "2746d5620580",
     "d": "2026-11-07"
   },
+  "carpal-tunnel-syndrome": {
+    "h": "d7bbc6bf409a",
+    "d": "2026-11-04"
+  },
+  "chronic-ankle-instability": {
+    "h": "2a88970b1ac4",
+    "d": "2026-11-08"
+  },
   "craniosacral-5g": {
     "h": "abe3456cffe5",
     "d": "2026-11-07"
@@ -42,6 +74,10 @@
   "craniosacral-rhythm": {
     "h": "ba0375245bbb",
     "d": "2026-11-07"
+  },
+  "cubital-tunnel-syndrome": {
+    "h": "f6bd8959436e",
+    "d": "2026-11-05"
   },
   "cycling-achilles-foot-pain": {
     "h": "dfc378b1e726",
@@ -455,6 +491,10 @@
     "h": "be7f2aafd54b",
     "d": "2026-11-07"
   },
+  "elbow-wrist-pain-overview": {
+    "h": "a52325c027fd",
+    "d": "2026-11-01"
+  },
   "entrainment-presence": {
     "h": "d522f74eff61",
     "d": "2026-11-07"
@@ -462,6 +502,10 @@
   "facet-joint-sprain": {
     "h": "9b0247541c96",
     "d": "2026-11-07"
+  },
+  "fai-labral-tear": {
+    "h": "bb246314d2fb",
+    "d": "2026-11-08"
   },
   "fascia-abdomen-breath-back": {
     "h": "34766bfc9fbe",
@@ -668,12 +712,28 @@
     "d": "2026-11-07"
   },
   "frozen-shoulder-stages": {
-    "h": "29d2527c6b80",
-    "d": "2026-11-07"
+    "h": "9025361deb2b",
+    "d": "2026-11-08"
   },
   "frozen-shoulder-stretching": {
-    "h": "62f31c9bd6da",
-    "d": "2026-11-07"
+    "h": "394d8cfa8101",
+    "d": "2026-11-08"
+  },
+  "golfers-elbow": {
+    "h": "a52949c78ace",
+    "d": "2026-11-03"
+  },
+  "groin-strain-adductor": {
+    "h": "d70dae009e78",
+    "d": "2026-11-08"
+  },
+  "hamstring-strain": {
+    "h": "d44f211f447b",
+    "d": "2026-11-08"
+  },
+  "high-ankle-sprain": {
+    "h": "78d8a0d75add",
+    "d": "2026-11-08"
   },
   "hip-hinge-lifting": {
     "h": "4cc85cdc8c6b",
@@ -683,9 +743,37 @@
     "h": "efe4fa7aa8be",
     "d": "2026-11-07"
   },
+  "hip-osteoarthritis": {
+    "h": "bf5817850531",
+    "d": "2026-11-08"
+  },
+  "hip-pain-overview": {
+    "h": "daefedfd2562",
+    "d": "2026-11-08"
+  },
+  "knee-osteoarthritis": {
+    "h": "a4c733ea1e74",
+    "d": "2026-11-08"
+  },
+  "knee-pain-overview": {
+    "h": "a53f8bfa823c",
+    "d": "2026-11-08"
+  },
   "lumbar-stenosis": {
     "h": "fb5c76a3d100",
     "d": "2026-11-07"
+  },
+  "mallet-finger": {
+    "h": "9152f93bc311",
+    "d": "2026-11-08"
+  },
+  "mcl-sprain": {
+    "h": "489c6fe1c897",
+    "d": "2026-11-08"
+  },
+  "meniscus-tear": {
+    "h": "80528d92ced9",
+    "d": "2026-11-08"
   },
   "nerve-glides-flossing": {
     "h": "c1757870c9e7",
@@ -699,6 +787,18 @@
     "h": "68ce5f561804",
     "d": "2026-11-07"
   },
+  "patellar-tendinopathy": {
+    "h": "e3221c217fd6",
+    "d": "2026-11-08"
+  },
+  "patellofemoral-pain": {
+    "h": "6a6f11532555",
+    "d": "2026-11-08"
+  },
+  "plantar-heel-pain": {
+    "h": "e5c7bc1a4ab7",
+    "d": "2026-11-08"
+  },
   "redcord-support": {
     "h": "b1091fa73b29",
     "d": "2026-11-07"
@@ -707,65 +807,73 @@
     "h": "471b6b074214",
     "d": "2026-11-07"
   },
+  "return-to-running": {
+    "h": "6419c21013ef",
+    "d": "2026-11-08"
+  },
   "rotator-cuff-basics": {
-    "h": "a74671aefa3a",
-    "d": "2026-11-07"
+    "h": "79c547ed7758",
+    "d": "2026-11-08"
   },
   "rotator-cuff-tear-surgery": {
-    "h": "73c2215589c1",
-    "d": "2026-11-07"
+    "h": "e83cc60469ba",
+    "d": "2026-11-08"
+  },
+  "scaphoid-fracture": {
+    "h": "4e65d0152aec",
+    "d": "2026-11-06"
   },
   "scapular-control": {
-    "h": "c7d21b6efdd5",
-    "d": "2026-11-07"
+    "h": "b7ece87aa510",
+    "d": "2026-11-08"
   },
   "sciatica-explained": {
     "h": "d3d2454c0d98",
     "d": "2026-11-07"
   },
   "shoulder-acute-vs-chronic": {
-    "h": "22e542e84518",
-    "d": "2026-11-07"
+    "h": "cb8d5d1291be",
+    "d": "2026-11-08"
   },
   "shoulder-bursitis": {
-    "h": "b33acd6a9c6f",
-    "d": "2026-11-07"
+    "h": "8670008d955f",
+    "d": "2026-11-08"
   },
   "shoulder-dislocation-subluxation": {
-    "h": "420a2bc24908",
-    "d": "2026-11-07"
+    "h": "5a8104794ad4",
+    "d": "2026-11-08"
   },
   "shoulder-impingement": {
-    "h": "2bb32584b19f",
-    "d": "2026-11-07"
+    "h": "c8f47ae76519",
+    "d": "2026-11-08"
   },
   "shoulder-instability": {
-    "h": "13e14ffc82a2",
-    "d": "2026-11-07"
+    "h": "e304027853d3",
+    "d": "2026-11-08"
   },
   "shoulder-mobility-vs-stretching": {
-    "h": "93c3b453b59b",
-    "d": "2026-11-07"
+    "h": "f1838dd906bd",
+    "d": "2026-11-08"
   },
   "shoulder-pain-overview": {
-    "h": "95d9f4c7eb65",
-    "d": "2026-11-07"
+    "h": "49b43bc1302a",
+    "d": "2026-11-08"
   },
   "shoulder-prehab-prevention": {
-    "h": "384cc0f88b67",
-    "d": "2026-11-07"
+    "h": "b4d2b5080c2b",
+    "d": "2026-11-08"
   },
   "shoulder-rest-or-move": {
-    "h": "c1f015ef5c87",
-    "d": "2026-11-07"
+    "h": "d219a22f438a",
+    "d": "2026-11-08"
   },
   "shoulder-soft-tissue-release": {
-    "h": "5da48ba0b6d8",
-    "d": "2026-11-07"
+    "h": "05eb8af043c9",
+    "d": "2026-11-08"
   },
   "shoulder-stability-training": {
-    "h": "e88266400cdf",
-    "d": "2026-11-07"
+    "h": "0a01e67020d5",
+    "d": "2026-11-08"
   },
   "si-joint-low-back": {
     "h": "9fe6cb870131",
@@ -773,6 +881,10 @@
   },
   "sitting-back-pain": {
     "h": "c7dda9188af8",
+    "d": "2026-11-07"
+  },
+  "skiers-thumb": {
+    "h": "b7011b353e08",
     "d": "2026-11-07"
   },
   "soft-tissue-back-release": {
@@ -796,20 +908,28 @@
     "d": "2026-11-07"
   },
   "tendon-loading-principles": {
-    "h": "3e248807e900",
+    "h": "916161515e8a",
+    "d": "2026-11-08"
+  },
+  "tennis-elbow": {
+    "h": "ce5916cc93b9",
+    "d": "2026-11-02"
+  },
+  "tfcc-injury": {
+    "h": "29a4cc03d6dd",
     "d": "2026-11-07"
   },
   "thoracic-mobility-shoulder": {
-    "h": "4684495d9fea",
-    "d": "2026-11-07"
+    "h": "6a50668efdd6",
+    "d": "2026-11-08"
   },
   "three-phase-back-rehab": {
     "h": "823e2b02a9bc",
     "d": "2026-11-07"
   },
   "three-phase-shoulder-rehab": {
-    "h": "0f6daeafa759",
-    "d": "2026-11-07"
+    "h": "17a14f76b1c2",
+    "d": "2026-11-08"
   },
   "tmd-classification-muscle-vs-joint": {
     "h": "bbe0cd55e4f1",
@@ -894,6 +1014,14 @@
   "tmj-whole-person": {
     "h": "8bd60dc35127",
     "d": "2026-11-07"
+  },
+  "total-hip-replacement-rehab": {
+    "h": "04de9e8af324",
+    "d": "2026-11-08"
+  },
+  "total-knee-replacement-rehab": {
+    "h": "3e3ed9e4c9b1",
+    "d": "2026-11-08"
   },
   "tps-active-vs-latent-trigger-points": {
     "h": "01702fee401d",
@@ -1030,6 +1158,10 @@
   "tps-why-trigger-points-form": {
     "h": "df6b5b7bcf48",
     "d": "2026-11-07"
+  },
+  "turf-toe": {
+    "h": "69b1ed7ee645",
+    "d": "2026-11-08"
   },
   "tweaked-back-first-aid": {
     "h": "607ba9f37b70",

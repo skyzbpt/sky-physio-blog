@@ -3,9 +3,273 @@
 <channel>
   <title>Sky 物理治療師｜衛教文章</title>
   <link>https://skythephysio.com/</link>
-  <description>下背痛、肩膀痛、顳顎關節、高級筋膜技術、顱薦椎、公路車、紅繩懸吊、疼痛科學——從三鐵運動修復到日常疼痛管理，台灣物理治療師 Sky 的衛教筆記。</description>
+  <description>下背痛、肩膀痛、膝蓋痛、足踝痛、髖與鼠蹊痛、手肘與手腕痛、顳顎關節、高級筋膜技術、顱薦椎、公路車、紅繩懸吊、疼痛科學——從三鐵運動修復到日常疼痛管理，台灣物理治療師 Sky 的衛教筆記。</description>
   <language>zh-tw</language>
   <atom:link href="https://skythephysio.com/feed.xml" rel="self" type="application/rss+xml"/>
+  <item>
+    <title>大腿後側拉傷：衝刺時一抽，三分之一會再傷</title>
+    <link>https://skythephysio.com/posts/hamstring-strain</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/hamstring-strain</guid>
+    <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
+    <category>髖與鼠蹊痛</category>
+    <description>衝刺到一半，大腿後側突然一抽、像被射了一箭——這是大腿後肌拉傷，也是最容易復發的運動傷害之一。這篇跟著一位壘球隊的上班族，說明衝刺型與伸展型的差別、為什麼不能只看不痛就回場、北歐式訓練與延長訓練怎麼做。</description>
+  </item>
+  <item>
+    <title>槌狀指：指尖垂下來伸不直，副木一天都不能拿</title>
+    <link>https://skythephysio.com/posts/mallet-finger</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/mallet-finger</guid>
+    <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
+    <category>手肘與手腕痛</category>
+    <description>接球時球打到指尖，之後最後一節手指垂下來、自己伸不直——這是槌狀指，伸指肌腱在指尖斷了。這篇跟著一位壘球隊員，說明為什麼要盡快就醫、副木要連續戴六到八週、拿下來清潔時要注意什麼，以及拆掉副木後怎麼練。</description>
+  </item>
+  <item>
+    <title>人工髖關節術後：哪些姿勢要避開、怎麼走回來</title>
+    <link>https://skythephysio.com/posts/total-hip-replacement-rehab</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/total-hip-replacement-rehab</guid>
+    <pubDate>Sat, 07 Nov 2026 00:00:00 GMT</pubDate>
+    <category>髖與鼠蹊痛</category>
+    <description>換了人工髖關節，前幾週最重要的是避開容易脫臼的姿勢，同時把走路和臀部力量練回來。這篇跟著一位喜歡種花的阿嬤，說明前方與後方入路的差別、常見的姿勢限制、居家怎麼準備，以及六週與六個月兩個重要的時間點。</description>
+  </item>
+  <item>
+    <title>運動疝氣：下腹與恥骨附近的鼠蹊痛</title>
+    <link>https://skythephysio.com/posts/athletic-pubalgia</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/athletic-pubalgia</guid>
+    <pubDate>Sat, 07 Nov 2026 00:00:00 GMT</pubDate>
+    <category>髖與鼠蹊痛</category>
+    <description>衝刺、踢球、仰臥起坐時下腹部靠近恥骨一陣痛，咳嗽也會痛，卻摸不到疝氣——這可能是運動疝氣，也叫運動員恥骨痛。這篇跟著一位冰球員，說明它和真正的疝氣有什麼不同、為什麼要排除很多問題，以及保守治療多久沒進步要考慮手術。</description>
+  </item>
+  <item>
+    <title>三角纖維軟骨損傷：手腕小指側痛，轉門把就卡</title>
+    <link>https://skythephysio.com/posts/tfcc-injury</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/tfcc-injury</guid>
+    <pubDate>Sat, 07 Nov 2026 00:00:00 GMT</pubDate>
+    <category>手肘與手腕痛</category>
+    <description>手腕小指那一側痛，轉門把、擰毛巾、撐地做伏地挺身時特別明顯，有時還喀喀響——這可能是三角纖維軟骨（TFCC）受傷。這篇跟著一位瑜伽愛好者，說明外傷性與退化性的差別、手腕護具怎麼用，以及要保守治療多久。</description>
+  </item>
+  <item>
+    <title>滑雪拇指：大拇指被往外扳後，捏東西沒力</title>
+    <link>https://skythephysio.com/posts/skiers-thumb</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/skiers-thumb</guid>
+    <pubDate>Sat, 07 Nov 2026 00:00:00 GMT</pubDate>
+    <category>手肘與手腕痛</category>
+    <description>跌倒時大拇指被往外扳，之後大拇指根部腫痛、捏鑰匙沒力——這是拇指尺側副韌帶受傷，俗稱滑雪拇指。這篇跟著一位排球愛好者，說明為什麼有些要開刀、有些只要固定四週，以及拆掉副木後怎麼練回捏力。</description>
+  </item>
+  <item>
+    <title>髖關節炎：穿襪子、剪腳趾甲變困難的時候</title>
+    <link>https://skythephysio.com/posts/hip-osteoarthritis</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/hip-osteoarthritis</guid>
+    <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
+    <category>髖與鼠蹊痛</category>
+    <description>鼠蹊部或大腿前側痛、早上起床髖關節僵、穿襪子剪腳趾甲越來越難——這可能是髖關節炎。這篇跟著一位退休的公車站務員，說明它跟腰痛怎麼分、運動為什麼是第一線治療、拐杖要拿哪一手，以及什麼時候該考慮換關節。</description>
+  </item>
+  <item>
+    <title>鼠蹊拉傷：大腿內側一踢球就痛</title>
+    <link>https://skythephysio.com/posts/groin-strain-adductor</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/groin-strain-adductor</guid>
+    <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
+    <category>髖與鼠蹊痛</category>
+    <description>踢球、側併步、急轉時大腿內側靠近鼠蹊一陣痛——這是內收肌拉傷，也是足球、冰球選手最常見的鼠蹊痛來源。這篇跟著一位五人制足球員，說明怎麼跟其他鼠蹊痛分、為什麼「主動訓練」比休息有效，以及哥本哈根內收肌運動怎麼做。</description>
+  </item>
+  <item>
+    <title>舟狀骨骨折：跌倒撐地後，手腕痛不能只當扭傷</title>
+    <link>https://skythephysio.com/posts/scaphoid-fracture</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/scaphoid-fracture</guid>
+    <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
+    <category>手肘與手腕痛</category>
+    <description>跌倒時手往後撐地，手腕大拇指那一側一直痛，X 光卻說沒事——這可能是最常被漏掉的舟狀骨骨折。這篇跟著一位滑板少年，說明它為什麼容易不癒合、鼻煙壺壓痛的意義、為什麼要固定那麼久，以及拆石膏後的復健。</description>
+  </item>
+  <item>
+    <title>傷後回跑計畫：從走跑交替開始，一步一步加回來</title>
+    <link>https://skythephysio.com/posts/return-to-running</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/return-to-running</guid>
+    <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
+    <category>足踝痛</category>
+    <description>下肢受傷好了，第一次回去跑步最容易再受傷。這篇跟著一位脛前痛的跑團成員，說明回跑前要先通過哪些小測驗、為什麼慢跑比快走多出六成的衝擊、走跑交替與隔天跑的規則，以及什麼時候該停下來。</description>
+  </item>
+  <item>
+    <title>髖關節夾擠與盂唇撕裂：深蹲、盤腿時鼠蹊卡住</title>
+    <link>https://skythephysio.com/posts/fai-labral-tear</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/fai-labral-tear</guid>
+    <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
+    <category>髖與鼠蹊痛</category>
+    <description>深蹲、盤腿、坐深沙發時鼠蹊深處卡住刺痛，有時還喀一聲——這可能是髖關節夾擠合併盂唇撕裂。這篇延續一位瑜伽老師的故事，說明凸輪型與鉗夾型、為什麼影像異常很常見、運動治療怎麼做，以及關節鏡手術的角色。</description>
+  </item>
+  <item>
+    <title>肘隧道症候群：無名指、小指麻，問題在手肘</title>
+    <link>https://skythephysio.com/posts/cubital-tunnel-syndrome</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/cubital-tunnel-syndrome</guid>
+    <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
+    <category>手肘與手腕痛</category>
+    <description>講電話、滑手機、睡覺時手肘彎久了，無名指和小指就麻——這常是尺神經在手肘被壓到的肘隧道症候群。這篇跟著一位客服人員，說明怎麼和腕隧道、頸椎與騎車的手掌麻分辨，以及夜間姿勢和神經滑動怎麼做。</description>
+  </item>
+  <item>
+    <title>草皮趾：大拇趾根部扭傷，推蹬就痛</title>
+    <link>https://skythephysio.com/posts/turf-toe</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/turf-toe</guid>
+    <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+    <category>足踝痛</category>
+    <description>腳趾被往上扳到底、大拇趾根部腫痛，之後每次推蹬起跑都痛——這是第一蹠趾關節扭傷，俗稱草皮趾。這篇跟著一位足球校隊員，說明它怎麼發生、為什麼鞋底太軟會增加風險、復健的重點，以及回場前大拇趾要能翹多少度。</description>
+  </item>
+  <item>
+    <title>髖與鼠蹊痛：痛在關節裡、關節外，還是來自腰？</title>
+    <link>https://skythephysio.com/posts/hip-pain-overview</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/hip-pain-overview</guid>
+    <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+    <category>髖與鼠蹊痛</category>
+    <description>鼠蹊深處卡卡的、大腿內側一踢球就痛、側睡壓到屁股外側會痛——髖與鼠蹊痛的來源很多，還常和下背痛混在一起。這篇跟著一位瑜伽老師，說明關節內、關節外與轉移痛怎麼分，以及哪些警訊不能等。</description>
+  </item>
+  <item>
+    <title>腕隧道症候群：半夜手麻醒，甩一甩才好</title>
+    <link>https://skythephysio.com/posts/carpal-tunnel-syndrome</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/carpal-tunnel-syndrome</guid>
+    <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+    <category>手肘與手腕痛</category>
+    <description>半夜被手指麻醒、要甩一甩才好，騎車或滑手機久了拇指到中指發麻——這是腕隧道症候群，最常見的手部神經壓迫。這篇跟著一位懷孕的會計師，說明為什麼夜裡最麻、副木怎麼戴、神經滑動運動怎麼做，以及什麼時候該考慮手術。</description>
+  </item>
+  <item>
+    <title>阿基里斯腱斷裂：像被人從後面踢一腳</title>
+    <link>https://skythephysio.com/posts/achilles-rupture</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/achilles-rupture</guid>
+    <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
+    <category>足踝痛</category>
+    <description>打球起跳時，小腿後方突然像被人踢了一腳，回頭卻沒有人——這常是阿基里斯腱斷裂。這篇跟著一位週末打羽球的中年老闆，說明怎麼自我檢查、開刀與不開刀怎麼選、早期功能復健怎麼走，以及大概多久能回到運動。</description>
+  </item>
+  <item>
+    <title>高爾夫球肘：手肘內側痛，握拳用力就抽</title>
+    <link>https://skythephysio.com/posts/golfers-elbow</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/golfers-elbow</guid>
+    <pubDate>Tue, 03 Nov 2026 00:00:00 GMT</pubDate>
+    <category>手肘與手腕痛</category>
+    <description>握拳用力、手腕往下彎、提重物時手肘內側痛——這是高爾夫球肘，比網球肘少見，也常合併尺神經的問題。這篇跟著一位水電師傅，說明它跟網球肘的差別、為什麼要留意小指麻、訓練怎麼做，以及哪些投手的內側痛不能拖。</description>
+  </item>
+  <item>
+    <title>阿基里斯腱痛：跑者的腳跟後方，怎麼練回來</title>
+    <link>https://skythephysio.com/posts/achilles-tendinopathy</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/achilles-tendinopathy</guid>
+    <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
+    <category>足踝痛</category>
+    <description>早上起床腳跟後方那條粗肌腱又緊又痛、跑步剛開始痛熱開了又好——這是阿基里斯腱病變。這篇跟著一位準備全馬的上班族，說明中段與附著處的差別、Alfredson 離心訓練怎麼做、能不能邊跑邊練，以及哪些藥物要留意。</description>
+  </item>
+  <item>
+    <title>網球肘：手肘外側痛，不打網球也會得</title>
+    <link>https://skythephysio.com/posts/tennis-elbow</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/tennis-elbow</guid>
+    <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
+    <category>手肘與手腕痛</category>
+    <description>擰毛巾、提水壺、握滑鼠時手肘外側一陣痛——網球肘大多發生在不打網球的人身上。這篇跟著一位烘焙坊老闆，說明它其實是肌腱退化而不是發炎、打類固醇為什麼長期反而較差、離心訓練與護肘怎麼用，以及大概多久會好。</description>
+  </item>
+  <item>
+    <title>足底筋膜炎：早上下床第一步最痛</title>
+    <link>https://skythephysio.com/posts/plantar-heel-pain</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/plantar-heel-pain</guid>
+    <pubDate>Sun, 01 Nov 2026 00:00:00 GMT</pubDate>
+    <category>足踝痛</category>
+    <description>早上下床第一步、久坐後站起來，腳跟底部一陣刺痛，走幾步又好一點——這是足底筋膜炎的招牌。這篇跟著一位百貨專櫃人員，說明它跟其他足跟痛怎麼分、伸展和肌力訓練怎麼做、鞋子與夜間副木的角色，以及大概要多久會好。</description>
+  </item>
+  <item>
+    <title>手肘與手腕痛：是肌腱、神經，還是骨頭？</title>
+    <link>https://skythephysio.com/posts/elbow-wrist-pain-overview</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/elbow-wrist-pain-overview</guid>
+    <pubDate>Sun, 01 Nov 2026 00:00:00 GMT</pubDate>
+    <category>手肘與手腕痛</category>
+    <description>手肘外側一擰毛巾就痛、半夜手指麻醒、跌倒撐地後手腕一直痛——手肘、手腕和手指的問題種類多，但從位置和症狀就能先分出大方向。這篇跟著一位咖啡師，說明怎麼分辨，以及哪些狀況不能等。</description>
+  </item>
+  <item>
+    <title>高位腳踝扭傷：痛在腳踝上方，恢復比一般扭傷久</title>
+    <link>https://skythephysio.com/posts/high-ankle-sprain</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/high-ankle-sprain</guid>
+    <pubDate>Sat, 31 Oct 2026 00:00:00 GMT</pubDate>
+    <category>足踝痛</category>
+    <description>同樣是扭到腳踝，有一種痛在腳踝上方兩根小腿骨之間，恢復時間常是一般扭傷的兩倍——這是脛腓聯合韌帶的高位扭傷。這篇跟著一位橄欖球員，說明它怎麼發生、怎麼分辨、為什麼要比較保守，以及回場前要確認什麼。</description>
+  </item>
+  <item>
+    <title>慢性腳踝不穩：一扭再扭，問題不只是韌帶鬆</title>
+    <link>https://skythephysio.com/posts/chronic-ankle-instability</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/chronic-ankle-instability</guid>
+    <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
+    <category>足踝痛</category>
+    <description>走在不平的路上就怕、常常莫名拐到腳——腳踝扭傷後有一部分人會變成慢性不穩。這篇跟著一位越野跑者，說明機械性與功能性不穩的差別、擾動訓練怎麼做、什麼時候該考慮手術，以及為什麼要及早處理。</description>
+  </item>
+  <item>
+    <title>腳踝扭傷：不是冰一冰就好，平衡才是重點</title>
+    <link>https://skythephysio.com/posts/ankle-sprain</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/ankle-sprain</guid>
+    <pubDate>Thu, 29 Oct 2026 00:00:00 GMT</pubDate>
+    <category>足踝痛</category>
+    <description>腳踝扭傷是最常見的運動傷害，很多人休息幾天能走就不管它，結果一扭再扭。這篇跟著一位籃球社的大學生，說明什麼時候要照 X 光、三個分級、為什麼越早踩地越好，以及平衡訓練怎麼練才能少扭一次。</description>
+  </item>
+  <item>
+    <title>人工膝關節置換術後復健：先伸直，再彎曲，再走穩</title>
+    <link>https://skythephysio.com/posts/total-knee-replacement-rehab</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/total-knee-replacement-rehab</guid>
+    <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
+    <category>膝蓋痛</category>
+    <description>換了人工膝關節，手術只完成了一半，另一半是復健。這篇跟著一位退休公車司機，說明術前要準備什麼、術後一到十二週的角度與肌力目標、為什麼「伸直」比「彎曲」更要緊，以及哪些警訊要立刻回診。</description>
+  </item>
+  <item>
+    <title>退化性膝關節炎：膝蓋退化了，更要動</title>
+    <link>https://skythephysio.com/posts/knee-osteoarthritis</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/knee-osteoarthritis</guid>
+    <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+    <category>膝蓋痛</category>
+    <description>早上起床膝蓋僵幾分鐘、走久了痠痛、上下樓梯卡卡的——退化性膝關節炎很常見，但「退化」不等於只能等換關節。這篇跟著一位喜歡跳土風舞的阿嬤，說明為什麼運動是第一線治療、減重的效益有多大，以及注射與手術的角色。</description>
+  </item>
+  <item>
+    <title>內側副韌帶扭傷：膝蓋內側痛，多數不用開刀</title>
+    <link>https://skythephysio.com/posts/mcl-sprain</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/mcl-sprain</guid>
+    <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
+    <category>膝蓋痛</category>
+    <description>膝蓋外側被撞、或往內一夾，接著內側痛——內側副韌帶是膝蓋最常扭傷的韌帶之一，而且癒合能力很好。這篇跟著一位社會組足球員，說明三個分級、護具怎麼用、教科書的早期功能復健，以及什麼時候可以回場。</description>
+  </item>
+  <item>
+    <title>半月板撕裂：卡住、蹲下會痛，一定要開刀修嗎？</title>
+    <link>https://skythephysio.com/posts/meniscus-tear</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/meniscus-tear</guid>
+    <pubDate>Sun, 25 Oct 2026 00:00:00 GMT</pubDate>
+    <category>膝蓋痛</category>
+    <description>蹲下轉身會卡、關節線上按壓痛、偶爾膝蓋卡住伸不直——半月板的問題分外傷性與退化性，處理方式很不一樣。這篇跟著一位菜市場攤商，說明中年人的退化性撕裂為什麼先運動治療、哪些情況才需要手術，以及在家怎麼練。</description>
+  </item>
+  <item>
+    <title>十字韌帶術後回場：看測驗結果，不只看日子</title>
+    <link>https://skythephysio.com/posts/acl-return-to-sport</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/acl-return-to-sport</guid>
+    <pubDate>Sat, 24 Oct 2026 00:00:00 GMT</pubDate>
+    <category>膝蓋痛</category>
+    <description>前十字韌帶術後最危險的時刻，常常是「覺得自己好了」的那幾個月。這篇跟著一位足球校隊的大學生，說明為什麼至少要等到九個月、四種單腳跳測試怎麼做、兩腳對稱度要到多少，以及回場前最後一哩路該練什麼。</description>
+  </item>
+  <item>
+    <title>前十字韌帶斷裂：要不要開刀，以及復健怎麼走</title>
+    <link>https://skythephysio.com/posts/acl-injury-rehab</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/acl-injury-rehab</guid>
+    <pubDate>Fri, 23 Oct 2026 00:00:00 GMT</pubDate>
+    <category>膝蓋痛</category>
+    <description>急停轉身「啪」一聲、膝蓋很快腫起來，常是前十字韌帶斷了。這篇跟著一位打羽球的業務，說明為什麼女性風險較高、開刀與不開刀怎麼選、術前復健為什麼重要，以及術後各階段的重點。</description>
+  </item>
+  <item>
+    <title>跳躍膝：髕骨下方那一點痛，起跳落地最明顯</title>
+    <link>https://skythephysio.com/posts/patellar-tendinopathy</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/patellar-tendinopathy</guid>
+    <pubDate>Thu, 22 Oct 2026 00:00:00 GMT</pubDate>
+    <category>膝蓋痛</category>
+    <description>痛點在髕骨正下方、起跳落地或深蹲時最明顯——這是排球、籃球選手最常見的膝蓋問題之一。這篇跟著一位籃球校隊的高中生，說明跳躍膝和青少年的生長板痛怎麼分、下斜板離心與重量緩慢訓練怎麼做，以及為什麼不建議先開刀。</description>
+  </item>
+  <item>
+    <title>跑者膝：膝蓋前面痛、下樓梯和久坐最難受</title>
+    <link>https://skythephysio.com/posts/patellofemoral-pain</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/patellofemoral-pain</guid>
+    <pubDate>Wed, 21 Oct 2026 00:00:00 GMT</pubDate>
+    <category>膝蓋痛</category>
+    <description>膝蓋前面、髕骨周圍悶痛，下樓梯、蹲、看完一場電影站起來最明顯——這是髕骨股骨疼痛，也就是俗稱的跑者膝，大約每四個人就有一個遇過。這篇跟著一位準備半馬的護理師，說明為什麼要練屁股、跑量怎麼調，以及護膝和貼布的角色。</description>
+  </item>
+  <item>
+    <title>膝蓋痛：從痛的位置和發生方式，看懂你的膝蓋</title>
+    <link>https://skythephysio.com/posts/knee-pain-overview</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/knee-pain-overview</guid>
+    <pubDate>Tue, 20 Oct 2026 00:00:00 GMT</pubDate>
+    <category>膝蓋痛</category>
+    <description>膝蓋前面痛、扭到腫起來、蹲下卡卡的、走久了痠——膝蓋痛的來源很多，但有脈絡可循。這篇跟著一位登山社的退休老師，說明怎麼從位置與發生方式分辨、剛痛起來可以做什麼，以及哪些狀況該立刻就醫。</description>
+  </item>
   <item>
     <title>業餘車手最常犯的十個訓練錯誤</title>
     <link>https://skythephysio.com/posts/cycling-common-training-mistakes</link>
@@ -436,7 +700,7 @@
     <guid isPermaLink="true">https://skythephysio.com/posts/shoulder-prehab-prevention</guid>
     <pubDate>Sun, 05 Jul 2026 00:00:00 GMT</pubDate>
     <category>肩膀痛</category>
-    <description>肩膀不痛之後，才是保養真正開始的時候。這篇整理過頭族與久坐族都適用的肩膀保養菜單：一週怎麼排、每個動作做幾下、練多久才會有感覺，還有四個最常見的誤解，以及該找專業評估的訊號。</description>
+    <description>肩膀不痛之後，才是保養真正開始的時候。這篇跟著一位社區棒球隊的爸爸，整理過頭族與久坐族都適用的肩膀保養菜單、一週怎麼排、為什麼「半力」常常不是半力，以及該找專業評估的訊號。</description>
   </item>
   <item>
     <title>顳顎障礙的自我照護：軟食、熱敷、姿勢與放鬆</title>
@@ -500,7 +764,7 @@
     <guid isPermaLink="true">https://skythephysio.com/posts/shoulder-soft-tissue-release</guid>
     <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
     <category>肩膀痛</category>
-    <description>按摩球能暫時降低張力、讓肩膀更好動，但它是開場不是結局。本文說明一天壓幾次才夠、為什麼隔天又緊回來，以及哪些情況不該壓、該先就醫。</description>
+    <description>按摩球能暫時降低張力、讓肩膀更好動，但它是開場不是結局。這篇跟著一位烘焙師，說明哪幾塊肌肉最常緊、一天壓幾次才夠、為什麼隔天又緊回來，以及哪些情況不該壓、該先就醫。</description>
   </item>
   <item>
     <title>激痛點的生化環境：研究在局部發現了什麼</title>
@@ -604,7 +868,7 @@
     <guid isPermaLink="true">https://skythephysio.com/posts/shoulder-mobility-vs-stretching</guid>
     <pubDate>Tue, 23 Jun 2026 00:00:00 GMT</pubDate>
     <category>肩膀痛</category>
-    <description>除了冰凍肩，多數肩痛我們不建議長時間靜態拉筋——因為問題常常不是「肌肉太短」。</description>
+    <description>除了冰凍肩，多數肩痛不建議長時間死拉筋，因為問題常常不是肌肉太短。這篇跟著一位壘球投手，說明活動度和柔軟度差在哪、什麼時候真的需要伸展（例如後側肩膀太緊），以及睡姿伸展和橫胸伸展怎麼做才安全。</description>
   </item>
   <item>
     <title>旋轉肌袖與肩部筋膜整合</title>
@@ -716,7 +980,7 @@
     <guid isPermaLink="true">https://skythephysio.com/posts/thoracic-mobility-shoulder</guid>
     <pubDate>Mon, 15 Jun 2026 00:00:00 GMT</pubDate>
     <category>肩膀痛</category>
-    <description>手舉不高、過頭就卡，問題可能不在肩膀，而在僵硬的上背。這篇教你一個當場見效的自我測試、每天五分鐘的胸椎活動度動作與次數，還有三個很常見的誤解。</description>
+    <description>手舉不高、過頭就卡，問題可能不在肩膀，而在僵硬的上背。這篇跟著一位設計師，說明駝背怎麼一路影響到肩膀、一個當場見效的自我測試、每天五分鐘的胸椎活動度動作，以及三個常見的誤解。</description>
   </item>
   <item>
     <title>進展期：把有氧底盤變成比賽能力</title>
@@ -908,7 +1172,7 @@
     <guid isPermaLink="true">https://skythephysio.com/posts/scapular-control</guid>
     <pubDate>Sat, 06 Jun 2026 00:00:00 GMT</pubDate>
     <category>肩膀痛</category>
-    <description>手要舉得高，肩胛骨得跟著漂亮地轉。這篇說明肩胛這個地基怎麼影響夾擠與疼痛、在家練習的次數組數怎麼安排、最常被誤會的幾件事，以及何時該找專業評估。</description>
+    <description>手要舉得高，肩胛骨得跟著漂亮地轉。這篇跟著一位網球愛好者，說明肩胛異動是什麼、為什麼要從腳和軀幹練起、教科書的三階段肩胛訓練怎麼排，以及何時該找專業評估。</description>
   </item>
   <item>
     <title>W/kg：爬坡的貨幣，也是最容易被誤用的數字</title>
@@ -1036,7 +1300,7 @@
     <guid isPermaLink="true">https://skythephysio.com/posts/tendon-loading-principles</guid>
     <pubDate>Thu, 28 May 2026 00:00:00 GMT</pubDate>
     <category>肩膀痛</category>
-    <description>肩膀肌腱痛，越休息越弱？肌腱的修復靠的是漸進負荷。本文教你等長收縮怎麼做、一天幾次、怎麼用隔天的反應判斷劑量對不對，也列出哪些情況該先就醫。</description>
+    <description>肩膀肌腱痛，越休息越弱？肌腱的修復靠的是漸進負荷。這篇跟著一位外送員，說明肌腱病變到底是發炎還是退化、等長與離心收縮怎麼做、教科書的加量規則，以及怎麼用隔天反應判斷劑量對不對。</description>
   </item>
   <item>
     <title>心率漂移：檢驗有氧基礎最便宜的方法</title>
@@ -1156,7 +1420,7 @@
     <guid isPermaLink="true">https://skythephysio.com/posts/biceps-tendinopathy</guid>
     <pubDate>Tue, 19 May 2026 00:00:00 GMT</pubDate>
     <category>肩膀痛</category>
-    <description>痛點在肩膀前方、彎手舉東西時明顯——這條從肩膀通過的二頭肌肌腱，是常被忽略的痛源。</description>
+    <description>痛點在肩膀前方、彎手提東西或轉門把時明顯——這條從肩膀通過的二頭肌肌腱，是常被忽略的痛源。這篇跟著一位手搖飲店員，說明它跟旋轉肌袖痛怎麼分、為什麼常一起出現、在家怎麼練，以及什麼時候要就醫。</description>
   </item>
   <item>
     <title>正規化功率 NP：為什麼平均功率會騙你</title>
@@ -1244,7 +1508,7 @@
     <guid isPermaLink="true">https://skythephysio.com/posts/frozen-shoulder-stretching</guid>
     <pubDate>Sat, 09 May 2026 00:00:00 GMT</pubDate>
     <category>肩膀痛</category>
-    <description>多數肩痛少用死拉筋，但冰凍肩是例外——問題出在關節囊本身變緊。本文說明一天拉幾次、拉到什麼程度算剛好，以及大概要多久才會慢慢解凍。</description>
+    <description>多數肩痛少用死拉筋，但冰凍肩是例外——問題出在關節囊本身變緊。這篇延續一位會計師的復健，說明一天拉幾次、每次停多久、拉到什麼程度算剛好、教科書設定的角度目標，以及伸展不夠時還有哪些選擇。</description>
   </item>
   <item>
     <title>咬肌、顳肌與二腹肌：下巴的筋膜張力</title>
@@ -1300,7 +1564,7 @@
     <guid isPermaLink="true">https://skythephysio.com/posts/frozen-shoulder-stages</guid>
     <pubDate>Wed, 29 Apr 2026 00:00:00 GMT</pubDate>
     <category>肩膀痛</category>
-    <description>手舉不高、摸不到背、夜裡痛到醒？冰凍肩有它獨特的三階段病程。看懂自己在哪一期，才知道現在該安撫還是該伸展、每天怎麼做、以及大概要花多久才會好。</description>
+    <description>手舉不高、摸不到背、夜裡痛到醒？冰凍肩有它獨特的病程。這篇跟著一位有糖尿病的會計師，說明各階段大概多久、怎麼跟其他肩痛分辨、長期結果如何，以及現在該安撫還是該伸展。</description>
   </item>
   <item>
     <title>公路車騎士的下背痛，答案常常不在腰</title>
@@ -1332,7 +1596,7 @@
     <guid isPermaLink="true">https://skythephysio.com/posts/shoulder-stability-training</guid>
     <pubDate>Mon, 20 Apr 2026 00:00:00 GMT</pubDate>
     <category>肩膀痛</category>
-    <description>肩膀不穩、脫過臼或總覺得沒力，關鍵都是把動態控制練回來。本文整理旋轉肌袖與肩胛的訓練順序、一週該練幾次幾下、最常見的誤解，以及要練多久才有感覺、何時該就醫。</description>
+    <description>肩膀不穩、脫過臼或總覺得沒力，關鍵都是把動態控制練回來。這篇跟著一位攀岩愛好者，整理旋轉肌袖與肩胛的訓練順序、一週練幾次幾下、教科書的進階邏輯，以及要練多久才有感覺、何時該就醫。</description>
   </item>
   <item>
     <title>關節盤卡住（不可復位）：張不開的急性鎖住</title>
@@ -1372,7 +1636,7 @@
     <guid isPermaLink="true">https://skythephysio.com/posts/shoulder-dislocation-subluxation</guid>
     <pubDate>Sat, 11 Apr 2026 00:00:00 GMT</pubDate>
     <category>肩膀痛</category>
-    <description>肩膀脫過一次，之後更容易再脫。本文說明保護期的日常該怎麼調整、復健要多久、還會不會再脫，以及最常見的幾個誤解。</description>
+    <description>肩膀脫過一次，之後更容易再脫，而且越年輕風險越高。這篇跟著一位打籃球的大學生，說明脫臼與半脫位差在哪、再脫的機率有多少、保護期與復健怎麼走，以及什麼時候該考慮手術。</description>
   </item>
   <item>
     <title>深層後頸：枕下肌與頸源性問題</title>
@@ -1420,7 +1684,7 @@
     <guid isPermaLink="true">https://skythephysio.com/posts/shoulder-instability</guid>
     <pubDate>Wed, 01 Apr 2026 00:00:00 GMT</pubDate>
     <category>肩膀痛</category>
-    <description>有些人的肩膀不是痛，而是「怕」，某些角度會覺得鬆、覺得要滑出去。這篇說明肩關節不穩定為什麼是控制不足而不是太緊，在家該練哪些動作、練多久有感覺，以及什麼狀況要就醫。</description>
+    <description>有些人的肩膀不是痛，而是「怕」，某些角度會覺得鬆、覺得要滑出去。這篇跟著一位游泳隊的高中生，說明不穩定分哪幾種、為什麼是控制不足而不是太緊、在家該練什麼、要練多久，以及什麼狀況要就醫。</description>
   </item>
   <item>
     <title>磨牙與咬緊牙關：夜間磨牙和顳顎障礙的關係</title>
@@ -1468,7 +1732,7 @@
     <guid isPermaLink="true">https://skythephysio.com/posts/shoulder-rest-or-move</guid>
     <pubDate>Mon, 23 Mar 2026 00:00:00 GMT</pubDate>
     <category>肩膀痛</category>
-    <description>肩膀痛完全不動容易越來越僵，甚至走向冰凍肩；忍痛硬操又不斷激怒它。相對休息怎麼抓劑量、每天做哪些溫和動作、睡覺與提物如何調整、多久會好、何時該就醫。</description>
+    <description>肩膀痛完全不動容易越來越僵，忍痛硬操又不斷激怒它。這篇跟著一位剛當阿嬤的家庭主婦，說明相對休息怎麼抓劑量、每天做哪些溫和動作、睡覺與提物怎麼調整，以及多久會好、何時該就醫。</description>
   </item>
   <item>
     <title>細胞層次的調節與「疼痛預敏」現象</title>
@@ -1524,7 +1788,7 @@
     <guid isPermaLink="true">https://skythephysio.com/posts/three-phase-shoulder-rehab</guid>
     <pubDate>Mon, 09 Mar 2026 00:00:00 GMT</pubDate>
     <category>肩膀痛</category>
-    <description>肩膀復健不是把同一組動作做到好，而是隨進步換檔。本文給你三階段路線圖、每個階段大概要多久，以及換階段時最常犯的錯。</description>
+    <description>肩膀復健不是把同一組動作做到好，而是隨進步換檔。這篇跟著一位羽球愛好者，給你三階段路線圖、每階段的進階標準、教科書建議的加重量規則，以及換階段時最常犯的錯。</description>
   </item>
   <item>
     <title>肌肉痙攣：突然咬不攏、張不開</title>
@@ -1572,7 +1836,7 @@
     <guid isPermaLink="true">https://skythephysio.com/posts/shoulder-bursitis</guid>
     <pubDate>Fri, 27 Feb 2026 00:00:00 GMT</pubDate>
     <category>肩膀痛</category>
-    <description>肩膀外側悶悶地痛、過頭就卡、側睡壓到會痛，很可能是肩峰下滑囊在發炎。這篇告訴你它為什麼被夾住、急性期在家怎麼安撫、大概多久會好，以及哪些警訊該就醫。</description>
+    <description>肩膀外側悶悶地痛、過頭就卡、側睡壓到會痛，很可能是肩峰下滑囊在發炎。這篇跟著一位油漆師傅，說明滑囊為什麼被夾、打針的角色是什麼、和鈣化性肌腱炎怎麼分，以及多久會好。</description>
   </item>
   <item>
     <title>咀嚼肌的肌筋膜疼痛與轉移痛：為什麼牙齒查不出問題卻痛</title>
@@ -1612,7 +1876,7 @@
     <guid isPermaLink="true">https://skythephysio.com/posts/shoulder-impingement</guid>
     <pubDate>Thu, 19 Feb 2026 00:00:00 GMT</pubDate>
     <category>肩膀痛</category>
-    <description>手舉到中段特別痛、過了那個角度又還好？這道「痛弧」常是肩夾擠的招牌。從為什麼會夾到、在家先做哪幾件事，到什麼時候該就醫，一次說清楚。</description>
+    <description>手舉到中段特別痛、過了那個角度又還好？這道「痛弧」常是肩夾擠的招牌。這篇跟著一位排球教練，說明原發與續發夾擠差在哪、為什麼開刀磨骨不一定比運動好，以及在家先做哪幾件事。</description>
   </item>
   <item>
     <title>局部肌肉痠痛：最常見的下巴肌肉痛</title>
@@ -1660,7 +1924,7 @@
     <guid isPermaLink="true">https://skythephysio.com/posts/rotator-cuff-tear-surgery</guid>
     <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
     <category>肩膀痛</category>
-    <description>聽到「撕裂」很嚇人，但很多旋轉肌袖撕裂靠運動治療就能處理得很好。本文說明保守治療要練多久才知道有效，以及什麼情況該考慮手術。</description>
+    <description>聽到「撕裂」很嚇人，但很多旋轉肌袖撕裂靠運動治療就能處理得很好。這篇跟著一位退休公務員，說明哪些撕裂適合先保守治療、要練多久才知道有效、開刀後的復健大概長什麼樣，以及什麼情況該盡快手術。</description>
   </item>
   <item>
     <title>咀嚼肌的第一道反應：保護性共同收縮</title>
@@ -1700,7 +1964,7 @@
     <guid isPermaLink="true">https://skythephysio.com/posts/rotator-cuff-basics</guid>
     <pubDate>Fri, 30 Jan 2026 00:00:00 GMT</pubDate>
     <category>肩膀痛</category>
-    <description>棘上肌、棘下肌、小圓肌、肩胛下肌——四條你可能沒聽過、卻每天都在用的深層肌肉。認識旋轉肌袖，也順便看懂在家怎麼練、哪些說法其實是誤會、什麼時候該就醫。</description>
+    <description>棘上肌、棘下肌、小圓肌、肩胛下肌——四條你可能沒聽過、卻每天都在用的深層肌肉。這篇跟著一位游泳教練，認識旋轉肌袖的工作、它為什麼容易出問題、在家怎麼練，以及什麼時候該就醫。</description>
   </item>
   <item>
     <title>椎體活動度：脊椎一節一節地鬆動</title>
@@ -1748,7 +2012,7 @@
     <guid isPermaLink="true">https://skythephysio.com/posts/shoulder-acute-vs-chronic</guid>
     <pubDate>Wed, 21 Jan 2026 00:00:00 GMT</pubDate>
     <category>肩膀痛</category>
-    <description>剛拉傷的肩膀和痛了三個月的肩膀，處理方式完全不同。這篇教你分辨急性與慢性、冰敷熱敷各要敷幾分鐘與注意什麼、六週到三個月之間該怎麼做，以及哪些狀況不該只靠冰熱敷。</description>
+    <description>剛拉傷的肩膀和痛了三個月的肩膀，處理方式完全不同。這篇跟著一位搬家師傅，說明怎麼分辨急性與慢性、冰敷熱敷各要敷幾分鐘、中間那段轉換期該做什麼，以及哪些狀況不該只靠冰熱敷。</description>
   </item>
   <item>
     <title>外界的刺激，怎麼變成神經看得懂的訊號？</title>
@@ -1796,7 +2060,7 @@
     <guid isPermaLink="true">https://skythephysio.com/posts/shoulder-pain-overview</guid>
     <pubDate>Fri, 09 Jan 2026 00:00:00 GMT</pubDate>
     <category>肩膀痛</category>
-    <description>肩膀能往幾乎所有方向活動，代價是穩定度得靠肌肉主動維持。這篇帶你認識守護肩膀的結構、肩痛通常是怎麼開始的、剛痛起來的兩週可以做什麼，以及哪些狀況該盡快就醫。</description>
+    <description>肩膀能往幾乎所有方向活動，代價是穩定度得靠肌肉主動維持。這篇跟著一位國小老師，說明年紀與痛的位置透露了什麼、剛痛起來的兩週可以做什麼，以及哪些狀況該盡快就醫。</description>
   </item>
   <item>
     <title>快痛與慢痛：兩種傳遞疼痛的神經纖維</title>
