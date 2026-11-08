@@ -23,6 +23,10 @@
     "h": "4e3015cc85ac",
     "d": "2026-10-29"
   },
+  "athletic-pubalgia": {
+    "h": "da4ca2e7f386",
+    "d": "2026-11-07"
+  },
   "back-pain-not-equal-damage": {
     "h": "d0e6d5b1a030",
     "d": "2026-11-07"
@@ -487,6 +491,10 @@
     "h": "9b0247541c96",
     "d": "2026-11-07"
   },
+  "fai-labral-tear": {
+    "h": "1a9848a7dbca",
+    "d": "2026-11-05"
+  },
   "fascia-abdomen-breath-back": {
     "h": "34766bfc9fbe",
     "d": "2026-11-07"
@@ -699,6 +707,14 @@
     "h": "394d8cfa8101",
     "d": "2026-11-08"
   },
+  "groin-strain-adductor": {
+    "h": "bec4d23dce7e",
+    "d": "2026-11-06"
+  },
+  "hamstring-strain": {
+    "h": "d383ce336da0",
+    "d": "2026-11-08"
+  },
   "high-ankle-sprain": {
     "h": "35ed1eaf3c3b",
     "d": "2026-10-31"
@@ -710,6 +726,14 @@
   "hip-mobility-back-pain": {
     "h": "efe4fa7aa8be",
     "d": "2026-11-07"
+  },
+  "hip-osteoarthritis": {
+    "h": "0a8130c61a49",
+    "d": "2026-11-06"
+  },
+  "hip-pain-overview": {
+    "h": "27ef570f83fa",
+    "d": "2026-11-04"
   },
   "knee-osteoarthritis": {
     "h": "390c49c6c673",
@@ -953,6 +977,10 @@
   },
   "tmj-whole-person": {
     "h": "8bd60dc35127",
+    "d": "2026-11-07"
+  },
+  "total-hip-replacement-rehab": {
+    "h": "beae873fa006",
     "d": "2026-11-07"
   },
   "total-knee-replacement-rehab": {

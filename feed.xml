@@ -3,9 +3,49 @@
 <channel>
   <title>Sky 物理治療師｜衛教文章</title>
   <link>https://skythephysio.com/</link>
-  <description>下背痛、肩膀痛、膝蓋痛、足踝痛、顳顎關節、高級筋膜技術、顱薦椎、公路車、紅繩懸吊、疼痛科學——從三鐵運動修復到日常疼痛管理，台灣物理治療師 Sky 的衛教筆記。</description>
+  <description>下背痛、肩膀痛、膝蓋痛、足踝痛、髖與鼠蹊痛、顳顎關節、高級筋膜技術、顱薦椎、公路車、紅繩懸吊、疼痛科學——從三鐵運動修復到日常疼痛管理，台灣物理治療師 Sky 的衛教筆記。</description>
   <language>zh-tw</language>
   <atom:link href="https://skythephysio.com/feed.xml" rel="self" type="application/rss+xml"/>
+  <item>
+    <title>大腿後側拉傷：衝刺時一抽，三分之一會再傷</title>
+    <link>https://skythephysio.com/posts/hamstring-strain</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/hamstring-strain</guid>
+    <pubDate>Sun, 08 Nov 2026 00:00:00 GMT</pubDate>
+    <category>髖與鼠蹊痛</category>
+    <description>衝刺到一半，大腿後側突然一抽、像被射了一箭——這是大腿後肌拉傷，也是最容易復發的運動傷害之一。這篇跟著一位壘球隊的上班族，說明衝刺型與伸展型的差別、為什麼不能只看不痛就回場、北歐式訓練與延長訓練怎麼做。</description>
+  </item>
+  <item>
+    <title>人工髖關節術後：哪些姿勢要避開、怎麼走回來</title>
+    <link>https://skythephysio.com/posts/total-hip-replacement-rehab</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/total-hip-replacement-rehab</guid>
+    <pubDate>Sat, 07 Nov 2026 00:00:00 GMT</pubDate>
+    <category>髖與鼠蹊痛</category>
+    <description>換了人工髖關節，前幾週最重要的是避開容易脫臼的姿勢，同時把走路和臀部力量練回來。這篇跟著一位喜歡種花的阿嬤，說明前方與後方入路的差別、常見的姿勢限制、居家怎麼準備，以及六週與六個月兩個重要的時間點。</description>
+  </item>
+  <item>
+    <title>運動疝氣：下腹與恥骨附近的鼠蹊痛</title>
+    <link>https://skythephysio.com/posts/athletic-pubalgia</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/athletic-pubalgia</guid>
+    <pubDate>Sat, 07 Nov 2026 00:00:00 GMT</pubDate>
+    <category>髖與鼠蹊痛</category>
+    <description>衝刺、踢球、仰臥起坐時下腹部靠近恥骨一陣痛，咳嗽也會痛，卻摸不到疝氣——這可能是運動疝氣，也叫運動員恥骨痛。這篇跟著一位冰球員，說明它和真正的疝氣有什麼不同、為什麼要排除很多問題，以及保守治療多久沒進步要考慮手術。</description>
+  </item>
+  <item>
+    <title>髖關節炎：穿襪子、剪腳趾甲變困難的時候</title>
+    <link>https://skythephysio.com/posts/hip-osteoarthritis</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/hip-osteoarthritis</guid>
+    <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
+    <category>髖與鼠蹊痛</category>
+    <description>鼠蹊部或大腿前側痛、早上起床髖關節僵、穿襪子剪腳趾甲越來越難——這可能是髖關節炎。這篇跟著一位退休的公車站務員，說明它跟腰痛怎麼分、運動為什麼是第一線治療、拐杖要拿哪一手，以及什麼時候該考慮換關節。</description>
+  </item>
+  <item>
+    <title>鼠蹊拉傷：大腿內側一踢球就痛</title>
+    <link>https://skythephysio.com/posts/groin-strain-adductor</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/groin-strain-adductor</guid>
+    <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
+    <category>髖與鼠蹊痛</category>
+    <description>踢球、側併步、急轉時大腿內側靠近鼠蹊一陣痛——這是內收肌拉傷，也是足球、冰球選手最常見的鼠蹊痛來源。這篇跟著一位五人制足球員，說明怎麼跟其他鼠蹊痛分、為什麼「主動訓練」比休息有效，以及哥本哈根內收肌運動怎麼做。</description>
+  </item>
   <item>
     <title>傷後回跑計畫：從走跑交替開始，一步一步加回來</title>
     <link>https://skythephysio.com/posts/return-to-running</link>
@@ -15,12 +55,28 @@
     <description>下肢受傷好了，第一次回去跑步最容易再受傷。這篇跟著一位脛前痛的跑團成員，說明回跑前要先通過哪些小測驗、為什麼慢跑比快走多出六成的衝擊、走跑交替與隔天跑的規則，以及什麼時候該停下來。</description>
   </item>
   <item>
+    <title>髖關節夾擠與盂唇撕裂：深蹲、盤腿時鼠蹊卡住</title>
+    <link>https://skythephysio.com/posts/fai-labral-tear</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/fai-labral-tear</guid>
+    <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
+    <category>髖與鼠蹊痛</category>
+    <description>深蹲、盤腿、坐深沙發時鼠蹊深處卡住刺痛，有時還喀一聲——這可能是髖關節夾擠合併盂唇撕裂。這篇延續一位瑜伽老師的故事，說明凸輪型與鉗夾型、為什麼影像異常很常見、運動治療怎麼做，以及關節鏡手術的角色。</description>
+  </item>
+  <item>
     <title>草皮趾：大拇趾根部扭傷，推蹬就痛</title>
     <link>https://skythephysio.com/posts/turf-toe</link>
     <guid isPermaLink="true">https://skythephysio.com/posts/turf-toe</guid>
     <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
     <category>足踝痛</category>
     <description>腳趾被往上扳到底、大拇趾根部腫痛，之後每次推蹬起跑都痛——這是第一蹠趾關節扭傷，俗稱草皮趾。這篇跟著一位足球校隊員，說明它怎麼發生、為什麼鞋底太軟會增加風險、復健的重點，以及回場前大拇趾要能翹多少度。</description>
+  </item>
+  <item>
+    <title>髖與鼠蹊痛：痛在關節裡、關節外，還是來自腰？</title>
+    <link>https://skythephysio.com/posts/hip-pain-overview</link>
+    <guid isPermaLink="true">https://skythephysio.com/posts/hip-pain-overview</guid>
+    <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+    <category>髖與鼠蹊痛</category>
+    <description>鼠蹊深處卡卡的、大腿內側一踢球就痛、側睡壓到屁股外側會痛——髖與鼠蹊痛的來源很多，還常和下背痛混在一起。這篇跟著一位瑜伽老師，說明關節內、關節外與轉移痛怎麼分，以及哪些警訊不能等。</description>
   </item>
   <item>
     <title>阿基里斯腱斷裂：像被人從後面踢一腳</title>

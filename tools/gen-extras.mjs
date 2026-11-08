@@ -107,7 +107,7 @@ const HUBS = [
     ],
   },
   { cat: '髖與鼠蹊痛', slug: 'hip-groin-pain',
-    seoTitle: '髖關節夾擠、鼠蹊拉傷與髖關節炎',
+    seoTitle: '髖關節夾擠、鼠蹊拉傷與退化',
     lede: '屁股深處卡卡的、鼠蹊部一踢球就痛、久坐站起來髖關節僵、年紀大了穿襪子都困難——髖與鼠蹊部的疼痛來源多，常常互相混淆。這個系列從髖關節夾擠與盂唇、鼠蹊拉傷、運動疝氣、大腿後側拉傷，到髖關節炎與人工髖關節，帶你分清楚痛從哪裡來。',
     intro: [
       { h: '同樣是髖痛，來源差很多',
@@ -625,7 +625,7 @@ h1{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font
 <channel>
   <title>Sky 物理治療師｜衛教文章</title>
   <link>${BASE}/</link>
-  <description>下背痛、肩膀痛、膝蓋痛、足踝痛、顳顎關節、高級筋膜技術、顱薦椎、公路車、紅繩懸吊、疼痛科學——從三鐵運動修復到日常疼痛管理，台灣物理治療師 Sky 的衛教筆記。</description>
+  <description>下背痛、肩膀痛、膝蓋痛、足踝痛、髖與鼠蹊痛、顳顎關節、高級筋膜技術、顱薦椎、公路車、紅繩懸吊、疼痛科學——從三鐵運動修復到日常疼痛管理，台灣物理治療師 Sky 的衛教筆記。</description>
   <language>zh-tw</language>
   <atom:link href="${BASE}/feed.xml" rel="self" type="application/rss+xml"/>
 ${sorted.map(a => `  <item>
