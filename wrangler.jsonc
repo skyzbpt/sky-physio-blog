@@ -19,5 +19,10 @@
     //
     // http → https 無法在這裡設定：請在 Cloudflare 儀表板開啟
     //   SSL/TLS → Edge Certificates → Always Use HTTPS
+    //
+    // www → 主網域的轉址也不在這裡：這個 Worker 只綁定主網域，www 的請求不會進到這裡。
+    //   2026-11 已在 Cloudflare 儀表板設定（www 一律 301 到 https://skythephysio.com，保留路徑與查詢字串）：
+    //   DNS → Records：AAAA  www → 100::（Proxied 橘色雲朵；佔位位址，請求不會真的送過去）
+    //   Rules → Redirect Rule（範本 Redirect from WWW to Root）：https://www.* → https://${1}，301
   }
 }
