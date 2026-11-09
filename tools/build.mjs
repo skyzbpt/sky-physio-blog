@@ -15,6 +15,7 @@ import { genPosts } from './gen-posts.mjs';
 import { genExtras } from './gen-extras.mjs';
 import { genLegal } from './gen-legal.mjs';
 import { genLlms } from './gen-llms.mjs';
+import { genLanding } from './gen-landing.mjs';
 
 console.log('=== 1/5 注入 index.html ===');
 injectArticles();
@@ -36,6 +37,7 @@ await genPosts(page);
 console.log('=== 3/5 主題頁 + RSS + 404 + 法律頁 ===');
 await genExtras(page);
 genLegal();
+genLanding(); // 三鐵運動修復、北投・士林・石牌落地頁（沿用 taipei-physio.html 版型）
 
 if (browser) await browser.close();
 
@@ -50,6 +52,7 @@ mkdirSync(DIST, { recursive: true });
 const rootFiles = [
   'index.html', 'blog.html', 'products.html', 'about.html', 'services.html',
   'physio-guide.html', 'taipei-physio.html', '404.html',
+  'triathlon-physio.html', 'beitou-physio.html', 'shilin-physio.html', 'shipai-physio.html',
   'privacy.html',
   'sitemap.xml', 'feed.xml', 'robots.txt',
   'llms.txt', 'llms-full.txt',
