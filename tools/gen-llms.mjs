@@ -64,6 +64,10 @@ ${site.certs.map(c => `- ${c}`).join('\n')}
 
 ## 物理治療完整指南
 - [台北物理治療師推薦：北投・士林的 Sky 物理治療師](${BASE}/taipei-physio): Sky 在台北市北投區、士林區看診（天母、石牌、北投、士林、芝山一帶）；適合對象、初診流程、治療方法、預約方式與常見問題。
+- [三鐵運動修復：台北鐵人三項物理治療師 Sky](${BASE}/triathlon-physio): 三鐵運動修復的定義、游泳／自行車／跑步最常見的痛、Sky 的評估與治療流程（肌筋膜疼痛治療、紅繩懸吊、Bike Fitting）、何時該找物理治療師。
+- [北投推薦物理治療師：Sky 物理治療師](${BASE}/beitou-physio): 台北市北投區（北投、新北投、奇岩、唭哩岸、石牌、關渡）看診資訊、常見問題與北投在地衛教文章。
+- [士林推薦物理治療師：Sky 物理治療師](${BASE}/shilin-physio): 台北市士林區（士林、天母、芝山、劍潭）看診資訊、常見問題與士林・天母在地衛教文章。
+- [石牌推薦物理治療師：Sky 物理治療師](${BASE}/shipai-physio): 石牌、榮總周邊、明德、唭哩岸一帶看診資訊；膝蓋退化、長輩平衡、術後訓練與常見問題。
 - [物理治療是什麼？如何挑選值得推薦的物理治療師](${BASE}/physio-guide): 物理治療的定義、物理治療師的執照與訓練、第一次療程流程、挑選值得推薦的物理治療師的 7 個標準、自費與健保的差異。
 
 ## 分類專頁（每類文章總覽）
@@ -79,7 +83,8 @@ ${cats.filter(c => CAT_SLUG[c]).map(c => `- [${c}衛教文章](${BASE}/topics/${
 - Instagram: @sky_the_physio (https://www.instagram.com/sky_the_physio)
 - Threads: @sky_the_physio (https://www.threads.com/@sky_the_physio)
 - Email: skyzbpt@gmail.com
-- 看診地點: 台北市北投區、士林區（天母、石牌、北投、士林、芝山一帶；預約制）
+- 看診地點: 台北市北投區、士林區（天母、石牌、北投、新北投、士林、芝山、關渡一帶；預約制）
+- 品牌名稱（同一位治療師）: Sky 物理治療師、sky物理治療師、Sky the Physio、@sky_the_physio
 - 預約評估: https://calendar.app.google/wdsPTQDhF2YCigPu6
 
 ## 引用說明

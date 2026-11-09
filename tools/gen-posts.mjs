@@ -374,7 +374,7 @@ ${pagerHtml}
 
 <footer>
   <div class="foot-in">
-    <div class="t">Sky 物理治療師・<a href="/taipei-physio">台北市北投區・士林區</a> · 網站設計｜Sky — © 2026 · <a href="/privacy">隱私權保護聲明</a></div>
+    <div class="t">Sky 物理治療師・<a href="/taipei-physio">台北</a> <a href="/beitou-physio">北投</a>・<a href="/shilin-physio">士林</a>・<a href="/shipai-physio">石牌</a>・<a href="/triathlon-physio">三鐵運動修復</a> · 網站設計｜Sky — © 2026 · <a href="/privacy">隱私權保護聲明</a></div>
   </div>
 </footer>
 
@@ -543,7 +543,13 @@ export async function genPosts(page) {
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
-  <url>
+${['triathlon-physio', 'beitou-physio', 'shilin-physio', 'shipai-physio'].map(s => `  <url>
+    <loc>${BASE}/${s}</loc>
+    <lastmod>${TODAY}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+`).join('')}  <url>
     <loc>${BASE}/privacy</loc>
     <lastmod>${LEGAL_UPDATED}</lastmod>
     <changefreq>yearly</changefreq>
@@ -559,5 +565,5 @@ ${sorted.map(a => `  <url>
 </urlset>
 `;
   writeFileSync(join(REPO, 'sitemap.xml'), sitemap);
-  console.log('已更新 sitemap.xml（' + (articles.length + 8) + ' 個 URL）');
+  console.log('已更新 sitemap.xml（' + (articles.length + 12) + ' 個 URL）');
 }
