@@ -5,6 +5,7 @@ import { readFileSync, readdirSync, existsSync, statSync } from 'fs';
 import { join } from 'path';
 import { REPO, BASE, TODAY, loadArticles, CAT_SLUG, DESC_MIN, DESC_MAX, BLOGPOST_MAX } from './lib.mjs';
 import { hashOf } from './modified.mjs';
+import { CHROME_CSS } from './css.mjs';
 
 const results = [];
 const pass = (n, d = '') => results.push(['PASS', n, d]);
@@ -191,7 +192,8 @@ literal === 0 ? pass('文章內容無殘留 markdown 語法') : fail('殘留 mar
 
 /* ---------- 6b. 共用樣式／腳本（避免又退回每頁各自內嵌一份） ---------- */
 // 這幾個檔案是全站共用的單一真實來源：site.css 給五個主要頁面，
-// post/topic/legal.css 由 tools/ 的產生器寫出，nav.js 是手機選單與回頂按鈕。
+// post/topic/legal.css 由 tools/ 的產生器寫出，nav.js 是主要頁面的手機選單與回頂按鈕，
+// menu.js 是其餘頁面（簡化頁首）的手機選單與回頂按鈕。
 {
   const shared = [
     ['assets/site.css', 20000, ['index.html', 'blog.html', 'about.html', 'services.html', 'products.html']],
@@ -199,6 +201,9 @@ literal === 0 ? pass('文章內容無殘留 markdown 語法') : fail('殘留 mar
     ['assets/topic.css', 4000, ['topics/' + hubFiles[0]]],
     ['assets/legal.css', 3000, ['privacy.html']],
     ['assets/nav.js', 500, ['blog.html', 'about.html', 'services.html', 'products.html']],
+    // 文章／主題／落地／指南／法律／404 的手機選單與回頂端鈕
+    ['assets/menu.js', 500, ['posts/' + postFiles[0], 'topics/' + hubFiles[0], 'privacy.html', '404.html',
+                             'taipei-physio.html', 'physio-guide.html', 'triathlon-physio.html']],
   ];
   const bad = [];
   for (const [file, minBytes, users] of shared) {
@@ -227,6 +232,71 @@ literal === 0 ? pass('文章內容無殘留 markdown 語法') : fail('殘留 mar
   const b64 = ['index.html', 'about.html', 'blog.html', 'services.html', 'products.html']
     .filter(p2 => /data:image\/[a-z]+;base64,[A-Za-z0-9+/=]{500,}/.test(read(p2)));
   b64.length === 0 ? pass('頁面未內嵌 base64 圖片（改引用 assets/）') : fail('base64 內嵌圖', b64.join(','));
+}
+
+/* ---------- 6c. 每一頁在手機上都有選單與預約入口 ---------- */
+// 文章頁、主題頁、落地頁的頁首在窄螢幕會收起文字連結。以前收起來之後什麼都不剩——
+// 從搜尋進到文章頁的手機讀者只看得到 logo 和預約鈕，去不了服務項目、其他文章或關於頁。
+// 這裡守住：每一頁都要有手機選單、選單裡該有的連結，以及看得到的預約入口。
+{
+  const BOOK = 'https://calendar.app.google/wdsPTQDhF2YCigPu6';
+  const landing = ['taipei-physio.html', 'physio-guide.html', 'triathlon-physio.html',
+                   'beitou-physio.html', 'shilin-physio.html', 'shipai-physio.html'];
+  const simple = [...postFiles.map(f => 'posts/' + f), ...hubFiles.map(f => 'topics/' + f),
+                  ...landing, 'privacy.html', '404.html'];
+  const main = ['index.html', 'blog.html', 'about.html', 'services.html', 'products.html'];
+  const want = ['/services', '/blog', '/products', '/about', '/#contact'];
+  const bad = [];
+  for (const f of simple) {
+    const h = read(f);
+    const head = (h.match(/<header>[\s\S]*?<\/header>/) || [''])[0];
+    const panel = (head.match(/<div class="m-panel">[\s\S]*?<\/div>/) || [''])[0];
+    if (!head.includes('id="m-menu"')) { bad.push(`${f} 沒有手機選單`); continue; }
+    const miss = want.filter(u => !panel.includes(`href="${u}"`));
+    if (miss.length) bad.push(`${f} 選單缺 ${miss.join(',')}`);
+    if (!head.includes(BOOK)) bad.push(`${f} 頁首沒有預約入口`);
+  }
+  for (const f of main) {
+    const h = read(f);
+    const head = (h.match(/<header>[\s\S]*?<\/header>/) || [''])[0];
+    if (!head.includes('id="menu-btn"') || !head.includes('id="nav-links"')) bad.push(`${f} 沒有手機選單`);
+    if (!head.includes(BOOK)) bad.push(`${f} 頁首沒有預約入口`);
+  }
+  bad.length === 0
+    ? pass(`每一頁都有手機選單與預約入口 (${simple.length + main.length} 頁)`)
+    : fail('手機選單／預約入口', bad.slice(0, 3).join('；') + (bad.length > 3 ? ` …等 ${bad.length} 項` : ''));
+
+  // 主要頁面的手機頁首不可以再把預約鈕藏起來（曾經是 .nav .btn{display:none}，預約只藏在選單裡）
+  const siteCss = read('assets/site.css');
+  /\.nav \.btn\{display:none\}/.test(siteCss.replace(/\s+/g, ' ').replace(/ ?([{};:,]) ?/g, '$1'))
+    ? fail('主要頁面手機頁首', 'site.css 又把 .nav .btn 藏起來了')
+    : pass('主要頁面的手機頁首保留預約鈕');
+
+  // 兩個手寫靜態頁的 CHROME-CSS 區塊必須與 css.mjs 同步（由建置的 syncChrome() 寫入）
+  const stale = ['taipei-physio.html', 'physio-guide.html'].filter(f => {
+    const m = read(f).match(/\/\*===CHROME-CSS:START===\*\/([\s\S]*?)\/\*===CHROME-CSS:END===\*\//);
+    return !m || m[1].trim() !== CHROME_CSS.trim();
+  });
+  stale.length === 0
+    ? pass('手寫靜態頁的頁首樣式與 css.mjs 同步 (2)')
+    : fail('頁首樣式未同步（請重新建置）', stale.join(','));
+
+  // 文章頁：文末要有預約卡（側欄預約卡只在寬螢幕出現，手機與平板讀完文章沒有下一步）
+  const noCta = postFiles.filter(f => {
+    const h = read('posts/' + f);
+    const m = h.match(/<aside class="end-cta"[\s\S]*?<\/aside>/);
+    return !m || !m[0].includes(BOOK);
+  });
+  noCta.length === 0
+    ? pass(`每篇文章文末都有預約卡 (${postFiles.length})`)
+    : fail('文末預約卡', `${noCta.length} 篇缺少，例如 ${noCta[0]}`);
+
+  // 首頁聯絡區塊：標題說「先從一次評估開始」，就要有預約按鈕（曾經只有社群與 Email）
+  {
+    const h = read('index.html');
+    const sec = (h.match(/<section id="contact"[\s\S]*?<\/section>/) || [''])[0];
+    sec.includes(BOOK) ? pass('首頁聯絡區塊有預約按鈕') : fail('首頁聯絡區塊', '找不到預約連結');
+  }
 }
 
 /* ---------- 7. 安全性標頭 ---------- */

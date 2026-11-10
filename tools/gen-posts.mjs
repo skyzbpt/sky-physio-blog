@@ -3,7 +3,7 @@
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
 import { REPO, BASE, TODAY, esc, readMins, CAT_SLUG, renderBody, headingsOf, loadArticles, logoDataURI, photoDataURI, roundedFontDataURI, ogCard, ogHomeCard, shot, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, wordCountOf, keywordsFor, mentionsFor, metaDescription, extractFaqs, ldJson, topicsOf } from './lib.mjs';
-import { SHELL } from './css.mjs';
+import { SHELL, BOOK_URL, siteHeader } from './css.mjs';
 import { resolveModified } from './modified.mjs';
 import { LEGAL_UPDATED } from './gen-legal.mjs';
 
@@ -12,10 +12,9 @@ let MODIFIED = new Map();
 
 /* ---------- 靜態頁 CSS（取自 index.html，確保一致）---------- */
 const CSS = SHELL + `
-/* 導覽列第三個連結（產品專區）只有文章頁有。窄螢幕會把「預約評估」擠出去，
-   因此先收窄間距，再於 660px 以下收起這一項（SHELL 已在 520px 以下收起全部連結）。 */
-@media(max-width:820px){.nav-right{gap:16px}}
-@media(max-width:660px){.nav-link.nav-products{display:none}}
+/* 文章頁的頁首比其他頁多一個連結（產品專區），平板寬度先收窄間距；
+   660px 以下所有文字連結都收進手機選單（見 css.mjs 的 CHROME_CSS）。 */
+@media(min-width:661px) and (max-width:820px){.nav-right{gap:16px}}
 /* 動效：與首頁一致的統一過場，尊重「減少動態」偏好 */
 @media(prefers-reduced-motion:no-preference){
 .btn,.nav-link,.brand,.crumb a,.pp-share,.author-box,.more a,.post-body figure img{transition:color .22s ease,background-color .22s ease,border-color .22s ease,box-shadow .3s ease,transform .3s cubic-bezier(.22,.7,.3,1)}
@@ -40,6 +39,15 @@ const CSS = SHELL + `
 .author-box .a-cred{font-size:.8rem;color:var(--muted);margin:3px 0 6px;line-height:1.7}
 .author-box .a-link{font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;color:var(--teal-ink);display:inline-flex;align-items:center;min-height:44px}
 .author-box .a-link:hover{text-decoration:underline}
+/* 文末預約卡：讀完文章的人最可能想預約，但側欄預約卡只在 ≥1140px 出現——
+   手機與平板讀到最後只剩延伸閱讀，沒有下一步。這張卡補上預約與分享；
+   寬螢幕有常駐側欄，這裡就不重複。 */
+.end-cta{margin-top:16px;padding:24px 22px 22px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(120deg,var(--bg-soft) 0%,#E6F3FC 55%,#D2E8F8 100%)}
+.end-cta .t{font-family:var(--serif);font-weight:700;font-size:1.12rem;line-height:1.6;color:var(--ink);margin-bottom:6px}
+.end-cta p{font-size:.9rem;line-height:1.85;color:var(--muted);margin-bottom:18px}
+.end-cta .row{display:flex;flex-wrap:wrap;gap:10px}
+.end-cta .btn{flex:1 1 148px;justify-content:center;min-height:46px}
+@media(min-width:1140px){.end-cta{display:none}}
 /* 字距只給拉丁字母與數字：中文字本來就等寬，再加 .16em 會被拆成「肩 膀 痛」 */
 .meta{font-family:var(--mono);font-size:.75rem;letter-spacing:normal;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-bottom:20px}
 .meta .date{letter-spacing:.16em}
@@ -318,27 +326,14 @@ ${ldJson(faqld)}
 </head>
 <body>
 <div class="reading" aria-hidden="true"><i></i></div>
-<header>
-  <nav class="nav">
-    <a class="brand" href="/" aria-label="回到首頁">
-      <img class="brand-logo" src="../assets/logo.webp" alt="Sky 物理治療師 logo">
-      <span class="brand-name">Sky 物理治療師</span>
-    </a>
-    <div class="nav-right">
-      <a class="nav-link" href="/services">服務項目</a>
-      <a class="nav-link" href="/blog">更多文章</a>
-      <a class="nav-link nav-products" href="/products">產品專區</a>
-      <a class="btn teal sm" href="https://calendar.app.google/wdsPTQDhF2YCigPu6" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>預約評估</a>
-    </div>
-  </nav>
-</header>
+${siteHeader({ links: [['/services', '服務項目'], ['/blog', '更多文章'], ['/products', '產品專區']] })}
 
 <main>
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › ${hubSlug ? `<a href="/topics/${hubSlug}">${esc(a.cat)}</a>` : esc(a.cat)} › <span>${esc(a.title)}</span></nav>
     <div class="meta">
       <span class="date">${a.date}</span><span class="cat">${esc(a.cat)}</span><span>約 ${mins} 分鐘</span>
-      <button class="pp-share" onclick="copyLink()" title="複製這篇文章的連結">複製連結</button>
+      <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">${esc(a.title)}</h1>
     <p class="lede">${esc(a.excerpt)}</p>${quickHtml}
@@ -346,7 +341,7 @@ ${ldJson(faqld)}
       <div class="side-cta">
         <div class="t">身體有話想說？</div>
         <p>初次評估會花時間聽你說、看你動，再一起決定方向。</p>
-        <a class="btn teal sm" href="https://calendar.app.google/wdsPTQDhF2YCigPu6" target="_blank" rel="noopener">預約評估</a>${hubSlug ? `
+        <a class="btn teal sm" href="${BOOK_URL}" target="_blank" rel="noopener">預約評估</a>${hubSlug ? `
         <a class="side-hub" href="/topics/${hubSlug}">更多《${esc(a.cat)}》文章 →</a>` : ''}
       </div>
     </aside>
@@ -361,6 +356,14 @@ ${bodyHtml}
         <div class="a-name">Sky 物理治療師</div>
         <div class="a-cred">國家高考合格物理治療師｜紅繩懸吊 Redcord・公路車 Bike Fitting・顱薦椎治療・疼痛科學</div>
         <a class="a-link" href="/about">認識 Sky・治療哲學 →</a>
+      </div>
+    </aside>
+    <aside class="end-cta" aria-label="預約評估與分享">
+      <div class="t">身體有話想說？</div>
+      <p>初次評估會花時間聽你說、看你動，再一起決定方向。覺得這篇有幫助，也歡迎分享給需要的人。</p>
+      <div class="row">
+        <a class="btn teal" href="${BOOK_URL}" target="_blank" rel="noopener">預約評估</a>
+        <button class="btn end-share" type="button" onclick="shareOrCopy()">複製文章連結</button>
       </div>
     </aside>
 ${pagerHtml}
@@ -379,8 +382,11 @@ ${pagerHtml}
 </footer>
 
 <script>
+/* 要分享／複製的網址：去掉查詢字串（從 Facebook、LINE 點進來時常帶著 ?fbclid=… 之類的追蹤參數），
+   保留 #sec-N——讀者可能是想分享某一段。 */
+function pageUrl(){ return location.origin+location.pathname+location.hash; }
 function copyLink(){
-  var url=location.href;
+  var url=pageUrl();
   function toast(){
     var t=document.createElement('div');
     t.textContent='已複製文章連結';
@@ -390,6 +396,17 @@ function copyLink(){
   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(toast).catch(function(){fallback(url);toast();});}
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
+}
+/* 分享：觸控裝置用系統的分享選單（可以直接傳到 LINE、訊息），電腦維持複製連結。
+   桌機瀏覽器也有 navigator.share，但跳出系統視窗反而比複製連結多一步，所以只在觸控裝置啟用。 */
+var canShare=!!navigator.share&&!!window.matchMedia&&matchMedia('(pointer:coarse)').matches;
+function shareOrCopy(){
+  if(canShare){ navigator.share({title:document.title,url:pageUrl()}).catch(function(){}); }
+  else copyLink();
+}
+if(canShare){
+  var sb=document.querySelector('.pp-share'); if(sb){ sb.textContent='分享'; sb.title='分享這篇文章'; }
+  var eb=document.querySelector('.end-share'); if(eb) eb.textContent='分享這篇文章';
 }
 /* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
 (function(){
