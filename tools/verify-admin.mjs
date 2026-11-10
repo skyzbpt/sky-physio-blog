@@ -29,8 +29,8 @@ const ok = (n, c) => out.push([c ? '✅' : '❌', n]);
 
 await page.goto(O + '/', { waitUntil: 'networkidle' });
 ok('首頁載入無 JS 例外', errs.length === 0);
-ok('首頁文章列表渲染', (await page.locator('#post-list .post-row').count()) > 0);
-ok('首頁未內嵌內文（已瘦身）', await page.evaluate(() => !('content' in ARTICLES[0])));
+// 首頁不內嵌文章資料（清單在 /blog）：ARTICLES 為空陣列，後台開啟時才向 /data/articles.json 取回全文
+ok('首頁未內嵌文章資料（已瘦身）', await page.evaluate(() => Array.isArray(ARTICLES) && ARTICLES.length === 0));
 
 // 開啟後台（隱藏入口 #admin + 密碼）
 await page.evaluate(() => { location.hash = '#admin'; });
