@@ -3,7 +3,7 @@
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
 import { REPO, BASE, esc, plain, loadArticles, logoDataURI, ogCard, shot, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, ldJson } from './lib.mjs';
-import { SHELL } from './css.mjs';
+import { SHELL, siteHeader } from './css.mjs';
 
 // 與 lib.mjs 的 CAT_SLUG 保持一致（此處另需 lede 文案）
 //
@@ -311,6 +311,12 @@ const CSS = SHELL + `
 h1{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.45;margin-bottom:14px}
 .lede{font-family:var(--serif);color:var(--muted);font-size:1.02rem;line-height:2;border-bottom:1px solid var(--line);padding-bottom:28px;margin-bottom:16px}
 .count{font-family:var(--mono);font-size:.75rem;letter-spacing:.05em;color:var(--muted);margin-bottom:8px}
+/* 手機／平板：長篇介紹排在文章清單前面，要捲過一千多像素才看得到文章。
+   給一個直接跳到清單的捷徑；電腦版介紹是兩欄卡片、清單很快就出現，不需要。 */
+.jump{display:inline-flex;align-items:center;min-height:44px;margin:2px 0 22px;padding:8px 18px;border:1.5px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6);font-size:.86rem;color:var(--teal-ink)}
+.jump:hover{border-color:var(--teal);background:#fff}
+.list-head{scroll-margin-top:84px}
+@media(min-width:1024px){.jump{display:none}}
 /* 分類長篇內容（HUBS 的 intro）：沒填就整塊不輸出，版面與原本一致 */
 .hub-intro{border-bottom:1px solid var(--line);padding-bottom:30px;margin-bottom:24px}
 .hub-intro section+section{margin-top:28px}
@@ -499,32 +505,21 @@ ${ldJson(faqld)}
 <link rel="stylesheet" href="/assets/topic.css">
 </head>
 <body>
-<header>
-  <nav class="nav">
-    <a class="brand" href="/" aria-label="回到首頁">
-      <img class="brand-logo" src="../assets/logo.webp" alt="Sky 物理治療師 logo">
-      <span class="brand-name">Sky 物理治療師</span>
-    </a>
-    <div class="nav-right">
-      <a class="nav-link" href="/services">服務項目</a>
-      <a class="nav-link" href="/blog">更多文章</a>
-      <a class="btn teal sm" href="https://calendar.app.google/wdsPTQDhF2YCigPu6" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>預約評估</a>
-    </div>
-  </nav>
-</header>
+${siteHeader({ links: [['/services', '服務項目'], ['/blog', '更多文章']] })}
 
 <main class="hub">
   <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › ${esc(hub.cat)}</nav>
   <div class="eyebrow">TOPIC・分類專頁</div>
   <h1>${esc(hub.cat)}衛教文章</h1>
   <p class="lede">${esc(hub.lede)}</p>${intro.length ? `
+  <a class="jump" href="#list-head">直接看 ${arts.length} 篇文章 ↓</a>` : ''}${intro.length ? `
   <div class="hub-intro">
     ${intro.map(sec => `<section>${sec.h ? `
       <h2>${esc(sec.h)}</h2>` : ''}
       ${(sec.p || []).map(t => `<p>${esc(t)}</p>`).join('\n      ')}
     </section>`).join('\n    ')}
   </div>` : ''}
-  <div class="list-head">
+  <div class="list-head" id="list-head">
   <div class="count" id="count">共 ${arts.length} 篇・由新到舊</div>${arts.length > 12 ? `
   <div class="finder">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="20" y1="20" x2="16.5" y2="16.5"/></svg>
@@ -679,17 +674,19 @@ ${sorted.map(a => `  <item>
 .nf .code{font-family:var(--mono);font-size:.78rem;letter-spacing:.24em;color:var(--red);margin-bottom:16px}
 .nf p{color:var(--muted);margin:14px 0 30px}
 .nf .links{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
-.nf .links a{font-family:var(--mono);font-size:.76rem;letter-spacing:.1em;color:var(--ink-2);border:1.5px solid var(--line);border-radius:999px;padding:8px 16px;background:rgba(255,255,255,.6)}
+.nf .links a{display:inline-flex;align-items:center;min-height:44px;font-family:var(--mono);font-size:.76rem;letter-spacing:.1em;color:var(--ink-2);border:1.5px solid var(--line);border-radius:999px;padding:8px 16px;background:rgba(255,255,255,.6)}
 .nf .links a:hover{border-color:var(--teal);color:var(--teal-ink)}
 </style>
 </head>
 <body>
+${siteHeader({ asset: '/assets/' })}
 <main class="nf">
   <div class="code">404 NOT FOUND</div>
   <h1>這一頁不在這裡</h1>
   <p>連結可能已變更或不存在。別擔心——文章都還在，從下面回去就好。</p>
   <div class="links">
     <a href="/">回首頁</a>
+    <a href="/blog">全部文章</a>
     <a href="/topics/lower-back-pain">下背痛</a>
     <a href="/topics/shoulder-pain">肩膀痛</a>
     <a href="/topics/knee-pain">膝蓋痛</a>

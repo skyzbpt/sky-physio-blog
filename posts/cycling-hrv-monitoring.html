@@ -207,10 +207,23 @@
     <div class="nav-right">
       <a class="nav-link" href="/services">服務項目</a>
       <a class="nav-link" href="/blog">更多文章</a>
-      <a class="nav-link nav-products" href="/products">產品專區</a>
+      <a class="nav-link" href="/products">產品專區</a>
       <a class="btn teal sm" href="https://calendar.app.google/wdsPTQDhF2YCigPu6" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>預約評估</a>
+      <details class="m-menu" id="m-menu">
+        <summary aria-label="選單"><span class="o">MENU</span><span class="c">CLOSE</span></summary>
+        <div class="m-panel">
+          <a href="/#fields"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>專業領域</a>
+          <a href="/services"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>服務項目</a>
+          <a href="/blog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>衛教文章</a>
+          <a href="/products"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41 13.42 20.59a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><circle cx="7" cy="7" r="1"/></svg>產品專區</a>
+          <a href="/about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>關於 Sky</a>
+          <a href="/#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>聯絡 Sky</a>
+          <a class="book" href="https://calendar.app.google/wdsPTQDhF2YCigPu6" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>預約評估 ↗</a>
+        </div>
+      </details>
     </div>
   </nav>
+  <script src="/assets/menu.js" defer></script>
 </header>
 
 <main>
@@ -218,7 +231,7 @@
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>用 HRV 監測恢復：好用，但別被單日數字綁架</span></nav>
     <div class="meta">
       <span class="date">2026-06-27</span><span class="cat">公路車</span><span>約 9 分鐘</span>
-      <button class="pp-share" onclick="copyLink()" title="複製這篇文章的連結">複製連結</button>
+      <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">用 HRV 監測恢復：好用，但別被單日數字綁架</h1>
     <p class="lede">HRV 反映自律神經的狀態，單日起伏很大。像量基礎體溫一樣固定時間、姿勢和裝置，看七天平均有沒有跑出自己的正常範圍，偏低或反常偏高都值得留意。</p>
@@ -320,6 +333,14 @@
         <a class="a-link" href="/about">認識 Sky・治療哲學 →</a>
       </div>
     </aside>
+    <aside class="end-cta" aria-label="預約評估與分享">
+      <div class="t">身體有話想說？</div>
+      <p>初次評估會花時間聽你說、看你動，再一起決定方向。覺得這篇有幫助，也歡迎分享給需要的人。</p>
+      <div class="row">
+        <a class="btn teal" href="https://calendar.app.google/wdsPTQDhF2YCigPu6" target="_blank" rel="noopener">預約評估</a>
+        <button class="btn end-share" type="button" onclick="shareOrCopy()">複製文章連結</button>
+      </div>
+    </aside>
 
     <nav class="pager" aria-label="同分類前後文章">
       <a class="pv-prev" href="/posts/cycling-training-diary"><span>← 公路車・較新一篇</span><b>訓練日誌：功率檔案不會記錄的那一半</b></a>
@@ -343,8 +364,11 @@
 </footer>
 
 <script>
+/* 要分享／複製的網址：去掉查詢字串（從 Facebook、LINE 點進來時常帶著 ?fbclid=… 之類的追蹤參數），
+   保留 #sec-N——讀者可能是想分享某一段。 */
+function pageUrl(){ return location.origin+location.pathname+location.hash; }
 function copyLink(){
-  var url=location.href;
+  var url=pageUrl();
   function toast(){
     var t=document.createElement('div');
     t.textContent='已複製文章連結';
@@ -354,6 +378,17 @@ function copyLink(){
   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(toast).catch(function(){fallback(url);toast();});}
   else{fallback(url);toast();}
   function fallback(x){var ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
+}
+/* 分享：觸控裝置用系統的分享選單（可以直接傳到 LINE、訊息），電腦維持複製連結。
+   桌機瀏覽器也有 navigator.share，但跳出系統視窗反而比複製連結多一步，所以只在觸控裝置啟用。 */
+var canShare=!!navigator.share&&!!window.matchMedia&&matchMedia('(pointer:coarse)').matches;
+function shareOrCopy(){
+  if(canShare){ navigator.share({title:document.title,url:pageUrl()}).catch(function(){}); }
+  else copyLink();
+}
+if(canShare){
+  var sb=document.querySelector('.pp-share'); if(sb){ sb.textContent='分享'; sb.title='分享這篇文章'; }
+  var eb=document.querySelector('.end-share'); if(eb) eb.textContent='分享這篇文章';
 }
 /* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
 (function(){

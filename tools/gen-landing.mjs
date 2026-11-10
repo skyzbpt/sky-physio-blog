@@ -10,6 +10,7 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import { REPO } from './lib.mjs';
+import { CHROME_CSS, siteHeader } from './css.mjs';
 
 const BASE = 'https://skythephysio.com';
 const BOOK = 'https://calendar.app.google/wdsPTQDhF2YCigPu6';
@@ -240,6 +241,26 @@ export const LANDING_PAGES = [
   },
 ];
 
+/* 兩個手寫的靜態頁（台北推薦頁、物理治療指南）各自內嵌一份樣式與頁首。
+   頁首與它的響應式規則改由 css.mjs 供應，這裡在建置時寫回這兩個檔案——
+   否則選單改一次要手動改五個地方，一定會漏。
+   落地頁的版型取自 taipei-physio.html（見下方 shell()），所以必須先同步、再產生落地頁。 */
+const STATIC_PAGES = ['taipei-physio.html', 'physio-guide.html'];
+export function syncChrome() {
+  const cssRe = /\/\*===CHROME-CSS:START===\*\/[\s\S]*?\/\*===CHROME-CSS:END===\*\//;
+  const headRe = /<header>[\s\S]*?<\/header>/;
+  for (const f of STATIC_PAGES) {
+    const file = join(REPO, f);
+    let html = readFileSync(file, 'utf8');
+    if (!cssRe.test(html)) throw new Error(`${f} 找不到 CHROME-CSS 標記`);
+    if (!headRe.test(html)) throw new Error(`${f} 找不到 <header>`);
+    html = html.replace(cssRe, () => `/*===CHROME-CSS:START===*/${CHROME_CSS}\n/*===CHROME-CSS:END===*/`);
+    html = html.replace(headRe, () => siteHeader({ asset: 'assets/' }));
+    writeFileSync(file, html);
+  }
+  console.log(`已同步頁首與手機選單：${STATIC_PAGES.join('、')}`);
+}
+
 /* 共用版型：從 taipei-physio.html 取出 <style>、導覽列與頁尾，所有落地頁長得一樣 */
 function shell() {
   const src = readFileSync(join(REPO, 'taipei-physio.html'), 'utf8');
@@ -439,6 +460,7 @@ ${tpl.script}
 }
 
 export function genLanding() {
+  syncChrome();
   const articles = JSON.parse(readFileSync(join(REPO, 'data/articles.json'), 'utf8'));
   const tpl = shell();
   for (const p of LANDING_PAGES) {

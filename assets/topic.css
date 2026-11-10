@@ -15,13 +15,40 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 .btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.9rem;letter-spacing:.06em;padding:11px 26px;border:1.5px solid var(--ink);background:transparent;color:var(--ink)}
 .btn.teal{background:#0C7365;border-color:#0C7365;color:#fff;font-weight:600}
 .btn.sm{padding:8px 20px;font-size:.84rem}
-/* 導覽列文字一律不折行：.nav 是 flex，空間不足時「預約評估」會被折成兩行，
-   在 320–360px 撐成 68px 高，超出 64px 的列高。 */
+/* 導覽列文字一律不折行（.nav 是 flex，空間不足時「預約評估」會被折成兩行、撐破 64px 的列高），
+   以及窄螢幕的收合規則、手機選單、回頂端鈕——見上方 CHROME_CSS。 */
 .nav-link,.nav .btn{white-space:nowrap}
-@media(max-width:520px){.brand-name{font-size:.94rem}.nav-link{display:none}}
-/* 400px 以下收起品牌名（與 site.css 的主要頁面一致）。
-   留著的話「Sky 物理治療師」會和右側的預約鈕重疊。 */
-@media(max-width:400px){.brand-name{display:none}}
+.m-menu{display:none}
+.m-menu>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;min-width:66px;min-height:44px;padding:8px 4px;font-family:var(--mono);font-size:.8rem;letter-spacing:.2em;text-indent:.2em;color:var(--ink);user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
+.m-menu>summary::-webkit-details-marker{display:none}
+.m-menu>summary:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+.m-menu .c,.m-menu[open] .o{display:none}
+.m-menu[open] .c{display:inline}
+/* 收合時明確隱藏面板：各瀏覽器收起 <details> 內容的做法不同（display:none／content-visibility），不依賴它 */
+.m-menu:not([open]) .m-panel{display:none}
+.m-panel{position:absolute;top:100%;left:0;right:0;display:flex;flex-direction:column;padding:8px 0 max(18px,env(safe-area-inset-bottom));background:rgba(224,240,251,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line);box-shadow:0 12px 32px rgba(35,42,80,.14);max-height:calc(100vh - 64px);max-height:calc(100dvh - 64px);overflow-y:auto;overscroll-behavior:contain}
+.m-panel a{display:flex;align-items:center;gap:9px;padding:14px 32px;font-size:.88rem;color:var(--ink-2)}
+.m-panel a:hover{background:rgba(255,255,255,.5);color:var(--ink)}
+.m-panel a:focus-visible{outline:2px solid var(--teal);outline-offset:-3px;border-radius:8px}
+.m-panel svg{width:16px;height:16px;flex:none;opacity:.75}
+.m-panel .book{color:var(--teal-ink);font-weight:600}
+.m-panel .book svg{opacity:1}
+/* 660px 以下：文字連結收進選單。品牌名在 480px 以下讓位給「預約評估＋MENU」。 */
+@media(max-width:660px){.nav-right{gap:10px}.nav-right>.nav-link{display:none}.m-menu{display:block}}
+@media(max-width:520px){.brand-name{font-size:.94rem}}
+@media(max-width:480px){.brand-name{display:none}}
+@media(max-width:380px){.nav{padding:0 20px}.nav .btn.sm{padding:8px 16px}}
+/* 回頂端鈕：由 assets/menu.js 建立。長文往回捲時才出現，往下讀的時候不擋字。 */
+#back-top{position:fixed;right:20px;bottom:24px;z-index:70;width:44px;height:44px;border-radius:50%;border:none;cursor:pointer;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 1.5px rgba(255,255,255,.6),0 4px 18px rgba(35,42,80,.28);opacity:0;visibility:hidden;transition:opacity .25s ease,visibility 0s linear .25s,background-color .22s ease}
+/* 隱藏時連 visibility 一起關掉：只設 opacity:0 的話，鍵盤 Tab 仍會停在一顆看不見的按鈕上 */
+#back-top.show{opacity:1;visibility:visible;transition:opacity .25s ease,visibility 0s,background-color .22s ease}
+#back-top:hover{background:var(--teal-ink)}
+#back-top:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+@media(min-width:1024px){#back-top{right:28px;bottom:32px}}
+@media(prefers-reduced-motion:reduce){#back-top,#back-top.show{transition:none}}
+/* 手機：頁尾底部讓出回頂端鈕的位置（與 site.css 的主要頁面一致）。
+   選擇器寫成 body>footer 是為了壓過各頁排在後面的 footer{padding:…} 簡寫。 */
+@media(max-width:820px){body>footer{padding-bottom:88px}}
 .crumb a{color:var(--ink-2);border-bottom:1px solid var(--line);position:relative}
 .crumb a::after{content:"";position:absolute;inset:-15px -5px}
 .crumb a:hover{color:var(--teal-ink);border-color:var(--teal)}
@@ -56,6 +83,12 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 h1{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.45;margin-bottom:14px}
 .lede{font-family:var(--serif);color:var(--muted);font-size:1.02rem;line-height:2;border-bottom:1px solid var(--line);padding-bottom:28px;margin-bottom:16px}
 .count{font-family:var(--mono);font-size:.75rem;letter-spacing:.05em;color:var(--muted);margin-bottom:8px}
+/* 手機／平板：長篇介紹排在文章清單前面，要捲過一千多像素才看得到文章。
+   給一個直接跳到清單的捷徑；電腦版介紹是兩欄卡片、清單很快就出現，不需要。 */
+.jump{display:inline-flex;align-items:center;min-height:44px;margin:2px 0 22px;padding:8px 18px;border:1.5px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6);font-size:.86rem;color:var(--teal-ink)}
+.jump:hover{border-color:var(--teal);background:#fff}
+.list-head{scroll-margin-top:84px}
+@media(min-width:1024px){.jump{display:none}}
 /* 分類長篇內容（HUBS 的 intro）：沒填就整塊不輸出，版面與原本一致 */
 .hub-intro{border-bottom:1px solid var(--line);padding-bottom:30px;margin-bottom:24px}
 .hub-intro section+section{margin-top:28px}

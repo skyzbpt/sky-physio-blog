@@ -4,7 +4,7 @@
 import { writeFileSync } from 'fs';
 import { join } from 'path';
 import { REPO, BASE, esc, ROBOTS, AUTHOR, PUBLISHER, ldJson } from './lib.mjs';
-import { SHELL } from './css.mjs';
+import { SHELL, siteHeader } from './css.mjs';
 
 // 最後更新日期：內容有實質變動時再手動前進（不要每次建置都改，否則是假更新訊號）
 const UPDATED = '2026-08-23';
@@ -112,19 +112,7 @@ ${ldJson(breadcrumb)}
 <link rel="stylesheet" href="/assets/legal.css">
 </head>
 <body>
-<header>
-  <nav class="nav">
-    <a class="brand" href="/" aria-label="回到首頁">
-      <img class="brand-logo" src="assets/logo.webp" alt="Sky 物理治療師 logo">
-      <span class="brand-name">Sky 物理治療師</span>
-    </a>
-    <div class="nav-right">
-      <a class="nav-link" href="/services">服務項目</a>
-      <a class="nav-link" href="/#blog">衛教文章</a>
-      <a class="btn teal sm" href="https://calendar.app.google/wdsPTQDhF2YCigPu6" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>預約評估</a>
-    </div>
-  </nav>
-</header>
+${siteHeader({ asset: 'assets/' })}
 
 <main class="legal">
   <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › ${esc(h1)}</nav>
