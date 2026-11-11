@@ -133,9 +133,13 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 @media(min-width:1140px){
   .post-page{max-width:1160px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center;padding:60px 64px 76px}
   .post-page>*{grid-column:1;min-width:0}
+  /* 側欄高度有限（章節多、視窗矮時放不下）：原本整欄一起捲，預約卡會被切掉一半、
+     看起來像壞掉。改成只有目錄在自己的範圍內捲動，預約卡永遠完整露出。 */
   .post-page>.post-side{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
-    max-height:calc(100vh - 130px);overflow-y:auto}
-  .post-side>.toc{margin:0;padding:2px 0 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0}
+    max-height:calc(100vh - 116px);display:flex;flex-direction:column}
+  .post-side>.toc{flex:0 1 auto;min-height:96px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;
+    margin:0;padding:2px 8px 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0}
+  .post-side>.side-cta{flex:none}
   .post-side>.toc>summary{pointer-events:none;margin-bottom:2px}
   .post-side>.toc>summary::after{content:none}
   .side-cta{display:block;margin-top:28px;padding:20px 20px 16px;border:1px solid var(--line);border-radius:14px;
@@ -159,6 +163,36 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 }
 @media(min-width:1024px) and (prefers-reduced-motion:no-preference){.more a:hover{transform:translateY(-2px)}}
 @media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
+/* 複製連結後的提示 */
+.toast{position:fixed;left:50%;bottom:88px;transform:translateX(-50%);z-index:99;background:var(--ink);color:#fff;padding:10px 22px;border-radius:999px;font-size:.84rem;letter-spacing:.06em;white-space:nowrap;box-shadow:0 8px 24px -8px rgba(27,37,65,.5)}
+/* 快速解答（手機）：五則問答全展開約佔兩個螢幕，正文被推到第三屏之後。
+   先露出第一則，其餘一鍵展開。收合由腳本加上 .clamp——沒有 JS 時維持全部展開。 */
+.quick-more{display:none}
+.quick.clamp{position:relative;max-height:330px;overflow:hidden}
+.quick.clamp::after{content:"";position:absolute;left:0;right:0;bottom:0;height:130px;background:linear-gradient(180deg,rgba(241,247,252,0),#F1F7FC 60%);pointer-events:none}
+.quick.clamp .quick-more{display:inline-flex;align-items:center;position:absolute;z-index:1;left:50%;bottom:14px;transform:translateX(-50%);min-height:44px;padding:0 22px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--sky-ink);font-family:var(--sans);font-size:.84rem;letter-spacing:.06em;white-space:nowrap;cursor:pointer}
+.quick-more:focus-visible,#toc-fab:focus-visible,.ts-close:focus-visible,#toc-sheet a:focus-visible{outline:2px solid var(--sky);outline-offset:2px;border-radius:8px}
+/* 章節鈕（手機・平板）：目錄只在文章最上面，長文讀到一半想跳段落得一路捲回頂端。
+   讀進正文後右下角浮出「章節」，點開是底部面板，標出目前讀到哪一段。
+   ≥1140px 有常駐側欄目錄，不需要。 */
+#toc-fab{position:fixed;right:20px;bottom:24px;z-index:70;display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 17px 0 14px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.97);color:var(--sky-ink);font-family:var(--sans);font-size:.84rem;letter-spacing:.1em;cursor:pointer;box-shadow:0 6px 20px -6px rgba(27,37,65,.4);opacity:0;visibility:hidden;transition:opacity .25s ease,visibility 0s linear .25s}
+#toc-fab.show{opacity:1;visibility:visible;transition:opacity .25s ease,visibility 0s}
+#toc-sheet{position:fixed;inset:auto 0 0 0;margin:0 auto;width:100%;max-width:560px;max-height:72vh;max-height:72dvh;padding:0;border:none;border-radius:18px 18px 0 0;background:var(--bg-soft);color:var(--ink);box-shadow:0 -12px 40px -12px rgba(27,37,65,.45);overflow:hidden}
+#toc-sheet[open]{display:flex;flex-direction:column}
+#toc-sheet::backdrop{background:rgba(27,37,65,.4)}
+.ts-head{flex:none;display:flex;align-items:center;justify-content:space-between;padding:8px 8px 8px 22px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.75rem;letter-spacing:.18em;color:var(--muted)}
+.ts-close{width:44px;height:44px;border:none;background:none;border-radius:50%;font-size:1.35rem;line-height:1;color:var(--ink-2);cursor:pointer}
+#toc-sheet ol{list-style:none;counter-reset:toc;overflow-y:auto;overscroll-behavior:contain;padding:6px 22px max(16px,env(safe-area-inset-bottom))}
+#toc-sheet li{counter-increment:toc;border-bottom:1px solid var(--line)}
+#toc-sheet li:last-child{border-bottom:none}
+#toc-sheet li a{display:block;position:relative;padding:12px 0 12px 32px;font-size:.95rem;line-height:1.65;color:var(--ink-2)}
+#toc-sheet li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:14px;font-family:var(--mono);font-size:.75rem;color:var(--muted)}
+#toc-sheet li a.on,#toc-sheet li a.on::before{color:var(--sky-ink)}
+#toc-sheet li a.on{font-weight:700}
+/* 章節鈕佔了右下角，回頂端鈕往上讓一格 */
+@media(max-width:1139px){body.has-fab #back-top{bottom:80px}}
+@media(min-width:1140px){#toc-fab{display:none}}
+@media(prefers-reduced-motion:reduce){#toc-fab,#toc-fab.show{transition:none}}
 @media(max-width:480px){
   .post-page{padding:40px 22px 72px}
   .post-body p{text-align:left}
@@ -400,12 +434,13 @@ ${pagerHtml}
 /* 要分享／複製的網址：去掉查詢字串（從 Facebook、LINE 點進來時常帶著 ?fbclid=… 之類的追蹤參數），
    保留 #sec-N——讀者可能是想分享某一段。 */
 function pageUrl(){ return location.origin+location.pathname+location.hash; }
-function copyLink(){
+function copyLink(msg){
   var url=pageUrl();
   function toast(){
+    var old=document.querySelector('.toast'); if(old) old.remove();
     var t=document.createElement('div');
-    t.textContent='已複製文章連結';
-    t.style.cssText='position:fixed;bottom:40px;left:50%;transform:translateX(-50%);background:#149A8A;color:#fff;padding:10px 22px;border-radius:10px;font-family:monospace;font-size:.78rem;z-index:99';
+    t.className='toast'; t.setAttribute('role','status');
+    t.textContent=msg||'已複製文章連結';
     document.body.appendChild(t);setTimeout(function(){t.remove();},2000);
   }
   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(toast).catch(function(){fallback(url);toast();});}
@@ -423,6 +458,24 @@ if(canShare){
   var sb=document.querySelector('.pp-share'); if(sb){ sb.textContent='分享'; sb.title='分享這篇文章'; }
   var eb=document.querySelector('.end-share'); if(eb) eb.textContent='分享這篇文章';
 }
+/* 小標旁的 #：點了除了跳到該段，也把該段的連結複製起來（標籤本來就寫「複製這個段落的連結」）。
+   等網址列的 #sec-N 更新後再複製。 */
+document.addEventListener('click',function(e){
+  var h=e.target&&e.target.closest&&e.target.closest('.post-body a.hash');
+  if(h) setTimeout(function(){ copyLink('已複製這一段的連結'); },0);
+});
+/* 快速解答：手機上先收合，露出第一則 */
+(function(){
+  var q=document.getElementById('quick');
+  if(!q||!window.matchMedia||!matchMedia('(max-width:599px)').matches||q.scrollHeight<480) return;
+  var n=q.querySelectorAll('dt').length;
+  var b=document.createElement('button');
+  b.type='button'; b.className='quick-more'; b.textContent='展開全部 '+n+' 則解答';
+  b.addEventListener('click',function(){ q.classList.remove('clamp'); b.remove(); });
+  q.appendChild(b); q.classList.add('clamp');
+  /* 收合著的時候點到問題連結（跳到該段）不受影響；鍵盤聚焦到被遮住的連結時自動展開 */
+  q.addEventListener('focusin',function(e){ if(e.target!==b&&q.classList.contains('clamp')){ q.classList.remove('clamp'); b.remove(); } });
+})();
 /* 閱讀進度條：以文章本文的捲動比例計算，rAF 節流 */
 (function(){
   var bar=document.querySelector('.reading i'), body=document.querySelector('.post-body');
@@ -463,15 +516,59 @@ if(canShare){
   else if(deskMq.addListener) deskMq.addListener(syncToc);
   if(!deskMq.matches) toc.open=false;
   syncToc();
+  /* 手機・平板的章節鈕與底部面板（用 <dialog>：焦點鎖定、Esc 關閉都是內建的） */
+  var fab=null, sheet=null, body=document.querySelector('.post-body');
+  if(body&&window.HTMLDialogElement&&HTMLDialogElement.prototype.showModal){
+    sheet=document.createElement('dialog');
+    sheet.id='toc-sheet'; sheet.setAttribute('aria-label','本篇章節');
+    sheet.innerHTML='<div class="ts-head"><span>本篇章節</span><button class="ts-close" type="button" aria-label="關閉章節">×</button></div>';
+    sheet.appendChild(toc.querySelector('ol').cloneNode(true));
+    document.body.appendChild(sheet);
+    fab=document.createElement('button');
+    fab.id='toc-fab'; fab.type='button'; fab.setAttribute('aria-haspopup','dialog');
+    fab.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="9" y1="6" x2="20" y2="6"/><line x1="9" y1="12" x2="20" y2="12"/><line x1="9" y1="18" x2="20" y2="18"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></svg>章節';
+    document.body.appendChild(fab);
+    document.body.classList.add('has-fab');
+    var shut=function(){ if(sheet.open) sheet.close(); document.body.style.overflow=''; };
+    fab.addEventListener('click',function(){
+      sheet.showModal(); document.body.style.overflow='hidden';
+      var on=sheet.querySelector('a.on');
+      if(on){ on.focus({preventScroll:true}); on.scrollIntoView({block:'center'}); }
+    });
+    sheet.addEventListener('close',function(){ document.body.style.overflow=''; });
+    /* 點背景、點關閉鈕、點任一章節都收起面板（章節連結照常跳過去） */
+    sheet.addEventListener('click',function(e){
+      if(e.target===sheet||e.target.closest('.ts-close')||e.target.closest('a')) shut();
+    });
+    if(deskMq.addEventListener) deskMq.addEventListener('change',function(){ if(deskMq.matches) shut(); });
+    /* 讀進正文（捲過頁首那份目錄）才出現，讀完正文就收起，不擋文末的預約與延伸閱讀 */
+    var fabTick=false;
+    var fabUpd=function(){
+      fabTick=false;
+      var past=toc.getBoundingClientRect().bottom<0, r=body.getBoundingClientRect();
+      fab.classList.toggle('show', past && r.bottom>window.innerHeight*0.5);
+    };
+    addEventListener('scroll',function(){ if(!fabTick){ fabTick=true; requestAnimationFrame(fabUpd); } },{passive:true});
+    fabUpd();
+  }
   var links=[].slice.call(toc.querySelectorAll('a[href^="#"]'));
-  var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+  var all=sheet?links.concat([].slice.call(sheet.querySelectorAll('a[href^="#"]'))):links;
   var heads=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
   if(!heads.length||!('IntersectionObserver' in window)) return;
-  var seen={};
+  var seen={}, last=null;
   function paint(){
     var cur=null;
     heads.forEach(function(h){ if(seen[h.id]||h.getBoundingClientRect().top<120) cur=h.id; });
-    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+    all.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href').slice(1)===cur); });
+    /* 桌機側欄：章節多到目錄要自己捲時，讓目前段落保持在看得到的範圍 */
+    if(cur!==last){
+      last=cur;
+      var a=deskMq.matches&&cur&&toc.querySelector('a.on');
+      if(a&&toc.scrollHeight>toc.clientHeight){
+        var d=a.getBoundingClientRect().top-toc.getBoundingClientRect().top;
+        if(d<24||d>toc.clientHeight-64) toc.scrollTop+=d-toc.clientHeight/2;
+      }
+    }
   }
   var io=new IntersectionObserver(function(es){
     es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
