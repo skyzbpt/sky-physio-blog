@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT3M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/biodynamic-stillness.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/biodynamic-stillness.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/biodynamic-stillness.webp",
+      "width": 960,
+      "height": 548,
+      "caption": "不是去「修理」，而是創造一個夠安全的空間的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/biodynamic-stillness",
   "about": {
     "@type": "MedicalTherapy",
@@ -184,10 +196,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/craniosacral">顱薦椎</a> › <span>不是去「修理」，而是創造一個夠安全的空間——談生物動力顱薦椎</span></nav>
     <div class="meta">
-      <span class="date">2026-06-13</span><span class="cat">顱薦椎</span><span>約 3 分鐘</span>
+      <time class="date" datetime="2026-06-13">2026-06-13</time><span class="cat">顱薦椎</span><span>約 3 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">不是去「修理」，而是創造一個夠安全的空間——談生物動力顱薦椎</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span></p>
     <p class="lede">好的治療，常常不是治療師「做」了什麼，而是創造了一個夠安全的場域，讓身體自己想起該怎麼回家。這是生物動力顱薦椎最迷人的地方。</p>
     <aside class="post-side" aria-label="本篇章節與預約">
     <details class="toc" id="toc" open>
@@ -233,7 +246,7 @@
 <p>我之所以重視它，不是因為它「科學上已經證實」，而是因為它提醒了我一件事：治療的核心，常常不在於我做了多少技術，而在於我能不能創造一個讓對方的神經系統感到安全的場域。這個提醒，無論你用的是紅繩、徒手、還是任何方法，都成立。</p>
 <p>先讓身體覺得安全，改變才會發生。</p>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <p>Sumner G, Haines S. <em>Cranial Intelligence: A Practical Guide to Biodynamic Craniosacral Therapy.</em> London: Singing Dragon; 2010.</p>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT9M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-attacking-breakaway.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-attacking-breakaway.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-attacking-breakaway.webp",
+      "width": 960,
+      "height": 540,
+      "caption": "攻擊與突圍的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-attacking-breakaway",
   "about": {
     "@type": "Thing",
@@ -87,6 +99,24 @@
     {
       "@type": "Thing",
       "name": "訓練台"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Abbiss CR, Menaspà P, Villerius V, Martin DT. Distribution of power output when establishing a breakaway in cycling. Int J Sports Physiol Perform. 2013;8(4):452–5."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Olds T. The mathematics of breaking away and chasing in cycling. Eur J Appl Physiol Occup Physiol. 1998;77(6):492–7."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Martin JC, Milliken DL, Cobb JE, McFadden KL, Coggan AR. Validation of a mathematical model for road cycling power. J Appl Biomech. 1998;14(3):276–91."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Allen H, Coggan AR, McGregor S. Training and Racing with a Power Meter. 3rd ed. Boulder, CO: VeloPress; 2019."
     }
   ],
   "author": {
@@ -230,10 +260,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>攻擊與突圍：時機比腿力重要</span></nav>
     <div class="meta">
-      <span class="date">2026-08-11</span><span class="cat">公路車</span><span>約 9 分鐘</span>
+      <time class="date" datetime="2026-08-11">2026-08-11</time><span class="cat">公路車</span><span>約 9 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">攻擊與突圍：時機比腿力重要</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 4 筆</a></p>
     <p class="lede">攻擊要挑集團不想追、追不動的時刻。這篇用物理模型算獨走與集團的速度差，談攻出去後怎麼配速、誰會追，以及比賽安全。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -318,7 +349,7 @@
 <p>宇倫下一場只攻了一次：集團追回一組人、速度慢下來後的坡頂，和兩位車手一起出去，拉開後把功率降到 240 W 左右輪流帶。最後 5 公里被追回，但他留在集團裡騎完。他說：「少花了一半力氣，卻多撐了半小時。」</p>
 <blockquote>攻擊不是勇氣的表演，是對時機、地形與人心的計算。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Abbiss CR, Menaspà P, Villerius V, Martin DT. Distribution of power output when establishing a breakaway in cycling. <em>Int J Sports Physiol Perform.</em> 2013;8(4):452–5.</li><li>Olds T. The mathematics of breaking away and chasing in cycling. <em>Eur J Appl Physiol Occup Physiol.</em> 1998;77(6):492–7.</li><li>Martin JC, Milliken DL, Cobb JE, McFadden KL, Coggan AR. Validation of a mathematical model for road cycling power. <em>J Appl Biomech.</em> 1998;14(3):276–91.</li><li>Allen H, Coggan AR, McGregor S. <em>Training and Racing with a Power Meter.</em> 3rd ed. Boulder, CO: VeloPress; 2019.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

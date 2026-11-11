@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT9M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-sweet-spot.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-sweet-spot.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-sweet-spot.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "Sweet Spot 訓練的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-sweet-spot",
   "about": {
     "@type": "Thing",
@@ -103,6 +115,28 @@
     {
       "@type": "Thing",
       "name": "訓練台"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Allen H, Coggan AR, McGregor S. Training and Racing with a Power Meter. 3rd ed. Boulder, CO: VeloPress; 2019."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Overton F. Sweet spot training: the complete guide from the coach who invented it. FasCat Coaching. Published 2020, updated 2026."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Neal CM, Hunter AM, Brennan L, O'Sullivan A, Hamilton DL, De Vito G, et al. Six weeks of a polarized training-intensity distribution leads to greater physiological and performance adaptations than a threshold model in trained cyclists. J Appl Physiol. 2013;114(4):461–71."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Silva Oliveira P, Boppre G, Fonseca H. Comparison of polarized versus other types of endurance training intensity distribution on athletes' endurance performance: a systematic review with meta-analysis. Sports Med. 2024;54(8):2071–95."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Jamnick NA, Pettitt RW, Granata C, Pyne DB, Bishop DJ. An examination and critique of current methods to determine exercise intensity. Sports Med. 2020;50(10):1729–56."
     }
   ],
   "author": {
@@ -254,10 +288,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>Sweet Spot 訓練：時間有限車手的最佳投報率</span></nav>
     <div class="meta">
-      <span class="date">2026-06-20</span><span class="cat">公路車</span><span>約 9 分鐘</span>
+      <time class="date" datetime="2026-06-20">2026-06-20</time><span class="cat">公路車</span><span>約 9 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">Sweet Spot 訓練：時間有限車手的最佳投報率</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">FTP 的 88–94%，介於節奏與閾值之間。它的刺激夠強、恢復成本卻可控，是一週只有六小時的人最划算的選擇之一。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -359,7 +394,7 @@
 <p>Sweet Spot 的甜，來自它在刺激和代價之間找到的平衡。把它放進一個有長騎、有高強度、也有休息的一週，它才真的甜；整週都是它，就只剩下膩。</p>
 <blockquote>Sweet Spot 是很好的工具，不是完整的哲學。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Allen H, Coggan AR, McGregor S. <em>Training and Racing with a Power Meter.</em> 3rd ed. Boulder, CO: VeloPress; 2019.</li><li>Overton F. Sweet spot training: the complete guide from the coach who invented it. <em>FasCat Coaching.</em> Published 2020, updated 2026.</li><li>Neal CM, Hunter AM, Brennan L, O'Sullivan A, Hamilton DL, De Vito G, et al. Six weeks of a polarized training-intensity distribution leads to greater physiological and performance adaptations than a threshold model in trained cyclists. <em>J Appl Physiol.</em> 2013;114(4):461–71.</li><li>Silva Oliveira P, Boppre G, Fonseca H. Comparison of polarized versus other types of endurance training intensity distribution on athletes' endurance performance: a systematic review with meta-analysis. <em>Sports Med.</em> 2024;54(8):2071–95.</li><li>Jamnick NA, Pettitt RW, Granata C, Pyne DB, Bishop DJ. An examination and critique of current methods to determine exercise intensity. <em>Sports Med.</em> 2020;50(10):1729–56.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

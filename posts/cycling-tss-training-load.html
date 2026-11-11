@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT9M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-tss-training-load.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-tss-training-load.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-tss-training-load.webp",
+      "width": 960,
+      "height": 638,
+      "caption": "TSS 訓練量分數的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-tss-training-load",
   "about": {
     "@type": "Thing",
@@ -91,6 +103,28 @@
     {
       "@type": "Thing",
       "name": "間歇"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Allen H, Coggan AR, McGregor S. Training and Racing with a Power Meter. 3rd ed. Boulder, CO: VeloPress; 2019."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Soligard T, Schwellnus M, Alonso JM, et al. How much is too much? (Part 1) International Olympic Committee consensus statement on load in sport and risk of injury. Br J Sports Med. 2016;50(17):1030–41."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Sanders D, Abt G, Hesselink MKC, Myers T, Akubat I. Methods of monitoring training load and their relationships to changes in fitness and performance in competitive road cyclists. Int J Sports Physiol Perform. 2017;12(5):668–75."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Foster C, Florhaug JA, Franklin J, et al. A new approach to monitoring exercise training. J Strength Cond Res. 2001;15(1):109–15."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Impellizzeri FM, Tenan MS, Kempton T, Novak A, Coutts AJ. Acute:chronic workload ratio: conceptual issues and fundamental pitfalls. Int J Sports Physiol Perform. 2020;15(6):907–13."
     }
   ],
   "author": {
@@ -242,10 +276,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>TSS 訓練量分數：把時間和強度合成一個數字</span></nav>
     <div class="meta">
-      <span class="date">2026-05-21</span><span class="cat">公路車</span><span>約 9 分鐘</span>
+      <time class="date" datetime="2026-05-21">2026-05-21</time><span class="cat">公路車</span><span>約 9 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">TSS 訓練量分數：把時間和強度合成一個數字</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">一小時全力＝100 TSS。這個簡單的基準，讓「兩小時輕鬆騎」和「四十分鐘間歇」能放在同一把尺上比較，也讓訓練變成可以計量的劑量。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -343,7 +378,7 @@
 <p>TSS 最大的價值，是把模糊的「我最近好像練很多」，變成可以看、可以規劃的數字。但它只看得到踏板上的瓦特，看不到你的睡眠、工作和膝蓋。數字負責提醒，身體才是最後的裁判。</p>
 <blockquote>TSS 是劑量，不是分數。追求高分而忽略恢復，是業餘車手最常見的翻車方式。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Allen H, Coggan AR, McGregor S. <em>Training and Racing with a Power Meter.</em> 3rd ed. Boulder, CO: VeloPress; 2019.</li><li>Soligard T, Schwellnus M, Alonso JM, et al. How much is too much? (Part 1) International Olympic Committee consensus statement on load in sport and risk of injury. <em>Br J Sports Med.</em> 2016;50(17):1030–41.</li><li>Sanders D, Abt G, Hesselink MKC, Myers T, Akubat I. Methods of monitoring training load and their relationships to changes in fitness and performance in competitive road cyclists. <em>Int J Sports Physiol Perform.</em> 2017;12(5):668–75.</li><li>Foster C, Florhaug JA, Franklin J, et al. A new approach to monitoring exercise training. <em>J Strength Cond Res.</em> 2001;15(1):109–15.</li><li>Impellizzeri FM, Tenan MS, Kempton T, Novak A, Coutts AJ. Acute:chronic workload ratio: conceptual issues and fundamental pitfalls. <em>Int J Sports Physiol Perform.</em> 2020;15(6):907–13.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

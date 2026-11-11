@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,18 +70,43 @@
   "timeRequired": "PT5M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/skiers-thumb.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/skiers-thumb.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/skiers-thumb.webp",
+      "width": 960,
+      "height": 720,
+      "caption": "滑雪拇指的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/skiers-thumb",
   "about": {
     "@type": "MedicalCondition",
     "name": "手肘與手腕疼痛",
     "alternateName": "Elbow and Wrist Pain"
   },
+  "mentions": [
+    {
+      "@type": "Thing",
+      "name": "滑雪拇指"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Brotzman SB, Novotny SR. Injuries to the ulnar collateral ligament of the thumb metacarpophalangeal joint (gamekeeper's thumb). In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Stener B. Displacement of the ruptured ulnar collateral ligament of the metacarpo-phalangeal joint of the thumb: a clinical and anatomical study. J Bone Joint Surg Br. 1962;44-B(4):869–79."
+    }
+  ],
   "author": {
     "@type": "Person",
     "@id": "https://skythephysio.com/#sky",
@@ -228,10 +256,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/elbow-wrist-pain">手肘與手腕痛</a> › <span>滑雪拇指：大拇指被往外扳後，捏東西沒力</span></nav>
     <div class="meta">
-      <span class="date">2026-11-07</span><span class="cat">手肘與手腕痛</span><span>約 5 分鐘</span>
+      <time class="date" datetime="2026-11-07">2026-11-07</time><span class="cat">手肘與手腕痛</span><span>約 5 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">滑雪拇指：大拇指被往外扳後，捏東西沒力</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 2 筆</a></p>
     <p class="lede">跌倒時大拇指被往外扳，之後大拇指根部腫痛、捏鑰匙沒力——這是拇指尺側副韌帶受傷，俗稱滑雪拇指。這篇跟著一位排球愛好者，說明為什麼有些要開刀、有些只要固定四週，以及拆掉副木後怎麼練回捏力。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -303,7 +332,7 @@
 <p>家瑜現在打排球時大拇指都會貼上一圈貼布。她說：「以前覺得手指扭到沒什麼，現在才知道大拇指那條韌帶這麼重要。」</p>
 <blockquote>大拇指能不能捏緊，決定了一隻手有多好用。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Brotzman SB, Novotny SR. Injuries to the ulnar collateral ligament of the thumb metacarpophalangeal joint (gamekeeper's thumb). In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>Stener B. Displacement of the ruptured ulnar collateral ligament of the metacarpo-phalangeal joint of the thumb: a clinical and anatomical study. <em>J Bone Joint Surg Br.</em> 1962;44-B(4):869–79.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

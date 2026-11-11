@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT5M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/achilles-tendinopathy.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/achilles-tendinopathy.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/achilles-tendinopathy.webp",
+      "width": 960,
+      "height": 686,
+      "caption": "阿基里斯腱痛的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/achilles-tendinopathy",
   "about": {
     "@type": "MedicalCondition",
@@ -87,6 +99,20 @@
     {
       "@type": "Thing",
       "name": "阿基里斯腱"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Brotzman SB. Achilles tendinopathy. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Alfredson H, Pietilä T, Jonsson P, Lorentzon R. Heavy-load eccentric calf muscle training for the treatment of chronic Achilles tendinosis. Am J Sports Med. 1998;26(3):360–6."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Silbernagel KG, Thomeé R, Eriksson BI, Karlsson J. Continued sports activity, using a pain-monitoring model, during rehabilitation in patients with Achilles tendinopathy: a randomized controlled study. Am J Sports Med. 2007;35(6):897–906."
     }
   ],
   "author": {
@@ -238,10 +264,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/foot-ankle-pain">足踝痛</a> › <span>阿基里斯腱痛：跑者的腳跟後方，怎麼練回來</span></nav>
     <div class="meta">
-      <span class="date">2026-11-02</span><span class="cat">足踝痛</span><span>約 5 分鐘</span>
+      <time class="date" datetime="2026-11-02">2026-11-02</time><span class="cat">足踝痛</span><span>約 5 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">阿基里斯腱痛：跑者的腳跟後方，怎麼練回來</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-08">2026-11-08</time></span><a href="#refs">參考文獻 3 筆</a></p>
     <p class="lede">早上起床腳跟後方那條粗肌腱又緊又痛、跑步剛開始痛熱開了又好——這是阿基里斯腱病變。這篇跟著一位準備全馬的上班族，說明中段與附著處的差別、Alfredson 離心訓練怎麼做、能不能邊跑邊練，以及哪些藥物要留意。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -316,7 +343,7 @@
 <p>信宏說，最大的教訓是：心肺三個月可以進步很多，肌腱不行。現在他的訓練日誌多了一欄「早上跟腱幾分」。</p>
 <blockquote>跑者最強壯的肌腱，也需要時間長大。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Brotzman SB. Achilles tendinopathy. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>Alfredson H, Pietilä T, Jonsson P, Lorentzon R. Heavy-load eccentric calf muscle training for the treatment of chronic Achilles tendinosis. <em>Am J Sports Med.</em> 1998;26(3):360–6.</li><li>Silbernagel KG, Thomeé R, Eriksson BI, Karlsson J. Continued sports activity, using a pain-monitoring model, during rehabilitation in patients with Achilles tendinopathy: a randomized controlled study. <em>Am J Sports Med.</em> 2007;35(6):897–906.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

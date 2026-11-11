@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT9M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-power-duration-curve.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-power-duration-curve.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-power-duration-curve.webp",
+      "width": 960,
+      "height": 631,
+      "caption": "功率-時間曲線的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-power-duration-curve",
   "about": {
     "@type": "Thing",
@@ -87,6 +99,28 @@
     {
       "@type": "Thing",
       "name": "功率計"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Allen H, Coggan AR, McGregor S. Training and Racing with a Power Meter. 3rd ed. Boulder, CO: VeloPress; 2019."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Pinot J, Grappe F. The record power profile to assess performance in elite cyclists. Int J Sports Med. 2011;32(11):839–44."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Leo P, Spragg J, Podlogar T, Lawley JS, Mujika I. Power profiling and the power-duration relationship in cycling: a narrative review. Eur J Appl Physiol. 2022;122(2):301–16."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "van Erp T, Sanders D, Lamberts RP. Maintaining power output with accumulating levels of work done is a key determinant for success in professional cycling. Med Sci Sports Exerc. 2021;53(9):1903–10."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Maunder E, Seiler S, Mildenhall MJ, Kilding AE, Plews DJ. The importance of 'durability' in the physiological profiling of endurance athletes. Sports Med. 2021;51(8):1619–28."
     }
   ],
   "author": {
@@ -238,10 +272,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>功率-時間曲線：一張圖看完你是哪種車手</span></nav>
     <div class="meta">
-      <span class="date">2026-05-24</span><span class="cat">公路車</span><span>約 9 分鐘</span>
+      <time class="date" datetime="2026-05-24">2026-05-24</time><span class="cat">公路車</span><span>約 9 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">功率-時間曲線：一張圖看完你是哪種車手</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">從 5 秒到 5 小時，你能維持的最大功率畫成一條曲線。這條曲線的形狀，比任何單一數字都更誠實地說明你的強項與弱點。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -342,7 +377,7 @@
 <p>FTP 告訴你引擎多大，功率-時間曲線告訴你它在哪裡最有力、哪裡會沒力。資料顧好、定期給它真正的全力騎，它就會誠實說出你的強弱。</p>
 <blockquote>不要只練你擅長的那一段。曲線最凹的地方，往往就是比賽輸掉的地方。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Allen H, Coggan AR, McGregor S. <em>Training and Racing with a Power Meter.</em> 3rd ed. Boulder, CO: VeloPress; 2019.</li><li>Pinot J, Grappe F. The record power profile to assess performance in elite cyclists. <em>Int J Sports Med.</em> 2011;32(11):839–44.</li><li>Leo P, Spragg J, Podlogar T, Lawley JS, Mujika I. Power profiling and the power-duration relationship in cycling: a narrative review. <em>Eur J Appl Physiol.</em> 2022;122(2):301–16.</li><li>van Erp T, Sanders D, Lamberts RP. Maintaining power output with accumulating levels of work done is a key determinant for success in professional cycling. <em>Med Sci Sports Exerc.</em> 2021;53(9):1903–10.</li><li>Maunder E, Seiler S, Mildenhall MJ, Kilding AE, Plews DJ. The importance of 'durability' in the physiological profiling of endurance athletes. <em>Sports Med.</em> 2021;51(8):1619–28.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

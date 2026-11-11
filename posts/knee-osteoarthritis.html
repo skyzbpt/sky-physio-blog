@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT5M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/knee-osteoarthritis.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/knee-osteoarthritis.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/knee-osteoarthritis.webp",
+      "width": 960,
+      "height": 630,
+      "caption": "退化性膝關節炎的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/knee-osteoarthritis",
   "about": {
     "@type": "MedicalCondition",
@@ -83,6 +95,20 @@
     {
       "@type": "Thing",
       "name": "膝關節炎"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "James DA, Nigrini CM, Manske RC, Caughran AT. The arthritic knee. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Fransen M, McConnell S, Harmer AR, Van der Esch M, Simic M, Bennell KL. Exercise for osteoarthritis of the knee: a Cochrane systematic review. Br J Sports Med. 2015;49(24):1554–7."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Messier SP, Gutekunst DJ, Davis C, DeVita P. Weight loss reduces knee-joint loads in overweight and obese older adults with knee osteoarthritis. Arthritis Rheum. 2005;52(7):2026–32."
     }
   ],
   "author": {
@@ -226,10 +252,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/knee-pain">膝蓋痛</a> › <span>退化性膝關節炎：膝蓋退化了，更要動</span></nav>
     <div class="meta">
-      <span class="date">2026-10-27</span><span class="cat">膝蓋痛</span><span>約 5 分鐘</span>
+      <time class="date" datetime="2026-10-27">2026-10-27</time><span class="cat">膝蓋痛</span><span>約 5 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">退化性膝關節炎：膝蓋退化了，更要動</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-08">2026-11-08</time></span><a href="#refs">參考文獻 3 筆</a></p>
     <p class="lede">早上起床膝蓋僵幾分鐘、走久了痠痛、上下樓梯卡卡的——退化性膝關節炎很常見，但「退化」不等於只能等換關節。這篇跟著一位喜歡跳土風舞的阿嬤，說明為什麼運動是第一線治療、減重的效益有多大，以及注射與手術的角色。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -303,7 +330,7 @@
 <p>阿香現在每週一、三、五在家做肌力，其他日子照常去廟口跳舞，隔壁鄰居也被她拉來一起練坐到站。她說：「原來膝蓋不是越用越壞，是不會用才壞得快。」</p>
 <blockquote>退化是時間給的，怎麼用膝蓋，是你可以決定的。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>James DA, Nigrini CM, Manske RC, Caughran AT. The arthritic knee. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>Fransen M, McConnell S, Harmer AR, Van der Esch M, Simic M, Bennell KL. Exercise for osteoarthritis of the knee: a Cochrane systematic review. <em>Br J Sports Med.</em> 2015;49(24):1554–7.</li><li>Messier SP, Gutekunst DJ, Davis C, DeVita P. Weight loss reduces knee-joint loads in overweight and obese older adults with knee osteoarthritis. <em>Arthritis Rheum.</em> 2005;52(7):2026–32.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

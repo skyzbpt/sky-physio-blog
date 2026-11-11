@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT10M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-efficiency-economy.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-efficiency-economy.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-efficiency-economy.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "騎乘經濟性的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-efficiency-economy",
   "about": {
     "@type": "Thing",
@@ -95,6 +107,28 @@
     {
       "@type": "Thing",
       "name": "迴轉速"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Coyle EF, Sidossis LS, Horowitz JF, Beltz JD. Cycling efficiency is related to the percentage of type I muscle fibers. Med Sci Sports Exerc. 1992;24(7):782–8."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Lucía A, Hoyos J, Pérez M, Santalla A, Chicharro JL. Inverse relationship between VO2max and economy/efficiency in world-class cyclists. Med Sci Sports Exerc. 2002;34(12):2079–84."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Moseley L, Jeukendrup AE. The reliability of cycling efficiency. Med Sci Sports Exerc. 2001;33(4):621–7."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Hopker J, Coleman D, Passfield L. Changes in cycling efficiency during a competitive season. Med Sci Sports Exerc. 2009;41(4):912–9."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Passfield L, Doust JH. Changes in cycling efficiency and performance after endurance exercise. Med Sci Sports Exerc. 2000;32(11):1935–41."
     }
   ],
   "author": {
@@ -238,10 +272,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>騎乘經濟性：同樣的瓦特，有人花的力氣比較少</span></nav>
     <div class="meta">
-      <span class="date">2026-06-04</span><span class="cat">公路車</span><span>約 10 分鐘</span>
+      <time class="date" datetime="2026-06-04">2026-06-04</time><span class="cat">公路車</span><span>約 10 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">騎乘經濟性：同樣的瓦特，有人花的力氣比較少</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">同樣的瓦特，有人燒掉的能量比較少。人騎車的總效率約兩成到兩成五，差一兩個百分點就差好幾瓦；但對業餘車手來說，先處理空氣阻力常更划算。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -323,7 +358,7 @@
 <p>效率是一張慢慢調薪的薪資單：每年多練一點、睡夠吃夠、讓身體不痛，實領會一點一點往上。等它長的時候，先把空氣那本帳顧好。</p>
 <blockquote>效率不是一夜之間的事。但它是少數幾種「不用更喘就變快」的進步之一。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Coyle EF, Sidossis LS, Horowitz JF, Beltz JD. Cycling efficiency is related to the percentage of type I muscle fibers. <em>Med Sci Sports Exerc.</em> 1992;24(7):782–8.</li><li>Lucía A, Hoyos J, Pérez M, Santalla A, Chicharro JL. Inverse relationship between VO2max and economy/efficiency in world-class cyclists. <em>Med Sci Sports Exerc.</em> 2002;34(12):2079–84.</li><li>Moseley L, Jeukendrup AE. The reliability of cycling efficiency. <em>Med Sci Sports Exerc.</em> 2001;33(4):621–7.</li><li>Hopker J, Coleman D, Passfield L. Changes in cycling efficiency during a competitive season. <em>Med Sci Sports Exerc.</em> 2009;41(4):912–9.</li><li>Passfield L, Doust JH. Changes in cycling efficiency and performance after endurance exercise. <em>Med Sci Sports Exerc.</em> 2000;32(11):1935–41.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

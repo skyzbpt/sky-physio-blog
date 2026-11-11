@@ -3,7 +3,7 @@
 // 放在 repo 內（而非暫存區），確保不會因環境重建而遺失。
 import { readFileSync, readdirSync, existsSync, statSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, TODAY, loadArticles, CAT_SLUG, DESC_MIN, DESC_MAX, BLOGPOST_MAX } from './lib.mjs';
+import { REPO, BASE, TODAY, loadArticles, CAT_SLUG, DESC_MIN, DESC_MAX, BLOGPOST_MAX, referencesOf } from './lib.mjs';
 import { hashOf } from './modified.mjs';
 import { CHROME_CSS } from './css.mjs';
 
@@ -384,6 +384,23 @@ hubOk === cats.length && pass(`每個主題頁 canonical/清單/description 完�
   const linked = p => { const h = read(p); return h.includes('href="/privacy"'); };
   const missing = ['index.html', 'physio-guide.html', 'posts/' + postFiles[0], 'topics/' + hubFiles[0]].filter(p => !linked(p));
   missing.length === 0 ? pass('全站頁尾皆有政策連結') : fail('頁尾政策連結缺漏', missing.join(','));
+}
+
+/* ---------- 9b-2. 署名列與參考文獻（E-E-A-T / GEO） ---------- */
+// 每篇都要有署名列（作者連到 /about、最後審閱日）；文末有參考資料的文章，
+// JSON-LD 的 citation 筆數必須和頁面上的清單一致，且每篇都要有實體詞（mentions）。
+{
+  const bad = [];
+  for (const a of arts) {
+    const h = read(`posts/${a.id}.html`);
+    if (!/<p class="byline">[\s\S]*?rel="author"[\s\S]*?<time datetime="\d{4}-\d{2}-\d{2}">/.test(h)) bad.push(a.id + ' 缺署名列');
+    const n = referencesOf(a.content).length;
+    const ld = JSON.parse(h.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+    if ((ld.citation || []).length !== n) bad.push(`${a.id} citation ${(ld.citation || []).length}≠${n}`);
+    if (n && !h.includes('id="refs"')) bad.push(a.id + ' 缺 #refs');
+    if (!(ld.mentions || []).length) bad.push(a.id + ' 無 mentions');
+  }
+  bad.length === 0 ? pass(`每篇皆有署名列、實體詞，citation 與參考資料一致 (${arts.length})`) : fail('署名列／參考文獻', bad.slice(0, 3).join('；'));
 }
 
 /* ---------- 9c. <title> 長度 ---------- */

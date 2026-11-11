@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT10M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-hip-angle-mobility.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-hip-angle-mobility.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-hip-angle-mobility.webp",
+      "width": 960,
+      "height": 605,
+      "caption": "髖關節活動度的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-hip-angle-mobility",
   "about": {
     "@type": "Thing",
@@ -95,6 +107,24 @@
     {
       "@type": "Thing",
       "name": "核心"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Harvey D. Assessment of the flexibility of elite athletes using the modified Thomas test. Br J Sports Med. 1998;32(1):68–70."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Peeler JD, Anderson JE. Reliability limits of the modified Thomas test for assessing rectus femoris muscle flexibility about the knee joint. J Athl Train. 2008;43(5):470–6."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Peeler J, Leiter J. Using digital photography to document rectus femoris flexibility: a reliability study of the modified Thomas test. Physiother Theory Pract. 2013;29(4):319–27."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Griffin DR, Dickenson EJ, O'Donnell J, et al. The Warwick Agreement on femoroacetabular impingement syndrome (FAI syndrome): an international consensus statement. Br J Sports Med. 2016;50(19):1169–76."
     }
   ],
   "author": {
@@ -238,10 +268,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>髖關節活動度：騎乘姿勢的天花板</span></nav>
     <div class="meta">
-      <span class="date">2026-07-07</span><span class="cat">公路車</span><span>約 10 分鐘</span>
+      <time class="date" datetime="2026-07-07">2026-07-07</time><span class="cat">公路車</span><span>約 10 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">髖關節活動度：騎乘姿勢的天花板</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 4 筆</a></p>
     <p class="lede">踩踏一小時，每條腿要折起五千多次。髖關節給不出的角度，會轉給腰椎去彎。先量清楚你的髖給得出多少，再決定把手能降到哪裡。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -332,7 +363,7 @@
 <p>先量身體給得出多少，再決定車要低到哪裡。曉琳現在以變把為主，下把留給下坡和逆風；等右髖再進步，她打算抽掉 5 mm 墊圈試兩週。</p>
 <blockquote>髖關節多一點空間，腰椎就少一點加班。這是騎士最划算的一筆投資。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Harvey D. Assessment of the flexibility of elite athletes using the modified Thomas test. <em>Br J Sports Med.</em> 1998;32(1):68–70.</li><li>Peeler JD, Anderson JE. Reliability limits of the modified Thomas test for assessing rectus femoris muscle flexibility about the knee joint. <em>J Athl Train.</em> 2008;43(5):470–6.</li><li>Peeler J, Leiter J. Using digital photography to document rectus femoris flexibility: a reliability study of the modified Thomas test. <em>Physiother Theory Pract.</em> 2013;29(4):319–27.</li><li>Griffin DR, Dickenson EJ, O'Donnell J, et al. The Warwick Agreement on femoroacetabular impingement syndrome (FAI syndrome): an international consensus statement. <em>Br J Sports Med.</em> 2016;50(19):1169–76.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

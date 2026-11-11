@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT5M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/achilles-rupture.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/achilles-rupture.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/achilles-rupture.webp",
+      "width": 960,
+      "height": 859,
+      "caption": "阿基里斯腱斷裂位置的示意插圖"
+    }
+  ],
   "url": "https://skythephysio.com/posts/achilles-rupture",
   "about": {
     "@type": "MedicalCondition",
@@ -83,6 +95,16 @@
     {
       "@type": "Thing",
       "name": "阿基里斯腱"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Jasko JJ, Brotzman SB, Giangarra CE. Achilles tendon rupture. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Willits K, Amendola A, Bryant D, et al. Operative versus nonoperative treatment of acute Achilles tendon ruptures: a multicenter randomized trial using accelerated functional rehabilitation. J Bone Joint Surg Am. 2010;92(17):2767–75."
     }
   ],
   "author": {
@@ -258,10 +280,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/foot-ankle-pain">足踝痛</a> › <span>阿基里斯腱斷裂：像被人從後面踢一腳</span></nav>
     <div class="meta">
-      <span class="date">2026-11-03</span><span class="cat">足踝痛</span><span>約 5 分鐘</span>
+      <time class="date" datetime="2026-11-03">2026-11-03</time><span class="cat">足踝痛</span><span>約 5 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">阿基里斯腱斷裂：像被人從後面踢一腳</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-10">2026-11-10</time></span><a href="#refs">參考文獻 2 筆</a></p>
     <p class="lede">打球起跳時，小腿後方突然像被人踢了一腳，回頭卻沒有人——這常是阿基里斯腱斷裂。這篇跟著一位週末打羽球的中年老闆，說明怎麼自我檢查、開刀與不開刀怎麼選、早期功能復健怎麼走，以及大概多久能回到運動。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -341,7 +364,7 @@
 <p>國明現在每週一、三在店裡後面的台階做提踵，週末才去打球。他說：「以前以為打球就是運動，現在知道打球之前要先練身體。」</p>
 <blockquote>肌腱最怕的，是平常不用、突然猛用。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Jasko JJ, Brotzman SB, Giangarra CE. Achilles tendon rupture. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>Willits K, Amendola A, Bryant D, et al. Operative versus nonoperative treatment of acute Achilles tendon ruptures: a multicenter randomized trial using accelerated functional rehabilitation. <em>J Bone Joint Surg Am.</em> 2010;92(17):2767–75.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

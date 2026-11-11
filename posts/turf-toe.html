@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT4M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/turf-toe.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/turf-toe.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/turf-toe.webp",
+      "width": 960,
+      "height": 785,
+      "caption": "草皮趾的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/turf-toe",
   "about": {
     "@type": "MedicalCondition",
@@ -83,6 +95,16 @@
     {
       "@type": "Thing",
       "name": "草皮趾"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Casillas MM, Jacobs M. First metatarsophalangeal joint sprain (turf toe). In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "McCormick JJ, Anderson RB. The great toe: failed turf toe, chronic turf toe, and complicated sesamoid injuries. Foot Ankle Clin. 2009;14(2):135–50."
     }
   ],
   "author": {
@@ -226,10 +248,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/foot-ankle-pain">足踝痛</a> › <span>草皮趾：大拇趾根部扭傷，推蹬就痛</span></nav>
     <div class="meta">
-      <span class="date">2026-11-04</span><span class="cat">足踝痛</span><span>約 4 分鐘</span>
+      <time class="date" datetime="2026-11-04">2026-11-04</time><span class="cat">足踝痛</span><span>約 4 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">草皮趾：大拇趾根部扭傷，推蹬就痛</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-08">2026-11-08</time></span><a href="#refs">參考文獻 2 筆</a></p>
     <p class="lede">腳趾被往上扳到底、大拇趾根部腫痛，之後每次推蹬起跑都痛——這是第一蹠趾關節扭傷，俗稱草皮趾。這篇跟著一位足球校隊員，說明它怎麼發生、為什麼鞋底太軟會增加風險、復健的重點，以及回場前大拇趾要能翹多少度。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -299,7 +322,7 @@
 <p>浩宇現在的球鞋鞋墊裡都多了一片薄薄的碳纖維板。他說：「以前覺得腳趾扭到忍一下就好，現在知道整個衝刺都靠它。」</p>
 <blockquote>小關節，扛的是全身的推力。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Casillas MM, Jacobs M. First metatarsophalangeal joint sprain (turf toe). In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>McCormick JJ, Anderson RB. The great toe: failed turf toe, chronic turf toe, and complicated sesamoid injuries. <em>Foot Ankle Clin.</em> 2009;14(2):135–50.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

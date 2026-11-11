@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT3M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/tmj-whole-person.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/tmj-whole-person.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/tmj-whole-person.webp",
+      "width": 960,
+      "height": 639,
+      "caption": "下巴痛，問題不一定在下巴的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/tmj-whole-person",
   "about": {
     "@type": "MedicalTherapy",
@@ -202,10 +214,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/craniosacral">顱薦椎</a> › <span>下巴痛，問題不一定在下巴——從顳顎關節談「整體」的身體觀</span></nav>
     <div class="meta">
-      <span class="date">2026-06-13</span><span class="cat">顱薦椎</span><span>約 3 分鐘</span>
+      <time class="date" datetime="2026-06-13">2026-06-13</time><span class="cat">顱薦椎</span><span>約 3 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">下巴痛，問題不一定在下巴——從顳顎關節談「整體」的身體觀</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span></p>
     <p class="lede">九成的顳顎關節症狀，其實不是關節本身的問題。下巴只是說話的那一個——真正在說話的，往往是整個身體累積的壓力與張力。</p>
     <aside class="post-side" aria-label="本篇章節與預約">
     <details class="toc" id="toc" open>
@@ -250,7 +263,7 @@
 <p>顱薦椎治療的部分理論機轉，目前仍缺乏嚴謹的科學證據支持。對於顳顎關節問題，我的臨床作法是整合性的——評估時會區分出那少數真正需要牙科或矯正介入的原發性結構問題，同時也處理肌肉、姿勢、壓力等更常見的因素，必要時與牙科專業合作，而非二選一。</p>
 <p>如果你長期受顳顎關節問題困擾、做了許多治療卻反覆發作，也許值得換一個角度，把它放回整個身體的脈絡裡重新理解。</p>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <p>Attlee T. <em>Face to Face with the Face: Working with the Face and the Cranial Nerves through Cranio-Sacral Integration.</em> London: Singing Dragon; 2016.</p>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

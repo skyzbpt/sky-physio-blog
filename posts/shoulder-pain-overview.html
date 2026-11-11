@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT9M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/shoulder-pain-overview.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/shoulder-pain-overview.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/shoulder-pain-overview.webp",
+      "width": 960,
+      "height": 614,
+      "caption": "肩膀疼痛常見原因的示意插圖"
+    }
+  ],
   "url": "https://skythephysio.com/posts/shoulder-pain-overview",
   "about": {
     "@type": "MedicalCondition",
@@ -91,6 +103,24 @@
     {
       "@type": "Thing",
       "name": "肩胛"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Romeyn R, Manske RC. Importance of the history in the diagnosis of shoulder pathology. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Manske RC, Pontillo M. General principles of shoulder rehabilitation. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Tempelhof S, Rupp S, Seil R. Age-related prevalence of rotator cuff tears in asymptomatic shoulders. J Shoulder Elbow Surg. 1999;8(4):296–9."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Gray JC. Visceral referred pain to the shoulder. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012."
     }
   ],
   "author": {
@@ -250,10 +280,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/shoulder-pain">肩膀痛</a> › <span>肩膀痛：認識這個全身最靈活、也最容易出問題的關節</span></nav>
     <div class="meta">
-      <span class="date">2026-01-09</span><span class="cat">肩膀痛</span><span>約 9 分鐘</span>
+      <time class="date" datetime="2026-01-09">2026-01-09</time><span class="cat">肩膀痛</span><span>約 9 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">肩膀痛：認識這個全身最靈活、也最容易出問題的關節</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-10">2026-11-10</time></span><a href="#refs">參考文獻 4 筆</a></p>
     <p class="lede">肩膀能往幾乎所有方向活動，代價是穩定度得靠肌肉主動維持。這篇跟著一位國小老師，說明年紀與痛的位置透露了什麼、剛痛起來的兩週可以做什麼，以及哪些狀況該盡快就醫。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -340,7 +371,7 @@
 <p>絕大多數的肩膀痛，都能靠正確的活動與漸進的運動治療改善，不需要急著開刀。素琴現在還是天天寫黑板，只是把常用的內容寫在中段，每週做兩次肩胛和旋轉肌袖的練習，偶爾痠一下，也知道該怎麼調。</p>
 <blockquote>先認識這個關節，接下來的每一篇，你都會更看得懂自己的肩膀在說什麼。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Romeyn R, Manske RC. Importance of the history in the diagnosis of shoulder pathology. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>Manske RC, Pontillo M. General principles of shoulder rehabilitation. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>Tempelhof S, Rupp S, Seil R. Age-related prevalence of rotator cuff tears in asymptomatic shoulders. <em>J Shoulder Elbow Surg.</em> 1999;8(4):296–9.</li><li>Gray JC. Visceral referred pain to the shoulder. In: Donatelli RA, ed. <em>Physical Therapy of the Shoulder.</em> 5th ed. St. Louis: Churchill Livingstone; 2012.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT4M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/shilin-student-jaw-clenching.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/shilin-student-jaw-clenching.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/shilin-student-jaw-clenching.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "圖書館裡低頭讀書趕進度的學生"
+    }
+  ],
   "url": "https://skythephysio.com/posts/shilin-student-jaw-clenching",
   "about": {
     "@type": "MedicalCondition",
@@ -95,6 +107,20 @@
     {
       "@type": "Thing",
       "name": "磨牙"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Lobbezoo F, Ahlberg J, Raphael KG, et al. International consensus on the assessment of bruxism: report of a work in progress. J Oral Rehabil. 2018;45(11):837-844."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Schiffman E, Ohrbach R, Truelove E, et al. Diagnostic Criteria for Temporomandibular Disorders (DC/TMD) for clinical and research applications. J Oral Facial Pain Headache. 2014;28(1):6-27."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Armijo-Olivo S, Pitance L, Singh V, Neto F, Thie N, Michelotti A. Effectiveness of manual therapy and therapeutic exercise for temporomandibular disorders: systematic review and meta-analysis. Phys Ther. 2016;96(1):9-25."
     }
   ],
   "author": {
@@ -238,10 +264,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/tmj">顳顎關節</a> › <span>外雙溪的大學生考試週下巴痛、太陽穴痛？可能是你一直在咬牙</span></nav>
     <div class="meta">
-      <span class="date">2026-11-08</span><span class="cat">顳顎關節</span><span>約 4 分鐘</span>
+      <time class="date" datetime="2026-11-08">2026-11-08</time><span class="cat">顳顎關節</span><span>約 4 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">外雙溪的大學生考試週下巴痛、太陽穴痛？可能是你一直在咬牙</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-10">2026-11-10</time></span><a href="#refs">參考文獻 3 筆</a></p>
     <p class="lede">士林外雙溪、劍潭一帶住著很多大學生。期中考、報告死線一到，熬夜、咖啡、低頭滑手機，有人開始下巴痠、張嘴卡、太陽穴痛。這篇跟著一位熬夜寫論文的研究生，說明白天咬牙怎麼發現、為什麼壓力會跑到下巴，以及簡單的放鬆與姿勢調整。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -309,7 +336,7 @@
 <p>他說：「原來我不是下巴壞了，是我一直把壓力咬在嘴裡。」</p>
 <blockquote>牙齒分開一點，肩膀就會放下一點。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Lobbezoo F, Ahlberg J, Raphael KG, et al. International consensus on the assessment of bruxism: report of a work in progress. <em>J Oral Rehabil.</em> 2018;45(11):837-844.</li><li>Schiffman E, Ohrbach R, Truelove E, et al. Diagnostic Criteria for Temporomandibular Disorders (DC/TMD) for clinical and research applications. <em>J Oral Facial Pain Headache.</em> 2014;28(1):6-27.</li><li>Armijo-Olivo S, Pitance L, Singh V, Neto F, Thie N, Michelotti A. Effectiveness of manual therapy and therapeutic exercise for temporomandibular disorders: systematic review and meta-analysis. <em>Phys Ther.</em> 2016;96(1):9-25.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

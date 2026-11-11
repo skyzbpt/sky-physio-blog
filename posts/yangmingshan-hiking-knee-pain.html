@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT4M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/yangmingshan-hiking-knee-pain.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/yangmingshan-hiking-knee-pain.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/yangmingshan-hiking-knee-pain.webp",
+      "width": 960,
+      "height": 720,
+      "caption": "陽明山七星山往小油坑的登山步道"
+    }
+  ],
   "url": "https://skythephysio.com/posts/yangmingshan-hiking-knee-pain",
   "about": {
     "@type": "MedicalCondition",
@@ -83,6 +95,20 @@
     {
       "@type": "Thing",
       "name": "髕骨"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Crossley KM, van Middelkoop M, Callaghan MJ, et al. 2016 Patellofemoral pain consensus statement from the 4th International Patellofemoral Pain Research Retreat, Manchester. Part 2: recommended physical interventions. Br J Sports Med. 2016;50(14):844-852."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Bohne M, Abendroth-Smith J. Effects of hiking downhill using trekking poles while carrying external loads. Med Sci Sports Exerc. 2007;39(1):177-183."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Willy RW, Hoglund LT, Barton CJ, et al. Patellofemoral pain: clinical practice guidelines. J Orthop Sports Phys Ther. 2019;49(9):CPG1-CPG95."
     }
   ],
   "author": {
@@ -226,10 +252,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/knee-pain">膝蓋痛</a> › <span>爬陽明山、天母古道下山膝蓋痛？問題常出在「煞車」的方式</span></nav>
     <div class="meta">
-      <span class="date">2026-11-08</span><span class="cat">膝蓋痛</span><span>約 4 分鐘</span>
+      <time class="date" datetime="2026-11-08">2026-11-08</time><span class="cat">膝蓋痛</span><span>約 4 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">爬陽明山、天母古道下山膝蓋痛？問題常出在「煞車」的方式</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-10">2026-11-10</time></span><a href="#refs">參考文獻 3 筆</a></p>
     <p class="lede">天母古道、紗帽山、七星山，上山喘、下山膝蓋痛是很多人的共同經驗。下坡時膝蓋要不斷「煞車」，股四頭肌與髕骨關節承受的力量比平地大很多。這篇跟著一位天母的退休老師，說明下山膝蓋痛的原因、登山杖與步伐怎麼調整，以及平常可以練的三個動作。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -294,7 +321,7 @@
 <p>她說：「原來不是膝蓋老了，是煞車沒練。」</p>
 <blockquote>上山靠心肺，下山靠肌力。把煞車練好，山就爬得久。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Crossley KM, van Middelkoop M, Callaghan MJ, et al. 2016 Patellofemoral pain consensus statement from the 4th International Patellofemoral Pain Research Retreat, Manchester. Part 2: recommended physical interventions. <em>Br J Sports Med.</em> 2016;50(14):844-852.</li><li>Bohne M, Abendroth-Smith J. Effects of hiking downhill using trekking poles while carrying external loads. <em>Med Sci Sports Exerc.</em> 2007;39(1):177-183.</li><li>Willy RW, Hoglund LT, Barton CJ, et al. Patellofemoral pain: clinical practice guidelines. <em>J Orthop Sports Phys Ther.</em> 2019;49(9):CPG1-CPG95.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

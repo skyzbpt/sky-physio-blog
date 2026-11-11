@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT5M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/meniscus-tear.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/meniscus-tear.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/meniscus-tear.webp",
+      "width": 960,
+      "height": 720,
+      "caption": "膝關節與半月板的解剖插圖"
+    }
+  ],
   "url": "https://skythephysio.com/posts/meniscus-tear",
   "about": {
     "@type": "MedicalCondition",
@@ -87,6 +99,24 @@
     {
       "@type": "Thing",
       "name": "半月板"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "D'Amato M, Brotzman SB, Kidd TM. Meniscal injuries. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Englund M, Guermazi A, Gale D, et al. Incidental meniscal findings on knee MRI in middle-aged and elderly persons. N Engl J Med. 2008;359(11):1108–15."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Katz JN, Brophy RH, Chaisson CE, et al. Surgery versus physical therapy for a meniscal tear and osteoarthritis. N Engl J Med. 2013;368(18):1675–84."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Kise NJ, Risberg MA, Stensrud S, et al. Exercise therapy versus arthroscopic partial meniscectomy for degenerative meniscal tear in middle aged patients: randomised controlled trial with two year follow-up. BMJ. 2016;354:i3740."
     }
   ],
   "author": {
@@ -238,10 +268,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/knee-pain">膝蓋痛</a> › <span>半月板撕裂：卡住、蹲下會痛，一定要開刀修嗎？</span></nav>
     <div class="meta">
-      <span class="date">2026-10-25</span><span class="cat">膝蓋痛</span><span>約 5 分鐘</span>
+      <time class="date" datetime="2026-10-25">2026-10-25</time><span class="cat">膝蓋痛</span><span>約 5 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">半月板撕裂：卡住、蹲下會痛，一定要開刀修嗎？</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-08">2026-11-08</time></span><a href="#refs">參考文獻 4 筆</a></p>
     <p class="lede">蹲下轉身會卡、關節線上按壓痛、偶爾膝蓋卡住伸不直——半月板的問題分外傷性與退化性，處理方式很不一樣。這篇跟著一位菜市場攤商，說明中年人的退化性撕裂為什麼先運動治療、哪些情況才需要手術，以及在家怎麼練。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -317,7 +348,7 @@
 <p>金鳳現在攤位上多了一張矮凳和一台推車，收攤後騎二十分鐘的固定式腳踏車。她說：「報告上的字沒變，可是我的膝蓋會用了。」</p>
 <blockquote>膝蓋裡的墊片會隨年紀變薄，大腿和屁股的肌肉，是可以重新練厚的。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>D'Amato M, Brotzman SB, Kidd TM. Meniscal injuries. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>Englund M, Guermazi A, Gale D, et al. Incidental meniscal findings on knee MRI in middle-aged and elderly persons. <em>N Engl J Med.</em> 2008;359(11):1108–15.</li><li>Katz JN, Brophy RH, Chaisson CE, et al. Surgery versus physical therapy for a meniscal tear and osteoarthritis. <em>N Engl J Med.</em> 2013;368(18):1675–84.</li><li>Kise NJ, Risberg MA, Stensrud S, et al. Exercise therapy versus arthroscopic partial meniscectomy for degenerative meniscal tear in middle aged patients: randomised controlled trial with two year follow-up. <em>BMJ.</em> 2016;354:i3740.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

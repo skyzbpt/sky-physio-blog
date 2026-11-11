@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT9M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/back-pain-not-equal-damage.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/back-pain-not-equal-damage.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/back-pain-not-equal-damage.webp",
+      "width": 960,
+      "height": 720,
+      "caption": "下背痛的真相的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/back-pain-not-equal-damage",
   "about": {
     "@type": "MedicalCondition",
@@ -83,6 +95,28 @@
     {
       "@type": "Thing",
       "name": "椎間盤"
+    },
+    {
+      "@type": "Thing",
+      "name": "下背痛"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Brinjikji W, Luetmer PH, Comstock B, et al. Systematic literature review of imaging features of spinal degeneration in asymptomatic populations. AJNR Am J Neuroradiol. 2015;36(4):811–6."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Chou R, Fu R, Carrino JA, Deyo RA. Imaging strategies for low-back pain: systematic review and meta-analysis. Lancet. 2009;373(9662):463–72."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Rajasekaran S, Dilip Chand Raja S, Pushpa BT, Ananda KB, Ajoy Prasad S, Rishi MK. The catastrophization effects of an MRI report on the patient and surgeon and the benefits of 'clinical reporting': results from an RCT and blinded trials. Eur Spine J. 2021;30(7):2069–81."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "National Institute for Health and Care Excellence. Low back pain and sciatica in over 16s: assessment and management (NG59). London: NICE; 2016 (last updated 2026)."
     }
   ],
   "author": {
@@ -226,10 +260,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/lower-back-pain">下背痛</a> › <span>下背痛的真相：X 光上的「異常」不一定是你痛的原因</span></nav>
     <div class="meta">
-      <span class="date">2026-01-27</span><span class="cat">下背痛</span><span>約 9 分鐘</span>
+      <time class="date" datetime="2026-01-27">2026-01-27</time><span class="cat">下背痛</span><span>約 9 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">下背痛的真相：X 光上的「異常」不一定是你痛的原因</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 4 筆</a></p>
     <p class="lede">報告上寫著椎間盤退化、膨出、骨刺，不代表背壞掉了。很多沒有腰痛的人也有這些發現。本文談影像與疼痛的落差、報告用詞的影響、今天能做的事，以及何時真的需要影像。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -314,7 +349,7 @@
 <p>影像拍下的是那一刻的結構，說不出你明天能做什麼。先確認沒有需要就醫的警訊，再用活動、睡眠和一點一點加上去的份量，讓腰重新習慣工作。素琴現在還是每天搬布，只是一捆拆成兩趟。</p>
 <blockquote>別讓一張報告，定義了你的身體能做什麼。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Brinjikji W, Luetmer PH, Comstock B, et al. Systematic literature review of imaging features of spinal degeneration in asymptomatic populations. <em>AJNR Am J Neuroradiol.</em> 2015;36(4):811–6.</li><li>Chou R, Fu R, Carrino JA, Deyo RA. Imaging strategies for low-back pain: systematic review and meta-analysis. <em>Lancet.</em> 2009;373(9662):463–72.</li><li>Rajasekaran S, Dilip Chand Raja S, Pushpa BT, Ananda KB, Ajoy Prasad S, Rishi MK. The catastrophization effects of an MRI report on the patient and surgeon and the benefits of 'clinical reporting': results from an RCT and blinded trials. <em>Eur Spine J.</em> 2021;30(7):2069–81.</li><li>National Institute for Health and Care Excellence. Low back pain and sciatica in over 16s: assessment and management (NG59). London: NICE; 2016 (last updated 2026).</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

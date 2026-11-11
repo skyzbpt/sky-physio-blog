@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT4M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/tianmu-running-lateral-knee-pain.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/tianmu-running-lateral-knee-pain.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/tianmu-running-lateral-knee-pain.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "跑者在田徑場跑道上跑步的背影"
+    }
+  ],
   "url": "https://skythephysio.com/posts/tianmu-running-lateral-knee-pain",
   "about": {
     "@type": "MedicalCondition",
@@ -87,6 +99,20 @@
     {
       "@type": "Thing",
       "name": "髂脛束"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Fairclough J, Hayashi K, Toumi H, et al. The functional anatomy of the iliotibial band during flexion and extension of the knee: implications for understanding iliotibial band syndrome. J Anat. 2006;208(3):309-316."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Baker RL, Fredericson M. Iliotibial band syndrome in runners: biomechanical implications and exercise interventions. Phys Med Rehabil Clin N Am. 2016;27(1):53-77."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Heiderscheit BC, Chumanov ES, Michalski MP, Wille CM, Ryan MB. Effects of step rate manipulation on joint mechanics during running. Med Sci Sports Exerc. 2011;43(2):296-302."
     }
   ],
   "author": {
@@ -246,10 +272,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/knee-pain">膝蓋痛</a> › <span>在天母運動公園跑步，膝蓋外側越跑越痛？認識髂脛束症候群</span></nav>
     <div class="meta">
-      <span class="date">2026-11-08</span><span class="cat">膝蓋痛</span><span>約 4 分鐘</span>
+      <time class="date" datetime="2026-11-08">2026-11-08</time><span class="cat">膝蓋痛</span><span>約 4 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">在天母運動公園跑步，膝蓋外側越跑越痛？認識髂脛束症候群</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-10">2026-11-10</time></span><a href="#refs">參考文獻 3 筆</a></p>
     <p class="lede">天母運動公園、河濱、外雙溪都是北台北跑者的熱門路線。如果你跑到某個距離，膝蓋外側就開始刺痛、越跑越痛、停下來又好了，很可能是髂脛束症候群。這篇跟著一位準備半馬的護理師，說明原因、怎麼調整跑量，以及比滾筒更重要的臀部訓練。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -317,7 +344,7 @@
 <p>她說：「原來我滾了一個月的大腿，該練的是屁股。」</p>
 <blockquote>膝蓋外側在喊痛，通常是臀部沒來上班。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Fairclough J, Hayashi K, Toumi H, et al. The functional anatomy of the iliotibial band during flexion and extension of the knee: implications for understanding iliotibial band syndrome. <em>J Anat.</em> 2006;208(3):309-316.</li><li>Baker RL, Fredericson M. Iliotibial band syndrome in runners: biomechanical implications and exercise interventions. <em>Phys Med Rehabil Clin N Am.</em> 2016;27(1):53-77.</li><li>Heiderscheit BC, Chumanov ES, Michalski MP, Wille CM, Ryan MB. Effects of step rate manipulation on joint mechanics during running. <em>Med Sci Sports Exerc.</em> 2011;43(2):296-302.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

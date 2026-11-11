@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT5M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/total-knee-replacement-rehab.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/total-knee-replacement-rehab.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/total-knee-replacement-rehab.webp",
+      "width": 960,
+      "height": 786,
+      "caption": "雙膝正面 X 光片：一側膝蓋已換成人工膝關節"
+    }
+  ],
   "url": "https://skythephysio.com/posts/total-knee-replacement-rehab",
   "about": {
     "@type": "MedicalCondition",
@@ -83,6 +95,16 @@
     {
       "@type": "Thing",
       "name": "人工膝關節"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "James DA, Nigrini CM. Total knee replacement protocol. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "James DA, Nigrini CM, Manske RC, Caughran AT. The arthritic knee. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
     }
   ],
   "author": {
@@ -226,10 +248,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/knee-pain">膝蓋痛</a> › <span>人工膝關節置換術後復健：先伸直，再彎曲，再走穩</span></nav>
     <div class="meta">
-      <span class="date">2026-10-28</span><span class="cat">膝蓋痛</span><span>約 5 分鐘</span>
+      <time class="date" datetime="2026-10-28">2026-10-28</time><span class="cat">膝蓋痛</span><span>約 5 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">人工膝關節置換術後復健：先伸直，再彎曲，再走穩</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-10">2026-11-10</time></span><a href="#refs">參考文獻 2 筆</a></p>
     <p class="lede">換了人工膝關節，手術只完成了一半，另一半是復健。這篇跟著一位退休公車司機，說明術前要準備什麼、術後一到十二週的角度與肌力目標、為什麼「伸直」比「彎曲」更要緊，以及哪些警訊要立刻回診。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -304,7 +327,7 @@
 <p>文雄現在每天早上走到公園看人下棋，傍晚騎二十分鐘的固定式腳踏車。他說：「以前開公車要準時到站，現在膝蓋的復健也是一站一站到。」</p>
 <blockquote>新的關節是醫師給的，能走多遠，是自己練出來的。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>James DA, Nigrini CM. Total knee replacement protocol. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>James DA, Nigrini CM, Manske RC, Caughran AT. The arthritic knee. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

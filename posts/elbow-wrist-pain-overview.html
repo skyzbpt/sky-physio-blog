@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT4M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/elbow-wrist-pain-overview.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/elbow-wrist-pain-overview.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/elbow-wrist-pain-overview.webp",
+      "width": 960,
+      "height": 540,
+      "caption": "手肘關節的解剖插圖"
+    }
+  ],
   "url": "https://skythephysio.com/posts/elbow-wrist-pain-overview",
   "about": {
     "@type": "MedicalCondition",
@@ -91,10 +103,20 @@
     {
       "@type": "Thing",
       "name": "舟狀骨"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Brotzman SB, Novotny SR. Nerve compression syndromes. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
     },
     {
-      "@type": "Thing",
-      "name": "腕隧道"
+      "@type": "CreativeWork",
+      "name": "Ellenbecker TS, Davies GJ, et al. Lateral and medial humeral epicondylitis. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Brotzman SB, Novotny SR. Scaphoid fractures. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
     }
   ],
   "author": {
@@ -238,10 +260,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/elbow-wrist-pain">手肘與手腕痛</a> › <span>手肘與手腕痛：是肌腱、神經，還是骨頭？</span></nav>
     <div class="meta">
-      <span class="date">2026-11-01</span><span class="cat">手肘與手腕痛</span><span>約 4 分鐘</span>
+      <time class="date" datetime="2026-11-01">2026-11-01</time><span class="cat">手肘與手腕痛</span><span>約 4 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">手肘與手腕痛：是肌腱、神經，還是骨頭？</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-01">2026-11-01</time></span><a href="#refs">參考文獻 3 筆</a></p>
     <p class="lede">手肘外側一擰毛巾就痛、半夜手指麻醒、跌倒撐地後手腕一直痛——手肘、手腕和手指的問題種類多，但從位置和症狀就能先分出大方向。這篇跟著一位咖啡師，說明怎麼分辨，以及哪些狀況不能等。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -309,7 +332,7 @@
 <p>宛婷現在店裡多了一台自動壓粉器，晚上睡覺戴著手腕副木。三週後，夜裡不再麻醒，手肘外側的痛也從 6 分降到 2 分。</p>
 <blockquote>手是我們最常用、也最少休息的工具；認識它的語言，才知道它在抱怨什麼。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Brotzman SB, Novotny SR. Nerve compression syndromes. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>Ellenbecker TS, Davies GJ, et al. Lateral and medial humeral epicondylitis. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>Brotzman SB, Novotny SR. Scaphoid fractures. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

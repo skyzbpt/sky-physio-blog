@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT5M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/hamstring-strain.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/hamstring-strain.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/hamstring-strain.webp",
+      "width": 960,
+      "height": 636,
+      "caption": "大腿後側拉傷的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/hamstring-strain",
   "about": {
     "@type": "MedicalCondition",
@@ -83,6 +95,20 @@
     {
       "@type": "Thing",
       "name": "大腿後肌"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Hardin JA, Holmes CF. Hamstring muscle injuries in athletes. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Petersen J, Thorborg K, Nielsen MB, Budtz-Jørgensen E, Hölmich P. Preventive effect of eccentric training on acute hamstring injuries in men's soccer: a cluster-randomized controlled trial. Am J Sports Med. 2011;39(11):2296–303."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Askling CM, Tengvar M, Thorstensson A. Acute hamstring injuries in Swedish elite football: a prospective randomised controlled clinical trial comparing two rehabilitation protocols. Br J Sports Med. 2013;47(15):953–9."
     }
   ],
   "author": {
@@ -218,10 +244,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/hip-groin-pain">髖與鼠蹊痛</a> › <span>大腿後側拉傷：衝刺時一抽，三分之一會再傷</span></nav>
     <div class="meta">
-      <span class="date">2026-11-08</span><span class="cat">髖與鼠蹊痛</span><span>約 5 分鐘</span>
+      <time class="date" datetime="2026-11-08">2026-11-08</time><span class="cat">髖與鼠蹊痛</span><span>約 5 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">大腿後側拉傷：衝刺時一抽，三分之一會再傷</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-08">2026-11-08</time></span><a href="#refs">參考文獻 3 筆</a></p>
     <p class="lede">衝刺到一半，大腿後側突然一抽、像被射了一箭——這是大腿後肌拉傷，也是最容易復發的運動傷害之一。這篇跟著一位壘球隊的上班族，說明衝刺型與伸展型的差別、為什麼不能只看不痛就回場、北歐式訓練與延長訓練怎麼做。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -299,7 +326,7 @@
 <p>建志現在把北歐式訓練當成週三晚上的固定行程，客廳沙發就是他的固定物。他說：「以前以為不痛就好了，現在知道要練到它不怕跑。」</p>
 <blockquote>不痛是開始，能全速衝刺才是回來。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Hardin JA, Holmes CF. Hamstring muscle injuries in athletes. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>Petersen J, Thorborg K, Nielsen MB, Budtz-Jørgensen E, Hölmich P. Preventive effect of eccentric training on acute hamstring injuries in men's soccer: a cluster-randomized controlled trial. <em>Am J Sports Med.</em> 2011;39(11):2296–303.</li><li>Askling CM, Tengvar M, Thorstensson A. Acute hamstring injuries in Swedish elite football: a prospective randomised controlled clinical trial comparing two rehabilitation protocols. <em>Br J Sports Med.</em> 2013;47(15):953–9.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

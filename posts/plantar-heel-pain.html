@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT6M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/plantar-heel-pain.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/plantar-heel-pain.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/plantar-heel-pain.webp",
+      "width": 960,
+      "height": 614,
+      "caption": "足底筋膜炎的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/plantar-heel-pain",
   "about": {
     "@type": "MedicalCondition",
@@ -83,6 +95,20 @@
     {
       "@type": "Thing",
       "name": "足底筋膜"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Brotzman SB, Jasko JJ. Inferior heel pain (plantar fasciitis). In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "DiGiovanni BF, Nawoczenski DA, Lintal ME, et al. Tissue-specific plantar fascia-stretching exercise enhances outcomes in patients with chronic heel pain: a prospective, randomized study. J Bone Joint Surg Am. 2003;85(7):1270–7."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Rathleff MS, Mølgaard CM, Fredberg U, et al. High-load strength training improves outcome in patients with plantar fasciitis: a randomized controlled trial with 12 months follow-up. Scand J Med Sci Sports. 2015;25(3):e292–300."
     }
   ],
   "author": {
@@ -250,10 +276,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/foot-ankle-pain">足踝痛</a> › <span>足底筋膜炎：早上下床第一步最痛</span></nav>
     <div class="meta">
-      <span class="date">2026-11-01</span><span class="cat">足踝痛</span><span>約 6 分鐘</span>
+      <time class="date" datetime="2026-11-01">2026-11-01</time><span class="cat">足踝痛</span><span>約 6 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">足底筋膜炎：早上下床第一步最痛</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-08">2026-11-08</time></span><a href="#refs">參考文獻 3 筆</a></p>
     <p class="lede">早上下床第一步、久坐後站起來，腳跟底部一陣刺痛，走幾步又好一點——這是足底筋膜炎的招牌。這篇跟著一位百貨專櫃人員，說明它跟其他足跟痛怎麼分、伸展和肌力訓練怎麼做、鞋子與夜間副木的角色，以及大概要多久會好。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -335,7 +362,7 @@
 <p>淑惠現在床邊放著一條毛巾，提醒自己下床前先扳腳趾。她說：「以前以為要找到一個神奇的治療，原來是每天的小事。」</p>
 <blockquote>腳底的那張弓，每天都在撐著你；早上那三分鐘，是你撐回它的方式。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Brotzman SB, Jasko JJ. Inferior heel pain (plantar fasciitis). In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>DiGiovanni BF, Nawoczenski DA, Lintal ME, et al. Tissue-specific plantar fascia-stretching exercise enhances outcomes in patients with chronic heel pain: a prospective, randomized study. <em>J Bone Joint Surg Am.</em> 2003;85(7):1270–7.</li><li>Rathleff MS, Mølgaard CM, Fredberg U, et al. High-load strength training improves outcome in patients with plantar fasciitis: a randomized controlled trial with 12 months follow-up. <em>Scand J Med Sci Sports.</em> 2015;25(3):e292–300.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

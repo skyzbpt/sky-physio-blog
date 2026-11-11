@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT10M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-power-meter-types.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-power-meter-types.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-power-meter-types.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "功率計怎麼選的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-power-meter-types",
   "about": {
     "@type": "Thing",
@@ -99,6 +111,24 @@
     {
       "@type": "Thing",
       "name": "曲柄長度"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Allen H, Coggan AR, McGregor S. Training and Racing with a Power Meter. 3rd ed. Boulder, CO: VeloPress; 2019."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Maier T, Schmid L, Müller B, Steiner T, Wehrlin JP. Accuracy of cycling power meters against a mathematical model of treadmill cycling. Int J Sports Med. 2017;38(6):456–61."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Bouillod A, Pinot J, Soto-Romero G, Bertucci W, Grappe F. Validity, sensitivity, reproducibility, and robustness of the PowerTap, Stages, and Garmin Vector power meters in comparison with the SRM device. Int J Sports Physiol Perform. 2017;12(8):1023–30."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Bini RR, Hume PA. Assessment of bilateral asymmetry in cycling using a commercial instrumented crank system and instrumented pedals. Int J Sports Physiol Perform. 2014;9(5):876–81."
     }
   ],
   "author": {
@@ -242,10 +272,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>功率計怎麼選？位置、準確度與一致性</span></nav>
     <div class="meta">
-      <span class="date">2026-05-30</span><span class="cat">公路車</span><span>約 10 分鐘</span>
+      <time class="date" datetime="2026-05-30">2026-05-30</time><span class="cat">公路車</span><span>約 10 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">功率計怎麼選？位置、準確度與一致性</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 4 筆</a></p>
     <p class="lede">功率計裝在踏板、曲柄、大盤或花鼓，量的是力量傳遞路上的不同點。對訓練來說，最重要的不是絕對準確，而是每次都用同一把尺，也知道它何時會說錯話。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -333,7 +364,7 @@
 <p>選功率計，先看你有幾台車、會不會常換輪、預算多少；用功率計，先弄清楚它量哪一段、量一腳還是兩腳、什麼時候會飄。韋辰的 244 W 沒有騙人，只是它沒秤到右腳。</p>
 <blockquote>功率計不是用來炫耀數字的，是用來確保你今天的辛苦和上個月的辛苦，量在同一把尺上。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Allen H, Coggan AR, McGregor S. <em>Training and Racing with a Power Meter.</em> 3rd ed. Boulder, CO: VeloPress; 2019.</li><li>Maier T, Schmid L, Müller B, Steiner T, Wehrlin JP. Accuracy of cycling power meters against a mathematical model of treadmill cycling. <em>Int J Sports Med.</em> 2017;38(6):456–61.</li><li>Bouillod A, Pinot J, Soto-Romero G, Bertucci W, Grappe F. Validity, sensitivity, reproducibility, and robustness of the PowerTap, Stages, and Garmin Vector power meters in comparison with the SRM device. <em>Int J Sports Physiol Perform.</em> 2017;12(8):1023–30.</li><li>Bini RR, Hume PA. Assessment of bilateral asymmetry in cycling using a commercial instrumented crank system and instrumented pedals. <em>Int J Sports Physiol Perform.</em> 2014;9(5):876–81.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT10M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-base-training.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-base-training.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-base-training.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "基礎期的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-base-training",
   "about": {
     "@type": "Thing",
@@ -107,6 +119,28 @@
     {
       "@type": "Thing",
       "name": "訓練台"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Allen H, Coggan AR, McGregor S. Training and Racing with a Power Meter. 3rd ed. Boulder, CO: VeloPress; 2019."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Seiler S. What is best practice for training intensity and duration distribution in endurance athletes? Int J Sports Physiol Perform. 2010;5(3):276–91."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Stöggl T, Sperlich B. Polarized training has greater impact on key endurance variables than threshold, high intensity, or high volume training. Front Physiol. 2014;5:33."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Burgomaster KA, Howarth KR, Phillips SM, Rakobowchuk M, MacDonald MJ, McGee SL, Gibala MJ. Similar metabolic adaptations during exercise after low volume sprint interval and traditional endurance training in humans. J Physiol. 2008;586(1):151–60."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Bohm S, Mersmann F, Arampatzis A. Human tendon adaptation in response to mechanical loading: a systematic review and meta-analysis of exercise intervention studies on healthy adults. Sports Med Open. 2015;1(1):7."
     }
   ],
   "author": {
@@ -250,10 +284,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>基礎期：無聊，但決定你今年的天花板</span></nav>
     <div class="meta">
-      <span class="date">2026-06-14</span><span class="cat">公路車</span><span>約 10 分鐘</span>
+      <time class="date" datetime="2026-06-14">2026-06-14</time><span class="cat">公路車</span><span>約 10 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">基礎期：無聊，但決定你今年的天花板</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">基礎期以 Z2 長騎、重訓和技術為主，只留少量強度。它不會讓你下週變快，卻決定你的身體在賽季中後段撐不撐得住更多強度。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -346,7 +381,7 @@
 <p>基礎期的進步藏在濾材裡，看不見，也急不來。先把水養好：Z2 守在 LT1 以下、長騎每週加一點、重訓照做，再一條一條把魚放進去。</p>
 <blockquote>基礎期不會讓你贏得三月的團騎，但它決定你八月還在不在前面。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Allen H, Coggan AR, McGregor S. <em>Training and Racing with a Power Meter.</em> 3rd ed. Boulder, CO: VeloPress; 2019.</li><li>Seiler S. What is best practice for training intensity and duration distribution in endurance athletes? <em>Int J Sports Physiol Perform.</em> 2010;5(3):276–91.</li><li>Stöggl T, Sperlich B. Polarized training has greater impact on key endurance variables than threshold, high intensity, or high volume training. <em>Front Physiol.</em> 2014;5:33.</li><li>Burgomaster KA, Howarth KR, Phillips SM, Rakobowchuk M, MacDonald MJ, McGee SL, Gibala MJ. Similar metabolic adaptations during exercise after low volume sprint interval and traditional endurance training in humans. <em>J Physiol.</em> 2008;586(1):151–60.</li><li>Bohm S, Mersmann F, Arampatzis A. Human tendon adaptation in response to mechanical loading: a systematic review and meta-analysis of exercise intervention studies on healthy adults. <em>Sports Med Open.</em> 2015;1(1):7.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT10M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-aerobic-decoupling.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-aerobic-decoupling.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-aerobic-decoupling.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "心率漂移的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-aerobic-decoupling",
   "about": {
     "@type": "Thing",
@@ -95,6 +107,28 @@
     {
       "@type": "Thing",
       "name": "迴轉速"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Friel J. Efficiency Factor and Decoupling. TrainingPeaks. Published 2011, updated 2026."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Coyle EF, González-Alonso J. Cardiovascular drift during prolonged exercise: new perspectives. Exerc Sport Sci Rev. 2001;29(2):88–92."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Wingo JE, Ganio MS, Cureton KJ. Cardiovascular drift during heat stress: implications for exercise prescription. Exerc Sport Sci Rev. 2012;40(2):88–94."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Maunder E, Seiler S, Mildenhall MJ, Kilding AE, Plews DJ. The importance of 'durability' in the physiological profiling of endurance athletes. Sports Med. 2021;51(8):1619–28."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Smyth B, Maunder E, Meyler S, Hunter B, Muniz-Pumares D. Decoupling of internal and external workload during a marathon: an analysis of durability in 82,303 recreational runners. Sports Med. 2022;52(9):2283–95."
     }
   ],
   "author": {
@@ -238,10 +272,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>心率漂移：檢驗有氧基礎最便宜的方法</span></nav>
     <div class="meta">
-      <span class="date">2026-05-28</span><span class="cat">公路車</span><span>約 10 分鐘</span>
+      <time class="date" datetime="2026-05-28">2026-05-28</time><span class="cat">公路車</span><span>約 10 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">心率漂移：檢驗有氧基礎最便宜的方法</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">不用實驗室、不用抽血，一趟穩定的長騎，就能看出你的有氧耐力撐不撐得住。前提是條件固定、算法正確，再看連續幾次的趨勢。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -330,7 +365,7 @@
 <p>有氧脫鉤不用實驗室、不用抽血，它本身就是一趟正常的耐力騎，不必另外付出恢復成本。把條件固定好，每隔幾週聽一次風扇聲；越來越安靜了，就把工作量加大一點。</p>
 <blockquote>基礎期無聊的那些小時，就是在把這個數字往下壓。它不會讓你今天變快，但會讓你第四小時還在。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Friel J. Efficiency Factor and Decoupling. <em>TrainingPeaks.</em> Published 2011, updated 2026.</li><li>Coyle EF, González-Alonso J. Cardiovascular drift during prolonged exercise: new perspectives. <em>Exerc Sport Sci Rev.</em> 2001;29(2):88–92.</li><li>Wingo JE, Ganio MS, Cureton KJ. Cardiovascular drift during heat stress: implications for exercise prescription. <em>Exerc Sport Sci Rev.</em> 2012;40(2):88–94.</li><li>Maunder E, Seiler S, Mildenhall MJ, Kilding AE, Plews DJ. The importance of 'durability' in the physiological profiling of endurance athletes. <em>Sports Med.</em> 2021;51(8):1619–28.</li><li>Smyth B, Maunder E, Meyler S, Hunter B, Muniz-Pumares D. Decoupling of internal and external workload during a marathon: an analysis of durability in 82,303 recreational runners. <em>Sports Med.</em> 2022;52(9):2283–95.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

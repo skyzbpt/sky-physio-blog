@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT5M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/mcl-sprain.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/mcl-sprain.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/mcl-sprain.webp",
+      "width": 960,
+      "height": 875,
+      "caption": "膝關節韌帶與內側副韌帶的解剖插圖"
+    }
+  ],
   "url": "https://skythephysio.com/posts/mcl-sprain",
   "about": {
     "@type": "MedicalCondition",
@@ -91,6 +103,16 @@
     {
       "@type": "Thing",
       "name": "內側副韌帶"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Angeline M, Reider B. Medial collateral ligament injuries. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Indelicato PA. Non-operative treatment of complete tears of the medial collateral ligament of the knee. J Bone Joint Surg Am. 1983;65(3):323–9."
     }
   ],
   "author": {
@@ -242,10 +264,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/knee-pain">膝蓋痛</a> › <span>內側副韌帶扭傷：膝蓋內側痛，多數不用開刀</span></nav>
     <div class="meta">
-      <span class="date">2026-10-26</span><span class="cat">膝蓋痛</span><span>約 5 分鐘</span>
+      <time class="date" datetime="2026-10-26">2026-10-26</time><span class="cat">膝蓋痛</span><span>約 5 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">內側副韌帶扭傷：膝蓋內側痛，多數不用開刀</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-08">2026-11-08</time></span><a href="#refs">參考文獻 2 筆</a></p>
     <p class="lede">膝蓋外側被撞、或往內一夾，接著內側痛——內側副韌帶是膝蓋最常扭傷的韌帶之一，而且癒合能力很好。這篇跟著一位社會組足球員，說明三個分級、護具怎麼用、教科書的早期功能復健，以及什麼時候可以回場。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -328,7 +351,7 @@
 <p>宗翰現在熱身時多了一組側併步與單腳平衡。他說：「本來以為要休息兩三個月，沒想到一個月就回場了，而且是一邊練一邊好的。」</p>
 <blockquote>韌帶在活動中癒合，膝蓋在訓練中找回信心。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Angeline M, Reider B. Medial collateral ligament injuries. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>Indelicato PA. Non-operative treatment of complete tears of the medial collateral ligament of the knee. <em>J Bone Joint Surg Am.</em> 1983;65(3):323–9.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

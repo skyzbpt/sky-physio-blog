@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT9M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-ctl-atl-tsb.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-ctl-atl-tsb.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-ctl-atl-tsb.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "CTL、ATL、TSB的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-ctl-atl-tsb",
   "about": {
     "@type": "Thing",
@@ -91,6 +103,28 @@
     {
       "@type": "Thing",
       "name": "間歇"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Allen H, Coggan AR, McGregor S. Training and Racing with a Power Meter. 3rd ed. Boulder, CO: VeloPress; 2019."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Coggan AR. The science of the TrainingPeaks Performance Manager. TrainingPeaks. Published 2022, updated 2023."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Calvert TW, Banister EW, Savage MV, Bach T. A systems model of the effects of training on physical performance. IEEE Trans Syst Man Cybern. 1976;SMC-6(2):94–102."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Soligard T, Schwellnus M, Alonso JM, et al. How much is too much? (Part 1) International Olympic Committee consensus statement on load in sport and risk of injury. Br J Sports Med. 2016;50(17):1030–41."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Impellizzeri FM, Tenan MS, Kempton T, Novak A, Coutts AJ. Acute:chronic workload ratio: conceptual issues and fundamental pitfalls. Int J Sports Physiol Perform. 2020;15(6):907–13."
     }
   ],
   "author": {
@@ -242,10 +276,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>CTL、ATL、TSB：看懂表現管理圖，就懂怎麼調狀態</span></nav>
     <div class="meta">
-      <span class="date">2026-05-22</span><span class="cat">公路車</span><span>約 9 分鐘</span>
+      <time class="date" datetime="2026-05-22">2026-05-22</time><span class="cat">公路車</span><span>約 9 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">CTL、ATL、TSB：看懂表現管理圖，就懂怎麼調狀態</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">CTL 是長期累積的訓練負荷，ATL 是來得快去得也快的疲勞，TSB 是兩者相減的新鮮度。這三條線解釋了為什麼你不能一路練到比賽前一天。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -340,7 +375,7 @@
 <p>PMC 最大的價值，是把「我最近好像練很多」變成看得見的曲線，也讓減量從碰運氣變成可以規劃。但它是一個模型，不知道你昨晚只睡四小時，也不知道你家裡有事。<strong>數字是參考，身體的訊號才是最終裁判。</strong></p>
 <blockquote>體能靠累積，狀態靠恢復。真正的訓練藝術，是在對的時間讓兩條線分開。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Allen H, Coggan AR, McGregor S. <em>Training and Racing with a Power Meter.</em> 3rd ed. Boulder, CO: VeloPress; 2019.</li><li>Coggan AR. The science of the TrainingPeaks Performance Manager. <em>TrainingPeaks.</em> Published 2022, updated 2023.</li><li>Calvert TW, Banister EW, Savage MV, Bach T. A systems model of the effects of training on physical performance. <em>IEEE Trans Syst Man Cybern.</em> 1976;SMC-6(2):94–102.</li><li>Soligard T, Schwellnus M, Alonso JM, et al. How much is too much? (Part 1) International Olympic Committee consensus statement on load in sport and risk of injury. <em>Br J Sports Med.</em> 2016;50(17):1030–41.</li><li>Impellizzeri FM, Tenan MS, Kempton T, Novak A, Coutts AJ. Acute:chronic workload ratio: conceptual issues and fundamental pitfalls. <em>Int J Sports Physiol Perform.</em> 2020;15(6):907–13.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

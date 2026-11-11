@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT6M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/acl-injury-rehab.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/acl-injury-rehab.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/acl-injury-rehab.webp",
+      "width": 960,
+      "height": 574,
+      "caption": "膝關節前、後十字韌帶的位置，並圈出前十字韌帶斷裂處的示意插圖"
+    }
+  ],
   "url": "https://skythephysio.com/posts/acl-injury-rehab",
   "about": {
     "@type": "MedicalCondition",
@@ -87,6 +99,24 @@
     {
       "@type": "Thing",
       "name": "半月板"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Brotzman SB. Anterior cruciate ligament injuries. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Duke M, Brotzman SB. Perturbation training for postoperative ACL reconstruction and patients who were nonoperatively treated and ACL deficient. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Bolgla LA. Gender issues in ACL injury. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Frobell RB, Roos EM, Roos HP, Ranstam J, Lohmander LS. A randomized trial of treatment for acute anterior cruciate ligament tears. N Engl J Med. 2010;363(4):331–42."
     }
   ],
   "author": {
@@ -238,10 +268,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/knee-pain">膝蓋痛</a> › <span>前十字韌帶斷裂：要不要開刀，以及復健怎麼走</span></nav>
     <div class="meta">
-      <span class="date">2026-10-23</span><span class="cat">膝蓋痛</span><span>約 6 分鐘</span>
+      <time class="date" datetime="2026-10-23">2026-10-23</time><span class="cat">膝蓋痛</span><span>約 6 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">前十字韌帶斷裂：要不要開刀，以及復健怎麼走</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-10">2026-11-10</time></span><a href="#refs">參考文獻 4 筆</a></p>
     <p class="lede">急停轉身「啪」一聲、膝蓋很快腫起來，常是前十字韌帶斷了。這篇跟著一位打羽球的業務，說明為什麼女性風險較高、開刀與不開刀怎麼選、術前復健為什麼重要，以及術後各階段的重點。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -318,7 +349,7 @@
 <p>佳穎現在是術後第五個月，已經可以在跑步機上慢跑，每週兩次在治療室做擾動訓練。她說：「以前以為開完刀就好了，現在才知道開刀只是換了一條繩子，怎麼用它要重新學。」</p>
 <blockquote>韌帶可以重建，膝蓋的反應要重新教。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Brotzman SB. Anterior cruciate ligament injuries. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>Duke M, Brotzman SB. Perturbation training for postoperative ACL reconstruction and patients who were nonoperatively treated and ACL deficient. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>Bolgla LA. Gender issues in ACL injury. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>Frobell RB, Roos EM, Roos HP, Ranstam J, Lohmander LS. A randomized trial of treatment for acute anterior cruciate ligament tears. <em>N Engl J Med.</em> 2010;363(4):331–42.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

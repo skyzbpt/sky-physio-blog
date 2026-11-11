@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,18 +70,33 @@
   "timeRequired": "PT2M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/tps-integrated-hypothesis-motor-endplate.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/tps-integrated-hypothesis-motor-endplate.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/tps-integrated-hypothesis-motor-endplate.webp",
+      "width": 960,
+      "height": 540,
+      "caption": "整合假說的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/tps-integrated-hypothesis-motor-endplate",
   "about": {
     "@type": "Thing",
     "name": "疼痛科學",
     "alternateName": "Pain Science"
   },
+  "mentions": [
+    {
+      "@type": "Thing",
+      "name": "整合假說"
+    }
+  ],
   "author": {
     "@type": "Person",
     "@id": "https://skythephysio.com/#sky",
@@ -212,10 +230,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/pain-science">疼痛科學</a> › <span>整合假說：肌肉為什麼會「放不掉」</span></nav>
     <div class="meta">
-      <span class="date">2026-06-10</span><span class="cat">疼痛科學</span><span>約 2 分鐘</span>
+      <time class="date" datetime="2026-06-10">2026-06-10</time><span class="cat">疼痛科學</span><span>約 2 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">整合假說：肌肉為什麼會「放不掉」</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span></p>
     <p class="lede">肩頸有一點就是放不鬆？主流理論認為，神經與肌肉交接的地方把「收縮」的訊號發得太多、又清不掉，肌肉就像門鈴被按住一樣停不下來。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>

@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT10M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-nutrition-periodization.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-nutrition-periodization.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-nutrition-periodization.webp",
+      "width": 960,
+      "height": 683,
+      "caption": "營養週期化的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-nutrition-periodization",
   "about": {
     "@type": "Thing",
@@ -95,6 +107,24 @@
     {
       "@type": "Thing",
       "name": "間歇"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Thomas DT, Erdman KA, Burke LM. American College of Sports Medicine Joint Position Statement. Nutrition and athletic performance. Med Sci Sports Exerc. 2016;48(3):543–68."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Burke LM, Hawley JA, Wong SHS, Jeukendrup AE. Carbohydrates for training and competition. J Sports Sci. 2011;29(Suppl 1):S17–27."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Impey SG, Hearris MA, Hammond KM, Bartlett JD, Louis J, Close GL, Morton JP. Fuel for the work required: a theoretical framework for carbohydrate periodization and the glycogen threshold hypothesis. Sports Med. 2018;48(5):1031–48."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Bussau VA, Fairchild TJ, Rao A, Steele P, Fournier PA. Carbohydrate loading in human muscle: an improved 1 day protocol. Eur J Appl Physiol. 2002;87(3):290–5."
     }
   ],
   "author": {
@@ -238,10 +268,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>營養週期化：不同的訓練期，該吃不一樣的東西</span></nav>
     <div class="meta">
-      <span class="date">2026-08-16</span><span class="cat">公路車</span><span>約 10 分鐘</span>
+      <time class="date" datetime="2026-08-16">2026-08-16</time><span class="cat">公路車</span><span>約 10 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">營養週期化：不同的訓練期，該吃不一樣的東西</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 4 筆</a></p>
     <p class="lede">碳水跟著當天的課表加減，蛋白質每天穩定供應。跟著一位開花店的車友算一週的份量，看減重、肝醣超補和少吃碳水去練，各該放在哪個階段。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -330,7 +361,7 @@
 <p>怡伶沒有換掉雞胸肉沙拉，只是在週二、週四和週六前後多加了飯和吐司。六週後，間歇三組都做完了，體重四週下來大致持平；這只是一個人的經驗，帳卻人人都能照著算。</p>
 <blockquote>你的飲食不需要一個名字。它需要跟得上你的課表。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Thomas DT, Erdman KA, Burke LM. American College of Sports Medicine Joint Position Statement. Nutrition and athletic performance. <em>Med Sci Sports Exerc.</em> 2016;48(3):543–68.</li><li>Burke LM, Hawley JA, Wong SHS, Jeukendrup AE. Carbohydrates for training and competition. <em>J Sports Sci.</em> 2011;29(Suppl 1):S17–27.</li><li>Impey SG, Hearris MA, Hammond KM, Bartlett JD, Louis J, Close GL, Morton JP. Fuel for the work required: a theoretical framework for carbohydrate periodization and the glycogen threshold hypothesis. <em>Sports Med.</em> 2018;48(5):1031–48.</li><li>Bussau VA, Fairchild TJ, Rao A, Steele P, Fournier PA. Carbohydrate loading in human muscle: an improved 1 day protocol. <em>Eur J Appl Physiol.</em> 2002;87(3):290–5.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

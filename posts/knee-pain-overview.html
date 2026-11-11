@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT5M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/knee-pain-overview.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/knee-pain-overview.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/knee-pain-overview.webp",
+      "width": 960,
+      "height": 614,
+      "caption": "膝蓋疼痛常見原因的示意插圖"
+    }
+  ],
   "url": "https://skythephysio.com/posts/knee-pain-overview",
   "about": {
     "@type": "MedicalCondition",
@@ -87,6 +99,20 @@
     {
       "@type": "Thing",
       "name": "髕骨"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Brotzman SB. Anterior cruciate ligament injuries. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Brotzman SB. Patellofemoral disorders. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "James DA, Nigrini CM, Manske RC, Caughran AT. The arthritic knee. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
     }
   ],
   "author": {
@@ -246,10 +272,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/knee-pain">膝蓋痛</a> › <span>膝蓋痛：從痛的位置和發生方式，看懂你的膝蓋</span></nav>
     <div class="meta">
-      <span class="date">2026-10-20</span><span class="cat">膝蓋痛</span><span>約 5 分鐘</span>
+      <time class="date" datetime="2026-10-20">2026-10-20</time><span class="cat">膝蓋痛</span><span>約 5 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">膝蓋痛：從痛的位置和發生方式，看懂你的膝蓋</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-10">2026-11-10</time></span><a href="#refs">參考文獻 3 筆</a></p>
     <p class="lede">膝蓋前面痛、扭到腫起來、蹲下卡卡的、走久了痠——膝蓋痛的來源很多，但有脈絡可循。這篇跟著一位登山社的退休老師，說明怎麼從位置與發生方式分辨、剛痛起來可以做什麼，以及哪些狀況該立刻就醫。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -317,7 +344,7 @@
 <p>麗華現在還是每週爬山，只是背包裡多了兩支登山杖，出門前做五分鐘的大腿與臀部運動。她說：「原來退化不是判決書，是說明書。」</p>
 <blockquote>膝蓋不只是一個關節，它是髖和腳之間的那座橋。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Brotzman SB. Anterior cruciate ligament injuries. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>Brotzman SB. Patellofemoral disorders. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>James DA, Nigrini CM, Manske RC, Caughran AT. The arthritic knee. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

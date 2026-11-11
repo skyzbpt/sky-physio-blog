@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT5M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/groin-strain-adductor.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/groin-strain-adductor.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/groin-strain-adductor.webp",
+      "width": 960,
+      "height": 595,
+      "caption": "鼠蹊拉傷的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/groin-strain-adductor",
   "about": {
     "@type": "MedicalCondition",
@@ -91,6 +103,20 @@
     {
       "@type": "Thing",
       "name": "內收肌"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Reiman MP, Brotzman SB. Groin pain. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Hölmich P, Uhrskou P, Ulnits L, et al. Effectiveness of active physical training as treatment for long-standing adductor-related groin pain in athletes: randomised trial. Lancet. 1999;353(9151):439–43."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Harøy J, Clarsen B, Wiger EG, et al. The Adductor Strengthening Programme prevents groin problems among male football players: a cluster-randomised controlled trial. Br J Sports Med. 2019;53(3):150–7."
     }
   ],
   "author": {
@@ -250,10 +276,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/hip-groin-pain">髖與鼠蹊痛</a> › <span>鼠蹊拉傷：大腿內側一踢球就痛</span></nav>
     <div class="meta">
-      <span class="date">2026-11-06</span><span class="cat">髖與鼠蹊痛</span><span>約 5 分鐘</span>
+      <time class="date" datetime="2026-11-06">2026-11-06</time><span class="cat">髖與鼠蹊痛</span><span>約 5 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">鼠蹊拉傷：大腿內側一踢球就痛</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-08">2026-11-08</time></span><a href="#refs">參考文獻 3 筆</a></p>
     <p class="lede">踢球、側併步、急轉時大腿內側靠近鼠蹊一陣痛——這是內收肌拉傷，也是足球、冰球選手最常見的鼠蹊痛來源。這篇跟著一位五人制足球員，說明怎麼跟其他鼠蹊痛分、為什麼「主動訓練」比休息有效，以及哥本哈根內收肌運動怎麼做。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -329,7 +356,7 @@
 <p>志遠說，以前以為鼠蹊拉傷就是要等，現在知道要練。現在球隊熱身多了五分鐘的哥本哈根，隊友一開始都叫苦連天。</p>
 <blockquote>會在拉長時受傷的肌肉，就要在拉長時練強。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Reiman MP, Brotzman SB. Groin pain. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>Hölmich P, Uhrskou P, Ulnits L, et al. Effectiveness of active physical training as treatment for long-standing adductor-related groin pain in athletes: randomised trial. <em>Lancet.</em> 1999;353(9151):439–43.</li><li>Harøy J, Clarsen B, Wiger EG, et al. The Adductor Strengthening Programme prevents groin problems among male football players: a cluster-randomised controlled trial. <em>Br J Sports Med.</em> 2019;53(3):150–7.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

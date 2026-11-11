@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT9M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-long-term-development.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-long-term-development.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-long-term-development.webp",
+      "width": 960,
+      "height": 659,
+      "caption": "五年的視角的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-long-term-development",
   "about": {
     "@type": "Thing",
@@ -95,6 +107,24 @@
     {
       "@type": "Thing",
       "name": "心率漂移"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Santalla A, Naranjo J, Terrados N. Muscle efficiency improves over time in world-class cyclists. Med Sci Sports Exerc. 2009;41(5):1096–101."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Bouchard C, An P, Rice T, Skinner JS, Wilmore JH, Gagnon J, Pérusse L, Leon AS, Rao DC. Familial aggregation of VO2max response to exercise training: results from the HERITAGE Family Study. J Appl Physiol. 1999;87(3):1003–8."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Raysmith BP, Drew MK. Performance success or failure is influenced by weeks lost to injury and illness in elite Australian track and field athletes: a 5-year prospective study. J Sci Med Sport. 2016;19(10):778–83."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Tanaka H, Seals DR. Endurance exercise performance in Masters athletes: age-associated changes and underlying physiological mechanisms. J Physiol. 2008;586(1):55–63."
     }
   ],
   "author": {
@@ -238,10 +268,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>五年的視角：長期進步是什麼樣子</span></nav>
     <div class="meta">
-      <span class="date">2026-08-22</span><span class="cat">公路車</span><span>約 9 分鐘</span>
+      <time class="date" datetime="2026-08-22">2026-08-22</time><span class="cat">公路車</span><span>約 9 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">五年的視角：長期進步是什麼樣子</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 4 筆</a></p>
     <p class="lede">第一年進步最快，之後曲線變平。這篇用一位車手四年的 FTP 紀錄和五年的時數帳，談怎麼以年為單位加量，並少弄丟幾週訓練。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -322,7 +353,7 @@
 <p>你會停下來的原因，通常不是變慢，是失去了理由。睿哲明年的計畫裡，除了長騎，還有一條他自己加的：每個月找一條沒騎過的路，帶工廠的同事去吃一次豆花。</p>
 <blockquote>五年後你會在哪裡，取決於這五年你有多少週真的騎在路上。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Santalla A, Naranjo J, Terrados N. Muscle efficiency improves over time in world-class cyclists. <em>Med Sci Sports Exerc.</em> 2009;41(5):1096–101.</li><li>Bouchard C, An P, Rice T, Skinner JS, Wilmore JH, Gagnon J, Pérusse L, Leon AS, Rao DC. Familial aggregation of VO2max response to exercise training: results from the HERITAGE Family Study. <em>J Appl Physiol.</em> 1999;87(3):1003–8.</li><li>Raysmith BP, Drew MK. Performance success or failure is influenced by weeks lost to injury and illness in elite Australian track and field athletes: a 5-year prospective study. <em>J Sci Med Sport.</em> 2016;19(10):778–83.</li><li>Tanaka H, Seals DR. Endurance exercise performance in Masters athletes: age-associated changes and underlying physiological mechanisms. <em>J Physiol.</em> 2008;586(1):55–63.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

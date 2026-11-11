@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT10M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-closed-kinetic-chain.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-closed-kinetic-chain.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-closed-kinetic-chain.webp",
+      "width": 960,
+      "height": 638,
+      "caption": "腳被鎖在踏板上的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-closed-kinetic-chain",
   "about": {
     "@type": "Thing",
@@ -99,6 +111,24 @@
     {
       "@type": "Thing",
       "name": "離車訓練"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Steindler A. Kinesiology of the Human Body under Normal and Pathological Conditions. Springfield, IL: Charles C Thomas; 1955."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Kutzner I, Heinlein B, Graichen F, Rohlmann A, Halder AM, Beier A, Bergmann G. Loading of the knee joint during ergometer cycling: telemetric in vivo data. J Orthop Sports Phys Ther. 2012;42(12):1032–8."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Kutzner I, Heinlein B, Graichen F, Bender A, Rohlmann A, Halder A, Beier A, Bergmann G. Loading of the knee joint during activities of daily living measured in vivo in five subjects. J Biomech. 2010;43(11):2164–73."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Hamill J, van Emmerik RE, Heiderscheit BC, Li L. A dynamical systems approach to lower extremity running injuries. Clin Biomech (Bristol, Avon). 1999;14(5):297–308."
     }
   ],
   "author": {
@@ -242,10 +272,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>腳被鎖在踏板上：閉鎖鏈運動的代價與意義</span></nav>
     <div class="meta">
-      <span class="date">2026-07-09</span><span class="cat">公路車</span><span>約 10 分鐘</span>
+      <time class="date" datetime="2026-07-09">2026-07-09</time><span class="cat">公路車</span><span>約 10 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">腳被鎖在踏板上：閉鎖鏈運動的代價與意義</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 4 筆</a></p>
     <p class="lede">騎車時腳被扣片鎖在同一個圓上，一趟三小時就重複上萬圈。這篇算給你看膝蓋受力和重複次數，也談騎車少給身體的刺激要怎麼補回來。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -331,7 +362,7 @@
 <p>騎車是一本很好的描紅簿，國棟的膝蓋才能一騎七年。只是它只印了幾個字，其他方向的筆畫，要自己換張白紙練。</p>
 <blockquote>騎車對關節很仁慈，對變異很殘忍。你要自己把變異加回去。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Steindler A. <em>Kinesiology of the Human Body under Normal and Pathological Conditions.</em> Springfield, IL: Charles C Thomas; 1955.</li><li>Kutzner I, Heinlein B, Graichen F, Rohlmann A, Halder AM, Beier A, Bergmann G. Loading of the knee joint during ergometer cycling: telemetric in vivo data. <em>J Orthop Sports Phys Ther.</em> 2012;42(12):1032–8.</li><li>Kutzner I, Heinlein B, Graichen F, Bender A, Rohlmann A, Halder A, Beier A, Bergmann G. Loading of the knee joint during activities of daily living measured in vivo in five subjects. <em>J Biomech.</em> 2010;43(11):2164–73.</li><li>Hamill J, van Emmerik RE, Heiderscheit BC, Li L. A dynamical systems approach to lower extremity running injuries. <em>Clin Biomech (Bristol, Avon).</em> 1999;14(5):297–308.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

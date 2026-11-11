@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT10M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/bike-fitting-what.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/bike-fitting-what.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/bike-fitting-what.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "Bike Fitting 到底在「fit」什麼的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/bike-fitting-what",
   "about": {
     "@type": "Thing",
@@ -91,6 +103,24 @@
     {
       "@type": "Thing",
       "name": "座墊高度"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Swart J, Holliday W. Cycling biomechanics optimization—the (r)evolution of bicycle fitting. Curr Sports Med Rep. 2019;18(12):490–6."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Barrajón C, Legaz-Arrese A, Cirer-Sastre R, López-Laval I, Sitko S. Effects of bike-fitting on lower back pain in cyclists: a systematic review. Cureus. 2026;18(1):e101718."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Clarsen B, Krosshaug T, Bahr R. Overuse injuries in professional road cyclists. Am J Sports Med. 2010;38(12):2494–501."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Burt P. Bike Fit: Optimise Your Bike Position for High Performance and Injury Avoidance. London: Bloomsbury; 2014."
     }
   ],
   "author": {
@@ -234,10 +264,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>Bike Fitting 到底在「fit」什麼？</span></nav>
     <div class="meta">
-      <span class="date">2026-03-12</span><span class="cat">公路車</span><span>約 10 分鐘</span>
+      <time class="date" datetime="2026-03-12">2026-03-12</time><span class="cat">公路車</span><span>約 10 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">Bike Fitting 到底在「fit」什麼？</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 4 筆</a></p>
     <p class="lede">Bike Fitting 不只是把角度套進標準值，而是替騎累之後的你調車。這篇從三個接觸點、一次只改一樣的紀錄方法，談到研究能證明多少，以及哪些訊號要先看醫師。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -321,7 +352,7 @@
 <p>秀鳳的座墊最後只比原本高 3 mm，把手高 5 mm，新座墊等膝蓋和手都穩定了再換上，一樣一次一樣、記分鐘數。Fitting 不是儀式，是讓「人、車、目標」三方坐下來好好談；身體和目標變了，再談一次。</p>
 <blockquote>車可以為你而調，但身體也要練得起來——Fitting 是兩邊一起往中間走。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Swart J, Holliday W. Cycling biomechanics optimization—the (r)evolution of bicycle fitting. <em>Curr Sports Med Rep.</em> 2019;18(12):490–6.</li><li>Barrajón C, Legaz-Arrese A, Cirer-Sastre R, López-Laval I, Sitko S. Effects of bike-fitting on lower back pain in cyclists: a systematic review. <em>Cureus.</em> 2026;18(1):e101718.</li><li>Clarsen B, Krosshaug T, Bahr R. Overuse injuries in professional road cyclists. <em>Am J Sports Med.</em> 2010;38(12):2494–501.</li><li>Burt P. <em>Bike Fit: Optimise Your Bike Position for High Performance and Injury Avoidance.</em> London: Bloomsbury; 2014.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

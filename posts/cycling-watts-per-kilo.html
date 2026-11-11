@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT9M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-watts-per-kilo.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-watts-per-kilo.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-watts-per-kilo.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "W/kg的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-watts-per-kilo",
   "about": {
     "@type": "Thing",
@@ -83,6 +95,28 @@
     {
       "@type": "Thing",
       "name": "FTP"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Swain DP. The influence of body mass in endurance bicycling. Med Sci Sports Exerc. 1994;26(1):58–63."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Mountjoy M, Ackerman KE, Bailey DM, et al. 2023 International Olympic Committee's (IOC) consensus statement on Relative Energy Deficiency in Sport (REDs). Br J Sports Med. 2023;57(17):1073–97."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Garthe I, Raastad T, Refsnes PE, Koivisto A, Sundgot-Borgen J. Effect of two different weight-loss rates on body composition and strength and power-related performance in elite athletes. Int J Sport Nutr Exerc Metab. 2011;21(2):97–104."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Olmedillas H, González-Agüero A, Moreno LA, Casajus JA, Vicente-Rodríguez G. Cycling and bone health: a systematic review. BMC Med. 2012;10:168."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Rønnestad BR, Mujika I. Optimizing strength training for running and cycling endurance performance: a review. Scand J Med Sci Sports. 2014;24(4):603–12."
     }
   ],
   "author": {
@@ -226,10 +260,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>W/kg：爬坡的貨幣，也是最容易被誤用的數字</span></nav>
     <div class="meta">
-      <span class="date">2026-06-06</span><span class="cat">公路車</span><span>約 9 分鐘</span>
+      <time class="date" datetime="2026-06-06">2026-06-06</time><span class="cat">公路車</span><span>約 9 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">W/kg：爬坡的貨幣，也是最容易被誤用的數字</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">每公斤瓦特決定你在坡上的速度，但把分母壓到極致的代價，常常是骨質、荷爾蒙與免疫力。這篇談怎麼健康地提高它。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -328,7 +363,7 @@
 <p>W/kg 是好用的爬坡貨幣，但它是結果，不是目標。先讓功率長上來；分母要減，只減不出錢的那幾公斤脂肪；幫你出錢的肌肉，和撐住身體的骨頭、荷爾蒙，一樣都別賠進去。</p>
 <blockquote>W/kg 是一種效率指標，不是一種道德標準。用會傷害你的方式把它拉高，最後往往兩邊都輸。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Swain DP. The influence of body mass in endurance bicycling. <em>Med Sci Sports Exerc.</em> 1994;26(1):58–63.</li><li>Mountjoy M, Ackerman KE, Bailey DM, et al. 2023 International Olympic Committee's (IOC) consensus statement on Relative Energy Deficiency in Sport (REDs). <em>Br J Sports Med.</em> 2023;57(17):1073–97.</li><li>Garthe I, Raastad T, Refsnes PE, Koivisto A, Sundgot-Borgen J. Effect of two different weight-loss rates on body composition and strength and power-related performance in elite athletes. <em>Int J Sport Nutr Exerc Metab.</em> 2011;21(2):97–104.</li><li>Olmedillas H, González-Agüero A, Moreno LA, Casajus JA, Vicente-Rodríguez G. Cycling and bone health: a systematic review. <em>BMC Med.</em> 2012;10:168.</li><li>Rønnestad BR, Mujika I. Optimizing strength training for running and cycling endurance performance: a review. <em>Scand J Med Sci Sports.</em> 2014;24(4):603–12.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

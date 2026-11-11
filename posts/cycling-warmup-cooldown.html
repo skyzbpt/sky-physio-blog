@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT10M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-warmup-cooldown.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-warmup-cooldown.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-warmup-cooldown.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "熱身與收操的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-warmup-cooldown",
   "about": {
     "@type": "Thing",
@@ -95,6 +107,28 @@
     {
       "@type": "Thing",
       "name": "訓練台"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Bishop D. Warm up I: potential mechanisms and the effects of passive warm up on exercise performance. Sports Med. 2003;33(6):439–54."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Bailey SJ, Vanhatalo A, Wilkerson DP, DiMenna FJ, Jones AM. Optimizing the \"priming\" effect: influence of prior exercise intensity and recovery duration on O2 uptake kinetics and severe-intensity exercise tolerance. J Appl Physiol. 2009;107(6):1743–56."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Behm DG, Blazevich AJ, Kay AD, McHugh M. Acute effects of muscle stretching on physical performance, range of motion, and injury incidence in healthy active individuals: a systematic review. Appl Physiol Nutr Metab. 2016;41(1):1–11."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Van Hooren B, Peake JM. Do we need a cool-down after exercise? A narrative review of the psychophysiological effects and the effects on performance, injuries and the long-term adaptive response. Sports Med. 2018;48(7):1575–95."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Bishop D. Warm up II: performance changes following active warm up and how to structure the warm up. Sports Med. 2003;33(7):483–98."
     }
   ],
   "author": {
@@ -238,10 +272,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>熱身與收操：不是儀式，是有生理目的的步驟</span></nav>
     <div class="meta">
-      <span class="date">2026-07-22</span><span class="cat">公路車</span><span>約 10 分鐘</span>
+      <time class="date" datetime="2026-07-22">2026-07-22</time><span class="cat">公路車</span><span>約 10 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">熱身與收操：不是儀式，是有生理目的的步驟</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">熱身讓身體在主課表前就進入狀態，收操讓人平順下車。這篇依課表排出熱身長度，也說明收操研究真正能證明到哪裡。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -333,7 +368,7 @@
 <p>時間不夠，砍組數別砍熱身；收操可以短，但別在最後一組結束那一秒就跳下車。</p>
 <blockquote>熱身是為了把今天的課練好；收操，是讓自己平順地下車。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Bishop D. Warm up I: potential mechanisms and the effects of passive warm up on exercise performance. <em>Sports Med.</em> 2003;33(6):439–54.</li><li>Bailey SJ, Vanhatalo A, Wilkerson DP, DiMenna FJ, Jones AM. Optimizing the &quot;priming&quot; effect: influence of prior exercise intensity and recovery duration on O2 uptake kinetics and severe-intensity exercise tolerance. <em>J Appl Physiol.</em> 2009;107(6):1743–56.</li><li>Behm DG, Blazevich AJ, Kay AD, McHugh M. Acute effects of muscle stretching on physical performance, range of motion, and injury incidence in healthy active individuals: a systematic review. <em>Appl Physiol Nutr Metab.</em> 2016;41(1):1–11.</li><li>Van Hooren B, Peake JM. Do we need a cool-down after exercise? A narrative review of the psychophysiological effects and the effects on performance, injuries and the long-term adaptive response. <em>Sports Med.</em> 2018;48(7):1575–95.</li><li>Bishop D. Warm up II: performance changes following active warm up and how to structure the warm up. <em>Sports Med.</em> 2003;33(7):483–98.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

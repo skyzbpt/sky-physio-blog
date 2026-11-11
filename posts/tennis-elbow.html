@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT5M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/tennis-elbow.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/tennis-elbow.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/tennis-elbow.webp",
+      "width": 960,
+      "height": 540,
+      "caption": "轉門把時手肘外側疼痛的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/tennis-elbow",
   "about": {
     "@type": "MedicalCondition",
@@ -83,6 +95,24 @@
     {
       "@type": "Thing",
       "name": "網球肘"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Ellenbecker TS, Davies GJ, et al. Lateral and medial humeral epicondylitis. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Bisset L, Beller E, Jull G, et al. Mobilisation with movement and exercise, corticosteroid injection, or wait and see for tennis elbow: randomised trial. BMJ. 2006;333(7575):939."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Coombes BK, Bisset L, Brooks P, Khan A, Vicenzino B. Effect of corticosteroid injection, physiotherapy, or both on clinical outcomes in patients with unilateral lateral epicondylalgia: a randomized controlled trial. JAMA. 2013;309(5):461–9."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Tyler TF, Thomas GC, Nicholas SJ, McHugh MP. Addition of isolated wrist extensor eccentric exercise to standard treatment for chronic lateral epicondylosis: a prospective randomized trial. J Shoulder Elbow Surg. 2010;19(6):917–22."
     }
   ],
   "author": {
@@ -234,10 +264,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/elbow-wrist-pain">手肘與手腕痛</a> › <span>網球肘：手肘外側痛，不打網球也會得</span></nav>
     <div class="meta">
-      <span class="date">2026-11-02</span><span class="cat">手肘與手腕痛</span><span>約 5 分鐘</span>
+      <time class="date" datetime="2026-11-02">2026-11-02</time><span class="cat">手肘與手腕痛</span><span>約 5 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">網球肘：手肘外側痛，不打網球也會得</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-02">2026-11-02</time></span><a href="#refs">參考文獻 4 筆</a></p>
     <p class="lede">擰毛巾、提水壺、握滑鼠時手肘外側一陣痛——網球肘大多發生在不打網球的人身上。這篇跟著一位烘焙坊老闆，說明它其實是肌腱退化而不是發炎、打類固醇為什麼長期反而較差、離心訓練與護肘怎麼用，以及大概多久會好。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -317,7 +348,7 @@
 <p>美玲說，最大的改變是學會「用整隻手臂工作」，而不是只靠手腕硬撐。她的工作台上現在放著一瓶 1 公斤的水，空檔就練幾下。</p>
 <blockquote>網球肘不是休息就會好的病，是要練到不怕用的肌腱。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Ellenbecker TS, Davies GJ, et al. Lateral and medial humeral epicondylitis. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>Bisset L, Beller E, Jull G, et al. Mobilisation with movement and exercise, corticosteroid injection, or wait and see for tennis elbow: randomised trial. <em>BMJ.</em> 2006;333(7575):939.</li><li>Coombes BK, Bisset L, Brooks P, Khan A, Vicenzino B. Effect of corticosteroid injection, physiotherapy, or both on clinical outcomes in patients with unilateral lateral epicondylalgia: a randomized controlled trial. <em>JAMA.</em> 2013;309(5):461–9.</li><li>Tyler TF, Thomas GC, Nicholas SJ, McHugh MP. Addition of isolated wrist extensor eccentric exercise to standard treatment for chronic lateral epicondylosis: a prospective randomized trial. <em>J Shoulder Elbow Surg.</em> 2010;19(6):917–22.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

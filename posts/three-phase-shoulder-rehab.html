@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT7M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/three-phase-shoulder-rehab.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/three-phase-shoulder-rehab.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/three-phase-shoulder-rehab.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "肩膀復健的三個階段的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/three-phase-shoulder-rehab",
   "about": {
     "@type": "MedicalCondition",
@@ -87,6 +99,24 @@
     {
       "@type": "Thing",
       "name": "肩胛"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Manske RC, Pontillo M. General principles of shoulder rehabilitation. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "O'Brien MJ, Savoie FH 3rd. Rotator cuff tendinitis in the overhead athlete. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Kibler WB, Sciascia A. Current concepts: scapular dyskinesis. Br J Sports Med. 2010;44(5):300–5."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Dimond D, Donatelli RA. Strength training concepts. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012."
     }
   ],
   "author": {
@@ -238,10 +268,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/shoulder-pain">肩膀痛</a> › <span>肩膀復健的三個階段：從安撫到重返過頭動作</span></nav>
     <div class="meta">
-      <span class="date">2026-03-09</span><span class="cat">肩膀痛</span><span>約 7 分鐘</span>
+      <time class="date" datetime="2026-03-09">2026-03-09</time><span class="cat">肩膀痛</span><span>約 7 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">肩膀復健的三個階段：從安撫到重返過頭動作</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-08">2026-11-08</time></span><a href="#refs">參考文獻 4 筆</a></p>
     <p class="lede">肩膀復健不是把同一組動作做到好，而是隨進步換檔。這篇跟著一位羽球愛好者，給你三階段路線圖、每階段的進階標準、教科書建議的加重量規則，以及換階段時最常犯的錯。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -329,7 +360,7 @@
 <p>三階段不是死時間表，而是隨身體回應調整的框架。雅婷現在每週打兩次球，保養菜單一週做兩次，十五分鐘就做完。她說最大的改變是：知道肩膀「準備好了」是什麼樣子。</p>
 <blockquote>復健不是把一組動作做到好，而是知道什麼時候該換檔。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Manske RC, Pontillo M. General principles of shoulder rehabilitation. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>O'Brien MJ, Savoie FH 3rd. Rotator cuff tendinitis in the overhead athlete. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>Kibler WB, Sciascia A. Current concepts: scapular dyskinesis. <em>Br J Sports Med.</em> 2010;44(5):300–5.</li><li>Dimond D, Donatelli RA. Strength training concepts. In: Donatelli RA, ed. <em>Physical Therapy of the Shoulder.</em> 5th ed. St. Louis: Churchill Livingstone; 2012.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

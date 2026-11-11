@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT10M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-cleat-position.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-cleat-position.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-cleat-position.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "扣片位置的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-cleat-position",
   "about": {
     "@type": "Thing",
@@ -95,6 +107,28 @@
     {
       "@type": "Thing",
       "name": "卡踏"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Ericson MO, Nisell R, Arborelius UP, Ekholm J. Muscular activity during ergometer cycling. Scand J Rehabil Med. 1985;17(2):53–61."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Van Sickle JR, Hull ML. Is economy of competitive cyclists affected by the anterior-posterior foot position on the pedal? J Biomech. 2007;40(6):1262–7."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Paton CD. Effects of shoe cleat position on physiology and performance of competitive cyclists. Int J Sports Physiol Perform. 2009;4(4):517–23."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Ruby P, Hull ML. Response of intersegmental knee loads to foot/pedal platform degrees of freedom in cycling. J Biomech. 1993;26(11):1327–40."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Disley BX, Li FX. The effect of Q Factor on gross mechanical efficiency and muscular activation in cycling. Scand J Med Sci Sports. 2014;24(1):117–21."
     }
   ],
   "author": {
@@ -238,10 +272,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>扣片位置：腳下差一點，膝蓋差很多</span></nav>
     <div class="meta">
-      <span class="date">2026-07-04</span><span class="cat">公路車</span><span>約 10 分鐘</span>
+      <time class="date" datetime="2026-07-04">2026-07-04</time><span class="cat">公路車</span><span>約 10 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">扣片位置：腳下差一點，膝蓋差很多</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">扣片的前後、左右和旋轉角度，決定膝蓋每一下踩踏怎麼受力。我用一個實際案例，說明怎麼找到腳天生的角度，一次一兩度地慢慢調整。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -327,7 +362,7 @@
 <p>扣片不需要擺得多標準，它要讓腳待在天生的角度附近，留一點轉動的空間，前後和左右再慢慢微調。動之前先描輪廓，一次只動一個方向，讓膝蓋用幾趟騎乘告訴你答案。</p>
 <blockquote>每小時五千多下的踩踏，會把一個小小的角度誤差，放大成一個真實的傷。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Ericson MO, Nisell R, Arborelius UP, Ekholm J. Muscular activity during ergometer cycling. <em>Scand J Rehabil Med.</em> 1985;17(2):53–61.</li><li>Van Sickle JR, Hull ML. Is economy of competitive cyclists affected by the anterior-posterior foot position on the pedal? <em>J Biomech.</em> 2007;40(6):1262–7.</li><li>Paton CD. Effects of shoe cleat position on physiology and performance of competitive cyclists. <em>Int J Sports Physiol Perform.</em> 2009;4(4):517–23.</li><li>Ruby P, Hull ML. Response of intersegmental knee loads to foot/pedal platform degrees of freedom in cycling. <em>J Biomech.</em> 1993;26(11):1327–40.</li><li>Disley BX, Li FX. The effect of Q Factor on gross mechanical efficiency and muscular activation in cycling. <em>Scand J Med Sci Sports.</em> 2014;24(1):117–21.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

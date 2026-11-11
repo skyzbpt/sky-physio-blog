@@ -108,6 +108,13 @@ footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gr
 .meta .cat{color:var(--sky-ink)}
 .pp-share{margin-left:auto;font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;color:var(--sky-ink);background:none;border:1px solid var(--line);border-radius:999px;padding:5px 16px;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;min-height:44px}
 .pp-share:hover{border-color:var(--sky);background:var(--sky-soft)}
+/* 署名列：誰寫的、誰審閱、最後審閱日、有幾筆出處——醫療衛教的可信度訊號（E-E-A-T），
+   放在標題正下方，讀者與 AI 引擎都不必捲到文末才知道這篇是物理治療師寫的。 */
+.byline{font-family:var(--sans);font-size:.8rem;line-height:1.8;color:var(--muted);margin:0 0 16px;display:flex;flex-wrap:wrap;column-gap:14px}
+.byline a{color:var(--sky-ink)}
+.byline a:hover{text-decoration:underline}
+.post-body .refs-h{scroll-margin-top:92px;margin-bottom:.8em}
+.post-body .refs-h+ol{font-family:var(--sans);font-size:.84rem;line-height:1.8;letter-spacing:0;color:var(--muted);word-break:break-word}
 h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.45;margin-bottom:14px}
 .lede{font-family:var(--serif);color:var(--muted);font-size:1.02rem;line-height:2;border-bottom:1px solid var(--line);padding-bottom:30px;margin-bottom:38px}
 .post-body p{font-family:var(--serif);font-size:1.04rem;line-height:2.1;letter-spacing:.04em;color:var(--ink-2);margin-bottom:1.7em;text-align:justify}

@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT7M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/shoulder-impingement.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/shoulder-impingement.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/shoulder-impingement.webp",
+      "width": 960,
+      "height": 638,
+      "caption": "肩夾擠症候群的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/shoulder-impingement",
   "about": {
     "@type": "MedicalCondition",
@@ -91,6 +103,24 @@
     {
       "@type": "Thing",
       "name": "肩胛"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Rosenthal MD, Moore JH, Lynch JR. Impingement syndrome. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Beard DJ, Rees JL, Cook JA, et al. Arthroscopic subacromial decompression for subacromial shoulder pain (CSAW): a multicentre, pragmatic, parallel group, placebo-controlled, three-group, randomised surgical trial. Lancet. 2018;391(10118):329–38."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Holmgren T, Björnsson Hallgren H, Öberg B, Adolfsson L, Johansson K. Effect of specific exercise strategy on need for surgery in patients with subacromial impingement syndrome: randomised controlled study. BMJ. 2012;344:e787."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Greenfield BH. Impingement syndrome and impingement-related instability. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012."
     }
   ],
   "author": {
@@ -242,10 +272,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/shoulder-pain">肩膀痛</a> › <span>肩夾擠症候群：舉手到一半就卡、就痛</span></nav>
     <div class="meta">
-      <span class="date">2026-02-19</span><span class="cat">肩膀痛</span><span>約 7 分鐘</span>
+      <time class="date" datetime="2026-02-19">2026-02-19</time><span class="cat">肩膀痛</span><span>約 7 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">肩夾擠症候群：舉手到一半就卡、就痛</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-08">2026-11-08</time></span><a href="#refs">參考文獻 4 筆</a></p>
     <p class="lede">手舉到中段特別痛、過了那個角度又還好？這道「痛弧」常是肩夾擠的招牌。這篇跟著一位排球教練，說明原發與續發夾擠差在哪、為什麼開刀磨骨不一定比運動好，以及在家先做哪幾件事。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -329,7 +360,7 @@
 <p>肩夾擠對運動治療反應通常很好。與其急著把天花板拆高，不如先把輪胎打飽（旋轉肌袖）、把坡道修正（肩胛與胸椎），那道「痛弧」會慢慢消失。</p>
 <blockquote>空間不是只有骨頭決定的，肌肉的協調，也是空間的一部分。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Rosenthal MD, Moore JH, Lynch JR. Impingement syndrome. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>Beard DJ, Rees JL, Cook JA, et al. Arthroscopic subacromial decompression for subacromial shoulder pain (CSAW): a multicentre, pragmatic, parallel group, placebo-controlled, three-group, randomised surgical trial. <em>Lancet.</em> 2018;391(10118):329–38.</li><li>Holmgren T, Björnsson Hallgren H, Öberg B, Adolfsson L, Johansson K. Effect of specific exercise strategy on need for surgery in patients with subacromial impingement syndrome: randomised controlled study. <em>BMJ.</em> 2012;344:e787.</li><li>Greenfield BH. Impingement syndrome and impingement-related instability. In: Donatelli RA, ed. <em>Physical Therapy of the Shoulder.</em> 5th ed. St. Louis: Churchill Livingstone; 2012.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT4M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/shipai-stairs-knee-osteoarthritis.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/shipai-stairs-knee-osteoarthritis.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/shipai-stairs-knee-osteoarthritis.webp",
+      "width": 960,
+      "height": 720,
+      "caption": "士林老公寓沒有電梯的樓梯間與扶手"
+    }
+  ],
   "url": "https://skythephysio.com/posts/shipai-stairs-knee-osteoarthritis",
   "about": {
     "@type": "MedicalCondition",
@@ -83,6 +95,20 @@
     {
       "@type": "Thing",
       "name": "膝關節炎"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Bannuru RR, Osani MC, Vaysbrot EE, et al. OARSI guidelines for the non-surgical management of knee, hip, and polyarticular osteoarthritis. Osteoarthritis Cartilage. 2019;27(11):1578-1589."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Fransen M, McConnell S, Harmer AR, Van der Esch M, Simic M, Bennell KL. Exercise for osteoarthritis of the knee: a Cochrane systematic review. Br J Sports Med. 2015;49(24):1554-1557."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Skou ST, Roos EM. Good Life with osteoArthritis in Denmark (GLA:D™): evidence-based education and supervised neuromuscular exercise delivered by certified physiotherapists nationwide. BMC Musculoskelet Disord. 2017;18(1):72."
     }
   ],
   "author": {
@@ -234,10 +260,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/knee-pain">膝蓋痛</a> › <span>在石牌、芝山上下捷運樓梯膝蓋就痛？退化性膝關節炎的長輩這樣練</span></nav>
     <div class="meta">
-      <span class="date">2026-11-08</span><span class="cat">膝蓋痛</span><span>約 4 分鐘</span>
+      <time class="date" datetime="2026-11-08">2026-11-08</time><span class="cat">膝蓋痛</span><span>約 4 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">在石牌、芝山上下捷運樓梯膝蓋就痛？退化性膝關節炎的長輩這樣練</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-10">2026-11-10</time></span><a href="#refs">參考文獻 3 筆</a></p>
     <p class="lede">住在石牌、芝山一帶的長輩，每天搭捷運、去市場、爬家裡的公寓樓梯，膝蓋一痛就開始少出門。但膝蓋退化越不動越無力。這篇跟著一位住在石牌老公寓四樓的阿嬤，說明上下樓梯為什麼特別痛、怎麼走比較省力，以及每天在家可以做的四個動作。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -303,7 +330,7 @@
 <p>她說：「我還以為膝蓋壞了就要省著用，原來是要練著用。」</p>
 <blockquote>退化的膝蓋需要的不是休息，是有力的大腿陪它走路。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Bannuru RR, Osani MC, Vaysbrot EE, et al. OARSI guidelines for the non-surgical management of knee, hip, and polyarticular osteoarthritis. <em>Osteoarthritis Cartilage.</em> 2019;27(11):1578-1589.</li><li>Fransen M, McConnell S, Harmer AR, Van der Esch M, Simic M, Bennell KL. Exercise for osteoarthritis of the knee: a Cochrane systematic review. <em>Br J Sports Med.</em> 2015;49(24):1554-1557.</li><li>Skou ST, Roos EM. Good Life with osteoArthritis in Denmark (GLA:D™): evidence-based education and supervised neuromuscular exercise delivered by certified physiotherapists nationwide. <em>BMC Musculoskelet Disord.</em> 2017;18(1):72.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

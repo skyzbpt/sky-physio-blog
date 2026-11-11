@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT9M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-nutrition-pitfalls.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-nutrition-pitfalls.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-nutrition-pitfalls.webp",
+      "width": 960,
+      "height": 523,
+      "caption": "車手最常見的六個營養錯誤的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-nutrition-pitfalls",
   "about": {
     "@type": "Thing",
@@ -95,6 +107,28 @@
     {
       "@type": "Thing",
       "name": "踩踏"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Thomas DT, Erdman KA, Burke LM. American College of Sports Medicine Joint Position Statement. Nutrition and athletic performance. Med Sci Sports Exerc. 2016;48(3):543–68."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Jeukendrup A. A step towards personalized sports nutrition: carbohydrate intake during exercise. Sports Med. 2014;44(Suppl 1):S25–33."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Areta JL, Burke LM, Ross ML, et al. Timing and distribution of protein ingestion during prolonged recovery from resistance exercise alters myofibrillar protein synthesis. J Physiol. 2013;591(9):2319–31."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Parr EB, Camera DM, Areta JL, Burke LM, Phillips SM, Hawley JA, Coffey VG. Alcohol ingestion impairs maximal post-exercise rates of myofibrillar protein synthesis following a single bout of concurrent training. PLoS One. 2014;9(2):e88384."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Mountjoy M, Ackerman KE, Bailey DM, et al. 2023 International Olympic Committee's (IOC) consensus statement on Relative Energy Deficiency in Sport (REDs). Br J Sports Med. 2023;57(17):1073–97."
     }
   ],
   "author": {
@@ -238,10 +272,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>車手最常見的六個營養錯誤</span></nav>
     <div class="meta">
-      <span class="date">2026-08-18</span><span class="cat">公路車</span><span>約 9 分鐘</span>
+      <time class="date" datetime="2026-08-18">2026-08-18</time><span class="cat">公路車</span><span>約 9 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">車手最常見的六個營養錯誤</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">吃太少、補太晚、蛋白質擠在同一餐、賽前吃新東西、在錯的時期減重、誤解騎後補充，這六個錯誤比少吃任何補充品都更值得先改。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -333,7 +368,7 @@
 <p>政達沒有換掉宵夜，只是把早餐和下午那一餐補上、把減重延到賽季結束、週六長騎改成出發 40 分鐘就開始吃。六週後體重大致持平，長騎最後一小時不再軟腳，重測 FTP 回到 248 W；一個案例證明不了什麼，但每一筆帳都能自己照著算。</p>
 <blockquote>營養不需要複雜。它需要一致。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Thomas DT, Erdman KA, Burke LM. American College of Sports Medicine Joint Position Statement. Nutrition and athletic performance. <em>Med Sci Sports Exerc.</em> 2016;48(3):543–68.</li><li>Jeukendrup A. A step towards personalized sports nutrition: carbohydrate intake during exercise. <em>Sports Med.</em> 2014;44(Suppl 1):S25–33.</li><li>Areta JL, Burke LM, Ross ML, et al. Timing and distribution of protein ingestion during prolonged recovery from resistance exercise alters myofibrillar protein synthesis. <em>J Physiol.</em> 2013;591(9):2319–31.</li><li>Parr EB, Camera DM, Areta JL, Burke LM, Phillips SM, Hawley JA, Coffey VG. Alcohol ingestion impairs maximal post-exercise rates of myofibrillar protein synthesis following a single bout of concurrent training. <em>PLoS One.</em> 2014;9(2):e88384.</li><li>Mountjoy M, Ackerman KE, Bailey DM, et al. 2023 International Olympic Committee's (IOC) consensus statement on Relative Energy Deficiency in Sport (REDs). <em>Br J Sports Med.</em> 2023;57(17):1073–97.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

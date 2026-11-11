@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT9M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-crank-length.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-crank-length.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-crank-length.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "曲柄長度的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-crank-length",
   "about": {
     "@type": "Thing",
@@ -107,6 +119,24 @@
     {
       "@type": "Thing",
       "name": "座墊高度"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Martin JC, Spirduso WW. Determinants of maximal cycling power: crank length, pedaling rate and pedal speed. Eur J Appl Physiol. 2001;84(5):413–8."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "McDaniel J, Durstine JL, Hand GA, Martin JC. Determinants of metabolic cost during submaximal cycling. J Appl Physiol. 2002;93(3):823–8."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Barratt PR, Korff T, Elmer SJ, Martin JC. Effect of crank length on joint-specific power during maximal cycling. Med Sci Sports Exerc. 2011;43(9):1689–97."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Ferrer-Roca V, Rivero-Palomo V, Ogueta-Alday A, Rodríguez-Marroyo JA, García-López J. Acute effects of small changes in crank length on gross efficiency and pedalling technique during submaximal cycling. J Sports Sci. 2017;35(14):1328–35."
     }
   ],
   "author": {
@@ -250,10 +280,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>曲柄長度：更短的曲柄可能對你的髖和膝更友善</span></nav>
     <div class="meta">
-      <span class="date">2026-07-01</span><span class="cat">公路車</span><span>約 9 分鐘</span>
+      <time class="date" datetime="2026-07-01">2026-07-01</time><span class="cat">公路車</span><span>約 9 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">曲柄長度：更短的曲柄可能對你的髖和膝更友善</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 4 筆</a></p>
     <p class="lede">曲柄長度決定髖和膝在最高點要折多深。研究顯示在常見範圍內，長短對功率影響不大；猶豫時選短一點，並記得座墊升高同樣的量。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -335,7 +366,7 @@
 <p>曲柄長度不是用來增加力量的，它決定你的髖和膝每一圈要繞多大的圓。猶豫時選短一點，座墊跟著升，功率計跟著改，一次只動一件事，讓身體告訴你答案。</p>
 <blockquote>曲柄不是越長越有力。它決定的是你的髖和膝每一圈要走多遠的路——而那是每小時五千多次的事。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Martin JC, Spirduso WW. Determinants of maximal cycling power: crank length, pedaling rate and pedal speed. <em>Eur J Appl Physiol.</em> 2001;84(5):413–8.</li><li>McDaniel J, Durstine JL, Hand GA, Martin JC. Determinants of metabolic cost during submaximal cycling. <em>J Appl Physiol.</em> 2002;93(3):823–8.</li><li>Barratt PR, Korff T, Elmer SJ, Martin JC. Effect of crank length on joint-specific power during maximal cycling. <em>Med Sci Sports Exerc.</em> 2011;43(9):1689–97.</li><li>Ferrer-Roca V, Rivero-Palomo V, Ogueta-Alday A, Rodríguez-Marroyo JA, García-López J. Acute effects of small changes in crank length on gross efficiency and pedalling technique during submaximal cycling. <em>J Sports Sci.</em> 2017;35(14):1328–35.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT5M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/hip-osteoarthritis.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/hip-osteoarthritis.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/hip-osteoarthritis.webp",
+      "width": 960,
+      "height": 638,
+      "caption": "髖關節炎的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/hip-osteoarthritis",
   "about": {
     "@type": "MedicalCondition",
@@ -91,6 +103,20 @@
     {
       "@type": "Thing",
       "name": "鼠蹊"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Caughran AT, Giangarra CE. The arthritic hip. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Meira EP, Wagner M, Brumitt J. Hip injuries. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Fransen M, McConnell S, Hernandez-Molina G, Reichenbach S. Exercise for osteoarthritis of the hip. Cochrane Database Syst Rev. 2014;(4):CD007912."
     }
   ],
   "author": {
@@ -250,10 +276,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/hip-groin-pain">髖與鼠蹊痛</a> › <span>髖關節炎：穿襪子、剪腳趾甲變困難的時候</span></nav>
     <div class="meta">
-      <span class="date">2026-11-06</span><span class="cat">髖與鼠蹊痛</span><span>約 5 分鐘</span>
+      <time class="date" datetime="2026-11-06">2026-11-06</time><span class="cat">髖與鼠蹊痛</span><span>約 5 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">髖關節炎：穿襪子、剪腳趾甲變困難的時候</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-08">2026-11-08</time></span><a href="#refs">參考文獻 3 筆</a></p>
     <p class="lede">鼠蹊部或大腿前側痛、早上起床髖關節僵、穿襪子剪腳趾甲越來越難——這可能是髖關節炎。這篇跟著一位退休的公車站務員，說明它跟腰痛怎麼分、運動為什麼是第一線治療、拐杖要拿哪一手，以及什麼時候該考慮換關節。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -327,7 +354,7 @@
 <p>春美現在每天早上在公園繞兩圈，左手拿著一支漂亮的拐杖。她說：「以前覺得拿拐杖很老，現在覺得能自己走到市場比較重要。」</p>
 <blockquote>髖關節炎不是要你少走，是要你換一種方式走。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Caughran AT, Giangarra CE. The arthritic hip. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>Meira EP, Wagner M, Brumitt J. Hip injuries. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>Fransen M, McConnell S, Hernandez-Molina G, Reichenbach S. Exercise for osteoarthritis of the hip. <em>Cochrane Database Syst Rev.</em> 2014;(4):CD007912.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

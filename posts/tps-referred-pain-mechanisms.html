@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT3M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/tps-referred-pain-mechanisms.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/tps-referred-pain-mechanisms.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/tps-referred-pain-mechanisms.webp",
+      "width": 960,
+      "height": 674,
+      "caption": "內臟轉移痛分布的示意插圖"
+    }
+  ],
   "url": "https://skythephysio.com/posts/tps-referred-pain-mechanisms",
   "about": {
     "@type": "Thing",
@@ -87,6 +99,12 @@
     {
       "@type": "Thing",
       "name": "橫膈"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Gray JC. Visceral referred pain to the shoulder. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012."
     }
   ],
   "author": {
@@ -222,10 +240,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/pain-science">疼痛科學</a> › <span>轉移痛：為什麼痛感出現在別的地方</span></nav>
     <div class="meta">
-      <span class="date">2026-07-11</span><span class="cat">疼痛科學</span><span>約 3 分鐘</span>
+      <time class="date" datetime="2026-07-11">2026-07-11</time><span class="cat">疼痛科學</span><span>約 3 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">轉移痛：為什麼痛感出現在別的地方</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-08">2026-11-08</time></span><a href="#refs">參考文獻 1 筆</a></p>
     <p class="lede">肩膀的問題卻痛在手臂、下巴的問題卻像牙痛——這種「痛在別處」的現象非常常見，不認識它，可能導致誤診甚至白挨一刀。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -280,7 +299,7 @@
 <p>書中也提到，內臟的轉移痛還可能造成<strong>反射性的肌肉保護</strong>：例如心絞痛轉移到第四胸椎附近，讓那一段的肌肉緊繃、活動變差。這是肌肉與內臟轉移痛彼此交錯、需要仔細分辨的原因。</p>
 <blockquote>痛的地方不一定是問題的地方——這句話有明確的神經生理基礎。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Gray JC. Visceral referred pain to the shoulder. In: Donatelli RA, ed. <em>Physical Therapy of the Shoulder.</em> 5th ed. St. Louis: Churchill Livingstone; 2012.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

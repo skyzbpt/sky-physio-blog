@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT9M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-common-training-mistakes.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-common-training-mistakes.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-common-training-mistakes.webp",
+      "width": 960,
+      "height": 581,
+      "caption": "業餘車手最常犯的十個訓練錯誤的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-common-training-mistakes",
   "about": {
     "@type": "Thing",
@@ -103,6 +115,28 @@
     {
       "@type": "Thing",
       "name": "座墊高度"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Allen H, Coggan AR, McGregor S. Training and Racing with a Power Meter. 3rd ed. Boulder, CO: VeloPress; 2019."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Seiler S. What is best practice for training intensity and duration distribution in endurance athletes? Int J Sports Physiol Perform. 2010;5(3):276–91."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Buist I, Bredeweg SW, van Mechelen W, Lemmink KAPM, Pepping GJ, Diercks RL. No effect of a graded training program on the number of running-related injuries in novice runners: a randomized controlled trial. Am J Sports Med. 2008;36(1):33–9."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Jeukendrup A. A step towards personalized sports nutrition: carbohydrate intake during exercise. Sports Med. 2014;44(Suppl 1):S25–33."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Hirshkowitz M, Whiton K, Albert SM, et al. National Sleep Foundation's sleep time duration recommendations: methodology and results summary. Sleep Health. 2015;1(1):40–3."
     }
   ],
   "author": {
@@ -246,10 +280,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>業餘車手最常犯的十個訓練錯誤</span></nav>
     <div class="meta">
-      <span class="date">2026-08-23</span><span class="cat">公路車</span><span>約 9 分鐘</span>
+      <time class="date" datetime="2026-08-23">2026-08-23</time><span class="cat">公路車</span><span>約 9 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">業餘車手最常犯的十個訓練錯誤</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">把散落各篇的重點收攏成一張檢查清單，附上一個月騎乘紀錄的實例。先修好這十件事，通常比找到任何神奇課表更能讓你變強。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -355,7 +390,7 @@
 <p>宥辰沒有換課表。他把週日騎回 150 W 以下，週二的間歇五組都守在 250 W 以上，第五週排了恢復週，座管也貼了膠帶。兩個月後在戶外重測，FTP 從 240 W 到 247 W，不多，但是八個月來第一次往上走。</p>
 <blockquote>大部分人不需要更好的課表。他們需要的是把已經知道的事，穩定地做完。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Allen H, Coggan AR, McGregor S. <em>Training and Racing with a Power Meter.</em> 3rd ed. Boulder, CO: VeloPress; 2019.</li><li>Seiler S. What is best practice for training intensity and duration distribution in endurance athletes? <em>Int J Sports Physiol Perform.</em> 2010;5(3):276–91.</li><li>Buist I, Bredeweg SW, van Mechelen W, Lemmink KAPM, Pepping GJ, Diercks RL. No effect of a graded training program on the number of running-related injuries in novice runners: a randomized controlled trial. <em>Am J Sports Med.</em> 2008;36(1):33–9.</li><li>Jeukendrup A. A step towards personalized sports nutrition: carbohydrate intake during exercise. <em>Sports Med.</em> 2014;44(Suppl 1):S25–33.</li><li>Hirshkowitz M, Whiton K, Albert SM, et al. National Sleep Foundation's sleep time duration recommendations: methodology and results summary. <em>Sleep Health.</em> 2015;1(1):40–3.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

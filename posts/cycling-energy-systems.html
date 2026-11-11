@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT10M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-energy-systems.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-energy-systems.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-energy-systems.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "三大能量系統的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-energy-systems",
   "about": {
     "@type": "Thing",
@@ -99,6 +111,28 @@
     {
       "@type": "Thing",
       "name": "間歇"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Gastin PB. Energy system interaction and relative contribution during maximal exercise. Sports Med. 2001;31(10):725–41."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Gastin PB, Suppiah HT. Anaerobic and aerobic energy system contribution during maximal exercise: a systematic review. Sports Med. 2026;56(7):1723–47."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Gaitanos GC, Williams C, Boobis LH, Brooks S. Human muscle metabolism during intermittent maximal exercise. J Appl Physiol. 1993;75(2):712–9."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Bogdanis GC, Nevill ME, Boobis LH, Lakomy HK, Nevill AM. Recovery of power output and muscle metabolites following 30 s of maximal sprint cycling in man. J Physiol. 1995;482(Pt 2):467–80."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Romijn JA, Coyle EF, Sidossis LS, Gastaldelli A, Horowitz JF, Endert E, Wolfe RR. Regulation of endogenous fat and carbohydrate metabolism in relation to exercise intensity and duration. Am J Physiol. 1993;265(3 Pt 1):E380–91."
     }
   ],
   "author": {
@@ -242,10 +276,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>三大能量系統：從十秒衝刺到五小時長征</span></nav>
     <div class="meta">
-      <span class="date">2026-05-31</span><span class="cat">公路車</span><span>約 10 分鐘</span>
+      <time class="date" datetime="2026-05-31">2026-05-31</time><span class="cat">公路車</span><span>約 10 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">三大能量系統：從十秒衝刺到五小時長征</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">磷酸系統、醣解系統、有氧系統不是輪流上工，而是同時運轉、比例不同。全力騎四分鐘，約八成能量其實來自有氧；看懂比例，課表才練得到對的地方。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -334,7 +369,7 @@
 <p>宇翔後來不再問自己是「有氧型」還是「無氧型」，而是問：這堂課要哪一口灶多出菜？冷盤要休夠才上，熱炒一週一次就夠；大鍋最不起眼，卻餵飽整場宴席。</p>
 <blockquote>三個系統不是三個開關，是三種比例。課表設計，就是在調那個比例。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Gastin PB. Energy system interaction and relative contribution during maximal exercise. <em>Sports Med.</em> 2001;31(10):725–41.</li><li>Gastin PB, Suppiah HT. Anaerobic and aerobic energy system contribution during maximal exercise: a systematic review. <em>Sports Med.</em> 2026;56(7):1723–47.</li><li>Gaitanos GC, Williams C, Boobis LH, Brooks S. Human muscle metabolism during intermittent maximal exercise. <em>J Appl Physiol.</em> 1993;75(2):712–9.</li><li>Bogdanis GC, Nevill ME, Boobis LH, Lakomy HK, Nevill AM. Recovery of power output and muscle metabolites following 30 s of maximal sprint cycling in man. <em>J Physiol.</em> 1995;482(Pt 2):467–80.</li><li>Romijn JA, Coyle EF, Sidossis LS, Gastaldelli A, Horowitz JF, Endert E, Wolfe RR. Regulation of endogenous fat and carbohydrate metabolism in relation to exercise intensity and duration. <em>Am J Physiol.</em> 1993;265(3 Pt 1):E380–91.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>
