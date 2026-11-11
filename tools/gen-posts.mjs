@@ -20,29 +20,29 @@ const CSS = SHELL + `
 .btn,.nav-link,.brand,.crumb a,.pp-share,.author-box,.more a,.post-body figure img{transition:color .22s ease,background-color .22s ease,border-color .22s ease,box-shadow .3s ease,transform .3s cubic-bezier(.22,.7,.3,1)}
 }
 .brand{display:flex;align-items:center;gap:10px;cursor:pointer}
-.btn:hover{background:rgba(35,42,80,.06);transform:translateY(-2px)}
+.btn:hover{background:rgba(27,37,65,.06);transform:translateY(-2px)}
 .btn:active{opacity:.8;transform:translateY(0)}
-.btn.teal:hover{background:#0A5F53;border-color:#0A5F53;box-shadow:0 12px 24px -12px rgba(12,115,101,.75)}
+.btn.sky:hover{background:#0D5682;border-color:#0D5682;box-shadow:0 12px 24px -12px rgba(18,106,159,.75)}
 .post-page{max-width:720px;margin:0 auto;padding:56px 32px 96px}
 /* 長文閱讀面：把內文放在淺色紙面上，藍色退成環境色。
    手機維持滿版（窄螢幕上留白比紙面重要），平板以上才浮起來。 */
 @media(min-width:600px){
   .post-page{background:var(--bg-soft);border:1px solid var(--line);border-radius:20px;
-    box-shadow:0 22px 54px -36px rgba(35,42,80,.5);
+    box-shadow:0 22px 54px -36px rgba(27,37,65,.5);
     margin-top:36px;margin-bottom:64px;padding:56px 56px 72px}
 }
 .crumb{font-family:var(--mono);font-size:.75rem;letter-spacing:.05em;color:var(--muted);margin-bottom:26px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.author-box{display:flex;align-items:center;gap:16px;margin-top:30px;padding:20px 22px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);box-shadow:0 2px 12px -6px rgba(35,42,80,.16)}
-.author-box:hover{border-color:rgba(20,154,138,.45);box-shadow:0 16px 32px -22px rgba(20,154,138,.5)}
+.author-box{display:flex;align-items:center;gap:16px;margin-top:30px;padding:20px 22px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);box-shadow:0 2px 12px -6px rgba(27,37,65,.16)}
+.author-box:hover{border-color:rgba(46,154,214,.45);box-shadow:0 16px 32px -22px rgba(46,154,214,.5)}
 .author-box img{width:52px;height:52px;flex:none;border-radius:50%;background:#fff;object-fit:contain}
 .author-box .a-name{font-family:var(--serif);font-weight:700;font-size:1.02rem}
 .author-box .a-cred{font-size:.8rem;color:var(--muted);margin:3px 0 6px;line-height:1.7}
-.author-box .a-link{font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;color:var(--teal-ink);display:inline-flex;align-items:center;min-height:44px}
+.author-box .a-link{font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;color:var(--sky-ink);display:inline-flex;align-items:center;min-height:44px}
 .author-box .a-link:hover{text-decoration:underline}
 /* 文末預約卡：讀完文章的人最可能想預約，但側欄預約卡只在 ≥1140px 出現——
    手機與平板讀到最後只剩延伸閱讀，沒有下一步。這張卡補上預約與分享；
    寬螢幕有常駐側欄，這裡就不重複。 */
-.end-cta{margin-top:16px;padding:24px 22px 22px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(120deg,var(--bg-soft) 0%,#E6F3FC 55%,#D2E8F8 100%)}
+.end-cta{margin-top:16px;padding:24px 22px 22px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(120deg,var(--bg-soft) 0%,#F6FAFE 55%,#E6F2FB 100%)}
 .end-cta .t{font-family:var(--serif);font-weight:700;font-size:1.12rem;line-height:1.6;color:var(--ink);margin-bottom:6px}
 .end-cta p{font-size:.9rem;line-height:1.85;color:var(--muted);margin-bottom:18px}
 .end-cta .row{display:flex;flex-wrap:wrap;gap:10px}
@@ -51,62 +51,62 @@ const CSS = SHELL + `
 /* 字距只給拉丁字母與數字：中文字本來就等寬，再加 .16em 會被拆成「肩 膀 痛」 */
 .meta{font-family:var(--mono);font-size:.75rem;letter-spacing:normal;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-bottom:20px}
 .meta .date{letter-spacing:.16em}
-.meta .cat{color:var(--red)}
-.pp-share{margin-left:auto;font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;color:var(--teal-ink);background:none;border:1px solid var(--line);border-radius:999px;padding:5px 16px;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;min-height:44px}
-.pp-share:hover{border-color:var(--teal);background:var(--teal-soft)}
+.meta .cat{color:var(--sky-ink)}
+.pp-share{margin-left:auto;font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;color:var(--sky-ink);background:none;border:1px solid var(--line);border-radius:999px;padding:5px 16px;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;min-height:44px}
+.pp-share:hover{border-color:var(--sky);background:var(--sky-soft)}
 h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.45;margin-bottom:14px}
 .lede{font-family:var(--serif);color:var(--muted);font-size:1.02rem;line-height:2;border-bottom:1px solid var(--line);padding-bottom:30px;margin-bottom:38px}
 .post-body p{font-family:var(--serif);font-size:1.04rem;line-height:2.1;letter-spacing:.04em;color:var(--ink-2);margin-bottom:1.7em;text-align:justify}
 .post-body h2{font-family:var(--serif);font-size:1.3rem;font-weight:700;margin:2.4em 0 1em;display:flex;align-items:center;gap:12px}
-.post-body h2::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red);flex:none}
-.post-body blockquote{border-left:2px solid var(--teal);padding:6px 0 6px 22px;margin:0 0 1.7em;font-family:var(--serif);color:var(--teal-ink);font-size:1.04rem;line-height:2}
+.post-body h2::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--sky-ink);flex:none}
+.post-body blockquote{border-left:2px solid var(--sky);padding:6px 0 6px 22px;margin:0 0 1.7em;font-family:var(--serif);color:var(--sky-ink);font-size:1.04rem;line-height:2}
 .post-body strong{color:var(--ink)}
 .post-body ul,.post-body ol{font-family:var(--serif);font-size:1.04rem;line-height:2;letter-spacing:.04em;color:var(--ink-2);margin:0 0 1.7em;padding-left:1.5em}
 .post-body li{margin-bottom:.55em;padding-left:.25em}
-.post-body li::marker{color:var(--teal-ink)}
+.post-body li::marker{color:var(--sky-ink)}
 .post-body li:last-child{margin-bottom:0}
 .post-body em{font-style:italic}
 .post-body hr{border:none;border-top:1px solid var(--line);margin:2.6em 0}
 .post-body figure{margin:2em 0;text-align:center}
-.post-body figure img{max-width:100%;max-height:560px;width:auto;height:auto;border-radius:10px;box-shadow:0 4px 20px rgba(35,42,80,.14);display:inline-block}
+.post-body figure img{max-width:100%;max-height:560px;width:auto;height:auto;border-radius:10px;box-shadow:0 4px 20px rgba(27,37,65,.14);display:inline-block}
 .post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;color:var(--muted)}
 .post-body h2{scroll-margin-top:92px}
 .post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
-.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--teal-ink)}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--sky-ink)}
 /* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
 .reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
-.reading i{display:block;height:100%;width:0;background:var(--teal)}
+.reading i{display:block;height:100%;width:0;background:var(--sky)}
 /* 側欄預約卡：只在 ≥1140px 的右側欄顯示（見下方 media query） */
 .side-cta{display:none}
 /* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
 .toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
 .toc>summary{cursor:pointer;font-family:var(--mono);font-size:.75rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
 .toc>summary::-webkit-details-marker{display:none}
-.toc>summary::after{content:"＋";margin-left:auto;color:var(--teal-ink);font-size:.85rem}
+.toc>summary::after{content:"＋";margin-left:auto;color:var(--sky-ink);font-size:.85rem}
 .toc[open]>summary::after{content:"－"}
 .toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
 .toc li{counter-increment:toc}
 .toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
 .toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.75rem;letter-spacing:.06em;color:var(--muted)}
-.toc li a:hover{color:var(--teal-ink)}
-.toc li a.on,.toc li a.on::before{color:var(--teal-ink)}
+.toc li a:hover{color:var(--sky-ink)}
+.toc li a.on,.toc li a.on::before{color:var(--sky-ink)}
 .toc li a.on{font-weight:700}
 /* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
 .pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
 .pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
-.pager a:hover{border-color:var(--teal)}
+.pager a:hover{border-color:var(--sky)}
 .pager a span{display:block;font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
 .pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
-.pager a:hover b{color:var(--teal-ink)}
+.pager a:hover b{color:var(--sky-ink)}
 .pager .nx{text-align:right}
 /* 快速解答：問句小標 + 一兩句直接回答，放在導言下方。
    Google AI 摘要與精選摘要偏好「問題 → 緊接著的簡短答案」，這區塊也讓讀者先看到結論。 */
-.quick{margin:0 0 38px;padding:20px 22px 8px;border:1px solid var(--line);border-left:3px solid #4BA3D9;border-radius:14px;background:#EEF7FD}
+.quick{margin:0 0 38px;padding:20px 22px 8px;border:1px solid var(--line);border-left:3px solid var(--sky);border-radius:14px;background:#F1F7FC}
 .quick h2{font-family:var(--mono);font-size:.75rem;letter-spacing:.18em;color:var(--muted);font-weight:400;margin:0 0 12px}
 .quick dl{margin:0}
 .quick dt{font-family:var(--serif);font-weight:700;font-size:.98rem;line-height:1.7;color:var(--ink);margin:0 0 4px}
 .quick dt a{color:inherit}
-.quick dt a:hover{color:var(--teal-ink);text-decoration:underline}
+.quick dt a:hover{color:var(--sky-ink);text-decoration:underline}
 .quick dd{font-family:var(--serif);font-size:.95rem;line-height:1.95;color:var(--ink-2);margin:0 0 14px;padding-bottom:14px;border-bottom:1px dashed var(--line)}
 .quick dd:last-child{border-bottom:none;padding-bottom:0}
 @media(max-width:480px){.quick{padding:16px 16px 6px}}
@@ -114,15 +114,15 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
 .more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
 .more h3{font-family:var(--mono);font-size:.75rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
 .more a{position:relative;display:block;font-family:var(--serif);font-size:1.05rem;color:var(--ink);padding:12px 0 12px 0;border-bottom:1px solid var(--line)}
-.more a::before{content:"";position:absolute;left:-14px;top:14px;bottom:14px;width:2px;background:var(--red);border-radius:2px;opacity:0}
-.more a:hover{color:var(--teal-ink);transform:translateX(8px)}
+.more a::before{content:"";position:absolute;left:-14px;top:14px;bottom:14px;width:2px;background:var(--sky-ink);border-radius:2px;opacity:0}
+.more a:hover{color:var(--sky-ink);transform:translateX(8px)}
 .more a:hover::before{opacity:1}
 @media(prefers-reduced-motion:no-preference){.more a::before{transition:opacity .3s ease}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn:hover,.more a:hover{transform:none}}
 .more a span{display:block;font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;color:var(--muted);margin-top:4px}
 .foot-in{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;align-items:center;gap:12px}
 .foot-in{flex-wrap:wrap}
-.nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+.nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--sky);outline-offset:3px;border-radius:6px}
 @media(min-width:1140px){
   .post-page{max-width:1160px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center;padding:60px 64px 76px}
   .post-page>*{grid-column:1;min-width:0}
@@ -132,13 +132,13 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
   .post-side>.toc>summary{pointer-events:none;margin-bottom:2px}
   .post-side>.toc>summary::after{content:none}
   .side-cta{display:block;margin-top:28px;padding:20px 20px 16px;border:1px solid var(--line);border-radius:14px;
-    background:rgba(255,255,255,.7);box-shadow:0 2px 12px -6px rgba(35,42,80,.14)}
+    background:rgba(255,255,255,.7);box-shadow:0 2px 12px -6px rgba(27,37,65,.14)}
   .side-cta:first-child{margin-top:0}
   .side-cta .t{font-family:var(--serif);font-weight:700;font-size:1rem;color:var(--ink);margin-bottom:6px}
   .side-cta p{font-size:.84rem;line-height:1.8;color:var(--muted);margin-bottom:14px}
   .side-cta .btn{width:100%;justify-content:center}
   .side-hub{display:flex;align-items:center;justify-content:center;min-height:44px;margin-top:6px;
-    font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;color:var(--teal-ink)}
+    font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;color:var(--sky-ink)}
   .side-hub:hover{color:var(--ink)}
 }
 /* 延伸閱讀（≥1024px）：一列一篇改成兩欄卡片，分類專頁連結橫跨整列 */
@@ -147,7 +147,7 @@ h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-h
   .more h3{grid-column:1/-1;margin-bottom:6px}
   .more a{padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.55);line-height:1.6}
   .more a::before{display:none}
-  .more a:hover{border-color:var(--teal);background:#fff}
+  .more a:hover{border-color:var(--sky);background:#fff}
   .more a.more-hub{grid-column:1/-1;text-align:center}
 }
 @media(min-width:1024px) and (prefers-reduced-motion:no-preference){.more a:hover{transform:translateY(-2px)}}
@@ -279,7 +279,7 @@ ${quick.map(f => `        <dt><a href="#${headId.get(f.heading)}">${esc(f.q)}</a
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#E0F0FB">
+<meta name="theme-color" content="#F4F9FD">
 <title>${esc(a.seoTitle || a.title)}｜Sky 物理治療師</title>
 <meta name="description" content="${esc(desc)}">
 <meta name="keywords" content="${esc(keywords)}">
@@ -341,7 +341,7 @@ ${siteHeader({ links: [['/services', '服務項目'], ['/blog', '更多文章'],
       <div class="side-cta">
         <div class="t">身體有話想說？</div>
         <p>初次評估會花時間聽你說、看你動，再一起決定方向。</p>
-        <a class="btn teal sm" href="${BOOK_URL}" target="_blank" rel="noopener">預約評估</a>${hubSlug ? `
+        <a class="btn sky sm" href="${BOOK_URL}" target="_blank" rel="noopener">預約評估</a>${hubSlug ? `
         <a class="side-hub" href="/topics/${hubSlug}">更多《${esc(a.cat)}》文章 →</a>` : ''}
       </div>
     </aside>
@@ -362,7 +362,7 @@ ${bodyHtml}
       <div class="t">身體有話想說？</div>
       <p>初次評估會花時間聽你說、看你動，再一起決定方向。覺得這篇有幫助，也歡迎分享給需要的人。</p>
       <div class="row">
-        <a class="btn teal" href="${BOOK_URL}" target="_blank" rel="noopener">預約評估</a>
+        <a class="btn sky" href="${BOOK_URL}" target="_blank" rel="noopener">預約評估</a>
         <button class="btn end-share" type="button" onclick="shareOrCopy()">複製文章連結</button>
       </div>
     </aside>
