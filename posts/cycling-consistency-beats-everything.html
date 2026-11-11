@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT10M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-consistency-beats-everything.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-consistency-beats-everything.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-consistency-beats-everything.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "一致性勝過一切的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-consistency-beats-everything",
   "about": {
     "@type": "Thing",
@@ -87,6 +99,32 @@
     {
       "@type": "Thing",
       "name": "訓練台"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Coyle EF, Martin WH, Sinacore DR, Joyner MJ, Hagberg JM, Holloszy JO. Time course of loss of adaptations after stopping prolonged intense endurance training. J Appl Physiol Respir Environ Exerc Physiol. 1984;57(6):1857–64."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Mujika I, Padilla S. Detraining: loss of training-induced physiological and performance adaptations. Part I: short term insufficient training stimulus. Sports Med. 2000;30(2):79–87."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Raysmith BP, Drew MK. Performance success or failure is influenced by weeks lost to injury and illness in elite Australian track and field athletes: a 5-year prospective study. J Sci Med Sport. 2016;19(10):778–83."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Spiering BA, Mujika I, Sharp MA, Foulis SA. Maintaining physical performance: the minimal dose of exercise needed to preserve endurance and strength over time. J Strength Cond Res. 2021;35(5):1449–58."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Lally P, van Jaarsveld CHM, Potts HWW, Wardle J. How are habits formed: modelling habit formation in the real world. Eur J Soc Psychol. 2010;40(6):998–1009."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Hickson RC, Kanakis C, Davis JR, Moore AM, Rich S. Reduced training duration effects on aerobic power, endurance, and cardiac growth. J Appl Physiol Respir Environ Exerc Physiol. 1982;53(1):225–9."
     }
   ],
   "author": {
@@ -230,10 +268,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>一致性勝過一切：業餘車手最被低估的能力</span></nav>
     <div class="meta">
-      <span class="date">2026-06-18</span><span class="cat">公路車</span><span>約 10 分鐘</span>
+      <time class="date" datetime="2026-06-18">2026-06-18</time><span class="cat">公路車</span><span>約 10 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">一致性勝過一切：業餘車手最被低估的能力</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 6 筆</a></p>
     <p class="lede">停練兩週不會讓體能歸零，反覆中斷才會讓進步疊不上去。我用停練研究和一份十二週對照表，說明怎麼訂最忙那週的下限、處理小傷，讓訓練不再三天打魚兩天曬網。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -329,7 +368,7 @@
 <p>佩君今年沒有哪一週特別猛，卻是第一次連續三個月沒有掛零。先排好最忙那週的下限，照顧好恢復週和小傷；能多騎的時候，再慢慢往上加。</p>
 <blockquote>最好的課表，是你真的會做完的那一份。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Coyle EF, Martin WH, Sinacore DR, Joyner MJ, Hagberg JM, Holloszy JO. Time course of loss of adaptations after stopping prolonged intense endurance training. <em>J Appl Physiol Respir Environ Exerc Physiol.</em> 1984;57(6):1857–64.</li><li>Mujika I, Padilla S. Detraining: loss of training-induced physiological and performance adaptations. Part I: short term insufficient training stimulus. <em>Sports Med.</em> 2000;30(2):79–87.</li><li>Raysmith BP, Drew MK. Performance success or failure is influenced by weeks lost to injury and illness in elite Australian track and field athletes: a 5-year prospective study. <em>J Sci Med Sport.</em> 2016;19(10):778–83.</li><li>Spiering BA, Mujika I, Sharp MA, Foulis SA. Maintaining physical performance: the minimal dose of exercise needed to preserve endurance and strength over time. <em>J Strength Cond Res.</em> 2021;35(5):1449–58.</li><li>Lally P, van Jaarsveld CHM, Potts HWW, Wardle J. How are habits formed: modelling habit formation in the real world. <em>Eur J Soc Psychol.</em> 2010;40(6):998–1009.</li><li>Hickson RC, Kanakis C, Davis JR, Moore AM, Rich S. Reduced training duration effects on aerobic power, endurance, and cardiac growth. <em>J Appl Physiol Respir Environ Exerc Physiol.</em> 1982;53(1):225–9.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

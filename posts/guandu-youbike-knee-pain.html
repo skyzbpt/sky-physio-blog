@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT4M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/guandu-youbike-knee-pain.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/guandu-youbike-knee-pain.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/guandu-youbike-knee-pain.webp",
+      "width": 960,
+      "height": 717,
+      "caption": "停在河濱欄杆旁的 YouBike 公共自行車"
+    }
+  ],
   "url": "https://skythephysio.com/posts/guandu-youbike-knee-pain",
   "about": {
     "@type": "Thing",
@@ -83,6 +95,20 @@
     {
       "@type": "Thing",
       "name": "踩踏"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Bini R, Hume PA, Croft JL. Effects of bicycle saddle height on knee injury risk and cycling performance. Sports Med. 2011;41(6):463-476."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Holmes JC, Pruitt AL, Whalen NJ. Lower extremity overuse in bicycling. Clin Sports Med. 1994;13(1):187-205."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Callaghan MJ. Lower body problems and injury in cycling. J Bodyw Mov Ther. 2005;9(3):226-236."
     }
   ],
   "author": {
@@ -226,10 +252,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>沿關渡河濱騎 YouBike 到淡水，膝蓋前面越騎越痛？先把座椅調高</span></nav>
     <div class="meta">
-      <span class="date">2026-11-08</span><span class="cat">公路車</span><span>約 4 分鐘</span>
+      <time class="date" datetime="2026-11-08">2026-11-08</time><span class="cat">公路車</span><span>約 4 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">沿關渡河濱騎 YouBike 到淡水，膝蓋前面越騎越痛？先把座椅調高</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-10">2026-11-10</time></span><a href="#refs">參考文獻 3 筆</a></p>
     <p class="lede">週末從關渡騎 YouBike 沿著河濱到淡水，是很多北投、士林人的休閒行程。但不少人騎完膝蓋前面痛，問題常常不是膝蓋不好，而是座椅太低。這篇跟著一位帶孩子騎車的爸爸，說明座椅高度怎麼抓、騎車姿勢怎麼調，以及騎完膝蓋痛可以怎麼處理。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -295,7 +322,7 @@
 <p>他傳訊息給我：「這次騎到淡水再騎回來，膝蓋完全沒事，倒是孩子的座椅也被我調高了。」</p>
 <blockquote>座椅高一點點，膝蓋就輕鬆很多。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Bini R, Hume PA, Croft JL. Effects of bicycle saddle height on knee injury risk and cycling performance. <em>Sports Med.</em> 2011;41(6):463-476.</li><li>Holmes JC, Pruitt AL, Whalen NJ. Lower extremity overuse in bicycling. <em>Clin Sports Med.</em> 1994;13(1):187-205.</li><li>Callaghan MJ. Lower body problems and injury in cycling. <em>J Bodyw Mov Ther.</em> 2005;9(3):226-236.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

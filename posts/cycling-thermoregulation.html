@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT10M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-thermoregulation.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-thermoregulation.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-thermoregulation.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "騎車為什麼那麼熱的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-thermoregulation",
   "about": {
     "@type": "Thing",
@@ -95,6 +107,28 @@
     {
       "@type": "Thing",
       "name": "熱適應"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Racinais S, Alonso JM, Coutts AJ, et al. Consensus recommendations on training and competing in the heat. Br J Sports Med. 2015;49(18):1164–73."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Périard JD, Racinais S, Sawka MN. Adaptations and mechanisms of human heat acclimation: applications for competitive athletes and sports. Scand J Med Sci Sports. 2015;25(Suppl 1):20–38."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Casa DJ, DeMartini JK, Bergeron MF, et al. National Athletic Trainers' Association position statement: exertional heat illnesses. J Athl Train. 2015;50(9):986–1000."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Tatterson AJ, Hahn AG, Martin DT, Febbraio MA. Effects of heat stress on physiological responses and exercise performance in elite cyclists. J Sci Med Sport. 2000;3(2):186–93."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Ettema G, Lorås HW. Efficiency in cycling: a review. Eur J Appl Physiol. 2009;106(1):1–14."
     }
   ],
   "author": {
@@ -238,10 +272,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>騎車為什麼那麼熱？體溫調節與熱適應</span></nav>
     <div class="meta">
-      <span class="date">2026-06-08</span><span class="cat">公路車</span><span>約 10 分鐘</span>
+      <time class="date" datetime="2026-06-08">2026-06-08</time><span class="cat">公路車</span><span>約 10 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">騎車為什麼那麼熱？體溫調節與熱適應</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">騎車時身體燒掉的能量，有七成五到八成變成熱。看懂散熱的機制與極限，再花一兩週練出熱適應，夏天就能騎得更安全，也更穩。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -329,7 +364,7 @@
 <p>熱天騎不動不是軟弱，是身體在保護你。看溫度也看濕度，硬的課挪到涼的時段，用一兩週讓身體重新學會流汗；覺得不對，就先停車。</p>
 <blockquote>夏天的訓練目標，不是證明你多能撐，而是讓身體更會散熱。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Racinais S, Alonso JM, Coutts AJ, et al. Consensus recommendations on training and competing in the heat. <em>Br J Sports Med.</em> 2015;49(18):1164–73.</li><li>Périard JD, Racinais S, Sawka MN. Adaptations and mechanisms of human heat acclimation: applications for competitive athletes and sports. <em>Scand J Med Sci Sports.</em> 2015;25(Suppl 1):20–38.</li><li>Casa DJ, DeMartini JK, Bergeron MF, et al. National Athletic Trainers' Association position statement: exertional heat illnesses. <em>J Athl Train.</em> 2015;50(9):986–1000.</li><li>Tatterson AJ, Hahn AG, Martin DT, Febbraio MA. Effects of heat stress on physiological responses and exercise performance in elite cyclists. <em>J Sci Med Sport.</em> 2000;3(2):186–93.</li><li>Ettema G, Lorås HW. Efficiency in cycling: a review. <em>Eur J Appl Physiol.</em> 2009;106(1):1–14.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

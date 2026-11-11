@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT4M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/fascia-scalenes.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/fascia-scalenes.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/fascia-scalenes.webp",
+      "width": 960,
+      "height": 877,
+      "caption": "斜角肌與胸廓出口神經血管的解剖插圖"
+    }
+  ],
   "url": "https://skythephysio.com/posts/fascia-scalenes",
   "about": {
     "@type": "MedicalTherapy",
@@ -91,6 +103,16 @@
     {
       "@type": "Thing",
       "name": "胸廓出口"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Greenfield BH, Geist K. Evaluation and treatment of brachial plexus lesions. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Gray JC, Grimsby O. Interrelationship of the spine, rib cage, and shoulder. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012."
     }
   ],
   "author": {
@@ -250,10 +272,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/myofascial">高級筋膜技術</a> › <span>斜角肌：頸肩與胸廓出口</span></nav>
     <div class="meta">
-      <span class="date">2026-04-18</span><span class="cat">高級筋膜技術</span><span>約 4 分鐘</span>
+      <time class="date" datetime="2026-04-18">2026-04-18</time><span class="cat">高級筋膜技術</span><span>約 4 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">斜角肌：頸肩與胸廓出口</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-08">2026-11-08</time></span><a href="#refs">參考文獻 2 筆</a></p>
     <p class="lede">斜角肌是頸側的呼吸輔助肌，緊繃時可能牽連手臂麻感。它和淺呼吸、姿勢與胸廓出口症候群都有關；本文說明容易中招的族群、在家溫和放鬆的做法與就醫時機。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -323,7 +346,7 @@
 <p>書中也提醒：手麻、無力的來源還可能是臂神經叢本身的問題，甚至少數是神經的良性腫瘤，需要醫師評估與影像檢查。</p>
 <blockquote>手的麻，有時要回頭問問頸側那條累壞的肌肉。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Greenfield BH, Geist K. Evaluation and treatment of brachial plexus lesions. In: Donatelli RA, ed. <em>Physical Therapy of the Shoulder.</em> 5th ed. St. Louis: Churchill Livingstone; 2012.</li><li>Gray JC, Grimsby O. Interrelationship of the spine, rib cage, and shoulder. In: Donatelli RA, ed. <em>Physical Therapy of the Shoulder.</em> 5th ed. St. Louis: Churchill Livingstone; 2012.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

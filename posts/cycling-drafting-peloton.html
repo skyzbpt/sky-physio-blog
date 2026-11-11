@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT10M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-drafting-peloton.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-drafting-peloton.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-drafting-peloton.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "跟車與集團的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-drafting-peloton",
   "about": {
     "@type": "Thing",
@@ -83,6 +95,24 @@
     {
       "@type": "Thing",
       "name": "FTP"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Blocken B, Defraeye T, Koninckx E, Carmeliet J, Hespel P. CFD simulations of the aerodynamic drag of two drafting cyclists. Comput Fluids. 2013;71:435–45."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Blocken B, van Druenen T, Toparlar Y, Malizia F, Mannion P, Andrianne T, Marchal T, Maas GJ, Diepens J. Aerodynamic drag in cycling pelotons: new insights by CFD simulation and wind tunnel testing. J Wind Eng Ind Aerodyn. 2018;179:319–37."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Barry N, Burton D, Sheridan J, Thompson M, Brown NAT. Aerodynamic drag interactions between cyclists in a team pursuit. Sports Eng. 2015;18(2):93–103."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Crouch TN, Burton D, LaBry ZA, Blair KB. Riding against the wind: a review of competition cycling aerodynamics. Sports Eng. 2017;20(2):81–110."
     }
   ],
   "author": {
@@ -226,10 +256,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>跟車與集團：省下兩三成力氣的免費技術</span></nav>
     <div class="meta">
-      <span class="date">2026-07-29</span><span class="cat">公路車</span><span>約 10 分鐘</span>
+      <time class="date" datetime="2026-07-29">2026-07-29</time><span class="cat">公路車</span><span>約 10 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">跟車與集團：省下兩三成力氣的免費技術</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 4 筆</a></p>
     <p class="lede">跟在別人後面能省下不少力氣，但前提是騎得穩、守規矩。這篇算給你看離前輪多近差多少瓦，也整理集團裡保命的基本功。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -313,7 +344,7 @@
 <p>跟車省力的關鍵是距離，但能讓你靠近的，是穩定和守規矩。坤明後來改跟時速 30 公里的慢團，先在後段跟了六週，練到能穩穩待在前車後方半個車身，才開始參加輪車。兩個多月後，他騎完 80 公里還有力氣在最後一段幫忙帶。</p>
 <blockquote>跟車省下的那兩三成力氣，是你在最後三公里唯一還剩下的本錢；但只有騎得穩的人，才領得到。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Blocken B, Defraeye T, Koninckx E, Carmeliet J, Hespel P. CFD simulations of the aerodynamic drag of two drafting cyclists. <em>Comput Fluids.</em> 2013;71:435–45.</li><li>Blocken B, van Druenen T, Toparlar Y, Malizia F, Mannion P, Andrianne T, Marchal T, Maas GJ, Diepens J. Aerodynamic drag in cycling pelotons: new insights by CFD simulation and wind tunnel testing. <em>J Wind Eng Ind Aerodyn.</em> 2018;179:319–37.</li><li>Barry N, Burton D, Sheridan J, Thompson M, Brown NAT. Aerodynamic drag interactions between cyclists in a team pursuit. <em>Sports Eng.</em> 2015;18(2):93–103.</li><li>Crouch TN, Burton D, LaBry ZA, Blair KB. Riding against the wind: a review of competition cycling aerodynamics. <em>Sports Eng.</em> 2017;20(2):81–110.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

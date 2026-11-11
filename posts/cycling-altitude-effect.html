@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT9M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-altitude-effect.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-altitude-effect.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-altitude-effect.webp",
+      "width": 960,
+      "height": 638,
+      "caption": "高度對騎乘表現的影響的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-altitude-effect",
   "about": {
     "@type": "Thing",
@@ -91,6 +103,24 @@
     {
       "@type": "Thing",
       "name": "迴轉速"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Wehrlin JP, Hallén J. Linear decrease in VO2max and performance with increasing altitude in endurance athletes. Eur J Appl Physiol. 2006;96(4):404–12."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Saunders PU, Pyne DB, Gore CJ. Endurance training at altitude. High Alt Med Biol. 2009;10(2):135–48."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Bassett DR, Kyle CR, Passfield L, Broker JP, Burke ER. Comparing cycling world hour records, 1967–1996: modeling with empirical data. Med Sci Sports Exerc. 1999;31(11):1665–76."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Luks AM, Beidleman BA, Freer L, Grissom CK, Keyes LE, McIntosh SE, et al. Wilderness Medical Society clinical practice guidelines for the prevention, diagnosis, and treatment of acute altitude illness: 2024 update. Wilderness Environ Med. 2024;35(1 Suppl):2S–19S."
     }
   ],
   "author": {
@@ -234,10 +264,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>高度對騎乘表現的影響：氧氣少了，但阻力也小了</span></nav>
     <div class="meta">
-      <span class="date">2026-06-07</span><span class="cat">公路車</span><span>約 9 分鐘</span>
+      <time class="date" datetime="2026-06-07">2026-06-07</time><span class="cat">公路車</span><span>約 9 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">高度對騎乘表現的影響：氧氣少了，但阻力也小了</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 4 筆</a></p>
     <p class="lede">海拔上升讓攝氧量下降，卻也讓空氣阻力變小。理解這個取捨，才知道高地騎乘該怎麼配速、怎麼適應。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -329,7 +360,7 @@
 <p>高海拔不是只有壞消息：平路和下坡，稀薄的空氣會推你一把；爬坡卻幾乎全是代價。把瓦數打折、齒比備好、衣服帶齊，再用呼吸校正，通常比硬守平地數字更早到頂，也更平安下山。</p>
 <blockquote>在高地，誠實地承認你變慢了，是騎完全程最快的方法。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Wehrlin JP, Hallén J. Linear decrease in VO2max and performance with increasing altitude in endurance athletes. <em>Eur J Appl Physiol.</em> 2006;96(4):404–12.</li><li>Saunders PU, Pyne DB, Gore CJ. Endurance training at altitude. <em>High Alt Med Biol.</em> 2009;10(2):135–48.</li><li>Bassett DR, Kyle CR, Passfield L, Broker JP, Burke ER. Comparing cycling world hour records, 1967–1996: modeling with empirical data. <em>Med Sci Sports Exerc.</em> 1999;31(11):1665–76.</li><li>Luks AM, Beidleman BA, Freer L, Grissom CK, Keyes LE, McIntosh SE, et al. Wilderness Medical Society clinical practice guidelines for the prevention, diagnosis, and treatment of acute altitude illness: 2024 update. <em>Wilderness Environ Med.</em> 2024;35(1 Suppl):2S–19S.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

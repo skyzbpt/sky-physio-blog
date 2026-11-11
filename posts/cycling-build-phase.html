@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT10M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-build-phase.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-build-phase.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-build-phase.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "進展期的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-build-phase",
   "about": {
     "@type": "Thing",
@@ -107,6 +119,28 @@
     {
       "@type": "Thing",
       "name": "訓練台"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Allen H, Coggan AR, McGregor S. Training and Racing with a Power Meter. 3rd ed. Boulder, CO: VeloPress; 2019."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Laursen PB, Jenkins DG. The scientific basis for high-intensity interval training: optimising training programmes and maximising performance in highly trained endurance athletes. Sports Med. 2002;32(1):53–73."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Foster C. Monitoring training in athletes with reference to overtraining syndrome. Med Sci Sports Exerc. 1998;30(7):1164–8."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Hickson RC, Kanakis C, Davis JR, Moore AM, Rich S. Reduced training duration effects on aerobic power, endurance, and cardiac growth. J Appl Physiol Respir Environ Exerc Physiol. 1982;53(1):225–9."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Silbernagel KG, Thomeé R, Eriksson BI, Karlsson J. Continued sports activity, using a pain-monitoring model, during rehabilitation in patients with Achilles tendinopathy: a randomized controlled study. Am J Sports Med. 2007;35(6):897–906."
     }
   ],
   "author": {
@@ -250,10 +284,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>進展期：把有氧底盤變成比賽能力</span></nav>
     <div class="meta">
-      <span class="date">2026-06-15</span><span class="cat">公路車</span><span>約 10 分鐘</span>
+      <time class="date" datetime="2026-06-15">2026-06-15</time><span class="cat">公路車</span><span>約 10 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">進展期：把有氧底盤變成比賽能力</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">進展期接在基礎期之後，時數常少一到兩成、強度上升，課表越來越像目標賽。這是最容易練過頭、也最容易突然變強的階段。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -341,7 +376,7 @@
 <p>進展期的進步來得快，疲勞也來得快。顧好睡眠、恢復週和隔天早上的身體，把基礎期燉好的那一鍋，收成比賽那天用得上的味道。</p>
 <blockquote>進展期像大火收汁：火候對了醬汁濃稠，火開太大只會燒乾。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Allen H, Coggan AR, McGregor S. <em>Training and Racing with a Power Meter.</em> 3rd ed. Boulder, CO: VeloPress; 2019.</li><li>Laursen PB, Jenkins DG. The scientific basis for high-intensity interval training: optimising training programmes and maximising performance in highly trained endurance athletes. <em>Sports Med.</em> 2002;32(1):53–73.</li><li>Foster C. Monitoring training in athletes with reference to overtraining syndrome. <em>Med Sci Sports Exerc.</em> 1998;30(7):1164–8.</li><li>Hickson RC, Kanakis C, Davis JR, Moore AM, Rich S. Reduced training duration effects on aerobic power, endurance, and cardiac growth. <em>J Appl Physiol Respir Environ Exerc Physiol.</em> 1982;53(1):225–9.</li><li>Silbernagel KG, Thomeé R, Eriksson BI, Karlsson J. Continued sports activity, using a pain-monitoring model, during rehabilitation in patients with Achilles tendinopathy: a randomized controlled study. <em>Am J Sports Med.</em> 2007;35(6):897–906.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

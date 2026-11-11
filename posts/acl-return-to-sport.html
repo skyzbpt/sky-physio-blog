@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT5M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/acl-return-to-sport.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/acl-return-to-sport.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/acl-return-to-sport.webp",
+      "width": 960,
+      "height": 891,
+      "caption": "十字韌帶術後回場的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/acl-return-to-sport",
   "about": {
     "@type": "MedicalCondition",
@@ -83,6 +95,24 @@
     {
       "@type": "Thing",
       "name": "大腿後肌"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Paterno MV, Hewett TE. Functional testing, functional training, and criteria for return to play after ACL reconstruction. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Powell CCP. Functional performance measures and sports-specific rehabilitation for lower extremity injuries: a guide for a safe return to sports. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Grindem H, Snyder-Mackler L, Moksnes H, Engebretsen L, Risberg MA. Simple decision rules can reduce reinjury risk by 84% after ACL reconstruction: the Delaware-Oslo ACL cohort study. Br J Sports Med. 2016;50(13):804–8."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Kyritsis P, Bahr R, Landreau P, Miladi R, Witvrouw E. Likelihood of ACL graft rupture: not meeting six clinical discharge criteria before return to sport is associated with a four times greater risk of rupture. Br J Sports Med. 2016;50(15):946–51."
     }
   ],
   "author": {
@@ -242,10 +272,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/knee-pain">膝蓋痛</a> › <span>十字韌帶術後回場：看測驗結果，不只看日子</span></nav>
     <div class="meta">
-      <span class="date">2026-10-24</span><span class="cat">膝蓋痛</span><span>約 5 分鐘</span>
+      <time class="date" datetime="2026-10-24">2026-10-24</time><span class="cat">膝蓋痛</span><span>約 5 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">十字韌帶術後回場：看測驗結果，不只看日子</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-08">2026-11-08</time></span><a href="#refs">參考文獻 4 筆</a></p>
     <p class="lede">前十字韌帶術後最危險的時刻，常常是「覺得自己好了」的那幾個月。這篇跟著一位足球校隊的大學生，說明為什麼至少要等到九個月、四種單腳跳測試怎麼做、兩腳對稱度要到多少，以及回場前最後一哩路該練什麼。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -326,7 +357,7 @@
 <p>冠廷後來說，錯過那場盃賽很難受，但看到測驗數字後，他知道自己還沒準備好。現在他每次練球前帶著隊友做十五分鐘的熱身與落地訓練。</p>
 <blockquote>最好的回場，是回去之後就不用再回來復健。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Paterno MV, Hewett TE. Functional testing, functional training, and criteria for return to play after ACL reconstruction. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>Powell CCP. Functional performance measures and sports-specific rehabilitation for lower extremity injuries: a guide for a safe return to sports. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>Grindem H, Snyder-Mackler L, Moksnes H, Engebretsen L, Risberg MA. Simple decision rules can reduce reinjury risk by 84% after ACL reconstruction: the Delaware-Oslo ACL cohort study. <em>Br J Sports Med.</em> 2016;50(13):804–8.</li><li>Kyritsis P, Bahr R, Landreau P, Miladi R, Witvrouw E. Likelihood of ACL graft rupture: not meeting six clinical discharge criteria before return to sport is associated with a four times greater risk of rupture. <em>Br J Sports Med.</em> 2016;50(15):946–51.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT9M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-physical-assessment-before-fit.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-physical-assessment-before-fit.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-physical-assessment-before-fit.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "Bike fit 之前，該先做的身體評估的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-physical-assessment-before-fit",
   "about": {
     "@type": "Thing",
@@ -87,6 +99,28 @@
     {
       "@type": "Thing",
       "name": "Bike Fitting"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Knutson GA. Anatomic and functional leg-length inequality: a review and recommendation for clinical decision-making. Part I, anatomic leg-length inequality: prevalence, magnitude, effects and clinical significance. Chiropr Osteopat. 2005;13:11."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Gurney B. Leg length discrepancy. Gait Posture. 2002;15(2):195–206."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Bennell KL, Talbot RC, Wajswelner H, Techovanich W, Kelly DH, Hall AJ. Intra-rater and inter-rater reliability of a weight-bearing lunge measure of ankle dorsiflexion. Aust J Physiother. 1998;44(3):175–80."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Crossley KM, Zhang WJ, Schache AG, Bryant A, Cowan SM. Performance on the single-leg squat task indicates hip abductor muscle function. Am J Sports Med. 2011;39(4):866–73."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Barrajón C, Legaz-Arrese A, Cirer-Sastre R, López-Laval I, Sitko S. Effects of bike-fitting on lower back pain in cyclists: a systematic review. Cureus. 2026;18(1):e101718."
     }
   ],
   "author": {
@@ -230,10 +264,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>Bike fit 之前，該先做的身體評估</span></nav>
     <div class="meta">
-      <span class="date">2026-07-11</span><span class="cat">公路車</span><span>約 9 分鐘</span>
+      <time class="date" datetime="2026-07-11">2026-07-11</time><span class="cat">公路車</span><span>約 9 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">Bike fit 之前，該先做的身體評估</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">好的 Bike Fitting 從身體開始。髖、腳踝、胸椎與舊傷沒先看清楚，數字量得再準，騎兩週還是可能腰痠。這篇說明該評估什麼、長短腳怎麼看、何時該先看醫師。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -315,7 +350,7 @@
 <p>雅惠現在的把手比 Fitting 時高 20 mm，數字不像表格那麼好看，但她能騎完整圈不必下車伸腰。Fitting 不是一次定案，身體變了，再評估一次，車也跟著再動。</p>
 <blockquote>Fitting 是把車調到身體能接受的位置。如果身體能接受的範圍太小，先把範圍擴大，才是正解。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Knutson GA. Anatomic and functional leg-length inequality: a review and recommendation for clinical decision-making. Part I, anatomic leg-length inequality: prevalence, magnitude, effects and clinical significance. <em>Chiropr Osteopat.</em> 2005;13:11.</li><li>Gurney B. Leg length discrepancy. <em>Gait Posture.</em> 2002;15(2):195–206.</li><li>Bennell KL, Talbot RC, Wajswelner H, Techovanich W, Kelly DH, Hall AJ. Intra-rater and inter-rater reliability of a weight-bearing lunge measure of ankle dorsiflexion. <em>Aust J Physiother.</em> 1998;44(3):175–80.</li><li>Crossley KM, Zhang WJ, Schache AG, Bryant A, Cowan SM. Performance on the single-leg squat task indicates hip abductor muscle function. <em>Am J Sports Med.</em> 2011;39(4):866–73.</li><li>Barrajón C, Legaz-Arrese A, Cirer-Sastre R, López-Laval I, Sitko S. Effects of bike-fitting on lower back pain in cyclists: a systematic review. <em>Cureus.</em> 2026;18(1):e101718.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

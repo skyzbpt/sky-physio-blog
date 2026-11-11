@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT2M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/tps-trigger-points-mimic-conditions.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/tps-trigger-points-mimic-conditions.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/tps-trigger-points-mimic-conditions.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "激痛點常被忽略，也常被誤認成其他疾病的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/tps-trigger-points-mimic-conditions",
   "about": {
     "@type": "Thing",
@@ -83,6 +95,12 @@
     {
       "@type": "Thing",
       "name": "激痛點"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "McEvoy J, Dommerholt J. Myofascial trigger points of the shoulder. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012."
     }
   ],
   "author": {
@@ -218,10 +236,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/pain-science">疼痛科學</a> › <span>激痛點常被忽略，也常被誤認成其他疾病</span></nav>
     <div class="meta">
-      <span class="date">2025-09-25</span><span class="cat">疼痛科學</span><span>約 2 分鐘</span>
+      <time class="date" datetime="2025-09-25">2025-09-25</time><span class="cat">疼痛科學</span><span>約 2 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">激痛點常被忽略，也常被誤認成其他疾病</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-08">2026-11-08</time></span><a href="#refs">參考文獻 1 筆</a></p>
     <p class="lede">激痛點可以在完全沒有組織損傷的情況下存在，還能模仿神經痛、耳鳴甚至內臟疾病——這是它最容易被漏掉的原因。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -269,7 +288,7 @@
 <p>這不代表所有肩膀痛都是激痛點，也不能取代醫師對骨折、撕裂或其他疾病的評估；但當影像和檢查都找不到明確原因，或治療一直沒進展時，值得從激痛點的角度再看一次。</p>
 <blockquote>找不到「壞掉的地方」，不代表你的痛不是真的。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>McEvoy J, Dommerholt J. Myofascial trigger points of the shoulder. In: Donatelli RA, ed. <em>Physical Therapy of the Shoulder.</em> 5th ed. St. Louis: Churchill Livingstone; 2012.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

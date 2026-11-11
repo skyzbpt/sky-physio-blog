@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT4M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/zhishan-elderly-balance-falls.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/zhishan-elderly-balance-falls.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/zhishan-elderly-balance-falls.webp",
+      "width": 960,
+      "height": 708,
+      "caption": "芝山岩長著青苔的古隘門與石階"
+    }
+  ],
   "url": "https://skythephysio.com/posts/zhishan-elderly-balance-falls",
   "about": {
     "@type": "MedicalCondition",
@@ -83,6 +95,20 @@
     {
       "@type": "Thing",
       "name": "腳踝"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Sherrington C, Fairhall NJ, Wallbank GK, et al. Exercise for preventing falls in older people living in the community. Cochrane Database Syst Rev. 2019;1:CD012424."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Montero-Odasso M, van der Velde N, Martin FC, et al. World guidelines for falls prevention and management for older adults: a global initiative. Age Ageing. 2022;51(9):afac205."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Sherrington C, Michaleff ZA, Fairhall N, et al. Exercise to prevent falls in older adults: an updated systematic review and meta-analysis. Br J Sports Med. 2017;51(24):1750-1758."
     }
   ],
   "author": {
@@ -218,10 +244,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/foot-ankle-pain">足踝痛</a> › <span>爬芝山岩石階怕跌倒？長輩的平衡與腳踝訓練，讓散步走得更穩</span></nav>
     <div class="meta">
-      <span class="date">2026-11-08</span><span class="cat">足踝痛</span><span>約 4 分鐘</span>
+      <time class="date" datetime="2026-11-08">2026-11-08</time><span class="cat">足踝痛</span><span>約 4 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">爬芝山岩石階怕跌倒？長輩的平衡與腳踝訓練，讓散步走得更穩</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-10">2026-11-10</time></span><a href="#refs">參考文獻 3 筆</a></p>
     <p class="lede">芝山岩是士林、天母長輩每天散步、運動的好地方，但石階高低不一、雨天濕滑，很多長輩跌過一次就不敢再去。這篇跟著一位跌倒過的阿公，說明長輩為什麼容易跌、走石階的技巧，以及研究證實能減少跌倒的平衡與肌力訓練。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -281,7 +308,7 @@
 <p>他說：「我以為老了就該少動，原來是要練著動。」</p>
 <blockquote>怕跌倒不是不去的理由，是開始練習的理由。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Sherrington C, Fairhall NJ, Wallbank GK, et al. Exercise for preventing falls in older people living in the community. <em>Cochrane Database Syst Rev.</em> 2019;1:CD012424.</li><li>Montero-Odasso M, van der Velde N, Martin FC, et al. World guidelines for falls prevention and management for older adults: a global initiative. <em>Age Ageing.</em> 2022;51(9):afac205.</li><li>Sherrington C, Michaleff ZA, Fairhall N, et al. Exercise to prevent falls in older adults: an updated systematic review and meta-analysis. <em>Br J Sports Med.</em> 2017;51(24):1750-1758.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

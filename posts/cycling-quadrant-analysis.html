@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT9M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-quadrant-analysis.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-quadrant-analysis.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-quadrant-analysis.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "象限分析的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-quadrant-analysis",
   "about": {
     "@type": "Thing",
@@ -99,6 +111,28 @@
     {
       "@type": "Thing",
       "name": "踩踏"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Allen H, Coggan AR, McGregor S. Training and Racing with a Power Meter. 3rd ed. Boulder, CO: VeloPress; 2019."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Kutzner I, Heinlein B, Graichen F, Rohlmann A, Halder AM, Beier A, Bergmann G. Loading of the knee joint during ergometer cycling: telemetric in vivo data. J Orthop Sports Phys Ther. 2012;42(12):1032–8."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Paton CD, Hopkins WG, Cook C. Effects of low- vs. high-cadence interval training on cycling performance. J Strength Cond Res. 2009;23(6):1758–63."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Kristoffersen M, Gundersen H, Leirdal S, Iversen VV. Low cadence interval training at moderate intensity does not improve cycling performance in highly trained veteran cyclists. Front Physiol. 2014;5:34."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Rønnestad BR, Mujika I. Optimizing strength training for running and cycling endurance performance: a review. Scand J Med Sci Sports. 2014;24(4):603–12."
     }
   ],
   "author": {
@@ -242,10 +276,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>象限分析：同樣的瓦特，用不同的方式產生</span></nav>
     <div class="meta">
-      <span class="date">2026-05-29</span><span class="cat">公路車</span><span>約 9 分鐘</span>
+      <time class="date" datetime="2026-05-29">2026-05-29</time><span class="cat">公路車</span><span>約 9 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">象限分析：同樣的瓦特，用不同的方式產生</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">250 W 可以是高迴轉輕齒比，也可以是低迴轉重踩。象限分析把功率拆成踩踏力與踏板速度兩個維度，讓你看見比賽真正的肌肉需求。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -335,7 +370,7 @@
 <p>功率報表告訴你踩出了多少，象限分析告訴你是怎麼踩出來的。它不必每趟都看：一季挑幾場重要比賽和關鍵課表比一比，對照你的目標賽事、齒比和膝蓋，就很夠用了。</p>
 <blockquote>瓦特是結果。你怎麼產生那些瓦特，才是訓練該處理的事。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Allen H, Coggan AR, McGregor S. <em>Training and Racing with a Power Meter.</em> 3rd ed. Boulder, CO: VeloPress; 2019.</li><li>Kutzner I, Heinlein B, Graichen F, Rohlmann A, Halder AM, Beier A, Bergmann G. Loading of the knee joint during ergometer cycling: telemetric in vivo data. <em>J Orthop Sports Phys Ther.</em> 2012;42(12):1032–8.</li><li>Paton CD, Hopkins WG, Cook C. Effects of low- vs. high-cadence interval training on cycling performance. <em>J Strength Cond Res.</em> 2009;23(6):1758–63.</li><li>Kristoffersen M, Gundersen H, Leirdal S, Iversen VV. Low cadence interval training at moderate intensity does not improve cycling performance in highly trained veteran cyclists. <em>Front Physiol.</em> 2014;5:34.</li><li>Rønnestad BR, Mujika I. Optimizing strength training for running and cycling endurance performance: a review. <em>Scand J Med Sci Sports.</em> 2014;24(4):603–12.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT4M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/vagus-wanderer.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/vagus-wanderer.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/vagus-wanderer.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "那條從腦幹一路漫遊到腸子的神經的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/vagus-wanderer",
   "about": {
     "@type": "MedicalTherapy",
@@ -214,10 +226,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/craniosacral">顱薦椎</a> › <span>那條從腦幹一路漫遊到腸子的神經——認識「迷走」</span></nav>
     <div class="meta">
-      <span class="date">2026-06-13</span><span class="cat">顱薦椎</span><span>約 4 分鐘</span>
+      <time class="date" datetime="2026-06-13">2026-06-13</time><span class="cat">顱薦椎</span><span>約 4 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">那條從腦幹一路漫遊到腸子的神經——認識「迷走」</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span></p>
     <p class="lede">它的名字在拉丁文裡是「流浪者」。它從腦幹出發，蜿蜒穿過喉嚨、心臟、肺、消化道，一路漫遊到腸子——它是身體裡最廣布、也最被低估的一條神經。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -271,7 +284,7 @@
 <p>不過，把「迷走神經」這條漫遊全身的神經放在心上，對我有一個很實在的提醒：身體不是一堆獨立零件的組合，而是一個透過神經不斷自我對話的整體。一個人的消化、心跳、情緒、緊繃，可能比我們以為的更緊密相連。</p>
 <p>先讓神經系統覺得安全，身體才有空間修復。</p>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <p>Attlee T. <em>Face to Face with the Face: Working with the Face and the Cranial Nerves through Cranio-Sacral Integration.</em> London: Singing Dragon; 2016.</p>
 <p>Porges SW. <em>The Polyvagal Theory: Neurophysiological Foundations of Emotions, Attachment, Communication, and Self-Regulation.</em> New York: W. W. Norton; 2011.</p>
     </div>

@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT10M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-saddle-fore-aft.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-saddle-fore-aft.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-saddle-fore-aft.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "座墊前後與角度的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-saddle-fore-aft",
   "about": {
     "@type": "Thing",
@@ -87,6 +99,28 @@
     {
       "@type": "Thing",
       "name": "核心"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Bini RR, Hume PA, Lanferdini FJ, Vaz MA. Effects of moving forward or backward on the saddle on knee joint forces during cycling. Phys Ther Sport. 2013;14(1):23–7."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Bini RR, Hume PA, Lanferdini FJ, Vaz MA. Effects of body positions on the saddle on pedalling technique for cyclists and triathletes. Eur J Sport Sci. 2014;14 Suppl 1:S413–20."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Price D, Donne B. Effect of variation in seat tube angle at different seat heights on submaximal cycling performance in man. J Sports Sci. 1997;15(4):395–402."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Bressel E, Larson BJ. Bicycle seat designs and their effect on pelvic angle, trunk angle, and comfort. Med Sci Sports Exerc. 2003;35(2):327–32."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Burt P. Bike Fit: Optimise Your Bike Position for High Performance and Injury Avoidance. London: Bloomsbury; 2014."
     }
   ],
   "author": {
@@ -230,10 +264,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>座墊前後與角度：骨盆穩不穩，決定了很多事</span></nav>
     <div class="meta">
-      <span class="date">2026-07-03</span><span class="cat">公路車</span><span>約 10 分鐘</span>
+      <time class="date" datetime="2026-07-03">2026-07-03</time><span class="cat">公路車</span><span>約 10 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">座墊前後與角度：骨盆穩不穩，決定了很多事</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">座墊前後和角度決定骨盆坐不坐得穩。這篇算給你看前後移動會讓座高變多少、鼻端低一度差多少，並說明一次只調一點的方法。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -319,7 +354,7 @@
 <p>高度定好，再找前後，最後才是角度；每一步都小，記下來，讓膝蓋、手掌和會陰的反應告訴你停在哪裡。坐得住，力量才送得下去。</p>
 <blockquote>骨盆是踩踏的底座。底座不穩，下面的膝蓋、上面的腰，連前面的手掌，都會替它付帳。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Bini RR, Hume PA, Lanferdini FJ, Vaz MA. Effects of moving forward or backward on the saddle on knee joint forces during cycling. <em>Phys Ther Sport.</em> 2013;14(1):23–7.</li><li>Bini RR, Hume PA, Lanferdini FJ, Vaz MA. Effects of body positions on the saddle on pedalling technique for cyclists and triathletes. <em>Eur J Sport Sci.</em> 2014;14 Suppl 1:S413–20.</li><li>Price D, Donne B. Effect of variation in seat tube angle at different seat heights on submaximal cycling performance in man. <em>J Sports Sci.</em> 1997;15(4):395–402.</li><li>Bressel E, Larson BJ. Bicycle seat designs and their effect on pelvic angle, trunk angle, and comfort. <em>Med Sci Sports Exerc.</em> 2003;35(2):327–32.</li><li>Burt P. <em>Bike Fit: Optimise Your Bike Position for High Performance and Injury Avoidance.</em> London: Bloomsbury; 2014.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

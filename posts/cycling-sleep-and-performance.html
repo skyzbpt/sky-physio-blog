@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT10M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-sleep-and-performance.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-sleep-and-performance.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-sleep-and-performance.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "睡眠不足對騎乘表現的傷害，比你想的大的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-sleep-and-performance",
   "about": {
     "@type": "Thing",
@@ -83,6 +95,28 @@
     {
       "@type": "Thing",
       "name": "FTP"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Fullagar HHK, Skorski S, Duffield R, Hammes D, Coutts AJ, Meyer T. Sleep and athletic performance: the effects of sleep loss on exercise performance, and physiological and cognitive responses to exercise. Sports Med. 2015;45(2):161–86."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Van Dongen HPA, Maislin G, Mullington JM, Dinges DF. The cumulative cost of additional wakefulness: dose-response effects on neurobehavioral functions and sleep physiology from chronic sleep restriction and total sleep deprivation. Sleep. 2003;26(2):117–26."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Stutz J, Eiholzer R, Spengler CM. Effects of evening exercise on sleep in healthy participants: a systematic review and meta-analysis. Sports Med. 2019;49(2):269–87."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Prather AA, Janicki-Deverts D, Hall MH, Cohen S. Behaviorally assessed sleep and susceptibility to the common cold. Sleep. 2015;38(9):1353–9."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Mah CD, Mah KE, Kezirian EJ, Dement WC. The effects of sleep extension on the athletic performance of collegiate basketball players. Sleep. 2011;34(7):943–50."
     }
   ],
   "author": {
@@ -226,10 +260,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>睡眠不足對騎乘表現的傷害，比你想的大</span></nav>
     <div class="meta">
-      <span class="date">2026-06-12</span><span class="cat">公路車</span><span>約 10 分鐘</span>
+      <time class="date" datetime="2026-06-12">2026-06-12</time><span class="cat">公路車</span><span>約 10 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">睡眠不足對騎乘表現的傷害，比你想的大</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">少睡一兩晚，最大功率常還在，同樣的瓦數卻更費力、反應更慢，自己還不一定察覺。跟著一位工程師算睡眠帳，看怎麼把睡眠排回一週。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -311,7 +346,7 @@
 <p>冠霖沒有換課表，只是少騎一小時、把手機留在客廳。課表決定白天借出多少書，睡眠決定晚上歸回多少架；先算睡眠帳，再決定要不要加課。</p>
 <blockquote>沒有一種課表，能夠救得回長期睡不夠的身體。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Fullagar HHK, Skorski S, Duffield R, Hammes D, Coutts AJ, Meyer T. Sleep and athletic performance: the effects of sleep loss on exercise performance, and physiological and cognitive responses to exercise. <em>Sports Med.</em> 2015;45(2):161–86.</li><li>Van Dongen HPA, Maislin G, Mullington JM, Dinges DF. The cumulative cost of additional wakefulness: dose-response effects on neurobehavioral functions and sleep physiology from chronic sleep restriction and total sleep deprivation. <em>Sleep.</em> 2003;26(2):117–26.</li><li>Stutz J, Eiholzer R, Spengler CM. Effects of evening exercise on sleep in healthy participants: a systematic review and meta-analysis. <em>Sports Med.</em> 2019;49(2):269–87.</li><li>Prather AA, Janicki-Deverts D, Hall MH, Cohen S. Behaviorally assessed sleep and susceptibility to the common cold. <em>Sleep.</em> 2015;38(9):1353–9.</li><li>Mah CD, Mah KE, Kezirian EJ, Dement WC. The effects of sleep extension on the athletic performance of collegiate basketball players. <em>Sleep.</em> 2011;34(7):943–50.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

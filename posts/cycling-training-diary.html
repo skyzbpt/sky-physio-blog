@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT10M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-training-diary.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-training-diary.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-training-diary.webp",
+      "width": 960,
+      "height": 721,
+      "caption": "訓練日誌的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-training-diary",
   "about": {
     "@type": "Thing",
@@ -87,6 +99,28 @@
     {
       "@type": "Thing",
       "name": "間歇"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Foster C, Florhaug JA, Franklin J, et al. A new approach to monitoring exercise training. J Strength Cond Res. 2001;15(1):109–15."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Bourdon PC, Cardinale M, Murray A, et al. Monitoring athlete training loads: consensus statement. Int J Sports Physiol Perform. 2017;12(Suppl 2):S2161–70."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Haddad M, Stylianides G, Djaoui L, Dellal A, Chamari K. Session-RPE method for training load monitoring: validity, ecological usefulness, and influencing factors. Front Neurosci. 2017;11:612."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Saw AE, Main LC, Gastin PB. Monitoring athletes through self-report: factors influencing implementation. J Sports Sci Med. 2015;14(1):137–46."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Saw AE, Main LC, Gastin PB. Monitoring the athlete training response: subjective self-reported measures trump commonly used objective measures: a systematic review. Br J Sports Med. 2016;50(5):281–91."
     }
   ],
   "author": {
@@ -230,10 +264,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>訓練日誌：功率檔案不會記錄的那一半</span></nav>
     <div class="meta">
-      <span class="date">2026-06-28</span><span class="cat">公路車</span><span>約 10 分鐘</span>
+      <time class="date" datetime="2026-06-28">2026-06-28</time><span class="cat">公路車</span><span>約 10 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">訓練日誌：功率檔案不會記錄的那一半</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">功率檔案記下你做了多少功，卻記不下睡眠、壓力和哪裡怪怪的。每天花兩分鐘寫五格，把自覺費力分數乘上分鐘數，就能粗估身體付了多少代價。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -315,7 +350,7 @@
 <p>不必等到買好筆記本或找到完美的 App，功率軟體的備註欄就能寫，重點是<strong>一致</strong>：同樣的五格、同樣的打分方式，每週翻一次。三個月後，你會有一本只屬於你的筆記，解釋那些曲線解釋不了的日子。</p>
 <blockquote>數據記得你踩了多少瓦特，日誌記得你為什麼踩得出來，或為什麼踩不出來。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Foster C, Florhaug JA, Franklin J, et al. A new approach to monitoring exercise training. <em>J Strength Cond Res.</em> 2001;15(1):109–15.</li><li>Bourdon PC, Cardinale M, Murray A, et al. Monitoring athlete training loads: consensus statement. <em>Int J Sports Physiol Perform.</em> 2017;12(Suppl 2):S2161–70.</li><li>Haddad M, Stylianides G, Djaoui L, Dellal A, Chamari K. Session-RPE method for training load monitoring: validity, ecological usefulness, and influencing factors. <em>Front Neurosci.</em> 2017;11:612.</li><li>Saw AE, Main LC, Gastin PB. Monitoring athletes through self-report: factors influencing implementation. <em>J Sports Sci Med.</em> 2015;14(1):137–46.</li><li>Saw AE, Main LC, Gastin PB. Monitoring the athlete training response: subjective self-reported measures trump commonly used objective measures: a systematic review. <em>Br J Sports Med.</em> 2016;50(5):281–91.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

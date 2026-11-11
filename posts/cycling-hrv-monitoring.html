@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT9M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-hrv-monitoring.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-hrv-monitoring.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-hrv-monitoring.webp",
+      "width": 960,
+      "height": 539,
+      "caption": "用 HRV 監測恢復的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-hrv-monitoring",
   "about": {
     "@type": "Thing",
@@ -87,6 +99,32 @@
     {
       "@type": "Thing",
       "name": "HRV"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Plews DJ, Laursen PB, Stanley J, Kilding AE, Buchheit M. Training adaptation and heart rate variability in elite endurance athletes: opening the door to effective monitoring. Sports Med. 2013;43(9):773–81."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Plews DJ, Laursen PB, Kilding AE, Buchheit M. Heart rate variability in elite triathletes, is variation in variability the key to effective training? A case comparison. Eur J Appl Physiol. 2012;112(11):3729–41."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Le Meur Y, Pichon A, Schaal K, et al. Evidence of parasympathetic hyperactivity in functionally overreached athletes. Med Sci Sports Exerc. 2013;45(11):2061–71."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Javaloyes A, Sarabia JM, Lamberts RP, Moya-Ramon M. Training prescription guided by heart-rate variability in cycling. Int J Sports Physiol Perform. 2019;14(1):23–32."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Vesterinen V, Nummela A, Heikura I, et al. Individual endurance training prescription with heart rate variability. Med Sci Sports Exerc. 2016;48(7):1347–54."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Pietilä J, Helander E, Korhonen I, Myllymäki T, Kujala UM, Lindholm H. Acute effect of alcohol intake on cardiovascular autonomic regulation during the first hours of sleep in a large real-world sample of Finnish employees: observational study. JMIR Ment Health. 2018;5(1):e23."
     }
   ],
   "author": {
@@ -230,10 +268,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>用 HRV 監測恢復：好用，但別被單日數字綁架</span></nav>
     <div class="meta">
-      <span class="date">2026-06-27</span><span class="cat">公路車</span><span>約 9 分鐘</span>
+      <time class="date" datetime="2026-06-27">2026-06-27</time><span class="cat">公路車</span><span>約 9 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">用 HRV 監測恢復：好用，但別被單日數字綁架</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 6 筆</a></p>
     <p class="lede">HRV 反映自律神經的狀態，單日起伏很大。像量基礎體溫一樣固定時間、姿勢和裝置，看七天平均有沒有跑出自己的正常範圍，偏低或反常偏高都值得留意。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -320,7 +359,7 @@
 <p>HRV 好用的前提是量得一致、讀得耐心：先建四週基準，拿 ln rMSSD 的 7 天平均對照自己的正常範圍，往下或反常往上都留意，再和腿、睡眠、心情一起看。肌腱和關節，另外用痛來把關。</p>
 <blockquote>HRV 不會告訴你今天該不該練。它只是提供一個線索，讓你在「感覺」之外多一個參考。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Plews DJ, Laursen PB, Stanley J, Kilding AE, Buchheit M. Training adaptation and heart rate variability in elite endurance athletes: opening the door to effective monitoring. <em>Sports Med.</em> 2013;43(9):773–81.</li><li>Plews DJ, Laursen PB, Kilding AE, Buchheit M. Heart rate variability in elite triathletes, is variation in variability the key to effective training? A case comparison. <em>Eur J Appl Physiol.</em> 2012;112(11):3729–41.</li><li>Le Meur Y, Pichon A, Schaal K, et al. Evidence of parasympathetic hyperactivity in functionally overreached athletes. <em>Med Sci Sports Exerc.</em> 2013;45(11):2061–71.</li><li>Javaloyes A, Sarabia JM, Lamberts RP, Moya-Ramon M. Training prescription guided by heart-rate variability in cycling. <em>Int J Sports Physiol Perform.</em> 2019;14(1):23–32.</li><li>Vesterinen V, Nummela A, Heikura I, et al. Individual endurance training prescription with heart rate variability. <em>Med Sci Sports Exerc.</em> 2016;48(7):1347–54.</li><li>Pietilä J, Helander E, Korhonen I, Myllymäki T, Kujala UM, Lindholm H. Acute effect of alcohol intake on cardiovascular autonomic regulation during the first hours of sleep in a large real-world sample of Finnish employees: observational study. <em>JMIR Ment Health.</em> 2018;5(1):e23.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

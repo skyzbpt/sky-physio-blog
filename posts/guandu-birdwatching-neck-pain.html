@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT4M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/guandu-birdwatching-neck-pain.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/guandu-birdwatching-neck-pain.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/guandu-birdwatching-neck-pain.webp",
+      "width": 960,
+      "height": 638,
+      "caption": "賞鳥人拿著望遠鏡和單筒望遠鏡抬頭觀察"
+    }
+  ],
   "url": "https://skythephysio.com/posts/guandu-birdwatching-neck-pain",
   "about": {
     "@type": "MedicalTherapy",
@@ -83,6 +95,20 @@
     {
       "@type": "Thing",
       "name": "肩胛"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Blanpied PR, Gross AR, Elliott JM, et al. Neck pain: revision 2017. J Orthop Sports Phys Ther. 2017;47(7):A1-A83."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Jull G, Trott P, Potter H, et al. A randomized controlled trial of exercise and manipulative therapy for cervicogenic headache. Spine. 2002;27(17):1835-1843."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Gross A, Kay TM, Paquin JP, et al. Exercises for mechanical neck disorders. Cochrane Database Syst Rev. 2015;1:CD004250."
     }
   ],
   "author": {
@@ -218,10 +244,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/myofascial">高級筋膜技術</a> › <span>在關渡自然公園賞鳥、拍鳥，一直抬頭脖子痛到頭痛？給賞鳥族的頸部保養</span></nav>
     <div class="meta">
-      <span class="date">2026-11-08</span><span class="cat">高級筋膜技術</span><span>約 4 分鐘</span>
+      <time class="date" datetime="2026-11-08">2026-11-08</time><span class="cat">高級筋膜技術</span><span>約 4 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">在關渡自然公園賞鳥、拍鳥，一直抬頭脖子痛到頭痛？給賞鳥族的頸部保養</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-10">2026-11-10</time></span><a href="#refs">參考文獻 3 筆</a></p>
     <p class="lede">關渡自然公園是台北賞鳥、拍鳥的熱門地點。拿著望遠鏡或長鏡頭一直抬頭、等鳥一等就是好幾個小時，不少人回家脖子後面僵硬、後腦勺痛。這篇跟著一位退休後愛上拍鳥的大哥，說明一直抬頭為什麼會痛、架設器材的小技巧，以及頸部與肩胛骨的簡單運動。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -284,7 +311,7 @@
 <p>他說：「以前覺得拍鳥是休息，原來脖子一直在上班。」</p>
 <blockquote>鏡頭可以一直對準鳥，脖子要記得偶爾回到自己身上。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Blanpied PR, Gross AR, Elliott JM, et al. Neck pain: revision 2017. <em>J Orthop Sports Phys Ther.</em> 2017;47(7):A1-A83.</li><li>Jull G, Trott P, Potter H, et al. A randomized controlled trial of exercise and manipulative therapy for cervicogenic headache. <em>Spine.</em> 2002;27(17):1835-1843.</li><li>Gross A, Kay TM, Paquin JP, et al. Exercises for mechanical neck disorders. <em>Cochrane Database Syst Rev.</em> 2015;1:CD004250.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

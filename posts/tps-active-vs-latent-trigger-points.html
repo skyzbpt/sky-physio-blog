@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT2M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/tps-active-vs-latent-trigger-points.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/tps-active-vs-latent-trigger-points.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/tps-active-vs-latent-trigger-points.webp",
+      "width": 960,
+      "height": 643,
+      "caption": "活性與潛伏激痛點的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/tps-active-vs-latent-trigger-points",
   "about": {
     "@type": "Thing",
@@ -87,6 +99,12 @@
     {
       "@type": "Thing",
       "name": "緊帶"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "McEvoy J, Dommerholt J. Myofascial trigger points of the shoulder. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012."
     }
   ],
   "author": {
@@ -222,10 +240,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/pain-science">疼痛科學</a> › <span>活性與潛伏激痛點：差別在哪裡？</span></nav>
     <div class="meta">
-      <span class="date">2025-09-15</span><span class="cat">疼痛科學</span><span>約 2 分鐘</span>
+      <time class="date" datetime="2025-09-15">2025-09-15</time><span class="cat">疼痛科學</span><span>約 2 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">活性與潛伏激痛點：差別在哪裡？</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-08">2026-11-08</time></span><a href="#refs">參考文獻 1 筆</a></p>
     <p class="lede">潛伏激痛點比活性激痛點常見得多，而且不會自己痛。兩者最關鍵的差別，其實在於「你認不認得這個痛」。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -273,7 +292,7 @@
 <p>所以檢查肩膀或其他部位時，治療者除了找「會重現你熟悉疼痛」的活性激痛點，也會留意那些讓肌肉緊、讓動作走樣的潛伏激痛點。</p>
 <blockquote>不痛，不等於沒事——潛伏的那些，也在默默影響你的動作。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>McEvoy J, Dommerholt J. Myofascial trigger points of the shoulder. In: Donatelli RA, ed. <em>Physical Therapy of the Shoulder.</em> 5th ed. St. Louis: Churchill Livingstone; 2012.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

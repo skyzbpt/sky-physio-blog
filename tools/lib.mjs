@@ -176,7 +176,7 @@ const titleTerm = title => {
 // 那不是關鍵字，只是把標題再抄一次。
 export const keywordsFor = a => {
   const about = CAT_ABOUT[a.cat];
-  const entities = topicsOf(a);
+  const entities = entitiesOf(a);
   const subj = titleTerm(a.title);
   const ks = [
     ...(subj && subj !== a.cat ? [subj] : []),
@@ -191,7 +191,7 @@ export const keywordsFor = a => {
 
 // JSON-LD mentions：把文章實際談到的實體標成具名節點，
 // 讓搜尋引擎與 AI 引擎知道這篇涉及哪些主題（GEO 的實體訊號）。
-export const mentionsFor = a => topicsOf(a).slice(0, 8).map(name => ({ '@type': 'Thing', 'name': name }));
+export const mentionsFor = a => entitiesOf(a).slice(0, 8).map(name => ({ '@type': 'Thing', 'name': name }));
 
 // 從文章內容抽出「## 問句？」→ 後續段落作為答案，產生高品質 FAQ（SEO rich result / GEO 問答抽取）
 // 每一行（段落、清單項目）視為一個完整句子：沒有句尾標點就補標點，
@@ -336,12 +336,66 @@ export const TOPIC_TERMS = [
   '週期化', '基礎期', 'Taper', '極化訓練', 'Sweet Spot', '間歇', '訓練台', '過度訓練',
   '熱適應', '補給', '迴轉速', '踩踏', '曲柄長度', '座墊高度', '卡踏', '空力姿勢',
   '閉鎖鏈', '離車訓練',
+  // 補齊原本抽不到任何實體的文章（疼痛科學基礎、筋膜基礎、顳顎與下背的個別主題）。
+  // 沒有實體的文章 keywords 只剩分類名、JSON-LD 也沒有 mentions，AI 引擎無從判斷它在談什麼。
+  '慢性疼痛', '傷害感受', '下行抑制', '閘門控制', '神經母體', '定量感覺測試', '痛覺過敏',
+  '周邊敏感化', '壓痛閾值', '發炎介質', '安慰劑',
+  '閃到腰', '脊椎滑脫', '脊椎解離', '久坐', '貓牛式',
+  '張口受限', '關節沾黏', '肌肉痙攣', '偏頭痛',
+  '筋膜沾黏', '結締組織', '玻尿酸', '機械受器', '滑鼠手', '腕骨',
+  '媽媽手', '滑雪拇指', '回跑', '運動員心臟', '心房顫動', '補充品', '咖啡因', '過彎', '靜態伸展',
+  '情緒釋放', '深層按摩',
 ];
 
 // 取出一篇文章（標題優先，其次內文）涉及的主題詞
 export const topicsOf = a => {
   const t = a.title || '', c = a.content || '';
   return TOPIC_TERMS.filter(k => t.includes(k) || (c.split(k).length - 1) >= 3);
+};
+
+/* ---------- 參考文獻（GEO：可查證的出處） ----------
+   210 篇文章文末有「**參考資料**」編號清單，但原本只是頁面上的一段文字，
+   結構化資料裡完全沒有——搜尋與 AI 引擎判斷「這篇有沒有根據」時讀不到。
+   這裡把清單逐條取出，供 JSON-LD 的 citation 使用。 */
+export const REF_HEADING = /^\*\*參考(資料|文獻)\*\*$/;
+export function referencesOf(content) {
+  const blocks = String(content).trim().split(/\n\s*\n/).map(b => b.trim());
+  const at = blocks.findIndex(b => REF_HEADING.test(b));
+  if (at < 0) return [];
+  return blocks.slice(at + 1).join('\n').split('\n')
+    .map(l => l.match(/^\s*\d+\.\s+(.*)$/))
+    .filter(Boolean)
+    .map(m => m[1].replace(/\*\*(.+?)\*\*/g, '$1').replace(/\*([^\s*][^*\n]*?)\*/g, '$1').replace(/\s+/g, ' ').trim())
+    .filter(Boolean);
+}
+
+// 文章內第一張配圖（站內 /assets/photos/ 的實拍或示意圖）：
+// 結構化資料原本只列 OG 文字卡，補上真正的內文圖片，Google 圖片搜尋與 Discover 才有圖可用。
+export function firstImageOf(content) {
+  const m = String(content).match(/<img\s[^>]*src="(\/assets\/[^"]+)"[^>]*>/);
+  if (!m) return null;
+  const w = m[0].match(/width="(\d+)"/), h = m[0].match(/height="(\d+)"/), alt = m[0].match(/alt="([^"]*)"/);
+  return {
+    '@type': 'ImageObject', 'url': BASE + m[1],
+    ...(w && h ? { 'width': +w[1], 'height': +h[1] } : {}),
+    ...(alt && alt[1] ? { 'caption': alt[1].replace(/&quot;/g, '"').replace(/&amp;/g, '&') } : {}),
+  };
+}
+
+// 只看標題的實體詞：這些詞太常見（「疼痛」「筋膜」「伸展」），若比照 TOPIC_TERMS 拿去配對
+// 「跨分類同主題」會讓全站互相亂連；但當它出現在標題裡，確實就是這篇的主題。
+// 所以只用在 keywords 與 JSON-LD mentions，不參與內鏈配對（內鏈仍只用 topicsOf）。
+export const TITLE_TERMS = [
+  '慢性下背痛', '下背痛', '腰痛', '伸展', '疼痛科學', '疼痛預敏', '疼痛評估', '疼痛訊號', '疼痛模型',
+  '以痛止痛', '整合假說', '惡性循環', '性別差異', '免疫系統', '化學信使', '神經纖維', '神經',
+  '半脫位', '關節後區發炎', '關節僵直', '喀喀聲', '筋膜', '按摩', '椎體活動度', '情緒', '疼痛',
+];
+export const entitiesOf = a => {
+  const base = topicsOf(a), t = a.title || '';
+  // 已被較長的詞涵蓋的短詞不重複列（有「慢性下背痛」就不再列「下背痛」「疼痛」）
+  const extra = TITLE_TERMS.filter(k => t.includes(k));
+  const all = [...new Set([...base, ...extra])];
+  return all.filter(k => !all.some(o => o !== k && o.includes(k)));
 };
 
 export const loadArticles = () => JSON.parse(readFileSync(join(REPO, 'data/articles.json'), 'utf8'));
@@ -398,6 +452,8 @@ export function renderBody(text) {
     const imgM = b.match(/^!\[([^\]]*)\]\((data:[^\)]+|https?:[^\)]+)\)$/);
     if (imgM) { const cap = imgM[1], src = imgM[2];
       return `<figure><img src="${esc(src)}" alt="${esc(cap)}" loading="lazy">${cap ? `<figcaption>${esc(cap)}</figcaption>` : ''}</figure>`; }
+    // 參考資料：標成可定位的區塊（#refs），byline 的「參考文獻 N 筆」連到這裡
+    if (REF_HEADING.test(b)) return `<p class="refs-h" id="refs"><strong>${esc(b.replace(/\*/g, ''))}</strong></p>`;
     return renderTextBlock(b);
   }).join('\n');
 }

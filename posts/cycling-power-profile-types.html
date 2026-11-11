@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT9M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-power-profile-types.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-power-profile-types.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-power-profile-types.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "你是衝刺型、爬坡型還是計時賽型的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-power-profile-types",
   "about": {
     "@type": "Thing",
@@ -83,6 +95,28 @@
     {
       "@type": "Thing",
       "name": "FTP"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Allen H, Coggan AR, McGregor S. Training and Racing with a Power Meter. 3rd ed. Boulder, CO: VeloPress; 2019."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Coggan AR. Creating your power profile. TrainingPeaks. Published 2008, updated 2026."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Padilla S, Mujika I, Cuesta G, Goiriena JJ. Level ground and uphill cycling ability in professional road cycling. Med Sci Sports Exerc. 1999;31(6):878–85."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Quod MJ, Martin DT, Martin JC, Laursen PB. The power profile predicts road cycling MMP. Int J Sports Med. 2010;31(6):397–401."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Mountjoy M, Ackerman KE, Bailey DM, et al. 2023 International Olympic Committee's (IOC) consensus statement on Relative Energy Deficiency in Sport (REDs). Br J Sports Med. 2023;57(17):1073–97."
     }
   ],
   "author": {
@@ -226,10 +260,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>你是衝刺型、爬坡型還是計時賽型？功率剖面告訴你</span></nav>
     <div class="meta">
-      <span class="date">2026-05-26</span><span class="cat">公路車</span><span>約 9 分鐘</span>
+      <time class="date" datetime="2026-05-26">2026-05-26</time><span class="cat">公路車</span><span>約 9 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">你是衝刺型、爬坡型還是計時賽型？功率剖面告訴你</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">把 5 秒、1 分鐘、5 分鐘和 FTP 四個時間點的 W/kg 放進分級表，就能看出你目前偏哪一型。認識自己的形狀，才知道該挑哪種比賽、該補短還是揚長。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -318,7 +353,7 @@
 <p>找一個狀態好的週末測完四格，算出高度、連成一條線。它不會告訴你能騎多快，但會告訴你該挑哪種比賽、力氣該花在哪一格，以及身體哪裡最常替你的類型付帳。</p>
 <blockquote>認識自己的形狀，比努力變成別人的形狀更划算。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Allen H, Coggan AR, McGregor S. <em>Training and Racing with a Power Meter.</em> 3rd ed. Boulder, CO: VeloPress; 2019.</li><li>Coggan AR. Creating your power profile. <em>TrainingPeaks.</em> Published 2008, updated 2026.</li><li>Padilla S, Mujika I, Cuesta G, Goiriena JJ. Level ground and uphill cycling ability in professional road cycling. <em>Med Sci Sports Exerc.</em> 1999;31(6):878–85.</li><li>Quod MJ, Martin DT, Martin JC, Laursen PB. The power profile predicts road cycling MMP. <em>Int J Sports Med.</em> 2010;31(6):397–401.</li><li>Mountjoy M, Ackerman KE, Bailey DM, et al. 2023 International Olympic Committee's (IOC) consensus statement on Relative Energy Deficiency in Sport (REDs). <em>Br J Sports Med.</em> 2023;57(17):1073–97.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

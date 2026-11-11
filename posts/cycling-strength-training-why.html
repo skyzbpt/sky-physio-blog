@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT10M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-strength-training-why.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-strength-training-why.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-strength-training-why.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "車手為什麼需要重量訓練的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-strength-training-why",
   "about": {
     "@type": "Thing",
@@ -95,6 +107,32 @@
     {
       "@type": "Thing",
       "name": "踩踏"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Sunde A, Støren O, Bjerkaas M, Larsen MH, Hoff J, Helgerud J. Maximal strength training improves cycling economy in competitive cyclists. J Strength Cond Res. 2010;24(8):2157–65."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Aagaard P, Andersen JL, Bennekou M, Larsson B, Olesen JL, Crameri R, Magnusson SP, Kjaer M. Effects of resistance training on endurance capacity and muscle fiber composition in young top-level cyclists. Scand J Med Sci Sports. 2011;21(6):e298–307."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Louis J, Hausswirth C, Easthope C, Brisswalter J. Strength training improves cycling efficiency in master endurance athletes. Eur J Appl Physiol. 2012;112(2):631–40."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Nilwik R, Snijders T, Leenders M, Groen BB, van Kranenburg J, Verdijk LB, van Loon LJ. The decline in skeletal muscle mass with aging is mainly attributed to a reduction in type II muscle fiber size. Exp Gerontol. 2013;48(5):492–8."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Leenders M, Verdijk LB, van der Hoeven L, van Kranenburg J, Nilwik R, van Loon LJ. Elderly men and women benefit equally from prolonged resistance-type exercise training. J Gerontol A Biol Sci Med Sci. 2013;68(7):769–79."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Olmedillas H, González-Agüero A, Moreno LA, Casajus JA, Vicente-Rodríguez G. Cycling and bone health: a systematic review. BMC Med. 2012;10:168."
     }
   ],
   "author": {
@@ -238,10 +276,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>車手為什麼需要重量訓練：五個騎車給不了你的東西</span></nav>
     <div class="meta">
-      <span class="date">2026-07-24</span><span class="cat">公路車</span><span>約 10 分鐘</span>
+      <time class="date" datetime="2026-07-24">2026-07-24</time><span class="cat">公路車</span><span>約 10 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">車手為什麼需要重量訓練：五個騎車給不了你的東西</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 6 筆</a></p>
     <p class="lede">騎車練得到心肺，卻很難練到最大肌力、給骨頭足夠的刺激，也少用到快縮肌。這篇說明重量訓練怎麼讓踩踏更省力，以及中年車手怎麼開始。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -323,7 +362,7 @@
 <p>淑貞今年冬天開始一週練兩次，三個月後，高腳杯深蹲從 12 公斤做到 20 公斤，FTP 沒有掉，體重差不到半公斤；搬陶土時，她會先蹲低、再用髖站起來。車友抽車她還是會被甩開幾公尺，但追回來的時間變短了。</p>
 <blockquote>你在健身房舉的重量，會在比賽的最後三公里還你。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Sunde A, Støren O, Bjerkaas M, Larsen MH, Hoff J, Helgerud J. Maximal strength training improves cycling economy in competitive cyclists. <em>J Strength Cond Res.</em> 2010;24(8):2157–65.</li><li>Aagaard P, Andersen JL, Bennekou M, Larsson B, Olesen JL, Crameri R, Magnusson SP, Kjaer M. Effects of resistance training on endurance capacity and muscle fiber composition in young top-level cyclists. <em>Scand J Med Sci Sports.</em> 2011;21(6):e298–307.</li><li>Louis J, Hausswirth C, Easthope C, Brisswalter J. Strength training improves cycling efficiency in master endurance athletes. <em>Eur J Appl Physiol.</em> 2012;112(2):631–40.</li><li>Nilwik R, Snijders T, Leenders M, Groen BB, van Kranenburg J, Verdijk LB, van Loon LJ. The decline in skeletal muscle mass with aging is mainly attributed to a reduction in type II muscle fiber size. <em>Exp Gerontol.</em> 2013;48(5):492–8.</li><li>Leenders M, Verdijk LB, van der Hoeven L, van Kranenburg J, Nilwik R, van Loon LJ. Elderly men and women benefit equally from prolonged resistance-type exercise training. <em>J Gerontol A Biol Sci Med Sci.</em> 2013;68(7):769–79.</li><li>Olmedillas H, González-Agüero A, Moreno LA, Casajus JA, Vicente-Rodríguez G. Cycling and bone health: a systematic review. <em>BMC Med.</em> 2012;10:168.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

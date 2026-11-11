@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT9M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-midlife-physiology.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-midlife-physiology.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-midlife-physiology.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "四十歲之後的身體，騎車時到底改變了什麼的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-midlife-physiology",
   "about": {
     "@type": "Thing",
@@ -91,6 +103,32 @@
     {
       "@type": "Thing",
       "name": "間歇"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Tanaka H, Monahan KD, Seals DR. Age-predicted maximal heart rate revisited. J Am Coll Cardiol. 2001;37(1):153–6."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Fleg JL, Morrell CH, Bos AG, et al. Accelerated longitudinal decline of aerobic capacity in healthy older adults. Circulation. 2005;112(5):674–82."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Janssen I, Heymsfield SB, Wang ZM, Ross R. Skeletal muscle mass and distribution in 468 men and women aged 18–88 yr. J Appl Physiol. 2000;89(1):81–8."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Tanaka H, Seals DR. Endurance exercise performance in Masters athletes: age-associated changes and underlying physiological mechanisms. J Physiol. 2008;586(1):55–63."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Fiatarone MA, Marks EC, Ryan ND, Meredith CN, Lipsitz LA, Evans WJ. High-intensity strength training in nonagenarians. Effects on skeletal muscle. JAMA. 1990;263(22):3029–34."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Thomas DT, Erdman KA, Burke LM. American College of Sports Medicine Joint Position Statement. Nutrition and athletic performance. Med Sci Sports Exerc. 2016;48(3):543–68."
     }
   ],
   "author": {
@@ -234,10 +272,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>四十歲之後的身體，騎車時到底改變了什麼</span></nav>
     <div class="meta">
-      <span class="date">2026-07-30</span><span class="cat">公路車</span><span>約 9 分鐘</span>
+      <time class="date" datetime="2026-07-30">2026-07-30</time><span class="cat">公路車</span><span>約 9 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">四十歲之後的身體，騎車時到底改變了什麼</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 6 筆</a></p>
     <p class="lede">最大心率會照著年紀往下走，肌肉、心肺、肌腱和骨頭雖然會退化，對訓練仍有反應。分清楚哪些擋不住、哪些改得動，四十歲以後的力氣才花得到對的地方。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -320,7 +359,7 @@
 <p>最大心率會照著年紀走，這個不必跟它拚。肌肉、心肺、肌腱和骨頭會退，但對訓練仍然有反應；經驗則是你最大的本錢。啟文要做的，是把每週那堂間歇和兩次重量訓練放回課表，加量放慢，再把十二年前的姿勢重新檢查一次。</p>
 <blockquote>老化會拿走一些東西，但它拿走多少、拿得多快，你仍然說得上一部分話。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Tanaka H, Monahan KD, Seals DR. Age-predicted maximal heart rate revisited. <em>J Am Coll Cardiol.</em> 2001;37(1):153–6.</li><li>Fleg JL, Morrell CH, Bos AG, et al. Accelerated longitudinal decline of aerobic capacity in healthy older adults. <em>Circulation.</em> 2005;112(5):674–82.</li><li>Janssen I, Heymsfield SB, Wang ZM, Ross R. Skeletal muscle mass and distribution in 468 men and women aged 18–88 yr. <em>J Appl Physiol.</em> 2000;89(1):81–8.</li><li>Tanaka H, Seals DR. Endurance exercise performance in Masters athletes: age-associated changes and underlying physiological mechanisms. <em>J Physiol.</em> 2008;586(1):55–63.</li><li>Fiatarone MA, Marks EC, Ryan ND, Meredith CN, Lipsitz LA, Evans WJ. High-intensity strength training in nonagenarians. Effects on skeletal muscle. <em>JAMA.</em> 1990;263(22):3029–34.</li><li>Thomas DT, Erdman KA, Burke LM. American College of Sports Medicine Joint Position Statement. Nutrition and athletic performance. <em>Med Sci Sports Exerc.</em> 2016;48(3):543–68.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT9M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-w-prime-anaerobic.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-w-prime-anaerobic.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-w-prime-anaerobic.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "W&#x27;（W prime）的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-w-prime-anaerobic",
   "about": {
     "@type": "Thing",
@@ -95,6 +107,28 @@
     {
       "@type": "Thing",
       "name": "間歇"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Poole DC, Burnley M, Vanhatalo A, Rossiter HB, Jones AM. Critical power: an important fatigue threshold in exercise physiology. Med Sci Sports Exerc. 2016;48(11):2320–34."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Skiba PF, Chidnok W, Vanhatalo A, Jones AM. Modeling the expenditure and reconstitution of work capacity above critical power. Med Sci Sports Exerc. 2012;44(8):1526–32."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Caen K, Bourgois JG, Bourgois G, Van Der Stede T, Vermeire K, Boone J. The reconstitution of W' depends on both work and recovery characteristics. Med Sci Sports Exerc. 2019;51(8):1745–51."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Clark IE, Vanhatalo A, Bailey SJ, Wylie LJ, Kirby BS, Wilkins BW, Jones AM. Effects of two hours of heavy-intensity exercise on the power-duration relationship. Med Sci Sports Exerc. 2018;50(8):1658–68."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Morgan PT, Black MI, Bailey SJ, Jones AM, Vanhatalo A. Road cycle TT performance: relationship to the power-duration model and association with FTP. J Sports Sci. 2019;37(8):902–10."
     }
   ],
   "author": {
@@ -246,10 +280,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>W'（W prime）：你的無氧儲備就像一張有額度的信用卡</span></nav>
     <div class="meta">
-      <span class="date">2026-05-25</span><span class="cat">公路車</span><span>約 9 分鐘</span>
+      <time class="date" datetime="2026-05-25">2026-05-25</time><span class="cat">公路車</span><span>約 9 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">W'（W prime）：你的無氧儲備就像一張有額度的信用卡</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">超過臨界功率的每一次努力都在刷卡，回到臨界功率以下才會慢慢還款。理解 W' 的收支，你就懂了比賽中什麼時候該衝、什麼時候該忍。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -344,7 +379,7 @@
 <p>CP 和 W' 讓「我還能撐多久」變成可以算的問題。但它是模型，不是預言：數字算準了，比賽還是要靠判斷，判斷什麼時候值得刷、什麼時候該還款。</p>
 <blockquote>比賽的勝負，往往不是誰的額度大，而是誰刷得比較有意義。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Poole DC, Burnley M, Vanhatalo A, Rossiter HB, Jones AM. Critical power: an important fatigue threshold in exercise physiology. <em>Med Sci Sports Exerc.</em> 2016;48(11):2320–34.</li><li>Skiba PF, Chidnok W, Vanhatalo A, Jones AM. Modeling the expenditure and reconstitution of work capacity above critical power. <em>Med Sci Sports Exerc.</em> 2012;44(8):1526–32.</li><li>Caen K, Bourgois JG, Bourgois G, Van Der Stede T, Vermeire K, Boone J. The reconstitution of W' depends on both work and recovery characteristics. <em>Med Sci Sports Exerc.</em> 2019;51(8):1745–51.</li><li>Clark IE, Vanhatalo A, Bailey SJ, Wylie LJ, Kirby BS, Wilkins BW, Jones AM. Effects of two hours of heavy-intensity exercise on the power-duration relationship. <em>Med Sci Sports Exerc.</em> 2018;50(8):1658–68.</li><li>Morgan PT, Black MI, Bailey SJ, Jones AM, Vanhatalo A. Road cycle TT performance: relationship to the power-duration model and association with FTP. <em>J Sports Sci.</em> 2019;37(8):902–10.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

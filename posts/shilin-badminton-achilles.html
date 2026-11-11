@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT4M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/shilin-badminton-achilles.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/shilin-badminton-achilles.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/shilin-badminton-achilles.webp",
+      "width": 960,
+      "height": 722,
+      "caption": "羽球選手大跨步上網救球"
+    }
+  ],
   "url": "https://skythephysio.com/posts/shilin-badminton-achilles",
   "about": {
     "@type": "MedicalCondition",
@@ -83,6 +95,20 @@
     {
       "@type": "Thing",
       "name": "阿基里斯腱"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Silbernagel KG, Hanlon S, Sprague A. Current clinical concepts: conservative management of Achilles tendinopathy. J Athl Train. 2020;55(5):438-447."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Silbernagel KG, Thomeé R, Eriksson BI, Karlsson J. Continued sports activity, using a pain-monitoring model, during rehabilitation in patients with Achilles tendinopathy: a randomized controlled study. Am J Sports Med. 2007;35(6):897-906."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Phomsoupha M, Laffaye G. The science of badminton: game characteristics, anthropometry, physiology, visual fitness and biomechanics. Sports Med. 2015;45(4):473-495."
     }
   ],
   "author": {
@@ -234,10 +260,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/foot-ankle-pain">足踝痛</a> › <span>在士林運動中心打羽球，腳跟後面越打越痛？羽球族的阿基里斯腱保養</span></nav>
     <div class="meta">
-      <span class="date">2026-11-08</span><span class="cat">足踝痛</span><span>約 4 分鐘</span>
+      <time class="date" datetime="2026-11-08">2026-11-08</time><span class="cat">足踝痛</span><span>約 4 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">在士林運動中心打羽球，腳跟後面越打越痛？羽球族的阿基里斯腱保養</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-10">2026-11-10</time></span><a href="#refs">參考文獻 3 筆</a></p>
     <p class="lede">下班後到士林、北投的運動中心打羽球，是很多上班族的紓壓方式。羽球要不斷跨步、蹬地、急停，阿基里斯腱承受的負荷非常大。這篇跟著一位每週打三場球的石牌上班族，說明腳跟後方痛的原因、打球前怎麼熱身，以及不必完全停打的練法。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -306,7 +333,7 @@
 <p>他說：「我以前覺得熱身很浪費時間，現在覺得是在保護我能一直打下去。」</p>
 <blockquote>肌腱喜歡被規律地挑戰，不喜歡突然被拚命使用。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Silbernagel KG, Hanlon S, Sprague A. Current clinical concepts: conservative management of Achilles tendinopathy. <em>J Athl Train.</em> 2020;55(5):438-447.</li><li>Silbernagel KG, Thomeé R, Eriksson BI, Karlsson J. Continued sports activity, using a pain-monitoring model, during rehabilitation in patients with Achilles tendinopathy: a randomized controlled study. <em>Am J Sports Med.</em> 2007;35(6):897-906.</li><li>Phomsoupha M, Laffaye G. The science of badminton: game characteristics, anthropometry, physiology, visual fitness and biomechanics. <em>Sports Med.</em> 2015;45(4):473-495.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

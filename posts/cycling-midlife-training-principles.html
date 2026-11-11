@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT9M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-midlife-training-principles.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-midlife-training-principles.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-midlife-training-principles.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "中年車手的十條訓練原則的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-midlife-training-principles",
   "about": {
     "@type": "Thing",
@@ -91,6 +103,28 @@
     {
       "@type": "Thing",
       "name": "間歇"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Tanaka H, Seals DR. Endurance exercise performance in Masters athletes: age-associated changes and underlying physiological mechanisms. J Physiol. 2008;586(1):55–63."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Seiler S. What is best practice for training intensity and duration distribution in endurance athletes? Int J Sports Physiol Perform. 2010;5(3):276–91."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Rønnestad BR, Mujika I. Optimizing strength training for running and cycling endurance performance: a review. Scand J Med Sci Sports. 2014;24(4):603–12."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Foster C, Florhaug JA, Franklin J, et al. A new approach to monitoring exercise training. J Strength Cond Res. 2001;15(1):109–15."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Thomas DT, Erdman KA, Burke LM. American College of Sports Medicine Joint Position Statement. Nutrition and athletic performance. Med Sci Sports Exerc. 2016;48(3):543–68."
     }
   ],
   "author": {
@@ -234,10 +268,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>中年車手的十條訓練原則</span></nav>
     <div class="meta">
-      <span class="date">2026-08-06</span><span class="cat">公路車</span><span>約 9 分鐘</span>
+      <time class="date" datetime="2026-08-06">2026-08-06</time><span class="cat">公路車</span><span>約 9 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">中年車手的十條訓練原則</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">四十歲以後想騎得快又騎得久，強度要留、肌力和骨頭要補、恢復要更勤。十條原則各用幾句話講重點，並附上一週的數字範例。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -323,7 +358,7 @@
 <p>40 歲之後最大的優勢不是體能，是<strong>經驗與判斷</strong>：會配速、會看風、知道自己的身體什麼時候該停。惠君今年冬天沒有收帆，她把間歇移到風比較小的週三清晨，長騎改走背風的路線，一週兩次重訓也排進去了。</p>
 <blockquote>中年不是訓練的下坡路，是換一種方式訓練的開始。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Tanaka H, Seals DR. Endurance exercise performance in Masters athletes: age-associated changes and underlying physiological mechanisms. <em>J Physiol.</em> 2008;586(1):55–63.</li><li>Seiler S. What is best practice for training intensity and duration distribution in endurance athletes? <em>Int J Sports Physiol Perform.</em> 2010;5(3):276–91.</li><li>Rønnestad BR, Mujika I. Optimizing strength training for running and cycling endurance performance: a review. <em>Scand J Med Sci Sports.</em> 2014;24(4):603–12.</li><li>Foster C, Florhaug JA, Franklin J, et al. A new approach to monitoring exercise training. <em>J Strength Cond Res.</em> 2001;15(1):109–15.</li><li>Thomas DT, Erdman KA, Burke LM. American College of Sports Medicine Joint Position Statement. Nutrition and athletic performance. <em>Med Sci Sports Exerc.</em> 2016;48(3):543–68.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

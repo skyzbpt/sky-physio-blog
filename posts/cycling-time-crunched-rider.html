@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT10M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-time-crunched-rider.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-time-crunched-rider.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-time-crunched-rider.webp",
+      "width": 960,
+      "height": 540,
+      "caption": "一週只有六小時的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-time-crunched-rider",
   "about": {
     "@type": "Thing",
@@ -95,6 +107,28 @@
     {
       "@type": "Thing",
       "name": "訓練台"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Allen H, Coggan AR, McGregor S. Training and Racing with a Power Meter. 3rd ed. Boulder, CO: VeloPress; 2019."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Hickson RC, Kanakis C, Davis JR, Moore AM, Rich S. Reduced training duration effects on aerobic power, endurance, and cardiac growth. J Appl Physiol Respir Environ Exerc Physiol. 1982;53(1):225–9."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Stöggl T, Sperlich B. Polarized training has greater impact on key endurance variables than threshold, high intensity, or high volume training. Front Physiol. 2014;5:33."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Neal CM, Hunter AM, Brennan L, O'Sullivan A, Hamilton DL, De Vito G, Galloway SDR. Six weeks of a polarized training-intensity distribution leads to greater physiological and performance adaptations than a threshold model in trained cyclists. J Appl Physiol. 2013;114(4):461–71."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Gillen JB, Martin BJ, MacInnis MJ, Skelly LE, Tarnopolsky MA, Gibala MJ. Twelve weeks of sprint interval training improves indices of cardiometabolic health similar to traditional endurance training despite a five-fold lower exercise volume and time commitment. PLoS One. 2016;11(4):e0154075."
     }
   ],
   "author": {
@@ -238,10 +272,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>一週只有六小時：時間有限車手的訓練策略</span></nav>
     <div class="meta">
-      <span class="date">2026-08-19</span><span class="cat">公路車</span><span>約 10 分鐘</span>
+      <time class="date" datetime="2026-08-19">2026-08-19</time><span class="cat">公路車</span><span>約 10 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">一週只有六小時：時間有限車手的訓練策略</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">時間少不代表練不好，但每一分鐘都要有目的。這篇談一週六小時該先保住什麼、怎麼利用通勤，以及哪些騎法看似努力卻偷走恢復。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -323,7 +358,7 @@
 <p>郁芬後來沒有多騎一分鐘，只是把通勤騎慢、把週二留給真正的硬課、把週六的車隊換成慢組。三個月後她在戶外重測，FTP 從 200 W 到 208 W。進步不大，但是是半年來第一次往上走。每週穩定六小時、持續一整年，比偶爾衝一週十幾小時再停兩週有用得多；一致性那篇把這兩種練法攤成十二週比過。</p>
 <blockquote>時間少不是藉口，也不是限制。它只是要求你更誠實地決定什麼重要。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Allen H, Coggan AR, McGregor S. <em>Training and Racing with a Power Meter.</em> 3rd ed. Boulder, CO: VeloPress; 2019.</li><li>Hickson RC, Kanakis C, Davis JR, Moore AM, Rich S. Reduced training duration effects on aerobic power, endurance, and cardiac growth. <em>J Appl Physiol Respir Environ Exerc Physiol.</em> 1982;53(1):225–9.</li><li>Stöggl T, Sperlich B. Polarized training has greater impact on key endurance variables than threshold, high intensity, or high volume training. <em>Front Physiol.</em> 2014;5:33.</li><li>Neal CM, Hunter AM, Brennan L, O'Sullivan A, Hamilton DL, De Vito G, Galloway SDR. Six weeks of a polarized training-intensity distribution leads to greater physiological and performance adaptations than a threshold model in trained cyclists. <em>J Appl Physiol.</em> 2013;114(4):461–71.</li><li>Gillen JB, Martin BJ, MacInnis MJ, Skelly LE, Tarnopolsky MA, Gibala MJ. Twelve weeks of sprint interval training improves indices of cardiometabolic health similar to traditional endurance training despite a five-fold lower exercise volume and time commitment. <em>PLoS One.</em> 2016;11(4):e0154075.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

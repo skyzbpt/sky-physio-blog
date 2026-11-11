@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT10M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-anaerobic-sprint-training.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-anaerobic-sprint-training.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-anaerobic-sprint-training.webp",
+      "width": 960,
+      "height": 638,
+      "caption": "無氧與衝刺訓練的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-anaerobic-sprint-training",
   "about": {
     "@type": "Thing",
@@ -95,6 +107,24 @@
     {
       "@type": "Thing",
       "name": "訓練台"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Allen H, Coggan AR, McGregor S. Training and Racing with a Power Meter. 3rd ed. Boulder, CO: VeloPress; 2019."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Creer AR, Ricard MD, Conlee RK, Hoyt GL, Parcell AC. Neural, metabolic, and performance adaptations to four weeks of high intensity sprint-interval training in trained cyclists. Int J Sports Med. 2004;25(2):92–8."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Sloth M, Sloth D, Overgaard K, Dalgas U. Effects of sprint interval training on VO2max and aerobic exercise performance: a systematic review and meta-analysis. Scand J Med Sci Sports. 2013;23(6):e341–52."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Menaspà P, Quod M, Martin DT, Peiffer JJ, Abbiss CR. Physical demands of sprinting in professional road cycling. Int J Sports Med. 2015;36(13):1058–62."
     }
   ],
   "author": {
@@ -238,10 +268,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>無氧與衝刺訓練：比賽最後三公里決定的能力</span></nav>
     <div class="meta">
-      <span class="date">2026-06-22</span><span class="cat">公路車</span><span>約 10 分鐘</span>
+      <time class="date" datetime="2026-06-22">2026-06-22</time><span class="cat">公路車</span><span>約 10 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">無氧與衝刺訓練：比賽最後三公里決定的能力</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 4 筆</a></p>
     <p class="lede">五到十五秒的最大衝刺要休夠、求品質；三十秒到兩分鐘的無氧能力課刻意少休、本來就累。兩種課規則相反，排法、頻率和安全重點也不同。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -331,7 +362,7 @@
 <p>衝刺課要新鮮、休夠、齒比別太重；無氧能力課本來就累，一週一次就好；累了還衝，留給進展期以後的長騎尾段。八週後，昱廷的 5 秒最佳從 1,150 W 到 1,200 W，膝蓋也沒再痛；衝牌時他也照衝刺與領騎那篇，改到最後兩百公尺左右才起衝。休息、齒比和順序一起改，功勞分不清，但這次他總算練到想練的東西。</p>
 <blockquote>衝刺不全是天生的，它可以被訓練、被練習。只是練最大衝刺時，需要的是新鮮，不是疲勞。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Allen H, Coggan AR, McGregor S. <em>Training and Racing with a Power Meter.</em> 3rd ed. Boulder, CO: VeloPress; 2019.</li><li>Creer AR, Ricard MD, Conlee RK, Hoyt GL, Parcell AC. Neural, metabolic, and performance adaptations to four weeks of high intensity sprint-interval training in trained cyclists. <em>Int J Sports Med.</em> 2004;25(2):92–8.</li><li>Sloth M, Sloth D, Overgaard K, Dalgas U. Effects of sprint interval training on VO2max and aerobic exercise performance: a systematic review and meta-analysis. <em>Scand J Med Sci Sports.</em> 2013;23(6):e341–52.</li><li>Menaspà P, Quod M, Martin DT, Peiffer JJ, Abbiss CR. Physical demands of sprinting in professional road cycling. <em>Int J Sports Med.</em> 2015;36(13):1058–62.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

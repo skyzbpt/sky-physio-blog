@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT9M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-climbing-strategy.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-climbing-strategy.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-climbing-strategy.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "爬坡的配速與策略的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-climbing-strategy",
   "about": {
     "@type": "Thing",
@@ -87,6 +99,28 @@
     {
       "@type": "Thing",
       "name": "迴轉速"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Swain DP. A model for optimizing cycling performance by varying power on hills and in wind. Med Sci Sports Exerc. 1997;29(8):1104–8."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Atkinson G, Peacock O, Passfield L. Variable versus constant power strategies during cycling time-trials: prediction of time savings using an up-to-date mathematical model. J Sports Sci. 2007;25(9):1001–9."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Ryschon TW, Stray-Gundersen J. The effect of body position on the energy cost of cycling. Med Sci Sports Exerc. 1991;23(8):949–53."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Millet GP, Tronche C, Fuster N, Candau R. Level ground and uphill cycling efficiency in seated and standing positions. Med Sci Sports Exerc. 2002;34(10):1645–52."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Hansen EA, Waldeland H. Seated versus standing position for maximization of performance during intense uphill cycling. J Sports Sci. 2008;26(9):977–84."
     }
   ],
   "author": {
@@ -230,10 +264,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>爬坡的配速與策略：前兩分鐘決定後面二十分鐘</span></nav>
     <div class="meta">
-      <span class="date">2026-08-08</span><span class="cat">公路車</span><span>約 9 分鐘</span>
+      <time class="date" datetime="2026-08-08">2026-08-08</time><span class="cat">公路車</span><span>約 9 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">爬坡的配速與策略：前兩分鐘決定後面二十分鐘</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">多數人在坡的開頭就把力氣燒光，後面只能慢慢撐。這篇依坡長抓功率，算給你看一段六公里的坡要騎多久、齒比夠不夠輕，也談坐姿和站姿怎麼換。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -318,7 +353,7 @@
 <p>把坡的長度、坡度和你的 FTP 算一遍，定好目標；開頭壓住，陡段多踩一點讓腳轉起來，最後有餘力再加。秀琴今年沒有比去年多練多少，只是換了飛輪、改了開頭，就快了兩分多鐘。</p>
 <blockquote>爬坡沒有捷徑，但有太多讓自己更痛苦的方法。前兩分鐘的紀律，是最便宜的一種聰明。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Swain DP. A model for optimizing cycling performance by varying power on hills and in wind. <em>Med Sci Sports Exerc.</em> 1997;29(8):1104–8.</li><li>Atkinson G, Peacock O, Passfield L. Variable versus constant power strategies during cycling time-trials: prediction of time savings using an up-to-date mathematical model. <em>J Sports Sci.</em> 2007;25(9):1001–9.</li><li>Ryschon TW, Stray-Gundersen J. The effect of body position on the energy cost of cycling. <em>Med Sci Sports Exerc.</em> 1991;23(8):949–53.</li><li>Millet GP, Tronche C, Fuster N, Candau R. Level ground and uphill cycling efficiency in seated and standing positions. <em>Med Sci Sports Exerc.</em> 2002;34(10):1645–52.</li><li>Hansen EA, Waldeland H. Seated versus standing position for maximization of performance during intense uphill cycling. <em>J Sports Sci.</em> 2008;26(9):977–84.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT8M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/craniosacral-5g.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/craniosacral-5g.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/craniosacral-5g.webp",
+      "width": 960,
+      "height": 652,
+      "caption": "顱薦椎整合的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/craniosacral-5g",
   "about": {
     "@type": "MedicalTherapy",
@@ -87,6 +99,20 @@
     {
       "@type": "Thing",
       "name": "顱薦椎"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Haller H, Lauche R, Sundberg T, Dobos G, Cramer H. Craniosacral therapy for chronic pain: a systematic review and meta-analysis of randomized controlled trials. BMC Musculoskeletal Disorders. 2019;21:1."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Moran RW, Gibbons P. Intraexaminer and interexaminer reliability for palpation of the cranial rhythmic impulse at the head and sacrum. Journal of Manipulative and Physiological Therapeutics. 2001;24:183–190."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Guillaud A, Darbois N, Monvoisin R, Pinsault N. Reliability of diagnosis and clinical efficacy of cranial osteopathy: a systematic review. PLoS ONE. 2016;11(12):e0167823."
     }
   ],
   "author": {
@@ -238,10 +264,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/craniosacral">顱薦椎</a> › <span>顱薦椎整合：大約五克的力</span></nav>
     <div class="meta">
-      <span class="date">2026-06-01</span><span class="cat">顱薦椎</span><span>約 8 分鐘</span>
+      <time class="date" datetime="2026-06-01">2026-06-01</time><span class="cat">顱薦椎</span><span>約 8 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">顱薦椎整合：大約五克的力</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 3 筆</a></p>
     <p class="lede">五克，差不多是一枚硬幣的重量。在顱薦椎治療裡，改變不是被「做」出來的，是被「允許」出來的。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -327,7 +354,7 @@
 <p>當問題主要出在某條肌腱、某個關節，顱薦椎不會是主角；當問題比較像「整個系統太緊了」，它的份量就會變重。</p>
 <p>五克的力推不動任何人。它只是輕輕敲門，然後等身體自己決定：要不要開。</p>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Haller H, Lauche R, Sundberg T, Dobos G, Cramer H. Craniosacral therapy for chronic pain: a systematic review and meta-analysis of randomized controlled trials. BMC Musculoskeletal Disorders. 2019;21:1.</li><li>Moran RW, Gibbons P. Intraexaminer and interexaminer reliability for palpation of the cranial rhythmic impulse at the head and sacrum. Journal of Manipulative and Physiological Therapeutics. 2001;24:183–190.</li><li>Guillaud A, Darbois N, Monvoisin R, Pinsault N. Reliability of diagnosis and clinical efficacy of cranial osteopathy: a systematic review. PLoS ONE. 2016;11(12):e0167823.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

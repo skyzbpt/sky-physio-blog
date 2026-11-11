@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT9M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-tapering-peak.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-tapering-peak.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-tapering-peak.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "減量（Taper）的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-tapering-peak",
   "about": {
     "@type": "Thing",
@@ -91,6 +103,28 @@
     {
       "@type": "Thing",
       "name": "Taper"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Bosquet L, Montpetit J, Arvisais D, Mujika I. Effects of tapering on performance: a meta-analysis. Med Sci Sports Exerc. 2007;39(8):1358–65."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Mujika I, Padilla S. Scientific bases for precompetition tapering strategies. Med Sci Sports Exerc. 2003;35(7):1182–7."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Thomas L, Busso T. A theoretical study of taper characteristics to optimize performance. Med Sci Sports Exerc. 2005;37(9):1615–21."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Hickson RC, Kanakis C, Davis JR, Moore AM, Rich S. Reduced training duration effects on aerobic power, endurance, and cardiac growth. J Appl Physiol Respir Environ Exerc Physiol. 1982;53(1):225–9."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Coggan AR. The science of the TrainingPeaks Performance Manager. TrainingPeaks. Published 2022, updated 2023."
     }
   ],
   "author": {
@@ -234,10 +268,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>減量（Taper）：賽前兩週怎麼練，才會在對的那天最快</span></nav>
     <div class="meta">
-      <span class="date">2026-06-16</span><span class="cat">公路車</span><span>約 9 分鐘</span>
+      <time class="date" datetime="2026-06-16">2026-06-16</time><span class="cat">公路車</span><span>約 9 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">減量（Taper）：賽前兩週怎麼練，才會在對的那天最快</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">砍掉訓練量、保留強度和騎乘頻率。以競技選手為對象的研究裡，減量後的表現通常比減量前好約 3%；做錯則讓你在起跑線上覺得腿是空的。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -327,7 +362,7 @@
 <p>減量最難的不是課表，是心態。體能不會在十天內消失，疲勞卻會；這兩週最好的做法，就是照計畫騎、好好吃、好好睡，讓前面幾個月的累積被看見。</p>
 <blockquote>減量需要信心。你不是在停止訓練，你是在讓已經完成的訓練浮出水面。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Bosquet L, Montpetit J, Arvisais D, Mujika I. Effects of tapering on performance: a meta-analysis. <em>Med Sci Sports Exerc.</em> 2007;39(8):1358–65.</li><li>Mujika I, Padilla S. Scientific bases for precompetition tapering strategies. <em>Med Sci Sports Exerc.</em> 2003;35(7):1182–7.</li><li>Thomas L, Busso T. A theoretical study of taper characteristics to optimize performance. <em>Med Sci Sports Exerc.</em> 2005;37(9):1615–21.</li><li>Hickson RC, Kanakis C, Davis JR, Moore AM, Rich S. Reduced training duration effects on aerobic power, endurance, and cardiac growth. <em>J Appl Physiol Respir Environ Exerc Physiol.</em> 1982;53(1):225–9.</li><li>Coggan AR. The science of the TrainingPeaks Performance Manager. <em>TrainingPeaks.</em> Published 2022, updated 2023.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT10M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-ftp-test-methods.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-ftp-test-methods.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-ftp-test-methods.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "怎麼測 FTP的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-ftp-test-methods",
   "about": {
     "@type": "Thing",
@@ -95,6 +107,28 @@
     {
       "@type": "Thing",
       "name": "迴轉速"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Allen H, Coggan AR, McGregor S. Training and Racing with a Power Meter. 3rd ed. Boulder, CO: VeloPress; 2019."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Gavin TP, Van Meter JB, Brophy PM, Dubis GS, Potts KN, Hickner RC. Comparison of a field-based test to estimate functional threshold power and power output at lactate threshold. J Strength Cond Res. 2012;26(2):416–21."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Jamnick NA, Botella J, Pyne DB, Bishop DJ. Manipulating graded exercise test variables affects the validity of the lactate threshold and VO2peak. PLoS One. 2018;13(7):e0199794."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "MacInnis MJ, Thomas ACQ, Phillips SM. The reliability of 4-minute and 20-minute time trials and their relationships to functional threshold power in trained cyclists. Int J Sports Physiol Perform. 2019;14(1):38–45."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Borszcz FK, Tramontin AF, Bossi AH, Carminatti LJ, Costa VP. Functional threshold power in cyclists: validity of the concept and physiological responses. Int J Sports Med. 2018;39(10):737–42."
     }
   ],
   "author": {
@@ -238,10 +272,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>怎麼測 FTP？三種常見方法與各自的坑</span></nav>
     <div class="meta">
-      <span class="date">2026-05-17</span><span class="cat">公路車</span><span>約 10 分鐘</span>
+      <time class="date" datetime="2026-05-17">2026-05-17</time><span class="cat">公路車</span><span>約 10 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">怎麼測 FTP？三種常見方法與各自的坑</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">20 分鐘、斜坡、8 分鐘和真的騎一小時，各有各的係數和偏差。一位衝刺型車友測出三個 FTP，最多差 25 W；挑一種測法、每次照做，再用一堂課驗收。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -325,7 +360,7 @@
 <p>FTP 測驗沒有完美的一種，只有偏差你看得懂的一種。挑一種適合你身體和時間的測法，每次照做；數字和課表對不上時，先懷疑係數，再懷疑自己。</p>
 <blockquote>測驗的目的不是拿到漂亮數字，而是拿到一個<strong>你敢拿來安排下一個月訓練</strong>的數字。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Allen H, Coggan AR, McGregor S. <em>Training and Racing with a Power Meter.</em> 3rd ed. Boulder, CO: VeloPress; 2019.</li><li>Gavin TP, Van Meter JB, Brophy PM, Dubis GS, Potts KN, Hickner RC. Comparison of a field-based test to estimate functional threshold power and power output at lactate threshold. <em>J Strength Cond Res.</em> 2012;26(2):416–21.</li><li>Jamnick NA, Botella J, Pyne DB, Bishop DJ. Manipulating graded exercise test variables affects the validity of the lactate threshold and VO2peak. <em>PLoS One.</em> 2018;13(7):e0199794.</li><li>MacInnis MJ, Thomas ACQ, Phillips SM. The reliability of 4-minute and 20-minute time trials and their relationships to functional threshold power in trained cyclists. <em>Int J Sports Physiol Perform.</em> 2019;14(1):38–45.</li><li>Borszcz FK, Tramontin AF, Bossi AH, Carminatti LJ, Costa VP. Functional threshold power in cyclists: validity of the concept and physiological responses. <em>Int J Sports Med.</em> 2018;39(10):737–42.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

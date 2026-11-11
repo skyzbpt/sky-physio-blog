@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT7M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/shoulder-bursitis.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/shoulder-bursitis.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/shoulder-bursitis.webp",
+      "width": 960,
+      "height": 702,
+      "caption": "肩關節與肩峰下滑囊的解剖插圖"
+    }
+  ],
   "url": "https://skythephysio.com/posts/shoulder-bursitis",
   "about": {
     "@type": "MedicalCondition",
@@ -91,6 +103,24 @@
     {
       "@type": "Thing",
       "name": "肩胛"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Rosenthal MD, Moore JH, Lynch JR. Impingement syndrome. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Romeyn R, Manske RC. Importance of the history in the diagnosis of shoulder pathology. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Neer CS 2nd. Impingement lesions. Clin Orthop Relat Res. 1983;(173):70–7."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Gray JC, Grimsby O. Interrelationship of the spine, rib cage, and shoulder. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012."
     }
   ],
   "author": {
@@ -258,10 +288,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/shoulder-pain">肩膀痛</a> › <span>肩滑囊炎：過頭動作時那股悶悶的痛</span></nav>
     <div class="meta">
-      <span class="date">2026-02-27</span><span class="cat">肩膀痛</span><span>約 7 分鐘</span>
+      <time class="date" datetime="2026-02-27">2026-02-27</time><span class="cat">肩膀痛</span><span>約 7 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">肩滑囊炎：過頭動作時那股悶悶的痛</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-08">2026-11-08</time></span><a href="#refs">參考文獻 4 筆</a></p>
     <p class="lede">肩膀外側悶悶地痛、過頭就卡、側睡壓到會痛，很可能是肩峰下滑囊在發炎。這篇跟著一位油漆師傅，說明滑囊為什麼被夾、打針的角色是什麼、和鈣化性肌腱炎怎麼分，以及多久會好。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -343,7 +374,7 @@
 <p>國華後來說，最大的收穫不是肩膀不痛了，而是知道下次接大案子前，要先把工具和輪替排好。滑囊是那個發出聲音的墊圈，真正需要保養的，是整扇門。</p>
 <blockquote>滑囊炎很少是「單獨」發生的。它常常是肩膀協調出狀況後，被連累的那一個。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Rosenthal MD, Moore JH, Lynch JR. Impingement syndrome. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>Romeyn R, Manske RC. Importance of the history in the diagnosis of shoulder pathology. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>Neer CS 2nd. Impingement lesions. <em>Clin Orthop Relat Res.</em> 1983;(173):70–7.</li><li>Gray JC, Grimsby O. Interrelationship of the spine, rib cage, and shoulder. In: Donatelli RA, ed. <em>Physical Therapy of the Shoulder.</em> 5th ed. St. Louis: Churchill Livingstone; 2012.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

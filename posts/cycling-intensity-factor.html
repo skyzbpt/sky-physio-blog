@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT8M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-intensity-factor.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-intensity-factor.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-intensity-factor.webp",
+      "width": 960,
+      "height": 641,
+      "caption": "強度係數 IF的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-intensity-factor",
   "about": {
     "@type": "Thing",
@@ -91,6 +103,28 @@
     {
       "@type": "Thing",
       "name": "強度係數"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Allen H, Coggan AR, McGregor S. Training and Racing with a Power Meter. 3rd ed. Boulder, CO: VeloPress; 2019."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Coggan AR. Normalized Power, Intensity Factor and Training Stress Score. TrainingPeaks. Published 2016, updated 2026."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Klitzke Borszcz F, Ferreira Tramontin A, Pereira Costa V. Is the functional threshold power interchangeable with the maximal lactate steady state in trained cyclists? Int J Sports Physiol Perform. 2019;14(8):1029–35."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Impellizzeri FM, Marcora SM, Coutts AJ. Internal and external training load: 15 years on. Int J Sports Physiol Perform. 2019;14(2):270–3."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Impellizzeri FM, Menaspà P, Coutts AJ, Kalkhoven J, Menaspà MJ. Training load and its role in injury prevention, part I: back to the future. J Athl Train. 2020;55(9):885–92."
     }
   ],
   "author": {
@@ -242,10 +276,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>強度係數 IF：一個數字說完「今天騎得多硬」</span></nav>
     <div class="meta">
-      <span class="date">2026-05-20</span><span class="cat">公路車</span><span>約 8 分鐘</span>
+      <time class="date" datetime="2026-05-20">2026-05-20</time><span class="cat">公路車</span><span>約 8 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">強度係數 IF：一個數字說完「今天騎得多硬」</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">IF 等於 NP 除以 FTP。0.65 以下是恢復騎，0.85 是紮實的節奏騎，1.0 是一小時全力。學會看 IF，你就能快速判斷一趟騎乘的性質。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -336,7 +371,7 @@
 <p>IF 是一支很好用的溫度計：它讓「今天騎得多硬」從感覺變成可以比較的數字。但溫度計不會替你決定要不要出門。把 FTP 設準、資料顧好，再配上心率、睡眠和身體的感覺一起看，它才真正幫得上忙。</p>
 <blockquote>時間會騙人，距離也會。IF 直接告訴你，這趟騎乘離你的一小時極限有多近。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Allen H, Coggan AR, McGregor S. <em>Training and Racing with a Power Meter.</em> 3rd ed. Boulder, CO: VeloPress; 2019.</li><li>Coggan AR. Normalized Power, Intensity Factor and Training Stress Score. <em>TrainingPeaks.</em> Published 2016, updated 2026.</li><li>Klitzke Borszcz F, Ferreira Tramontin A, Pereira Costa V. Is the functional threshold power interchangeable with the maximal lactate steady state in trained cyclists? <em>Int J Sports Physiol Perform.</em> 2019;14(8):1029–35.</li><li>Impellizzeri FM, Marcora SM, Coutts AJ. Internal and external training load: 15 years on. <em>Int J Sports Physiol Perform.</em> 2019;14(2):270–3.</li><li>Impellizzeri FM, Menaspà P, Coutts AJ, Kalkhoven J, Menaspà MJ. Training load and its role in injury prevention, part I: back to the future. <em>J Athl Train.</em> 2020;55(9):885–92.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

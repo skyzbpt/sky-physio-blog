@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT9M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-variability-index.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-variability-index.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-variability-index.webp",
+      "width": 960,
+      "height": 663,
+      "caption": "變異指數 VI的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-variability-index",
   "about": {
     "@type": "Thing",
@@ -91,6 +103,28 @@
     {
       "@type": "Thing",
       "name": "訓練台"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Allen H, Coggan AR, McGregor S. Training and Racing with a Power Meter. 3rd ed. Boulder, CO: VeloPress; 2019."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Theurel J, Lepers R. Neuromuscular fatigue is greater following highly variable versus constant intensity endurance cycling. Eur J Appl Physiol. 2008;103(4):461–8."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Liedl MA, Swain DP, Branch JD. Physiological effects of constant versus variable power during endurance cycling. Med Sci Sports Exerc. 1999;31(10):1472–7."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Atkinson G, Peacock O, Passfield L. Variable versus constant power strategies during cycling time-trials: prediction of time savings using an up-to-date mathematical model. J Sports Sci. 2007;25(9):1001–9."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Skiba PF, Chidnok W, Vanhatalo A, Jones AM. Modeling the expenditure and reconstitution of work capacity above critical power. Med Sci Sports Exerc. 2012;44(8):1526–32."
     }
   ],
   "author": {
@@ -234,10 +268,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>變異指數 VI：你的配速有你以為的那麼穩嗎</span></nav>
     <div class="meta">
-      <span class="date">2026-05-23</span><span class="cat">公路車</span><span>約 9 分鐘</span>
+      <time class="date" datetime="2026-05-23">2026-05-23</time><span class="cat">公路車</span><span>約 9 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">變異指數 VI：你的配速有你以為的那麼穩嗎</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">VI 是正規化功率除以平均功率。計時賽該接近 1.0，繞圈賽可能到 1.3。在該穩的時候，它能幫你抓出不必要的爆衝。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -330,7 +365,7 @@
 <p>同樣的平均功率，可以是輕鬆的定速，也可以是一堂沒有結構的間歇。在計時賽和穩定課表裡，VI 幫你抓出浪費；在比賽和團騎裡，它提醒你這趟其實很貴。</p>
 <blockquote>快的人不一定踩得比較用力，而是浪費得比較少。在該穩的路段，VI 就是浪費的計量表。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Allen H, Coggan AR, McGregor S. <em>Training and Racing with a Power Meter.</em> 3rd ed. Boulder, CO: VeloPress; 2019.</li><li>Theurel J, Lepers R. Neuromuscular fatigue is greater following highly variable versus constant intensity endurance cycling. <em>Eur J Appl Physiol.</em> 2008;103(4):461–8.</li><li>Liedl MA, Swain DP, Branch JD. Physiological effects of constant versus variable power during endurance cycling. <em>Med Sci Sports Exerc.</em> 1999;31(10):1472–7.</li><li>Atkinson G, Peacock O, Passfield L. Variable versus constant power strategies during cycling time-trials: prediction of time savings using an up-to-date mathematical model. <em>J Sports Sci.</em> 2007;25(9):1001–9.</li><li>Skiba PF, Chidnok W, Vanhatalo A, Jones AM. Modeling the expenditure and reconstitution of work capacity above critical power. <em>Med Sci Sports Exerc.</em> 2012;44(8):1526–32.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

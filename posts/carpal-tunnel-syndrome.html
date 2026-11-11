@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT6M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/carpal-tunnel-syndrome.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/carpal-tunnel-syndrome.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/carpal-tunnel-syndrome.webp",
+      "width": 960,
+      "height": 540,
+      "caption": "腕隧道與正中神經的示意插圖"
+    }
+  ],
   "url": "https://skythephysio.com/posts/carpal-tunnel-syndrome",
   "about": {
     "@type": "MedicalCondition",
@@ -83,10 +95,20 @@
     {
       "@type": "Thing",
       "name": "腕隧道"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Brotzman SB, Novotny SR. Nerve compression syndromes. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
     },
     {
-      "@type": "Thing",
-      "name": "腕隧道"
+      "@type": "CreativeWork",
+      "name": "Gerritsen AAM, de Vet HCW, Scholten RJPM, et al. Splinting vs surgery in the treatment of carpal tunnel syndrome: a randomized controlled trial. JAMA. 2002;288(10):1245–51."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Hall TM, Elvey RL. Neural tissue evaluation and treatment. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012."
     }
   ],
   "author": {
@@ -254,10 +276,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/elbow-wrist-pain">手肘與手腕痛</a> › <span>腕隧道症候群：半夜手麻醒，甩一甩才好</span></nav>
     <div class="meta">
-      <span class="date">2026-11-04</span><span class="cat">手肘與手腕痛</span><span>約 6 分鐘</span>
+      <time class="date" datetime="2026-11-04">2026-11-04</time><span class="cat">手肘與手腕痛</span><span>約 6 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">腕隧道症候群：半夜手麻醒，甩一甩才好</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-08">2026-11-08</time></span><a href="#refs">參考文獻 3 筆</a></p>
     <p class="lede">半夜被手指麻醒、要甩一甩才好，騎車或滑手機久了拇指到中指發麻——這是腕隧道症候群，最常見的手部神經壓迫。這篇跟著一位懷孕的會計師，說明為什麼夜裡最麻、副木怎麼戴、神經滑動運動怎麼做，以及什麼時候該考慮手術。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -342,7 +365,7 @@
 <p>欣怡說，最有感的改變就是那個看起來不起眼的夜間副木。現在寶寶出生了，她抱小孩時會提醒自己：手腕不要一直彎著。</p>
 <blockquote>神經最怕的不是用力，而是被長時間擠著。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Brotzman SB, Novotny SR. Nerve compression syndromes. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>Gerritsen AAM, de Vet HCW, Scholten RJPM, et al. Splinting vs surgery in the treatment of carpal tunnel syndrome: a randomized controlled trial. <em>JAMA.</em> 2002;288(10):1245–51.</li><li>Hall TM, Elvey RL. Neural tissue evaluation and treatment. In: Donatelli RA, ed. <em>Physical Therapy of the Shoulder.</em> 5th ed. St. Louis: Churchill Livingstone; 2012.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

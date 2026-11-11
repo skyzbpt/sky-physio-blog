@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT6M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cubital-tunnel-syndrome.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cubital-tunnel-syndrome.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cubital-tunnel-syndrome.webp",
+      "width": 960,
+      "height": 504,
+      "caption": "尺神經從手肘的肘隧道往下走到手掌的路徑示意插圖"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cubital-tunnel-syndrome",
   "about": {
     "@type": "MedicalCondition",
@@ -91,6 +103,20 @@
     {
       "@type": "Thing",
       "name": "神經滑動"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Brotzman SB, Novotny SR. Nerve compression syndromes. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Novotny SR. Forearm upper extremity nerve entrapment injuries. In: Giangarra CE, Manske RC, eds. Clinical Orthopaedic Rehabilitation: A Team Approach. 4th ed. Philadelphia: Elsevier; 2018."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Hall TM, Elvey RL. Neural tissue evaluation and treatment. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012."
     }
   ],
   "author": {
@@ -250,10 +276,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/elbow-wrist-pain">手肘與手腕痛</a> › <span>肘隧道症候群：無名指、小指麻，問題在手肘</span></nav>
     <div class="meta">
-      <span class="date">2026-11-05</span><span class="cat">手肘與手腕痛</span><span>約 6 分鐘</span>
+      <time class="date" datetime="2026-11-05">2026-11-05</time><span class="cat">手肘與手腕痛</span><span>約 6 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">肘隧道症候群：無名指、小指麻，問題在手肘</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-10">2026-11-10</time></span><a href="#refs">參考文獻 3 筆</a></p>
     <p class="lede">講電話、滑手機、睡覺時手肘彎久了，無名指和小指就麻——這常是尺神經在手肘被壓到的肘隧道症候群。這篇跟著一位客服人員，說明怎麼和腕隧道、頸椎與騎車的手掌麻分辨，以及夜間姿勢和神經滑動怎麼做。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -336,7 +363,7 @@
 <p>偉倫說，最有效的改變竟然是一副耳機。現在整個客服部門都換了耳機，同事說手肘舒服多了。</p>
 <blockquote>不是手指的問題，是那條神經一路上被夾了太久。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Brotzman SB, Novotny SR. Nerve compression syndromes. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>Novotny SR. Forearm upper extremity nerve entrapment injuries. In: Giangarra CE, Manske RC, eds. <em>Clinical Orthopaedic Rehabilitation: A Team Approach.</em> 4th ed. Philadelphia: Elsevier; 2018.</li><li>Hall TM, Elvey RL. Neural tissue evaluation and treatment. In: Donatelli RA, ed. <em>Physical Therapy of the Shoulder.</em> 5th ed. St. Louis: Churchill Livingstone; 2012.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

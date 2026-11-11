@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT2M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/tps-why-trigger-points-form.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/tps-why-trigger-points-form.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/tps-why-trigger-points-form.webp",
+      "width": 960,
+      "height": 686,
+      "caption": "激痛點為何形成的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/tps-why-trigger-points-form",
   "about": {
     "@type": "Thing",
@@ -83,6 +95,12 @@
     {
       "@type": "Thing",
       "name": "激痛點"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "McEvoy J, Dommerholt J. Myofascial trigger points of the shoulder. In: Donatelli RA, ed. Physical Therapy of the Shoulder. 5th ed. St. Louis: Churchill Livingstone; 2012."
     }
   ],
   "author": {
@@ -218,10 +236,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/pain-science">疼痛科學</a> › <span>激痛點為何形成：肌肉過載與「灰姑娘假說」</span></nav>
     <div class="meta">
-      <span class="date">2026-05-31</span><span class="cat">疼痛科學</span><span>約 2 分鐘</span>
+      <time class="date" datetime="2026-05-31">2026-05-31</time><span class="cat">疼痛科學</span><span>約 2 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">激痛點為何形成：肌肉過載與「灰姑娘假說」</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-08">2026-11-08</time></span><a href="#refs">參考文獻 1 筆</a></p>
     <p class="lede">為什麼打電腦、拉小提琴這種不費力的動作也會養出激痛點？答案藏在一個叫「灰姑娘假說」的有趣理論裡。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -276,7 +295,7 @@
 <p>只處理激痛點本身，卻沒有處理這些持續因素，它很容易一再回來。</p>
 <blockquote>最容易受傷的，往往不是用力最猛的，而是休息最少的。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>McEvoy J, Dommerholt J. Myofascial trigger points of the shoulder. In: Donatelli RA, ed. <em>Physical Therapy of the Shoulder.</em> 5th ed. St. Louis: Churchill Livingstone; 2012.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

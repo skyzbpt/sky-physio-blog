@@ -48,6 +48,9 @@
     "reviewedBy": {
       "@id": "https://skythephysio.com/#sky"
     },
+    "audience": {
+      "@type": "Patient"
+    },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -67,12 +70,21 @@
   "timeRequired": "PT8M",
   "inLanguage": "zh-TW",
   "isAccessibleForFree": true,
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://skythephysio.com/assets/og/cycling-ftp-what-is-it.jpg",
-    "width": 1200,
-    "height": 630
-  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/og/cycling-ftp-what-is-it.jpg",
+      "width": 1200,
+      "height": 630
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://skythephysio.com/assets/photos/cycling-ftp-what-is-it.webp",
+      "width": 960,
+      "height": 640,
+      "caption": "FTP 是什麼的示意照片"
+    }
+  ],
   "url": "https://skythephysio.com/posts/cycling-ftp-what-is-it",
   "about": {
     "@type": "Thing",
@@ -99,6 +111,28 @@
     {
       "@type": "Thing",
       "name": "訓練台"
+    }
+  ],
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name": "Allen H, Coggan AR, McGregor S. Training and Racing with a Power Meter. 3rd ed. Boulder, CO: VeloPress; 2019."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Klitzke Borszcz F, Ferreira Tramontin A, Pereira Costa V. Is the functional threshold power interchangeable with the maximal lactate steady state in trained cyclists? Int J Sports Physiol Perform. 2019;14(8):1029–35."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Borszcz FK, Tramontin AF, Bossi AH, Carminatti LJ, Costa VP. Functional threshold power in cyclists: validity of the concept and physiological responses. Int J Sports Med. 2018;39(10):737–42."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "MacInnis MJ, Thomas ACQ, Phillips SM. The reliability of 4-minute and 20-minute time trials and their relationships to functional threshold power in trained cyclists. Int J Sports Physiol Perform. 2019;14(1):38–45."
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Mujika I, Padilla S. Detraining: loss of training-induced physiological and performance adaptations. Part I: short term insufficient training stimulus. Sports Med. 2000;30(2):79–87."
     }
   ],
   "author": {
@@ -242,10 +276,11 @@
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/topics/cycling">公路車</a> › <span>FTP 是什麼？公路車訓練最重要的那一個數字</span></nav>
     <div class="meta">
-      <span class="date">2026-05-16</span><span class="cat">公路車</span><span>約 8 分鐘</span>
+      <time class="date" datetime="2026-05-16">2026-05-16</time><span class="cat">公路車</span><span>約 8 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">FTP 是什麼？公路車訓練最重要的那一個數字</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="2026-11-07">2026-11-07</time></span><a href="#refs">參考文獻 5 筆</a></p>
     <p class="lede">FTP 是你能穩定維持約一小時的最大功率，它決定你的訓練區間、強度係數與訓練量分數。搞懂它，你的每一次踩踏才開始有刻度。</p>
     <section class="quick" id="quick" aria-labelledby="quick-h">
       <h2 id="quick-h">快速解答</h2>
@@ -329,7 +364,7 @@
 <p>FTP 不是拿來跟人比的分數，而是一把尺：區間、IF、TSS、配速，全都刻在它上面。用同一套方法測、每隔一段時間校一次、停騎或受傷後先把它縮回來。尺準了，後面的數字才有意義。</p>
 <blockquote>FTP 不是成績單，是刻度尺。有了刻度，訓練才從「感覺」變成「劑量」。</blockquote>
 <hr>
-<p><strong>參考資料</strong></p>
+<p class="refs-h" id="refs"><strong>參考資料</strong></p>
 <ol><li>Allen H, Coggan AR, McGregor S. <em>Training and Racing with a Power Meter.</em> 3rd ed. Boulder, CO: VeloPress; 2019.</li><li>Klitzke Borszcz F, Ferreira Tramontin A, Pereira Costa V. Is the functional threshold power interchangeable with the maximal lactate steady state in trained cyclists? <em>Int J Sports Physiol Perform.</em> 2019;14(8):1029–35.</li><li>Borszcz FK, Tramontin AF, Bossi AH, Carminatti LJ, Costa VP. Functional threshold power in cyclists: validity of the concept and physiological responses. <em>Int J Sports Med.</em> 2018;39(10):737–42.</li><li>MacInnis MJ, Thomas ACQ, Phillips SM. The reliability of 4-minute and 20-minute time trials and their relationships to functional threshold power in trained cyclists. <em>Int J Sports Physiol Perform.</em> 2019;14(1):38–45.</li><li>Mujika I, Padilla S. Detraining: loss of training-induced physiological and performance adaptations. Part I: short term insufficient training stimulus. <em>Sports Med.</em> 2000;30(2):79–87.</li></ol>
     </div>
     <p class="post-foot">本文為衛教分享，內容無法取代醫療診斷與個別化評估。若你正受疼痛或身心狀況困擾，請尋求物理治療師、醫師或心理專業的協助。</p>

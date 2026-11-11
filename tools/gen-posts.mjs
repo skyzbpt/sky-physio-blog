@@ -2,7 +2,7 @@
 // 資料來源：data/articles.json（唯一真實來源）
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, TODAY, esc, readMins, CAT_SLUG, renderBody, headingsOf, loadArticles, logoDataURI, photoDataURI, roundedFontDataURI, ogCard, ogHomeCard, shot, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, wordCountOf, keywordsFor, mentionsFor, metaDescription, extractFaqs, ldJson, topicsOf } from './lib.mjs';
+import { REPO, BASE, TODAY, esc, readMins, CAT_SLUG, renderBody, headingsOf, loadArticles, logoDataURI, photoDataURI, roundedFontDataURI, ogCard, ogHomeCard, shot, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, wordCountOf, keywordsFor, mentionsFor, metaDescription, extractFaqs, ldJson, topicsOf, referencesOf, firstImageOf } from './lib.mjs';
 import { SHELL, BOOK_URL, siteHeader } from './css.mjs';
 import { resolveModified } from './modified.mjs';
 import { LEGAL_UPDATED } from './gen-legal.mjs';
@@ -54,6 +54,13 @@ const CSS = SHELL + `
 .meta .cat{color:var(--sky-ink)}
 .pp-share{margin-left:auto;font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;color:var(--sky-ink);background:none;border:1px solid var(--line);border-radius:999px;padding:5px 16px;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;min-height:44px}
 .pp-share:hover{border-color:var(--sky);background:var(--sky-soft)}
+/* 署名列：誰寫的、誰審閱、最後審閱日、有幾筆出處——醫療衛教的可信度訊號（E-E-A-T），
+   放在標題正下方，讀者與 AI 引擎都不必捲到文末才知道這篇是物理治療師寫的。 */
+.byline{font-family:var(--sans);font-size:.8rem;line-height:1.8;color:var(--muted);margin:0 0 16px;display:flex;flex-wrap:wrap;column-gap:14px}
+.byline a{color:var(--sky-ink)}
+.byline a:hover{text-decoration:underline}
+.post-body .refs-h{scroll-margin-top:92px;margin-bottom:.8em}
+.post-body .refs-h+ol{font-family:var(--sans);font-size:.84rem;line-height:1.8;letter-spacing:0;color:var(--muted);word-break:break-word}
 h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.45;margin-bottom:14px}
 .lede{font-family:var(--serif);color:var(--muted);font-size:1.02rem;line-height:2;border-bottom:1px solid var(--line);padding-bottom:30px;margin-bottom:38px}
 .post-body p{font-family:var(--serif);font-size:1.04rem;line-height:2.1;letter-spacing:.04em;color:var(--ink-2);margin-bottom:1.7em;text-align:justify}
@@ -221,6 +228,9 @@ ${heads.map(h => `        <li><a href="#${h.id}">${esc(h.text)}</a></li>`).join(
   const about = CAT_ABOUT[a.cat];
   const keywords = keywordsFor(a);
   const mentions = mentionsFor(a);
+  const refs = referencesOf(a.content);
+  const bodyImg = firstImageOf(a.content);
+  const ogImage = { "@type": "ImageObject", "url": ogImg, "width": 1200, "height": 630 };
   const jsonld = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -230,6 +240,8 @@ ${heads.map(h => `        <li><a href="#${h.id}">${esc(h.text)}</a></li>`).join(
       "@type": "MedicalWebPage", "@id": url,
       "lastReviewed": modified,
       "reviewedBy": { "@id": AUTHOR['@id'] },
+      // 寫給一般民眾的衛教（不是給同業的專業文獻）
+      "audience": { "@type": "Patient" },
       "speakable": { "@type": "SpeakableSpecification", "cssSelector": [".post-title", ".lede", ".quick dd"] }
     },
     "headline": a.title,
@@ -242,10 +254,12 @@ ${heads.map(h => `        <li><a href="#${h.id}">${esc(h.text)}</a></li>`).join(
     "timeRequired": `PT${mins}M`,
     "inLanguage": "zh-TW",
     "isAccessibleForFree": true,
-    "image": { "@type": "ImageObject", "url": ogImg, "width": 1200, "height": 630 },
+    "image": bodyImg ? [ogImage, bodyImg] : ogImage,
     "url": url,
     ...(about ? { "about": about } : {}),
     ...(mentions.length ? { "mentions": mentions } : {}),
+    // 參考文獻：讓搜尋與 AI 引擎讀得到這篇的出處（頁面上同一份清單在 #refs）
+    ...(refs.length ? { "citation": refs.map(r => ({ "@type": "CreativeWork", "name": r })) } : {}),
     "author": AUTHOR,
     "publisher": PUBLISHER,
     "isPartOf": { "@type": "Blog", "@id": BASE + "/blog#blog", "url": BASE + "/blog", "name": "Sky 物理治療師｜衛教文章" }
@@ -332,10 +346,11 @@ ${siteHeader({ links: [['/services', '服務項目'], ['/blog', '更多文章'],
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › ${hubSlug ? `<a href="/topics/${hubSlug}">${esc(a.cat)}</a>` : esc(a.cat)} › <span>${esc(a.title)}</span></nav>
     <div class="meta">
-      <span class="date">${a.date}</span><span class="cat">${esc(a.cat)}</span><span>約 ${mins} 分鐘</span>
+      <time class="date" datetime="${a.date}">${a.date}</time><span class="cat">${esc(a.cat)}</span><span>約 ${mins} 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">${esc(a.title)}</h1>
+    <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="${modified}">${modified}</time></span>${refs.length ? `<a href="#refs">參考文獻 ${refs.length} 筆</a>` : ''}</p>
     <p class="lede">${esc(a.excerpt)}</p>${quickHtml}
     <aside class="post-side" aria-label="本篇章節與預約">${tocHtml}
       <div class="side-cta">
