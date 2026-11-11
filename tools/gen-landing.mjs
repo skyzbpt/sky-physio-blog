@@ -274,7 +274,7 @@ function shell() {
 const CAL_SVG = (s) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:5px"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`;
 
 const QUICK_CSS = `
-.quick{margin:0 0 38px;padding:20px 22px 8px;border:1px solid var(--line);border-left:3px solid #4BA3D9;border-radius:14px;background:#EEF7FD}
+.quick{margin:0 0 38px;padding:20px 22px 8px;border:1px solid var(--line);border-left:3px solid var(--sky);border-radius:14px;background:#F1F7FC}
 .quick h2{font-family:var(--mono);font-size:.75rem;letter-spacing:.18em;color:var(--muted);font-weight:400;margin:0 0 12px}
 .quick dl{margin:0}
 .quick dt{font-family:var(--serif);font-weight:700;font-size:.98rem;line-height:1.7;color:var(--ink);margin:0 0 4px}
@@ -361,7 +361,7 @@ function render(p, articles, tpl) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#E0F0FB">
+<meta name="theme-color" content="#F4F9FD">
 <title>${esc(p.title)}</title>
 <meta name="description" content="${esc(p.desc)}">
 <meta name="keywords" content="${esc(p.keywords)}">
@@ -436,7 +436,7 @@ ${others.map(o => `        <a href="/${o.slug}">${esc(o.crumb.replace('推薦', 
           <div class="t">${esc(p.cta[0])}</div>
           <div class="s">${esc(p.cta[1])}</div>
         </div>
-        <a class="btn teal" href="${BOOK}" target="_blank" rel="noopener">${CAL_SVG(14)}預約評估</a>
+        <a class="btn sky" href="${BOOK}" target="_blank" rel="noopener">${CAL_SVG(14)}預約評估</a>
       </div>
     </div>
     <p class="post-foot">本頁為服務說明與衛教分享，內容無法取代醫療診斷與個別化評估。若有發燒合併劇痛、大小便失禁、不明原因體重下降、麻木無力越來越嚴重等警訊，請先就醫檢查。</p>
@@ -446,7 +446,7 @@ ${others.map(o => `        <a href="/${o.slug}">${esc(o.crumb.replace('推薦', 
     <ol>
 ${toc.map(([id, t]) => `        <li><a href="#g-${id}">${esc(t)}</a></li>`).join('\n')}
     </ol>
-    <a class="btn teal sm" href="${BOOK}" target="_blank" rel="noopener">預約評估</a>
+    <a class="btn sky sm" href="${BOOK}" target="_blank" rel="noopener">預約評估</a>
   </nav>
   </div>
 </main>
