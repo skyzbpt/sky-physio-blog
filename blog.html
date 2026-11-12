@@ -412,6 +412,8 @@ function matchedArticles(){
 /* 清單資料會用 innerHTML 畫出來：先跳脫，與建置時輸出的靜態清單（tools/inject.mjs 的 esc）一致 */
 function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function inlineFormat(s){ return esc(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>'); }
+// 文章連結用函式組出來，不在 href 屬性裡直接寫樣板字串：Googlebot 會把原始碼裡的字面值當成網址去抓，造成 404。
+function postHref(a){ return "/posts/" + encodeURIComponent(a.id); }
 function renderList(){
   const all = matchedArticles();
   const list = all.slice(0, shownCount);
@@ -422,7 +424,7 @@ function renderList(){
   const more = document.getElementById("post-more");
   if(more) more.hidden = all.length <= list.length;
   document.getElementById("post-list").innerHTML = list.length ? list.map(a=>`
-    <a class="post-row" href="/posts/${encodeURIComponent(a.id)}">
+    <a class="post-row" href="${postHref(a)}">
       <div class="post-meta"><span>${esc(a.date)}</span><span class="cat">${esc(a.cat)}</span></div>
       <div>
         <div class="post-title">${esc(a.title)}</div>
