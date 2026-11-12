@@ -1198,6 +1198,8 @@ function matchedArticles(){
     : ARTICLES.filter(a=>a.cat===currentCat).sort((x,y)=>y.date.localeCompare(x.date));
 }
 
+// 文章連結用函式組出來，不在 href 屬性裡直接寫樣板字串：Googlebot 會把原始碼裡的字面值當成網址去抓，造成 404。
+function postHref(a){ return "/posts/" + encodeURIComponent(a.id); }
 function renderList(){
   if(!$("#post-list")) return;
   const all = matchedArticles();
@@ -1209,7 +1211,7 @@ function renderList(){
   const more = $("#post-more");
   if(more) more.hidden = all.length <= list.length;
   $("#post-list").innerHTML = list.length ? list.map(a=>`
-    <a class="post-row" href="/posts/${a.id}">
+    <a class="post-row" href="${postHref(a)}">
       <div class="post-meta"><span>${a.date}</span><span class="cat">${a.cat}</span></div>
       <div>
         <div class="post-title">${a.title}</div>
