@@ -413,7 +413,8 @@ function matchedArticles(){
 function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function inlineFormat(s){ return esc(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>'); }
 // 文章連結用函式組出來，不在 href 屬性裡直接寫樣板字串：Googlebot 會把原始碼裡的字面值當成網址去抓，造成 404。
-function postHref(a){ return "/posts/" + encodeURIComponent(a.id); }
+// 路徑拆開寫：原始碼裡若出現完整的文章目錄路徑字面值，爬蟲會把它當連結去抓，而該目錄網址會 301 到 /blog（Ahrefs「連到轉址網址」）。
+function postHref(a){ return ["", "posts", encodeURIComponent(a.id)].join("/"); }
 function renderList(){
   const all = matchedArticles();
   const list = all.slice(0, shownCount);
