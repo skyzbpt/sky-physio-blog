@@ -347,7 +347,7 @@ try {
   ? pass('後台入口隱藏且功能保留') : fail('後台入口/功能');
 // 首頁自身 SEO
 const idxDesc = idx.match(/<meta name="description" content="([^"]*)"/);
-(idxDesc && [...idxDesc[1]].length >= 110 && idx.includes('max-image-preview:large')) ? pass('首頁 description 與 robots 完整') : fail('首頁 SEO');
+(idxDesc && [...idxDesc[1]].length >= 110 && [...idxDesc[1]].length <= 160 && idx.includes('max-image-preview:large')) ? pass('首頁 description 與 robots 完整') : fail('首頁 SEO');
 
 /* ---------- 9. 主題頁 ---------- */
 let hubOk = 0;

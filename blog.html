@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#F4F9FD">
 <title>衛教文章｜下背痛・肩膀痛・顳顎關節・公路車｜Sky 物理治療師</title>
-<meta name="description" content="Sky 物理治療師超過 150 篇免費衛教文章：下背痛、坐骨神經痛、肩膀痛、五十肩、顳顎關節、高級筋膜技術、顱薦椎、三鐵運動修復、公路車與疼痛科學。以實證醫學為基礎，結合臨床經驗與人文關懷，可依分類或關鍵字搜尋。">
+<meta name="description" content="Sky 物理治療師超過 250 篇免費衛教文章，用淺顯易懂的方式說明：下背痛、坐骨神經痛、肩膀痛、五十肩、顳顎關節、高級筋膜技術、顱薦椎、三鐵運動修復、公路車與疼痛科學。以實證醫學為基礎，結合臨床經驗與人文關懷，可依分類或關鍵字搜尋。">
 <meta name="author" content="Sky 物理治療師">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <link rel="canonical" href="https://skythephysio.com/blog">
@@ -20,7 +20,7 @@
 <meta property="og:locale" content="zh_TW">
 <meta property="og:site_name" content="Sky 物理治療師">
 <meta property="og:title" content="衛教文章｜下背痛・肩膀痛・顳顎關節・紅繩懸吊・公路車｜Sky 物理治療師">
-<meta property="og:description" content="Sky 物理治療師超過 150 篇免費衛教文章：下背痛、坐骨神經痛、肩膀痛、五十肩、顳顎關節、高級筋膜技術、顱薦椎、三鐵運動修復、公路車與疼痛科學。以實證醫學為基礎，結合臨床經驗與人文關懷，可依分類或關鍵字搜尋。">
+<meta property="og:description" content="Sky 物理治療師超過 250 篇免費衛教文章，用淺顯易懂的方式說明：下背痛、坐骨神經痛、肩膀痛、五十肩、顳顎關節、高級筋膜技術、顱薦椎、三鐵運動修復、公路車與疼痛科學。以實證醫學為基礎，結合臨床經驗與人文關懷，可依分類或關鍵字搜尋。">
 <meta property="og:url" content="https://skythephysio.com/blog">
 <meta property="og:image" content="https://skythephysio.com/assets/og-home.jpg">
 <meta property="og:image:width" content="1200">
@@ -28,7 +28,7 @@
 <meta property="og:image:alt" content="衛教文章｜下背痛・肩膀痛・顳顎關節・紅繩懸吊・公路車｜Sky 物理治療師">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="衛教文章｜下背痛・肩膀痛・顳顎關節・紅繩懸吊・公路車｜Sky 物理治療師">
-<meta name="twitter:description" content="Sky 物理治療師超過 150 篇免費衛教文章：下背痛、坐骨神經痛、肩膀痛、五十肩、顳顎關節、高級筋膜技術、顱薦椎、三鐵運動修復、公路車與疼痛科學。以實證醫學為基礎，結合臨床經驗與人文關懷，可依分類或關鍵字搜尋。">
+<meta name="twitter:description" content="Sky 物理治療師超過 250 篇免費衛教文章，用淺顯易懂的方式說明：下背痛、坐骨神經痛、肩膀痛、五十肩、顳顎關節、高級筋膜技術、顱薦椎、三鐵運動修復、公路車與疼痛科學。以實證醫學為基礎，結合臨床經驗與人文關懷，可依分類或關鍵字搜尋。">
 <meta name="twitter:image" content="https://skythephysio.com/assets/og-home.jpg">
 <script type="application/ld+json">
 {
@@ -413,7 +413,8 @@ function matchedArticles(){
 function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function inlineFormat(s){ return esc(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>'); }
 // 文章連結用函式組出來，不在 href 屬性裡直接寫樣板字串：Googlebot 會把原始碼裡的字面值當成網址去抓，造成 404。
-function postHref(a){ return "/posts/" + encodeURIComponent(a.id); }
+// 路徑拆開寫：原始碼裡若出現完整的文章目錄路徑字面值，爬蟲會把它當連結去抓，而該目錄網址會 301 到 /blog（Ahrefs「連到轉址網址」）。
+function postHref(a){ return ["", "posts", encodeURIComponent(a.id)].join("/"); }
 function renderList(){
   const all = matchedArticles();
   const list = all.slice(0, shownCount);
