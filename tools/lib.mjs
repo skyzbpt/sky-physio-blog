@@ -14,6 +14,17 @@ export const ldJson = obj => JSON.stringify(obj, null, 2).replace(/<\/script/gi,
 export const plain = t => String(t).replace(/[#>*`]/g, '').replace(/!\[[^\]]*\]\([^)]*\)/g, '').replace(/\s+/g, ' ').trim();
 export const readMins = content => Math.max(1, Math.round(((String(content).match(/[一-鿿]/g) || []).length) / 320));
 
+/* 標題依標點切成詞組，各包成 inline-block（樣式見 css.mjs 的 .ph）：
+   換行只會發生在標點之後，不會把「北投」「訓練」這種詞從中折斷——
+   中文沒有空白，瀏覽器不知道詞的邊界，大標又要排成兩行等長，很容易斷在詞中間。
+   文字內容完全不變，只多了行內的 <span>；沒有可切的標點時原樣輸出。 */
+export const phrases = t => {
+  const parts = String(t).split(/(?<=——|[：？！，、；｜])(?!——|[：？！，、；｜—」』）])/).filter(Boolean);
+  if (parts.length < 2) return esc(t);
+  // 詞組開頭的空白留在 span 外面：inline-block 開頭的空白會被吃掉
+  return parts.map(s => { const m = s.match(/^(\s*)([\s\S]*)$/); return `${m[1]}<span class="ph">${esc(m[2])}</span>`; }).join('');
+};
+
 // 分類 → 主題頁 slug
 export const CAT_SLUG = {
   '下背痛': 'lower-back-pain',

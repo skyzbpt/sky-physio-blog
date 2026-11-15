@@ -20,7 +20,7 @@
     m.addEventListener('toggle',function(){ document.body.style.overflow=m.open?'hidden':''; });
     /* 選單開著時把視窗拉寬或把平板轉橫：選單鈕會被 CSS 收起來，
        若不順手關掉，背景會停在鎖住的狀態、整頁捲不動。 */
-    var wide=window.matchMedia && matchMedia('(min-width:661px)');
+    var wide=window.matchMedia && matchMedia('(min-width:821px)');
     if(wide){
       var shut=function(){ if(wide.matches) m.open=false; };
       if(wide.addEventListener) wide.addEventListener('change',shut);

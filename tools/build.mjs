@@ -7,7 +7,7 @@
 // OG 分享卡圖片需要 Chromium（Playwright）。Cloudflare 的建置環境沒有 Chromium，
 // 因此當無法啟動時會「略過 OG 圖片產生」，改沿用 repo 內已提交的圖片——
 // HTML／sitemap／feed／llms 皆為純 Node 產生，不需瀏覽器，仍會照常重建。
-import { rmSync, mkdirSync, cpSync, existsSync } from 'fs';
+import { rmSync, mkdirSync, cpSync, existsSync, readFileSync, writeFileSync } from 'fs';
 import { join, basename } from 'path';
 import { REPO } from './lib.mjs';
 import { injectArticles } from './inject.mjs';
@@ -16,9 +16,26 @@ import { genExtras } from './gen-extras.mjs';
 import { genLegal } from './gen-legal.mjs';
 import { genLlms } from './gen-llms.mjs';
 import { genLanding } from './gen-landing.mjs';
+import { syncShell, syncFooter } from './css.mjs';
 
 console.log('=== 1/5 注入 index.html ===');
 injectArticles();
+
+// 共用外殼（設計 token、頁首導覽、按鈕、頁尾）寫進 assets/site.css 的 SHELL 標記區塊，
+// 讓五個主要頁面與文章／主題／指南頁用的是逐字相同的一份（唯一定義處在 tools/css.mjs）。
+{
+  const siteCss = join(REPO, 'assets/site.css');
+  writeFileSync(siteCss, syncShell(readFileSync(siteCss, 'utf8')));
+  console.log('已同步共用外殼：assets/site.css');
+  // 手寫頁的頁尾也由 css.mjs 供應（落地頁的頁尾取自 taipei-physio.html，所以要在產生落地頁之前）
+  const handwritten = ['index.html', 'blog.html', 'about.html', 'services.html', 'products.html',
+                       'taipei-physio.html', 'physio-guide.html'];
+  for (const f of handwritten) {
+    const file = join(REPO, f);
+    writeFileSync(file, syncFooter(readFileSync(file, 'utf8'), f));
+  }
+  console.log(`已同步頁尾：${handwritten.length} 個手寫頁`);
+}
 
 // 嘗試啟動 Chromium；失敗則以 page=null 繼續（略過 OG 圖片產生）
 let browser = null, page = null;

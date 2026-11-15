@@ -1,255 +1,310 @@
 
-:root{--bg:#F4F9FD;--bg-soft:#FFFFFF;--ink:#1B2541;--ink-2:#3A4560;--muted:#5A6B80;--line:#D6E4EF;--sky:#2E9AD6;--sky-soft:#E3F0FA;--sky-ink:#126A9F;
---serif:"Noto Sans TC","PingFang TC","Microsoft JhengHei","Helvetica Neue",sans-serif;--sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei","Helvetica Neue",sans-serif;--mono:"SF Mono","Cascadia Mono",Menlo,Consolas,"Courier New",monospace}
-*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.85;letter-spacing:.02em;-webkit-font-smoothing:antialiased;overflow-x:clip}
-::selection{background:var(--sky);color:#fff}img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
-header{position:sticky;top:0;z-index:80;border-bottom:1px solid var(--line)}
-header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(244,249,253,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-.nav{max-width:1120px;margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.brand-logo{height:44px;width:44px;object-fit:contain;display:block}
-.brand-name{font-family:var(--serif);font-weight:700;font-size:1.04rem;color:var(--ink);letter-spacing:.04em;white-space:nowrap}
-.nav-right{display:flex;align-items:center;gap:24px}
-.nav-link{font-size:.88rem;color:var(--ink-2);border-bottom:1.5px solid transparent;padding:4px 0}
-.nav-link:hover{border-color:var(--sky);color:var(--ink)}
-.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;cursor:pointer;font-family:var(--sans);font-size:.9rem;letter-spacing:.06em;padding:11px 26px;border:1.5px solid var(--ink);background:transparent;color:var(--ink)}
-.btn.sky{background:var(--sky-ink);border-color:var(--sky-ink);color:#fff;font-weight:600}
-.btn.sm{padding:8px 20px;font-size:.84rem}
-/* 導覽列文字一律不折行（.nav 是 flex，空間不足時「預約評估」會被折成兩行、撐破 64px 的列高），
-   以及窄螢幕的收合規則、手機選單、回頂端鈕——見上方 CHROME_CSS。 */
-.nav-link,.nav .btn{white-space:nowrap}
-.m-menu{display:none}
-.m-menu>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;min-width:66px;min-height:44px;padding:8px 4px;font-family:var(--mono);font-size:.8rem;letter-spacing:.2em;text-indent:.2em;color:var(--ink);user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
+:root{
+--bg:#FFFFFF;--tint:#F4F8FB;--tint-2:#E8F0F6;
+--ink:#1D1D1F;--ink-2:#424245;--muted:#6E6E73;--line:#D5DCE3;
+--sky:#2E9AD6;--sky-ink:#0A6AA8;--sky-btn:#0978BC;--sky-soft:#E4F1FA;
+--sans:-apple-system,BlinkMacSystemFont,"SF Pro TC","PingFang TC","Segoe UI","Noto Sans TC","Microsoft JhengHei","Helvetica Neue",Arial,sans-serif;
+--serif:var(--sans);--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+--ease:cubic-bezier(.28,.11,.32,1);--nav-h:52px;--wrap:1120px;--gut:22px;--r-tile:28px;--r-card:20px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.65;letter-spacing:0;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:clip}
+::selection{background:var(--sky-soft);color:var(--ink)}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+h1,h2,h3{font-weight:600;letter-spacing:-.01em}
+/* 大標兩行時排成差不多長，不留孤字；支援的瀏覽器會盡量斷在詞與詞之間 */
+h1,h2{text-wrap:balance;word-break:auto-phrase}
+h3{text-wrap:pretty}
+/* 標題裡依標點切好的詞組（見 lib.mjs 的 phrases()）：整組一起換行 */
+.ph{display:inline-block}
+:focus-visible{outline:2px solid var(--sky-btn);outline-offset:3px;border-radius:8px}
+
+/* ── 頁首：52px 毛玻璃列 ── */
+header{position:sticky;top:0;z-index:80}
+header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(255,255,255,.78);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.08);pointer-events:none;transition:background-color .3s var(--ease)}
+.nav{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut);height:var(--nav-h);display:flex;align-items:center;gap:20px}
+.brand{display:flex;align-items:center;gap:9px;flex:none;min-height:44px;cursor:pointer}
+.brand-logo{height:30px;width:30px;object-fit:contain;display:block}
+.brand-name{font-size:17px;font-weight:600;color:var(--ink);letter-spacing:-.01em;white-space:nowrap}
+.nav-links{flex:1;height:100%;display:flex;align-items:center;justify-content:center;gap:30px}
+.nav-item{height:100%;display:flex;align-items:center}
+.nav-link{display:inline-flex;align-items:center;height:100%;font-size:13px;color:var(--ink-2);white-space:nowrap;cursor:pointer;transition:color .25s var(--ease)}
+.nav-link:hover,.nav-item:hover>.nav-link,.nav-link.active{color:#000}
+.nav-icon,.nav-caret{display:none}
+.nav-right{flex:none;display:flex;align-items:center;gap:6px}
+.nav-book{display:none}
+
+/* ── 按鈕：膠囊。預設是描邊，.sky／.solid 是實心 ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:44px;padding:0 22px;border-radius:980px;border:1px solid var(--sky-ink);background:transparent;color:var(--sky-ink);font-family:var(--sans);font-size:17px;font-weight:400;line-height:1.2;letter-spacing:0;white-space:nowrap;cursor:pointer;transition:background-color .25s var(--ease),border-color .25s var(--ease),color .25s var(--ease),transform .25s var(--ease)}
+.btn:hover{background:var(--sky-ink);color:#fff}
+.btn:active{transform:scale(.97)}
+.btn.sky,.btn.solid{background:var(--sky-btn);border-color:var(--sky-btn);color:#fff}
+.btn.sky:hover,.btn.solid:hover{background:#0B86D0;border-color:#0B86D0}
+.btn svg{flex:none;margin:0!important}
+/* 小顆（頁首、側欄）：視覺 32px 高，用 ::after 把可點範圍撐到 44px */
+.btn.sm{position:relative;min-height:32px;padding:0 15px;font-size:13px}
+.btn.sm::after{content:"";position:absolute;inset:-7px -2px}
+.nav .btn svg{display:none}
+
+/* ── 桌機：下拉改成整列寬的大選單，頁面其餘部分蓋上一層霧面 ── */
+@media(min-width:821px){
+  #menu-btn,.m-menu{display:none}
+  .nav-dropdown{position:absolute;top:100%;left:0;right:0;z-index:2;list-style:none;
+    display:grid;grid-auto-flow:column;grid-template-rows:repeat(5,auto);justify-content:start;gap:2px 64px;
+    padding:34px max(var(--gut),calc((100vw - var(--wrap))/2 + var(--gut))) 46px;
+    background:#fff;border-bottom:1px solid rgba(0,0,0,.08);
+    opacity:0;visibility:hidden;pointer-events:none;
+    transition:opacity .25s var(--ease),visibility 0s linear .25s}
+  /* 六個項目排成 3＋3，不要 5＋1 */
+  .nav-dropdown:has(>li:nth-child(6):last-child){grid-template-rows:repeat(3,auto)}
+  /* 滑鼠移上去、或鍵盤聚焦（:focus-visible）時展開。不用 :focus-within——滑鼠點過的連結會留著焦點，
+     整片選單就卡在畫面上。點了選單裡的項目後由腳本加上 .shut 先收起來（同頁捲動時才看得到目的地）。 */
+  .nav-item:not(.shut):hover>.nav-dropdown,.nav-item:not(.shut):has(:focus-visible)>.nav-dropdown{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .3s var(--ease),visibility 0s}
+  .nav-dropdown a{display:block;padding:6px 0;font-size:21px;font-weight:600;line-height:1.3;letter-spacing:-.01em;color:var(--ink);white-space:nowrap;opacity:0;transform:translateY(-6px);transition:color .2s var(--ease),opacity .3s var(--ease),transform .3s var(--ease)}
+  .nav-item:not(.shut):hover>.nav-dropdown a,.nav-item:not(.shut):has(:focus-visible)>.nav-dropdown a{opacity:1;transform:none;transition-delay:0s,.06s,.06s}
+  .nav-dropdown a:hover{color:var(--sky-ink)}
+  header::after{content:"";position:fixed;inset:var(--nav-h) 0 0 0;z-index:1;background:rgba(232,240,246,.5);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s var(--ease),visibility 0s linear .3s}
+  header:has(.nav-item:not(.shut):hover)::after,header:has(.nav-item:not(.shut) :focus-visible)::after{opacity:1;visibility:visible;transition:opacity .3s var(--ease),visibility 0s}
+  header:has(.nav-item:not(.shut):hover)::before,header:has(.nav-item:not(.shut) :focus-visible)::before{background:#fff}
+}
+@media(min-width:821px) and (max-width:960px){.nav-links{gap:20px}.nav{gap:14px}}
+@media(min-width:821px) and (max-width:860px){.brand-name{display:none}}
+
+/* ── 手機／平板：兩條線的選單鈕，展開是全螢幕選單 ── */
+#menu-btn,.m-menu>summary{position:relative;flex:none;width:44px;height:44px;margin-right:-10px;padding:0;border:none;background:none;border-radius:50%;list-style:none;cursor:pointer;font-size:0;line-height:0;color:transparent;overflow:hidden;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
 .m-menu>summary::-webkit-details-marker{display:none}
-.m-menu>summary:focus-visible{outline:2px solid var(--sky);outline-offset:3px;border-radius:6px}
-.m-menu .c,.m-menu[open] .o{display:none}
-.m-menu[open] .c{display:inline}
-/* 收合時明確隱藏面板：各瀏覽器收起 <details> 內容的做法不同（display:none／content-visibility），不依賴它 */
+.m-menu .o,.m-menu .c{display:none}
+#menu-btn::before,#menu-btn::after,.m-menu>summary::before,.m-menu>summary::after{content:"";position:absolute;left:13px;width:18px;height:1.5px;border-radius:1px;background:var(--ink);transition:top .28s var(--ease),transform .28s var(--ease)}
+#menu-btn::before,.m-menu>summary::before{top:17px}
+#menu-btn::after,.m-menu>summary::after{top:25.5px}
+#menu-btn[aria-expanded="true"]::before,.m-menu[open]>summary::before{top:21.25px;transform:rotate(45deg)}
+#menu-btn[aria-expanded="true"]::after,.m-menu[open]>summary::after{top:21.25px;transform:rotate(-45deg)}
+/* 收合時明確隱藏面板：各瀏覽器收起 <details> 內容的做法不同，不依賴它 */
 .m-menu:not([open]) .m-panel{display:none}
-.m-panel{position:absolute;top:100%;left:0;right:0;display:flex;flex-direction:column;padding:8px 0 max(18px,env(safe-area-inset-bottom));background:rgba(244,249,253,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line);box-shadow:0 12px 32px rgba(27,37,65,.14);max-height:calc(100vh - 64px);max-height:calc(100dvh - 64px);overflow-y:auto;overscroll-behavior:contain}
-.m-panel a{display:flex;align-items:center;gap:9px;padding:14px 32px;font-size:.88rem;color:var(--ink-2)}
-.m-panel a:hover{background:rgba(255,255,255,.5);color:var(--ink)}
-.m-panel a:focus-visible{outline:2px solid var(--sky);outline-offset:-3px;border-radius:8px}
-.m-panel svg{width:16px;height:16px;flex:none;opacity:.75}
-.m-panel .book{color:var(--sky-ink);font-weight:600}
-.m-panel .book svg{opacity:1}
-/* 660px 以下：文字連結收進選單。品牌名在 480px 以下讓位給「預約評估＋MENU」。 */
-@media(max-width:660px){.nav-right{gap:10px}.nav-right>.nav-link{display:none}.m-menu{display:block}}
-@media(max-width:520px){.brand-name{font-size:.94rem}}
-@media(max-width:480px){.brand-name{display:none}}
-@media(max-width:380px){.nav{padding:0 20px}.nav .btn.sm{padding:8px 16px}}
-/* 回頂端鈕：由 assets/menu.js 建立。長文往回捲時才出現，往下讀的時候不擋字。 */
-#back-top{position:fixed;right:20px;bottom:24px;z-index:70;width:44px;height:44px;border-radius:50%;border:none;cursor:pointer;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 1.5px rgba(255,255,255,.6),0 4px 18px rgba(27,37,65,.28);opacity:0;visibility:hidden;transition:opacity .25s ease,visibility 0s linear .25s,background-color .22s ease}
+@media(max-width:820px){
+  :root{--nav-h:48px}
+  .nav{gap:8px}
+  .brand{margin-right:auto}
+  .nav-links{display:none}
+  .nav-links.open,.m-panel{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:0;
+    position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;height:auto;z-index:79;
+    padding:18px 32px max(40px,env(safe-area-inset-bottom));background:#fff;
+    overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;animation:menu-in .32s var(--ease) both}
+  header:has(.nav-links.open)::before,header:has(.m-menu[open])::before{background:#fff}
+  .nav-links.open .nav-item{display:block;height:auto}
+  .nav-links.open .nav-link,.m-panel a{display:flex;align-items:center;justify-content:space-between;gap:12px;height:auto;min-height:52px;padding:6px 0;font-size:26px;font-weight:600;line-height:1.25;letter-spacing:-.01em;color:var(--ink);animation:item-in .4s var(--ease) both}
+  .nav-links.open>:nth-child(2) .nav-link,.nav-links.open>.nav-link:nth-child(2),.m-panel a:nth-child(2){animation-delay:.03s}
+  .nav-links.open>:nth-child(3) .nav-link,.nav-links.open>.nav-link:nth-child(3),.m-panel a:nth-child(3){animation-delay:.06s}
+  .nav-links.open>:nth-child(4) .nav-link,.nav-links.open>.nav-link:nth-child(4),.m-panel a:nth-child(4){animation-delay:.09s}
+  .nav-links.open>:nth-child(5) .nav-link,.nav-links.open>.nav-link:nth-child(5),.m-panel a:nth-child(5){animation-delay:.12s}
+  .nav-links.open>:nth-child(6) .nav-link,.nav-links.open>.nav-link:nth-child(6),.m-panel a:nth-child(6){animation-delay:.15s}
+  .nav-links.open>:nth-child(7) .nav-link,.nav-links.open>.nav-link:nth-child(7),.m-panel a:nth-child(7){animation-delay:.18s}
+  /* 選單最後一項是預約：天空藍、上面一條細線，與導覽項目分開 */
+  .nav-links.open .nav-book,.m-panel .book{margin-top:18px;padding-top:22px;border-top:1px solid var(--line);color:var(--sky-ink);font-size:21px;justify-content:flex-start}
+  .nav-book svg,.m-panel svg{display:none}
+  /* 子選單：預設收合，點標題（.sub-open，由 nav.js／首頁腳本切換）才展開 */
+  .nav-links.open .nav-caret{display:block;flex:none;width:18px;height:18px;color:var(--muted);transition:transform .28s var(--ease)}
+  .nav-item.sub-open .nav-caret{transform:rotate(180deg)}
+  .nav-dropdown{display:none;list-style:none;padding:2px 0 14px}
+  .nav-item.sub-open .nav-dropdown{display:block}
+  .nav-dropdown a{display:flex;align-items:center;min-height:44px;padding:4px 0;font-size:17px;color:var(--ink-2)}
+}
+@media(max-width:359px){.brand-name{display:none}.nav-links.open,.m-panel{padding-left:24px;padding-right:24px}}
+@keyframes menu-in{from{opacity:0}to{opacity:1}}
+@keyframes item-in{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+
+/* ── 麵包屑、小標籤 ── */
+.crumb{font-size:12px;line-height:1.6;color:var(--muted);margin-bottom:28px}
+.crumb a{color:var(--ink-2);position:relative}
+/* 行內連結：用 ::after 疊一層透明感應區把可點高度拉到 44px，直接加 padding 會撐壞行高 */
+.crumb a::after{content:"";position:absolute;inset:-14px -5px}
+.crumb a:hover{color:var(--sky-ink);text-decoration:underline}
+.eyebrow{font-size:15px;font-weight:600;line-height:1.4;letter-spacing:.01em;color:var(--sky-ink);margin-bottom:10px}
+
+/* ── 回頂端鈕：毛玻璃小圓鈕 ── */
+#back-top{position:fixed;right:18px;bottom:22px;z-index:70;width:44px;height:44px;border-radius:50%;border:1px solid rgba(0,0,0,.08);cursor:pointer;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);color:var(--ink);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(0,0,0,.1);opacity:0;visibility:hidden;transition:opacity .25s var(--ease),visibility 0s linear .25s,background-color .25s var(--ease),color .25s var(--ease)}
 /* 隱藏時連 visibility 一起關掉：只設 opacity:0 的話，鍵盤 Tab 仍會停在一顆看不見的按鈕上 */
-#back-top.show{opacity:1;visibility:visible;transition:opacity .25s ease,visibility 0s,background-color .22s ease}
-#back-top:hover{background:var(--sky-ink)}
-#back-top:focus-visible{outline:2px solid var(--sky);outline-offset:3px}
+#back-top.show{opacity:1;visibility:visible;transition:opacity .25s var(--ease),visibility 0s,background-color .25s var(--ease),color .25s var(--ease)}
+#back-top:hover{background:var(--ink);color:#fff}
 @media(min-width:1024px){#back-top{right:28px;bottom:32px}}
-@media(prefers-reduced-motion:reduce){#back-top,#back-top.show{transition:none}}
-/* 手機：頁尾底部讓出回頂端鈕的位置（與 site.css 的主要頁面一致）。
-   選擇器寫成 body>footer 是為了壓過各頁排在後面的 footer{padding:…} 簡寫。 */
-@media(max-width:820px){body>footer{padding-bottom:88px}}
-.crumb a{color:var(--ink-2);border-bottom:1px solid var(--line);position:relative}
-.crumb a::after{content:"";position:absolute;inset:-15px -5px}
-.crumb a:hover{color:var(--sky-ink);border-color:var(--sky)}
-footer{border-top:1px solid var(--line);padding:40px 0 54px;background:linear-gradient(180deg,var(--bg) 0%,#E9F3FB 100%);margin-top:40px}
-.foot-in img{width:30px;height:30px}
-.foot-in .t{font-size:.84rem;color:var(--ink-2)}
-.foot-in .t b{display:block;font-family:var(--serif)}
-/* 連結文字不從中斷開：窄螢幕上寧可整段換到下一行，也不要斷成「隱私權／保護聲明」。 */
-.foot-in .t a{color:inherit;border-bottom:1px solid var(--line);position:relative;white-space:nowrap}
-.foot-in .t a::after{content:"";position:absolute;inset:-15px -6px}
-.foot-in .t a:hover{color:var(--sky-ink);border-color:var(--sky)}
-.foot-legal{width:100%;margin-top:14px;font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
-/* 行內連結：用 ::after 疊一層透明感應區把可點高度拉到 44px，
-   直接加 padding 會撐壞行高，麵包屑還會破壞 text-overflow:ellipsis。 */
-.foot-legal a{border-bottom:1px solid var(--line);position:relative}
-.foot-legal a::after{content:"";position:absolute;inset:-15px -6px}
-.foot-legal a:hover{color:var(--sky-ink);border-color:var(--sky)}
-/* 文章頁的頁首比其他頁多一個連結（產品專區），平板寬度先收窄間距；
-   660px 以下所有文字連結都收進手機選單（見 css.mjs 的 CHROME_CSS）。 */
-@media(min-width:661px) and (max-width:820px){.nav-right{gap:16px}}
-/* 動效：與首頁一致的統一過場，尊重「減少動態」偏好 */
-@media(prefers-reduced-motion:no-preference){
-.btn,.nav-link,.brand,.crumb a,.pp-share,.author-box,.more a,.post-body figure img{transition:color .22s ease,background-color .22s ease,border-color .22s ease,box-shadow .3s ease,transform .3s cubic-bezier(.22,.7,.3,1)}
+
+/* ── 頁尾：淡天空灰底、12px 小字。上面一列是連結（每個都有 44px 高的可點範圍），下面一列是版權 ── */
+footer{background:var(--tint);padding:10px 0 16px;font-size:12px;line-height:1.5;color:var(--muted)}
+.foot{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
+.foot-nav{display:flex;flex-wrap:wrap;align-items:center;margin:0 -10px}
+.foot-nav span{padding:0 10px}
+.foot-nav a,.foot-copy a{display:inline-flex;align-items:center;min-height:44px;padding:0 10px;color:var(--ink-2);white-space:nowrap;transition:color .2s var(--ease)}
+.foot-nav a:hover,.foot-copy a:hover{color:var(--sky-ink);text-decoration:underline}
+.foot-copy{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0 20px;border-top:1px solid var(--line);margin-top:4px;padding-top:4px}
+.foot-copy a{margin:0 -10px}
+/* 手機：頁尾底部讓出右下角浮動按鈕（回頂端、章節）的位置 */
+@media(max-width:820px){body>footer{padding-bottom:76px}}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important;transition-delay:0s!important}
 }
-.brand{display:flex;align-items:center;gap:10px;cursor:pointer}
-.btn:hover{background:rgba(27,37,65,.06);transform:translateY(-2px)}
-.btn:active{opacity:.8;transform:translateY(0)}
-.btn.sky:hover{background:#0D5682;border-color:#0D5682;box-shadow:0 12px 24px -12px rgba(18,106,159,.75)}
-.post-page{max-width:720px;margin:0 auto;padding:56px 32px 96px}
-/* 長文閱讀面：把內文放在淺色紙面上，藍色退成環境色。
-   手機維持滿版（窄螢幕上留白比紙面重要），平板以上才浮起來。 */
-@media(min-width:600px){
-  .post-page{background:var(--bg-soft);border:1px solid var(--line);border-radius:20px;
-    box-shadow:0 22px 54px -36px rgba(27,37,65,.5);
-    margin-top:36px;margin-bottom:64px;padding:56px 56px 72px}
-}
-.crumb{font-family:var(--mono);font-size:.75rem;letter-spacing:.05em;color:var(--muted);margin-bottom:26px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.author-box{display:flex;align-items:center;gap:16px;margin-top:30px;padding:20px 22px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);box-shadow:0 2px 12px -6px rgba(27,37,65,.16)}
-.author-box:hover{border-color:rgba(46,154,214,.45);box-shadow:0 16px 32px -22px rgba(46,154,214,.5)}
+.post-page{max-width:calc(692px + var(--gut)*2);margin:0 auto;padding:44px var(--gut) 88px}
+.meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;font-size:14px;line-height:1.5;color:var(--muted);margin-bottom:14px}
+/* 分類排在日期前面（HTML 的順序是日期在前） */
+.meta .cat{order:-1;color:var(--sky-ink);font-weight:600}
+.post-page h1{font-size:clamp(2rem,5.4vw,3rem);line-height:1.2;letter-spacing:-.015em;margin-bottom:18px}
+.lede{font-size:clamp(1.12rem,2.2vw,1.3rem);line-height:1.65;color:var(--ink-2);margin-bottom:40px}
+.post-body{font-size:1.0625rem;line-height:1.9;color:var(--ink)}
+.post-body p{margin-bottom:1.5em}
+.post-body h2{font-size:clamp(1.45rem,3vw,1.75rem);line-height:1.3;margin:2.3em 0 .75em;scroll-margin-top:calc(var(--nav-h) + 24px)}
+.post-body h3{font-size:1.2rem;line-height:1.4;margin:1.9em 0 .6em}
+.post-body blockquote{margin:1.9em 0;padding:2px 0 2px 22px;border-left:3px solid var(--sky);font-size:1.16rem;font-weight:600;line-height:1.7;color:var(--ink)}
+.post-body ul,.post-body ol{margin:0 0 1.5em;padding-left:1.4em}
+.post-body li{margin-bottom:.5em;padding-left:.2em}
+.post-body li:last-child{margin-bottom:0}
+.post-body li::marker{color:var(--sky-ink)}
+.post-body em{font-style:italic}
+.post-body hr{border:none;border-top:1px solid var(--line);margin:2.6em 0}
+.post-body a{color:var(--sky-ink)}
+.post-body a:hover{text-decoration:underline}
+.post-body figure{margin:2.2em 0;text-align:center}
+.post-body figure img{max-width:100%;max-height:560px;width:auto;height:auto;border-radius:18px;display:inline-block}
+.post-body figcaption{margin-top:12px;font-size:12px;line-height:1.6;color:var(--muted)}
+.post-body figcaption a{position:relative}
+.post-body figcaption a::after{content:"";position:absolute;inset:-14px -6px}
+.post-foot{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-size:12px;line-height:1.8;color:var(--muted)}
+/* 快速解答：問句 + 一兩句直接回答，放在導言下方。
+   Google AI 摘要與精選摘要偏好「問題 → 緊接著的簡短答案」，這區塊也讓讀者先看到結論。 */
+.quick{margin:0 0 40px;padding:26px 28px 12px;border-radius:var(--r-card);background:var(--tint)}
+.quick h2{font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--muted);margin:0 0 14px}
+.quick dl{margin:0}
+/* 問句（文章頁是跳到該段的連結）：連結用 ::after 蓋滿整個 dt，手機上才點得準 */
+.quick dt{position:relative;font-size:17px;font-weight:600;line-height:1.5;color:var(--ink);margin:0;padding:10px 0 6px}
+.quick dt:first-child{padding-top:0}
+.quick dt a{color:inherit}
+.quick dt a::after{content:"";position:absolute;inset:0 0 -3px}
+.quick dt:first-child a::after{top:-10px}
+.quick dt a:hover{color:var(--sky-ink)}
+.quick dd{font-size:15px;line-height:1.8;color:var(--ink-2);margin:0 0 4px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.quick dd:last-child{border-bottom:none;margin-bottom:14px;padding-bottom:0}
+@media(max-width:480px){.post-page{padding-top:32px;padding-bottom:64px}.quick{padding:22px 20px 8px}}
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:2px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--sky-btn)}
+/* 麵包屑單行、過長以省略號收尾。overflow:hidden 會把連結的透明感應區（::after）一起切掉，
+   所以上下留出 padding 讓感應區待在盒子裡，再用負 margin 把版面位置拉回原處。 */
+.crumb{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:13px 0;margin:-13px 0 15px}
+.pp-share{position:relative;margin-left:auto;display:inline-flex;align-items:center;min-height:32px;padding:0 15px;border:none;border-radius:980px;background:var(--tint);color:var(--sky-ink);font-family:var(--sans);font-size:13px;white-space:nowrap;cursor:pointer;transition:background-color .25s var(--ease)}
+.pp-share::after{content:"";position:absolute;inset:-6px -2px}
+.pp-share:hover{background:var(--tint-2)}
+/* 署名列：誰寫的、誰審閱、最後審閱日、有幾筆出處——醫療衛教的可信度訊號（E-E-A-T），
+   放在標題正下方，讀者與 AI 引擎都不必捲到文末才知道這篇是物理治療師寫的。 */
+.byline{display:flex;flex-wrap:wrap;column-gap:14px;font-size:13px;line-height:1.8;color:var(--muted);margin:0 0 22px}
+.byline a{color:var(--sky-ink);position:relative}
+.byline a::after{content:"";position:absolute;inset:-10px -4px}
+.byline a:hover{text-decoration:underline}
+.post-body .refs-h{scroll-margin-top:calc(var(--nav-h) + 24px);margin-bottom:.8em}
+.post-body .refs-h+ol{font-size:13px;line-height:1.75;color:var(--muted);word-break:break-word}
+.post-body h2 .hash{margin-left:8px;font-size:.7em;font-weight:400;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--sky-ink)}
+.post-body a.hash:hover{text-decoration:none}
+/* 目錄：手機為可摺疊色塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 40px;border-radius:16px;background:var(--tint);padding:6px 22px}
+.toc>summary{display:flex;align-items:center;gap:10px;min-height:44px;cursor:pointer;list-style:none;font-size:15px;font-weight:600;color:var(--ink)}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"";margin-left:auto;width:8px;height:8px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:translateY(-2px) rotate(45deg);transition:transform .25s var(--ease)}
+.toc[open]>summary::after{transform:translateY(2px) rotate(-135deg)}
+.toc ol{list-style:none;margin:4px 0 10px;padding:0}
+.toc li a{display:block;padding:10px 0;font-size:15px;line-height:1.6;color:var(--ink-2)}
+.toc li a:hover{color:var(--sky-ink)}
+.toc li a.on{color:var(--sky-ink);font-weight:600}
+/* 側欄預約卡：只在 ≥1140px 的右側欄顯示（見下方 media query） */
+.side-cta{display:none}
+.author-box{display:flex;align-items:center;gap:16px;margin-top:32px;padding:24px 26px;border-radius:var(--r-card);background:var(--tint)}
 .author-box img{width:52px;height:52px;flex:none;border-radius:50%;background:#fff;object-fit:contain}
-.author-box .a-name{font-family:var(--serif);font-weight:700;font-size:1.02rem}
-.author-box .a-cred{font-size:.8rem;color:var(--muted);margin:3px 0 6px;line-height:1.7}
-.author-box .a-link{font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;color:var(--sky-ink);display:inline-flex;align-items:center;min-height:44px}
+.author-box .a-name{font-weight:600;font-size:1.0625rem}
+.author-box .a-cred{font-size:13px;color:var(--muted);margin:2px 0 2px;line-height:1.65}
+.author-box .a-link{font-size:14px;color:var(--sky-ink);display:inline-flex;align-items:center;min-height:44px;margin-bottom:-10px}
 .author-box .a-link:hover{text-decoration:underline}
 /* 文末預約卡：讀完文章的人最可能想預約，但側欄預約卡只在 ≥1140px 出現——
    手機與平板讀到最後只剩延伸閱讀，沒有下一步。這張卡補上預約與分享；
    寬螢幕有常駐側欄，這裡就不重複。 */
-.end-cta{margin-top:16px;padding:24px 22px 22px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(120deg,var(--bg-soft) 0%,#F6FAFE 55%,#E6F2FB 100%)}
-.end-cta .t{font-family:var(--serif);font-weight:700;font-size:1.12rem;line-height:1.6;color:var(--ink);margin-bottom:6px}
-.end-cta p{font-size:.9rem;line-height:1.85;color:var(--muted);margin-bottom:18px}
+.end-cta{margin-top:14px;padding:30px 26px 26px;border-radius:var(--r-card);background:linear-gradient(135deg,#E6F3FC 0%,#CFE7F8 100%)}
+.end-cta .t{font-weight:600;font-size:1.35rem;line-height:1.35;letter-spacing:-.01em;color:var(--ink);margin-bottom:6px}
+.end-cta p{font-size:15px;line-height:1.7;color:var(--ink-2);margin-bottom:20px}
 .end-cta .row{display:flex;flex-wrap:wrap;gap:10px}
-.end-cta .btn{flex:1 1 148px;justify-content:center;min-height:46px}
+.end-cta .btn{flex:1 1 148px}
+/* 這塊底色上描邊按鈕的天空藍對比不夠，改成白底近黑字 */
+.end-cta .end-share{background:rgba(255,255,255,.86);border-color:transparent;color:var(--ink)}
+.end-cta .end-share:hover{background:#fff;color:var(--ink)}
 @media(min-width:1140px){.end-cta{display:none}}
-/* 字距只給拉丁字母與數字：中文字本來就等寬，再加 .16em 會被拆成「肩 膀 痛」 */
-.meta{font-family:var(--mono);font-size:.75rem;letter-spacing:normal;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-bottom:20px}
-.meta .date{letter-spacing:.16em}
-.meta .cat{color:var(--sky-ink)}
-.pp-share{margin-left:auto;font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;color:var(--sky-ink);background:none;border:1px solid var(--line);border-radius:999px;padding:5px 16px;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;min-height:44px}
-.pp-share:hover{border-color:var(--sky);background:var(--sky-soft)}
-/* 署名列：誰寫的、誰審閱、最後審閱日、有幾筆出處——醫療衛教的可信度訊號（E-E-A-T），
-   放在標題正下方，讀者與 AI 引擎都不必捲到文末才知道這篇是物理治療師寫的。 */
-.byline{font-family:var(--sans);font-size:.8rem;line-height:1.8;color:var(--muted);margin:0 0 16px;display:flex;flex-wrap:wrap;column-gap:14px}
-.byline a{color:var(--sky-ink)}
-.byline a:hover{text-decoration:underline}
-.post-body .refs-h{scroll-margin-top:92px;margin-bottom:.8em}
-.post-body .refs-h+ol{font-family:var(--sans);font-size:.84rem;line-height:1.8;letter-spacing:0;color:var(--muted);word-break:break-word}
-h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.45;margin-bottom:14px}
-.lede{font-family:var(--serif);color:var(--muted);font-size:1.02rem;line-height:2;border-bottom:1px solid var(--line);padding-bottom:30px;margin-bottom:38px}
-.post-body p{font-family:var(--serif);font-size:1.04rem;line-height:2.1;letter-spacing:.04em;color:var(--ink-2);margin-bottom:1.7em;text-align:justify}
-.post-body h2{font-family:var(--serif);font-size:1.3rem;font-weight:700;margin:2.4em 0 1em;display:flex;align-items:center;gap:12px}
-.post-body h2::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--sky-ink);flex:none}
-.post-body blockquote{border-left:2px solid var(--sky);padding:6px 0 6px 22px;margin:0 0 1.7em;font-family:var(--serif);color:var(--sky-ink);font-size:1.04rem;line-height:2}
-.post-body strong{color:var(--ink)}
-.post-body ul,.post-body ol{font-family:var(--serif);font-size:1.04rem;line-height:2;letter-spacing:.04em;color:var(--ink-2);margin:0 0 1.7em;padding-left:1.5em}
-.post-body li{margin-bottom:.55em;padding-left:.25em}
-.post-body li::marker{color:var(--sky-ink)}
-.post-body li:last-child{margin-bottom:0}
-.post-body em{font-style:italic}
-.post-body hr{border:none;border-top:1px solid var(--line);margin:2.6em 0}
-.post-body figure{margin:2em 0;text-align:center}
-.post-body figure img{max-width:100%;max-height:560px;width:auto;height:auto;border-radius:10px;box-shadow:0 4px 20px rgba(27,37,65,.14);display:inline-block}
-.post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;color:var(--muted)}
-.post-body h2{scroll-margin-top:92px}
-.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
-.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--sky-ink)}
-/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
-.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
-.reading i{display:block;height:100%;width:0;background:var(--sky)}
-/* 側欄預約卡：只在 ≥1140px 的右側欄顯示（見下方 media query） */
-.side-cta{display:none}
-/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
-.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
-.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.75rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
-.toc>summary::-webkit-details-marker{display:none}
-.toc>summary::after{content:"＋";margin-left:auto;color:var(--sky-ink);font-size:.85rem}
-.toc[open]>summary::after{content:"－"}
-.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
-.toc li{counter-increment:toc}
-.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
-.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.75rem;letter-spacing:.06em;color:var(--muted)}
-.toc li a:hover{color:var(--sky-ink)}
-.toc li a.on,.toc li a.on::before{color:var(--sky-ink)}
-.toc li a.on{font-weight:700}
 /* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
-.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
-.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
-.pager a:hover{border-color:var(--sky)}
-.pager a span{display:block;font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
-.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
-.pager a:hover b{color:var(--sky-ink)}
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:48px}
+.pager a{display:block;padding:22px 24px;border-radius:var(--r-card);background:var(--tint);transition:background-color .25s var(--ease)}
+.pager a:hover{background:var(--tint-2)}
+.pager a span{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
+.pager a b{display:block;font-size:1.0625rem;font-weight:600;line-height:1.5}
 .pager .nx{text-align:right}
-/* 快速解答：問句小標 + 一兩句直接回答，放在導言下方。
-   Google AI 摘要與精選摘要偏好「問題 → 緊接著的簡短答案」，這區塊也讓讀者先看到結論。 */
-.quick{margin:0 0 38px;padding:20px 22px 8px;border:1px solid var(--line);border-left:3px solid var(--sky);border-radius:14px;background:#F1F7FC}
-.quick h2{font-family:var(--mono);font-size:.75rem;letter-spacing:.18em;color:var(--muted);font-weight:400;margin:0 0 12px}
-.quick dl{margin:0}
-.quick dt{font-family:var(--serif);font-weight:700;font-size:.98rem;line-height:1.7;color:var(--ink);margin:0 0 4px}
-.quick dt a{color:inherit}
-.quick dt a:hover{color:var(--sky-ink);text-decoration:underline}
-.quick dd{font-family:var(--serif);font-size:.95rem;line-height:1.95;color:var(--ink-2);margin:0 0 14px;padding-bottom:14px;border-bottom:1px dashed var(--line)}
-.quick dd:last-child{border-bottom:none;padding-bottom:0}
-@media(max-width:480px){.quick{padding:16px 16px 6px}}
-.post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
-.more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
-.more h3{font-family:var(--mono);font-size:.75rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
-.more a{position:relative;display:block;font-family:var(--serif);font-size:1.05rem;color:var(--ink);padding:12px 0 12px 0;border-bottom:1px solid var(--line)}
-.more a::before{content:"";position:absolute;left:-14px;top:14px;bottom:14px;width:2px;background:var(--sky-ink);border-radius:2px;opacity:0}
-.more a:hover{color:var(--sky-ink);transform:translateX(8px)}
-.more a:hover::before{opacity:1}
-@media(prefers-reduced-motion:no-preference){.more a::before{transition:opacity .3s ease}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn:hover,.more a:hover{transform:none}}
-.more a span{display:block;font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;color:var(--muted);margin-top:4px}
-.foot-in{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;align-items:center;gap:12px}
-.foot-in{flex-wrap:wrap}
-.nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--sky);outline-offset:3px;border-radius:6px}
-@media(min-width:1140px){
-  .post-page{max-width:1160px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center;padding:60px 64px 76px}
-  .post-page>*{grid-column:1;min-width:0}
-  /* 側欄高度有限（章節多、視窗矮時放不下）：原本整欄一起捲，預約卡會被切掉一半、
-     看起來像壞掉。改成只有目錄在自己的範圍內捲動，預約卡永遠完整露出。 */
-  .post-page>.post-side{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
-    max-height:calc(100vh - 116px);display:flex;flex-direction:column}
-  .post-side>.toc{flex:0 1 auto;min-height:96px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;
-    margin:0;padding:2px 8px 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0}
-  .post-side>.side-cta{flex:none}
-  .post-side>.toc>summary{pointer-events:none;margin-bottom:2px}
-  .post-side>.toc>summary::after{content:none}
-  .side-cta{display:block;margin-top:28px;padding:20px 20px 16px;border:1px solid var(--line);border-radius:14px;
-    background:rgba(255,255,255,.7);box-shadow:0 2px 12px -6px rgba(27,37,65,.14)}
-  .side-cta:first-child{margin-top:0}
-  .side-cta .t{font-family:var(--serif);font-weight:700;font-size:1rem;color:var(--ink);margin-bottom:6px}
-  .side-cta p{font-size:.84rem;line-height:1.8;color:var(--muted);margin-bottom:14px}
-  .side-cta .btn{width:100%;justify-content:center}
-  .side-hub{display:flex;align-items:center;justify-content:center;min-height:44px;margin-top:6px;
-    font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;color:var(--sky-ink)}
-  .side-hub:hover{color:var(--ink)}
-}
-/* 延伸閱讀（≥1024px）：一列一篇改成兩欄卡片，分類專頁連結橫跨整列 */
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
+/* 延伸閱讀 */
+.more{margin-top:64px}
+.more h3{font-size:1.5rem;line-height:1.3;margin-bottom:10px}
+.more a{display:block;padding:16px 0;border-top:1px solid var(--line);font-size:1.0625rem;font-weight:600;line-height:1.5;color:var(--ink);transition:color .25s var(--ease),background-color .25s var(--ease)}
+.more a:hover{color:var(--sky-ink)}
+.more a span{display:block;margin-top:3px;font-size:13px;font-weight:400;color:var(--muted)}
+.more a.more-hub{color:var(--sky-ink);font-weight:400}
+/* ≥1024px：一列一篇改成兩欄色塊，分類專頁連結橫跨整列 */
 @media(min-width:1024px){
   .more{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .more h3{grid-column:1/-1;margin-bottom:6px}
-  .more a{padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.55);line-height:1.6}
-  .more a::before{display:none}
-  .more a:hover{border-color:var(--sky);background:#fff}
-  .more a.more-hub{grid-column:1/-1;text-align:center}
+  .more a{padding:20px 22px;border-top:none;border-radius:16px;background:var(--tint)}
+  .more a:hover{background:var(--tint-2)}
+  .more a.more-hub{grid-column:1/-1;text-align:center;background:none}
+  .more a.more-hub:hover{background:none;text-decoration:underline}
 }
-@media(min-width:1024px) and (prefers-reduced-motion:no-preference){.more a:hover{transform:translateY(-2px)}}
-@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
+/* 寬螢幕：右側固定欄（章節＋預約卡） */
+@media(min-width:1140px){
+  .post-page{max-width:var(--wrap);display:grid;grid-template-columns:minmax(0,692px) 244px;column-gap:72px;justify-content:center;padding-top:56px;padding-bottom:104px}
+  .post-page>*{grid-column:1;min-width:0}
+  /* 側欄高度有限（章節多、視窗矮時放不下）：只有目錄在自己的範圍內捲動，預約卡永遠完整露出 */
+  .post-page>.post-side{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:calc(var(--nav-h) + 28px);
+    max-height:calc(100vh - var(--nav-h) - 52px);display:flex;flex-direction:column}
+  .post-side>.toc{flex:0 1 auto;min-height:96px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;
+    margin:0;padding:0 8px 0 18px;background:none;border-left:1px solid var(--line);border-radius:0}
+  .post-side>.side-cta{flex:none}
+  .post-side>.toc>summary{pointer-events:none;min-height:0;margin-bottom:8px;font-size:13px;color:var(--muted)}
+  .post-side>.toc>summary::after{content:none}
+  .post-side>.toc ol{margin:0}
+  .post-side>.toc li a{padding:6px 0;font-size:14px}
+  .side-cta{display:block;margin-top:28px;padding:24px 22px 18px;border-radius:var(--r-card);background:var(--tint)}
+  .side-cta:first-child{margin-top:0}
+  .side-cta .t{font-weight:600;font-size:1.0625rem;color:var(--ink);margin-bottom:6px}
+  .side-cta p{font-size:14px;line-height:1.7;color:var(--muted);margin-bottom:16px}
+  .side-cta .btn{width:100%;min-height:38px;font-size:15px}
+  .side-hub{display:flex;align-items:center;justify-content:center;min-height:44px;margin-top:4px;font-size:13px;color:var(--sky-ink)}
+  .side-hub:hover{text-decoration:underline}
+}
 /* 複製連結後的提示 */
-.toast{position:fixed;left:50%;bottom:88px;transform:translateX(-50%);z-index:99;background:var(--ink);color:#fff;padding:10px 22px;border-radius:999px;font-size:.84rem;letter-spacing:.06em;white-space:nowrap;box-shadow:0 8px 24px -8px rgba(27,37,65,.5)}
+.toast{position:fixed;left:50%;bottom:88px;transform:translateX(-50%);z-index:99;background:var(--ink);color:#fff;padding:10px 22px;border-radius:980px;font-size:14px;white-space:nowrap;box-shadow:0 8px 24px -8px rgba(0,0,0,.4)}
 /* 快速解答（手機）：五則問答全展開約佔兩個螢幕，正文被推到第三屏之後。
    先露出第一則，其餘一鍵展開。收合由腳本加上 .clamp——沒有 JS 時維持全部展開。 */
 .quick-more{display:none}
 .quick.clamp{position:relative;max-height:330px;overflow:hidden}
-.quick.clamp::after{content:"";position:absolute;left:0;right:0;bottom:0;height:130px;background:linear-gradient(180deg,rgba(241,247,252,0),#F1F7FC 60%);pointer-events:none}
-.quick.clamp .quick-more{display:inline-flex;align-items:center;position:absolute;z-index:1;left:50%;bottom:14px;transform:translateX(-50%);min-height:44px;padding:0 22px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--sky-ink);font-family:var(--sans);font-size:.84rem;letter-spacing:.06em;white-space:nowrap;cursor:pointer}
-.quick-more:focus-visible,#toc-fab:focus-visible,.ts-close:focus-visible,#toc-sheet a:focus-visible{outline:2px solid var(--sky);outline-offset:2px;border-radius:8px}
+.quick.clamp::after{content:"";position:absolute;left:0;right:0;bottom:0;height:130px;background:linear-gradient(180deg,rgba(244,248,251,0),#F4F8FB 60%);pointer-events:none}
+.quick.clamp .quick-more{display:inline-flex;align-items:center;position:absolute;z-index:1;left:50%;bottom:14px;transform:translateX(-50%);min-height:44px;padding:0 22px;border:none;border-radius:980px;background:#fff;color:var(--sky-ink);font-family:var(--sans);font-size:15px;white-space:nowrap;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.08)}
 /* 章節鈕（手機・平板）：目錄只在文章最上面，長文讀到一半想跳段落得一路捲回頂端。
    讀進正文後右下角浮出「章節」，點開是底部面板，標出目前讀到哪一段。
    ≥1140px 有常駐側欄目錄，不需要。 */
-#toc-fab{position:fixed;right:20px;bottom:24px;z-index:70;display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 17px 0 14px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.97);color:var(--sky-ink);font-family:var(--sans);font-size:.84rem;letter-spacing:.1em;cursor:pointer;box-shadow:0 6px 20px -6px rgba(27,37,65,.4);opacity:0;visibility:hidden;transition:opacity .25s ease,visibility 0s linear .25s}
-#toc-fab.show{opacity:1;visibility:visible;transition:opacity .25s ease,visibility 0s}
-#toc-sheet{position:fixed;inset:auto 0 0 0;margin:0 auto;width:100%;max-width:560px;max-height:72vh;max-height:72dvh;padding:0;border:none;border-radius:18px 18px 0 0;background:var(--bg-soft);color:var(--ink);box-shadow:0 -12px 40px -12px rgba(27,37,65,.45);overflow:hidden}
+#toc-fab{position:fixed;right:18px;bottom:22px;z-index:70;display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 18px 0 15px;border:1px solid rgba(0,0,0,.08);border-radius:980px;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);color:var(--ink);font-family:var(--sans);font-size:15px;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.1);opacity:0;visibility:hidden;transition:opacity .25s var(--ease),visibility 0s linear .25s}
+#toc-fab.show{opacity:1;visibility:visible;transition:opacity .25s var(--ease),visibility 0s}
+#toc-sheet{position:fixed;inset:auto 0 0 0;margin:0 auto;width:100%;max-width:560px;max-height:72vh;max-height:72dvh;padding:0;border:none;border-radius:22px 22px 0 0;background:#fff;color:var(--ink);box-shadow:0 -12px 40px -12px rgba(0,0,0,.3);overflow:hidden}
 #toc-sheet[open]{display:flex;flex-direction:column}
-#toc-sheet::backdrop{background:rgba(27,37,65,.4)}
-.ts-head{flex:none;display:flex;align-items:center;justify-content:space-between;padding:8px 8px 8px 22px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.75rem;letter-spacing:.18em;color:var(--muted)}
-.ts-close{width:44px;height:44px;border:none;background:none;border-radius:50%;font-size:1.35rem;line-height:1;color:var(--ink-2);cursor:pointer}
-#toc-sheet ol{list-style:none;counter-reset:toc;overflow-y:auto;overscroll-behavior:contain;padding:6px 22px max(16px,env(safe-area-inset-bottom))}
-#toc-sheet li{counter-increment:toc;border-bottom:1px solid var(--line)}
+#toc-sheet::backdrop{background:rgba(0,0,0,.32)}
+.ts-head{flex:none;display:flex;align-items:center;justify-content:space-between;padding:10px 10px 10px 24px;border-bottom:1px solid var(--line);font-size:15px;font-weight:600;color:var(--ink)}
+.ts-close{width:44px;height:44px;border:none;background:none;border-radius:50%;font-size:1.5rem;line-height:1;color:var(--muted);cursor:pointer}
+#toc-sheet ol{list-style:none;overflow-y:auto;overscroll-behavior:contain;padding:6px 24px max(18px,env(safe-area-inset-bottom))}
+#toc-sheet li{border-bottom:1px solid var(--line)}
 #toc-sheet li:last-child{border-bottom:none}
-#toc-sheet li a{display:block;position:relative;padding:12px 0 12px 32px;font-size:.95rem;line-height:1.65;color:var(--ink-2)}
-#toc-sheet li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:14px;font-family:var(--mono);font-size:.75rem;color:var(--muted)}
-#toc-sheet li a.on,#toc-sheet li a.on::before{color:var(--sky-ink)}
-#toc-sheet li a.on{font-weight:700}
+#toc-sheet li a{display:block;padding:13px 0;font-size:1.0625rem;line-height:1.5;color:var(--ink-2)}
+#toc-sheet li a.on{color:var(--sky-ink);font-weight:600}
 /* 章節鈕佔了右下角，回頂端鈕往上讓一格 */
-@media(max-width:1139px){body.has-fab #back-top{bottom:80px}}
+@media(max-width:1139px){body.has-fab #back-top{bottom:78px}}
 @media(min-width:1140px){#toc-fab{display:none}}
-@media(prefers-reduced-motion:reduce){#toc-fab,#toc-fab.show{transition:none}}
-@media(max-width:480px){
-  .post-page{padding:40px 22px 72px}
-  .post-body p{text-align:left}
-  .meta{gap:12px}
-  .toc{padding:12px 15px}
-}

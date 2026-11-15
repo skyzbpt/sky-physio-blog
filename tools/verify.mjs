@@ -5,7 +5,7 @@ import { readFileSync, readdirSync, existsSync, statSync } from 'fs';
 import { join } from 'path';
 import { REPO, BASE, TODAY, loadArticles, CAT_SLUG, DESC_MIN, DESC_MAX, BLOGPOST_MAX, referencesOf } from './lib.mjs';
 import { hashOf } from './modified.mjs';
-import { CHROME_CSS } from './css.mjs';
+import { CHROME_CSS, SHELL_MARK } from './css.mjs';
 
 const results = [];
 const pass = (n, d = '') => results.push(['PASS', n, d]);
@@ -200,6 +200,9 @@ literal === 0 ? pass('文章內容無殘留 markdown 語法') : fail('殘留 mar
     ['assets/post.css', 6000, ['posts/' + postFiles[0]]],
     ['assets/topic.css', 4000, ['topics/' + hubFiles[0]]],
     ['assets/legal.css', 3000, ['privacy.html']],
+    // 指南與落地頁共用（原本六頁各自內嵌一份一模一樣的 <style>）
+    ['assets/guide.css', 6000, ['taipei-physio.html', 'physio-guide.html', 'triathlon-physio.html',
+                                'beitou-physio.html', 'shilin-physio.html', 'shipai-physio.html']],
     ['assets/nav.js', 500, ['blog.html', 'about.html', 'services.html', 'products.html']],
     // 文章／主題／落地／指南／法律／404 的手機選單與回頂端鈕
     ['assets/menu.js', 500, ['posts/' + postFiles[0], 'topics/' + hubFiles[0], 'privacy.html', '404.html',
@@ -220,7 +223,8 @@ literal === 0 ? pass('文章內容無殘留 markdown 語法') : fail('殘留 mar
   // 任何頁面若又出現大塊內嵌 CSS，代表共用檔被繞過、重複又長回來了
   const fat = [];
   for (const p2 of ['index.html', 'blog.html', 'about.html', 'services.html', 'products.html',
-                    'posts/' + postFiles[0], 'topics/' + hubFiles[0], 'privacy.html']) {
+                    'posts/' + postFiles[0], 'topics/' + hubFiles[0], 'privacy.html',
+                    'taipei-physio.html', 'physio-guide.html', 'triathlon-physio.html']) {
     const inline = (read(p2).match(/<style[^>]*>([\s\S]*?)<\/style>/g) || []).join('').length;
     // index.html 保留後台樣式（只有它有後台），門檻放寬
     const limit = p2 === 'index.html' ? 16000 : 4000;
@@ -272,14 +276,21 @@ literal === 0 ? pass('文章內容無殘留 markdown 語法') : fail('殘留 mar
     ? fail('主要頁面手機頁首', 'site.css 又把 .nav .btn 藏起來了')
     : pass('主要頁面的手機頁首保留預約鈕');
 
-  // 兩個手寫靜態頁的 CHROME-CSS 區塊必須與 css.mjs 同步（由建置的 syncChrome() 寫入）
-  const stale = ['taipei-physio.html', 'physio-guide.html'].filter(f => {
-    const m = read(f).match(/\/\*===CHROME-CSS:START===\*\/([\s\S]*?)\/\*===CHROME-CSS:END===\*\//);
-    return !m || m[1].trim() !== CHROME_CSS.trim();
-  });
-  stale.length === 0
-    ? pass('手寫靜態頁的頁首樣式與 css.mjs 同步 (2)')
-    : fail('頁首樣式未同步（請重新建置）', stale.join(','));
+  // 全站外殼只有一份（tools/css.mjs 的 CHROME_CSS）：
+  // ・assets/site.css 開頭的 SHELL 標記區塊由建置寫入，必須與 css.mjs 逐字相同
+  // ・post／topic／legal／guide.css 由產生器以同一份外殼開頭寫出
+  // 任何一個對不上，代表有人手改了產物、或改了 css.mjs 卻沒重新建置——頁首在不同頁面會長得不一樣。
+  {
+    const stale = [];
+    const m = read('assets/site.css').match(SHELL_MARK);
+    const inner = m ? m[0].replace(/^\/\*===SHELL:START===\*\//, '').replace(/\/\*===SHELL:END===\*\/$/, '') : null;
+    if (inner === null || inner.trim() !== CHROME_CSS.trim()) stale.push('assets/site.css');
+    for (const f of ['assets/post.css', 'assets/topic.css', 'assets/legal.css', 'assets/guide.css'])
+      if (!existsSync(join(REPO, f)) || !read(f).startsWith(CHROME_CSS)) stale.push(f);
+    stale.length === 0
+      ? pass('全站外殼樣式與 css.mjs 同步 (5 個樣式檔)')
+      : fail('外殼樣式未同步（請重新建置）', stale.join(','));
+  }
 
   // 文章頁：文末要有預約卡（側欄預約卡只在寬螢幕出現，手機與平板讀完文章沒有下一步）
   const noCta = postFiles.filter(f => {

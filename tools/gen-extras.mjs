@@ -3,7 +3,7 @@
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
 import { REPO, BASE, esc, plain, loadArticles, logoDataURI, ogCard, shot, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, ldJson } from './lib.mjs';
-import { SHELL, siteHeader } from './css.mjs';
+import { SHELL, siteHeader, siteFooter } from './css.mjs';
 
 // 與 lib.mjs 的 CAT_SLUG 保持一致（此處另需 lede 文案）
 //
@@ -292,106 +292,86 @@ const HUBS = [
   },
 ];
 
-/* ---------- 主題頁 CSS ---------- */
+/* ---------- 主題頁 CSS ----------
+   外殼來自 css.mjs 的 SHELL。版面：大標＋導言 → 長篇介紹（色塊）→ 文章清單 → 常見問題（收合列）。
+   手機是單欄、以細線分隔的清單；電腦版（≥1024px）介紹兩欄、文章三欄色塊、常見問題兩欄。 */
 const CSS = SHELL + `
-.brand{display:flex;align-items:center;gap:10px}
-.btn:hover{background:rgba(27,37,65,.06);transform:translateY(-2px)}
-.btn:active{opacity:.8;transform:translateY(0)}
-.btn.sky:hover{background:#0D5682;border-color:#0D5682;box-shadow:0 12px 24px -12px rgba(18,106,159,.75)}
-/* 動效：與首頁一致的統一過場，尊重「減少動態」偏好 */
-@media(prefers-reduced-motion:no-preference){
-.btn,.nav-link,.brand,.crumb a,.list a,.list .t,.backhome{transition:color .22s ease,background-color .22s ease,border-color .22s ease,box-shadow .3s ease,transform .3s cubic-bezier(.22,.7,.3,1)}
-.list a::before{transition:opacity .3s ease}
-}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn:hover,.list a:hover{transform:none}}
-.hub{max-width:820px;margin:0 auto;padding:56px 32px 96px}
-.crumb{font-family:var(--mono);font-size:.75rem;letter-spacing:.05em;color:var(--muted);margin-bottom:26px}
-.eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.22em;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:10px}
-.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--sky-ink)}
-h1{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.45;margin-bottom:14px}
-.lede{font-family:var(--serif);color:var(--muted);font-size:1.02rem;line-height:2;border-bottom:1px solid var(--line);padding-bottom:28px;margin-bottom:16px}
-.count{font-family:var(--mono);font-size:.75rem;letter-spacing:.05em;color:var(--muted);margin-bottom:8px}
+.hub{max-width:var(--wrap);margin:0 auto;padding:44px var(--gut) 96px}
+.hub h1{font-size:clamp(2.1rem,6vw,3.5rem);line-height:1.1;letter-spacing:-.02em;margin-bottom:18px}
+.lede{font-size:clamp(1.1rem,2.2vw,1.3rem);line-height:1.65;color:var(--ink-2);max-width:36em;margin-bottom:24px}
+.count{font-size:13px;color:var(--muted);margin-bottom:8px}
 /* 手機／平板：長篇介紹排在文章清單前面，要捲過一千多像素才看得到文章。
-   給一個直接跳到清單的捷徑；電腦版介紹是兩欄卡片、清單很快就出現，不需要。 */
-.jump{display:inline-flex;align-items:center;min-height:44px;margin:2px 0 22px;padding:8px 18px;border:1.5px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6);font-size:.86rem;color:var(--sky-ink)}
-.jump:hover{border-color:var(--sky);background:#fff}
-.list-head{scroll-margin-top:84px}
+   給一個直接跳到清單的捷徑；電腦版介紹是兩欄色塊、清單很快就出現，不需要。 */
+.jump{display:inline-flex;align-items:center;min-height:44px;margin:0 0 28px;padding:0 20px;border:1px solid var(--sky-ink);border-radius:980px;font-size:15px;color:var(--sky-ink);transition:background-color .25s var(--ease),color .25s var(--ease)}
+.jump:hover{background:var(--sky-ink);color:#fff}
+.list-head{scroll-margin-top:calc(var(--nav-h) + 20px)}
 @media(min-width:1024px){.jump{display:none}}
-/* 分類長篇內容（HUBS 的 intro）：沒填就整塊不輸出，版面與原本一致 */
-.hub-intro{border-bottom:1px solid var(--line);padding-bottom:30px;margin-bottom:24px}
-.hub-intro section+section{margin-top:28px}
-.hub-intro h2{font-family:var(--serif);font-size:1.1rem;line-height:1.7;color:var(--ink);margin-bottom:12px;display:flex;align-items:center;gap:10px}
-.hub-intro h2::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--sky);flex:none}
-.hub-intro p{color:var(--ink-2);font-size:.97rem;line-height:2.05}
-.hub-intro p+p{margin-top:14px}
+/* 分類長篇內容（HUBS 的 intro）：沒填就整塊不輸出 */
+.hub-intro{display:grid;gap:12px;margin:8px 0 56px}
+.hub-intro section{padding:28px 26px;background:var(--tint);border-radius:var(--r-card)}
+.hub-intro h2{font-size:1.3rem;line-height:1.35;margin-bottom:12px}
+.hub-intro p{font-size:1rem;line-height:1.85;color:var(--ink-2)}
+.hub-intro p+p{margin-top:12px}
 /* 常見問題（HUBS 的 faqs）：可收合，內容仍在 HTML 裡供索引 */
-.hub-faq{margin-top:46px;padding-top:30px;border-top:1px solid var(--line)}
-.hub-faq h2{font-family:var(--mono);font-size:.75rem;letter-spacing:.22em;color:var(--muted);margin-bottom:18px}
-.hub-faq details{border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.6);padding:0 18px;margin-bottom:10px}
-.hub-faq summary{cursor:pointer;list-style:none;padding:15px 0;font-family:var(--serif);font-size:.97rem;color:var(--ink);display:flex;align-items:center;justify-content:space-between;gap:14px}
+.hub-faq{margin-top:88px;border-bottom:1px solid var(--line)}
+.hub-faq h2{font-size:clamp(1.7rem,3.6vw,2.5rem);line-height:1.16;letter-spacing:-.015em;margin-bottom:24px}
+.hub-faq details{border-top:1px solid var(--line)}
+.hub-faq summary{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:64px;padding:16px 0;cursor:pointer;list-style:none;font-size:1.15rem;font-weight:600;line-height:1.45;color:var(--ink);transition:color .25s var(--ease)}
 .hub-faq summary::-webkit-details-marker{display:none}
-.hub-faq summary::after{content:"+";font-family:var(--mono);font-size:1.05rem;color:var(--sky-ink);flex:none}
-.hub-faq details[open] summary{border-bottom:1px solid var(--line)}
-.hub-faq details[open] summary::after{content:"−"}
-.hub-faq .a{padding:14px 0 18px;color:var(--ink-2);font-size:.94rem;line-height:2.05}
+.hub-faq summary:hover{color:var(--sky-ink)}
+/* 加號：開啟時轉 45° 變成關閉 */
+.hub-faq summary::after{content:"";flex:none;width:16px;height:16px;background:linear-gradient(currentColor,currentColor) center/100% 1.5px no-repeat,linear-gradient(currentColor,currentColor) center/1.5px 100% no-repeat;transition:transform .3s var(--ease)}
+.hub-faq details[open] summary::after{transform:rotate(45deg)}
+.hub-faq .a{padding:0 40px 24px 0;font-size:1.0625rem;line-height:1.8;color:var(--ink-2)}
 /* 篇數多的分類：先給搜尋，再逐批載入，避免一次平鋪上百篇 */
-.finder{display:flex;align-items:center;gap:10px;margin:18px 0 4px;padding:11px 16px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6)}
-.finder svg{width:15px;height:15px;color:var(--muted);flex:none}
-.finder input{flex:1;min-width:0;border:none;background:none;outline:none;font-family:var(--sans);font-size:.94rem;color:var(--ink)}
+.finder{display:flex;align-items:center;gap:10px;margin:14px 0 6px;padding:0 6px 0 16px;min-height:44px;border-radius:12px;background:var(--tint);transition:box-shadow .25s var(--ease),background-color .25s var(--ease)}
+.finder:focus-within{background:#fff;box-shadow:0 0 0 2px var(--sky-btn)}
+.finder svg{width:16px;height:16px;color:var(--muted);flex:none}
+.finder input{flex:1;min-width:0;height:44px;border:none;background:none;outline:none;font-family:var(--sans);font-size:1.0625rem;color:var(--ink);-webkit-appearance:none;appearance:none}
 .finder input::placeholder{color:var(--muted)}
-.finder button{border:none;background:none;cursor:pointer;font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;color:var(--muted);padding:2px 4px;display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px}
-.finder button:hover{color:var(--sky-ink)}
+.finder input::-webkit-search-cancel-button{display:none}
+.finder button{border:none;background:none;cursor:pointer;font-size:13px;color:var(--sky-ink);display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px}
 .finder button[hidden]{display:none}
 .list mark{background:var(--sky-soft);color:inherit;border-radius:3px;padding:0 2px}
-.no-hit{padding:40px 4px;color:var(--muted);font-size:.9rem}
+.no-hit{padding:40px 0;color:var(--muted);font-size:15px}
 .no-hit[hidden]{display:none}
-.loadmore{display:block;width:100%;margin-top:26px;padding:14px 20px;border:1.5px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6);
-  font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;color:var(--ink-2);cursor:pointer}
-.loadmore:hover{border-color:var(--sky);color:var(--sky-ink)}
+.loadmore{display:flex;align-items:center;justify-content:center;min-height:44px;margin:32px auto 0;padding:0 26px;border:1px solid var(--sky-ink);border-radius:980px;background:transparent;color:var(--sky-ink);font-family:var(--sans);font-size:1.0625rem;cursor:pointer;transition:background-color .25s var(--ease),color .25s var(--ease)}
+.loadmore:hover{background:var(--sky-ink);color:#fff}
 .loadmore[hidden]{display:none}
-.list a{position:relative;display:block;padding:22px 0;border-bottom:1px solid var(--line)}
+.list{border-top:1px solid var(--line)}
+.list a{display:block;padding:22px 0;border-bottom:1px solid var(--line)}
 .list a[hidden]{display:none}
-.list a::before{content:"";position:absolute;left:-14px;top:20px;bottom:20px;width:2px;background:var(--sky-ink);border-radius:2px;opacity:0}
-.list a:hover{transform:translateX(8px)}
+.list .m{font-size:13px;color:var(--muted);margin-bottom:6px}
+.list .t{font-size:1.25rem;font-weight:600;line-height:1.4;letter-spacing:-.01em;text-wrap:pretty;transition:color .25s var(--ease)}
 .list a:hover .t{color:var(--sky-ink)}
-.list a:hover::before{opacity:1}
-.list .m{font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;color:var(--muted);margin-bottom:6px}
-.list .t{font-family:var(--serif);font-size:1.12rem;font-weight:700;line-height:1.6}
-.list .e{color:var(--muted);font-size:.92rem;margin-top:4px;max-width:46em}
-.backhome{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--ink-2);margin-top:36px;padding:10px 18px;border:1.5px solid var(--line);border-radius:999px;background:rgba(255,255,255,.6)}
-.backhome:hover{border-color:var(--sky);color:var(--sky-ink)}
-.foot-in{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;align-items:center;gap:12px}
-.foot-in{flex-wrap:wrap}
-a:focus-visible{outline:2px solid var(--sky);outline-offset:3px;border-radius:4px}
-@media(max-width:480px){
-  .hub{padding:40px 22px 72px}
-}
-/* 電腦版（≥1024px）：原本 820px 單欄置中，兩側大片空白、文章一篇一列。
-   改成滿版：長篇介紹兩欄卡片、文章三欄卡片（與 /blog 同一套卡片語彙）、
-   篇數與搜尋同一列、常見問題兩欄。手機維持原本的單欄清單。 */
+.list .e{color:var(--muted);font-size:15px;line-height:1.65;margin-top:6px;max-width:46em}
+.backhome{display:inline-flex;align-items:center;min-height:44px;margin-top:40px;font-size:1.0625rem;color:var(--sky-ink)}
+.backhome::before{content:"‹";margin-right:6px;font-size:1.3em;line-height:1}
+.backhome:hover{text-decoration:underline}
+@media(max-width:480px){.hub{padding-top:32px;padding-bottom:72px}}
 @media(min-width:1024px){
-  .hub{max-width:1120px}
-  .hub .lede{max-width:44em;border-bottom:none;padding-bottom:12px}
-  .hub-intro{display:grid;grid-template-columns:1fr 1fr;gap:18px;border-bottom:none;padding-bottom:0;margin:12px 0 48px}
-  .hub-intro section{padding:24px 26px;background:var(--bg-soft);border:1px solid var(--line);border-radius:16px}
-  .hub-intro section+section{margin-top:0}
-  .list-head{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:24px;border-top:1px solid var(--line);margin-bottom:18px}
-  .list-head .count{margin:0}
+  .hub{padding-top:64px}
+  .hub .lede{margin-bottom:40px}
+  .hub-intro{grid-template-columns:1fr 1fr;gap:18px;margin:0 0 72px}
+  /* 剛好三段時排成三欄，不要 2＋1 留一格空白 */
+  .hub-intro:has(>section:nth-child(3):last-child){grid-template-columns:repeat(3,minmax(0,1fr))}
+  .hub-intro:has(>section:nth-child(3):last-child) section{padding:32px 28px 30px}
+  .hub-intro section{padding:36px 36px 34px;border-radius:var(--r-tile)}
+  .list-head{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:20px}
+  .list-head .count{margin:0;font-size:15px}
   .list-head .finder{margin:0;flex:0 1 380px}
-  .list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-  .list a{display:flex;flex-direction:column;padding:22px 24px;background:var(--bg-soft);border:1px solid var(--line);border-radius:16px;
-    box-shadow:0 2px 10px -4px rgba(27,37,65,.10)}
-  .list a::before{display:none}
-  .list a:hover{transform:translateY(-3px);background:#fff;border-color:var(--sky);
-    box-shadow:0 18px 40px -24px rgba(46,154,214,.45),0 2px 10px -4px rgba(27,37,65,.10)}
-  .list .t{font-size:1.05rem}
+  .list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;border-top:none}
+  .list a{display:flex;flex-direction:column;padding:28px 28px 26px;border:none;border-radius:var(--r-card);background:var(--tint);transition:transform .35s var(--ease),box-shadow .35s var(--ease),background-color .25s var(--ease)}
+  .list .t{font-size:1.2rem}
   .list .e{max-width:none;margin-top:8px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-  .no-hit{padding:32px 4px}
-  .hub-faq{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;align-items:start}
-  .hub-faq h2{grid-column:1/-1;margin-bottom:8px}
-  .hub-faq details{margin:0}
+  .hub-faq{display:grid;grid-template-columns:1fr 1fr;column-gap:56px;align-items:start;border-bottom:none}
+  .hub-faq h2{grid-column:1/-1}
+  .hub-faq details{border-bottom:1px solid var(--line);border-top:none}
+  .hub-faq details:nth-of-type(-n+2){border-top:1px solid var(--line)}
 }
-@media(min-width:1024px) and (prefers-reduced-motion:reduce){.list a:hover{transform:none}}`;
+@media(min-width:1024px) and (hover:hover){
+  .list a:hover{transform:scale(1.015);background:#fff;box-shadow:0 18px 40px -22px rgba(10,60,100,.35)}
+}`;
 
 /* ---------- 主題頁模板 ---------- */
 function hubPage(hub, arts) {
@@ -465,7 +445,7 @@ function hubPage(hub, arts) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#F4F9FD">
+<meta name="theme-color" content="#FFFFFF">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 <meta name="keywords" content="${esc([...new Set(keywords)].join(','))}">
@@ -505,11 +485,11 @@ ${ldJson(faqld)}
 <link rel="stylesheet" href="/assets/topic.css">
 </head>
 <body>
-${siteHeader({ links: [['/services', '服務項目'], ['/blog', '更多文章']] })}
+${siteHeader()}
 
 <main class="hub">
   <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › ${esc(hub.cat)}</nav>
-  <div class="eyebrow">TOPIC・分類專頁</div>
+  <div class="eyebrow">衛教文章・分類專頁</div>
   <h1>${esc(hub.cat)}衛教文章</h1>
   <p class="lede">${esc(hub.lede)}</p>${intro.length ? `
   <a class="jump" href="#list-head">直接看 ${arts.length} 篇文章 ↓</a>` : ''}${intro.length ? `
@@ -537,13 +517,13 @@ ${siteHeader({ links: [['/services', '服務項目'], ['/blog', '更多文章']]
   <p class="no-hit" id="nohit" hidden>沒有符合的文章——換個關鍵字試試，或回到全部文章。</p>
   ${arts.length > 24 ? '<button class="loadmore" id="more" type="button">載入更多文章</button>' : ''}${faqs.length ? `
   <section class="hub-faq" aria-label="${esc(hub.cat)}常見問題">
-    <h2>FAQ・常見問題</h2>
+    <h2>常見問題</h2>
     ${faqs.map(f => `<details>
       <summary>${esc(f.q)}</summary>
       <div class="a">${esc(f.a)}</div>
     </details>`).join('\n    ')}
   </section>` : ''}
-  <a class="backhome" href="/blog">回到全部文章</a>
+  <a class="backhome" href="/blog">全部衛教文章</a>
 </main>
 
 <script>
@@ -585,11 +565,7 @@ ${siteHeader({ links: [['/services', '服務項目'], ['/blog', '更多文章']]
 })();
 </script>
 
-<footer>
-  <div class="foot-in">
-    <div class="t">Sky 物理治療師・<a href="/taipei-physio">台北</a> <a href="/beitou-physio">北投</a>・<a href="/shilin-physio">士林</a>・<a href="/shipai-physio">石牌</a>・<a href="/triathlon-physio">三鐵運動修復</a> · 網站設計｜Sky — © 2026 · <a href="/privacy">隱私權保護聲明</a></div>
-  </div>
-</footer>
+${siteFooter()}
 </body>
 </html>`;
 }
@@ -664,24 +640,28 @@ ${sorted.map(a => `  <item>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#FFFFFF">
 <title>找不到頁面｜Sky 物理治療師</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/topic.css">
 <style>
-.nf{max-width:640px;margin:0 auto;padding:96px 32px;text-align:center}
-.nf .code{font-family:var(--mono);font-size:.78rem;letter-spacing:.24em;color:var(--sky-ink);margin-bottom:16px}
-.nf p{color:var(--muted);margin:14px 0 30px}
+.nf{max-width:640px;margin:0 auto;padding:clamp(72px,14vh,140px) var(--gut) 120px;text-align:center}
+.nf .code{font-size:15px;font-weight:600;color:var(--sky-ink);margin-bottom:12px}
+.nf h1{font-size:clamp(2.2rem,7vw,3.5rem);line-height:1.1;letter-spacing:-.02em}
+.nf p{font-size:1.15rem;line-height:1.6;color:var(--muted);margin:16px 0 36px}
 .nf .links{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
-.nf .links a{display:inline-flex;align-items:center;min-height:44px;font-family:var(--mono);font-size:.76rem;letter-spacing:.1em;color:var(--ink-2);border:1.5px solid var(--line);border-radius:999px;padding:8px 16px;background:rgba(255,255,255,.6)}
-.nf .links a:hover{border-color:var(--sky);color:var(--sky-ink)}
+.nf .links a{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:980px;background:var(--tint);font-size:15px;color:var(--ink-2);transition:background-color .25s var(--ease),color .25s var(--ease)}
+.nf .links a:hover{background:var(--tint-2);color:var(--ink)}
+.nf .links a:first-child{background:var(--sky-btn);color:#fff}
+.nf .links a:first-child:hover{background:#0B86D0}
 </style>
 </head>
 <body>
 ${siteHeader({ asset: '/assets/' })}
 <main class="nf">
-  <div class="code">404 NOT FOUND</div>
+  <div class="code">404</div>
   <h1>這一頁不在這裡</h1>
   <p>連結可能已變更或不存在。別擔心——文章都還在，從下面回去就好。</p>
   <div class="links">
