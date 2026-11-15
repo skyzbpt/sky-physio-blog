@@ -9,7 +9,7 @@
 // 相關衛教文章（從 data/articles.json 取標題，找不到 id 會直接報錯，避免死連結）。
 import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
-import { REPO } from './lib.mjs';
+import { REPO, phrases } from './lib.mjs';
 import { SHELL, ARTICLE_CSS, siteHeader } from './css.mjs';
 
 const BASE = 'https://skythephysio.com';
@@ -302,6 +302,10 @@ const GUIDE_CSS = SHELL + ARTICLE_CSS + `
 .faq-item:last-of-type{border-bottom:1px solid var(--line)}
 .post-body .faq-item h3{margin:0 0 .4em;font-size:1.15rem;line-height:1.45}
 .post-body .faq-item p{margin:0;color:var(--ink-2)}
+/* 相關文章：每一項整列都是連結，以細線分隔（手機上才點得準） */
+.post-body .rel-list{list-style:none;padding:0;border-top:1px solid var(--line)}
+.rel-list li{margin:0;padding:0;border-bottom:1px solid var(--line)}
+.post-body .rel-list a{display:block;padding:13px 0;line-height:1.6}
 .areas{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 1.7em}
 .post-body .areas a{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:980px;background:var(--tint);font-size:15px;color:var(--ink-2);transition:background-color .25s var(--ease),color .25s var(--ease)}
 .post-body .areas a:hover{background:var(--tint-2);color:var(--ink)}
@@ -441,7 +445,7 @@ ${tpl.header}
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › ${p.area ? '<a href="/taipei-physio">台北物理治療師推薦</a> › ' : ''}${esc(p.crumb)}</nav>
     <div class="meta"><span>${UPDATED}</span><span class="cat">${esc(p.metaCat)}</span><span>約 ${minutes} 分鐘</span></div>
-    <h1>${esc(p.h1)}</h1>
+    <h1>${phrases(p.h1)}</h1>
     <p class="lede">${esc(p.lede)}</p>
 
     <section class="quick" aria-labelledby="quick">
@@ -454,7 +458,7 @@ ${p.quick.map(([q, a]) => `        <dt>${esc(q)}</dt>\n        <dd>${esc(a)}</dd
     <div class="post-body">
 ${p.sections.map(s => `      <h2 id="${s.id}">${s.h}</h2>${s.html}\n`).join('\n')}
       <h2 id="related">${esc(p.relatedTitle)}</h2>
-      <ul>
+      <ul class="rel-list">
 ${related.map(a => `        <li><a href="/posts/${a.id}">${esc(a.title)}</a></li>`).join('\n')}
       </ul>
 

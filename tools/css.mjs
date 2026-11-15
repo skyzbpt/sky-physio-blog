@@ -38,13 +38,16 @@ button{font:inherit;color:inherit}
 h1,h2,h3{font-weight:600;letter-spacing:-.01em}
 /* 大標兩行時排成差不多長，不留孤字；支援的瀏覽器會盡量斷在詞與詞之間 */
 h1,h2{text-wrap:balance;word-break:auto-phrase}
+h3{text-wrap:pretty}
+/* 標題裡依標點切好的詞組（見 lib.mjs 的 phrases()）：整組一起換行 */
+.ph{display:inline-block}
 :focus-visible{outline:2px solid var(--sky-btn);outline-offset:3px;border-radius:8px}
 
 /* ── 頁首：52px 毛玻璃列 ── */
 header{position:sticky;top:0;z-index:80}
 header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(255,255,255,.78);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.08);pointer-events:none;transition:background-color .3s var(--ease)}
 .nav{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut);height:var(--nav-h);display:flex;align-items:center;gap:20px}
-.brand{display:flex;align-items:center;gap:9px;flex:none;cursor:pointer}
+.brand{display:flex;align-items:center;gap:9px;flex:none;min-height:44px;cursor:pointer}
 .brand-logo{height:30px;width:30px;object-fit:contain;display:block}
 .brand-name{font-size:17px;font-weight:600;color:var(--ink);letter-spacing:-.01em;white-space:nowrap}
 .nav-links{flex:1;height:100%;display:flex;align-items:center;justify-content:center;gap:30px}
@@ -64,7 +67,7 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 .btn svg{flex:none;margin:0!important}
 /* 小顆（頁首、側欄）：視覺 32px 高，用 ::after 把可點範圍撐到 44px */
 .btn.sm{position:relative;min-height:32px;padding:0 15px;font-size:13px}
-.btn.sm::after{content:"";position:absolute;inset:-6px -2px}
+.btn.sm::after{content:"";position:absolute;inset:-7px -2px}
 .nav .btn svg{display:none}
 
 /* ── 桌機：下拉改成整列寬的大選單，頁面其餘部分蓋上一層霧面 ── */
@@ -149,16 +152,17 @@ header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2
 #back-top:hover{background:var(--ink);color:#fff}
 @media(min-width:1024px){#back-top{right:28px;bottom:32px}}
 
-/* ── 頁尾：淡天空灰底、12px 小字 ── */
-footer{background:var(--tint);padding:22px 0 26px;font-size:12px;line-height:2;color:var(--muted)}
-.foot,.foot-in{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
-.foot small{font-size:inherit}
-/* 連結文字不從中斷開：窄螢幕上寧可整段換到下一行，也不要斷成「隱私權／保護聲明」。 */
-.foot a,.foot-in a{color:var(--ink-2);white-space:nowrap;position:relative}
-.foot a::after,.foot-in a::after{content:"";position:absolute;inset:-12px -5px}
-.foot a:hover,.foot-in a:hover{color:var(--sky-ink);text-decoration:underline}
+/* ── 頁尾：淡天空灰底、12px 小字。上面一列是連結（每個都有 44px 高的可點範圍），下面一列是版權 ── */
+footer{background:var(--tint);padding:10px 0 16px;font-size:12px;line-height:1.5;color:var(--muted)}
+.foot{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
+.foot-nav{display:flex;flex-wrap:wrap;align-items:center;margin:0 -10px}
+.foot-nav span{padding:0 10px}
+.foot-nav a,.foot-copy a{display:inline-flex;align-items:center;min-height:44px;padding:0 10px;color:var(--ink-2);white-space:nowrap;transition:color .2s var(--ease)}
+.foot-nav a:hover,.foot-copy a:hover{color:var(--sky-ink);text-decoration:underline}
+.foot-copy{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0 20px;border-top:1px solid var(--line);margin-top:4px;padding-top:4px}
+.foot-copy a{margin:0 -10px}
 /* 手機：頁尾底部讓出右下角浮動按鈕（回頂端、章節）的位置 */
-@media(max-width:820px){body>footer{padding-bottom:84px}}
+@media(max-width:820px){body>footer{padding-bottom:76px}}
 
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -194,17 +198,23 @@ export const ARTICLE_CSS = `
 .post-body figure{margin:2.2em 0;text-align:center}
 .post-body figure img{max-width:100%;max-height:560px;width:auto;height:auto;border-radius:18px;display:inline-block}
 .post-body figcaption{margin-top:12px;font-size:12px;line-height:1.6;color:var(--muted)}
+.post-body figcaption a{position:relative}
+.post-body figcaption a::after{content:"";position:absolute;inset:-14px -6px}
 .post-foot{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-size:12px;line-height:1.8;color:var(--muted)}
 /* 快速解答：問句 + 一兩句直接回答，放在導言下方。
    Google AI 摘要與精選摘要偏好「問題 → 緊接著的簡短答案」，這區塊也讓讀者先看到結論。 */
 .quick{margin:0 0 40px;padding:26px 28px 12px;border-radius:var(--r-card);background:var(--tint)}
 .quick h2{font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--muted);margin:0 0 14px}
 .quick dl{margin:0}
-.quick dt{font-size:17px;font-weight:600;line-height:1.5;color:var(--ink);margin:0 0 4px}
+/* 問句（文章頁是跳到該段的連結）：連結用 ::after 蓋滿整個 dt，手機上才點得準 */
+.quick dt{position:relative;font-size:17px;font-weight:600;line-height:1.5;color:var(--ink);margin:0;padding:10px 0 6px}
+.quick dt:first-child{padding-top:0}
 .quick dt a{color:inherit}
+.quick dt a::after{content:"";position:absolute;inset:0 0 -3px}
+.quick dt:first-child a::after{top:-10px}
 .quick dt a:hover{color:var(--sky-ink)}
-.quick dd{font-size:15px;line-height:1.8;color:var(--ink-2);margin:0 0 14px;padding-bottom:14px;border-bottom:1px solid var(--line)}
-.quick dd:last-child{border-bottom:none;padding-bottom:0}
+.quick dd{font-size:15px;line-height:1.8;color:var(--ink-2);margin:0 0 4px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.quick dd:last-child{border-bottom:none;margin-bottom:14px;padding-bottom:0}
 @media(max-width:480px){.post-page{padding-top:32px;padding-bottom:64px}.quick{padding:22px 20px 8px}}`;
 
 /* ---------- 頁首 HTML（文章／主題／法律／落地／指南／404 共用） ----------
@@ -243,6 +253,30 @@ export function siteHeader({ asset = '../assets/' } = {}) {
   </nav>
   <script src="/assets/menu.js" defer></script>
 </header>`;
+}
+
+/* ---------- 頁尾 HTML（全站共用） ----------
+   產生器直接呼叫；七個手寫頁（五個主要頁面＋台北推薦＋物理治療指南）由建置時的 syncFooter() 寫回，
+   所以頁尾也只有這一處要改。連結與原本相同（四個看診區域、三鐵運動修復、隱私權），只是排成兩列。 */
+export function siteFooter() {
+  return `<footer>
+  <div class="foot">
+    <nav class="foot-nav" aria-label="看診區域與專項">
+      <span>看診區域</span>
+      <a href="/taipei-physio">台北</a>
+      <a href="/beitou-physio">北投</a>
+      <a href="/shilin-physio">士林</a>
+      <a href="/shipai-physio">石牌</a>
+      <a href="/triathlon-physio">三鐵運動修復</a>
+    </nav>
+    <p class="foot-copy"><span>© 2026 Sky 物理治療師・網站設計｜Sky</span><a href="/privacy">隱私權保護聲明</a></p>
+  </div>
+</footer>`;
+}
+export function syncFooter(html, file = '') {
+  const re = /<footer>[\s\S]*?<\/footer>/;
+  if (!re.test(html)) throw new Error(`${file} 找不到 <footer>`);
+  return html.replace(re, () => siteFooter());
 }
 
 /* ---------- 把共用外殼寫進 assets/site.css ----------

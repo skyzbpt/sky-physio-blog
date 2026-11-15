@@ -4,7 +4,7 @@
 import { writeFileSync } from 'fs';
 import { join } from 'path';
 import { REPO, BASE, esc, ROBOTS, AUTHOR, PUBLISHER, ldJson } from './lib.mjs';
-import { SHELL, siteHeader } from './css.mjs';
+import { SHELL, siteHeader, siteFooter } from './css.mjs';
 
 // 最後更新日期：內容有實質變動時再手動前進（不要每次建置都改，否則是假更新訊號）
 const UPDATED = '2026-08-23';
@@ -35,7 +35,9 @@ const CSS = SHELL + `
 .tbl th{font-size:13px;font-weight:600;color:var(--muted)}
 .toc-box{border-radius:var(--r-card);background:var(--tint);padding:22px 26px;margin-bottom:40px}
 .toc-box div{font-size:13px;font-weight:600;color:var(--muted);margin-bottom:8px}
-.toc-box ol{margin:0;padding-left:1.3em;font-size:15px;line-height:2;color:var(--ink-2)}
+.toc-box ol{margin:0;padding-left:1.3em;font-size:15px;line-height:1.6;color:var(--ink-2)}
+/* 整列都是連結：手機上才點得準 */
+.toc-box a{display:block;padding:10px 0}
 .toc-box a:hover{color:var(--sky-ink)}
 .backhome{display:inline-flex;align-items:center;min-height:44px;margin-top:40px;font-size:1.0625rem;color:var(--sky-ink)}
 .backhome:hover{text-decoration:underline}
@@ -122,11 +124,7 @@ ${body}
   <a class="backhome" href="/">← 回到首頁</a>
 </main>
 
-<footer>
-  <div class="foot-in">
-    <div class="t">Sky 物理治療師・<a href="/taipei-physio">台北</a> <a href="/beitou-physio">北投</a>・<a href="/shilin-physio">士林</a>・<a href="/shipai-physio">石牌</a>・<a href="/triathlon-physio">三鐵運動修復</a> · 網站設計｜Sky — © 2026 · <a href="/privacy">隱私權保護聲明</a></div>
-  </div>
-</footer>
+${siteFooter()}
 </body>
 </html>`;
 }

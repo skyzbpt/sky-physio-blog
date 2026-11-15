@@ -3,7 +3,7 @@
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
 import { REPO, BASE, esc, plain, loadArticles, logoDataURI, ogCard, shot, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, ldJson } from './lib.mjs';
-import { SHELL, siteHeader } from './css.mjs';
+import { SHELL, siteHeader, siteFooter } from './css.mjs';
 
 // 與 lib.mjs 的 CAT_SLUG 保持一致（此處另需 lede 文案）
 //
@@ -327,7 +327,7 @@ const CSS = SHELL + `
 .finder{display:flex;align-items:center;gap:10px;margin:14px 0 6px;padding:0 6px 0 16px;min-height:44px;border-radius:12px;background:var(--tint);transition:box-shadow .25s var(--ease),background-color .25s var(--ease)}
 .finder:focus-within{background:#fff;box-shadow:0 0 0 2px var(--sky-btn)}
 .finder svg{width:16px;height:16px;color:var(--muted);flex:none}
-.finder input{flex:1;min-width:0;border:none;background:none;outline:none;font-family:var(--sans);font-size:1.0625rem;color:var(--ink);-webkit-appearance:none;appearance:none}
+.finder input{flex:1;min-width:0;height:44px;border:none;background:none;outline:none;font-family:var(--sans);font-size:1.0625rem;color:var(--ink);-webkit-appearance:none;appearance:none}
 .finder input::placeholder{color:var(--muted)}
 .finder input::-webkit-search-cancel-button{display:none}
 .finder button{border:none;background:none;cursor:pointer;font-size:13px;color:var(--sky-ink);display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px}
@@ -342,7 +342,7 @@ const CSS = SHELL + `
 .list a{display:block;padding:22px 0;border-bottom:1px solid var(--line)}
 .list a[hidden]{display:none}
 .list .m{font-size:13px;color:var(--muted);margin-bottom:6px}
-.list .t{font-size:1.25rem;font-weight:600;line-height:1.4;letter-spacing:-.01em;transition:color .25s var(--ease)}
+.list .t{font-size:1.25rem;font-weight:600;line-height:1.4;letter-spacing:-.01em;text-wrap:pretty;transition:color .25s var(--ease)}
 .list a:hover .t{color:var(--sky-ink)}
 .list .e{color:var(--muted);font-size:15px;line-height:1.65;margin-top:6px;max-width:46em}
 .backhome{display:inline-flex;align-items:center;min-height:44px;margin-top:40px;font-size:1.0625rem;color:var(--sky-ink)}
@@ -565,11 +565,7 @@ ${siteHeader()}
 })();
 </script>
 
-<footer>
-  <div class="foot-in">
-    <div class="t">Sky 物理治療師・<a href="/taipei-physio">台北</a> <a href="/beitou-physio">北投</a>・<a href="/shilin-physio">士林</a>・<a href="/shipai-physio">石牌</a>・<a href="/triathlon-physio">三鐵運動修復</a> · 網站設計｜Sky — © 2026 · <a href="/privacy">隱私權保護聲明</a></div>
-  </div>
-</footer>
+${siteFooter()}
 </body>
 </html>`;
 }

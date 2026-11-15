@@ -2,8 +2,8 @@
 // 資料來源：data/articles.json（唯一真實來源）
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, TODAY, esc, readMins, CAT_SLUG, renderBody, headingsOf, loadArticles, logoDataURI, photoDataURI, roundedFontDataURI, ogCard, ogHomeCard, shot, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, wordCountOf, keywordsFor, mentionsFor, metaDescription, extractFaqs, ldJson, topicsOf, referencesOf, firstImageOf } from './lib.mjs';
-import { SHELL, ARTICLE_CSS, BOOK_URL, siteHeader } from './css.mjs';
+import { REPO, BASE, TODAY, esc, phrases, readMins, CAT_SLUG, renderBody, headingsOf, loadArticles, logoDataURI, photoDataURI, roundedFontDataURI, ogCard, ogHomeCard, shot, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, wordCountOf, keywordsFor, mentionsFor, metaDescription, extractFaqs, ldJson, topicsOf, referencesOf, firstImageOf } from './lib.mjs';
+import { SHELL, ARTICLE_CSS, BOOK_URL, siteHeader, siteFooter } from './css.mjs';
 import { resolveModified } from './modified.mjs';
 import { LEGAL_UPDATED } from './gen-legal.mjs';
 
@@ -17,14 +17,17 @@ const CSS = SHELL + ARTICLE_CSS + `
 /* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
 .reading{position:fixed;left:0;top:0;height:2px;width:100%;z-index:90;pointer-events:none;background:transparent}
 .reading i{display:block;height:100%;width:0;background:var(--sky-btn)}
-.crumb{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* 麵包屑單行、過長以省略號收尾。overflow:hidden 會把連結的透明感應區（::after）一起切掉，
+   所以上下留出 padding 讓感應區待在盒子裡，再用負 margin 把版面位置拉回原處。 */
+.crumb{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:13px 0;margin:-13px 0 15px}
 .pp-share{position:relative;margin-left:auto;display:inline-flex;align-items:center;min-height:32px;padding:0 15px;border:none;border-radius:980px;background:var(--tint);color:var(--sky-ink);font-family:var(--sans);font-size:13px;white-space:nowrap;cursor:pointer;transition:background-color .25s var(--ease)}
 .pp-share::after{content:"";position:absolute;inset:-6px -2px}
 .pp-share:hover{background:var(--tint-2)}
 /* 署名列：誰寫的、誰審閱、最後審閱日、有幾筆出處——醫療衛教的可信度訊號（E-E-A-T），
    放在標題正下方，讀者與 AI 引擎都不必捲到文末才知道這篇是物理治療師寫的。 */
 .byline{display:flex;flex-wrap:wrap;column-gap:14px;font-size:13px;line-height:1.8;color:var(--muted);margin:0 0 22px}
-.byline a{color:var(--sky-ink)}
+.byline a{color:var(--sky-ink);position:relative}
+.byline a::after{content:"";position:absolute;inset:-10px -4px}
 .byline a:hover{text-decoration:underline}
 .post-body .refs-h{scroll-margin-top:calc(var(--nav-h) + 24px);margin-bottom:.8em}
 .post-body .refs-h+ol{font-size:13px;line-height:1.75;color:var(--muted);word-break:break-word}
@@ -38,7 +41,7 @@ const CSS = SHELL + ARTICLE_CSS + `
 .toc>summary::after{content:"";margin-left:auto;width:8px;height:8px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:translateY(-2px) rotate(45deg);transition:transform .25s var(--ease)}
 .toc[open]>summary::after{transform:translateY(2px) rotate(-135deg)}
 .toc ol{list-style:none;margin:4px 0 10px;padding:0}
-.toc li a{display:block;padding:7px 0;font-size:15px;line-height:1.55;color:var(--ink-2)}
+.toc li a{display:block;padding:10px 0;font-size:15px;line-height:1.6;color:var(--ink-2)}
 .toc li a:hover{color:var(--sky-ink)}
 .toc li a.on{color:var(--sky-ink);font-weight:600}
 /* 側欄預約卡：只在 ≥1140px 的右側欄顯示（見下方 media query） */
@@ -317,7 +320,7 @@ ${siteHeader()}
       <time class="date" datetime="${a.date}">${a.date}</time><span class="cat">${esc(a.cat)}</span><span>約 ${mins} 分鐘</span>
       <button class="pp-share" type="button" onclick="shareOrCopy()" title="複製這篇文章的連結">複製連結</button>
     </div>
-    <h1 class="post-title">${esc(a.title)}</h1>
+    <h1 class="post-title">${phrases(a.title)}</h1>
     <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="${modified}">${modified}</time></span>${refs.length ? `<a href="#refs">參考文獻 ${refs.length} 筆</a>` : ''}</p>
     <p class="lede">${esc(a.excerpt)}</p>${quickHtml}
     <aside class="post-side" aria-label="本篇章節與預約">${tocHtml}
@@ -358,11 +361,7 @@ ${pagerHtml}
   </article>
 </main>
 
-<footer>
-  <div class="foot-in">
-    <div class="t">Sky 物理治療師・<a href="/taipei-physio">台北</a> <a href="/beitou-physio">北投</a>・<a href="/shilin-physio">士林</a>・<a href="/shipai-physio">石牌</a>・<a href="/triathlon-physio">三鐵運動修復</a> · 網站設計｜Sky — © 2026 · <a href="/privacy">隱私權保護聲明</a></div>
-  </div>
-</footer>
+${siteFooter()}
 
 <script>
 /* 要分享／複製的網址：去掉查詢字串（從 Facebook、LINE 點進來時常帶著 ?fbclid=… 之類的追蹤參數），

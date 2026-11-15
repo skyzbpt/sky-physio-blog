@@ -16,7 +16,7 @@ import { genExtras } from './gen-extras.mjs';
 import { genLegal } from './gen-legal.mjs';
 import { genLlms } from './gen-llms.mjs';
 import { genLanding } from './gen-landing.mjs';
-import { syncShell } from './css.mjs';
+import { syncShell, syncFooter } from './css.mjs';
 
 console.log('=== 1/5 注入 index.html ===');
 injectArticles();
@@ -27,6 +27,14 @@ injectArticles();
   const siteCss = join(REPO, 'assets/site.css');
   writeFileSync(siteCss, syncShell(readFileSync(siteCss, 'utf8')));
   console.log('已同步共用外殼：assets/site.css');
+  // 手寫頁的頁尾也由 css.mjs 供應（落地頁的頁尾取自 taipei-physio.html，所以要在產生落地頁之前）
+  const handwritten = ['index.html', 'blog.html', 'about.html', 'services.html', 'products.html',
+                       'taipei-physio.html', 'physio-guide.html'];
+  for (const f of handwritten) {
+    const file = join(REPO, f);
+    writeFileSync(file, syncFooter(readFileSync(file, 'utf8'), f));
+  }
+  console.log(`已同步頁尾：${handwritten.length} 個手寫頁`);
 }
 
 // 嘗試啟動 Chromium；失敗則以 page=null 繼續（略過 OG 圖片產生）
