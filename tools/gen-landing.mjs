@@ -10,7 +10,7 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import { REPO } from './lib.mjs';
-import { CHROME_CSS, siteHeader } from './css.mjs';
+import { SHELL, ARTICLE_CSS, siteHeader } from './css.mjs';
 
 const BASE = 'https://skythephysio.com';
 const BOOK = 'https://calendar.app.google/wdsPTQDhF2YCigPu6';
@@ -241,49 +241,88 @@ export const LANDING_PAGES = [
   },
 ];
 
-/* 兩個手寫的靜態頁（台北推薦頁、物理治療指南）各自內嵌一份樣式與頁首。
-   頁首與它的響應式規則改由 css.mjs 供應，這裡在建置時寫回這兩個檔案——
-   否則選單改一次要手動改五個地方，一定會漏。
-   落地頁的版型取自 taipei-physio.html（見下方 shell()），所以必須先同步、再產生落地頁。 */
+/* 兩個手寫的靜態頁（台北推薦頁、物理治療指南）與四個落地頁共用同一份樣式：assets/guide.css。
+   原本六頁各自內嵌一份一模一樣的 <style>（每頁約 9KB），改顏色要改兩個手寫檔、再重建四頁；
+   現在樣式只在這裡定義一次，六頁共用、也能跨頁快取。
+   手寫頁的頁首 HTML 仍由 css.mjs 供應，建置時寫回這兩個檔案——否則選單改一次要手動改好幾處。
+   落地頁的導覽列、頁尾與目錄腳本取自 taipei-physio.html（見下方 shell()），所以必須先同步、再產生落地頁。 */
 const STATIC_PAGES = ['taipei-physio.html', 'physio-guide.html'];
+export const GUIDE_CSS_HREF = '/assets/guide.css';
 export function syncChrome() {
-  const cssRe = /\/\*===CHROME-CSS:START===\*\/[\s\S]*?\/\*===CHROME-CSS:END===\*\//;
   const headRe = /<header>[\s\S]*?<\/header>/;
   for (const f of STATIC_PAGES) {
     const file = join(REPO, f);
     let html = readFileSync(file, 'utf8');
-    if (!cssRe.test(html)) throw new Error(`${f} 找不到 CHROME-CSS 標記`);
     if (!headRe.test(html)) throw new Error(`${f} 找不到 <header>`);
-    html = html.replace(cssRe, () => `/*===CHROME-CSS:START===*/${CHROME_CSS}\n/*===CHROME-CSS:END===*/`);
+    if (!html.includes(`href="${GUIDE_CSS_HREF}"`)) throw new Error(`${f} 沒有引用 ${GUIDE_CSS_HREF}`);
     html = html.replace(headRe, () => siteHeader({ asset: 'assets/' }));
     writeFileSync(file, html);
   }
   console.log(`已同步頁首與手機選單：${STATIC_PAGES.join('、')}`);
 }
 
-/* 共用版型：從 taipei-physio.html 取出 <style>、導覽列與頁尾，所有落地頁長得一樣 */
+/* 共用版型：從 taipei-physio.html 取出導覽列、頁尾與目錄腳本，所有落地頁長得一樣 */
 function shell() {
   const src = readFileSync(join(REPO, 'taipei-physio.html'), 'utf8');
-  const style = src.match(/<style>[\s\S]*?<\/style>/)[0];
   const header = src.match(/<header>[\s\S]*?<\/header>/)[0];
   const footer = src.match(/<footer>[\s\S]*?<\/footer>/)[0];
   const script = src.match(/<script>\n\/\* 電腦版目錄[\s\S]*?<\/script>/)[0];
-  return { style, header, footer, script };
+  return { header, footer, script };
 }
 
 const CAL_SVG = (s) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:5px"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`;
 
-const QUICK_CSS = `
-.quick{margin:0 0 38px;padding:20px 22px 8px;border:1px solid var(--line);border-left:3px solid var(--sky);border-radius:14px;background:#F1F7FC}
-.quick h2{font-family:var(--mono);font-size:.75rem;letter-spacing:.18em;color:var(--muted);font-weight:400;margin:0 0 12px}
-.quick dl{margin:0}
-.quick dt{font-family:var(--serif);font-weight:700;font-size:.98rem;line-height:1.7;color:var(--ink);margin:0 0 4px}
-.quick dd{font-family:var(--serif);font-size:.95rem;line-height:1.95;color:var(--ink-2);margin:0 0 14px;padding-bottom:14px;border-bottom:1px dashed var(--line)}
-.quick dd:last-child{border-bottom:none;padding-bottom:0}
+/* ---------- 指南與落地頁 CSS（assets/guide.css） ----------
+   外殼（SHELL）與長文排版（ARTICLE_CSS，含「快速解答」）來自 css.mjs；這裡是這幾頁專屬的元件：
+   條列改成的色塊（適合誰／挑選標準／自費與健保對照）、步驟時間軸、常見問題、看診區域、預約色塊，
+   以及電腦版右側的黏性目錄。 */
+const GUIDE_CSS = SHELL + ARTICLE_CSS + `
+.post-body a.btn:hover,.post-body .areas a:hover{text-decoration:none}
+.post-body .guide-cards{list-style:none;padding:0;margin:0 0 1.7em;display:grid;gap:12px}
+.guide-cards li{margin:0;padding:22px 24px;background:var(--tint);border-radius:18px;font-size:15px;line-height:1.75;color:var(--ink-2)}
+.guide-cards li strong{display:block;margin-bottom:4px;font-size:1.0625rem;line-height:1.5;color:var(--ink)}
+.post-body .guide-steps{list-style:none;padding:0;margin:0 0 1.7em;counter-reset:step}
+.guide-steps li{counter-increment:step;position:relative;margin:0;padding:0 0 22px 48px}
+.guide-steps li:last-child{padding-bottom:0}
+.guide-steps li::before{content:counter(step);position:absolute;left:0;top:1px;width:30px;height:30px;border-radius:50%;background:var(--tint);color:var(--sky-ink);font-size:14px;font-weight:600;display:flex;align-items:center;justify-content:center}
+.guide-steps li:not(:last-child)::after{content:"";position:absolute;left:14.5px;top:37px;bottom:6px;width:1px;background:var(--line)}
+.guide-steps li strong{display:block}
+.post-body .guide-criteria{list-style:none;padding:0;margin:0 0 1.7em;counter-reset:crit}
+.guide-criteria li{counter-increment:crit;position:relative;margin:0 0 10px;padding:20px 24px 20px 68px;background:var(--tint);border-radius:18px;font-size:15px;line-height:1.75;color:var(--ink-2)}
+.guide-criteria li::before{content:counter(crit);position:absolute;left:22px;top:20px;width:30px;height:30px;border-radius:50%;background:var(--sky-btn);color:#fff;font-size:14px;font-weight:600;display:flex;align-items:center;justify-content:center}
+.guide-criteria li strong{display:block;margin-bottom:2px;font-size:1.0625rem;line-height:1.5;color:var(--ink)}
+.guide-compare{display:grid;gap:12px;margin-bottom:1.7em}
+.post-body .guide-compare p{margin:0;padding:24px 26px;background:var(--tint);border-radius:18px;font-size:15px;line-height:1.8;color:var(--ink-2)}
+.post-body .guide-compare p:last-child{background:var(--sky-soft)}
+.guide-compare p strong{display:block;margin-bottom:6px;font-size:1.0625rem;color:var(--ink)}
+/* 標題獨立成一行，後面的全形冒號就不需要了 */
+.guide-cards .sep,.guide-steps .sep,.guide-criteria .sep,.guide-compare .sep{display:none}
+/* 常見問題：細線分隔的問答列 */
+.faq-item{padding:24px 0;border-top:1px solid var(--line)}
+.faq-item:last-of-type{border-bottom:1px solid var(--line)}
+.post-body .faq-item h3{margin:0 0 .4em;font-size:1.15rem;line-height:1.45}
+.post-body .faq-item p{margin:0;color:var(--ink-2)}
 .areas{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 1.7em}
-.post-body .areas a{border:1px solid var(--line);border-radius:999px;padding:6px 16px;font-size:.9rem;background:var(--bg-soft)}
-@media(max-width:480px){.quick{padding:16px 16px 6px}}
-</style>`;
+.post-body .areas a{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:980px;background:var(--tint);font-size:15px;color:var(--ink-2);transition:background-color .25s var(--ease),color .25s var(--ease)}
+.post-body .areas a:hover{background:var(--tint-2);color:var(--ink)}
+.cta-box{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin:2.6em 0 0;padding:32px 30px;border-radius:var(--r-tile);background:linear-gradient(135deg,#E6F3FC 0%,#CFE7F8 100%)}
+.cta-box .t{font-size:1.3rem;font-weight:600;line-height:1.4;letter-spacing:-.01em;color:var(--ink)}
+.cta-box .s{margin-top:4px;font-size:14px;line-height:1.6;color:var(--ink-2)}
+@media(max-width:600px){.cta-box .btn{width:100%}}
+.guide-toc{display:none}
+/* 電腦版：右側加黏性目錄；色塊改兩欄 */
+@media(min-width:1024px){
+  .guide-wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut);display:grid;grid-template-columns:minmax(0,692px) 244px;gap:72px;justify-content:center;align-items:start}
+  .post-page{max-width:none;margin:0;padding:56px 0 104px}
+  .guide-toc{display:block;position:sticky;top:calc(var(--nav-h) + 28px);padding-top:60px}
+  .toc-label{font-size:13px;font-weight:600;color:var(--muted);margin-bottom:10px}
+  .guide-toc ol{list-style:none;border-left:1px solid var(--line);margin-bottom:24px}
+  .guide-toc ol a{display:block;margin-left:-1px;padding:6px 0 6px 16px;border-left:2px solid transparent;font-size:14px;line-height:1.5;color:var(--ink-2);transition:color .2s var(--ease),border-color .2s var(--ease)}
+  .guide-toc ol a:hover{color:var(--sky-ink)}
+  .guide-toc ol a[aria-current]{border-left-color:var(--sky-btn);color:var(--sky-ink);font-weight:600}
+  .guide-toc .btn{width:100%;min-height:38px;font-size:15px}
+  .post-body .guide-cards,.guide-compare{grid-template-columns:1fr 1fr}
+}`;
 
 function clinicNode() {
   return {
@@ -361,7 +400,7 @@ function render(p, articles, tpl) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#F4F9FD">
+<meta name="theme-color" content="#FFFFFF">
 <title>${esc(p.title)}</title>
 <meta name="description" content="${esc(p.desc)}">
 <meta name="keywords" content="${esc(p.keywords)}">
@@ -392,7 +431,7 @@ function render(p, articles, tpl) {
 <script type="application/ld+json">
 ${JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }, null, 2)}
 </script>
-${tpl.style.replace('</style>', QUICK_CSS)}
+<link rel="stylesheet" href="${GUIDE_CSS_HREF}">
 </head>
 <body>
 ${tpl.header}
@@ -460,6 +499,8 @@ ${tpl.script}
 }
 
 export function genLanding() {
+  // 樣式改為外部檔：兩個手寫頁與四個落地頁共用同一份
+  writeFileSync(join(REPO, 'assets/guide.css'), GUIDE_CSS);
   syncChrome();
   const articles = JSON.parse(readFileSync(join(REPO, 'data/articles.json'), 'utf8'));
   const tpl = shell();

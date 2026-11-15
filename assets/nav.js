@@ -54,6 +54,16 @@ document.addEventListener('keydown', e=>{
   if(desk.addEventListener) desk.addEventListener('change', shut); else if(desk.addListener) desk.addListener(shut);
   addEventListener('pageshow', e=>{ if(e.persisted) closeMenu(); });
 })();
+/* 桌機的大選單是滑鼠移上去展開的：點了裡面的項目後先收起來（加上 .shut），滑鼠移開該項目後恢復。
+   從上一頁回來（bfcache 還原）時一併清掉，免得選單停在打不開的狀態。 */
+document.addEventListener('click', e=>{
+  const item=e.target instanceof Element && e.target.closest('#nav-links .nav-item');
+  if(!item || !matchMedia('(min-width:821px)').matches) return;
+  item.classList.add('shut');
+  if(document.activeElement instanceof HTMLElement) document.activeElement.blur();
+  item.addEventListener('mouseleave', ()=>item.classList.remove('shut'), {once:true});
+});
+addEventListener('pageshow', ()=>document.querySelectorAll('.nav-item.shut').forEach(it=>it.classList.remove('shut')));
 (function(){
   const btn=document.getElementById('back-top');
   function update(){ btn.classList.toggle('show', window.scrollY>400); }

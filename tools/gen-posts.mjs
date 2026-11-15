@@ -3,202 +3,136 @@
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
 import { REPO, BASE, TODAY, esc, readMins, CAT_SLUG, renderBody, headingsOf, loadArticles, logoDataURI, photoDataURI, roundedFontDataURI, ogCard, ogHomeCard, shot, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, wordCountOf, keywordsFor, mentionsFor, metaDescription, extractFaqs, ldJson, topicsOf, referencesOf, firstImageOf } from './lib.mjs';
-import { SHELL, BOOK_URL, siteHeader } from './css.mjs';
+import { SHELL, ARTICLE_CSS, BOOK_URL, siteHeader } from './css.mjs';
 import { resolveModified } from './modified.mjs';
 import { LEGAL_UPDATED } from './gen-legal.mjs';
 
 // id → 真實修改日期（由 data/modified.json 的內容雜湊決定），genPosts 開頭填入
 let MODIFIED = new Map();
 
-/* ---------- 靜態頁 CSS（取自 index.html，確保一致）---------- */
-const CSS = SHELL + `
-/* 文章頁的頁首比其他頁多一個連結（產品專區），平板寬度先收窄間距；
-   660px 以下所有文字連結都收進手機選單（見 css.mjs 的 CHROME_CSS）。 */
-@media(min-width:661px) and (max-width:820px){.nav-right{gap:16px}}
-/* 動效：與首頁一致的統一過場，尊重「減少動態」偏好 */
-@media(prefers-reduced-motion:no-preference){
-.btn,.nav-link,.brand,.crumb a,.pp-share,.author-box,.more a,.post-body figure img{transition:color .22s ease,background-color .22s ease,border-color .22s ease,box-shadow .3s ease,transform .3s cubic-bezier(.22,.7,.3,1)}
-}
-.brand{display:flex;align-items:center;gap:10px;cursor:pointer}
-.btn:hover{background:rgba(27,37,65,.06);transform:translateY(-2px)}
-.btn:active{opacity:.8;transform:translateY(0)}
-.btn.sky:hover{background:#0D5682;border-color:#0D5682;box-shadow:0 12px 24px -12px rgba(18,106,159,.75)}
-.post-page{max-width:720px;margin:0 auto;padding:56px 32px 96px}
-/* 長文閱讀面：把內文放在淺色紙面上，藍色退成環境色。
-   手機維持滿版（窄螢幕上留白比紙面重要），平板以上才浮起來。 */
-@media(min-width:600px){
-  .post-page{background:var(--bg-soft);border:1px solid var(--line);border-radius:20px;
-    box-shadow:0 22px 54px -36px rgba(27,37,65,.5);
-    margin-top:36px;margin-bottom:64px;padding:56px 56px 72px}
-}
-.crumb{font-family:var(--mono);font-size:.75rem;letter-spacing:.05em;color:var(--muted);margin-bottom:26px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.author-box{display:flex;align-items:center;gap:16px;margin-top:30px;padding:20px 22px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);box-shadow:0 2px 12px -6px rgba(27,37,65,.16)}
-.author-box:hover{border-color:rgba(46,154,214,.45);box-shadow:0 16px 32px -22px rgba(46,154,214,.5)}
+/* ---------- 文章頁 CSS ----------
+   外殼（SHELL）與長文排版（ARTICLE_CSS）來自 css.mjs，這裡只放文章頁專屬的元件。
+   閱讀面是白底、692px 版心；色塊（快速解答、目錄、作者、預約）一律淡天空灰、大圓角、沒有外框。 */
+const CSS = SHELL + ARTICLE_CSS + `
+/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
+.reading{position:fixed;left:0;top:0;height:2px;width:100%;z-index:90;pointer-events:none;background:transparent}
+.reading i{display:block;height:100%;width:0;background:var(--sky-btn)}
+.crumb{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pp-share{position:relative;margin-left:auto;display:inline-flex;align-items:center;min-height:32px;padding:0 15px;border:none;border-radius:980px;background:var(--tint);color:var(--sky-ink);font-family:var(--sans);font-size:13px;white-space:nowrap;cursor:pointer;transition:background-color .25s var(--ease)}
+.pp-share::after{content:"";position:absolute;inset:-6px -2px}
+.pp-share:hover{background:var(--tint-2)}
+/* 署名列：誰寫的、誰審閱、最後審閱日、有幾筆出處——醫療衛教的可信度訊號（E-E-A-T），
+   放在標題正下方，讀者與 AI 引擎都不必捲到文末才知道這篇是物理治療師寫的。 */
+.byline{display:flex;flex-wrap:wrap;column-gap:14px;font-size:13px;line-height:1.8;color:var(--muted);margin:0 0 22px}
+.byline a{color:var(--sky-ink)}
+.byline a:hover{text-decoration:underline}
+.post-body .refs-h{scroll-margin-top:calc(var(--nav-h) + 24px);margin-bottom:.8em}
+.post-body .refs-h+ol{font-size:13px;line-height:1.75;color:var(--muted);word-break:break-word}
+.post-body h2 .hash{margin-left:8px;font-size:.7em;font-weight:400;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
+.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--sky-ink)}
+.post-body a.hash:hover{text-decoration:none}
+/* 目錄：手機為可摺疊色塊，寬螢幕移到右側固定欄 */
+.toc{margin:0 0 40px;border-radius:16px;background:var(--tint);padding:6px 22px}
+.toc>summary{display:flex;align-items:center;gap:10px;min-height:44px;cursor:pointer;list-style:none;font-size:15px;font-weight:600;color:var(--ink)}
+.toc>summary::-webkit-details-marker{display:none}
+.toc>summary::after{content:"";margin-left:auto;width:8px;height:8px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:translateY(-2px) rotate(45deg);transition:transform .25s var(--ease)}
+.toc[open]>summary::after{transform:translateY(2px) rotate(-135deg)}
+.toc ol{list-style:none;margin:4px 0 10px;padding:0}
+.toc li a{display:block;padding:7px 0;font-size:15px;line-height:1.55;color:var(--ink-2)}
+.toc li a:hover{color:var(--sky-ink)}
+.toc li a.on{color:var(--sky-ink);font-weight:600}
+/* 側欄預約卡：只在 ≥1140px 的右側欄顯示（見下方 media query） */
+.side-cta{display:none}
+.author-box{display:flex;align-items:center;gap:16px;margin-top:32px;padding:24px 26px;border-radius:var(--r-card);background:var(--tint)}
 .author-box img{width:52px;height:52px;flex:none;border-radius:50%;background:#fff;object-fit:contain}
-.author-box .a-name{font-family:var(--serif);font-weight:700;font-size:1.02rem}
-.author-box .a-cred{font-size:.8rem;color:var(--muted);margin:3px 0 6px;line-height:1.7}
-.author-box .a-link{font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;color:var(--sky-ink);display:inline-flex;align-items:center;min-height:44px}
+.author-box .a-name{font-weight:600;font-size:1.0625rem}
+.author-box .a-cred{font-size:13px;color:var(--muted);margin:2px 0 2px;line-height:1.65}
+.author-box .a-link{font-size:14px;color:var(--sky-ink);display:inline-flex;align-items:center;min-height:44px;margin-bottom:-10px}
 .author-box .a-link:hover{text-decoration:underline}
 /* 文末預約卡：讀完文章的人最可能想預約，但側欄預約卡只在 ≥1140px 出現——
    手機與平板讀到最後只剩延伸閱讀，沒有下一步。這張卡補上預約與分享；
    寬螢幕有常駐側欄，這裡就不重複。 */
-.end-cta{margin-top:16px;padding:24px 22px 22px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(120deg,var(--bg-soft) 0%,#F6FAFE 55%,#E6F2FB 100%)}
-.end-cta .t{font-family:var(--serif);font-weight:700;font-size:1.12rem;line-height:1.6;color:var(--ink);margin-bottom:6px}
-.end-cta p{font-size:.9rem;line-height:1.85;color:var(--muted);margin-bottom:18px}
+.end-cta{margin-top:14px;padding:30px 26px 26px;border-radius:var(--r-card);background:linear-gradient(135deg,#E6F3FC 0%,#CFE7F8 100%)}
+.end-cta .t{font-weight:600;font-size:1.35rem;line-height:1.35;letter-spacing:-.01em;color:var(--ink);margin-bottom:6px}
+.end-cta p{font-size:15px;line-height:1.7;color:var(--ink-2);margin-bottom:20px}
 .end-cta .row{display:flex;flex-wrap:wrap;gap:10px}
-.end-cta .btn{flex:1 1 148px;justify-content:center;min-height:46px}
+.end-cta .btn{flex:1 1 148px}
+/* 這塊底色上描邊按鈕的天空藍對比不夠，改成白底近黑字 */
+.end-cta .end-share{background:rgba(255,255,255,.86);border-color:transparent;color:var(--ink)}
+.end-cta .end-share:hover{background:#fff;color:var(--ink)}
 @media(min-width:1140px){.end-cta{display:none}}
-/* 字距只給拉丁字母與數字：中文字本來就等寬，再加 .16em 會被拆成「肩 膀 痛」 */
-.meta{font-family:var(--mono);font-size:.75rem;letter-spacing:normal;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-bottom:20px}
-.meta .date{letter-spacing:.16em}
-.meta .cat{color:var(--sky-ink)}
-.pp-share{margin-left:auto;font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;color:var(--sky-ink);background:none;border:1px solid var(--line);border-radius:999px;padding:5px 16px;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;min-height:44px}
-.pp-share:hover{border-color:var(--sky);background:var(--sky-soft)}
-/* 署名列：誰寫的、誰審閱、最後審閱日、有幾筆出處——醫療衛教的可信度訊號（E-E-A-T），
-   放在標題正下方，讀者與 AI 引擎都不必捲到文末才知道這篇是物理治療師寫的。 */
-.byline{font-family:var(--sans);font-size:.8rem;line-height:1.8;color:var(--muted);margin:0 0 16px;display:flex;flex-wrap:wrap;column-gap:14px}
-.byline a{color:var(--sky-ink)}
-.byline a:hover{text-decoration:underline}
-.post-body .refs-h{scroll-margin-top:92px;margin-bottom:.8em}
-.post-body .refs-h+ol{font-family:var(--sans);font-size:.84rem;line-height:1.8;letter-spacing:0;color:var(--muted);word-break:break-word}
-h1.post-title{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.45;margin-bottom:14px}
-.lede{font-family:var(--serif);color:var(--muted);font-size:1.02rem;line-height:2;border-bottom:1px solid var(--line);padding-bottom:30px;margin-bottom:38px}
-.post-body p{font-family:var(--serif);font-size:1.04rem;line-height:2.1;letter-spacing:.04em;color:var(--ink-2);margin-bottom:1.7em;text-align:justify}
-.post-body h2{font-family:var(--serif);font-size:1.3rem;font-weight:700;margin:2.4em 0 1em;display:flex;align-items:center;gap:12px}
-.post-body h2::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--sky-ink);flex:none}
-.post-body blockquote{border-left:2px solid var(--sky);padding:6px 0 6px 22px;margin:0 0 1.7em;font-family:var(--serif);color:var(--sky-ink);font-size:1.04rem;line-height:2}
-.post-body strong{color:var(--ink)}
-.post-body ul,.post-body ol{font-family:var(--serif);font-size:1.04rem;line-height:2;letter-spacing:.04em;color:var(--ink-2);margin:0 0 1.7em;padding-left:1.5em}
-.post-body li{margin-bottom:.55em;padding-left:.25em}
-.post-body li::marker{color:var(--sky-ink)}
-.post-body li:last-child{margin-bottom:0}
-.post-body em{font-style:italic}
-.post-body hr{border:none;border-top:1px solid var(--line);margin:2.6em 0}
-.post-body figure{margin:2em 0;text-align:center}
-.post-body figure img{max-width:100%;max-height:560px;width:auto;height:auto;border-radius:10px;box-shadow:0 4px 20px rgba(27,37,65,.14);display:inline-block}
-.post-body figcaption{margin-top:10px;font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;color:var(--muted)}
-.post-body h2{scroll-margin-top:92px}
-.post-body h2 .hash{margin-left:6px;font-family:var(--mono);font-size:.78rem;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
-.post-body h2:hover .hash,.post-body h2 .hash:focus-visible{opacity:1;color:var(--sky-ink)}
-/* 閱讀進度：頁面頂端一條細線，讓長文的位置感更清楚 */
-.reading{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:transparent}
-.reading i{display:block;height:100%;width:0;background:var(--sky)}
-/* 側欄預約卡：只在 ≥1140px 的右側欄顯示（見下方 media query） */
-.side-cta{display:none}
-/* 目錄：手機為可摺疊區塊，寬螢幕移到右側固定欄 */
-.toc{margin:0 0 38px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55);padding:14px 18px}
-.toc>summary{cursor:pointer;font-family:var(--mono);font-size:.75rem;letter-spacing:.18em;color:var(--muted);list-style:none;display:flex;align-items:center;gap:10px}
-.toc>summary::-webkit-details-marker{display:none}
-.toc>summary::after{content:"＋";margin-left:auto;color:var(--sky-ink);font-size:.85rem}
-.toc[open]>summary::after{content:"－"}
-.toc ol{list-style:none;margin:10px 0 2px;padding:0;counter-reset:toc;font-family:var(--sans)}
-.toc li{counter-increment:toc}
-.toc li a{display:block;position:relative;padding:6px 0 6px 28px;font-size:.9rem;line-height:1.7;color:var(--ink-2)}
-.toc li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.75rem;letter-spacing:.06em;color:var(--muted)}
-.toc li a:hover{color:var(--sky-ink)}
-.toc li a.on,.toc li a.on::before{color:var(--sky-ink)}
-.toc li a.on{font-weight:700}
 /* 上一篇 / 下一篇：同分類的鄰近文章，讓系列文章可以一路讀下去 */
-.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
-.pager a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.55)}
-.pager a:hover{border-color:var(--sky)}
-.pager a span{display:block;font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}
-.pager a b{font-family:var(--serif);font-size:1rem;font-weight:700;line-height:1.6;display:block}
-.pager a:hover b{color:var(--sky-ink)}
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:48px}
+.pager a{display:block;padding:22px 24px;border-radius:var(--r-card);background:var(--tint);transition:background-color .25s var(--ease)}
+.pager a:hover{background:var(--tint-2)}
+.pager a span{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
+.pager a b{display:block;font-size:1.0625rem;font-weight:600;line-height:1.5}
 .pager .nx{text-align:right}
-/* 快速解答：問句小標 + 一兩句直接回答，放在導言下方。
-   Google AI 摘要與精選摘要偏好「問題 → 緊接著的簡短答案」，這區塊也讓讀者先看到結論。 */
-.quick{margin:0 0 38px;padding:20px 22px 8px;border:1px solid var(--line);border-left:3px solid var(--sky);border-radius:14px;background:#F1F7FC}
-.quick h2{font-family:var(--mono);font-size:.75rem;letter-spacing:.18em;color:var(--muted);font-weight:400;margin:0 0 12px}
-.quick dl{margin:0}
-.quick dt{font-family:var(--serif);font-weight:700;font-size:.98rem;line-height:1.7;color:var(--ink);margin:0 0 4px}
-.quick dt a{color:inherit}
-.quick dt a:hover{color:var(--sky-ink);text-decoration:underline}
-.quick dd{font-family:var(--serif);font-size:.95rem;line-height:1.95;color:var(--ink-2);margin:0 0 14px;padding-bottom:14px;border-bottom:1px dashed var(--line)}
-.quick dd:last-child{border-bottom:none;padding-bottom:0}
-@media(max-width:480px){.quick{padding:16px 16px 6px}}
-.post-foot{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
-.more{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
-.more h3{font-family:var(--mono);font-size:.75rem;letter-spacing:.2em;color:var(--muted);margin-bottom:18px}
-.more a{position:relative;display:block;font-family:var(--serif);font-size:1.05rem;color:var(--ink);padding:12px 0 12px 0;border-bottom:1px solid var(--line)}
-.more a::before{content:"";position:absolute;left:-14px;top:14px;bottom:14px;width:2px;background:var(--sky-ink);border-radius:2px;opacity:0}
-.more a:hover{color:var(--sky-ink);transform:translateX(8px)}
-.more a:hover::before{opacity:1}
-@media(prefers-reduced-motion:no-preference){.more a::before{transition:opacity .3s ease}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn:hover,.more a:hover{transform:none}}
-.more a span{display:block;font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;color:var(--muted);margin-top:4px}
-.foot-in{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;align-items:center;gap:12px}
-.foot-in{flex-wrap:wrap}
-.nav-link:focus-visible,.back-link:focus-visible,.brand:focus-visible,.btn:focus-visible,.pp-share:focus-visible,.more a:focus-visible{outline:2px solid var(--sky);outline-offset:3px;border-radius:6px}
-@media(min-width:1140px){
-  .post-page{max-width:1160px;display:grid;grid-template-columns:minmax(0,700px) 252px;column-gap:56px;justify-content:center;padding:60px 64px 76px}
-  .post-page>*{grid-column:1;min-width:0}
-  /* 側欄高度有限（章節多、視窗矮時放不下）：原本整欄一起捲，預約卡會被切掉一半、
-     看起來像壞掉。改成只有目錄在自己的範圍內捲動，預約卡永遠完整露出。 */
-  .post-page>.post-side{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:92px;
-    max-height:calc(100vh - 116px);display:flex;flex-direction:column}
-  .post-side>.toc{flex:0 1 auto;min-height:96px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;
-    margin:0;padding:2px 8px 2px 22px;background:none;border:none;border-left:1px solid var(--line);border-radius:0}
-  .post-side>.side-cta{flex:none}
-  .post-side>.toc>summary{pointer-events:none;margin-bottom:2px}
-  .post-side>.toc>summary::after{content:none}
-  .side-cta{display:block;margin-top:28px;padding:20px 20px 16px;border:1px solid var(--line);border-radius:14px;
-    background:rgba(255,255,255,.7);box-shadow:0 2px 12px -6px rgba(27,37,65,.14)}
-  .side-cta:first-child{margin-top:0}
-  .side-cta .t{font-family:var(--serif);font-weight:700;font-size:1rem;color:var(--ink);margin-bottom:6px}
-  .side-cta p{font-size:.84rem;line-height:1.8;color:var(--muted);margin-bottom:14px}
-  .side-cta .btn{width:100%;justify-content:center}
-  .side-hub{display:flex;align-items:center;justify-content:center;min-height:44px;margin-top:6px;
-    font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;color:var(--sky-ink)}
-  .side-hub:hover{color:var(--ink)}
-}
-/* 延伸閱讀（≥1024px）：一列一篇改成兩欄卡片，分類專頁連結橫跨整列 */
+@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
+/* 延伸閱讀 */
+.more{margin-top:64px}
+.more h3{font-size:1.5rem;line-height:1.3;margin-bottom:10px}
+.more a{display:block;padding:16px 0;border-top:1px solid var(--line);font-size:1.0625rem;font-weight:600;line-height:1.5;color:var(--ink);transition:color .25s var(--ease),background-color .25s var(--ease)}
+.more a:hover{color:var(--sky-ink)}
+.more a span{display:block;margin-top:3px;font-size:13px;font-weight:400;color:var(--muted)}
+.more a.more-hub{color:var(--sky-ink);font-weight:400}
+/* ≥1024px：一列一篇改成兩欄色塊，分類專頁連結橫跨整列 */
 @media(min-width:1024px){
   .more{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .more h3{grid-column:1/-1;margin-bottom:6px}
-  .more a{padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.55);line-height:1.6}
-  .more a::before{display:none}
-  .more a:hover{border-color:var(--sky);background:#fff}
-  .more a.more-hub{grid-column:1/-1;text-align:center}
+  .more a{padding:20px 22px;border-top:none;border-radius:16px;background:var(--tint)}
+  .more a:hover{background:var(--tint-2)}
+  .more a.more-hub{grid-column:1/-1;text-align:center;background:none}
+  .more a.more-hub:hover{background:none;text-decoration:underline}
 }
-@media(min-width:1024px) and (prefers-reduced-motion:no-preference){.more a:hover{transform:translateY(-2px)}}
-@media(max-width:560px){.pager{grid-template-columns:1fr}.pager .nx{text-align:left}}
+/* 寬螢幕：右側固定欄（章節＋預約卡） */
+@media(min-width:1140px){
+  .post-page{max-width:var(--wrap);display:grid;grid-template-columns:minmax(0,692px) 244px;column-gap:72px;justify-content:center;padding-top:56px;padding-bottom:104px}
+  .post-page>*{grid-column:1;min-width:0}
+  /* 側欄高度有限（章節多、視窗矮時放不下）：只有目錄在自己的範圍內捲動，預約卡永遠完整露出 */
+  .post-page>.post-side{grid-column:2;grid-row:1/span 99;align-self:start;position:sticky;top:calc(var(--nav-h) + 28px);
+    max-height:calc(100vh - var(--nav-h) - 52px);display:flex;flex-direction:column}
+  .post-side>.toc{flex:0 1 auto;min-height:96px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;
+    margin:0;padding:0 8px 0 18px;background:none;border-left:1px solid var(--line);border-radius:0}
+  .post-side>.side-cta{flex:none}
+  .post-side>.toc>summary{pointer-events:none;min-height:0;margin-bottom:8px;font-size:13px;color:var(--muted)}
+  .post-side>.toc>summary::after{content:none}
+  .post-side>.toc ol{margin:0}
+  .post-side>.toc li a{padding:6px 0;font-size:14px}
+  .side-cta{display:block;margin-top:28px;padding:24px 22px 18px;border-radius:var(--r-card);background:var(--tint)}
+  .side-cta:first-child{margin-top:0}
+  .side-cta .t{font-weight:600;font-size:1.0625rem;color:var(--ink);margin-bottom:6px}
+  .side-cta p{font-size:14px;line-height:1.7;color:var(--muted);margin-bottom:16px}
+  .side-cta .btn{width:100%;min-height:38px;font-size:15px}
+  .side-hub{display:flex;align-items:center;justify-content:center;min-height:44px;margin-top:4px;font-size:13px;color:var(--sky-ink)}
+  .side-hub:hover{text-decoration:underline}
+}
 /* 複製連結後的提示 */
-.toast{position:fixed;left:50%;bottom:88px;transform:translateX(-50%);z-index:99;background:var(--ink);color:#fff;padding:10px 22px;border-radius:999px;font-size:.84rem;letter-spacing:.06em;white-space:nowrap;box-shadow:0 8px 24px -8px rgba(27,37,65,.5)}
+.toast{position:fixed;left:50%;bottom:88px;transform:translateX(-50%);z-index:99;background:var(--ink);color:#fff;padding:10px 22px;border-radius:980px;font-size:14px;white-space:nowrap;box-shadow:0 8px 24px -8px rgba(0,0,0,.4)}
 /* 快速解答（手機）：五則問答全展開約佔兩個螢幕，正文被推到第三屏之後。
    先露出第一則，其餘一鍵展開。收合由腳本加上 .clamp——沒有 JS 時維持全部展開。 */
 .quick-more{display:none}
 .quick.clamp{position:relative;max-height:330px;overflow:hidden}
-.quick.clamp::after{content:"";position:absolute;left:0;right:0;bottom:0;height:130px;background:linear-gradient(180deg,rgba(241,247,252,0),#F1F7FC 60%);pointer-events:none}
-.quick.clamp .quick-more{display:inline-flex;align-items:center;position:absolute;z-index:1;left:50%;bottom:14px;transform:translateX(-50%);min-height:44px;padding:0 22px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--sky-ink);font-family:var(--sans);font-size:.84rem;letter-spacing:.06em;white-space:nowrap;cursor:pointer}
-.quick-more:focus-visible,#toc-fab:focus-visible,.ts-close:focus-visible,#toc-sheet a:focus-visible{outline:2px solid var(--sky);outline-offset:2px;border-radius:8px}
+.quick.clamp::after{content:"";position:absolute;left:0;right:0;bottom:0;height:130px;background:linear-gradient(180deg,rgba(244,248,251,0),#F4F8FB 60%);pointer-events:none}
+.quick.clamp .quick-more{display:inline-flex;align-items:center;position:absolute;z-index:1;left:50%;bottom:14px;transform:translateX(-50%);min-height:44px;padding:0 22px;border:none;border-radius:980px;background:#fff;color:var(--sky-ink);font-family:var(--sans);font-size:15px;white-space:nowrap;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.08)}
 /* 章節鈕（手機・平板）：目錄只在文章最上面，長文讀到一半想跳段落得一路捲回頂端。
    讀進正文後右下角浮出「章節」，點開是底部面板，標出目前讀到哪一段。
    ≥1140px 有常駐側欄目錄，不需要。 */
-#toc-fab{position:fixed;right:20px;bottom:24px;z-index:70;display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 17px 0 14px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.97);color:var(--sky-ink);font-family:var(--sans);font-size:.84rem;letter-spacing:.1em;cursor:pointer;box-shadow:0 6px 20px -6px rgba(27,37,65,.4);opacity:0;visibility:hidden;transition:opacity .25s ease,visibility 0s linear .25s}
-#toc-fab.show{opacity:1;visibility:visible;transition:opacity .25s ease,visibility 0s}
-#toc-sheet{position:fixed;inset:auto 0 0 0;margin:0 auto;width:100%;max-width:560px;max-height:72vh;max-height:72dvh;padding:0;border:none;border-radius:18px 18px 0 0;background:var(--bg-soft);color:var(--ink);box-shadow:0 -12px 40px -12px rgba(27,37,65,.45);overflow:hidden}
+#toc-fab{position:fixed;right:18px;bottom:22px;z-index:70;display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 18px 0 15px;border:1px solid rgba(0,0,0,.08);border-radius:980px;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);color:var(--ink);font-family:var(--sans);font-size:15px;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.1);opacity:0;visibility:hidden;transition:opacity .25s var(--ease),visibility 0s linear .25s}
+#toc-fab.show{opacity:1;visibility:visible;transition:opacity .25s var(--ease),visibility 0s}
+#toc-sheet{position:fixed;inset:auto 0 0 0;margin:0 auto;width:100%;max-width:560px;max-height:72vh;max-height:72dvh;padding:0;border:none;border-radius:22px 22px 0 0;background:#fff;color:var(--ink);box-shadow:0 -12px 40px -12px rgba(0,0,0,.3);overflow:hidden}
 #toc-sheet[open]{display:flex;flex-direction:column}
-#toc-sheet::backdrop{background:rgba(27,37,65,.4)}
-.ts-head{flex:none;display:flex;align-items:center;justify-content:space-between;padding:8px 8px 8px 22px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.75rem;letter-spacing:.18em;color:var(--muted)}
-.ts-close{width:44px;height:44px;border:none;background:none;border-radius:50%;font-size:1.35rem;line-height:1;color:var(--ink-2);cursor:pointer}
-#toc-sheet ol{list-style:none;counter-reset:toc;overflow-y:auto;overscroll-behavior:contain;padding:6px 22px max(16px,env(safe-area-inset-bottom))}
-#toc-sheet li{counter-increment:toc;border-bottom:1px solid var(--line)}
+#toc-sheet::backdrop{background:rgba(0,0,0,.32)}
+.ts-head{flex:none;display:flex;align-items:center;justify-content:space-between;padding:10px 10px 10px 24px;border-bottom:1px solid var(--line);font-size:15px;font-weight:600;color:var(--ink)}
+.ts-close{width:44px;height:44px;border:none;background:none;border-radius:50%;font-size:1.5rem;line-height:1;color:var(--muted);cursor:pointer}
+#toc-sheet ol{list-style:none;overflow-y:auto;overscroll-behavior:contain;padding:6px 24px max(18px,env(safe-area-inset-bottom))}
+#toc-sheet li{border-bottom:1px solid var(--line)}
 #toc-sheet li:last-child{border-bottom:none}
-#toc-sheet li a{display:block;position:relative;padding:12px 0 12px 32px;font-size:.95rem;line-height:1.65;color:var(--ink-2)}
-#toc-sheet li a::before{content:counter(toc,decimal-leading-zero);position:absolute;left:0;top:14px;font-family:var(--mono);font-size:.75rem;color:var(--muted)}
-#toc-sheet li a.on,#toc-sheet li a.on::before{color:var(--sky-ink)}
-#toc-sheet li a.on{font-weight:700}
+#toc-sheet li a{display:block;padding:13px 0;font-size:1.0625rem;line-height:1.5;color:var(--ink-2)}
+#toc-sheet li a.on{color:var(--sky-ink);font-weight:600}
 /* 章節鈕佔了右下角，回頂端鈕往上讓一格 */
-@media(max-width:1139px){body.has-fab #back-top{bottom:80px}}
-@media(min-width:1140px){#toc-fab{display:none}}
-@media(prefers-reduced-motion:reduce){#toc-fab,#toc-fab.show{transition:none}}
-@media(max-width:480px){
-  .post-page{padding:40px 22px 72px}
-  .post-body p{text-align:left}
-  .meta{gap:12px}
-  .toc{padding:12px 15px}
-}`;
+@media(max-width:1139px){body.has-fab #back-top{bottom:78px}}
+@media(min-width:1140px){#toc-fab{display:none}}`;
 
 /* ---------- 靜態文章頁模板 ---------- */
 function postPage(a, idx, all) {
@@ -327,7 +261,7 @@ ${quick.map(f => `        <dt><a href="#${headId.get(f.heading)}">${esc(f.q)}</a
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#F4F9FD">
+<meta name="theme-color" content="#FFFFFF">
 <title>${esc(a.seoTitle || a.title)}｜Sky 物理治療師</title>
 <meta name="description" content="${esc(desc)}">
 <meta name="keywords" content="${esc(keywords)}">
@@ -374,7 +308,7 @@ ${ldJson(faqld)}
 </head>
 <body>
 <div class="reading" aria-hidden="true"><i></i></div>
-${siteHeader({ links: [['/services', '服務項目'], ['/blog', '更多文章'], ['/products', '產品專區']] })}
+${siteHeader()}
 
 <main>
   <article class="post-page">
