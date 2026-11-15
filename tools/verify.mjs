@@ -203,6 +203,8 @@ literal === 0 ? pass('文章內容無殘留 markdown 語法') : fail('殘留 mar
     // 指南與落地頁共用（原本六頁各自內嵌一份一模一樣的 <style>）
     ['assets/guide.css', 6000, ['taipei-physio.html', 'physio-guide.html', 'triathlon-physio.html',
                                 'beitou-physio.html', 'shilin-physio.html', 'shipai-physio.html']],
+    // 捲動進場：全站每一種頁面都要引用
+    ['assets/fx.js', 500, ['index.html', 'blog.html', 'about.html', 'services.html', 'products.html', 'posts/' + postFiles[0], 'topics/' + hubFiles[0], 'privacy.html', 'taipei-physio.html', 'triathlon-physio.html']],
     ['assets/nav.js', 500, ['blog.html', 'about.html', 'services.html', 'products.html']],
     // 文章／主題／落地／指南／法律／404 的手機選單與回頂端鈕
     ['assets/menu.js', 500, ['posts/' + postFiles[0], 'topics/' + hubFiles[0], 'privacy.html', '404.html',
