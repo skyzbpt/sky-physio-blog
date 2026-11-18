@@ -20,6 +20,7 @@
 #   http:// 舊網址會先經 Cloudflare「Always Use HTTPS」301 到 https，再由這裡 301，共兩跳，屬正常。
 /index.html          /                301
 /blog.html           /blog            301
+/products.html       /products        301
 /about.html          /about           301
 /services.html       /services        301
 /physio-guide.html   /physio-guide    301
@@ -46,10 +47,6 @@
 /topics/  /blog      301
 /all      /blog      301
 /cookies  /privacy   301
-
-# 產品專區已搬到外部商品頁。用 302（暫時）：商品網址含推薦碼，日後可能再換，不讓搜尋引擎永久快取。
-/products       https://www.markettaiwan.com.tw/skydpt/pages/isotonix?credit_user=C1563705130 302
-/products.html  https://www.markettaiwan.com.tw/skydpt/pages/isotonix?credit_user=C1563705130 302
 
 # ── 動態規則（必須在所有靜態規則之後）───────────────────────────────
 /posts/:slug.html    /posts/:slug     301
