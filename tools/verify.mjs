@@ -271,7 +271,7 @@ literal === 0 ? pass('文章內容無殘留 markdown 語法') : fail('殘留 mar
   const simple = [...postFiles.map(f => 'posts/' + f), ...hubFiles.map(f => 'topics/' + f),
                   ...landing, 'privacy.html', '404.html'];
   const main = ['index.html', 'blog.html', 'about.html', 'services.html', 'products.html'];
-  const want = ['/services', '/blog', '/products', '/about', '/#contact'];
+  const want = ['/services', '/blog', 'https://www.markettaiwan.com.tw/skydpt/pages/isotonix?credit_user=C1563705130', '/about', '/#contact'];
   const bad = [];
   for (const f of simple) {
     const h = read(f);
