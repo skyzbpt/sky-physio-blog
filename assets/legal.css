@@ -165,7 +165,7 @@ footer{background:var(--tint);padding:10px 0 16px;font-size:12px;line-height:1.5
 .legal a.in{color:var(--sky-ink)}
 .legal a.in:hover{text-decoration:underline}
 .note{border-radius:var(--r-card);background:var(--tint);padding:22px 26px;margin:0 0 1.7em}
-.note p:last-child{margin-bottom:0}
+.note p:last-child,.note ul:last-child{margin-bottom:0}
 .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.7em;border-bottom:1px solid var(--line)}
 .tbl{width:100%;min-width:560px;border-collapse:collapse;font-size:15px;line-height:1.7}
 .tbl th,.tbl td{border-bottom:1px solid var(--line);padding:13px 14px 13px 0;text-align:left;vertical-align:top;color:var(--ink-2)}
