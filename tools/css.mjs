@@ -230,7 +230,7 @@ const MENU_ITEMS = [
   ['/#fields', '專業領域'],
   ['/services', '服務項目'],
   ['/blog', '衛教文章'],
-  ['https://www.markettaiwan.com.tw/skydpt/pages/isotonix?credit_user=C1563705130', '產品專區'],
+  ['/products', '產品專區'],
   ['/about', '關於 Sky'],
   ['/#contact', '聯絡 Sky'],
 ];
@@ -243,14 +243,14 @@ export function siteHeader({ asset = '../assets/' } = {}) {
       <span class="brand-name">Sky 物理治療師</span>
     </a>
     <div class="nav-links">
-      ${MENU_ITEMS.map(([href, label]) => `<a class="nav-link" href="${href}"${href.startsWith('http') ? ' target="_blank" rel="noopener sponsored nofollow"' : ''}>${label}</a>`).join('\n      ')}
+      ${MENU_ITEMS.map(([href, label]) => `<a class="nav-link" href="${href}">${label}</a>`).join('\n      ')}
     </div>
     <div class="nav-right">
       <a class="btn sky sm" href="${BOOK_URL}" target="_blank" rel="noopener">預約評估</a>
       <details class="m-menu" id="m-menu">
         <summary aria-label="選單"><span class="o">MENU</span><span class="c">CLOSE</span></summary>
         <div class="m-panel">
-          ${MENU_ITEMS.map(([href, label]) => `<a href="${href}"${href.startsWith('http') ? ' target="_blank" rel="noopener sponsored nofollow"' : ''}>${label}</a>`).join('\n          ')}
+          ${MENU_ITEMS.map(([href, label]) => `<a href="${href}">${label}</a>`).join('\n          ')}
           <a class="book" href="${BOOK_URL}" target="_blank" rel="noopener">預約評估 ↗</a>
         </div>
       </details>
