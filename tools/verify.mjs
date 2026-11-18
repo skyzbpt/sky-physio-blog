@@ -26,6 +26,26 @@ titles.size === arts.length ? pass('標題皆唯一') : fail('標題重複', `${
 const cats = [...new Set(arts.map(a => a.cat))];
 cats.every(c => CAT_SLUG[c]) ? pass(`所有分類皆有主題頁 slug (${cats.length} 類)`) : fail('分類缺 slug', cats.filter(c => !CAT_SLUG[c]).join(','));
 
+// 個案隱私：文章不寫個案名字（規則見 CLAUDE.md）。個案故事用「一位五十二歲的老師」開場，
+// 後文用「這位老師」「她／他」。這裡攔下過去常見的兩種寫法，避免新文章又把名字寫進去：
+//   1. 句首「名字＋年齡歲，」：○○五十二歲，在台中…
+//   2. 句首「阿○／小○」暱稱接數據：阿○的 FTP 是 250 W、小○ 52 公斤…
+// 只是樣式偵測，抓不到所有寫法；寫稿時仍以「不寫名字」為準。
+{
+  const AGE = '(?:[一二三四五六七八九十兩]+|\\d+)';
+  const START = '(?:^|[\\n。！？」：；])\\s*';
+  const nameAge = new RegExp(`${START}([^\\s\\p{P}\\p{S}\\da-zA-Z一二三四五六七八九十兩百零]{2})(?:今年)?\\s*${AGE}\\s*歲[，、]`, 'gu');
+  const nickname = new RegExp(`${START}((?:阿|小)[\\u4e00-\\u9fff])(?=\\s*(?:的\\s*)?(?:FTP|體重|今年)|\\s*${AGE}\\s*(?:歲|公斤))`, 'gu');
+  const NOT_NAME = new Set(('大約 已經 今年 只有 將近 超過 不到 那年 當年 大概 剛滿 年滿 未滿 快要 差不多 平均 到了 過了 活到 現年 '
+    + '目前 現在 假設 例如 如果 比如 直到 等到 就算 即使 一直 還是 剛好 正好 大多 多半 通常 有人 有的 同樣 一樣 也是 都是 '
+    + '阿嬤 阿公 阿姨 阿伯 小孩 寶寶 孩子 女兒 兒子 太太 先生 媽媽 爸爸 哥哥 姊姊 弟弟 妹妹').split(' '));
+  const hits = [];
+  for (const a of arts) for (const re of [nameAge, nickname]) for (const m of a.content.matchAll(re)) {
+    if (!NOT_NAME.has(m[1])) hits.push(`${a.id}「${m[1]}」`);
+  }
+  hits.length === 0 ? pass('文章不含個案名字（名字＋年齡、暱稱寫法）') : fail('文章疑似含個案名字，請改成身分描述', hits.slice(0, 10).join('、') + (hits.length > 10 ? ` 等 ${hits.length} 處` : ''));
+}
+
 /* ---------- 2. 靜態頁數量 ---------- */
 const postFiles = readdirSync(join(REPO, 'posts')).filter(f => f.endsWith('.html'));
 postFiles.length === arts.length ? pass(`靜態文章頁數量相符 (${postFiles.length})`) : fail('靜態頁數量', `${postFiles.length} vs ${arts.length}`);
