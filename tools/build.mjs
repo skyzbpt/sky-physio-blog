@@ -28,7 +28,7 @@ injectArticles();
   writeFileSync(siteCss, syncShell(readFileSync(siteCss, 'utf8')));
   console.log('已同步共用外殼：assets/site.css');
   // 手寫頁的頁尾也由 css.mjs 供應（落地頁的頁尾取自 taipei-physio.html，所以要在產生落地頁之前）
-  const handwritten = ['index.html', 'blog.html', 'about.html', 'services.html', 'products.html',
+  const handwritten = ['index.html', 'blog.html', 'about.html', 'services.html',
                        'taipei-physio.html', 'physio-guide.html'];
   for (const f of handwritten) {
     const file = join(REPO, f);
@@ -67,7 +67,7 @@ const DIST = join(REPO, 'dist');
 rmSync(DIST, { recursive: true, force: true });
 mkdirSync(DIST, { recursive: true });
 const rootFiles = [
-  'index.html', 'blog.html', 'products.html', 'about.html', 'services.html',
+  'index.html', 'blog.html', 'about.html', 'services.html',
   'physio-guide.html', 'taipei-physio.html', '404.html',
   'triathlon-physio.html', 'beitou-physio.html', 'shilin-physio.html', 'shipai-physio.html',
   'privacy.html',

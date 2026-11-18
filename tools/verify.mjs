@@ -132,8 +132,8 @@ faqCount > 0 ? pass(`FAQ 結構化資料 ${faqCount} 篇`) : fail('FAQ 結構化
 const sm = read('sitemap.xml');
 !/\/posts\/[a-z0-9-]+\.html<\/loc>/.test(sm) ? pass('sitemap 皆為乾淨網址') : fail('sitemap 含 .html');
 const smLocs = (sm.match(/<loc>/g) || []).length;
-// 首頁 + blog + products + about + services + physio-guide + taipei-physio + privacy + 4 個落地頁（三鐵／北投／士林／石牌）共 12 個非文章頁
-smLocs === arts.length + cats.length + 12 ? pass(`sitemap URL 數正確 (${smLocs})`) : fail('sitemap URL 數', `${smLocs} vs ${arts.length + cats.length + 12}`);
+// 首頁 + blog + about + services + physio-guide + taipei-physio + privacy + 4 個落地頁（三鐵／北投／士林／石牌）共 11 個非文章頁
+smLocs === arts.length + cats.length + 11 ? pass(`sitemap URL 數正確 (${smLocs})`) : fail('sitemap URL 數', `${smLocs} vs ${arts.length + cats.length + 11}`);
 /* ---------- 4b. lastmod：每篇都要有，且必須反映真實修改（見 tools/modified.mjs） ---------- */
 const smPairs = [...sm.matchAll(/<loc>[^<]*\/posts\/([a-z0-9-]+)<\/loc>\s*<lastmod>([^<]+)<\/lastmod>/g)];
 smPairs.length === arts.length
@@ -155,7 +155,7 @@ const feed = read('feed.xml');
 !/\/posts\/[a-z0-9-]+\.html<\/link>/.test(feed) ? pass('feed 皆為乾淨網址') : fail('feed 含 .html');
 
 /* ---------- 5. 圖片 alt（Ahrefs） ---------- */
-const scanPages = [...postFiles.map(f => 'posts/' + f), ...hubFiles.map(f => 'topics/' + f), 'index.html', 'blog.html', 'products.html', 'about.html', 'services.html', 'physio-guide.html', 'taipei-physio.html', 'triathlon-physio.html', 'beitou-physio.html', 'shilin-physio.html', 'shipai-physio.html', '404.html', 'privacy.html'];
+const scanPages = [...postFiles.map(f => 'posts/' + f), ...hubFiles.map(f => 'topics/' + f), 'index.html', 'blog.html', 'about.html', 'services.html', 'physio-guide.html', 'taipei-physio.html', 'triathlon-physio.html', 'beitou-physio.html', 'shilin-physio.html', 'shipai-physio.html', '404.html', 'privacy.html'];
 let imgBadAlt = 0;
 for (const p of scanPages) for (const tag of read(p).match(/<img\b[^>]*>/g) || []) if (!/\balt="[^"]/.test(tag)) imgBadAlt++;
 imgBadAlt === 0 ? pass('所有圖片皆有非空 alt') : fail('圖片缺/空 alt', imgBadAlt);
@@ -216,7 +216,7 @@ literal === 0 ? pass('文章內容無殘留 markdown 語法') : fail('殘留 mar
 // menu.js 是其餘頁面（簡化頁首）的手機選單與回頂按鈕。
 {
   const shared = [
-    ['assets/site.css', 20000, ['index.html', 'blog.html', 'about.html', 'services.html', 'products.html']],
+    ['assets/site.css', 20000, ['index.html', 'blog.html', 'about.html', 'services.html']],
     ['assets/post.css', 6000, ['posts/' + postFiles[0]]],
     ['assets/topic.css', 4000, ['topics/' + hubFiles[0]]],
     ['assets/legal.css', 3000, ['privacy.html']],
@@ -224,8 +224,8 @@ literal === 0 ? pass('文章內容無殘留 markdown 語法') : fail('殘留 mar
     ['assets/guide.css', 6000, ['taipei-physio.html', 'physio-guide.html', 'triathlon-physio.html',
                                 'beitou-physio.html', 'shilin-physio.html', 'shipai-physio.html']],
     // 捲動進場：全站每一種頁面都要引用
-    ['assets/fx.js', 500, ['index.html', 'blog.html', 'about.html', 'services.html', 'products.html', 'posts/' + postFiles[0], 'topics/' + hubFiles[0], 'privacy.html', 'taipei-physio.html', 'triathlon-physio.html']],
-    ['assets/nav.js', 500, ['blog.html', 'about.html', 'services.html', 'products.html']],
+    ['assets/fx.js', 500, ['index.html', 'blog.html', 'about.html', 'services.html', 'posts/' + postFiles[0], 'topics/' + hubFiles[0], 'privacy.html', 'taipei-physio.html', 'triathlon-physio.html']],
+    ['assets/nav.js', 500, ['blog.html', 'about.html', 'services.html']],
     // 文章／主題／落地／指南／法律／404 的手機選單與回頂端鈕
     ['assets/menu.js', 500, ['posts/' + postFiles[0], 'topics/' + hubFiles[0], 'privacy.html', '404.html',
                              'taipei-physio.html', 'physio-guide.html', 'triathlon-physio.html']],
@@ -244,7 +244,7 @@ literal === 0 ? pass('文章內容無殘留 markdown 語法') : fail('殘留 mar
 
   // 任何頁面若又出現大塊內嵌 CSS，代表共用檔被繞過、重複又長回來了
   const fat = [];
-  for (const p2 of ['index.html', 'blog.html', 'about.html', 'services.html', 'products.html',
+  for (const p2 of ['index.html', 'blog.html', 'about.html', 'services.html',
                     'posts/' + postFiles[0], 'topics/' + hubFiles[0], 'privacy.html',
                     'taipei-physio.html', 'physio-guide.html', 'triathlon-physio.html']) {
     const inline = (read(p2).match(/<style[^>]*>([\s\S]*?)<\/style>/g) || []).join('').length;
@@ -255,7 +255,7 @@ literal === 0 ? pass('文章內容無殘留 markdown 語法') : fail('殘留 mar
   fat.length === 0 ? pass('各頁未再出現大塊內嵌 CSS') : fail('內嵌 CSS 過大', fat.join('；'));
 
   // base64 內嵌圖：assets/ 已有實體檔案，內嵌會讓 HTML 變大且無法跨頁快取
-  const b64 = ['index.html', 'about.html', 'blog.html', 'services.html', 'products.html']
+  const b64 = ['index.html', 'about.html', 'blog.html', 'services.html']
     .filter(p2 => /data:image\/[a-z]+;base64,[A-Za-z0-9+/=]{500,}/.test(read(p2)));
   b64.length === 0 ? pass('頁面未內嵌 base64 圖片（改引用 assets/）') : fail('base64 內嵌圖', b64.join(','));
 }
@@ -270,7 +270,7 @@ literal === 0 ? pass('文章內容無殘留 markdown 語法') : fail('殘留 mar
                    'beitou-physio.html', 'shilin-physio.html', 'shipai-physio.html'];
   const simple = [...postFiles.map(f => 'posts/' + f), ...hubFiles.map(f => 'topics/' + f),
                   ...landing, 'privacy.html', '404.html'];
-  const main = ['index.html', 'blog.html', 'about.html', 'services.html', 'products.html'];
+  const main = ['index.html', 'blog.html', 'about.html', 'services.html'];
   const want = ['/services', '/blog', 'https://www.markettaiwan.com.tw/skydpt/pages/isotonix?credit_user=C1563705130', '/about', '/#contact'];
   const bad = [];
   for (const f of simple) {
