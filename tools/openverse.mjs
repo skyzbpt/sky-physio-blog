@@ -5,9 +5,10 @@
 // 用法：
 //   node tools/openverse.mjs search "physiotherapy" [--n 10]
 //   node tools/openverse.mjs pick <文章 id> <Openverse 圖片 id> [--alt "替代文字"]
-// 金鑰：.env.local 的 OPENVERSE_CLIENT_ID、OPENVERSE_CLIENT_SECRET（每次執行換一次約 12 小時的存取權杖）
+// 金鑰：.env.local 的 OPENVERSE_CLIENT_ID、OPENVERSE_CLIENT_SECRET（每次執行換一次約 12 小時的存取權杖）；
+// 沒設金鑰也能用，改走匿名額度（每分鐘 20 次、每天 200 次）
 import { pathToFileURL } from 'url';
-import { env, getJSON, getBuffer, toWebp, setArticleFigure, link, run, usageError, PHOTO_DIR, WIKI_UA } from './stock-lib.mjs';
+import { env, optEnv, getJSON, getBuffer, toWebp, setArticleFigure, link, run, usageError, PHOTO_DIR, WIKI_UA } from './stock-lib.mjs';
 
 const API = 'https://api.openverse.org/v1';
 const OK_LICENSES = new Set(['cc0', 'pdm', 'by', 'by-sa']);   // 可商用、可改作
@@ -15,6 +16,11 @@ const OK_LICENSES = new Set(['cc0', 'pdm', 'by', 'by-sa']);   // 可商用、可
 let token;
 async function auth() {
   if (token) return token;
+  // 沒設金鑰時改用匿名存取（每分鐘 20 次、每天 200 次），偶爾挑幾張圖夠用
+  if (!optEnv('OPENVERSE_CLIENT_ID') || !optEnv('OPENVERSE_CLIENT_SECRET')) {
+    console.warn('⚠ 沒有 Openverse 金鑰，改用匿名存取（每分鐘 20 次、每天 200 次）');
+    return (token = {});
+  }
   const r = await fetch(`${API}/auth_tokens/token/`, {
     method: 'POST',
     body: new URLSearchParams({ grant_type: 'client_credentials',
