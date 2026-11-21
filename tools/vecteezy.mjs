@@ -47,7 +47,7 @@ const USAGE = `用法：
   node tools/vecteezy.mjs search "<關鍵字>" [--n 10]
   node tools/vecteezy.mjs pick <文章 id> <Vecteezy 資源 id> [--alt "替代文字"]`;
 
-if (import.meta.url === pathToFileURL(process.argv[1]).href) run(async ({ pos: [cmd, a, b], opt }) => {
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) run(async ({ pos: [cmd, a, b], opt }) => {
   if (cmd === 'search' && a) {
     for (const r of await search(a, +opt.n || 10)) console.log(`${r.id}\t${r.w}×${r.h}\t${r.desc.slice(0, 80)}\n\t${r.page}`);
   } else if (cmd === 'pick' && a && b) {
