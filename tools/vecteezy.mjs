@@ -1,7 +1,8 @@
 // Vecteezy 圖庫（V2 API）
 // 授權：免費內容可商用，但必須標註出處（圖說自動加「Vecteezy」連結）；請勿轉售或單獨散布原檔。
 // 規定：圖片要下載後自行託管 → 下載 large 尺寸、轉 WebP，存到 assets/photos/<文章 id>.webp
-// 注意：下載（pick）會消耗帳號的下載額度，搜尋則只看浮水印縮圖、不扣額度。
+// 注意：下載（pick）會消耗帳號的下載額度（API 帳號每月 500 次），搜尋則只看浮水印縮圖、不扣額度。
+// 只用 license_type=commercial 的圖（editorial 只限新聞報導，不能拿來當衛教配圖），並排除 AI 生成圖。
 //
 // 用法：
 //   node tools/vecteezy.mjs search "road cycling" [--n 10]
@@ -16,7 +17,8 @@ const page = id => `https://www.vecteezy.com/photo/${id}`;
 
 export async function search(query, n = 10) {
   const d = await getJSON(`${base()}/resources?` + new URLSearchParams({
-    term: query, content_type: 'photo', per_page: String(Math.min(100, Math.max(n, 3))) }), auth());
+    term: query, content_type: 'photo', license_type: 'commercial', ai_generated: 'false',
+    per_page: String(Math.min(100, Math.max(n, 3))) }), auth());
   return (d.resources || []).slice(0, n).map(r => {
     const big = (r.file_metadata?.available_download_sizes || []).find(s => s.id === 'original')
       || (r.file_metadata?.available_download_sizes || [])[0] || {};
@@ -28,6 +30,8 @@ export async function search(query, n = 10) {
 export async function pick(articleId, resId, { alt } = {}) {
   const meta = await getJSON(`${base()}/resources/${resId}`, auth());
   if (meta.content_type !== 'photo') throw new Error(`Vecteezy ${resId} 不是照片（${meta.content_type}）`);
+  if (meta.license_type !== 'commercial') throw new Error(`Vecteezy ${resId} 的授權是「${meta.license_type}」（editorial 只限新聞報導），不能用`);
+  if (meta.ai_generated) throw new Error(`Vecteezy ${resId} 是 AI 生成圖，衛教文章不用`);
   const dl = await getJSON(`${base()}/resources/${resId}/download?size=large`, auth());
   if (!dl.url) throw new Error('Vecteezy 沒有回傳下載網址（可能是額度用完或需要 Pro 授權）');
   const out = `${PHOTO_DIR}/${articleId}.webp`;
