@@ -201,7 +201,6 @@ const privacy = {
 <p>本網站<strong>本身不設置任何分析或廣告用途的 Cookie</strong>。您可能接觸到的僅有：</p>
 <ul>
   <li><strong>Cloudflare 安全性 Cookie：</strong>用於辨識自動化流量與異常連線、保護網站免受攻擊，屬維持網站運作所必要，不用於追蹤您。</li>
-  <li><strong>瀏覽器本機儲存（<code>sky_articles_v1</code>）：</strong>僅於網站管理者使用後台編輯文章時產生的草稿暫存，資料只留在該裝置上，一般讀者不會用到。</li>
 </ul>
 <p>若您不願接受 Cookie 的寫入，可在瀏覽器設定中將隱私權等級設為高，或隨時清除上述資料，<strong>本網站的文章與各項功能仍可正常使用</strong>。</p>` },
 

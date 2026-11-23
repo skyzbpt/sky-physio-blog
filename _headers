@@ -15,5 +15,3 @@
 # 否則 Google 無法渲染 /blog 的清單）。
 /assets/articles-index.json
   X-Robots-Tag: noindex
-/data/articles.json
-  X-Robots-Tag: noindex

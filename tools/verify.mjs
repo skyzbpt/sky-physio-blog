@@ -1,4 +1,4 @@
-// 全站驗證：資料完整性、SEO、結構化資料、安全標頭、渲染與後台
+// 全站驗證：資料完整性、SEO、結構化資料、安全標頭、渲染
 // 用法：node tools/verify.mjs
 // 放在 repo 內（而非暫存區），確保不會因環境重建而遺失。
 import { readFileSync, readdirSync, existsSync, statSync } from 'fs';
@@ -196,7 +196,7 @@ imgBadAlt === 0 ? pass('所有圖片皆有非空 alt') : fail('圖片缺/空 alt
 }
 
 /* ---------- 5c. 每頁只有一個 H1 ---------- */
-// SEO 工具是直接數原始碼裡的 <h1，連 <script> 字串裡的也算（首頁後台預覽曾因此被判成兩個 H1）。
+// SEO 工具是直接數原始碼裡的 <h1，連 <script> 字串裡的也算。
 {
   const multi = scanPages.filter(p => (read(p).match(/<h1\b/gi) || []).length !== 1);
   multi.length === 0 ? pass('每頁恰好一個 H1') : fail('H1 數量不是 1', multi.slice(0, 5).join('、'));
@@ -248,8 +248,7 @@ literal === 0 ? pass('文章內容無殘留 markdown 語法') : fail('殘留 mar
                     'posts/' + postFiles[0], 'topics/' + hubFiles[0], 'privacy.html',
                     'taipei-physio.html', 'physio-guide.html', 'triathlon-physio.html']) {
     const inline = (read(p2).match(/<style[^>]*>([\s\S]*?)<\/style>/g) || []).join('').length;
-    // index.html 保留後台樣式（只有它有後台），門檻放寬
-    const limit = p2 === 'index.html' ? 16000 : 4000;
+    const limit = 4000;
     if (inline > limit) fat.push(`${p2} 內嵌 ${(inline / 1024).toFixed(1)}KB`);
   }
   fat.length === 0 ? pass('各頁未再出現大塊內嵌 CSS') : fail('內嵌 CSS 過大', fat.join('；'));
@@ -355,9 +354,8 @@ const idx = read('index.html');
 const blogHtml = read('blog.html');
 const blogTopicLinksBlock = blogHtml.match(/<nav class="topic-links"[\s\S]*?<\/nav>/);
 ((blogTopicLinksBlock ? blogTopicLinksBlock[0] : '').match(/href="\/topics\//g) || []).length === cats.length ? pass(`衛教文章頁 ${cats.length} 個分類專頁連結`) : fail('衛教文章頁分類連結');
-for (const c of cats) idx.includes(`"${c}"`) || fail('首頁 cats 缺分類', c);
-// 首頁不再內嵌 260 筆 metadata（54KB）：清單在 /blog，資料改由 assets/articles-index.json 供應
-/const ARTICLES = \[\];/.test(idx) ? pass('首頁 ARTICLES 未內嵌（改由 articles-index.json 供應）') : fail('首頁仍內嵌 ARTICLES');
+// 首頁沒有文章清單：清單在 /blog，資料由 assets/articles-index.json 供應
+!/const ARTICLES/.test(idx) ? pass('首頁未內嵌文章資料（改由 articles-index.json 供應）') : fail('首頁仍內嵌 ARTICLES');
 {
   const IDX_MAX = 120 * 1024;
   const size = Buffer.byteLength(idx);
@@ -374,10 +372,8 @@ try {
     ? pass(`articles-index.json 與文章同步且不含內文 (${light.length} 筆・${Math.round(Buffer.byteLength(read('assets/articles-index.json')) / 1024)}KB)`)
     : fail('articles-index.json 不同步', !sameIds ? `${light.length} vs ${arts.length} 篇` : !noBody ? '含 content' : '/blog 未取用');
 } catch { fail('assets/articles-index.json 讀取失敗（請重新 npm run build）'); }
-// 後台：隱藏入口 + 功能保留
-(!idx.includes('id="admin-dot"') && /location\.hash==='#admin'/.test(idx)
-  && /function pwSubmit\(\)/.test(idx) && /function admOpen\(\)/.test(idx))
-  ? pass('後台入口隱藏且功能保留') : fail('後台入口/功能');
+// 後台已移除：首頁不得再出現後台入口或密碼框
+(!/adm-overlay|pwSubmit|#admin/.test(idx)) ? pass('首頁無後台程式') : fail('首頁仍有後台程式');
 // 首頁自身 SEO
 const idxDesc = idx.match(/<meta name="description" content="([^"]*)"/);
 (idxDesc && [...idxDesc[1]].length >= 110 && [...idxDesc[1]].length <= 160 && idx.includes('max-image-preview:large')) ? pass('首頁 description 與 robots 完整') : fail('首頁 SEO');
