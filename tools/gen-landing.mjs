@@ -9,11 +9,9 @@
 // 相關衛教文章（從 data/articles.json 取標題，找不到 id 會直接報錯，避免死連結）。
 import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
-import { REPO, phrases } from './lib.mjs';
-import { SHELL, ARTICLE_CSS, siteHeader } from './css.mjs';
+import { REPO, BASE, phrases, ldJson } from './lib.mjs';
+import { SHELL, ARTICLE_CSS, BOOK_URL as BOOK, siteHeader } from './css.mjs';
 
-const BASE = 'https://skythephysio.com';
-const BOOK = 'https://calendar.app.google/wdsPTQDhF2YCigPu6';
 const UPDATED = '2026-11-09';
 
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -261,13 +259,15 @@ export function syncChrome() {
   console.log(`已同步頁首與手機選單：${STATIC_PAGES.join('、')}`);
 }
 
-/* 共用版型：從 taipei-physio.html 取出導覽列、頁尾與目錄腳本，所有落地頁長得一樣 */
+/* 共用版型：從 taipei-physio.html 取出導覽列與頁尾，所有落地頁長得一樣。
+   目錄標亮的腳本是外部檔 assets/toc.js（CSP 禁止內嵌腳本），範本頁也必須引用同一支。 */
+const TOC_SCRIPT = '<script src="/assets/toc.js" defer></script>';
 function shell() {
   const src = readFileSync(join(REPO, 'taipei-physio.html'), 'utf8');
   const header = src.match(/<header>[\s\S]*?<\/header>/)[0];
   const footer = src.match(/<footer>[\s\S]*?<\/footer>/)[0];
-  const script = src.match(/<script>\n\/\* 電腦版目錄[\s\S]*?<\/script>/)[0];
-  return { header, footer, script };
+  if (!src.includes(TOC_SCRIPT)) throw new Error('taipei-physio.html 沒有引用 /assets/toc.js');
+  return { header, footer, script: TOC_SCRIPT };
 }
 
 const CAL_SVG = (s) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:5px"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`;
@@ -433,7 +433,7 @@ function render(p, articles, tpl) {
 <meta name="geo.region" content="TW-TPE">
 <meta name="geo.placename" content="${p.area ? `台北市${p.area}` : '台北市北投區・士林區'}">
 <script type="application/ld+json">
-${JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }, null, 2)}
+${ldJson({ '@context': 'https://schema.org', '@graph': graph })}
 </script>
 <link rel="stylesheet" href="${GUIDE_CSS_HREF}">
 </head>

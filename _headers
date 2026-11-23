@@ -1,10 +1,17 @@
+# 全站安全標頭
+# ・CSP 的 script-src 只允許本站的 .js 檔：頁面裡不能有內嵌 <script> 區塊或 onclick 這類屬性
+#   （JSON-LD 結構化資料不是程式碼，不受影響）。就算哪天內容裡混進惡意的 HTML，瀏覽器也不會執行它。
+#   新增互動功能時，請把程式寫在 assets/*.js 再用 <script src> 引用；npm run verify 會檢查。
+# ・Cross-Origin-Opener-Policy：從本站開出去的分頁（預約、IG、Threads）拿不到本站視窗，
+#   無法反過來把讀者正在看的分頁導到假網站。
 /*
   X-Content-Type-Options: nosniff
+  Cross-Origin-Opener-Policy: same-origin
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: DENY
   Permissions-Policy: camera=(), microphone=(), geolocation=(), browsing-topics=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://images.unsplash.com; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://images.unsplash.com; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests
 
 # RSS 不該進搜尋索引（XML 無法寫 meta robots，只能用回應標頭）。
 # GSC 目前把 https 版列為「已檢索未建索引」、http 版列為「重複；使用者未選 canonical」。

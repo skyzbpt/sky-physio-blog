@@ -46,6 +46,29 @@ cats.every(c => CAT_SLUG[c]) ? pass(`所有分類皆有主題頁 slug (${cats.le
   hits.length === 0 ? pass('文章不含個案名字（名字＋年齡、暱稱寫法）') : fail('文章疑似含個案名字，請改成身分描述', hits.slice(0, 10).join('、') + (hits.length > 10 ? ` 等 ${hits.length} 處` : ''));
 }
 
+// 文章內文可以夾少量原生 HTML（<figure>、<img>、<a>、SVG 示意圖），建置時原樣輸出到頁面上。
+// 從別處複製貼上時，可能把嵌入碼、onclick 這類事件屬性或 javascript: 連結一起帶進來——擋在這裡。
+// （網站的 CSP 也會讓瀏覽器拒絕執行它們，這裡是讓問題在發佈前就被看到。）
+{
+  const RISKY = [
+    [/<\s*(script|iframe|object|embed|form|style|link|meta|base)\b/i, '嵌入碼或 <script> 等標籤'],
+    [/<[^>]*\son[a-z]+\s*=/i, 'onclick 等事件屬性'],
+    [/\b(href|src|action)\s*=\s*["']?\s*(javascript|vbscript|data:text\/html)/i, 'javascript: 連結'],
+  ];
+  const bad = [];
+  for (const a of arts) for (const [re, what] of RISKY) {
+    if (re.test(a.title) || re.test(a.excerpt) || re.test(a.content)) bad.push(`${a.id}（${what}）`);
+  }
+  // 開新分頁的連結要帶 rel="noopener"，被開啟的網站才拿不到這個分頁（reverse tabnabbing）
+  for (const a of arts) {
+    const open = [...a.content.matchAll(/<a\b[^>]*target="_blank"[^>]*>/g)].filter(m => !/\brel="[^"]*noopener/.test(m[0]));
+    if (open.length) bad.push(`${a.id}（${open.length} 個 target="_blank" 連結缺 rel="noopener"）`);
+  }
+  bad.length === 0
+    ? pass('文章內文的 HTML 不含可執行的程式（script／事件屬性／javascript: 連結）')
+    : fail('文章內文有不安全的 HTML', bad.slice(0, 5).join('、') + (bad.length > 5 ? ` 等 ${bad.length} 處` : ''));
+}
+
 /* ---------- 2. 靜態頁數量 ---------- */
 const postFiles = readdirSync(join(REPO, 'posts')).filter(f => f.endsWith('.html'));
 postFiles.length === arts.length ? pass(`靜態文章頁數量相符 (${postFiles.length})`) : fail('靜態頁數量', `${postFiles.length} vs ${arts.length}`);
@@ -229,6 +252,14 @@ literal === 0 ? pass('文章內容無殘留 markdown 語法') : fail('殘留 mar
     // 文章／主題／落地／指南／法律／404 的手機選單與回頂端鈕
     ['assets/menu.js', 500, ['posts/' + postFiles[0], 'topics/' + hubFiles[0], 'privacy.html', '404.html',
                              'taipei-physio.html', 'physio-guide.html', 'triathlon-physio.html']],
+    // 各類頁面專屬的互動腳本：原本各自內嵌在頁面裡，CSP 禁止內嵌腳本後搬成外部檔。
+    // 少引用一支，那一頁的功能就會無聲地失效，所以每一頁都要檢查
+    ['assets/post.js', 3000, postFiles.map(f => 'posts/' + f)],
+    ['assets/topic.js', 500, hubFiles.map(f => 'topics/' + f)],
+    ['assets/toc.js', 300, ['products.html', 'taipei-physio.html', 'physio-guide.html', 'triathlon-physio.html',
+                            'beitou-physio.html', 'shilin-physio.html', 'shipai-physio.html']],
+    ['assets/blog.js', 2000, ['blog.html']],
+    ['assets/home.js', 2000, ['index.html']],
   ];
   const bad = [];
   for (const [file, minBytes, users] of shared) {
@@ -236,7 +267,7 @@ literal === 0 ? pass('文章內容無殘留 markdown 語法') : fail('殘留 mar
     const size = read(file).length;
     if (size < minBytes) bad.push(`${file} 只有 ${size} 位元組（疑似產生失敗）`);
     const href = '/' + file;
-    for (const u of users) if (!read(u).includes(href)) bad.push(`${u} 未引用 ${href}`);
+    for (const u of users) if (!read(u).includes(`src="${href}"`) && !read(u).includes(`href="${href}"`)) bad.push(`${u} 未引用 ${href}`);
   }
   bad.length === 0
     ? pass(`共用樣式／腳本齊備且被正確引用 (${shared.length} 個檔案)`)
@@ -339,8 +370,56 @@ const hdr = existsSync(join(REPO, '_headers')) ? read('_headers') : '';
   && hdr.includes('Strict-Transport-Security:') && /connect-src[^;]*'self'/.test(hdr))
   ? pass('_headers 安全標頭完整（CSP/HSTS/nosniff）') : fail('_headers');
 
+// CSP 的 script-src 只允許本站檔案。若被放寬成 'unsafe-inline'，內容裡混進的惡意 HTML 就能執行；
+// COOP 讓從本站開出去的分頁拿不到本站視窗。
+{
+  const csp = (hdr.match(/Content-Security-Policy:([^\n]*)/) || [])[1] || '';
+  const scriptSrc = ((csp.match(/script-src([^;]*)/) || [])[1] || '').trim();
+  const strict = scriptSrc === "'self'";
+  const coop = /Cross-Origin-Opener-Policy:\s*same-origin/.test(hdr);
+  strict && coop
+    ? pass("CSP 禁止內嵌腳本（script-src 'self'）與 COOP same-origin")
+    : fail('CSP／COOP', !strict ? `script-src 應為 'self'，目前是「${scriptSrc || '未設定'}」` : '缺 Cross-Origin-Opener-Policy: same-origin');
+}
+
+// 頁面不能有內嵌腳本：CSP 會擋下它們，功能就默默壞掉（只有瀏覽器主控台看得到錯誤）。
+// JSON-LD 結構化資料不是程式碼，不受 CSP 限制。
+{
+  const bad = [];
+  for (const p of scanPages) {
+    const h = read(p);
+    const tags = h.match(/<[a-zA-Z][^>]*>/g) || [];
+    const inline = tags.some(t => /^<script\b/i.test(t) && !/\ssrc=/.test(t) && !/type="application\/ld\+json"/.test(t));
+    // 先拿掉引號裡的屬性值，才不會把 alt="… on=…" 這種文字誤判成事件屬性
+    const handler = tags.some(t => /\son[a-z]+\s*=/i.test(t.replace(/"[^"]*"|'[^']*'/g, '""')));
+    const jsUrl = /\b(href|src|action)\s*=\s*["']?\s*javascript:/i.test(h);
+    if (inline || handler || jsUrl) bad.push(p + (inline ? '（內嵌 <script>）' : '') + (handler ? '（onclick 等屬性）' : '') + (jsUrl ? '（javascript: 連結）' : ''));
+  }
+  bad.length === 0
+    ? pass(`頁面無內嵌腳本、事件屬性與 javascript: 連結 (${scanPages.length} 頁)`)
+    : fail('頁面有內嵌腳本（會被 CSP 擋下）', bad.slice(0, 5).join('、') + (bad.length > 5 ? ` 等 ${bad.length} 頁` : ''));
+}
+
+// assets/*.js 用 innerHTML 畫出來的 HTML 一樣不能帶 onclick；eval 這類動態執行字串的寫法也會被 CSP 擋下。
+// window.open 開新分頁一律加 noopener。
+{
+  const bad = [];
+  for (const f of readdirSync(join(REPO, 'assets')).filter(f => f.endsWith('.js'))) {
+    const js = read('assets/' + f);
+    if (/\son[a-z]+=\\?["'$]/.test(js)) bad.push(`${f}（HTML 字串帶 on…= 屬性）`);
+    if (/\beval\(|new Function\(|set(Timeout|Interval)\(\s*["'`]/.test(js)) bad.push(`${f}（eval／字串形式的計時器）`);
+    for (const m of js.matchAll(/window\.open\(([^)]*)\)/g)) if (!/noopener/.test(m[1])) bad.push(`${f}（window.open 缺 noopener）`);
+  }
+  bad.length === 0
+    ? pass('前端腳本不產生事件屬性、不用 eval，開新分頁皆加 noopener')
+    : fail('前端腳本', bad.join('、'));
+}
+
 /* ---------- 8. 首頁 ---------- */
 const idx = read('index.html');
+// 首頁腳本（含 SITE：聯絡資訊與資歷資料的唯一來源）；/blog 的清單腳本
+const homeJs = read('assets/home.js');
+const blogJs = read('assets/blog.js');
 // 首頁只列最新 BLOGPOST_MAX 篇；其餘 260 篇各自的 BlogPosting 在文章頁上，sitemap 也全涵蓋
 {
   const want = Math.min(BLOGPOST_MAX, arts.length);
@@ -367,13 +446,13 @@ try {
   const light = JSON.parse(read('assets/articles-index.json'));
   const sameIds = light.length === arts.length && light.every((a, i) => a.id === arts[i].id);
   const noBody = light.every(a => a.content === undefined);
-  const used = read('blog.html').includes("fetch('/assets/articles-index.json')");
+  const used = blogJs.includes("fetch('/assets/articles-index.json')") && read('blog.html').includes('src="/assets/blog.js"');
   sameIds && noBody && used
     ? pass(`articles-index.json 與文章同步且不含內文 (${light.length} 筆・${Math.round(Buffer.byteLength(read('assets/articles-index.json')) / 1024)}KB)`)
     : fail('articles-index.json 不同步', !sameIds ? `${light.length} vs ${arts.length} 篇` : !noBody ? '含 content' : '/blog 未取用');
 } catch { fail('assets/articles-index.json 讀取失敗（請重新 npm run build）'); }
 // 後台已移除：首頁不得再出現後台入口或密碼框
-(!/adm-overlay|pwSubmit|#admin/.test(idx)) ? pass('首頁無後台程式') : fail('首頁仍有後台程式');
+(!/adm-overlay|pwSubmit|#admin/.test(idx + homeJs)) ? pass('首頁無後台程式') : fail('首頁仍有後台程式');
 // 首頁自身 SEO
 const idxDesc = idx.match(/<meta name="description" content="([^"]*)"/);
 (idxDesc && [...idxDesc[1]].length >= 110 && [...idxDesc[1]].length <= 160 && idx.includes('max-image-preview:large')) ? pass('首頁 description 與 robots 完整') : fail('首頁 SEO');
@@ -581,7 +660,7 @@ staleHubs.length === 0 && staleOg.length === 0
 /* ---------- 12b. /about 的學經歷與證照是靜態 HTML，且字數足夠 ---------- */
 // 這五份清單原本是 JS 從 SITE 物件塞進空 <ul> 的——不跑 JS 的爬蟲看到的是空頁面，
 // 而這些正是 E-E-A-T 最該被讀到的資歷訊號。改成靜態後，這裡守住不要再退回去，
-// 並比對內容與 index.html 的 SITE（唯一真實來源）一致。
+// 並比對內容與 assets/home.js 的 SITE（唯一真實來源）一致。
 {
   const about = read('about.html');
   const arrIn = (html, key) => {
@@ -598,10 +677,10 @@ staleHubs.length === 0 && staleOg.length === 0
   const bad = [];
   let total = 0;
   for (const [id, key] of pairs) {
-    const got = liOf(id), want = arrIn(idx, key);
+    const got = liOf(id), want = arrIn(homeJs, key);
     if (!got || !got.length) { bad.push(`${id} 是空的（又變回 JS 渲染？）`); continue; }
-    if (!want) { bad.push(`index.html 解析不到 ${key}`); continue; }
-    if (JSON.stringify(got) !== JSON.stringify(want)) bad.push(`${id} 與 index.html 的 ${key} 不一致`);
+    if (!want) { bad.push(`assets/home.js 解析不到 ${key}`); continue; }
+    if (JSON.stringify(got) !== JSON.stringify(want)) bad.push(`${id} 與 assets/home.js 的 ${key} 不一致`);
     total += got.length;
   }
   bad.length === 0
@@ -615,21 +694,21 @@ staleHubs.length === 0 && staleOg.length === 0
   n >= ABOUT_MIN ? pass(`/about 內容 ≥${ABOUT_MIN} 字（${n} 字）`) : fail('/about 內容過少', `${n} 字`);
 }
 
-/* ---------- 13. data/site.json 與 index.html 的 SITE 未漂移 ---------- */
+/* ---------- 13. data/site.json 與 assets/home.js 的 SITE 未漂移 ---------- */
 // 同一份自我介紹存在兩個地方：data/site.json 餵 llms.txt（給 AI 讀），
-// index.html 的 SITE 物件餵渲染出來的頁面（給人讀）。沒有任何機制在同步它們，
+// assets/home.js 的 SITE 物件餵渲染出來的頁面（給人讀）。沒有任何機制在同步它們，
 // 一旦只改一邊，AI 引用到的版本就會和網站上寫的不一樣。
 {
   const site = JSON.parse(read('data/site.json'));
   const arrOf = key => {
-    const m = idx.match(new RegExp(key + ':\\s*(\\[[\\s\\S]*?\\n  \\])'));
+    const m = homeJs.match(new RegExp(key + ':\\s*(\\[[\\s\\S]*?\\n  \\])'));
     if (!m) return null;
     try { return JSON.parse(m[1].replace(/,(\s*\])/, '$1')); } catch { return null; }
   };
   const drift = [];
   for (const key of Object.keys(site)) {
     const inIdx = arrOf(key);
-    if (!inIdx) { drift.push(`${key}: index.html 解析不到`); continue; }
+    if (!inIdx) { drift.push(`${key}: assets/home.js 解析不到`); continue; }
     if (JSON.stringify(inIdx) !== JSON.stringify(site[key])) {
       const i = site[key].findIndex((v, n) => inIdx[n] !== v);
       drift.push(`${key}[${i}] 兩邊不一致`);

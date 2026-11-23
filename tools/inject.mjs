@@ -4,11 +4,9 @@
 // 3) blog.html 的靜態內容：精選文章清單與「依主題閱讀」（JS 載入前、爬蟲看得到）
 import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, loadArticles, BLOGPOST_MAX, esc, inlineFormat, CAT_SLUG } from './lib.mjs';
+import { REPO, BASE, loadArticles, BLOGPOST_MAX, esc, inlineFormat, CAT_SLUG, scriptJson } from './lib.mjs';
 
 const plain = t => String(t).replace(/!\[[^\]]*\]\([^)]*\)/g, '').replace(/[#>*`]/g, '').replace(/\s+/g, ' ').trim();
-// </script> 防護：JSON 內若出現會截斷 HTML 的 <script> 標籤
-const safe = s => s.replace(/<\/script/g, '<\\/script');
 
 export function injectArticles() {
   const articles = loadArticles();
@@ -28,8 +26,8 @@ export function injectArticles() {
   ).join(',\n');
   const ldRe = /"blogPost": \[[\s\S]*?\n      \]/;
   if (!ldRe.test(html)) throw new Error('index.html 找不到 blogPost JSON-LD 區塊');
-  // safe()：防止標題／摘要中若出現 </script> 字面時跳脫出 JSON-LD <script> 區塊
-  html = html.replace(ldRe, safe(`"blogPost": [\n${entries}\n      ]`));
+  // scriptJson()：標題／摘要裡就算出現 </script>、<!--，也跳不出 JSON-LD 的 <script> 區塊
+  html = html.replace(ldRe, () => scriptJson(`"blogPost": [\n${entries}\n      ]`));
 
   writeFileSync(file, html);
 
@@ -58,9 +56,9 @@ function injectBlog(articles) {
     html = html.replace(re, () => `<!--${name}:START-->${body}<!--${name}:END-->`);
   };
 
-  // 精選清單的唯一來源是 blog.html 裡 JS 的 FEATURED 常數
-  const fm = html.match(/const FEATURED = \[([\s\S]*?)\];/);
-  if (!fm) throw new Error('blog.html 找不到 FEATURED');
+  // 精選清單的唯一來源是 assets/blog.js 的 FEATURED 常數（/blog 的清單腳本）
+  const fm = readFileSync(join(REPO, 'assets/blog.js'), 'utf8').match(/const FEATURED = \[([\s\S]*?)\];/);
+  if (!fm) throw new Error('assets/blog.js 找不到 FEATURED');
   const featured = [...fm[1].matchAll(/"([^"]+)"/g)].map(m => articles.find(a => a.id === m[1])).filter(Boolean);
   // 篇數那一行與 JS renderList() 的預設輸出逐字相同；留空的話，fetch 完補上會把整份清單往下推（版面位移）
   put('BLOG-STATIC-COUNT', `精選文章・共 ${featured.length} 篇`);
