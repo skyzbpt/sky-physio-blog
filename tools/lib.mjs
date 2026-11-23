@@ -415,7 +415,7 @@ export const logoDataURI = () => 'data:image/png;base64,' + readFileSync(join(RE
 export const photoDataURI = () => 'data:image/jpeg;base64,' + readFileSync(join(REPO, 'assets/sky-photo.jpeg')).toString('base64');
 export const roundedFontDataURI = () => 'data:font/ttf;base64,' + readFileSync(join(REPO, 'assets/jf-openhuninn.ttf')).toString('base64');
 
-/* ---------- markdown → HTML（與 index.html 後台預覽 admRenderTextBlock 對齊） ---------- */
+/* ---------- markdown → HTML ---------- */
 export const inlineFormat = s => esc(s)
   .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
   .replace(/\*([^\s*][^*\n]*?)\*/g, '<em>$1</em>');

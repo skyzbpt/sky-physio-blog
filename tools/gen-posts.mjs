@@ -528,7 +528,7 @@ export async function genPosts(page) {
   MODIFIED = resolveModified(articles);
 
   // 安全防護：id 用於寫入檔案路徑（posts/${id}.html、assets/og/${id}.jpg）與 URL，
-  // 僅允許小寫英數與連字號，避免 ../ 等路徑穿越（與後台 slug 規則、Worker sanitize 一致）
+  // 僅允許小寫英數與連字號，避免 ../ 等路徑穿越
   for (const a of articles) {
     if (!/^[a-z0-9-]+$/.test(a.id)) {
       throw new Error(`不合法的文章 id（僅允許 a-z 0-9 -）：${JSON.stringify(a.id)}`);
