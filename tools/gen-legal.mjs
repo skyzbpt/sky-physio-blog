@@ -1,13 +1,15 @@
 // 法律頁：隱私權保護聲明（/privacy）
-// 內容必須與網站實際行為一致——本站是純靜態網站，沒有任何分析或廣告追蹤碼，也沒有後端服務。
-// 若日後加入表單、分析工具或第三方腳本，這兩頁必須同步更新。
+// 內容必須與網站實際行為一致——本站是純靜態網站，沒有後端服務，也沒有廣告追蹤碼；
+// 唯一的統計是 Cloudflare Web Analytics（Cloudflare 在邊緣自動插入，不使用 Cookie），
+// 並以 assets/notice.js 的告知列公告（政策第九節的承諾）。
+// 若日後加入表單、分析工具或第三方腳本，這一頁必須同步更新（npm run verify 會比對 CSP 與本頁）。
 import { writeFileSync } from 'fs';
 import { join } from 'path';
 import { REPO, BASE, esc, ROBOTS, AUTHOR, PUBLISHER, ldJson } from './lib.mjs';
 import { SHELL, siteHeader, siteFooter } from './css.mjs';
 
 // 最後更新日期：內容有實質變動時再手動前進（不要每次建置都改，否則是假更新訊號）
-const UPDATED = '2026-11-18';
+const UPDATED = '2026-11-23';
 const CONTACT = 'skyzbpt@gmail.com';
 
 /* 外殼來自 css.mjs 的 SHELL；版心與文章頁相同（692px），色塊一律淡天空灰、沒有外框 */
@@ -148,9 +150,10 @@ const privacy = {
   <li><strong>您來信詢問時：</strong>本網站會保留您提供的電子郵件地址、姓名（如有提供）、信件內容及寄送時間，用於回覆您的詢問；詢問結束、不再需要時即予刪除。</li>
   <li><strong>您預約評估時：</strong>您在 Google 日曆預約頁填寫的姓名、聯絡方式及預約時段，用於安排評估及必要時與您聯繫。</li>
   <li><strong>一般瀏覽時：</strong>網站主機（Cloudflare）會自行記錄連線資料，包括您使用連線設備的 IP 位址、使用時間、使用的瀏覽器及瀏覽的網址等。此紀錄僅用於阻擋惡意流量、維護網站安全與正常運作，不做個人層級的分析，<strong>絕不對外公布</strong>。</li>
+  <li><strong>流量統計：</strong>本網站使用 Cloudflare 提供的 <strong>Cloudflare Web Analytics</strong> 統計瀏覽人次，以了解哪些衛教內容對讀者有幫助、持續改善網站。它會記錄瀏覽的網址、來源網頁、瀏覽器與裝置類型、大約所在國家及頁面載入速度；<strong>不使用 Cookie 或瀏覽器儲存空間，也不以 IP 位址或裝置指紋辨識您的身分</strong>。本網站只看得到彙整後的統計數字，無法得知是哪一位讀者。</li>
   <li><strong>健康資料：</strong>您於來信或預約中描述的身體狀況、受傷經過或病史，屬《個人資料保護法》第 6 條所定之特種個人資料，僅用於了解您的狀況與準備評估，不轉交他人，也不公開。若本網站希望將您的提問改寫為衛教文章，會先徵得您的同意；文章中的個案一律不寫姓名、暱稱或姓氏稱呼，僅以身分描述呈現。</li>
 </ul>
-<p>本網站<strong>沒有會員註冊、登入、留言、問卷或電子報訂閱功能</strong>，也不使用 Google Analytics、Meta Pixel 等任何分析或廣告追蹤工具。</p>
+<p>本網站<strong>沒有會員註冊、登入、留言、問卷或電子報訂閱功能</strong>；除上述 Cloudflare Web Analytics 的匿名流量統計外，不使用 Google Analytics、Meta Pixel 等其他分析或廣告追蹤工具。</p>
 <p>依《個人資料保護法》第 8 條，另向您說明下列事項：</p>
 <ul>
   <li><strong>蒐集者：</strong>本網站經營者 Sky 物理治療師。</li>
@@ -193,15 +196,17 @@ const privacy = {
 </ul>
 <p>本網站使用下列服務商協助網站運作，僅於其提供服務所必要之範圍內處理您的資料：</p>
 <ul>
-  <li><strong>Cloudflare</strong>：網站主機、內容傳遞與資安防護，處理連線紀錄。</li>
+  <li><strong>Cloudflare</strong>：網站主機、內容傳遞與資安防護，處理連線紀錄；並提供匿名的流量統計（Cloudflare Web Analytics）。</li>
   <li><strong>Google 日曆</strong>：預約評估系統，保存您填寫的預約資料。</li>
 </ul>` },
 
     { h: '六、Cookie 之使用', body: `
-<p>本網站<strong>本身不設置任何分析或廣告用途的 Cookie</strong>。您可能接觸到的僅有：</p>
+<p>本網站<strong>本身不設置任何 Cookie</strong>；流量統計所用的 Cloudflare Web Analytics 同樣<strong>不使用 Cookie 或瀏覽器儲存空間</strong>。您可能接觸到的僅有：</p>
 <ul>
   <li><strong>Cloudflare 安全性 Cookie：</strong>用於辨識自動化流量與異常連線、保護網站免受攻擊，屬維持網站運作所必要，不用於追蹤您。</li>
+  <li><strong>「已閱讀隱私說明」標記：</strong>您在網站底部的隱私說明按下「知道了」後，瀏覽器會在本機儲存空間（localStorage）記下一個不含任何個人資料的標記，之後就不再重複顯示；清除瀏覽器資料即可刪除。</li>
 </ul>
+<p>若您不希望被納入流量統計，可使用瀏覽器的追蹤保護功能或廣告封鎖外掛，封鎖 <code>static.cloudflareinsights.com</code>。</p>
 <p>若您不願接受 Cookie 的寫入，可在瀏覽器設定中將隱私權等級設為高，或隨時清除上述資料，<strong>本網站的文章與各項功能仍可正常使用</strong>。</p>` },
 
     { h: '七、您的權利', body: `
