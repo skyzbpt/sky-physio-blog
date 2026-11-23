@@ -12,6 +12,8 @@ function setMenu(open){
 }
 function toggleMenu(){ setMenu(!document.getElementById("nav-links").classList.contains("open")); }
 function closeMenu(){ setMenu(false); }
+/* 選單鈕原本寫成 HTML 的 onclick 屬性；網站的 CSP 禁止一切內嵌腳本（含 onclick），改在這裡綁定 */
+document.getElementById("menu-btn").addEventListener('click', toggleMenu);
 /* 手機選單的子選單預設收合，點標題才展開（一次只開一組）。
    用捕獲階段攔截：標題連結本身還掛著「點了就關選單」的處理，得在它之前擋下。
    子選單第一項都能到達標題原本指向的頁面，所以標題改成開合不會少掉任何入口。 */
@@ -69,4 +71,9 @@ addEventListener('pageshow', ()=>document.querySelectorAll('.nav-item.shut').for
   function update(){ btn.classList.toggle('show', window.scrollY>400); }
   window.addEventListener('scroll', update, {passive:true});
   update();
+  /* 回到頂端（同樣由 onclick 屬性移來）。系統開了「減少動態效果」就直接跳，不做平滑捲動 */
+  btn.addEventListener('click', ()=>{
+    const calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({top:0, behavior:calm?'auto':'smooth'});
+  });
 })();

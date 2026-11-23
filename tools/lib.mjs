@@ -9,8 +9,12 @@ export const BASE = 'https://skythephysio.com';
 export const TODAY = new Date().toISOString().slice(0, 10);
 
 export const esc = s => (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-// JSON-LD 序列化：跳脫字面 </script> 以免內容跳出 <script type="application/ld+json"> 區塊
-export const ldJson = obj => JSON.stringify(obj, null, 2).replace(/<\/script/gi, '<\\/script');
+// 要放進 <script> 區塊的 JSON：把 < > & 與 U+2028/2029 改寫成 \uXXXX。
+// JSON 仍然合法、解析出來的內容完全相同，但文字裡就算出現 </script> 或 <!--，
+// 也不可能提早結束區塊、讓後面的文字被瀏覽器當成 HTML 執行。
+export const scriptJson = s => String(s).replace(/[<>&\u2028\u2029]/g, c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'));
+// JSON-LD 序列化（<script type="application/ld+json"> 一律經過這裡）
+export const ldJson = obj => scriptJson(JSON.stringify(obj, null, 2));
 export const plain = t => String(t).replace(/[#>*`]/g, '').replace(/!\[[^\]]*\]\([^)]*\)/g, '').replace(/\s+/g, ' ').trim();
 export const readMins = content => Math.max(1, Math.round(((String(content).match(/[一-鿿]/g) || []).length) / 320));
 
@@ -358,10 +362,28 @@ export const TOPIC_TERMS = [
   '情緒釋放', '深層按摩',
 ];
 
-// 取出一篇文章（標題優先，其次內文）涉及的主題詞
+// 取出一篇文章（標題優先，其次內文）涉及的主題詞。
+// 產生文章頁時，每一篇都要和其餘三百多篇比對主題（跨分類互連），同一篇會被重算上萬次，
+// 曾佔掉整個建置將近九成的時間。建置期間文章資料不會被改動，所以結果依文章物件快取：
+// 每篇只算一次。回傳的陣列凍結起來，誤改快取時會直接報錯，而不是默默污染其他頁面。
+const TOPIC_CACHE = new WeakMap();
+// text 裡 word 是否至少出現 n 次（不重疊計算，與 split 的計數方式相同；數到 n 就停）
+const occursAtLeast = (text, word, n) => {
+  for (let from = 0, i = 0; i < n; i++) {
+    const at = text.indexOf(word, from);
+    if (at < 0) return false;
+    from = at + word.length;
+  }
+  return true;
+};
 export const topicsOf = a => {
-  const t = a.title || '', c = a.content || '';
-  return TOPIC_TERMS.filter(k => t.includes(k) || (c.split(k).length - 1) >= 3);
+  let hit = TOPIC_CACHE.get(a);
+  if (!hit) {
+    const t = a.title || '', c = a.content || '';
+    hit = Object.freeze(TOPIC_TERMS.filter(k => t.includes(k) || occursAtLeast(c, k, 3)));
+    TOPIC_CACHE.set(a, hit);
+  }
+  return hit;
 };
 
 /* ---------- 參考文獻（GEO：可查證的出處） ----------

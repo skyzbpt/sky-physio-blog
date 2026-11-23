@@ -13,7 +13,7 @@
     +'.author-box,.end-cta,.pager a,.more h3,.more a,.guide-cards li,.guide-criteria li,.guide-compare p,.faq-item,.cta-box,.note,.toc-box';
   var vh=window.innerHeight, els=[];
   [].forEach.call(document.querySelectorAll(SEL),function(el){
-    if(el.closest('header,#adm-overlay') || (el.parentElement && el.parentElement.closest('.rv-el'))) return;
+    if(el.closest('header') || (el.parentElement && el.parentElement.closest('.rv-el'))) return;
     var r=el.getBoundingClientRect();
     if(!r.height || r.top < vh*0.95) return;
     el.classList.add('rv-el'); els.push(el);
