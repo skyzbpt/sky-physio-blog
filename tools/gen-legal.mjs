@@ -9,7 +9,7 @@ import { REPO, BASE, esc, ROBOTS, AUTHOR, PUBLISHER, ldJson } from './lib.mjs';
 import { SHELL, siteHeader, siteFooter } from './css.mjs';
 
 // 最後更新日期：內容有實質變動時再手動前進（不要每次建置都改，否則是假更新訊號）
-const UPDATED = '2026-11-23';
+const UPDATED = '2026-11-24';
 const CONTACT = 'skyzbpt@gmail.com';
 
 /* 外殼來自 css.mjs 的 SHELL；版心與文章頁相同（692px），色塊一律淡天空灰、沒有外框 */

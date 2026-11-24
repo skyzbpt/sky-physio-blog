@@ -5,7 +5,7 @@
    ・隱私權政策又有重大變更、要讓讀者再看一次：把 VERSION 改成新的日期。
    全站共用：主要頁面直接引用，其餘頁面由 tools/css.mjs 的 siteHeader() 帶入；樣式是 css.mjs 的 .notice。 */
 (function(){
-  var VERSION='2026-11-23', KEY='sky-notice';
+  var VERSION='2026-11-24', KEY='sky-notice';
   var TEXT='本站以 Cloudflare 匿名統計瀏覽人次：<strong>不使用 Cookie</strong>，也不辨識個人。<a href="/privacy#s6">了解更多</a>';
   /* 無痕模式或封鎖網站資料時，讀寫 localStorage 會丟例外：當作沒看過、照常顯示，按掉只在這一頁有效 */
   try{ if(localStorage.getItem(KEY)===VERSION) return; }catch(e){}
