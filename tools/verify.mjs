@@ -4,7 +4,9 @@
 import { readFileSync, readdirSync, existsSync, statSync } from 'fs';
 import { join } from 'path';
 import { REPO, BASE, TODAY, loadArticles, CAT_SLUG, DESC_MIN, DESC_MAX, BLOGPOST_MAX, referencesOf } from './lib.mjs';
-import { hashOf } from './modified.mjs';
+import { hashOf, pageFingerprint } from './modified.mjs';
+import { fingerprintPages } from './sitemap.mjs';
+import { LEGAL_UPDATED } from './gen-legal.mjs';
 import { CHROME_CSS, SHELL_MARK } from './css.mjs';
 
 const results = [];
@@ -172,6 +174,24 @@ try {
     ? pass(`修改日期狀態檔同步 (${arts.length} 篇)`)
     : fail('modified.json 未同步（請重新 npm run build 並 commit）', `${stale.length} 篇，例如 ${stale.slice(0, 3).map(a => a.id).join(', ')}`);
 } catch { fail('data/modified.json 讀取失敗'); }
+// 非文章頁（首頁、/blog、服務與落地頁、主題頁）的 lastmod 也必須反映真實修改：
+// 指紋狀態檔要和現在的頁面一致，sitemap 的日期要等於記錄的日期——不能退回「每次建置都寫今天」
+// （那會讓每次部署都把 23 頁標成剛更新，Google 就不再相信這些日期）。隱私權政策沿用頁面上的「最後更新」。
+try {
+  const pstate = JSON.parse(read('data/pages-modified.json'));
+  const smDate = new Map([...sm.matchAll(/<loc>([^<]+)<\/loc>\s*<lastmod>([^<]+)<\/lastmod>/g)].map(m => [m[1], m[2]]));
+  const pages = fingerprintPages(arts), bad = [];
+  for (const p of pages) {
+    const st = pstate[p.path], got = smDate.get(BASE + p.path);
+    if (!st || st.h !== pageFingerprint(read(p.file))) bad.push(`${p.path}（內容變了，狀態檔沒更新）`);
+    else if (got !== st.d) bad.push(`${p.path}（sitemap 寫 ${got}，記錄是 ${st.d}）`);
+    else if (st.d > TODAY) bad.push(`${p.path}（未來日期 ${st.d}）`);
+  }
+  if (smDate.get(BASE + '/privacy') !== LEGAL_UPDATED) bad.push(`/privacy（應為頁面上的最後更新日 ${LEGAL_UPDATED}）`);
+  bad.length === 0
+    ? pass(`非文章頁 lastmod 只在內容變動時前進 (${pages.length + 1} 頁)`)
+    : fail('非文章頁 lastmod 未同步（請重新 npm run build 並 commit data/pages-modified.json）', bad.slice(0, 3).join('、') + (bad.length > 3 ? ` 等 ${bad.length} 頁` : ''));
+} catch (e) { fail('data/pages-modified.json 讀取失敗', e.message); }
 
 const feed = read('feed.xml');
 (feed.match(/<item>/g) || []).length === arts.length ? pass(`feed.xml 篇數正確 (${arts.length})`) : fail('feed 篇數');
