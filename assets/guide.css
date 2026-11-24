@@ -170,6 +170,7 @@ footer{background:var(--tint);padding:10px 0 16px;font-size:12px;line-height:1.5
 .post-body hr{border:none;border-top:1px solid var(--line);margin:2.6em 0}
 .post-body a{color:var(--sky-ink)}
 .post-body a:hover{text-decoration:underline}
+.post-body a[rel~="sponsored"]{text-decoration:underline;text-underline-offset:3px}
 .post-body figure{margin:2.2em 0;text-align:center}
 .post-body figure img{max-width:100%;max-height:560px;width:auto;height:auto;border-radius:18px;display:inline-block}
 .post-body figcaption{margin-top:12px;font-size:12px;line-height:1.6;color:var(--muted)}
