@@ -1,4 +1,4 @@
-// 全站建置：data/articles.json →（注入 index.html）→ 靜態頁／OG 卡／sitemap／主題頁／RSS／404／llms
+// 全站建置：data/articles.json →（注入 index.html）→ 靜態頁／OG 卡／主題頁／RSS／404／sitemap／llms
 // 用法：node tools/build.mjs
 //
 // 部署：本腳本最後會把可部署的靜態檔組裝到 dist/，供 Cloudflare（Git 連動）直接部署。
@@ -16,9 +16,10 @@ import { genExtras } from './gen-extras.mjs';
 import { genLegal } from './gen-legal.mjs';
 import { genLlms } from './gen-llms.mjs';
 import { genLanding } from './gen-landing.mjs';
+import { genSitemap } from './sitemap.mjs';
 import { syncShell, syncFooter } from './css.mjs';
 
-console.log('=== 1/5 注入 index.html ===');
+console.log('=== 1/6 注入 index.html ===');
 injectArticles();
 
 // 共用外殼（設計 token、頁首導覽、按鈕、頁尾）寫進 assets/site.css 的 SHELL 標記區塊，
@@ -48,21 +49,26 @@ try {
   console.warn('  原因：' + (e && e.message ? e.message.split('\n')[0] : e));
 }
 
-console.log('=== 2/5 文章頁 + OG + sitemap ===');
-await genPosts(page);
+console.log('=== 2/6 文章頁 + OG ===');
+const articleModified = await genPosts(page);
 
-console.log('=== 3/5 主題頁 + RSS + 404 + 法律頁 ===');
+console.log('=== 3/6 主題頁 + RSS + 404 + 法律頁 + 落地頁 ===');
 await genExtras(page);
 genLegal();
 genLanding(); // 三鐵運動修復、北投・士林・石牌落地頁（沿用 taipei-physio.html 版型）
 
 if (browser) await browser.close();
 
-console.log('=== 4/5 llms（GEO / AI 摘要）===');
+// sitemap 最後才寫：非文章頁的 lastmod 由「這次建置出來的頁面」內容指紋決定，
+// 所以要等首頁、/blog、主題頁、落地頁都產生完（見 tools/sitemap.mjs、tools/modified.mjs）
+console.log('=== 4/6 sitemap（lastmod 只在內容真的變動時前進）===');
+genSitemap(articleModified);
+
+console.log('=== 5/6 llms（GEO / AI 摘要）===');
 genLlms();
 
-/* ---------- 5/5 組裝 dist/（供 Cloudflare 部署，只含可對外的靜態檔） ---------- */
-console.log('=== 5/5 組裝 dist/（供 Cloudflare 部署）===');
+/* ---------- 6/6 組裝 dist/（供 Cloudflare 部署，只含可對外的靜態檔） ---------- */
+console.log('=== 6/6 組裝 dist/（供 Cloudflare 部署）===');
 const DIST = join(REPO, 'dist');
 rmSync(DIST, { recursive: true, force: true });
 mkdirSync(DIST, { recursive: true });

@@ -1,11 +1,10 @@
-// 靜態文章頁 / OG 卡 / sitemap 產生器
+// 靜態文章頁 / OG 卡產生器（sitemap 在 tools/sitemap.mjs）
 // 資料來源：data/articles.json（唯一真實來源）
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, TODAY, esc, phrases, readMins, CAT_SLUG, renderBody, headingsOf, loadArticles, logoDataURI, photoDataURI, roundedFontDataURI, ogCard, ogHomeCard, shot, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, wordCountOf, keywordsFor, mentionsFor, metaDescription, extractFaqs, ldJson, topicsOf, referencesOf, firstImageOf } from './lib.mjs';
+import { REPO, BASE, esc, phrases, readMins, CAT_SLUG, renderBody, headingsOf, loadArticles, logoDataURI, photoDataURI, roundedFontDataURI, ogCard, ogHomeCard, shot, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, wordCountOf, keywordsFor, mentionsFor, metaDescription, extractFaqs, ldJson, topicsOf, referencesOf, firstImageOf } from './lib.mjs';
 import { SHELL, ARTICLE_CSS, BOOK_URL, siteHeader, siteFooter } from './css.mjs';
 import { resolveModified } from './modified.mjs';
-import { LEGAL_UPDATED } from './gen-legal.mjs';
 
 // id → 真實修改日期（由 data/modified.json 的內容雜湊決定），genPosts 開頭填入
 let MODIFIED = new Map();
@@ -402,81 +401,6 @@ export async function genPosts(page) {
   }
   console.log(`已產生 ${articles.length} 篇靜態頁${page ? ' + OG 卡' : '（略過 OG 圖片）'}`);
 
-  /* ---------- sitemap.xml ---------- */
-  const sorted = [...articles].sort((x, y) => y.date.localeCompare(x.date));
-  const hubEntries = Object.entries(CAT_SLUG)
-    .filter(([cat]) => articles.some(a => a.cat === cat))
-    .map(([cat, slug]) => `  <url>
-    <loc>${BASE}/topics/${slug}</loc>
-    <lastmod>${TODAY}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>`).join('\n');
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>${BASE}/</loc>
-    <lastmod>${TODAY}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>${BASE}/blog</loc>
-    <lastmod>${TODAY}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>${BASE}/products</loc>
-    <lastmod>${TODAY}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>${BASE}/about</loc>
-    <lastmod>${TODAY}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>${BASE}/services</loc>
-    <lastmod>${TODAY}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>${BASE}/physio-guide</loc>
-    <lastmod>${TODAY}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>${BASE}/taipei-physio</loc>
-    <lastmod>${TODAY}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-${['triathlon-physio', 'beitou-physio', 'shilin-physio', 'shipai-physio'].map(s => `  <url>
-    <loc>${BASE}/${s}</loc>
-    <lastmod>${TODAY}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-`).join('')}  <url>
-    <loc>${BASE}/privacy</loc>
-    <lastmod>${LEGAL_UPDATED}</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-${hubEntries}
-${sorted.map(a => `  <url>
-    <loc>${BASE}/posts/${a.id}</loc>
-    <lastmod>${MODIFIED.get(a.id) || a.updated || a.date}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>`).join('\n')}
-</urlset>
-`;
-  writeFileSync(join(REPO, 'sitemap.xml'), sitemap);
-  console.log('已更新 sitemap.xml（' + (sitemap.match(/<url>/g) || []).length + ' 個 URL）');
+  // sitemap 改由 tools/sitemap.mjs 在所有頁面都產生完之後才寫：這裡把文章的修改日交給它
+  return MODIFIED;
 }
