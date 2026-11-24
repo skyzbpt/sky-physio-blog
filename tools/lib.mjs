@@ -15,7 +15,7 @@ export const esc = s => (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').r
 export const scriptJson = s => String(s).replace(/[<>&\u2028\u2029]/g, c => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'));
 // JSON-LD 序列化（<script type="application/ld+json"> 一律經過這裡）
 export const ldJson = obj => scriptJson(JSON.stringify(obj, null, 2));
-export const plain = t => String(t).replace(/[#>*`]/g, '').replace(/!\[[^\]]*\]\([^)]*\)/g, '').replace(/\s+/g, ' ').trim();
+export const plain = t => String(t).replace(/[#>*`]/g, '').replace(/!\[[^\]]*\]\([^)]*\)/g, '').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(/\s+/g, ' ').trim();
 export const readMins = content => Math.max(1, Math.round(((String(content).match(/[一-鿿]/g) || []).length) / 320));
 
 /* 標題依標點切成詞組，各包成 inline-block（樣式見 css.mjs 的 .ph）：
@@ -438,7 +438,10 @@ export const photoDataURI = () => 'data:image/jpeg;base64,' + readFileSync(join(
 export const roundedFontDataURI = () => 'data:font/ttf;base64,' + readFileSync(join(REPO, 'assets/jf-openhuninn.ttf')).toString('base64');
 
 /* ---------- markdown → HTML ---------- */
+// 外部連結：[文字](https://…)。一律開新分頁；美安台灣是推廣連結，加 sponsored 讓搜尋引擎知道。
+const linkRel = url => /^https:\/\/www\.markettaiwan\.com\.tw\//.test(url) ? 'noopener sponsored nofollow' : 'noopener nofollow';
 export const inlineFormat = s => esc(s)
+  .replace(/\[([^\]]+)\]\((https:\/\/[^\s)]+)\)/g, (_, t, u) => `<a href="${u}" target="_blank" rel="${linkRel(u)}">${t}</a>`)
   .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
   .replace(/\*([^\s*][^*\n]*?)\*/g, '<em>$1</em>');
 
