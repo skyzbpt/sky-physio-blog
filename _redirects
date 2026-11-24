@@ -46,7 +46,6 @@
 /posts/   /blog      301
 /topics/  /blog      301
 /all      /blog      301
-/cookies  /privacy   301
 
 # ── 動態規則（必須在所有靜態規則之後）───────────────────────────────
 /posts/:slug.html    /posts/:slug     301

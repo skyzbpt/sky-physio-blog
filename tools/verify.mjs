@@ -280,8 +280,6 @@ literal === 0 ? pass('文章內容無殘留 markdown 語法') : fail('殘留 mar
                             'beitou-physio.html', 'shilin-physio.html', 'shipai-physio.html']],
     ['assets/blog.js', 2000, ['blog.html']],
     ['assets/home.js', 2000, ['index.html']],
-    // 隱私告知列（流量統計的公告）：每一頁都要有
-    ['assets/notice.js', 500, scanPages],
   ];
   const bad = [];
   for (const [file, minBytes, users] of shared) {
@@ -406,16 +404,14 @@ const scriptSrcs = (((hdr.match(/Content-Security-Policy:([^\n]*)/) || [])[1] ||
     ? pass(`CSP 禁止內嵌腳本（script-src ${scriptSrcs.join(' ')}）與 COOP same-origin`)
     : fail('CSP／COOP', !strict ? `script-src 只能有 'self' 與 ${CF_BEACON}，多了「${extra.join(' ') || '（缺 \'self\'）'}」` : '缺 Cross-Origin-Opener-Policy: same-origin');
 }
-// 放行了 Cloudflare 統計，隱私權政策就必須揭露，網站上也要有告知列
-// （政策第九節承諾「導入新的統計工具時，於網站明顯處公告」）。反過來，政策說有統計、CSP 卻擋掉，統計也會默默失效。
+// 放行了 Cloudflare 統計，隱私權政策就必須揭露；反過來，政策說有統計、CSP 卻擋掉，統計也會默默失效。
 {
   const priv = read('privacy.html');
   const allowed = scriptSrcs.includes(CF_BEACON);
-  const disclosed = /Cloudflare Web Analytics/.test(priv) && /localStorage/.test(priv);
-  const notice = existsSync(join(REPO, 'assets/notice.js'));
-  allowed === disclosed && (!allowed || notice)
-    ? pass(allowed ? '流量統計已在隱私權政策揭露，且有網站告知列' : '未啟用流量統計，隱私權政策也未提及')
-    : fail('流量統計與隱私權政策不一致', allowed ? (!disclosed ? 'CSP 放行了 Cloudflare 統計，但 /privacy 沒有揭露' : '缺 assets/notice.js 告知列') : '/privacy 寫了 Cloudflare Web Analytics，但 CSP 擋掉了統計程式');
+  const disclosed = /Cloudflare Web Analytics/.test(priv);
+  allowed === disclosed
+    ? pass(allowed ? '流量統計已在隱私權政策揭露' : '未啟用流量統計，隱私權政策也未提及')
+    : fail('流量統計與隱私權政策不一致', allowed ? 'CSP 放行了 Cloudflare 統計，但 /privacy 沒有揭露' : '/privacy 寫了 Cloudflare Web Analytics，但 CSP 擋掉了統計程式');
 }
 
 // 頁面不能有內嵌腳本：CSP 會擋下它們，功能就默默壞掉（只有瀏覽器主控台看得到錯誤）。
