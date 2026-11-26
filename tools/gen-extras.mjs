@@ -19,6 +19,13 @@ import { SHELL, siteHeader, siteFooter } from './css.mjs';
 //   ],
 //
 // faqs 會一併輸出 FAQPage 結構化資料，有機會在 Google 拿到問答複合式結果。
+//
+//   series: {                         // 系列導讀：照閱讀順序分組列出某個系列（文章清單是由新到舊，系列會倒過來讀）
+//     h: '區塊標題', p: '一句說明', prefix: 'id 的共同開頭',
+//     groups: [{ h: '分組名稱', ids: ['文章 id 去掉 prefix 的部分', ...] }, ...],
+//   },
+//
+// series 裡的 id 都必須存在且屬於這個分類，否則建置直接失敗（避免改了 id 卻留下壞連結）。
 // seoTitle（選填）：接在 <title> 的「XX衛教文章：」之後，放讀者實際會搜尋的關鍵字。
 const HUBS = [
   { cat: '下背痛', slug: 'lower-back-pain',
@@ -207,6 +214,21 @@ const HUBS = [
         p: ['很深的放鬆、突然想睡、肢體輕微的抽動、某些畫面或情緒浮上來，有人會流淚——這些都是神經系統卸載時常見的反應，不需要害怕，也不需要表現。',
             '你唯一的工作，就是允許自己什麼都不做。五克的力推不動任何人，它只是輕輕敲門，然後等身體自己決定：要不要開。'] },
     ],
+    series: {
+      h: '系列導讀：從第 1 篇讀起',
+      p: '這 50 篇沿著 Thomas Attlee《Cranio-Sacral Integration》的章節順序寫成，由淺入深。第一次接觸顱薦椎，建議從第 1 篇讀起；也可以直接跳到你關心的主題。',
+      prefix: 'craniosacral-',
+      groups: [
+        { h: '整體觀與適用對象', ids: ['crying-baby', 'living-matrix', 'quality-symmetry-motion', 'health-foundation', 'babies-to-elders', 'three-approaches'] },
+        { h: '解剖與律動', ids: ['dura-membrane', 'cerebrospinal-fluid', 'skull-bones-move', 'expansion-contraction', 'three-tides'] },
+        { h: '治療過程', ids: ['inherent-treatment-process', 'following-unlatching', 'stimulus-invitation', 'treatment-responses', 'therapeutic-pain-tissue-memory', 'contraindications'] },
+        { h: '治療師的手與一次治療', ids: ['quality-pigs-elephants-snakes', 'calm-the-surface', 'fulcrums', 'therapist-state', 'kinds-of-stillness', 'engagement', 'four-stage-session', 'emotional-centres'] },
+        { h: '頭骨、薦骨與靜止點', ids: ['suboccipital-region', 'occiput-and-spine', 'sacrum', 'sphenoid', 'temporal-bones', 'frontal-parietal', 'falx-release', 'still-point', 'rhythm-dashboard', 'keep-breathing'] },
+        { h: '筋膜鬆解', ids: ['fascia-web', 'fascia-listening-posts', 'fascial-unwinding', 'arm-unwinding', 'leg-unwinding', 'neck-unwinding'] },
+        { h: '蝶枕模式、神經系統與情緒', ids: ['sbs-patterns', 'nervous-system', 'autonomic-balance', 'facilitated-segments-t4', 'throat', 'emotional-body', 'further-contacts', 'assessment-whole-picture'] },
+        { h: '全書總結', ids: ['integration-summary'] },
+      ],
+    },
     faqs: [
       { q: '顱薦椎治療會痛嗎？',
         a: '不會。全程使用的力量大約五克，差不多一枚十元硬幣的重量——推不動任何結構，也不會造成組織上的負擔。多數人的形容不是「被治療」，而是「終於可以什麼都不做」。' },
@@ -216,6 +238,14 @@ const HUBS = [
         a: '單次大約四十分鐘。次數沒有標準答案——長期處在戒備狀態的神經系統，通常不會在一次之內就改掉習慣。比較實際的做法是先做一兩次，看身體怎麼回應，再決定要不要繼續、以及該隔多久。' },
       { q: '我在治療中哭了，這正常嗎？',
         a: '很常見，也不需要解釋。身體在長期戒備下會把很多東西先收起來；當它終於覺得夠安全，收起來的有時會先以情緒的形式浮上來。你不需要說明原因，也不需要壓住它——那通常是卸載的一部分，不是失控。' },
+      { q: '顱薦椎適合哪些人？',
+        a: '從嬰兒、孕婦到長輩都可以，因為它非常溫和，不需要做任何動作。但寶寶持續哭鬧、發燒或吃不下，懷孕期間有任何異常，或長輩想減藥，都要先讓醫師評估，不要拿顱薦椎取代醫療。' },
+      { q: '什麼情況不適合做顱薦椎？',
+        a: '顱薦椎不施力、風險極低，但「低風險」不等於「不需要篩檢」。近期頭部外傷或腦震盪、已知顱內出血或腦動脈瘤、剛動過腦部或脊椎手術、正在發燒或急性感染，以及頭痛型態突然改變，我都會請你先讓醫師評估，或把治療延後。' },
+      { q: '治療後可能有哪些反應？',
+        a: '最常見的是很深的放鬆，也可能想睡、肚子咕嚕叫、覺得冷、想上廁所，或舊傷短暫地浮上來，通常都很輕微、很快過去。起身時請慢慢坐起來；如果出現劇烈頭痛、持續頭暈、手腳無力麻木或視力改變，不要等，請立刻就醫。' },
+      { q: '什麼是靜止點？',
+        a: '靜止點是顱薦律動暫時停下來的時刻，躺著的人常覺得整個人沉到很安靜的地方，之後不自覺地長長吸一口氣、身體鬆開一層。顱薦椎認為，這是身體釋放緊繃最重要的時刻；它仍是治療師手上的主觀感受，沒有可靠的客觀測量。' },
     ] },
   { cat: '三鐵運動修復', slug: 'triathlon',
     lede: '游泳靠肩、自行車靠髖、跑步靠整條腿吸收落地——三項輪流上場，承受的是同一副身體。鐵人三項的傷很少是撞出來的，是一次一次累積的。這個系列談反覆性負荷、動作控制與賽後恢復，陪你在痛還小的時候，把身體讀懂。' },
@@ -312,6 +342,19 @@ const CSS = SHELL + `
 .hub-intro h2{font-size:1.3rem;line-height:1.35;margin-bottom:12px}
 .hub-intro p{font-size:1rem;line-height:1.85;color:var(--ink-2)}
 .hub-intro p+p{margin-top:12px}
+/* 系列導讀（HUBS 的 series）：照閱讀順序分組的連結清單；沒填就整塊不輸出 */
+.hub-series{margin:0 0 72px;scroll-margin-top:calc(var(--nav-h) + 20px)}
+.hub-series h2{font-size:clamp(1.7rem,3.6vw,2.5rem);line-height:1.16;letter-spacing:-.015em;margin-bottom:12px}
+.series-p{font-size:1rem;line-height:1.85;color:var(--ink-2);max-width:40em;margin-bottom:24px}
+.series-groups{display:grid;gap:12px}
+.series-group{padding:24px 22px 18px;background:var(--tint);border-radius:var(--r-card)}
+.series-group h3{font-size:1.15rem;line-height:1.4;margin:0 0 12px}
+.series-group h3 span{display:block;font-size:13px;font-weight:400;color:var(--muted);margin-bottom:4px}
+.series-group ol{margin:0;padding-left:2.1em}
+.series-group li{margin:0;padding:5px 0 5px .2em;font-size:1rem;line-height:1.55;color:var(--muted)}
+.series-group li::marker{font-size:.9em}
+.series-group a{color:var(--ink);transition:color .25s var(--ease)}
+.series-group a:hover{color:var(--sky-ink);text-decoration:underline}
 /* 常見問題（HUBS 的 faqs）：可收合，內容仍在 HTML 裡供索引 */
 .hub-faq{margin-top:88px;border-bottom:1px solid var(--line)}
 .hub-faq h2{font-size:clamp(1.7rem,3.6vw,2.5rem);line-height:1.16;letter-spacing:-.015em;margin-bottom:24px}
@@ -364,6 +407,8 @@ const CSS = SHELL + `
   .list a{display:flex;flex-direction:column;padding:28px 28px 26px;border:none;border-radius:var(--r-card);background:var(--tint);transition:transform .35s var(--ease),box-shadow .35s var(--ease),background-color .25s var(--ease)}
   .list .t{font-size:1.2rem}
   .list .e{max-width:none;margin-top:8px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .series-groups{grid-template-columns:1fr 1fr;gap:18px}
+  .series-group{padding:32px 32px 24px;border-radius:var(--r-tile)}
   .hub-faq{display:grid;grid-template-columns:1fr 1fr;column-gap:56px;align-items:start;border-bottom:none}
   .hub-faq h2{grid-column:1/-1}
   .hub-faq details{border-bottom:1px solid var(--line);border-top:none}
@@ -429,6 +474,19 @@ function hubPage(hub, arts) {
   };
   // 長篇內容與常見問題：HUBS 沒填就是空陣列，整塊不輸出
   const intro = hub.intro || [], faqs = hub.faqs || [];
+  // 系列導讀：依閱讀順序分組，編號接續（第 1 篇、第 2 篇……）。找不到的 id 直接讓建置失敗
+  const byId = new Map(arts.map(a => [a.id, a]));
+  let seriesNo = 0;
+  const seriesGroups = hub.series ? hub.series.groups.map(g => {
+    const items = g.ids.map(k => {
+      const a = byId.get((hub.series.prefix || '') + k);
+      if (!a) throw new Error(`${hub.cat} 系列導讀找不到文章：${(hub.series.prefix || '') + k}`);
+      return a;
+    });
+    const start = seriesNo + 1;
+    seriesNo += items.length;
+    return { h: g.h, start, end: seriesNo, items };
+  }) : [];
   const faqld = faqs.length ? {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -499,7 +557,19 @@ ${siteHeader()}
       <h2>${esc(sec.h)}</h2>` : ''}
       ${(sec.p || []).map(t => `<p>${esc(t)}</p>`).join('\n      ')}
     </section>`).join('\n    ')}
-  </div>` : ''}
+  </div>` : ''}${seriesGroups.length ? `
+  <section class="hub-series" id="series" aria-labelledby="series-h">
+    <h2 id="series-h">${esc(hub.series.h)}</h2>
+    <p class="series-p">${esc(hub.series.p)}</p>
+    <div class="series-groups">
+    ${seriesGroups.map(g => `<div class="series-group">
+      <h3><span>${g.start === g.end ? `第 ${g.start} 篇` : `第 ${g.start}–${g.end} 篇`}</span>${esc(g.h)}</h3>
+      <ol start="${g.start}">
+        ${g.items.map(a => `<li><a href="/posts/${a.id}">${esc(a.title)}</a></li>`).join('\n        ')}
+      </ol>
+    </div>`).join('\n    ')}
+    </div>
+  </section>` : ''}
   <div class="list-head" id="list-head">
   <div class="count" id="count">共 ${arts.length} 篇・由新到舊</div>${arts.length > 12 ? `
   <div class="finder">
