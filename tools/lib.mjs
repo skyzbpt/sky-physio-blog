@@ -291,18 +291,20 @@ export const subjectOf = title => {
   if (/(住|躲|藏|卡|泡)在/.test(s)) return '';        // 「情緒住在身體」是子句
   if (/^像|像在|一樣$/.test(s)) return '';            // 比喻（「像推鞦韆一樣」）
   if (/比(?!賽)/.test(s)) return '';                  // 比較句（「脊髓比脊椎短」）
+  if (/了$|被|屬於$/.test(s)) return '';              // 子句（「疼痛的音量被調大了」「你的痛屬於」）
   return s;
 };
 
 // 讓問句能獨立成立（利於 FAQ rich result 與 AI 問答抽取）
+// 主題與問句之間一律用「：」隔開（「旋轉肌袖：為什麼那麼常出問題？」）。以前是直接接上或替換代名詞，
+// 只要主題不是乾淨的名詞、或問句本身已有主詞，就會黏成病句：
+//   「慢性疼痛的規模的負擔有多大？」「大腦的下行抑制系統套系統一定是止痛的嗎？」「坐骨神經痛什麼是神經滑動運動？」
 function qualifyQuestion(q, subject) {
   if (!subject || q.includes(subject)) return q;
-  // 「這些動作…」→「X 的動作…」；「它在做什麼」→「X 在做什麼」
   if (/^(這|那)(幾|樣|麼)/.test(q)) return q;       // 「這幾天」「這樣」不是指代主題，補了反而成病句
-  if (/^(這|那)(些|個|種|類|項)/.test(q)) return subject + '的' + q.replace(/^(這|那)(些|個|種|類|項)/, '');
-  if (/^(它|這|其|該)[們]?/.test(q)) return subject + q.replace(/^(它|這|其|該)[們]?/, '');
-  if ([...q].length <= 7 || /^(要|會|該|怎|為|如何|多|有沒有|需不需要|什麼|哪)/.test(q)) return subject + q;
-  return q;
+  if (/^(什麼是|什麼叫|何謂)/.test(q)) return q;     // 定義題本身就完整
+  const needs = /^(它|這|那|其|該)/.test(q) || [...q].length <= 7 || /^(要|會|怎|為|如何|多|有沒有|需不需要|什麼|哪)/.test(q);
+  return needs ? `${subject}：${q}` : q;
 }
 
 export function extractFaqs(content, title) {
