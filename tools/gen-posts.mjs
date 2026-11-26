@@ -9,6 +9,25 @@ import { resolveModified } from './modified.mjs';
 // id → 真實修改日期（由 data/modified.json 的內容雜湊決定），genPosts 開頭填入
 let MODIFIED = new Map();
 
+// 預約區塊（側欄與文末）的標題：用讀者在這個分類常見的處境來問，讓有需要的人一眼認出自己。
+// 沒列到的分類用預設標題。
+const CTA_TITLE = {
+  '下背痛': '腰痛反覆、坐久就痛？',
+  '肩膀痛': '舉手卡卡、晚上壓到就痛？',
+  '膝蓋痛': '上下樓梯、跑步時膝蓋痛？',
+  '足踝痛': '腳踝反覆扭、腳跟一早就痛？',
+  '髖與鼠蹊痛': '髖部卡卡、鼠蹊痛不敢跨步？',
+  '手肘與手腕痛': '手肘手腕痛、手麻睡不好？',
+  '顳顎關節': '張嘴痛、咬東西卡卡？',
+  '高級筋膜技術': '同一個地方總是緊、怎麼按都鬆不開？',
+  '顱薦椎': '長期緊繃、睡不好，怎麼放鬆都放不下？',
+  '公路車': '騎車騎到痛，想找出原因？',
+  '紅繩懸吊': '想把核心穩定練回來？',
+  '疼痛科學': '痛很久了，檢查卻說沒事？',
+  '三鐵運動修復': '訓練一加量就痛？',
+};
+const ctaTitle = cat => CTA_TITLE[cat] || '身體有話想說？';
+
 /* ---------- 文章頁 CSS ----------
    外殼（SHELL）與長文排版（ARTICLE_CSS）來自 css.mjs，這裡只放文章頁專屬的元件。
    閱讀面是白底、692px 版心；色塊（快速解答、目錄、作者、預約）一律淡天空灰、大圓角、沒有外框。 */
@@ -325,7 +344,7 @@ ${siteHeader()}
     <p class="lede">${esc(a.excerpt)}</p>${quickHtml}
     <aside class="post-side" aria-label="本篇章節與預約">${tocHtml}
       <div class="side-cta">
-        <div class="t">身體有話想說？</div>
+        <div class="t">${esc(ctaTitle(a.cat))}</div>
         <p>初次評估會花時間聽你說、看你動，再一起決定方向。</p>
         <a class="btn sky sm" href="${BOOK_URL}" target="_blank" rel="noopener">預約評估</a>${hubSlug ? `
         <a class="side-hub" href="/topics/${hubSlug}">更多《${esc(a.cat)}》文章 →</a>` : ''}
@@ -345,7 +364,7 @@ ${bodyHtml}
       </div>
     </aside>
     <aside class="end-cta" aria-label="預約評估與分享">
-      <div class="t">身體有話想說？</div>
+      <div class="t">${esc(ctaTitle(a.cat))}</div>
       <p>初次評估會花時間聽你說、看你動，再一起決定方向。覺得這篇有幫助，也歡迎分享給需要的人。</p>
       <div class="row">
         <a class="btn sky" href="${BOOK_URL}" target="_blank" rel="noopener">預約評估</a>
