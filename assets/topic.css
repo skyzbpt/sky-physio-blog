@@ -167,6 +167,19 @@ footer{background:var(--tint);padding:10px 0 16px;font-size:12px;line-height:1.5
 .hub-intro h2{font-size:1.3rem;line-height:1.35;margin-bottom:12px}
 .hub-intro p{font-size:1rem;line-height:1.85;color:var(--ink-2)}
 .hub-intro p+p{margin-top:12px}
+/* 系列導讀（HUBS 的 series）：照閱讀順序分組的連結清單；沒填就整塊不輸出 */
+.hub-series{margin:0 0 72px;scroll-margin-top:calc(var(--nav-h) + 20px)}
+.hub-series h2{font-size:clamp(1.7rem,3.6vw,2.5rem);line-height:1.16;letter-spacing:-.015em;margin-bottom:12px}
+.series-p{font-size:1rem;line-height:1.85;color:var(--ink-2);max-width:40em;margin-bottom:24px}
+.series-groups{display:grid;gap:12px}
+.series-group{padding:24px 22px 18px;background:var(--tint);border-radius:var(--r-card)}
+.series-group h3{font-size:1.15rem;line-height:1.4;margin:0 0 12px}
+.series-group h3 span{display:block;font-size:13px;font-weight:400;color:var(--muted);margin-bottom:4px}
+.series-group ol{margin:0;padding-left:2.1em}
+.series-group li{margin:0;padding:5px 0 5px .2em;font-size:1rem;line-height:1.55;color:var(--muted)}
+.series-group li::marker{font-size:.9em}
+.series-group a{color:var(--ink);transition:color .25s var(--ease)}
+.series-group a:hover{color:var(--sky-ink);text-decoration:underline}
 /* 常見問題（HUBS 的 faqs）：可收合，內容仍在 HTML 裡供索引 */
 .hub-faq{margin-top:88px;border-bottom:1px solid var(--line)}
 .hub-faq h2{font-size:clamp(1.7rem,3.6vw,2.5rem);line-height:1.16;letter-spacing:-.015em;margin-bottom:24px}
@@ -219,6 +232,8 @@ footer{background:var(--tint);padding:10px 0 16px;font-size:12px;line-height:1.5
   .list a{display:flex;flex-direction:column;padding:28px 28px 26px;border:none;border-radius:var(--r-card);background:var(--tint);transition:transform .35s var(--ease),box-shadow .35s var(--ease),background-color .25s var(--ease)}
   .list .t{font-size:1.2rem}
   .list .e{max-width:none;margin-top:8px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .series-groups{grid-template-columns:1fr 1fr;gap:18px}
+  .series-group{padding:32px 32px 24px;border-radius:var(--r-tile)}
   .hub-faq{display:grid;grid-template-columns:1fr 1fr;column-gap:56px;align-items:start;border-bottom:none}
   .hub-faq h2{grid-column:1/-1}
   .hub-faq details{border-bottom:1px solid var(--line);border-top:none}
