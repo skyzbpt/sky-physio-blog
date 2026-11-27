@@ -77,6 +77,7 @@ const rootFiles = [
   'physio-guide.html', 'taipei-physio.html', '404.html',
   'triathlon-physio.html', 'beitou-physio.html', 'shilin-physio.html', 'shipai-physio.html',
   'privacy.html',
+  'stats.html', // 站長用即時閱讀統計（noindex、不進 sitemap）
   'sitemap.xml', 'feed.xml', 'robots.txt',
   'llms.txt', 'llms-full.txt',
   'favicon.ico', 'apple-touch-icon.png', '.nojekyll', 'CNAME',

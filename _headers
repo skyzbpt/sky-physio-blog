@@ -25,3 +25,7 @@
 # 否則 Google 無法渲染 /blog 的清單）。
 /assets/articles-index.json
   X-Robots-Tag: noindex
+
+# 站長用的即時閱讀統計頁：不該出現在搜尋結果（頁面本身也有 meta noindex，也沒有任何頁面連到它）
+/stats
+  X-Robots-Tag: noindex, nofollow
