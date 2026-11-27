@@ -5,9 +5,8 @@
 let ARTICLES = [];
 /* 各篇閱讀次數（/api/views，由 worker/index.js 提供）。拿不到就是空物件，清單照常顯示、只是沒有數字 */
 let VIEWS = {};
-const HOT = "熱門文章";
 const VIEW_MIN = 10;   // 未滿 10 次不顯示數字（與文章頁 post.js 一致）
-const HOT_TOP = 5;     // 全站閱讀次數前 5 名加上「熱門」標籤
+const HOT_TOP = 5;     // 全站閱讀次數前 5 名：加上「熱門」標籤，並排在「精選文章」最前面
 let currentCat = "精選文章";
 const cats = ["精選文章","下背痛","肩膀痛","膝蓋痛","足踝痛","髖與鼠蹊痛","手肘與手腕痛","顳顎關節","高級筋膜技術","顱薦椎","公路車","紅繩懸吊","疼痛科學"];
 const FEATURED = [
@@ -20,20 +19,23 @@ let postQuery = "";
 
 /* 篇數只在電腦版側欄顯示（手機的橫向分類列用 CSS 藏起來）；資料載入前先不給數字 */
 function views(a){ return VIEWS[a.id] || 0; }
-/* 「熱門文章」分類：只列出已達顯示門檻的文章，依閱讀次數排序 */
-function hotList(){ return ARTICLES.filter(a=>views(a)>=VIEW_MIN).sort((x,y)=>views(y)-views(x)); }
-function hotIds(){ return new Set(hotList().slice(0,HOT_TOP).map(a=>a.id)); }
-/* 有足夠的閱讀數據才出現「熱門文章」分類鈕，放在「精選文章」後面 */
-function chipCats(){ return hotList().length ? [cats[0], HOT, ...cats.slice(1)] : cats; }
+/* 閱讀次數前 5 名（只算已達顯示門檻的文章） */
+function hotTop(){ return ARTICLES.filter(a=>views(a)>=VIEW_MIN).sort((x,y)=>views(y)-views(x)).slice(0,HOT_TOP); }
+function hotIds(){ return new Set(hotTop().map(a=>a.id)); }
+/* 「精選文章」＝熱門前 5 名（依閱讀次數）＋ Sky 手選的 FEATURED（已在熱門裡的不重複列）。
+   還沒有閱讀數據時就是原本的 FEATURED，與建置時輸出的靜態清單一致。 */
+function featuredList(){
+  const hot = hotTop(), ids = new Set(hot.map(a=>a.id));
+  return hot.concat(FEATURED.filter(id=>!ids.has(id)).map(id=>ARTICLES.find(a=>a.id===id)).filter(Boolean));
+}
 function catCount(c){
   if(!ARTICLES.length) return "";
-  if(c===HOT) return hotList().length;
-  return c==="精選文章" ? FEATURED.filter(id=>ARTICLES.some(a=>a.id===id)).length
+  return c==="精選文章" ? featuredList().length
                         : ARTICLES.filter(a=>a.cat===c).length;
 }
 /* 分類鈕用 data-cat 記住自己是哪一類，點擊由 #chips 統一處理（不寫 onclick 屬性：CSP 不允許） */
 function renderChips(){
-  document.getElementById("chips").innerHTML = chipCats().map(c=>
+  document.getElementById("chips").innerHTML = cats.map(c=>
     `<button class="chip ${c===currentCat?"on":""}" data-cat="${esc(c)}" aria-pressed="${c===currentCat}">${esc(c)} <span class="n">${catCount(c)}</span></button>`).join("");
 }
 function setCat(c){ currentCat=c; shownCount=PAGE_SIZE; renderChips(); renderList(); }
@@ -42,9 +44,8 @@ function matchedArticles(){
   if(q){
     return ARTICLES.filter(a=>(a.title+" "+a.excerpt+" "+a.cat).toLowerCase().includes(q)).sort((x,y)=>y.date.localeCompare(x.date));
   }
-  if(currentCat===HOT) return hotList();
   return currentCat==="精選文章"
-    ? FEATURED.map(id=>ARTICLES.find(a=>a.id===id)).filter(Boolean)
+    ? featuredList()
     : ARTICLES.filter(a=>a.cat===currentCat).sort((x,y)=>y.date.localeCompare(x.date));
 }
 /* 清單資料會用 innerHTML 畫出來：先跳脫，與建置時輸出的靜態清單（tools/inject.mjs 的 esc）一致 */
