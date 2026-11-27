@@ -41,13 +41,14 @@
   });
   /* 閱讀次數：每個分頁第一次打開這篇時 +1（重新整理不重算，sessionStorage 關掉分頁即清除），
      其他時候只讀取。次數由 worker/index.js 存在 Cloudflare D1，不記錄任何能辨識讀者的資料。
-     未滿 VIEW_MIN 次先不顯示——剛上線的文章寫「閱讀 2 次」對讀者沒有意義。 */
+     從第 1 次就顯示（讀者自己這次也算在內，所以真人讀者打開時至少會看到「閱讀 1 次」）。
+     曾經設過「滿 10 次才顯示」，結果大多數文章點進去都看不到紀錄，像是沒有在計算。 */
   (function(){
     var el=document.querySelector('.meta .views'); if(!el||!window.fetch) return;
     var m=location.pathname.match(/^\/posts\/([a-z0-9-]+?)(?:\.html)?\/?$/); if(!m) return;
     var slug=m[1], key='viewed:'+slug, seen=false;
     try{ seen=sessionStorage.getItem(key)==='1'; }catch(e){}
-    var VIEW_MIN=10, HOT=1000, at=0;
+    var VIEW_MIN=1, HOT=1000, at=0;
     function ask(method){
       at=Date.now();
       return fetch('/api/views/'+slug,{method:method,credentials:'omit',cache:'no-store'})
