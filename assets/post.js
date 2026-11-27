@@ -47,17 +47,28 @@
     var m=location.pathname.match(/^\/posts\/([a-z0-9-]+?)(?:\.html)?\/?$/); if(!m) return;
     var slug=m[1], key='viewed:'+slug, seen=false;
     try{ seen=sessionStorage.getItem(key)==='1'; }catch(e){}
-    var VIEW_MIN=10, HOT=1000;
-    fetch('/api/views/'+slug,{method:seen?'GET':'POST',credentials:'omit'})
-      .then(function(r){ return r.ok?r.json():null; })
-      .then(function(d){
-        if(!seen){ try{ sessionStorage.setItem(key,'1'); }catch(e){} }
-        if(!d||typeof d.n!=='number'||d.n<VIEW_MIN) return;
-        el.innerHTML='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>';
-        el.appendChild(document.createTextNode((d.n>=HOT?'熱門・':'')+'閱讀 '+d.n.toLocaleString('zh-TW')+' 次'));
-        if(d.n>=HOT) el.classList.add('hot');
-        el.hidden=false;
-      }).catch(function(){});
+    var VIEW_MIN=10, HOT=1000, at=0;
+    function ask(method){
+      at=Date.now();
+      return fetch('/api/views/'+slug,{method:method,credentials:'omit',cache:'no-store'})
+        .then(function(r){ return r.ok?r.json():null; });
+    }
+    function show(d){
+      if(!d||typeof d.n!=='number'||d.n<VIEW_MIN) return;
+      el.innerHTML='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>';
+      el.appendChild(document.createTextNode((d.n>=HOT?'熱門・':'')+'閱讀 '+d.n.toLocaleString('zh-TW')+' 次'));
+      el.classList.toggle('hot',d.n>=HOT);
+      el.hidden=false;
+    }
+    ask(seen?'GET':'POST').then(function(d){
+      /* 確定有記到才標記「這個分頁讀過了」；伺服器暫時出錯時，重新整理還能補記 */
+      if(!seen&&d&&typeof d.n==='number'){ try{ sessionStorage.setItem(key,'1'); }catch(e){} }
+      show(d);
+    }).catch(function(){});
+    /* 按「上一頁」回到這篇（瀏覽器直接還原舊畫面）或切回這個分頁時，只讀取最新數字、不重算 */
+    function refresh(){ if(Date.now()-at>5000) ask('GET').then(show).catch(function(){}); }
+    addEventListener('pageshow',function(e){ if(e.persisted) refresh(); });
+    document.addEventListener('visibilitychange',function(){ if(!document.hidden) refresh(); });
   })();
   /* 快速解答：手機上先收合，露出第一則 */
   (function(){

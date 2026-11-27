@@ -546,10 +546,12 @@ hubOk === cats.length && pass(`每個主題頁 canonical/清單/description 完�
   const noSlot = postFiles.filter(f => !read('posts/' + f).includes('<span class="views" hidden></span>'));
   if (noSlot.length) bad.push(`${noSlot.length} 篇文章缺閱讀次數欄位，例如 ${noSlot[0]}`);
   if (!read('privacy.html').includes('文章閱讀次數')) bad.push('隱私權政策未揭露文章閱讀次數');
+  // 閱讀次數不能被快取：曾經設過 max-age，讀者讀完回到 /blog 看到的還是舊數字
+  if (existsSync(join(REPO, 'worker/index.js')) && /max-age=[1-9]/.test(read('worker/index.js'))) bad.push('worker 回應不該設 max-age（閱讀次數會延遲）');
   // 站長用的 /stats：不能被搜尋引擎收錄，也不能出現在 sitemap
   if (!existsSync(join(REPO, 'stats.html')) || !read('stats.html').includes('<meta name="robots" content="noindex, nofollow">')) bad.push('stats.html 缺 noindex');
   if (read('sitemap.xml').includes('/stats</loc>')) bad.push('/stats 不該在 sitemap');
-  bad.length === 0 ? pass('文章閱讀次數：worker 只接 /api/*、D1 綁定、文章欄位、隱私權揭露、/stats 不收錄') : fail('閱讀次數', bad.join('；'));
+  bad.length === 0 ? pass('文章閱讀次數：worker 只接 /api/*、不快取、D1 綁定、文章欄位、隱私權揭露、/stats 不收錄') : fail('閱讀次數', bad.join('；'));
 }
 
 /* ---------- 9b. 法律頁（隱私權） ---------- */
