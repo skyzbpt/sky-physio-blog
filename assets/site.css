@@ -360,6 +360,10 @@ section{padding-top:112px;padding-bottom:112px}
 .post-meta span{white-space:nowrap}
 /* 分類排在日期前面（資料順序是日期在前） */
 .post-meta .cat{order:-1;color:var(--sky-ink);font-weight:600}
+/* 閱讀次數與「熱門」標籤（assets/blog.js 取得 /api/views 後才畫出） */
+.post-meta .views{display:inline-flex;align-items:center;gap:4px}
+.post-meta .views svg{flex:none;color:var(--sky-ink)}
+.post-meta .hot-tag{padding:0 8px;border-radius:980px;background:var(--sky-btn);color:#fff;font-weight:600}
 .post-title{font-size:1.25rem;font-weight:600;line-height:1.4;letter-spacing:-.01em;color:var(--ink);text-wrap:pretty;transition:color .25s var(--ease)}
 .post-row:hover .post-title{color:var(--sky-ink)}
 .post-ex{margin-top:8px;font-size:15px;line-height:1.65;color:var(--muted);max-width:46em;

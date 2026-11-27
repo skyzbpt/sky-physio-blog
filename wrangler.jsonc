@@ -1,15 +1,28 @@
 {
-  // Cloudflare Workers（Git 連動）部署設定 — 純靜態網站
-  // 部署指令 `npx wrangler versions upload` 會讀取本檔，將 dist/ 當作靜態資產上傳。
+  // Cloudflare Workers（Git 連動）部署設定 — 靜態網站 + 一支只管「閱讀次數」的小程式
+  // 部署指令 `npx wrangler versions upload` 會讀取本檔，將 dist/ 當作靜態資產上傳，並一起上傳 worker/index.js。
   //
   // ⚠ name 必須與你 Cloudflare 上「這個網站的 Worker 名稱」一致
   //   （依 skyblog.skyzbpt.workers.dev 推斷為 skyblog；若不同請改這一行）。
   "name": "skyblog",
   "compatibility_date": "2026-07-18",
 
-  // 只有靜態資產、沒有 Worker 程式碼：Cloudflare 直接服務 dist/ 內的檔案。
+  // 閱讀次數 API（/api/views）。只有 /api/* 會進到這支程式（見下方 run_worker_first），
+  // 其他網址仍直接由靜態資產服務，_headers／_redirects 照常生效。
+  "main": "worker/index.js",
+
+  // 閱讀次數存在 D1 資料庫 skyblog-views（資料表 views，結構見 worker/index.js 開頭）
+  "d1_databases": [
+    { "binding": "DB", "database_name": "skyblog-views", "database_id": "8933857b-6edf-4f1c-9d72-55d8041c9b25" }
+  ],
+
+  // 靜態資產：Cloudflare 直接服務 dist/ 內的檔案。
   "assets": {
     "directory": "./dist",
+    // worker 內用 env.ASSETS 讀文章清單（只接受真的存在的文章）
+    "binding": "ASSETS",
+    // 只有 /api/* 先進 worker；其餘請求不經過程式，直接服務靜態檔（不耗 Worker 請求額度）
+    "run_worker_first": ["/api/*"],
     // 找不到的路徑回傳自訂 404 頁（狀態碼 404）
     "not_found_handling": "404-page"
     // html_handling 預設為 auto-trailing-slash：/posts/foo.html → 服務於乾淨網址 /posts/foo

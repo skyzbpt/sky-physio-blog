@@ -1,6 +1,7 @@
 // 法律頁：隱私權保護聲明（/privacy）
-// 內容必須與網站實際行為一致——本站是純靜態網站，沒有後端服務，也沒有廣告追蹤碼；
-// 唯一的統計是 Cloudflare Web Analytics（Cloudflare 在邊緣自動插入的匿名流量統計）。
+// 內容必須與網站實際行為一致——本站是靜態網站，沒有廣告追蹤碼；
+// 統計有兩種：Cloudflare Web Analytics（Cloudflare 在邊緣自動插入的匿名流量統計），
+// 以及文章閱讀次數（worker/index.js，只存「每篇文章被讀幾次」一個數字）。
 // 若日後加入表單、分析工具或第三方腳本，這一頁必須同步更新（npm run verify 會比對 CSP 與本頁）。
 import { writeFileSync } from 'fs';
 import { join } from 'path';
@@ -8,7 +9,7 @@ import { REPO, BASE, esc, ROBOTS, AUTHOR, PUBLISHER, ldJson } from './lib.mjs';
 import { SHELL, siteHeader, siteFooter } from './css.mjs';
 
 // 最後更新日期：內容有實質變動時再手動前進（不要每次建置都改，否則是假更新訊號）
-const UPDATED = '2026-11-24';
+const UPDATED = '2026-11-27';
 const CONTACT = 'skyzbpt@gmail.com';
 
 /* 外殼來自 css.mjs 的 SHELL；版心與文章頁相同（692px），色塊一律淡天空灰、沒有外框 */
@@ -150,9 +151,10 @@ const privacy = {
   <li><strong>您預約評估時：</strong>您在 Google 日曆預約頁填寫的姓名、聯絡方式及預約時段，用於安排評估及必要時與您聯繫。</li>
   <li><strong>一般瀏覽時：</strong>網站主機（Cloudflare）會自行記錄連線資料，包括您使用連線設備的 IP 位址、使用時間、使用的瀏覽器及瀏覽的網址等。此紀錄僅用於阻擋惡意流量、維護網站安全與正常運作，不做個人層級的分析，<strong>絕不對外公布</strong>。</li>
   <li><strong>流量統計：</strong>本網站使用 Cloudflare 提供的 <strong>Cloudflare Web Analytics</strong> 統計瀏覽人次，以了解哪些衛教內容對讀者有幫助、持續改善網站。它會記錄瀏覽的網址、來源網頁、瀏覽器與裝置類型、大約所在國家及頁面載入速度；<strong>不會在您的裝置上儲存任何資料，也不以 IP 位址或裝置指紋辨識您的身分</strong>。本網站只看得到彙整後的統計數字，無法得知是哪一位讀者。若您不希望被納入統計，可使用瀏覽器的追蹤保護功能或廣告封鎖外掛，封鎖 <code>static.cloudflareinsights.com</code>，網站的文章與各項功能仍可正常使用。</li>
+  <li><strong>文章閱讀次數：</strong>文章頁上顯示的「閱讀 ○ 次」，是您打開文章時，網站把<strong>該篇文章的計數加一</strong>。伺服器只存每篇文章的累計次數這一個數字，<strong>不記錄 IP 位址、Cookie、裝置資訊或任何能辨識您的資料</strong>。為了避免重新整理頁面時重複計算，瀏覽器會在 <code>sessionStorage</code> 暫存「這個分頁已讀過這篇」的標記，關閉分頁後即自動清除，不會傳回網站。</li>
   <li><strong>健康資料：</strong>您於來信或預約中描述的身體狀況、受傷經過或病史，屬《個人資料保護法》第 6 條所定之特種個人資料，僅用於了解您的狀況與準備評估，不轉交他人，也不公開。若本網站希望將您的提問改寫為衛教文章，會先徵得您的同意；文章中的個案一律不寫姓名、暱稱或姓氏稱呼，僅以身分描述呈現。</li>
 </ul>
-<p>本網站<strong>沒有會員註冊、登入、留言、問卷或電子報訂閱功能</strong>；除上述 Cloudflare Web Analytics 的匿名流量統計外，不使用 Google Analytics、Meta Pixel 等其他分析或廣告追蹤工具。</p>
+<p>本網站<strong>沒有會員註冊、登入、留言、問卷或電子報訂閱功能</strong>；除上述 Cloudflare Web Analytics 的匿名流量統計與文章閱讀次數外，不使用 Google Analytics、Meta Pixel 等其他分析或廣告追蹤工具。</p>
 <p>依《個人資料保護法》第 8 條，另向您說明下列事項：</p>
 <ul>
   <li><strong>蒐集者：</strong>本網站經營者 Sky 物理治療師。</li>

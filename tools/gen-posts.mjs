@@ -38,6 +38,11 @@ const CSS = SHELL + ARTICLE_CSS + `
 /* 麵包屑單行、過長以省略號收尾。overflow:hidden 會把連結的透明感應區（::after）一起切掉，
    所以上下留出 padding 讓感應區待在盒子裡，再用負 margin 把版面位置拉回原處。 */
 .crumb{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:13px 0;margin:-13px 0 15px}
+/* 閱讀次數：由 assets/post.js 向 /api/views 取得後才顯示（未滿門檻或 API 失敗就維持隱藏） */
+.meta .views{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.meta .views[hidden]{display:none}
+.meta .views svg{flex:none;color:var(--sky-ink)}
+.meta .views.hot{color:var(--sky-ink);font-weight:600}
 .pp-share{position:relative;margin-left:auto;display:inline-flex;align-items:center;min-height:32px;padding:0 15px;border:none;border-radius:980px;background:var(--tint);color:var(--sky-ink);font-family:var(--sans);font-size:13px;white-space:nowrap;cursor:pointer;transition:background-color .25s var(--ease)}
 .pp-share::after{content:"";position:absolute;inset:-6px -2px}
 .pp-share:hover{background:var(--tint-2)}
@@ -336,7 +341,7 @@ ${siteHeader()}
   <article class="post-page">
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › ${hubSlug ? `<a href="/topics/${hubSlug}">${esc(a.cat)}</a>` : esc(a.cat)} › <span>${esc(a.title)}</span></nav>
     <div class="meta">
-      <time class="date" datetime="${a.date}">${a.date}</time><span class="cat">${esc(a.cat)}</span><span>約 ${mins} 分鐘</span>
+      <time class="date" datetime="${a.date}">${a.date}</time><span class="cat">${esc(a.cat)}</span><span>約 ${mins} 分鐘</span><span class="views" hidden></span>
       <button class="pp-share" type="button" title="複製這篇文章的連結">複製連結</button>
     </div>
     <h1 class="post-title">${phrases(a.title)}</h1>

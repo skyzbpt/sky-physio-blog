@@ -39,6 +39,26 @@
     var h=e.target&&e.target.closest&&e.target.closest('.post-body a.hash');
     if(h) setTimeout(function(){ copyLink('已複製這一段的連結'); },0);
   });
+  /* 閱讀次數：每個分頁第一次打開這篇時 +1（重新整理不重算，sessionStorage 關掉分頁即清除），
+     其他時候只讀取。次數由 worker/index.js 存在 Cloudflare D1，不記錄任何能辨識讀者的資料。
+     未滿 VIEW_MIN 次先不顯示——剛上線的文章寫「閱讀 2 次」對讀者沒有意義。 */
+  (function(){
+    var el=document.querySelector('.meta .views'); if(!el||!window.fetch) return;
+    var m=location.pathname.match(/^\/posts\/([a-z0-9-]+?)(?:\.html)?\/?$/); if(!m) return;
+    var slug=m[1], key='viewed:'+slug, seen=false;
+    try{ seen=sessionStorage.getItem(key)==='1'; }catch(e){}
+    var VIEW_MIN=10, HOT=1000;
+    fetch('/api/views/'+slug,{method:seen?'GET':'POST',credentials:'omit'})
+      .then(function(r){ return r.ok?r.json():null; })
+      .then(function(d){
+        if(!seen){ try{ sessionStorage.setItem(key,'1'); }catch(e){} }
+        if(!d||typeof d.n!=='number'||d.n<VIEW_MIN) return;
+        el.innerHTML='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>';
+        el.appendChild(document.createTextNode((d.n>=HOT?'熱門・':'')+'閱讀 '+d.n.toLocaleString('zh-TW')+' 次'));
+        if(d.n>=HOT) el.classList.add('hot');
+        el.hidden=false;
+      }).catch(function(){});
+  })();
   /* 快速解答：手機上先收合，露出第一則 */
   (function(){
     var q=document.getElementById('quick');
