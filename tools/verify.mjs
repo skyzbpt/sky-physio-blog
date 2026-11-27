@@ -534,6 +534,21 @@ for (const c of cats) {
 }
 hubOk === cats.length && pass(`每個主題頁 canonical/清單/description 完整 (${hubOk})`);
 
+/* ---------- 8b. 文章閱讀次數（worker/index.js + D1） ---------- */
+// 只有 /api/* 該經過 worker（其餘照舊是靜態檔）；文章頁要有放次數的位置；
+// 隱私權政策要揭露這項統計（存了什麼、沒存什麼）。
+{
+  const bad = [];
+  const wr = existsSync(join(REPO, 'wrangler.jsonc')) ? read('wrangler.jsonc') : '';
+  if (!/"main":\s*"worker\/index\.js"/.test(wr) || !existsSync(join(REPO, 'worker/index.js'))) bad.push('wrangler.jsonc 缺 main: worker/index.js');
+  if (!/"run_worker_first":\s*\[\s*"\/api\/\*"\s*\]/.test(wr)) bad.push('run_worker_first 應只有 "/api/*"');
+  if (!/"binding":\s*"DB"[\s\S]*?"database_id":\s*"[0-9a-f-]{36}"/.test(wr)) bad.push('缺 D1 綁定 DB');
+  const noSlot = postFiles.filter(f => !read('posts/' + f).includes('<span class="views" hidden></span>'));
+  if (noSlot.length) bad.push(`${noSlot.length} 篇文章缺閱讀次數欄位，例如 ${noSlot[0]}`);
+  if (!read('privacy.html').includes('文章閱讀次數')) bad.push('隱私權政策未揭露文章閱讀次數');
+  bad.length === 0 ? pass('文章閱讀次數：worker 只接 /api/*、D1 綁定、文章欄位、隱私權揭露') : fail('閱讀次數', bad.join('；'));
+}
+
 /* ---------- 9b. 法律頁（隱私權） ---------- */
 // 這頁描述的是網站的實際資料行為，必須存在、可被索引，且全站都連得到。
 {
