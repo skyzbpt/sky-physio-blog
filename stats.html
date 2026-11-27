@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#FFFFFF">
+<!-- 站長用的即時閱讀統計：不列入 sitemap、不從任何頁面連過來，並以 noindex 排除在搜尋結果外
+     （_headers 也對 /stats 送 X-Robots-Tag: noindex）。資料來自 /api/views/stats，程式在 assets/stats.js。 -->
+<meta name="robots" content="noindex, nofollow">
+<title>即時閱讀統計｜Sky 物理治療師</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<style>
+:root{--bg:#fff;--tint:#F4F8FB;--tint-2:#E8F0F6;--ink:#1d1d1f;--ink-2:#424245;--muted:#6e6e73;--line:#E5EAF0;--sky:#2E9AD6;--sky-ink:#0A6AA8;--sky-btn:#0978BC;--sky-soft:#E4F1FA;
+  --sans:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+main{max-width:960px;margin:0 auto;padding:36px 16px 72px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 20px;margin-bottom:24px}
+h1{font-size:clamp(1.6rem,4vw,2.2rem);letter-spacing:-.01em}
+.live{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+.live i{width:8px;height:8px;border-radius:50%;background:var(--sky);animation:pulse 2s infinite}
+.live.err i{background:#c0392b;animation:none}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(46,154,214,.5)}70%{box-shadow:0 0 0 8px rgba(46,154,214,0)}100%{box-shadow:0 0 0 0 rgba(46,154,214,0)}}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
+.card{background:var(--tint);border-radius:18px;padding:16px 18px}
+.card b{display:block;font-size:clamp(1.5rem,4vw,2rem);font-weight:600;color:var(--sky-ink);font-variant-numeric:tabular-nums}
+.card span{font-size:13px;color:var(--muted)}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.tools button{min-height:36px;padding:0 15px;border:none;border-radius:980px;background:var(--tint);color:var(--sky-ink);font:inherit;font-size:14px;cursor:pointer}
+.tools button[aria-pressed="true"]{background:var(--sky-btn);color:#fff}
+.tools input{flex:1;min-width:160px;min-height:36px;padding:0 14px;border:1px solid var(--line);border-radius:980px;font:inherit;font-size:14px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+th{font-size:12px;font-weight:600;color:var(--muted)}
+th:nth-child(2),td:nth-child(2){text-align:left;white-space:normal}
+td:first-child{color:var(--muted);width:2.5em}
+td a{color:var(--ink);text-decoration:none}
+td a:hover{color:var(--sky-ink)}
+td .cat{display:block;font-size:12px;color:var(--sky-ink);margin-top:2px}
+td.up{color:var(--sky-ink);font-weight:600}
+tr.flash td{animation:flash 2.4s ease-out}
+@keyframes flash{from{background:var(--sky-soft)}to{background:transparent}}
+.note{margin-top:20px;font-size:12px;line-height:1.7;color:var(--muted)}
+@media(max-width:640px){.cards{grid-template-columns:repeat(2,1fr)}.hide-sm{display:none}}
+</style>
+<script src="/assets/stats.js" defer></script>
+</head>
+<body>
+<main>
+  <header>
+    <h1>即時閱讀統計</h1>
+    <span class="live" id="live"><i></i><span id="live-text">載入中…</span></span>
+  </header>
+  <section class="cards" aria-label="總覽">
+    <div class="card"><b id="c-today">–</b><span>今天閱讀</span></div>
+    <div class="card"><b id="c-yesterday">–</b><span>昨天閱讀</span></div>
+    <div class="card"><b id="c-week">–</b><span>近 7 天</span></div>
+    <div class="card"><b id="c-total">–</b><span>累計（含 7 月起歷史）</span></div>
+  </section>
+  <div class="tools" role="group" aria-label="排序">
+    <button type="button" data-sort="today" aria-pressed="true">依今天</button>
+    <button type="button" data-sort="week" aria-pressed="false">依近 7 天</button>
+    <button type="button" data-sort="total" aria-pressed="false">依累計</button>
+    <input id="q" type="search" placeholder="搜尋標題或分類" aria-label="搜尋文章">
+  </div>
+  <table>
+    <thead><tr><th>#</th><th>文章</th><th>今天</th><th class="hide-sm">昨天</th><th class="hide-sm">近 7 天</th><th>累計</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+  <p class="note">每 30 秒自動更新（切到別的分頁時暫停）。時間以台灣時間計算，每天午夜歸零。
+    「今天／昨天／近 7 天」從 2026-11-27 開始記錄；「累計」另含 2026 年 7 月起從 Cloudflare Web Analytics 匯入的歷史數字。
+    同一個分頁重新整理、搜尋引擎爬蟲與機器人不計。</p>
+</main>
+</body>
+</html>
