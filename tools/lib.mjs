@@ -436,7 +436,7 @@ export function firstImageOf(content) {
 export const TITLE_TERMS = [
   '慢性下背痛', '下背痛', '腰痛', '伸展', '疼痛科學', '疼痛預敏', '疼痛評估', '疼痛訊號', '疼痛模型',
   '以痛止痛', '整合假說', '惡性循環', '性別差異', '免疫系統', '化學信使', '神經纖維', '神經',
-  '半脫位', '關節後區發炎', '關節僵直', '喀喀聲', '筋膜', '按摩', '椎體活動度', '情緒', '疼痛',
+  '半脫位', '關節後區發炎', '關節僵直', '喀喀聲', '筋膜槍', '筋膜', '按摩', '椎體活動度', '情緒', '疼痛',
   // 顱薦椎系列：標題本身就在談的主題（標題沒有這些詞時，這幾篇只抽得到分類名「顱薦椎」）
   '基質', '頭骨', '禁忌症', '治療性疼痛', '組織記憶', '支點', '蝶枕交界', '神經系統', '情緒體', '喉嚨',
   '生物動力', '生物力學', 'T4 症候群', '內在治療過程', '顱薦律動', '枕下區',
@@ -460,8 +460,14 @@ export const roundedFontDataURI = () => 'data:font/ttf;base64,' + readFileSync(j
 /* ---------- markdown → HTML ---------- */
 // 外部連結：[文字](https://…)。一律開新分頁；美安台灣是推廣連結，加 sponsored 讓搜尋引擎知道。
 const linkRel = url => /^https:\/\/www\.markettaiwan\.com\.tw\//.test(url) ? 'noopener sponsored nofollow' : 'noopener nofollow';
+// 站內連結：[文字](/posts/文章id)、[文字](/topics/主題)、[文字](/about)，可帶 #段落錨點。
+// 文中脈絡連結（contextual internal link）是搜尋引擎判斷「哪幾篇在談相關的事、哪一篇最重要」的主要依據，
+// 原本內文只能寫外部連結，站內只靠文末「相關文章」與主題頁互連。同分頁開啟、不加 nofollow。
+// 目標是否存在由 npm run verify 檢查（見「內文站內連結皆有效」）。
+export const INTERNAL_LINK = /\[([^\]]+)\]\((\/[a-z0-9\/-]*(?:#[a-z0-9-]+)?)\)/g;
 export const inlineFormat = s => esc(s)
   .replace(/\[([^\]]+)\]\((https:\/\/[^\s)]+)\)/g, (_, t, u) => `<a href="${u}" target="_blank" rel="${linkRel(u)}">${t}</a>`)
+  .replace(INTERNAL_LINK, (_, t, u) => `<a href="${u}">${t}</a>`)
   .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
   .replace(/\*([^\s*][^*\n]*?)\*/g, '<em>$1</em>');
 

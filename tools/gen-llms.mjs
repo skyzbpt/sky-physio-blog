@@ -9,7 +9,7 @@ const url = id => `${BASE}/posts/${id}`;
 // 純文字化：移除 markdown 記號與圖片語法
 const plainText = t => String(t)
   .replace(/!\[[^\]]*\]\([^)]*\)/g, '')      // 圖片
-  .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1（$2）') // 連結：保留網址
+  .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, t, u) => `${t}（${u.startsWith('/') ? BASE + u : u}）`) // 連結：保留網址（站內連結補成完整網址）
   .replace(/<figure[\s\S]*?<\/figure>/g, '') // figure 區塊
   .replace(/^\s*##\s+/gm, '')                // ## 小標
   .replace(/^\s*>\s+/gm, '')                 // > 引言

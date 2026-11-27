@@ -3,7 +3,7 @@
 // 放在 repo 內（而非暫存區），確保不會因環境重建而遺失。
 import { readFileSync, readdirSync, existsSync, statSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, TODAY, loadArticles, CAT_SLUG, DESC_MIN, DESC_MAX, BLOGPOST_MAX, referencesOf } from './lib.mjs';
+import { REPO, BASE, TODAY, loadArticles, CAT_SLUG, DESC_MIN, DESC_MAX, BLOGPOST_MAX, referencesOf, INTERNAL_LINK } from './lib.mjs';
 import { hashOf, pageFingerprint } from './modified.mjs';
 import { fingerprintPages } from './sitemap.mjs';
 import { LEGAL_UPDATED } from './gen-legal.mjs';
@@ -69,6 +69,30 @@ cats.every(c => CAT_SLUG[c]) ? pass(`所有分類皆有主題頁 slug (${cats.le
   bad.length === 0
     ? pass('文章內文的 HTML 不含可執行的程式（script／事件屬性／javascript: 連結）')
     : fail('文章內文有不安全的 HTML', bad.slice(0, 5).join('、') + (bad.length > 5 ? ` 等 ${bad.length} 處` : ''));
+}
+
+// 內文站內連結（[文字](/posts/id)）：目標一定要存在。文章改名、刪除或打錯 id，
+// 會在站內留下 404 連結——Ahrefs 站內稽核會把它列為錯誤，讀者點了也是死路。
+{
+  const idSet = new Set(ids), topicSet = new Set(Object.values(CAT_SLUG));
+  const ok = u => {
+    const p = u.split('#')[0];
+    let m;
+    if ((m = p.match(/^\/posts\/([a-z0-9-]+)$/))) return idSet.has(m[1]);
+    if ((m = p.match(/^\/topics\/([a-z0-9-]+)$/))) return topicSet.has(m[1]);
+    if (p === '/') return true;
+    return /^\/[a-z0-9-]+$/.test(p) && existsSync(join(REPO, p.slice(1) + '.html'));
+  };
+  let n = 0;
+  const bad = [];
+  for (const a of arts) for (const m of a.content.matchAll(INTERNAL_LINK)) {
+    n++;
+    if (!ok(m[2])) bad.push(`${a.id} → ${m[2]}`);
+    if (m[2].split('#')[0] === `/posts/${a.id}`) bad.push(`${a.id} 連到自己`);
+  }
+  bad.length === 0
+    ? pass(`內文站內連結皆有效 (${n} 個)`)
+    : fail('內文站內連結指向不存在的頁面', bad.slice(0, 5).join('、') + (bad.length > 5 ? ` 等 ${bad.length} 處` : ''));
 }
 
 /* ---------- 2. 靜態頁數量 ---------- */
@@ -140,6 +164,14 @@ for (const f of postFiles) {
   if (allOk) ldOk++;
 }
 seoOk === postFiles.length ? pass('每篇 canonical/og:image/大圖卡/description 完整') : fail('文章頁 SEO', `${seoOk}/${postFiles.length}`);
+// og:image 指向的圖檔要真的存在。沒有 Chromium 的環境（例如 Cloudflare 建置）會略過產生分享卡，
+// 新文章若忘了在本機產生並提交，頁面上的 og:image 就是 404：分享到 LINE／FB 沒有預覽圖，Ahrefs 也會列為壞圖。
+{
+  const noOg = ids.filter(id => !existsSync(join(REPO, 'assets/og', id + '.jpg')));
+  noOg.length === 0
+    ? pass(`每篇的 OG 分享卡圖檔皆存在 (${ids.length})`)
+    : fail('OG 分享卡圖檔不存在（請在有 Chromium 的環境產生並提交）', noOg.slice(0, 5).join(', ') + (noOg.length > 5 ? ` 等 ${noOg.length} 篇` : ''));
+}
 ldOk === postFiles.length ? pass('每篇 JSON-LD 皆合法且無重複鍵') : fail('JSON-LD', ldErr.slice(0, 3).join(' | '));
 descShort === 0 ? pass(`每篇 description ≥${DESC_MIN} 字（Ahrefs）`) : fail('description 過短', descShort + ' 篇');
 descLong === 0 ? pass(`每篇 description ≤${DESC_MAX} 字（不會被 Google 截斷）`) : fail('description 過長', descLong + ' 篇');
