@@ -17,6 +17,9 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-
 main{max-width:960px;margin:0 auto;padding:36px 16px 72px}
 header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 20px;margin-bottom:24px}
 h1{font-size:clamp(1.6rem,4vw,2.2rem);letter-spacing:-.01em}
+.status{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.last{font-size:13px;color:var(--sky-ink)}
+@media(max-width:640px){.status{align-items:flex-start}}
 .live{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
 .live i{width:8px;height:8px;border-radius:50%;background:var(--sky);animation:pulse 2s infinite}
 .live.err i{background:#c0392b;animation:none}
@@ -49,7 +52,10 @@ tr.flash td{animation:flash 2.4s ease-out}
 <main>
   <header>
     <h1>即時閱讀統計</h1>
-    <span class="live" id="live"><i></i><span id="live-text">載入中…</span></span>
+    <div class="status">
+      <span class="live" id="live"><i></i><span id="live-text">載入中…</span></span>
+      <span class="last" id="last"></span>
+    </div>
   </header>
   <section class="cards" aria-label="總覽">
     <div class="card"><b id="c-today">–</b><span>今天閱讀</span></div>
@@ -67,7 +73,7 @@ tr.flash td{animation:flash 2.4s ease-out}
     <thead><tr><th>#</th><th>文章</th><th>今天</th><th class="hide-sm">昨天</th><th class="hide-sm">近 7 天</th><th>累計</th></tr></thead>
     <tbody id="rows"></tbody>
   </table>
-  <p class="note">每 30 秒自動更新（切到別的分頁時暫停）。時間以台灣時間計算，每天午夜歸零。
+  <p class="note">每 5 秒檢查一次，有人讀文章就立刻更新，那一列會閃一下（切到別的分頁時暫停，回來立刻更新）。時間以台灣時間計算，每天午夜歸零。
     「今天／昨天／近 7 天」從 2026-11-27 開始記錄；「累計」另含 2026 年 7 月起從 Cloudflare Web Analytics 匯入的歷史數字。
     同一個分頁重新整理、搜尋引擎爬蟲與機器人不計。</p>
 </main>

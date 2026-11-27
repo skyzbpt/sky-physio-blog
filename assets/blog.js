@@ -100,11 +100,23 @@ document.getElementById("chips").addEventListener("click",function(e){
 renderChips();
 /* 清單只需要標題／摘要／分類／日期。抓 /data/articles.json 會連 260 篇內文
    一起下載（724KB），為了一張清單多花 639KB——改抓不含內文的精簡索引（85KB）。 */
-/* 閱讀次數另外抓：慢了或失敗都不擋清單，抓到後再重畫一次 */
-fetch('/api/views').then(r=>r.ok?r.json():{}).then(v=>{
-  VIEWS = v && typeof v==="object" ? v : {};
-  if(ARTICLES.length){ renderChips(); renderList(); }
-}).catch(()=>{});
+/* 閱讀次數另外抓：慢了或失敗都不擋清單，抓到後再重畫一次。
+   從文章按「上一頁」回到清單時，瀏覽器常直接還原離開時的舊畫面（不會重新執行程式），
+   切回這個分頁時也一樣——這兩種情況都重新抓一次，數字沒變就不重畫。 */
+let viewsAt = 0, viewsKey = "";
+function loadViews(){
+  viewsAt = Date.now();
+  fetch('/api/views',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(v=>{
+    if(!v || typeof v!=="object") return;
+    const k = JSON.stringify(v);
+    if(k===viewsKey) return;
+    viewsKey = k; VIEWS = v;
+    if(ARTICLES.length){ renderChips(); renderList(); }
+  }).catch(()=>{});
+}
+loadViews();
+addEventListener('pageshow', e=>{ if(e.persisted) loadViews(); });
+document.addEventListener('visibilitychange', ()=>{ if(!document.hidden && Date.now()-viewsAt>5000) loadViews(); });
 fetch('/assets/articles-index.json').then(r=>r.json()).then(data=>{
   ARTICLES = data;
   renderChips();
