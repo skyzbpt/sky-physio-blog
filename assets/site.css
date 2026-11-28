@@ -267,6 +267,27 @@ section{padding-top:112px;padding-bottom:112px}
   .field-card{padding:32px 26px 30px;border-radius:24px}
 }
 
+/* ---------- 卡片配圖（首頁專業領域／常見困擾、服務項目） ----------
+   照片貼齊卡片上緣與左右兩邊：用負 margin 抵掉卡片的 padding，卡片 overflow:hidden 讓圓角一起切到照片。
+   固定比例＋object-fit:cover：照片還沒載入就先佔好位置（底色墊著），版面不會跳動（CLS）。 */
+.field-card,.concern,.service-card{overflow:hidden}
+.card-media{display:block;aspect-ratio:3/2;overflow:hidden;background:var(--tint-2)}
+.card-media img{display:block;width:100%;height:100%;object-fit:cover;transition:scale .6s var(--ease)}
+.field-card .card-media{aspect-ratio:16/9;margin:-44px -40px 30px}
+.concern .card-media{margin:-30px -28px 22px}
+.service-card .card-media{margin:-32px -30px 22px}
+@media(hover:hover){.concern:hover .card-media img{scale:1.04}}
+@media(max-width:760px){.field-card .card-media{margin:-32px -26px 24px}}
+@media(max-width:680px){.concern .card-media{margin:-26px -24px 20px}}
+/* 初次評估：左欄文字下方的照片 */
+.visit-photo{margin-top:36px;aspect-ratio:3/2;overflow:hidden;border-radius:var(--r-tile);background:var(--tint-2)}
+.visit-photo img{display:block;width:100%;height:100%;object-fit:cover}
+@media(max-width:1023px){.visit-photo{margin:0 0 28px}}
+/* 照片來源：整頁一行小字，放在頁面最下方 */
+.photo-credit{margin-top:28px;font-size:12px;line-height:1.8;color:var(--muted)}
+.photo-credit a{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:2px}
+.photo-credit a:hover{color:var(--sky-ink);text-decoration-color:currentColor}
+
 /* ---------- 首頁：常見困擾／初次評估／常見問題（靜態內容，爬蟲讀得到） ---------- */
 #concerns,#faq{background:var(--tint)}
 .concern-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
@@ -534,7 +555,6 @@ section{padding-top:112px;padding-bottom:112px}
 .about-bio{max-width:900px;margin:0 auto}
 .about-worlds{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:stretch;margin-bottom:56px}
 .about-worlds .world{background:var(--tint);border-radius:var(--r-tile);padding:36px 24px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px}
-.world .w-ico{width:40px;height:40px;color:var(--sky-ink)}
 .world-t{font-size:1.25rem;font-weight:600;line-height:1.35;color:var(--ink)}
 .world-d{font-size:15px;line-height:1.65;color:var(--muted)}
 .world-join{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:13px;font-weight:600;color:var(--sky-ink);text-align:center;padding:0 4px}
@@ -566,6 +586,25 @@ section{padding-top:112px;padding-bottom:112px}
 .about-block .blk-item + .blk-item{margin-top:20px}
 .about-block dt{font-weight:600;font-size:1.0625rem;line-height:1.5;color:var(--ink)}
 .about-block dd{margin-top:4px;font-size:15px;line-height:1.75;color:var(--muted)}
+/* 兩邊（先撐住／再鬆開）：照片貼齊卡片上緣，取代原本的線條小圖示 */
+.about-worlds .world{overflow:hidden}
+.world .card-media{align-self:stretch;margin:-36px -24px 8px}
+/* 我常遇到的身體：每一項上方一張照片（照片放在 <dt> 裡） */
+.blk-media{display:block;aspect-ratio:16/10;overflow:hidden;border-radius:16px;background:var(--tint-2);margin-bottom:14px}
+.blk-media img,.blk-thumb img{display:block;width:100%;height:100%;object-fit:cover}
+@media(min-width:601px) and (max-width:1023px){
+  .about-see .blk-list{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  .about-see .blk-item + .blk-item{margin-top:0}
+}
+/* 我手上的工具：每一項左邊一張方形小圖 */
+.about-tools .blk-item{position:relative;padding-left:88px;min-height:72px}
+.blk-thumb{position:absolute;left:0;top:2px;width:72px;height:72px;overflow:hidden;border-radius:16px;background:var(--tint-2)}
+.blk-thumb img[src$=".svg"]{object-position:22% 50%}
+@media(max-width:600px){
+  .world .card-media{margin:-30px -22px 8px}
+  .about-tools .blk-item{padding-left:76px;min-height:60px}
+  .blk-thumb{width:60px;height:60px;border-radius:14px}
+}
 /* 底部三欄：學經歷與證照 */
 .about-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:stretch}
 @media(max-width:900px){.about-cols{grid-template-columns:1fr 1fr}}
@@ -591,7 +630,7 @@ section{padding-top:112px;padding-bottom:112px}
   .about-hero .about-lead{grid-area:lead;text-align:left;margin:0;font-size:1.2rem;line-height:1.65}
   .about-worlds{gap:22px}
   .about-worlds .world{padding:48px 32px}
-  .world .w-ico{width:46px;height:46px}
+  .world .card-media{margin:-48px -32px 10px}
   .world-t{font-size:1.5rem}
   .world-d{font-size:1.0625rem}
   .about-philosophy{padding:60px 64px}

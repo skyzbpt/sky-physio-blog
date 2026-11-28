@@ -196,6 +196,20 @@ footer{background:var(--tint);padding:10px 0 16px;font-size:12px;line-height:1.5
 .post-body .guide-cards{list-style:none;padding:0;margin:0 0 1.7em;display:grid;gap:12px}
 .guide-cards li{margin:0;padding:22px 24px;background:var(--tint);border-radius:18px;font-size:15px;line-height:1.75;color:var(--ink-2)}
 .guide-cards li strong{display:block;margin-bottom:4px;font-size:1.0625rem;line-height:1.5;color:var(--ink)}
+/* 配圖：開頭一張大圖；卡片照片貼齊上緣與左右（負 margin 抵掉 padding），卡片 overflow:hidden 讓圓角也切到照片。
+   固定比例＋底色：照片還沒載入就先佔好位置，版面不會跳動 */
+.guide-hero{margin:0 0 40px;aspect-ratio:16/9;overflow:hidden;border-radius:var(--r-tile);background:var(--tint-2)}
+.guide-hero img,.gc-media img{width:100%;height:100%;object-fit:cover}
+.guide-cards li{overflow:hidden}
+.guide-cards .gc-media{display:block;aspect-ratio:16/10;margin:-22px -24px 16px;background:var(--tint-2)}
+.post-body .photo-credit{margin:28px 0 0;font-size:12px;line-height:1.8;color:var(--muted)}
+.post-body .photo-credit a{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:2px}
+.post-body .photo-credit a:hover{color:var(--sky-ink);text-decoration-color:currentColor}
+/* 條列左邊加方形小圖（台北頁「我用的治療方法」） */
+.post-body .guide-thumbs{list-style:none;padding:0;margin:0 0 1.7em;display:grid;gap:14px}
+.post-body .guide-thumbs li{position:relative;margin:0;padding:4px 0 0 80px;min-height:64px}
+.guide-thumbs .gt-media{position:absolute;left:0;top:0;width:64px;height:64px;overflow:hidden;border-radius:14px;background:var(--tint-2)}
+.gt-media img{width:100%;height:100%;object-fit:cover}
 .post-body .guide-steps{list-style:none;padding:0;margin:0 0 1.7em;counter-reset:step}
 .guide-steps li{counter-increment:step;position:relative;margin:0;padding:0 0 22px 48px}
 .guide-steps li:last-child{padding-bottom:0}
