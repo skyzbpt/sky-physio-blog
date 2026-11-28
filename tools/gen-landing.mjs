@@ -7,7 +7,7 @@
 // 版型（CSS、導覽列、頁尾）沿用 taipei-physio.html，確保風格一致；
 // 每頁都有：答案優先的「快速解答」、在地／專項內容、FAQ（同步輸出 FAQPage 結構化資料）、
 // 相關衛教文章（從 data/articles.json 取標題，找不到 id 會直接報錯，避免死連結）。
-import { readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { join } from 'path';
 import { REPO, BASE, phrases, ldJson } from './lib.mjs';
 import { SHELL, ARTICLE_CSS, BOOK_URL as BOOK, siteHeader } from './css.mjs';
@@ -20,10 +20,67 @@ const strip = s => String(s).replace(/<[^>]+>/g, '');
 /* 搜尋時常見的品牌寫法（含無空白、英文帳號），讓「sky物理治療師」等查詢都能對到同一個實體 */
 export const BRAND_ALIASES = ['Sky 物理治療師', 'sky物理治療師', 'Sky物理治療師', 'Sky the Physio', 'sky_the_physio', 'Sky PT'];
 
+/* ---------- 配圖 ----------
+   每頁開頭一張大圖（16:9），「常見的痛／常因為這些事來找我」每張卡片上方一張（16:10）。
+   多數沿用在地衛教文章已核對過的配圖：直接寫「文章 id」，替代文字與圖說（作者／授權）都取自那篇文章；
+   站內圖片改用 assets/photos/ui/ 裡裁好的版本（原檔名加 -16x9／-16x10），Unsplash 外連圖沿用同一個網址。
+   文章裡沒有的，才在 PHOTOS 另外登記。 */
+const UTM = 'utm_source=sky-physio-blog&amp;utm_medium=referral';
+const EXT = 'target="_blank" rel="noopener nofollow"';
+const unsplashBy = (name, user) =>
+  `<a href="https://unsplash.com/@${user}?${UTM}" ${EXT}>${name}</a>／<a href="https://unsplash.com/?${UTM}" ${EXT}>Unsplash</a>`;
+const PHOTOS = {
+  'tri-hero': { alt: '穿著防寒衣、站在山間湖面上的鐵人三項選手', credit: unsplashBy('Algi', 'algifoods'),
+    unsplash: 'https://images.unsplash.com/photo-1627156399021-721b0f720f8d?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8M3x8dHJpYXRobG9ufGVufDF8MHx8fDE3OTU4Mjg1NDF8Mg&ixlib=rb-4.1.0' },
+  'open-water': { alt: '在湖面上划捷泳、轉頭換氣的泳者', credit: unsplashBy('Todd Quackenbush', 'toddquackenbush'),
+    unsplash: 'https://images.unsplash.com/photo-1438029071396-1e831a7fa6d8?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8Mnx8c3dpbW1lciUyMGJyZWF0aGluZyUyMGZyZWVzdHlsZXxlbnwxfDB8fHwxNzk1ODI5NDEzfDI&ixlib=rb-4.1.0' },
+  'rehab-dumbbell': { alt: '治療師扶著手腕，引導練習者拿小啞鈴做手臂訓練', credit: unsplashBy('Sincerely Media', 'sincerelymedia'),
+    unsplash: 'https://images.unsplash.com/photo-1645005513713-9e2b92a687d3?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8NHx8cGh5c2lvdGhlcmFweXxlbnwxfDB8fHwxNzk1ODI4NTQxfDI&ixlib=rb-4.1.0' },
+  'nurse': { alt: '穿著制服、頸上掛著聽診器的醫護人員', credit: unsplashBy('JESHOOTS.COM', 'jeshoots'),
+    unsplash: 'https://images.unsplash.com/photo-1584432810601-6c7f27d2362b?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MXx8bnVyc2UlMjBwb3J0cmFpdCUyMGhvc3BpdGFsfGVufDF8MHx8fDE3OTU4MzAwMTN8Mg&ixlib=rb-4.1.0' },
+  'shipai-hero': { alt: '石牌捷運站的高架車站與站前路口', src: '/assets/photos/ui/shipai-station-16x9.webp', w: 960, h: 540,
+    credit: `<a href="https://commons.wikimedia.org/wiki/File:Shipai_Station.JPG" ${EXT}>玄史生</a>／公有領域／Wikimedia Commons` },
+};
+
+// 取出一張配圖：PHOTOS 的 key，或文章 id（用那篇文章的第一張配圖）。kind：'hero' 或 'card'
+function photoOf(key, byId, kind) {
+  const reg = PHOTOS[key];
+  if (reg) return { ...reg, altHtml: esc(reg.alt) };
+  const a = byId.get(key);
+  if (!a) throw new Error(`gen-landing: 配圖「${key}」不是 PHOTOS 的 key，也不是文章 id`);
+  const fig = (a.content.match(/<figure>[\s\S]*?<\/figure>/) || [])[0];
+  if (!fig) throw new Error(`gen-landing: 文章 ${key} 沒有配圖`);
+  const src = fig.match(/<img[^>]*\ssrc="([^"]+)"/)[1].replace(/&amp;/g, '&');
+  const altHtml = fig.match(/\salt="([^"]*)"/)[1];                       // 文章內已跳脫過
+  const credit = fig.match(/<figcaption>([\s\S]*?)<\/figcaption>/)[1].replace(/^圖片：/, '');
+  if (src.startsWith('https://images.unsplash.com/'))
+    return { unsplash: src.replace(/&(?:w|h|q|fm|fit|crop)=[^&]*/g, ''), altHtml, credit };
+  const file = (src.match(/^\/assets\/photos\/([^/]+)\.webp$/) || [])[1];
+  if (!file) throw new Error(`gen-landing: 文章 ${key} 的配圖不是站內 WebP：${src}`);
+  const [suffix, w, h] = kind === 'hero' ? ['16x9', 960, 540] : ['16x10', 640, 400];
+  const path = `/assets/photos/ui/${file}-${suffix}.webp`;
+  if (!existsSync(join(REPO, path.slice(1)))) throw new Error(`gen-landing: 缺少裁好的配圖 ${path}`);
+  return { src: path, w, h, altHtml, credit };
+}
+
+// 開頭大圖不延遲載入（多半在第一個畫面內），卡片圖捲到才載
+function photoImg(ph, kind) {
+  const hero = kind === 'hero';
+  const load = hero ? ' fetchpriority="high"' : ' loading="lazy"';
+  if (!ph.unsplash) return `<img src="${ph.src}" width="${ph.w}" height="${ph.h}" alt="${ph.altHtml}"${load} decoding="async">`;
+  const url = (w, h) => esc(`${ph.unsplash}&w=${w}&h=${h}&fit=crop&crop=entropy&q=70&fm=webp`);
+  const [[w1, h1], [w2, h2]] = hero ? [[720, 405], [1280, 720]] : [[480, 300], [800, 500]];
+  const sizes = hero ? '(max-width: 740px) calc(100vw - 44px), 692px' : '(max-width: 1023px) calc(100vw - 44px), 340px';
+  return `<img src="${url(w2, h2)}" srcset="${url(w1, h1)} ${w1}w, ${url(w2, h2)} ${w2}w" sizes="${sizes}" `
+    + `width="${w2}" height="${h2}" alt="${ph.altHtml}"${load} decoding="async">`;
+}
+
 export const LANDING_PAGES = [
   /* ------------------------------------------------------------ 三鐵運動修復 */
   {
     slug: 'triathlon-physio',
+    // 配圖：開頭大圖、「injuries」段卡片依序各一張（文章 id 或 PHOTOS 的 key）
+    photos: { hero: 'tri-hero', cardsIn: 'injuries', cards: ['open-water', 'cycling-low-back-pain-riding', 'cycling-hand-numbness-palsy', 'patellofemoral-pain', 'cycling-achilles-foot-pain', 'cycling-recovery-strategies'] },
     title: '三鐵運動修復｜台北鐵人三項物理治療師 Sky',
     h1: '三鐵運動修復：台北鐵人三項物理治療師 Sky',
     crumb: '三鐵運動修復',
@@ -85,6 +142,8 @@ export const LANDING_PAGES = [
   /* ------------------------------------------------------------ 北投 */
   {
     slug: 'beitou-physio',
+    // 配圖：開頭大圖、「who」段卡片依序各一張（文章 id 或 PHOTOS 的 key）
+    photos: { hero: 'beitou-hot-spring-soreness', cardsIn: 'who', cards: ['yangmingshan-hiking-knee-pain', 'guandu-youbike-knee-pain', 'cycling-ftp-what-is-it', 'hip-hinge-lifting', 'guandu-birdwatching-neck-pain', 'fascia-diaphragm'] },
     title: '北投推薦物理治療師｜Sky 物理治療師（北投・新北投・關渡）',
     h1: '北投推薦物理治療師：Sky 物理治療師',
     crumb: '北投物理治療師推薦',
@@ -137,6 +196,8 @@ export const LANDING_PAGES = [
   /* ------------------------------------------------------------ 士林 */
   {
     slug: 'shilin-physio',
+    // 配圖：開頭大圖、「who」段卡片依序各一張（文章 id 或 PHOTOS 的 key）
+    photos: { hero: 'zhishan-elderly-balance-falls', cardsIn: 'who', cards: ['tianmu-running-lateral-knee-pain', 'shilin-badminton-achilles', 'shilin-night-market-heel-pain', 'zhishan-new-mom-de-quervain', 'cycling-energy-systems', 'shilin-student-jaw-clenching'] },
     title: '士林推薦物理治療師｜Sky 物理治療師（士林・天母・芝山）',
     h1: '士林推薦物理治療師：Sky 物理治療師',
     crumb: '士林物理治療師推薦',
@@ -189,6 +250,8 @@ export const LANDING_PAGES = [
   /* ------------------------------------------------------------ 石牌 */
   {
     slug: 'shipai-physio',
+    // 配圖：開頭大圖、「who」段卡片依序各一張（文章 id 或 PHOTOS 的 key）
+    photos: { hero: 'shipai-hero', cardsIn: 'who', cards: ['shipai-stairs-knee-osteoarthritis', 'rotator-cuff-tear-surgery', 'rehab-dumbbell', 'nurse', 'fascia-sacrum-coccyx', 'achilles-tendinopathy'] },
     title: '石牌推薦物理治療師｜Sky 物理治療師（石牌・榮總・明德・唭哩岸）',
     h1: '石牌推薦物理治療師：Sky 物理治療師',
     crumb: '石牌物理治療師推薦',
@@ -281,6 +344,15 @@ const GUIDE_CSS = SHELL + ARTICLE_CSS + `
 .post-body .guide-cards{list-style:none;padding:0;margin:0 0 1.7em;display:grid;gap:12px}
 .guide-cards li{margin:0;padding:22px 24px;background:var(--tint);border-radius:18px;font-size:15px;line-height:1.75;color:var(--ink-2)}
 .guide-cards li strong{display:block;margin-bottom:4px;font-size:1.0625rem;line-height:1.5;color:var(--ink)}
+/* 配圖：開頭一張大圖；卡片照片貼齊上緣與左右（負 margin 抵掉 padding），卡片 overflow:hidden 讓圓角也切到照片。
+   固定比例＋底色：照片還沒載入就先佔好位置，版面不會跳動 */
+.guide-hero{margin:0 0 40px;aspect-ratio:16/9;overflow:hidden;border-radius:var(--r-tile);background:var(--tint-2)}
+.guide-hero img,.gc-media img{width:100%;height:100%;object-fit:cover}
+.guide-cards li{overflow:hidden}
+.guide-cards .gc-media{display:block;aspect-ratio:16/10;margin:-22px -24px 16px;background:var(--tint-2)}
+.post-body .photo-credit{margin:28px 0 0;font-size:12px;line-height:1.8;color:var(--muted)}
+.post-body .photo-credit a{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:2px}
+.post-body .photo-credit a:hover{color:var(--sky-ink);text-decoration-color:currentColor}
 .post-body .guide-steps{list-style:none;padding:0;margin:0 0 1.7em;counter-reset:step}
 .guide-steps li{counter-increment:step;position:relative;margin:0;padding:0 0 22px 48px}
 .guide-steps li:last-child{padding-bottom:0}
@@ -362,6 +434,23 @@ function render(p, articles, tpl) {
     if (!a) throw new Error(`gen-landing: ${p.slug} 引用了不存在的文章 id「${id}」`);
     return a;
   });
+
+  // 配圖：開頭大圖＋指定段落的卡片（依序對應 <li><strong>），數量對不上就直接報錯
+  const ph = p.photos;
+  const hero = ph ? photoOf(ph.hero, byId, 'hero') : null;
+  const cardPhotos = ph ? ph.cards.map(k => photoOf(k, byId, 'card')) : [];
+  const sectionHtml = s => {
+    if (!ph || s.id !== ph.cardsIn) return s.html;
+    let i = 0;
+    const html = s.html.replace(/<li><strong>/g, () => {
+      const c = cardPhotos[i++];
+      if (!c) throw new Error(`gen-landing: ${p.slug}「${s.id}」的卡片比配圖多`);
+      return `<li><span class="gc-media">${photoImg(c, 'card')}</span><strong>`;
+    });
+    if (i !== cardPhotos.length) throw new Error(`gen-landing: ${p.slug}「${s.id}」有 ${i} 張卡片，配圖卻有 ${cardPhotos.length} 張`);
+    return html;
+  };
+  const credits = ph ? [...new Set([hero, ...cardPhotos].map(x => x.credit))].join('；') : '';
 
   const graph = [
     {
@@ -446,7 +535,7 @@ ${tpl.header}
     <nav class="crumb" aria-label="breadcrumb"><a href="/">首頁</a> › ${p.area ? '<a href="/taipei-physio">台北物理治療師推薦</a> › ' : ''}${esc(p.crumb)}</nav>
     <div class="meta"><span>${UPDATED}</span><span class="cat">${esc(p.metaCat)}</span><span>約 ${minutes} 分鐘</span></div>
     <h1>${phrases(p.h1)}</h1>
-    <p class="lede">${esc(p.lede)}</p>
+    <p class="lede">${esc(p.lede)}</p>${hero ? `\n    <figure class="guide-hero">${photoImg(hero, 'hero')}</figure>` : ''}
 
     <section class="quick" aria-labelledby="quick">
       <h2 id="quick">快速解答</h2>
@@ -456,7 +545,7 @@ ${p.quick.map(([q, a]) => `        <dt>${esc(q)}</dt>\n        <dd>${esc(a)}</dd
     </section>
 
     <div class="post-body">
-${p.sections.map(s => `      <h2 id="${s.id}">${s.h}</h2>${s.html}\n`).join('\n')}
+${p.sections.map(s => `      <h2 id="${s.id}">${s.h}</h2>${sectionHtml(s)}\n`).join('\n')}
       <h2 id="related">${esc(p.relatedTitle)}</h2>
       <ul class="rel-list">
 ${related.map(a => `        <li><a href="/posts/${a.id}">${esc(a.title)}</a></li>`).join('\n')}
@@ -480,7 +569,7 @@ ${others.map(o => `        <a href="/${o.slug}">${esc(o.crumb.replace('推薦', 
           <div class="s">${esc(p.cta[1])}</div>
         </div>
         <a class="btn sky" href="${BOOK}" target="_blank" rel="noopener">${CAL_SVG(14)}預約評估</a>
-      </div>
+      </div>${credits ? `\n      <p class="photo-credit">本頁照片：${credits}</p>` : ''}
     </div>
     <p class="post-foot">本頁為服務說明與衛教分享，內容無法取代醫療診斷與個別化評估。若有發燒合併劇痛、大小便失禁、不明原因體重下降、麻木無力越來越嚴重等警訊，請先就醫檢查。</p>
   </article>
