@@ -267,6 +267,27 @@ section{padding-top:112px;padding-bottom:112px}
   .field-card{padding:32px 26px 30px;border-radius:24px}
 }
 
+/* ---------- 卡片配圖（首頁專業領域／常見困擾、服務項目） ----------
+   照片貼齊卡片上緣與左右兩邊：用負 margin 抵掉卡片的 padding，卡片 overflow:hidden 讓圓角一起切到照片。
+   固定比例＋object-fit:cover：照片還沒載入就先佔好位置（底色墊著），版面不會跳動（CLS）。 */
+.field-card,.concern,.service-card{overflow:hidden}
+.card-media{display:block;aspect-ratio:3/2;overflow:hidden;background:var(--tint-2)}
+.card-media img{display:block;width:100%;height:100%;object-fit:cover;transition:scale .6s var(--ease)}
+.field-card .card-media{aspect-ratio:16/9;margin:-44px -40px 30px}
+.concern .card-media{margin:-30px -28px 22px}
+.service-card .card-media{margin:-32px -30px 22px}
+@media(hover:hover){.concern:hover .card-media img{scale:1.04}}
+@media(max-width:760px){.field-card .card-media{margin:-32px -26px 24px}}
+@media(max-width:680px){.concern .card-media{margin:-26px -24px 20px}}
+/* 初次評估：左欄文字下方的照片 */
+.visit-photo{margin-top:36px;aspect-ratio:3/2;overflow:hidden;border-radius:var(--r-tile);background:var(--tint-2)}
+.visit-photo img{display:block;width:100%;height:100%;object-fit:cover}
+@media(max-width:1023px){.visit-photo{margin:0 0 28px}}
+/* 照片來源：整頁一行小字，放在頁面最下方 */
+.photo-credit{margin-top:28px;font-size:12px;line-height:1.8;color:var(--muted)}
+.photo-credit a{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:2px}
+.photo-credit a:hover{color:var(--sky-ink);text-decoration-color:currentColor}
+
 /* ---------- 首頁：常見困擾／初次評估／常見問題（靜態內容，爬蟲讀得到） ---------- */
 #concerns,#faq{background:var(--tint)}
 .concern-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
