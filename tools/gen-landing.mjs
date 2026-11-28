@@ -40,10 +40,26 @@ const PHOTOS = {
     unsplash: 'https://images.unsplash.com/photo-1584432810601-6c7f27d2362b?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MXx8bnVyc2UlMjBwb3J0cmFpdCUyMGhvc3BpdGFsfGVufDF8MHx8fDE3OTU4MzAwMTN8Mg&ixlib=rb-4.1.0' },
   'shipai-hero': { alt: '石牌捷運站的高架車站與站前路口', src: '/assets/photos/ui/shipai-station-16x9.webp', w: 960, h: 540,
     credit: `<a href="https://commons.wikimedia.org/wiki/File:Shipai_Station.JPG" ${EXT}>玄史生</a>／公有領域／Wikimedia Commons` },
+  // 以下給手寫的 taipei-physio.html、physio-guide.html（由一次性的腳本寫入頁面）
+  'taipei-hero': { alt: '藍天下從象山望向台北 101 與信義區的城市天際線', credit: unsplashBy('Vas', 'frolda'),
+    unsplash: 'https://images.unsplash.com/photo-1609147110688-83b5fd1288e8?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MXx8VGFpcGVpJTIwc2t5bGluZSUyMGJsdWUlMjBza3l8ZW58MXwwfHx8MTc5NTgzMDQxN3wy&ixlib=rb-4.1.0' },
+  'physio-clinic': { alt: '治療師在明亮的治療室裡，替側躺的個案做肩背的徒手治療', credit: unsplashBy('Marc Zeman', 'der_zeman'),
+    unsplash: 'https://images.unsplash.com/photo-1706353399656-210cca727a33?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8M3x8cGh5c2lvdGhlcmFweXxlbnwxfDB8fHwxNzk1ODI4NTQxfDI&ixlib=rb-4.1.0' },
+  'pool-freestyle': { alt: '在泳池水道裡划捷泳的泳者', credit: unsplashBy('Marcus Ng', 'marcusxsnapz'),
+    unsplash: 'https://images.unsplash.com/photo-1519315901367-f34ff9154487?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8NHx8ZnJlZXN0eWxlJTIwc3dpbW1lciUyMHBvb2x8ZW58MXwwfHx8MTc5NTgyODc3MXwy&ixlib=rb-4.1.0' },
+  'knee-exam': { alt: '治療師一手扶著膝蓋，檢查仰躺個案的膝關節', credit: unsplashBy('yury kirillov', 'relievemassage'),
+    unsplash: 'https://images.unsplash.com/photo-1649751361457-01d3a696c7e6?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MXx8cGh5c2lvdGhlcmFweXxlbnwxfDB8fHwxNzk1ODI4NTQxfDI&ixlib=rb-4.1.0' },
+  'leg-release': { alt: '雙手深壓腿部肌肉的放鬆手法特寫', credit: unsplashBy('Bas Peperzak', 'bastroloog'),
+    unsplash: 'https://images.unsplash.com/photo-1617952986600-802f965dcdbc?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8MTV8fHBoeXNpb3RoZXJhcHl8ZW58MXwwfHx8MTc5NTgyODU0MXwy&ixlib=rb-4.1.0' },
+  'tt-sky': { alt: '藍天下以低風阻姿勢騎計時車的車手側影', credit: unsplashBy('Beau Runsten', 'beaurunsten'),
+    unsplash: 'https://images.unsplash.com/photo-1512203492609-972c16baa28b?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8NHx8YmlrZSUyMGZpdHxlbnwxfDB8fHwxNzk1ODI4NTc4fDI&ixlib=rb-4.1.0' },
+  'bike-trainer': { alt: '車手騎在室內訓練台上的側面剪影', credit: unsplashBy('Aditya Wardhana', 'wardhanaaditya'),
+    unsplash: 'https://images.unsplash.com/photo-1601625193660-86f2807b024b?ixid=M3wxMDE3MjIwfDB8MXxzZWFyY2h8M3x8YmlrZSUyMGZpdHxlbnwxfDB8fHwxNzk1ODI4NTc4fDI&ixlib=rb-4.1.0' },
 };
 
-// 取出一張配圖：PHOTOS 的 key，或文章 id（用那篇文章的第一張配圖）。kind：'hero' 或 'card'
-function photoOf(key, byId, kind) {
+// 取出一張配圖：PHOTOS 的 key，或文章 id（用那篇文章的第一張配圖）。
+// kind：'hero'（16:9 大圖）、'card'（16:10 卡片）、'thumb'（方形小圖）
+export function photoOf(key, byId, kind) {
   const reg = PHOTOS[key];
   if (reg) return { ...reg, altHtml: esc(reg.alt) };
   const a = byId.get(key);
@@ -57,18 +73,19 @@ function photoOf(key, byId, kind) {
     return { unsplash: src.replace(/&(?:w|h|q|fm|fit|crop)=[^&]*/g, ''), altHtml, credit };
   const file = (src.match(/^\/assets\/photos\/([^/]+)\.webp$/) || [])[1];
   if (!file) throw new Error(`gen-landing: 文章 ${key} 的配圖不是站內 WebP：${src}`);
-  const [suffix, w, h] = kind === 'hero' ? ['16x9', 960, 540] : ['16x10', 640, 400];
+  const [suffix, w, h] = { hero: ['16x9', 960, 540], card: ['16x10', 640, 400], thumb: ['sq', 160, 160] }[kind];
   const path = `/assets/photos/ui/${file}-${suffix}.webp`;
   if (!existsSync(join(REPO, path.slice(1)))) throw new Error(`gen-landing: 缺少裁好的配圖 ${path}`);
   return { src: path, w, h, altHtml, credit };
 }
 
-// 開頭大圖不延遲載入（多半在第一個畫面內），卡片圖捲到才載
-function photoImg(ph, kind) {
+// 開頭大圖不延遲載入（多半在第一個畫面內），卡片圖與小圖捲到才載
+export function photoImg(ph, kind) {
   const hero = kind === 'hero';
   const load = hero ? ' fetchpriority="high"' : ' loading="lazy"';
   if (!ph.unsplash) return `<img src="${ph.src}" width="${ph.w}" height="${ph.h}" alt="${ph.altHtml}"${load} decoding="async">`;
   const url = (w, h) => esc(`${ph.unsplash}&w=${w}&h=${h}&fit=crop&crop=entropy&q=70&fm=webp`);
+  if (kind === 'thumb') return `<img src="${url(160, 160)}" width="160" height="160" alt="${ph.altHtml}"${load} decoding="async">`;
   const [[w1, h1], [w2, h2]] = hero ? [[720, 405], [1280, 720]] : [[480, 300], [800, 500]];
   const sizes = hero ? '(max-width: 740px) calc(100vw - 44px), 692px' : '(max-width: 1023px) calc(100vw - 44px), 340px';
   return `<img src="${url(w2, h2)}" srcset="${url(w1, h1)} ${w1}w, ${url(w2, h2)} ${w2}w" sizes="${sizes}" `
@@ -353,6 +370,11 @@ const GUIDE_CSS = SHELL + ARTICLE_CSS + `
 .post-body .photo-credit{margin:28px 0 0;font-size:12px;line-height:1.8;color:var(--muted)}
 .post-body .photo-credit a{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:2px}
 .post-body .photo-credit a:hover{color:var(--sky-ink);text-decoration-color:currentColor}
+/* 條列左邊加方形小圖（台北頁「我用的治療方法」） */
+.post-body .guide-thumbs{list-style:none;padding:0;margin:0 0 1.7em;display:grid;gap:14px}
+.post-body .guide-thumbs li{position:relative;margin:0;padding:4px 0 0 80px;min-height:64px}
+.guide-thumbs .gt-media{position:absolute;left:0;top:0;width:64px;height:64px;overflow:hidden;border-radius:14px;background:var(--tint-2)}
+.gt-media img{width:100%;height:100%;object-fit:cover}
 .post-body .guide-steps{list-style:none;padding:0;margin:0 0 1.7em;counter-reset:step}
 .guide-steps li{counter-increment:step;position:relative;margin:0;padding:0 0 22px 48px}
 .guide-steps li:last-child{padding-bottom:0}

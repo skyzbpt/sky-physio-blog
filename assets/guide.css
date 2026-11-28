@@ -205,6 +205,11 @@ footer{background:var(--tint);padding:10px 0 16px;font-size:12px;line-height:1.5
 .post-body .photo-credit{margin:28px 0 0;font-size:12px;line-height:1.8;color:var(--muted)}
 .post-body .photo-credit a{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:2px}
 .post-body .photo-credit a:hover{color:var(--sky-ink);text-decoration-color:currentColor}
+/* 條列左邊加方形小圖（台北頁「我用的治療方法」） */
+.post-body .guide-thumbs{list-style:none;padding:0;margin:0 0 1.7em;display:grid;gap:14px}
+.post-body .guide-thumbs li{position:relative;margin:0;padding:4px 0 0 80px;min-height:64px}
+.guide-thumbs .gt-media{position:absolute;left:0;top:0;width:64px;height:64px;overflow:hidden;border-radius:14px;background:var(--tint-2)}
+.gt-media img{width:100%;height:100%;object-fit:cover}
 .post-body .guide-steps{list-style:none;padding:0;margin:0 0 1.7em;counter-reset:step}
 .guide-steps li{counter-increment:step;position:relative;margin:0;padding:0 0 22px 48px}
 .guide-steps li:last-child{padding-bottom:0}
