@@ -142,9 +142,109 @@
 
 <main>
   <section class="wrap" style="padding-top:56px">
-    <div class="eyebrow">JOURNAL・文章</div>
-    <h1 class="sec-title"><span class="ph">把治療室裡的話，</span><span class="ph">寫下來</span></h1>
-    <p class="sec-lead">這裡是我的筆記：關於疼痛、關於騎車、關於那些在治療床上發生的安靜時刻。內容僅供衛教參考，不能取代專業評估。</p>
+    <!-- 頁首：手機依序是標題、導言、人體部位圖；電腦版（≥1024px）標題在左、人體部位圖在右。
+         人體圖由 tools/inject.mjs 在建置時寫進 BLOG-BODYMAP 標記（tools/bodymap.mjs），點選的篩選在 assets/blog.js -->
+    <div class="blog-head">
+      <div class="blog-intro">
+        <div class="eyebrow">JOURNAL・文章</div>
+        <h1 class="sec-title"><span class="ph">把治療室裡的話，</span><span class="ph">寫下來</span></h1>
+        <p class="sec-lead">這裡是我的筆記：關於疼痛、關於騎車、關於那些在治療床上發生的安靜時刻。內容僅供衛教參考，不能取代專業評估。</p>
+      </div>
+      <!--BLOG-BODYMAP:START-->
+    <section class="bodymap" aria-labelledby="bm-h">
+      <div class="bm-head">
+        <h2 id="bm-h">哪裡不舒服？</h2>
+        <p class="bm-tip"><span id="bm-tip">點選身體部位，找相關的衛教文章</span><button class="bm-clear" id="bm-clear" type="button" hidden>清除選擇</button></p>
+      </div>
+      <div class="bm-stage">
+    <svg class="bm-fig" viewBox="-60 0 120 400" width="120" height="400" aria-hidden="true" focusable="false">
+      <defs>
+        <g id="bm-half">
+          <path d="M-7 53C-18 54-31 56-36 64C-40 71-39 86-35 99C-31 114-27 132-27 148C-27 163-32 177-33 191C-34 203-30 212-20 216L1 216L1 53Z"/>
+          <path d="M-36 61C-44 68-46 88-46 106C-47 125-49 148-51 168C-52 181-53 191-53 198L-43 199C-43 191-41 177-40 167C-38 147-36 124-33 99Z"/>
+          <ellipse cx="-49" cy="208" rx="6.5" ry="11"/>
+          <path d="M-33 188C-33 224-30 264-26 295C-24 311-26 329-24 345C-23 357-21 366-20 373L-12 373C-12 365-12 355-11 343C-10 329-9 313-9 299C-8 279-5 248-2 214L1 214L1 188Z"/>
+          <path d="M-20 370C-23 377-27 385-25 389C-23 392-13 392-11 390C-9 388-11 379-12 370Z"/>
+        </g>
+      </defs>
+      <ellipse class="bm-floor" cx="0" cy="393" rx="44" ry="5"/>
+      <g class="bm-body">
+        <ellipse cx="0" cy="27" rx="15.5" ry="18.5"/>
+        <rect x="-6.5" y="40" width="13" height="18" rx="4"/>
+        <use href="#bm-half"/>
+        <use href="#bm-half" transform="scale(-1,1)"/>
+      </g>
+      <g class="bm-dot" data-part="head">
+        <line x1="9" y1="32" x2="60" y2="32"/>
+        <circle class="bm-halo" cx="9" cy="32" r="10"/>
+        <circle class="bm-pt" cx="9" cy="32" r="4.5"/>
+      </g>
+      <g class="bm-dot" data-part="neck">
+        <line x1="-4" y1="52" x2="-60" y2="52"/>
+        <circle class="bm-halo" cx="-4" cy="52" r="10"/>
+        <circle class="bm-pt" cx="-4" cy="52" r="4.5"/>
+      </g>
+      <g class="bm-dot" data-part="shoulder">
+        <line x1="33" y1="70" x2="60" y2="70"/>
+        <circle class="bm-halo" cx="33" cy="70" r="10"/>
+        <circle class="bm-pt" cx="33" cy="70" r="4.5"/>
+      </g>
+      <g class="bm-dot" data-part="upper-back">
+        <line x1="-17" y1="96" x2="-60" y2="96"/>
+        <circle class="bm-halo" cx="-17" cy="96" r="10"/>
+        <circle class="bm-pt" cx="-17" cy="96" r="4.5"/>
+      </g>
+      <g class="bm-dot" data-part="elbow-wrist">
+        <line x1="-48" y1="166" x2="-60" y2="166"/>
+        <circle class="bm-halo" cx="-48" cy="166" r="10"/>
+        <circle class="bm-pt" cx="-48" cy="166" r="4.5"/>
+      </g>
+      <g class="bm-dot" data-part="lower-back">
+        <line x1="22" y1="140" x2="60" y2="140"/>
+        <circle class="bm-halo" cx="22" cy="140" r="10"/>
+        <circle class="bm-pt" cx="22" cy="140" r="4.5"/>
+      </g>
+      <g class="bm-dot" data-part="hip">
+        <line x1="25" y1="190" x2="60" y2="190"/>
+        <circle class="bm-halo" cx="25" cy="190" r="10"/>
+        <circle class="bm-pt" cx="25" cy="190" r="4.5"/>
+      </g>
+      <g class="bm-dot" data-part="thigh">
+        <line x1="17" y1="240" x2="60" y2="240"/>
+        <circle class="bm-halo" cx="17" cy="240" r="10"/>
+        <circle class="bm-pt" cx="17" cy="240" r="4.5"/>
+      </g>
+      <g class="bm-dot" data-part="knee">
+        <line x1="-17" y1="298" x2="-60" y2="298"/>
+        <circle class="bm-halo" cx="-17" cy="298" r="10"/>
+        <circle class="bm-pt" cx="-17" cy="298" r="4.5"/>
+      </g>
+      <g class="bm-dot" data-part="ankle">
+        <line x1="-16" y1="358" x2="-60" y2="358"/>
+        <circle class="bm-halo" cx="-16" cy="358" r="10"/>
+        <circle class="bm-pt" cx="-16" cy="358" r="4.5"/>
+      </g>
+      <g class="bm-dot" data-part="foot">
+        <line x1="18" y1="386" x2="60" y2="386"/>
+        <circle class="bm-halo" cx="18" cy="386" r="10"/>
+        <circle class="bm-pt" cx="18" cy="386" r="4.5"/>
+      </g>
+    </svg>
+    <button class="bm-btn R" type="button" data-part="head" aria-pressed="false" style="top:16px">頭・下巴<span class="n" aria-label="，41 篇">41</span></button>
+    <button class="bm-btn L" type="button" data-part="neck" aria-pressed="false" style="top:36px">脖子<span class="n" aria-label="，17 篇">17</span></button>
+    <button class="bm-btn R" type="button" data-part="shoulder" aria-pressed="false" style="top:54px">肩膀<span class="n" aria-label="，27 篇">27</span></button>
+    <button class="bm-btn L" type="button" data-part="upper-back" aria-pressed="false" style="top:80px">上背・胸口<span class="n" aria-label="，7 篇">7</span></button>
+    <button class="bm-btn L" type="button" data-part="elbow-wrist" aria-pressed="false" style="top:150px">手肘・手腕<span class="n" aria-label="，16 篇">16</span></button>
+    <button class="bm-btn R" type="button" data-part="lower-back" aria-pressed="false" style="top:124px">腰・下背<span class="n" aria-label="，34 篇">34</span></button>
+    <button class="bm-btn R" type="button" data-part="hip" aria-pressed="false" style="top:174px">髖・骨盆<span class="n" aria-label="，24 篇">24</span></button>
+    <button class="bm-btn R" type="button" data-part="thigh" aria-pressed="false" style="top:224px">大腿<span class="n" aria-label="，4 篇">4</span></button>
+    <button class="bm-btn L" type="button" data-part="knee" aria-pressed="false" style="top:282px">膝蓋<span class="n" aria-label="，20 篇">20</span></button>
+    <button class="bm-btn L" type="button" data-part="ankle" aria-pressed="false" style="top:342px">小腿・腳踝<span class="n" aria-label="，13 篇">13</span></button>
+    <button class="bm-btn R" type="button" data-part="foot" aria-pressed="false" style="top:370px">腳掌・足底<span class="n" aria-label="，9 篇">9</span></button>
+      </div>
+    </section>
+    <!--BLOG-BODYMAP:END-->
+    </div>
     <!-- 手機依 DOM 順序堆疊（分類 → 搜尋 → 清單），與原本相同；
          電腦版（≥1024px）左側是黏性側欄（搜尋在上、分類直列附篇數），右側兩欄卡片 -->
     <div class="blog-layout">
@@ -161,76 +261,63 @@
         <div class="post-count" id="post-count"><!--BLOG-STATIC-COUNT:START-->精選文章・共 9 篇<!--BLOG-STATIC-COUNT:END--></div>
         <div class="post-list" id="post-list"><!--BLOG-STATIC-LIST:START-->
     <a class="post-row" href="/posts/sciatica-explained">
+      <div class="post-cover"><img src="https://images.unsplash.com/photo-1649751361457-01d3a696c7e6?ixid=M3wxMTI2Mjk5fDB8MXxzZWFyY2h8MXx8c2NpYXRpY2ElMjBsZWclMjBwYWlufGVufDF8MHx8fDE3OTQwNTcwNTB8MA&amp;ixlib=rb-4.1.0&amp;w=480&amp;q=75&amp;fm=webp&amp;fit=max" alt="坐骨神經痛的示意照片" width="480" height="360" loading="lazy" decoding="async"></div>
       <div class="post-meta"><span>2026-03-18</span><span class="cat">下背痛</span></div>
-      <div>
-        <div class="post-title">坐骨神經痛：從屁股一路電到腿的那種痛</div>
-        <div class="post-ex">痛在腿，問題常在腰。這篇說明坐骨神經痛和一般轉移痛怎麼分、腿上哪一條線對應哪一節神經根、多久會好轉，以及哪些情況要立刻就醫。</div>
-      </div>
-      <div class="post-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      <div class="post-title">坐骨神經痛：從屁股一路電到腿的那種痛</div>
+      <div class="post-ex">痛在腿，問題常在腰。這篇說明坐骨神經痛和一般轉移痛怎麼分、腿上哪一條線對應哪一節神經根、多久會好轉，以及哪些情況要立刻就醫。</div>
+      <div class="post-tags"><span>#腰・下背</span><span>#髖・骨盆</span></div>
     </a>
     <a class="post-row" href="/posts/frozen-shoulder-stages">
+      <div class="post-cover"><img src="/assets/photos/frozen-shoulder-stages.webp" alt="中年女性在家中把手臂橫拉過胸前，伸展肩膀後側" width="480" height="360" loading="lazy" decoding="async"></div>
       <div class="post-meta"><span>2026-04-29</span><span class="cat">肩膀痛</span></div>
-      <div>
-        <div class="post-title">冰凍肩（五十肩）：卡住又痛的三個階段</div>
-        <div class="post-ex">手舉不高、摸不到背、夜裡痛到醒？冰凍肩有它獨特的病程。這篇跟著一位有糖尿病的會計師，說明各階段大概多久、怎麼跟其他肩痛分辨、長期結果如何，以及現在該安撫還是該伸展。</div>
-      </div>
-      <div class="post-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      <div class="post-title">冰凍肩（五十肩）：卡住又痛的三個階段</div>
+      <div class="post-ex">手舉不高、摸不到背、夜裡痛到醒？冰凍肩有它獨特的病程。這篇跟著一位有糖尿病的會計師，說明各階段大概多久、怎麼跟其他肩痛分辨、長期結果如何，以及現在該安撫還是該伸展。</div>
+      <div class="post-tags"><span>#肩膀</span></div>
     </a>
     <a class="post-row" href="/posts/tmj-disorders-overview">
+      <div class="post-cover"><img src="/assets/photos/tmj-disorders-overview.webp" alt="顳顎關節障礙是什麼的示意照片" width="480" height="360" loading="lazy" decoding="async"></div>
       <div class="post-meta"><span>2026-01-16</span><span class="cat">顳顎關節</span></div>
-      <div>
-        <div class="post-title">顳顎關節障礙是什麼？認識每天用上千次的下巴關節</div>
-        <div class="post-ex">張嘴會痛、有喀喀聲、甚至卡住？顳顎關節障礙比你想的常見。這篇帶你認識這個每天開合上千次的關節、三大症狀、在家立刻能改的習慣，以及哪些狀況要盡快就醫。</div>
-      </div>
-      <div class="post-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      <div class="post-title">顳顎關節障礙是什麼？認識每天用上千次的下巴關節</div>
+      <div class="post-ex">張嘴會痛、有喀喀聲、甚至卡住？顳顎關節障礙比你想的常見。這篇帶你認識這個每天開合上千次的關節、三大症狀、在家立刻能改的習慣，以及哪些狀況要盡快就醫。</div>
+      <div class="post-tags"><span>#頭・下巴</span></div>
     </a>
     <a class="post-row" href="/posts/fascia-what-is-fascia">
+      <div class="post-cover"><img src="/assets/photos/fascia-what-is-fascia.webp" alt="筋膜是什麼的示意照片" width="480" height="360" loading="lazy" decoding="async"></div>
       <div class="post-meta"><span>2025-09-05</span><span class="cat">高級筋膜技術</span></div>
-      <div>
-        <div class="post-title">筋膜是什麼？認識包覆全身的結締組織網</div>
-        <div class="post-ex">筋膜像一張立體的網，把全身連成整體。這篇帶你認識它的樣子與功能，再給出在家照顧筋膜的具體做法、最常被誤會的三件事，以及哪些疼痛該先讓專業評估。</div>
-      </div>
-      <div class="post-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      <div class="post-title">筋膜是什麼？認識包覆全身的結締組織網</div>
+      <div class="post-ex">筋膜像一張立體的網，把全身連成整體。這篇帶你認識它的樣子與功能，再給出在家照顧筋膜的具體做法、最常被誤會的三件事，以及哪些疼痛該先讓專業評估。</div>
     </a>
     <a class="post-row" href="/posts/tmj-whole-person">
+      <div class="post-cover"><img src="/assets/photos/tmj-whole-person.webp" alt="下巴痛，問題不一定在下巴的示意照片" width="480" height="360" loading="lazy" decoding="async"></div>
       <div class="post-meta"><span>2026-06-13</span><span class="cat">顱薦椎</span></div>
-      <div>
-        <div class="post-title">下巴痛，問題不一定在下巴——從顳顎關節談「整體」的身體觀</div>
-        <div class="post-ex">九成的顳顎關節症狀，其實不是關節本身的問題。下巴只是說話的那一個——真正在說話的，往往是整個身體累積的壓力與張力。</div>
-      </div>
-      <div class="post-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      <div class="post-title">下巴痛，問題不一定在下巴——從顳顎關節談「整體」的身體觀</div>
+      <div class="post-ex">九成的顳顎關節症狀，其實不是關節本身的問題。下巴只是說話的那一個——真正在說話的，往往是整個身體累積的壓力與張力。</div>
+      <div class="post-tags"><span>#頭・下巴</span></div>
     </a>
     <a class="post-row" href="/posts/bike-fitting-what">
+      <div class="post-cover"><img src="/assets/photos/bike-fitting-what.webp" alt="Bike Fitting 到底在「fit」什麼的示意照片" width="480" height="360" loading="lazy" decoding="async"></div>
       <div class="post-meta"><span>2026-03-12</span><span class="cat">公路車</span></div>
-      <div>
-        <div class="post-title">Bike Fitting 到底在「fit」什麼？</div>
-        <div class="post-ex">Bike Fitting 不只是把角度套進標準值，而是替騎累之後的你調車。這篇從三個接觸點、一次只改一樣的紀錄方法，談到研究能證明多少，以及哪些訊號要先看醫師。</div>
-      </div>
-      <div class="post-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      <div class="post-title">Bike Fitting 到底在「fit」什麼？</div>
+      <div class="post-ex">Bike Fitting 不只是把角度套進標準值，而是替騎累之後的你調車。這篇從三個接觸點、一次只改一樣的紀錄方法，談到研究能證明多少，以及哪些訊號要先看醫師。</div>
     </a>
     <a class="post-row" href="/posts/neurac-pelvic-girdle-pain">
+      <div class="post-cover"><img src="/assets/photos/neurac-pelvic-girdle-pain.webp" alt="紅繩懸吊系統：吊架、紅色繩索與吊帶" width="480" height="360" loading="lazy" decoding="async"></div>
       <div class="post-meta"><span>2026-06-13</span><span class="cat">紅繩懸吊</span></div>
-      <div>
-        <div class="post-title">骨盆帶疼痛：紅繩懸吊如何幫你找回穩定</div>
-        <div class="post-ex">懷孕、產後、甚至沒有生過孩子——骨盆帶疼痛比你想像的更常見。這篇文章從解剖、症狀到 Neurac 紅繩治療原則，帶你一次看懂。</div>
-      </div>
-      <div class="post-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      <div class="post-title">骨盆帶疼痛：紅繩懸吊如何幫你找回穩定</div>
+      <div class="post-ex">懷孕、產後、甚至沒有生過孩子——骨盆帶疼痛比你想像的更常見。這篇文章從解剖、症狀到 Neurac 紅繩治療原則，帶你一次看懂。</div>
+      <div class="post-tags"><span>#髖・骨盆</span></div>
     </a>
     <a class="post-row" href="/posts/pain-alarm">
+      <div class="post-cover"><img src="/assets/photos/pain-alarm.webp" alt="牆上一盞紅色的警示燈" width="480" height="360" loading="lazy" decoding="async"></div>
       <div class="post-meta"><span>2026-05-02</span><span class="cat">疼痛科學</span></div>
-      <div>
-        <div class="post-title">疼痛是大腦的警報，不是損傷的刻度</div>
-        <div class="post-ex">腳踝扭傷當下不痛、被紙割到卻痛得跳腳——疼痛從來不是損傷的忠實刻度，它是大腦對「危險」的判斷。</div>
-      </div>
-      <div class="post-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      <div class="post-title">疼痛是大腦的警報，不是損傷的刻度</div>
+      <div class="post-ex">腳踝扭傷當下不痛、被紙割到卻痛得跳腳——疼痛從來不是損傷的忠實刻度，它是大腦對「危險」的判斷。</div>
     </a>
     <a class="post-row" href="/posts/tears-from-fascia">
+      <div class="post-cover"><img src="https://images.unsplash.com/photo-1718964382697-897985745c3c?ixid=M3wxMTI2Mjk5fDB8MXxzZWFyY2h8MTB8fGNvbWZvcnRpbmclMjBoYW5kJTIwb24lMjBzaG91bGRlcnxlbnwxfDB8fHwxNzk0MDY3Mzk0fDA&amp;ixlib=rb-4.1.0&amp;w=480&amp;q=75&amp;fm=webp&amp;fit=max" alt="眼淚從筋膜裡來的示意照片" width="480" height="360" loading="lazy" decoding="async"></div>
       <div class="post-meta"><span>2026-05-25</span><span class="cat">顱薦椎</span></div>
-      <div>
-        <div class="post-title">眼淚從筋膜裡來：談情緒能量釋放</div>
-        <div class="post-ex">「對不起，我不知道我為什麼哭。」在治療床上，這句話我聽過很多次。沒關係——身體知道。</div>
-      </div>
-      <div class="post-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      <div class="post-title">眼淚從筋膜裡來：談情緒能量釋放</div>
+      <div class="post-ex">「對不起，我不知道我為什麼哭。」在治療床上，這句話我聽過很多次。沒關係——身體知道。</div>
     </a>
         <!--BLOG-STATIC-LIST:END--></div>
         <button class="post-more" id="post-more" type="button" hidden>載入更多文章</button>

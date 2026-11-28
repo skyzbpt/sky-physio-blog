@@ -10,7 +10,7 @@
     +'.contact-panel,.blog-topics h2,.blog-topic,.prod-stack,.product-card,.prod-fit li,.prod-steps li,'
     +'.about-worlds .world,.about-insight,.about-dual,.about-note,.about-philosophy,.about-block,.about-col-box,'
     +'.hub-intro section,.list a,.hub-faq h2,.hub-faq details,.quick,.post-body figure,.post-body blockquote,'
-    +'.author-box,.end-cta,.pager a,.more h3,.more a,.guide-cards li,.guide-criteria li,.guide-compare p,.faq-item,.cta-box,.note,.toc-box';
+    +'.author-box,.end-cta,.pager a,.more h3,.more a,.recs h3,.rec,.guide-cards li,.guide-criteria li,.guide-compare p,.faq-item,.cta-box,.note,.toc-box';
   var vh=window.innerHeight, els=[];
   [].forEach.call(document.querySelectorAll(SEL),function(el){
     if(el.closest('header') || (el.parentElement && el.parentElement.closest('.rv-el'))) return;

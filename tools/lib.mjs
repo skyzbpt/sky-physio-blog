@@ -451,6 +451,60 @@ export const entitiesOf = a => {
   return all.filter(k => !all.some(o => o !== k && o.includes(k)));
 };
 
+/* ---------- 身體部位（/blog 的「哪裡不舒服？」人體圖、卡片與文章頁標題下的 #部位） ----------
+   讀者找文章時，第一個念頭通常是「我哪裡痛」，不是「這屬於哪個分類」——
+   公路車、筋膜、顱薦椎這些分類裡，都有在談膝蓋、脖子、下背的文章。
+   每篇的部位看標題：標題點名了哪裡，這篇就在談哪裡。標題沒點名部位時，
+   以部位命名的分類（膝蓋痛、肩膀痛……）沿用分類本身的部位，其他分類就不標。
+   判斷錯了，在 data/articles.json 該篇加上 "parts": ["knee"] 直接指定（[] 代表不標任何部位）。
+   順序就是人體圖由上到下的順序；圓點位置在 tools/bodymap.mjs。
+
+   規則只認「部位詞」，不認單一個字——「手」會中「車手」、「腳」會中「腳踏車」、
+   「足」會中「睡眠不足」、「指」會中「變異指數」；「頭」則排除「過頭動作」「二頭肌」
+   「骨頭」「源頭」「碼頭」「龍頭」這類不是在說頭的詞。 */
+export const BODY_PARTS = [
+  { id: 'head',        label: '頭・下巴',   re: /顳顎|下巴|咀嚼|咬肌|咬牙|磨牙|咬合|翼[內外]肌|太陽穴|後腦|額頭|耳朵|蝶骨|顳骨|(?<![過二三四骨碼源石枕念鏡回開盡拳指苦饅龍車出帶抬])頭(?![號肌])/ },
+  { id: 'neck',        label: '脖子',       re: /脖子|頸|落枕|揮鞭|枕下|斜角肌|喉嚨/ },
+  { id: 'shoulder',    label: '肩膀',       re: /肩|旋轉肌/ },
+  { id: 'upper-back',  label: '上背・胸口', re: /上背|胸椎|胸廓|胸悶|駝背|肋|橫膈|T4/ },
+  { id: 'elbow-wrist', label: '手肘・手腕', re: /肘|腕|手掌|手指|拇指|小指|無名指|指尖|手臂|手麻|媽媽手|魚際/ },
+  { id: 'lower-back',  label: '腰・下背',   re: /下背|腰|椎間盤|坐骨神經|椎管|小面關節|脊椎解離|滑脫/ },
+  { id: 'hip',         label: '髖・骨盆',   re: /髖(?!推|鉸鏈)|骨盆|鼠蹊|薦髂|薦骨|薦結節|尾骨|尾椎|髂骨|臀|屁股|梨狀肌|恥骨|會陰|疝氣/ },
+  { id: 'thigh',       label: '大腿',       re: /大腿|腿後|股四頭|內收肌|膕旁肌/ },
+  { id: 'knee',        label: '膝蓋',       re: /(?<!抱)膝|半月板|十字韌帶|副韌帶|髕/ },
+  { id: 'ankle',       label: '小腿・腳踝', re: /踝|小腿|阿基里斯|跟腱|腓骨/ },
+  { id: 'foot',        label: '腳掌・足底', re: /足底|足弓|足跟|腳跟|腳掌|腳底|趾(?!甲)|扁平足/ },
+];
+export const PART_IDS = BODY_PARTS.map(p => p.id);
+export const partLabel = id => (BODY_PARTS.find(p => p.id === id) || {}).label || id;
+// 以部位命名的分類：標題沒點名部位時，就是分類本身的部位
+const CAT_PART = {
+  '肩膀痛': 'shoulder', '下背痛': 'lower-back', '膝蓋痛': 'knee', '足踝痛': 'ankle',
+  '髖與鼠蹊痛': 'hip', '手肘與手腕痛': 'elbow-wrist', '顳顎關節': 'head',
+};
+export const partsOf = a => {
+  const ids = Array.isArray(a.parts) ? a.parts
+    : BODY_PARTS.filter(p => p.re.test(a.title || '')).map(p => p.id);
+  if (!Array.isArray(a.parts) && !ids.length && CAT_PART[a.cat]) return [CAT_PART[a.cat]];
+  // 一律依人體由上到下排序，未知的 id 不輸出（npm run verify 會指出來）
+  return PART_IDS.filter(id => ids.includes(id));
+};
+
+// 清單卡片的封面：文章裡第一張圖（每篇都有；站內實拍在 /assets/photos/，其餘是 Unsplash），
+// alt 沿用那張圖在文章裡的說明（全站規定圖片都要有非空 alt，見 verify「圖片 alt」）。
+// Unsplash 的圖可以在網址上指定寬度，清單縮圖只要 480px 寬就夠，省下一半以上的流量。
+// 回傳的是解碼後的文字（&amp; → &），輸出到 HTML 時一律再經過 esc()。
+const unent = s => String(s).replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+export function coverOf(a) {
+  const tag = (String(a.content || '').match(/<img\s[^>]*>/) || [''])[0];
+  const src = unent((tag.match(/\bsrc="([^"]+)"/) || [, ''])[1]);
+  const alt = unent((tag.match(/\balt="([^"]*)"/) || [, ''])[1]).trim();
+  return {
+    src: /^https:\/\/images\.unsplash\.com\//.test(src) ? src.replace(/([?&])w=\d+/, '$1w=480') : src,
+    alt: alt || a.title || '',
+  };
+}
+
 export const loadArticles = () => JSON.parse(readFileSync(join(REPO, 'data/articles.json'), 'utf8'));
 export const loadSite = () => JSON.parse(readFileSync(join(REPO, 'data/site.json'), 'utf8'));
 export const logoDataURI = () => 'data:image/png;base64,' + readFileSync(join(REPO, 'assets/logo.png')).toString('base64');
