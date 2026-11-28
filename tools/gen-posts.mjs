@@ -2,7 +2,7 @@
 // 資料來源：data/articles.json（唯一真實來源）
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, esc, phrases, readMins, CAT_SLUG, renderBody, headingsOf, loadArticles, logoDataURI, photoDataURI, roundedFontDataURI, ogCard, ogHomeCard, shot, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, wordCountOf, keywordsFor, mentionsFor, metaDescription, extractFaqs, ldJson, topicsOf, referencesOf, firstImageOf } from './lib.mjs';
+import { REPO, BASE, esc, phrases, readMins, CAT_SLUG, renderBody, headingsOf, loadArticles, logoDataURI, photoDataURI, roundedFontDataURI, ogCard, ogHomeCard, shot, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, wordCountOf, keywordsFor, mentionsFor, metaDescription, extractFaqs, ldJson, topicsOf, referencesOf, firstImageOf, partsOf, partLabel } from './lib.mjs';
 import { SHELL, ARTICLE_CSS, BOOK_URL, siteHeader, siteFooter } from './css.mjs';
 import { resolveModified } from './modified.mjs';
 
@@ -28,6 +28,38 @@ const CTA_TITLE = {
 };
 const ctaTitle = cat => CTA_TITLE[cat] || '身體有話想說？';
 
+// 推薦療程：文末依分類列出最相關的兩項服務，連到 /services 的對應段落。
+// 名稱與說明照抄服務項目頁（services.html）上的文字，兩邊講的是同一件事；
+// 錨點是否存在由 npm run verify 檢查。
+const SERVICES = {
+  'svc-assessment':     { name: '初診評估', desc: '透過問診、姿勢與動作評估，找出疼痛背後的根源，再規劃治療方向。' },
+  'svc-manual-therapy': { name: '徒手治療與疼痛治療', desc: '結合肌筋膜、關節鬆動與現代疼痛科學，處理急性拉傷到慢性疼痛。' },
+  'svc-redcord':        { name: '紅繩懸吊訓練', desc: '用紅繩懸吊重建深層核心穩定，是三鐵運動修復的核心方法。' },
+  'svc-bike-fitting':   { name: 'Bike Fitting 公路車體態調校', desc: '物理治療評估加上騎姿分析，處理騎車的痛，也改善功率流失。' },
+  'svc-craniosacral':   { name: '顱薦椎治療', desc: '大約五克的輕觸，協助長期處於緊繃狀態的神經系統放鬆下來。' },
+  'svc-myofascial':     { name: '肌筋膜放鬆・筋膜刀', desc: '以筋膜刀等工具處理筋膜沾黏，搭配筋膜鏈訓練強化整體動力鏈。' },
+  'svc-tmj':            { name: '顳顎關節治療', desc: '針對張口障礙、咬合不正、下巴或太陽穴周圍疼痛，進行專項評估與徒手治療。' },
+  'svc-taping':         { name: '運動貼紮', desc: '用肌貼、動態貼布或雷可貼布，給關節與肌肉多一層支持。' },
+  'svc-ai-assessment':  { name: 'AI 科學化動作評估', desc: '用 Vald DynaMo 把肌力量成數字，追蹤進步不必憑感覺。' },
+};
+const CAT_SERVICES = {
+  '下背痛': ['svc-manual-therapy', 'svc-redcord'],
+  '肩膀痛': ['svc-manual-therapy', 'svc-redcord'],
+  '膝蓋痛': ['svc-manual-therapy', 'svc-ai-assessment'],
+  '足踝痛': ['svc-manual-therapy', 'svc-taping'],
+  '髖與鼠蹊痛': ['svc-manual-therapy', 'svc-redcord'],
+  '手肘與手腕痛': ['svc-manual-therapy', 'svc-myofascial'],
+  '顳顎關節': ['svc-tmj', 'svc-craniosacral'],
+  '高級筋膜技術': ['svc-myofascial', 'svc-manual-therapy'],
+  '顱薦椎': ['svc-craniosacral', 'svc-assessment'],
+  '公路車': ['svc-bike-fitting', 'svc-ai-assessment'],
+  '紅繩懸吊': ['svc-redcord', 'svc-assessment'],
+  '疼痛科學': ['svc-assessment', 'svc-manual-therapy'],
+  '三鐵運動修復': ['svc-redcord', 'svc-bike-fitting'],
+};
+const servicesFor = cat => (CAT_SERVICES[cat] || ['svc-assessment', 'svc-manual-therapy']).map(k => ({ id: k, ...SERVICES[k] }));
+const CHECK = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="7.5 12.5 10.5 15.5 16.5 9.5"/></svg>';
+
 /* ---------- 文章頁 CSS ----------
    外殼（SHELL）與長文排版（ARTICLE_CSS）來自 css.mjs，這裡只放文章頁專屬的元件。
    閱讀面是白底、692px 版心；色塊（快速解答、目錄、作者、預約）一律淡天空灰、大圓角、沒有外框。 */
@@ -52,6 +84,30 @@ const CSS = SHELL + ARTICLE_CSS + `
 .byline a{color:var(--sky-ink);position:relative}
 .byline a::after{content:"";position:absolute;inset:-10px -4px}
 .byline a:hover{text-decoration:underline}
+/* #部位：這篇談的身體部位（與 /blog 人體圖同一套），點了回到清單、直接篩出同部位的文章 */
+.post-parts{display:flex;flex-wrap:wrap;gap:8px;margin:-4px 0 16px}
+.post-parts a{position:relative;display:inline-flex;align-items:center;min-height:28px;padding:0 12px;border-radius:980px;background:var(--sky-soft);color:var(--sky-ink);font-size:13px;line-height:1;transition:background-color .2s var(--ease),color .2s var(--ease)}
+.post-parts a::after{content:"";position:absolute;inset:-8px -3px}
+.post-parts a:hover{background:var(--sky-btn);color:#fff}
+/* 本文重點：摘要放進淡天空藍色塊、標上「本文重點」，讀者一開始就知道這篇會回答什麼 */
+.keypoints{margin:0 0 28px;padding:22px 26px 24px;border-radius:var(--r-card);background:linear-gradient(135deg,#EEF7FD 0%,#DCEEFA 100%)}
+.keypoints h2{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;letter-spacing:.02em;color:var(--sky-ink);margin:0 0 8px}
+.keypoints h2 svg{flex:none}
+.keypoints .lede{font-size:clamp(1.0625rem,2vw,1.1875rem);line-height:1.8;color:var(--ink);margin:0}
+.keypoints+.quick{margin-top:0}
+/* 推薦療程：依分類列出兩項最相關的服務（連到 /services 的段落） */
+.recs{margin-top:64px}
+.recs h3{font-size:1.5rem;line-height:1.3;margin-bottom:6px}
+.recs-lead{font-size:15px;line-height:1.7;color:var(--muted);margin-bottom:18px}
+.recs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.rec{display:flex;flex-direction:column;padding:22px 22px 18px;border-radius:var(--r-card);background:var(--tint);transition:background-color .25s var(--ease)}
+.rec:hover{background:var(--tint-2)}
+.rec b{display:flex;align-items:center;gap:8px;font-size:1.0625rem;font-weight:600;line-height:1.45;color:var(--ink)}
+.rec b::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--sky)}
+.rec span{margin-top:6px;font-size:14px;line-height:1.7;color:var(--muted)}
+.rec i{margin-top:auto;padding-top:12px;font-style:normal;font-size:14px;color:var(--sky-ink)}
+.rec:hover i{text-decoration:underline}
+@media(max-width:560px){.recs-grid{grid-template-columns:1fr}}
 .post-body .refs-h{scroll-margin-top:calc(var(--nav-h) + 24px);margin-bottom:.8em}
 .post-body .refs-h+ol{font-size:13px;line-height:1.75;color:var(--muted);word-break:break-word}
 .post-body h2 .hash{margin-left:8px;font-size:.7em;font-weight:400;color:var(--line);opacity:0;transition:opacity .15s,color .15s}
@@ -209,6 +265,7 @@ ${heads.map(h => `        <li><a href="#${h.id}">${esc(h.text)}</a></li>`).join(
   // dateModified 必須反映真實變更，全站每日「假更新」反而是負面品質訊號
   const modified = MODIFIED.get(a.id) || a.updated || a.date;
   const hubSlug = CAT_SLUG[a.cat];
+  const parts = partsOf(a);
   const hubUrl = hubSlug ? `${BASE}/topics/${hubSlug}` : `${BASE}/`;
   const breadcrumb = {
     "@context": "https://schema.org",
@@ -344,9 +401,13 @@ ${siteHeader()}
       <time class="date" datetime="${a.date}">${a.date}</time><span class="cat">${esc(a.cat)}</span><span>約 ${mins} 分鐘</span><span class="views" hidden></span>
       <button class="pp-share" type="button" title="複製這篇文章的連結">複製連結</button>
     </div>
-    <h1 class="post-title">${phrases(a.title)}</h1>
+    <h1 class="post-title">${phrases(a.title)}</h1>${parts.length ? `
+    <p class="post-parts" aria-label="這篇談的身體部位">${parts.map(id => `<a href="/blog#part=${id}">#${esc(partLabel(id))}</a>`).join('')}</p>` : ''}
     <p class="byline"><span>撰文・審閱：<a href="/about" rel="author">Sky 物理治療師</a>（國家高考合格）</span><span>最後審閱 <time datetime="${modified}">${modified}</time></span>${refs.length ? `<a href="#refs">參考文獻 ${refs.length} 筆</a>` : ''}</p>
-    <p class="lede">${esc(a.excerpt)}</p>${quickHtml}
+    <section class="keypoints" aria-labelledby="kp-h">
+      <h2 id="kp-h">${CHECK}本文重點</h2>
+      <p class="lede">${esc(a.excerpt)}</p>
+    </section>${quickHtml}
     <aside class="post-side" aria-label="本篇章節與預約">${tocHtml}
       <div class="side-cta">
         <div class="t">${esc(ctaTitle(a.cat))}</div>
@@ -382,6 +443,13 @@ ${pagerHtml}
       ${related.map(r => `<a href="/posts/${r.id}">${esc(r.title)}<span>${esc(r.cat)}${crossIds.has(r.id) ? " ・另一個角度" : ""}</span></a>`).join("\n      ")}
       ${hubSlug ? `<a class="more-hub" href="/topics/${hubSlug}">查看所有《${esc(a.cat)}》文章<span>分類專頁</span></a>` : ''}
     </nav>
+    <section class="recs" aria-labelledby="recs-h">
+      <h3 id="recs-h">推薦療程</h3>
+      <p class="recs-lead">想請治療師幫你看看？這兩項服務和這篇的主題最相關。</p>
+      <div class="recs-grid">
+        ${servicesFor(a.cat).map(v => `<a class="rec" href="/services#${v.id}"><b>${esc(v.name)}</b><span>${esc(v.desc)}</span><i>了解這項服務 →</i></a>`).join('\n        ')}
+      </div>
+    </section>
   </article>
 </main>
 

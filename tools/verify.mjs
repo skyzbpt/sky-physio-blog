@@ -3,7 +3,7 @@
 // 放在 repo 內（而非暫存區），確保不會因環境重建而遺失。
 import { readFileSync, readdirSync, existsSync, statSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, TODAY, loadArticles, CAT_SLUG, DESC_MIN, DESC_MAX, BLOGPOST_MAX, referencesOf, INTERNAL_LINK } from './lib.mjs';
+import { REPO, BASE, TODAY, loadArticles, CAT_SLUG, DESC_MIN, DESC_MAX, BLOGPOST_MAX, referencesOf, INTERNAL_LINK, PART_IDS, partsOf } from './lib.mjs';
 import { hashOf, pageFingerprint } from './modified.mjs';
 import { fingerprintPages } from './sitemap.mjs';
 import { LEGAL_UPDATED } from './gen-legal.mjs';
@@ -804,6 +804,48 @@ staleHubs.length === 0 && staleOg.length === 0
 }
 
 /* ---------- 輸出 ---------- */
+/* ---------- 14. 身體部位（/blog 人體圖、#部位標籤）、本文重點與推薦療程 ---------- */
+{
+  const bad = [];
+  // data/articles.json 指定的 parts 只能用 tools/lib.mjs 的 BODY_PARTS 裡有的部位
+  for (const a of arts) if (a.parts !== undefined) {
+    if (!Array.isArray(a.parts)) bad.push(`${a.id} 的 parts 不是陣列`);
+    else for (const id of a.parts) if (!PART_IDS.includes(id)) bad.push(`${a.id} 的 parts 有未知部位「${id}」`);
+  }
+  // /blog 人體圖：每個部位都有按鈕，按鈕上的篇數與實際相符（改了標題或 parts 卻沒重新 build 會在這裡被抓到）
+  const blog = read('blog.html');
+  for (const id of PART_IDS) {
+    const n = arts.filter(a => partsOf(a).includes(id)).length;
+    const m = blog.match(new RegExp(`<button class="bm-btn [LR]" type="button" data-part="${id}"[^>]*>[^<]*<span class="n"[^>]*>(\\d+)</span>`));
+    if (!m) bad.push(`blog.html 人體圖缺少「${id}」`);
+    else if (+m[1] !== n) bad.push(`人體圖「${id}」顯示 ${m[1]} 篇，實際 ${n} 篇`);
+  }
+  // 清單索引：每篇都有封面與 alt，部位與文章頁一致
+  try {
+    const byId = new Map(arts.map(a => [a.id, a]));
+    for (const x of JSON.parse(read('assets/articles-index.json'))) {
+      if (!x.img || !x.alt) bad.push(`${x.id} 清單索引缺封面或 alt`);
+      const a = byId.get(x.id);
+      if (a && (x.parts || []).join() !== partsOf(a).join()) bad.push(`${x.id} 清單索引的部位與文章不一致`);
+    }
+  } catch (e) { bad.push('articles-index.json 讀取失敗'); }
+  // 文章頁：#部位連到存在的部位、有本文重點、推薦療程兩項且連到 /services 上真的有的段落
+  const svc = read('services.html');
+  for (const f of postFiles) {
+    const h = read('posts/' + f), id = f.replace(/\.html$/, ''), a = arts.find(x => x.id === id);
+    const tags = [...h.matchAll(/href="\/blog#part=([a-z-]+)"/g)].map(m => m[1]);
+    if (a && tags.join() !== partsOf(a).join()) bad.push(`${f} 的 #部位與資料不一致`);
+    if (!/<section class="keypoints"[\s\S]*?<p class="lede">/.test(h)) bad.push(`${f} 缺本文重點`);
+    const recs = [...h.matchAll(/class="rec" href="\/services#([a-z-]+)"/g)].map(m => m[1]);
+    if (recs.length !== 2) bad.push(`${f} 推薦療程 ${recs.length} 項（應為 2）`);
+    for (const r of recs) if (!svc.includes(`id="${r}"`)) bad.push(`${f} 推薦療程連到不存在的段落 /services#${r}`);
+  }
+  const tagged = arts.filter(a => partsOf(a).length).length;
+  bad.length === 0
+    ? pass(`身體部位與推薦療程：人體圖 ${PART_IDS.length} 個部位篇數正確・${tagged} 篇有 #部位・每篇有本文重點與推薦療程`)
+    : fail('身體部位／本文重點／推薦療程', bad.slice(0, 5).join('；') + (bad.length > 5 ? ` 等 ${bad.length} 處` : ''));
+}
+
 const w = Math.max(...results.map(r => r[1].length));
 for (const [s, n, d] of results) console.log(`${s === 'PASS' ? '✅' : '❌'} ${n.padEnd(w)} ${d ? '— ' + d : ''}`);
 const nf = results.filter(r => r[0] === 'FAIL').length;

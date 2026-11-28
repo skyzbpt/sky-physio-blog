@@ -2,7 +2,7 @@
 // 資料來源：data/articles.json
 import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, esc, plain, loadArticles, logoDataURI, ogCard, shot, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, ldJson } from './lib.mjs';
+import { REPO, BASE, esc, plain, loadArticles, logoDataURI, ogCard, shot, ROBOTS, AUTHOR, PUBLISHER, CAT_ABOUT, ldJson, coverOf, partsOf, partLabel } from './lib.mjs';
 import { SHELL, siteHeader, siteFooter } from './css.mjs';
 
 // 與 lib.mjs 的 CAT_SLUG 保持一致（此處另需 lede 文案）
@@ -385,7 +385,7 @@ const HUBS = [
 
 /* ---------- 主題頁 CSS ----------
    外殼來自 css.mjs 的 SHELL。版面：大標＋導言 → 長篇介紹（色塊）→ 文章清單 → 常見問題（收合列）。
-   手機是單欄、以細線分隔的清單；電腦版（≥1024px）介紹兩欄、文章三欄色塊、常見問題兩欄。 */
+   文章是封面卡片：手機與平板文字在左、封面在右，以細線分隔；電腦版（≥1024px）介紹兩欄、文章三欄（封面在上）、常見問題兩欄。 */
 const CSS = SHELL + `
 .hub{max-width:var(--wrap);margin:0 auto;padding:44px var(--gut) 96px}
 .hub h1{font-size:clamp(2.1rem,6vw,3.5rem);line-height:1.1;letter-spacing:-.02em;margin-bottom:18px}
@@ -443,12 +443,24 @@ const CSS = SHELL + `
 .loadmore:hover{background:var(--sky-ink);color:#fff}
 .loadmore[hidden]{display:none}
 .list{border-top:1px solid var(--line)}
-.list a{display:block;padding:22px 0;border-bottom:1px solid var(--line)}
+/* 封面卡片（與 /blog 同一套）：手機與平板文字在左、封面在右（手機小方圖、平板 4:3），電腦版三欄、封面在上。
+   封面是文章第一張圖、#部位與 /blog 人體圖同一套（tools/lib.mjs 的 coverOf／partsOf） */
+.list a{display:grid;grid-template-columns:minmax(0,1fr) 88px;grid-template-areas:"c-m c" "c-t c" "c-e c" "c-g c";
+  column-gap:16px;align-items:start;padding:22px 0;border-bottom:1px solid var(--line)}
 .list a[hidden]{display:none}
-.list .m{font-size:13px;color:var(--muted);margin-bottom:6px}
-.list .t{font-size:1.25rem;font-weight:600;line-height:1.4;letter-spacing:-.01em;text-wrap:pretty;transition:color .25s var(--ease)}
+.list .c{grid-area:c;aspect-ratio:1;border-radius:12px;overflow:hidden;background:var(--tint-2)}
+.list .c img{width:100%;height:100%;object-fit:cover}
+.list .m{grid-area:c-m;font-size:13px;color:var(--muted);margin-bottom:6px}
+.list .t{grid-area:c-t;font-size:1.1875rem;font-weight:600;line-height:1.45;letter-spacing:-.01em;text-wrap:pretty;transition:color .25s var(--ease)}
 .list a:hover .t{color:var(--sky-ink)}
-.list .e{color:var(--muted);font-size:15px;line-height:1.65;margin-top:6px;max-width:46em}
+.list .e{grid-area:c-e;color:var(--muted);font-size:15px;line-height:1.65;margin-top:6px;max-width:46em;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.list .g{grid-area:c-g;display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.list .g span{padding:1px 9px;border-radius:980px;background:var(--sky-soft);color:var(--sky-ink);font-size:12px;line-height:1.75;white-space:nowrap}
+@media(min-width:600px){
+  .list a{grid-template-columns:minmax(0,1fr) 200px;column-gap:28px}
+  .list .c{align-self:center;aspect-ratio:4/3;border-radius:14px}
+}
 .backhome{display:inline-flex;align-items:center;min-height:44px;margin-top:40px;font-size:1.0625rem;color:var(--sky-ink)}
 .backhome::before{content:"‹";margin-right:6px;font-size:1.3em;line-height:1}
 .backhome:hover{text-decoration:underline}
@@ -465,9 +477,12 @@ const CSS = SHELL + `
   .list-head .count{margin:0;font-size:15px}
   .list-head .finder{margin:0;flex:0 1 380px}
   .list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;border-top:none}
-  .list a{display:flex;flex-direction:column;padding:28px 28px 26px;border:none;border-radius:var(--r-card);background:var(--tint);transition:transform .35s var(--ease),box-shadow .35s var(--ease),background-color .25s var(--ease)}
+  .list a{display:flex;flex-direction:column;padding:0 0 24px;border:none;border-radius:var(--r-card);background:var(--tint);overflow:hidden;transition:transform .35s var(--ease),box-shadow .35s var(--ease),background-color .25s var(--ease)}
+  .list .c{aspect-ratio:3/2;border-radius:0;margin-bottom:20px}
+  .list .m,.list .t,.list .e,.list .g{padding:0 26px}
   .list .t{font-size:1.2rem}
-  .list .e{max-width:none;margin-top:8px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .list .e{max-width:none;margin-top:8px}
+  .list .g{margin-top:auto;padding-top:14px}
   .series-groups{grid-template-columns:1fr 1fr;gap:18px}
   .series-group{padding:32px 32px 24px;border-radius:var(--r-tile)}
   .hub-faq{display:grid;grid-template-columns:1fr 1fr;column-gap:56px;align-items:start;border-bottom:none}
@@ -640,11 +655,16 @@ ${siteHeader()}
   </div>` : ''}
   </div>
   <div class="list" id="list">
-    ${arts.map(a => `<a href="/posts/${a.id}">
+    ${arts.map(a => {
+      const cover = coverOf(a), ps = partsOf(a);
+      return `<a href="/posts/${a.id}">
+      <div class="c"><img src="${esc(cover.src)}" alt="${esc(cover.alt)}" width="480" height="360" loading="lazy" decoding="async"></div>
       <div class="m">${a.date}</div>
       <div class="t">${esc(a.title)}</div>
-      <div class="e">${esc(plain(a.excerpt))}</div>
-    </a>`).join('\n    ')}
+      <div class="e">${esc(plain(a.excerpt))}</div>${ps.length ? `
+      <div class="g">${ps.map(id => `<span>#${esc(partLabel(id))}</span>`).join('')}</div>` : ''}
+    </a>`;
+    }).join('\n    ')}
   </div>
   <p class="no-hit" id="nohit" hidden>沒有符合的文章——換個關鍵字試試，或回到全部文章。</p>
   ${arts.length > 24 ? '<button class="loadmore" id="more" type="button">載入更多文章</button>' : ''}${faqs.length ? `

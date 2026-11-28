@@ -4,7 +4,8 @@
 // 3) blog.html 的靜態內容：精選文章清單與「依主題閱讀」（JS 載入前、爬蟲看得到）
 import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
-import { REPO, BASE, loadArticles, BLOGPOST_MAX, esc, inlineFormat, CAT_SLUG, scriptJson } from './lib.mjs';
+import { REPO, BASE, loadArticles, BLOGPOST_MAX, esc, inlineFormat, CAT_SLUG, scriptJson, partsOf, partLabel, coverOf, PART_IDS } from './lib.mjs';
+import { bodyMapHtml } from './bodymap.mjs';
 
 const plain = t => String(t).replace(/!\[[^\]]*\]\([^)]*\)/g, '').replace(/[#>*`]/g, '').replace(/\s+/g, ' ').trim();
 
@@ -16,7 +17,12 @@ export function injectArticles() {
   /* --- 1) 清單用的精簡 metadata（/blog 以 fetch 取用） --- */
   // 內文佔了 data/articles.json 的九成（724KB → 85KB）。/blog 只需要
   // 標題／摘要／分類／日期，抓整份等於為了一張清單多下載 639KB。
-  const light = articles.map(({ content, ...rest }) => rest);
+  // parts：身體部位（/blog 人體圖的篩選與卡片上的 #部位）；img／alt：卡片封面（文章第一張圖與它的說明）。
+  // parts 一律寫成判斷後的結果（標題自動判斷或 data/articles.json 指定），沒有部位的文章不寫這個欄位。
+  const light = articles.map(({ content, parts, ...rest }) => {
+    const ps = partsOf({ ...rest, parts }), cover = coverOf({ content, title: rest.title });
+    return { ...rest, ...(ps.length ? { parts: ps } : {}), img: cover.src, alt: cover.alt };
+  });
   writeFileSync(join(REPO, 'assets/articles-index.json'), JSON.stringify(light));
 
   /* --- 2) Blog JSON-LD blogPost 清單（最新 BLOGPOST_MAX 篇） --- */
@@ -44,8 +50,20 @@ export function injectArticles() {
    /blog 的清單原本完全由 JS 在 fetch 之後畫出來，原始碼只剩約 110 字，
    SEO 工具判定「內容偏少」，也看不到任何文章連結。這裡在建置時先輸出：
    1) 精選文章與篇數（與 JS 預設分類相同的那份清單、相同的標記）——JS 載入後直接取代
-   2) 依主題閱讀：每個分類的篇數、專頁連結與最新三篇 */
-const ARROW = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+   2) 依主題閱讀：每個分類的篇數、專頁連結與最新三篇
+   3) 「哪裡不舒服？」人體部位圖（各部位篇數在這裡算好） */
+
+// 文章卡片：與 assets/blog.js 的 card() 輸出相同的標記（JS 載入後直接取代，版面不會跳動）
+export const cardHtml = a => {
+  const ps = partsOf(a), cover = coverOf(a);
+  return `    <a class="post-row" href="/posts/${a.id}">
+      <div class="post-cover"><img src="${esc(cover.src)}" alt="${esc(cover.alt)}" width="480" height="360" loading="lazy" decoding="async"></div>
+      <div class="post-meta"><span>${a.date}</span><span class="cat">${esc(a.cat)}</span></div>
+      <div class="post-title">${esc(a.title)}</div>
+      <div class="post-ex">${inlineFormat(a.excerpt)}</div>${ps.length ? `
+      <div class="post-tags">${ps.map(id => `<span>#${esc(partLabel(id))}</span>`).join('')}</div>` : ''}
+    </a>`;
+};
 
 function injectBlog(articles) {
   const file = join(REPO, 'blog.html');
@@ -62,14 +80,11 @@ function injectBlog(articles) {
   const featured = [...fm[1].matchAll(/"([^"]+)"/g)].map(m => articles.find(a => a.id === m[1])).filter(Boolean);
   // 篇數那一行與 JS renderList() 的預設輸出逐字相同；留空的話，fetch 完補上會把整份清單往下推（版面位移）
   put('BLOG-STATIC-COUNT', `精選文章・共 ${featured.length} 篇`);
-  put('BLOG-STATIC-LIST', '\n' + featured.map(a => `    <a class="post-row" href="/posts/${a.id}">
-      <div class="post-meta"><span>${a.date}</span><span class="cat">${esc(a.cat)}</span></div>
-      <div>
-        <div class="post-title">${esc(a.title)}</div>
-        <div class="post-ex">${inlineFormat(a.excerpt)}</div>
-      </div>
-      <div class="post-arrow">${ARROW}</div>
-    </a>`).join('\n') + '\n        ');
+  put('BLOG-STATIC-LIST', '\n' + featured.map(cardHtml).join('\n') + '\n        ');
+
+  const counts = Object.fromEntries(PART_IDS.map(id => [id, 0]));
+  for (const a of articles) for (const id of partsOf(a)) counts[id]++;
+  put('BLOG-BODYMAP', bodyMapHtml(counts));
 
   const cats = Object.keys(CAT_SLUG).filter(c => articles.some(a => a.cat === c));
   const byDate = [...articles].sort((x, y) => y.date.localeCompare(x.date));
@@ -93,5 +108,5 @@ ${list.slice(0, 3).map(a => `            <li><a href="/posts/${a.id}">${esc(a.ti
     `);
 
   writeFileSync(file, html);
-  console.log(`已更新 blog.html 靜態內容（精選 ${featured.length} 篇・${cats.length} 個主題）`);
+  console.log(`已更新 blog.html 靜態內容（精選 ${featured.length} 篇・${cats.length} 個主題・人體圖 ${PART_IDS.length} 個部位）`);
 }
